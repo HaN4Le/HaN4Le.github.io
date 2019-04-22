@@ -487,27 +487,132 @@ Linux Kali系统的安装
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.04.01（25）/">
+        <a class="abstract-title" href="/2019/04/08/2019.04.08（31）/">
             
-                <span>《汇编语言程序设计》学习笔记（四）</span>
+                <span>openssl学习笔记（二）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
-
-浮点数的机器表示
-浮点数的规格化和非规格化表示
-浮点数表示的特性
-如何给出浮点数表示
-C语言中的浮点数
-
-
-
-前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天总结了一下openssl的一些选项的功能，今天还是重点的来总结一下其他的选项：openssl speed/rand/passwd/dgst/rsautl
+一、openssl speed
+① 功能说明：测试加密算法的性能② 支持的算法：openssl speed [md2] [mdc2] [md5] [hmac] [sha1] [rmd160] [idea-cbc] [rc2-cbc] [rc5-cbc] [bf-cbc] [des-cbc] [des-ede3] [rc4] [rsa512] [rsa1024] [rsa20...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/07/2019.04.07（30）/">
+            
+                <span>openssl学习笔记（一）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在前天做了RSA的题目，发现openssl发挥着重要的作用，但是我只知道零星一点知识，今天我就系统的总结一下吧。
+1.openssl 命令
+openssl命令的格式：openssl command command-options argscommand部分有很多种命令，这些命令需要依赖于openssl命令才能执行，所以称为伪命令（pseudo-command）。
+
+支持的标准命令，即伪命令（经常使用的）ca&nbsp;&nbsp;&nbsp;&nbsp;crl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/05/2019.04.05（29）/">
+            
+                <span>Crypto：What&#39;s RSA？解题总结</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做密码方面的题目，在2月28日的时候，我曾尝试过RSA的题目，但是因为没有深度去思考，就是总结了一下有关原理，当时并没有把这一道题做出来。今天我认真的分析了一下有关这道题的内容，并对上次的博客的内容做了修改和完善，也解出了这道题有了新的收获。
+一、前期准备
+
+openssl 命令
+非对称加密体制
+RSA加解密原理
+
+
+二、思考过程
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我从题目中得到两个文件：flag.encrypt 和 rsa_private_key.pem，这两个文件分别...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/04/2019.04.04（28）/">
+            
+                <span>《汇编语言程序设计》学习笔记（七）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：
+
+
+汇编程序员眼中的系统结构
+第一条汇编指令
+
+
+▎一、汇编程序员眼中的系统结构
+
+
+指令寄存器（PC）：▷ 下一条指令的地址；▷ EIP（x86-32）或RIP（x86-64）
+寄存器与寄存器堆（Registers）：在处理器内部的以名字来访问的快速存储单元
+条件码（Condition Codes）：▷ 用于存储最近执行指令的结果状态信息▷ 用于条件指令的判断执行
+存储器（Memory）：▷ 以字节编码的连续存储空间▷ 存放程序代码、数据、运行栈以及操作系统数...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/04</span>
             </div>
             <!-- tags  -->
             
@@ -526,54 +631,7 @@ C语言中的浮点数
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.04.02（26）/">
-            
-                <span>《汇编语言程序设计》学习笔记（五）</span>
-        </a>
-        <div class="abstract-content">
-            今天继续学习了有关浮点数的部分知识：
-
-浮点数的机器表示
-浮点数的规格化和非规格化表示
-浮点数表示的特性
-如何给出浮点数表示
-C语言中的浮点数
-
-一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置
-
-注：越靠近数轴上的原点越紧密，两端的越远越疏散。
-
-2.“小”浮点数实例
-
-
-8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2e-1 - 1 = 24-1 - 1 = 7
-其他规则符合 IEEE 754规范
-规格化/非规格化
-表示0，NaN与无...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.04.03（27）/">
+        <a class="abstract-title" href="/2019/04/03/2019.04.03（27）/">
             
                 <span>《汇编语言程序设计》学习笔记（六）</span>
         </a>
@@ -605,7 +663,7 @@ C语言中的浮点数
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
             </div>
             <!-- tags  -->
             
@@ -624,21 +682,35 @@ C语言中的浮点数
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.13（19）/">
+        <a class="abstract-title" href="/2019/04/02/2019.04.02（26）/">
             
-                <span>《汇编语言程序设计》学习笔记（三）</span>
+                <span>《汇编语言程序设计》学习笔记（五）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂。下面就写一下相关的学习笔记。
-一、无符号与带符号的转化
-无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的二进制串的表示是不变的，只不过是二者的解释不同而已。问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？
+            今天继续学习了有关浮点数的部分知识：
 
-二、C 语言...
+浮点数的机器表示
+浮点数的规格化和非规格化表示
+浮点数表示的特性
+如何给出浮点数表示
+C语言中的浮点数
+
+一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置
+
+注：越靠近数轴上的原点越紧密，两端的越远越疏散。
+
+2.“小”浮点数实例
+
+
+8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2e-1 - 1 = 24-1 - 1 = 7
+其他规则符合 IEEE 754规范
+规格化/非规格化
+表示0，NaN与无...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/02</span>
             </div>
             <!-- tags  -->
             
@@ -657,130 +729,33 @@ C语言中的浮点数
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.14（20）/">
+        <a class="abstract-title" href="/2019/04/01/2019.04.01（25）/">
             
-                <span>《保密概论》前五章知识点提纲</span>
+                <span>《汇编语言程序设计》学习笔记（四）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》前5章的知识摘要，一方面是回顾一下自己背诵的知识，另一方面是为以后的背诵制定一个知识纲要；
-第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识1.保密工作概要
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
+
+浮点数的机器表示
+浮点数的规格化和非规格化表示
+浮点数表示的特性
+如何给出浮点数表示
+C语言中的浮点数
 
 
-“保密”、“保密工作”的概念 ；
-保密工作的特征；
-保密工作的指导思想、依据；
-保密工作的指导方针和基本原则；
 
-
-2.国家秘密及其确定
-
-
-国家秘密的概念和特征（三要素）；
-国家秘密的等级和划分标准；
-国家秘密事项的确定：定密责任人制度、三种情况、确定权限；
-国家秘密事项保密期限的确...
+前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.12（18）/">
-            
-                <span>《汇编语言程序设计》学习笔记（二）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）
-一、计算机中整数的编码方式和操作整数1.基本数据类型的大小
-
-
-2.编码方式
-
-
-B2Uw：将二进制转无符号数；
-B2Tw：将二进制转补码（带符号数）；
-U2Bw：将无符号数转为二进制；
-U2Tw：将无符号数转补码；
-T2Bw：将补码转二进制；
-T2Uw：将补码转无符号数；
-TMinw：最小补码值；
-TMaxw：最大补码值；
-UMaxw：最大无符号数;
-
-
-3.操作整数
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.16（21）/">
-            
-                <span>《保密概论》第6、7章知识点提纲</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》第6、7章的知识提纲，现在的进度还差第8章就背完了，明天还要继续复习和背诵。
-第六章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密法律法规1.保密法律、法规、规章的概念及相互关系
-
-
-保密法律的概念、制定主体、类别、涉及的相关法律名称；
-保密法规的概念、制定主体、类别、涉及的相关法规名称；
-保密规章的概念、制定主体、类别、涉及的相关规章名称；
-保密法律、法规和规章的相互关系；
-
-
-2.保密法及其实施办法
-
-
-《保密法》的立法背景：①②③；
-《保密法》的内容...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《保密概论》">《保密概论》</a>
     
 </div>
             
@@ -1585,180 +1560,6 @@ UMaxw：最大无符号数;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 44
@@ -1781,34 +1582,6 @@ UMaxw：最大无符号数;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.19（24）/">复试进度总结</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
         </li>
     
@@ -1819,7 +1592,27 @@ UMaxw：最大无符号数;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
         </li>
     
     
@@ -1854,121 +1647,6 @@ UMaxw：最大无符号数;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.18（23）/">复试复习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.08（14）/">Web：Calculator解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.06（12）/">学习总结（1）：隐写术</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
         </li>
     
@@ -1989,6 +1667,126 @@ UMaxw：最大无符号数;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
         </li>
     
@@ -2000,48 +1798,6 @@ UMaxw：最大无符号数;
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
         </li>
     
     </ul></div>
