@@ -487,6 +487,45 @@ Linux Kali系统的安装
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/08/2019.04.01（25）/">
+            
+                <span>《汇编语言程序设计》学习笔记（四）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
+
+浮点数的机器表示
+浮点数的规格化和非规格化表示
+浮点数表示的特性
+如何给出浮点数表示
+C语言中的浮点数
+
+
+
+前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/08/2019.04.02（26）/">
             
                 <span>《汇编语言程序设计》学习笔记（五）</span>
@@ -585,22 +624,16 @@ C语言中的浮点数
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.04.01（25）/">
+        <a class="abstract-title" href="/2019/04/08/2019.03.13（19）/">
             
-                <span>《汇编语言程序设计》学习笔记（四）</span>
+                <span>《汇编语言程序设计》学习笔记（三）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂。下面就写一下相关的学习笔记。
+一、无符号与带符号的转化
+无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的二进制串的表示是不变的，只不过是二者的解释不同而已。问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？
 
-浮点数的机器表示
-浮点数的规格化和非规格化表示
-浮点数表示的特性
-如何给出浮点数表示
-C语言中的浮点数
-
-
-
-前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
+二、C 语言...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -612,37 +645,6 @@ C语言中的浮点数
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.10（16）/">
-            
-                <span>Binary Bombs——汇编语言学习总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天晚上拿到了第二阶段的测试，是关于逻辑炸弹的题目，涉及的知识点有：汇编语言、机器语言、调试器和逆向工程，自己根据文档的提示尝试了一下，但是对汇编语言的指令读不懂，今天的主要任务就是对汇编语言进行了学习，就先简单的总结一下今天所学的只是吧！
-1. 什么是汇编语言？
-汇编语言（assembly language）是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。其特点主要有以下：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①它是在直接面向处理器的语言；&nb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
     
 </div>
             
@@ -700,6 +702,54 @@ C语言中的浮点数
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/08/2019.03.12（18）/">
+            
+                <span>《汇编语言程序设计》学习笔记（二）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）
+一、计算机中整数的编码方式和操作整数1.基本数据类型的大小
+
+
+2.编码方式
+
+
+B2Uw：将二进制转无符号数；
+B2Tw：将二进制转补码（带符号数）；
+U2Bw：将无符号数转为二进制；
+U2Tw：将无符号数转补码；
+T2Bw：将补码转二进制；
+T2Uw：将补码转无符号数；
+TMinw：最小补码值；
+TMaxw：最大补码值；
+UMaxw：最大无符号数;
+
+
+3.操作整数
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/08/2019.03.16（21）/">
             
                 <span>《保密概论》第6、7章知识点提纲</span>
@@ -731,54 +781,6 @@ C语言中的浮点数
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="《保密概论》">《保密概论》</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.03.18（23）/">
-            
-                <span>复试复习总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的学习内容主要有：回顾第7、8、9章的知识点；准备了英语自我介绍和面试的问题，就说一下今天的学习总结和感悟吧！
-1.《保密概论》第7、8、9章的薄弱点第七章 &nbsp; 薄弱点
-
-
-对特定场所的保密管理；
-业务工作中的保密管理；注：特别是新闻出版的保密管理
-保密工作的日常指导① 《保密法》第四十二条；② 保密培训的对象； 
-
-
-第八章 &nbsp; 薄弱点
-
-
-保密检查的内容：第8、9、10点；
-保密检查的实施：第5点；
-保密检查中的问题：第4、5点；
-整个第四节  泄密事件的查处工作；
-
-
-第九章 &nbsp; 薄弱点
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
     
 </div>
             
@@ -1757,30 +1759,6 @@ C语言中的浮点数
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 44
@@ -1803,7 +1781,7 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.19（24）/">复试进度总结</a>
         </li>
     
     
@@ -1876,22 +1854,17 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
         </li>
     
     
@@ -1902,6 +1875,11 @@ C语言中的浮点数
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
         </li>
     
     
@@ -1921,47 +1899,12 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.19（24）/">复试进度总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.06（12）/">学习总结（1）：隐写术</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
         </li>
     
     
@@ -1971,7 +1914,32 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
         </li>
     
     
@@ -1982,6 +1950,16 @@ C语言中的浮点数
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
         </li>
     
     
@@ -2020,6 +1998,11 @@ C语言中的浮点数
         </li>
     
     
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+        </li>
+    
+    
     
     
     
@@ -2039,12 +2022,12 @@ C语言中的浮点数
     
         </ul>
     
-    <div class="archive-year"> 2019 </div>
+    <div class="archive-year"> Invalid date </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
         </li>
     
     
@@ -2059,20 +2042,6 @@ C语言中的浮点数
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
         </li>
     
     </ul></div>
