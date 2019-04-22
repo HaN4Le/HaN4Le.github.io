@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Crypto：What&#39;s RSA？解题总结（1） · MUZI&#39;s BLOG</title>
+    <title>sscanf()函数的详细总结 + 实例 · MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZI&#39;s BLOG.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Crypto：What's RSA？解题总结（1）</a>
+                <a href="#" class="post-name">sscanf()函数的详细总结 + 实例</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Crypto：What's RSA？解题总结（1）
+            sscanf()函数的详细总结 + 实例
             <!-- 404 -->
             
         </h1>
@@ -281,18 +281,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">934</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/08</span>
+                    <span class="post-intro-time">2019/04/22</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,50 +416,104 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>今天解题内容是Crypto：What’s RSA。在本科学习《计算机网络》时，老师在讲解加密和解密的内容时，就对RSA做了简单的介绍，但并没有深入讲它的原理。虽然今天花了很长时间还是没有把它解出来，那就先写一下今天学习关于RSA的知识吧。</p>
-<h3 id="1-什么是RSA"><a href="#1-什么是RSA" class="headerlink" title="1.什么是RSA"></a>1.什么是RSA</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RSA是第一个既能用于数据加密也能用于数字签名的算法，它的命名是以其三位发明者的名字命名——Ron Rivest、 Adi Shamir和Leonard Adleman。</p>
-</blockquote>
-<h3 id="2-RSA算法原理"><a href="#2-RSA算法原理" class="headerlink" title="2.RSA算法原理"></a>2.RSA算法原理</h3><blockquote>
-<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 首先选取两个大素数p和q，为了获得更高的安全性，设两数的长度一样；<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 计算n = p*q，n为模；<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③ 计算<a href="https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/1944850?fr=aladdin" target="_blank" rel="noopener">欧拉函数</a>：φ(n)=(p-1)(q-1);<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④ 选取加密密钥e，其与φ(n)互素<font color="gray">（互素,就是互为质数,两个数之间除了1之外没有更多的公约数）</font>,这里的e的值如果选择的合适，那么RSA加解密的速度将会很快。<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤ 使用<a href="https://baike.baidu.com/item/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%AE%97%E6%B3%95/1053275?fr=aladdin" target="_blank" rel="noopener">扩展欧几里得算法</a>求出e模φ(n)的逆元d，即<br>  <center>e*d ≡ 1 mod φ(n)</center><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥ 公钥为 e 和 n，私钥为 d，p 和 q 可以丢弃，但是必须保密；<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑦ 加密消息 m 时，将其看成一个大整数，并把它分为比 n 小的数据组，按下面的式子进行加密：<br>  <center>c<sub>i</sub> ≡  m<sub>i</sub><sup>e</sup> mod n</center><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑧ 解密密文 c 时，取每一个加密后的分组 ci 并计算，即<br>  <center>m<sub>i</sub> ≡  c<sub>i</sub><sup>d</sup> mod n</center><br>例如：p=3,q=11,d=7;φ(n)=(p-1)(q-1);<br>　　&nbsp;&nbsp;&nbsp;n=p*q=3*11=33,<br>　　&nbsp;&nbsp;&nbsp;φ(n)=(p-1)(q-1)=2<em>10=20<br>　　&nbsp;&nbsp;&nbsp;由e\</em>d=1 mod φ(n),<br>　　&nbsp;&nbsp;&nbsp;e*7=1 mod 20<br>　　&nbsp;&nbsp;&nbsp;因为1 mod 20 = e*d mod 20<br>　　&nbsp;&nbsp;&nbsp;则7e=20k+1 ,其中k为整数。比如k取1,则e=3。<br>说明：</p>
+        <blockquote>
 <ul>
-<li>公钥：n 和 e</li>
-<li>私钥：d</li>
-<li>加密过程：c</li>
-<li>解密过程：m</li>
+<li>前言：<br>今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。</li>
 </ul>
 </blockquote>
-<h3 id="3-解题总结"><a href="#3-解题总结" class="headerlink" title="3. 解题总结"></a>3. 解题总结</h3><blockquote>
+<h3 id="一、有关描述-1"><a href="#一、有关描述-1" class="headerlink" title="一、有关描述[1]"></a>一、有关描述<sup>[1]</sup></h3><blockquote>
+<p>sscanf() 是从一个字符串中读进与指定格式相符的数据. </p>
+</blockquote>
+<h4 id="1-sscanf-格式："><a href="#1-sscanf-格式：" class="headerlink" title="1.sscanf()格式："></a>1.sscanf()格式：</h4><blockquote>
+<p><center>int sscanf(const char <em>str, const char </em>format, …)</center></p>
+<ul>
+<li>str：为C 字符串，是函数检索数据的源；</li>
+<li>format：为C 字符串，包含了以下各项中的一个或多个：空格字符、非空格字符 和 format 说明符。format 说明符形式为 [=%[*][width][modifiers]type=]</li>
+</ul>
+</blockquote>
+<h4 id="2-format详解"><a href="#2-format详解" class="headerlink" title="2.format详解"></a>2.format详解</h4><blockquote>
+<ul>
+<li>“*” ：这是一个可选的星号，表示数据是从流 stream 中读取的，但是可以被忽视，即它不存储在对应的参数中；</li>
+<li>width：这指定了在当前读取操作中读取的最大字符数；</li>
+<li>modifiers    ：为对应的附加参数所指向的数据指定一个不同于整型（针对 d、i 和 n）、无符号整型（针对 o、u 和 x）或浮点型（针对 e、f 和 g）的大小： h ：短整型（针对 d、i 和 n），或无符号短整型（针对 o、u 和 x） l ：长整型（针对 d、i 和 n），或无符号长整型（针对 o、u 和 x），或双精度型（针对 e、f 和 g） L ：长双精度型（针对 e、f 和 g）；</li>
+<li>type：一个字符，指定了要被读取的数据类型以及数据读取方式；</li>
+</ul>
+</blockquote>
+<h4 id="3-附加参数"><a href="#3-附加参数" class="headerlink" title="3.附加参数"></a>3.附加参数</h4><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个函数接受一系列的指针作为附加参数，每一个指针都指向一个对象，对象类型由 format 字符串中相应的 % 标签指定，参数与 % 标签的顺序相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;针对检索数据的 format 字符串中的每个 format 说明符，应指定一个附加参数。如果您想要把 sscanf 操作的结果存储在一个普通的变量中，您应该在标识符前放置引用运算符（&amp;），例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int n;</span><br><span class="line">sscanf (str,&quot;%d&quot;,&amp;amp;n);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="4-函数的返回值-2"><a href="#4-函数的返回值-2" class="headerlink" title="4.函数的返回值[2]"></a>4.函数的返回值<sup>[2]</sup></h4><blockquote>
+<p><strong><font color="red">如果成功，该函数返回成功匹配和赋值的个数</font></strong>。如果到达文件末尾或发生读错误，则返回 EOF。</p>
+</blockquote>
+<h3 id="二、sscanf-主要功能"><a href="#二、sscanf-主要功能" class="headerlink" title="二、sscanf() 主要功能"></a>二、sscanf() 主要功能</h3><blockquote>
 <ol>
-<li>已给文件</li>
+<li>返回值是读取的参数个数;</li>
+<li>取指定长度的字符串; </li>
+<li>取到指定字符为止的字符串;</li>
+<li>取到指定字符集为止的字符串;</li>
+<li>取仅包含指定字符集的字符串;</li>
+<li>获取指定字符中间的字符串;</li>
+<li>指定要跳过的字符串;</li>
+<li>分割以某字符隔开的字符串;</li>
+<li>提取邮箱地址;</li>
+<li>过滤掉不想截取或不需要的字符串;</li>
 </ol>
-<ul>
-<li>flag.encrypt（一个加密文件，明文应该含有 flag 信息）</li>
-<li>rsa_private_key.pem（是含有RSA原始私钥的文档）</li>
-</ul>
-<ol start="2">
-<li>解题思路</li>
-</ol>
-<ul>
-<li>用OpenSSL将rsa_private_key.pem转换成PKCS8格式</li>
-<li>然后再生成公钥</li>
-<li>利用公钥打开flag.encrypt加密文件<br>注：本思路是作者今天解题的思路，但是做了很多尝试，在第三步始终没有成功，明天我将继续尝试解密，思路可能会发生改变</li>
-</ul>
 </blockquote>
-<h3 id="4-解题感悟"><a href="#4-解题感悟" class="headerlink" title="4. 解题感悟"></a>4. 解题感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天在做这道题的过程中，总感觉自己的知识太不够用了，因为题库中每道题的背后都是一个巨大的知识体系，如果只是为了解题而解题，完全可以在网上找到类似题目的解题步骤，但是我觉得这样对知识的理解并不有利，所以以后在做题时，我还得多花点时间学学相关知识，争取对每道题的原理都会有一个深刻的理解，明天要弄个专门的笔记本，把学习的知识做好笔记，系统的归纳一下。</p>
-</blockquote>
-<hr>
+<h3 id="三、sscanf-实例-3"><a href="#三、sscanf-实例-3" class="headerlink" title="三、sscanf()实例[3]"></a>三、sscanf()实例<sup>[3]</sup></h3><h4 id="1-最简单的用法"><a href="#1-最简单的用法" class="headerlink" title="1.最简单的用法"></a>1.最简单的用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;China beijing 123&quot;;</span><br><span class="line">ret = sscanf(string, &quot;%s %s %d&quot;, buf1, buf2, &amp;digit);</span><br><span class="line">printf(&quot;string = %s\n&quot;, string);</span><br><span class="line">printf(&quot;ret=%d, buf1=%s, buf2=%s, digit=%d\n&quot;, ret, buf1, buf2, digit);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>今晚再好好的看一下关于RSA的知识点，争取明天把这道题解出来！ </p>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string = China beijing 123
+ret=3, buf1=china, buf2=beijing, digit=123</code></font><br><br>可以看出,sscanf的<strong>返回值是读取的参数个数</strong>。</p>
 </blockquote>
-<h3 id="明日学习任务"><a href="#明日学习任务" class="headerlink" title="#明日学习任务"></a>#明日学习任务</h3><blockquote>
-<ol>
-<li>背诵《保密概论》；</li>
-<li>学习RSA的涉及到的知识，并记笔记；</li>
-<li>解Crypto：What’s RSA？题目，并写Crypto：What’s RSA结题总结（2）；</li>
-<li>如果该题很快被解出，继续做Misc：Forensics1题目，并进行总结；</li>
-</ol>
+<h4 id="2-取指定长度的字符串"><a href="#2-取指定长度的字符串" class="headerlink" title="2.取指定长度的字符串"></a>2.取指定长度的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;123456789&quot;;</span><br><span class="line">sscanf(string, &quot;%5s&quot;, buf1);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s\n&quot;, buf1);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=123456789
+buf1=12345</code></font></p>
+</blockquote>
+<h4 id="3-取到指定字符为止的字符串"><a href="#3-取到指定字符为止的字符串" class="headerlink" title="3.取到指定字符为止的字符串"></a>3.取到指定字符为止的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;123/456&quot;;</span><br><span class="line">sscanf(string, &quot;%[^/]&quot;, buf1);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s\n&quot;, buf1);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=123/456
+buf1=123</code></font></p>
+</blockquote>
+<h3 id="4-取到指定字符集为止的字符串"><a href="#4-取到指定字符集为止的字符串" class="headerlink" title="4.取到指定字符集为止的字符串"></a>4.取到指定字符集为止的字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;123abcABC&quot;;</span><br><span class="line">sscanf(string, &quot;%[^A-Z]&quot;, buf1);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s\n\n&quot;, buf1);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=123abcABC
+buf1=123abc</code></font></p>
+</blockquote>
+<h4 id="5-取仅包含指定字符集的字符串"><a href="#5-取仅包含指定字符集的字符串" class="headerlink" title="5.取仅包含指定字符集的字符串"></a>5.取仅包含指定字符集的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;0123abcABC&quot;;</span><br><span class="line">sscanf(string, &quot;%[0-9]%[a-z]%[A-Z]&quot;, buf1, buf2, buf3);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s, buf2=%s, buf3=%s\n\n&quot;, buf1, buf2, buf3);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=0123abcABC
+buf1=0123, buf2=abc, buf3=ABC</code></font></p>
+</blockquote>
+<h4 id="6-获取指定字符中间的字符串"><a href="#6-获取指定字符中间的字符串" class="headerlink" title="6.获取指定字符中间的字符串"></a>6.获取指定字符中间的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;ios&lt;android&gt;wp7&quot;;</span><br><span class="line">sscanf(string, &quot;%*[^&lt;]&lt;%[^&gt;]&quot;, buf1);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s\n\n&quot;, buf1);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=ios&lt;android&gt;wp7
+buf1=android</code></font></p>
+</blockquote>
+<h4 id="7-指定要跳过的字符串"><a href="#7-指定要跳过的字符串" class="headerlink" title="7.指定要跳过的字符串"></a>7.指定要跳过的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;iosVSandroid&quot;;</span><br><span class="line">sscanf(string, &quot;%[a-z]VS%[a-z]&quot;, buf1, buf2);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s, buf2=%s\n\n&quot;, buf1, buf2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=iosVSandroid
+buf1=ios, buf2=android</code></font></p>
+</blockquote>
+<h4 id="8-分割以某字符隔开的字符串"><a href="#8-分割以某字符隔开的字符串" class="headerlink" title="8.分割以某字符隔开的字符串"></a>8.分割以某字符隔开的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;android-iphone-wp7&quot;;</span><br><span class="line">/*字符串取道&apos;-&apos;为止,后面还需要跟着分隔符&apos;-&apos;,起到过滤作用,有点类似于第7点*/</span><br><span class="line"></span><br><span class="line">sscanf(string, &quot;%[^-]-%[^-]-%[^-]&quot;, buf1, buf2, buf3);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s, buf2=%s, buf3=%s\n\n&quot;, buf1, buf2, buf3);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=android-iphone-wp7
+buf1=android, buf2=iphone, buf3=wp7</code></font></p>
+</blockquote>
+<h4 id="9-提取邮箱地址"><a href="#9-提取邮箱地址" class="headerlink" title="9.提取邮箱地址"></a>9.提取邮箱地址</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;Email:beijing@sina.com.cn&quot;;</span><br><span class="line">sscanf(string, &quot;%[^:]:%[^@]@%[^.].%s&quot;, buf1, buf2, buf3, buf4);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s, buf2=%s, buf3=%s, buf4=%s\n\n&quot;, buf1, buf2, buf3, buf4);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>执行结果为：</strong><br><br><font color="red"><code>string=Email:beijing@sina.com.cn
+buf1=Email, buf2=beijing, buf3=sina, buf4=com.cn</code></font></p>
+</blockquote>
+<h4 id="10-过滤掉不想截取或不需要的字符串"><a href="#10-过滤掉不想截取或不需要的字符串" class="headerlink" title="10.过滤掉不想截取或不需要的字符串"></a>10.过滤掉不想截取或不需要的字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = &quot;android iphone wp7&quot;;</span><br><span class="line">sscanf(string, &quot;%s %*s %s&quot;, buf1, buf2);</span><br><span class="line">printf(&quot;string=%s\n&quot;, string);</span><br><span class="line">printf(&quot;buf1=%s, buf2=%s\n\n&quot;, buf1, buf2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><br><font color="red"><code>string=android iphone wp7
+buf1=android, buf2=</code></font></p>
+</blockquote>
+<h3 id="四、参考资料"><a href="#四、参考资料" class="headerlink" title="四、参考资料"></a>四、参考资料</h3><blockquote>
+<p>[1] <a href="http://www.runoob.com/cprogramming/c-function-sscanf.html" target="_blank" rel="noopener">http://www.runoob.com/cprogramming/c-function-sscanf.html</a><br>[2] <a href="http://www.cplusplus.com/reference/cstdio/sscanf/" target="_blank" rel="noopener">http://www.cplusplus.com/reference/cstdio/sscanf/</a><br>[3] <a href="https://blog.csdn.net/pengnanzheng/article/details/81120890" target="_blank" rel="noopener">https://blog.csdn.net/pengnanzheng/article/details/81120890</a></p>
+</blockquote>
+<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><blockquote>
+<p>若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法</p>
 </blockquote>
 
     </article>
@@ -467,9 +521,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/08/2019.02.28（6）/">https://muzibing.github.io/2019/04/08/2019.02.28（6）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/08/2019.02.28（6）/">April 8th 2019, 2:26:55 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/08/2019.02.28（6）/">April 5th 2019, 5:11:23 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/22/2019.04.22（44）/">https://muzibing.github.io/2019/04/22/2019.04.22（44）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/22/2019.04.22（44）/">April 22nd 2019, 9:16:06 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/22/2019.04.22（44）/">April 22nd 2019, 9:16:46 pm</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
@@ -477,17 +531,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/08/2019.03.01（7）/" title="Misc：Forensics1 解题总结">
-                    <div class="nextTitle">Misc：Forensics1 解题总结</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/08/2019.02.27（5）/" title="Misc:LSB解题总结+学习总结">
-                    <div class="prevTitle">Misc:LSB解题总结+学习总结</div>
+                <a href="/2019/04/21/2019.04.21（43）/" title="二进制炸弹：Phase_4解题总结">
+                    <div class="prevTitle">二进制炸弹：Phase_4解题总结</div>
                 </a>
             
         </li>
@@ -628,7 +677,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是RSA"><span class="toc-number">1.</span> <span class="toc-text">1.什么是RSA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RSA算法原理"><span class="toc-number">2.</span> <span class="toc-text">2.RSA算法原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题总结"><span class="toc-number">3.</span> <span class="toc-text">3. 解题总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题感悟"><span class="toc-number">4.</span> <span class="toc-text">4. 解题感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#明日学习任务"><span class="toc-number">5.</span> <span class="toc-text">#明日学习任务</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、有关描述-1"><span class="toc-number">1.</span> <span class="toc-text">一、有关描述[1]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-sscanf-格式："><span class="toc-number">1.1.</span> <span class="toc-text">1.sscanf()格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-format详解"><span class="toc-number">1.2.</span> <span class="toc-text">2.format详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-附加参数"><span class="toc-number">1.3.</span> <span class="toc-text">3.附加参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-函数的返回值-2"><span class="toc-number">1.4.</span> <span class="toc-text">4.函数的返回值[2]</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、sscanf-主要功能"><span class="toc-number">2.</span> <span class="toc-text">二、sscanf() 主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、sscanf-实例-3"><span class="toc-number">3.</span> <span class="toc-text">三、sscanf()实例[3]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-最简单的用法"><span class="toc-number">3.1.</span> <span class="toc-text">1.最简单的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-取指定长度的字符串"><span class="toc-number">3.2.</span> <span class="toc-text">2.取指定长度的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-取到指定字符为止的字符串"><span class="toc-number">3.3.</span> <span class="toc-text">3.取到指定字符为止的字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-取到指定字符集为止的字符串"><span class="toc-number">4.</span> <span class="toc-text">4.取到指定字符集为止的字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-取仅包含指定字符集的字符串"><span class="toc-number">4.1.</span> <span class="toc-text">5.取仅包含指定字符集的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-获取指定字符中间的字符串"><span class="toc-number">4.2.</span> <span class="toc-text">6.获取指定字符中间的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-指定要跳过的字符串"><span class="toc-number">4.3.</span> <span class="toc-text">7.指定要跳过的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-分割以某字符隔开的字符串"><span class="toc-number">4.4.</span> <span class="toc-text">8.分割以某字符隔开的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-提取邮箱地址"><span class="toc-number">4.5.</span> <span class="toc-text">9.提取邮箱地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-过滤掉不想截取或不需要的字符串"><span class="toc-number">4.6.</span> <span class="toc-text">10.过滤掉不想截取或不需要的字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考资料"><span class="toc-number">5.</span> <span class="toc-text">四、参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、每日一句"><span class="toc-number">6.</span> <span class="toc-text">五、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
