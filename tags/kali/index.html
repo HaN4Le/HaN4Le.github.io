@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Misc：shell解题总结 + 学习总结 · MUZI&#39;s BLOG</title>
+    <title>MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -218,23 +218,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">MUZI&#39;s BLOG.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Misc：shell解题总结 + 学习总结</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">MUZI's BLOG.</a>
 </header>
@@ -246,74 +235,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            Misc：shell解题总结 + 学习总结
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/03</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -414,113 +353,74 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前天在写了有关流量分析的总结后，我昨天又趁热打铁把shell这道题做了出来，今天就分析一下这道题的相关问题吧！</p>
-<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
-<ul>
-<li>工具：wireshark、base64解码器</li>
-<li>对象：shell流量包</li>
-<li>知识：TCP的建立、传输和释放的过程</li>
-</ul>
-</blockquote>
-<h3 id="2-知识疑问"><a href="#2-知识疑问" class="headerlink" title="2. 知识疑问"></a>2. 知识疑问</h3><blockquote>
-<ol>
-<li>面对这么多的流量，该从何入手？</li>
-<li>怎么对TCP进行流量追踪？</li>
-<li>python中raw_input()的功能是什么？</li>
-<li>python中swapcase()的功能是什么？</li>
-</ol>
-</blockquote>
-<h3 id="3-思考过程"><a href="#3-思考过程" class="headerlink" title="3. 思考过程"></a>3. 思考过程</h3><blockquote>
-<ol>
-<li><strong>面对这么多的流量，该从何入手？</strong><br>对于这个问题，说实话一开始也是无处下手，毕竟题目中也没有给出直接的提示，那我就认真的看了看这两台主机（A：192.168.247.128和B：192.168.247.130）发生了什么：</li>
-</ol>
-<ul>
-<li>首先是主机A（port：57636）与主机B（port：80）web服务器建立了TCP连接（三次握手）并请求“shell.php”文档；<br><img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0pyvmho3zj20xz02rq3b.jpg" alt="1"></li>
-<li>主机B（port：53474）与主机A（port：12345）建立TCP连接（），在接下来B向A传输文件时，紧急位（PSH）置为 1，说明该文件是首先传送的；<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvpsi9xj20wd0c3wgs.jpg" alt="2"></li>
-<li>两台主机传输完毕，连接断开（四次握手，但实际是三次握手，因为本应第二次握手的没有传输文件，所以省去）；</li>
-</ul>
-<ol start="2">
-<li><strong>怎么对TCP进行流量追踪？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分析大概的过程后，我知道应注重对TCP流的分析，那么应该怎样对这么多的数据进行分析呢？在查了wireshark的功能和相关分析方法后，决定用该软件对TCP进行流的追踪：<br><center><font color="red">左击SYN=“1”的一栏—&gt;再次右击鼠标—&gt;点击Follow—&gt;TCP Stream</font></center><br>在弹出的界面会出来一些代码：<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0pyvvpzhej20w70fdtal.jpg" alt><br>其中包括raw_input()和swapcase()，那么他们的功能是什么呢？</li>
-<li><strong>python中raw_input()的功能是什么？</strong><br>raw_input() 会从标准输入（sys.stdin）读取一个输入（输入的类型为字符）并返回一个字符串，且尾部的换行符从末尾移除；<br>##与input()的区别：input() 和 raw_input() 这两个函数均能接收 字符串 ，但 raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）。而对于 input() ，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError 。</li>
-<li><strong>python中swapcase()的功能是什么？</strong><br>python swapcase() 方法用于对字符串的大小写字母进行转换；</li>
-</ol>
-</blockquote>
-<h3 id="4-解题过程"><a href="#4-解题过程" class="headerlink" title="4. 解题过程"></a>4. 解题过程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了这么多的基础知识下，就开始正式的解题过程吧！</p>
-<blockquote>
-<ol>
-<li>分析两台主机的交互情况。从上面的“思考过程”中可以看到，本题的切入点在于对的TCP流的分析：追踪TCP流，得到下图的信息：<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvz49coj20w70fd0un.jpg" alt></li>
-<li>分析TCP流的代码。上图中的信息所描述的大概过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①进入www-data@UbuntuServer16的/var/www/html/tmp/flag目录下；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②在该目录下查看flag.text文件（ cat flag.txt）；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③用base64技术对内容进行编码（base64 -w 0 ）；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④把编码后的内容通过大小写字母转换输出（python -c “print raw_input().swapcase()”）；</li>
-<li>找到base64编码后的flag：<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvsxg22j20zp0k60v3.jpg" alt></li>
-<li>将该数据保存早记事本中，将字母的大小写进行转化，并进行base64解码；</li>
-</ol>
-</blockquote>
-<h3 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前几天也做过这个题，因为当时没有深入研究它整个过程是怎样的，也没有去了解该怎么对TCP进行分析，所以当时解题并没有成功，但是随着这几天自己对CTF题的不断的理解，让我面对CTF题时更加稳重和善于思考了，也许这就是这几天我的一个小小的进步吧。</p>
-</blockquote>
-<h3 id="6-每日一句"><a href="#6-每日一句" class="headerlink" title="6. 每日一句"></a>6. 每日一句</h3><blockquote>
-<center><font color="red"><strong>因为不甘平庸，所以选择拼搏与汗水！</strong></font></center></blockquote>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/03/03/2019.03.03（9）/">https://muzibing.github.io/2019/03/03/2019.03.03（9）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/03/03/2019.03.03（9）/">March 3rd 2019, 10:34:59 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/03/03/2019.03.03（9）/">April 1st 2019, 10:21:22 pm</a>
-            </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/08/2019.04.08（31）/">
+            
+                <span>openssl学习笔记（二）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天总结了一下openssl的一些选项的功能，今天还是重点的来总结一下其他的选项：openssl speed/rand/passwd/dgst/rsautl
+一、openssl speed
+① 功能说明：测试加密算法的性能② 支持的算法：openssl speed [md2] [mdc2] [md5] [hmac] [sha1] [rmd160] [idea-cbc] [rc2-cbc] [rc5-cbc] [bf-cbc] [des-cbc] [des-ede3] [rc4] [rsa512] [rsa1024] [rsa20...
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/08/2019.04.07（30）/">
+            
+                <span>openssl学习笔记（一）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在前天做了RSA的题目，发现openssl发挥着重要的作用，但是我只知道零星一点知识，今天我就系统的总结一下吧。
+1.openssl 命令
+openssl命令的格式：openssl command command-options argscommand部分有很多种命令，这些命令需要依赖于openssl命令才能执行，所以称为伪命令（pseudo-command）。
+
+支持的标准命令，即伪命令（经常使用的）ca&nbsp;&nbsp;&nbsp;&nbsp;crl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/03/04/2019.03.04（10）/" title="Misc：PkCrack解题总结 + 学习总结">
-                    <div class="nextTitle">Misc：PkCrack解题总结 + 学习总结</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/02/2019.03.02（8）/" title="Misc：Exif 解题总结 + 学习总结">
-                    <div class="prevTitle">Misc：Exif 解题总结 + 学习总结</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
-        <script type="text/javascript">
-            (function (d, s) {
-                var j, e = d.getElementsByTagName(s)[0];
-                if (typeof LivereTower === 'function') { return; }
-                j = d.createElement(s);
-                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                j.async = true;
-
-                e.parentNode.insertBefore(j, e);
-            })(document, 'script');
-        </script>
-        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -612,24 +512,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-知识疑问"><span class="toc-number">2.</span> <span class="toc-text">2. 知识疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-思考过程"><span class="toc-number">3.</span> <span class="toc-text">3. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题过程"><span class="toc-number">4.</span> <span class="toc-text">4. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-学习感悟"><span class="toc-number">5.</span> <span class="toc-text">5. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-每日一句"><span class="toc-number">6.</span> <span class="toc-text">6. 每日一句</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1947,8 +1829,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
