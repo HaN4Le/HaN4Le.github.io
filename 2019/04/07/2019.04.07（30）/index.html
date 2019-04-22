@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《汇编语言程序设计》学习笔记（七） · MUZI&#39;s BLOG</title>
+    <title>openssl学习笔记（一） · MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZI&#39;s BLOG.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《汇编语言程序设计》学习笔记（七）</a>
+                <a href="#" class="post-name">openssl学习笔记（一）</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《汇编语言程序设计》学习笔记（七）
+            openssl学习笔记（一）
             <!-- 404 -->
             
         </h1>
@@ -281,18 +281,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/08</span>
+                    <span class="post-intro-time">2019/04/07</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,66 +416,113 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：</p>
-<blockquote>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在前天做了RSA的题目，发现openssl发挥着重要的作用，但是我只知道零星一点知识，今天我就系统的总结一下吧。</p>
+<h4 id="1-openssl-命令"><a href="#1-openssl-命令" class="headerlink" title="1.openssl 命令"></a>1.openssl 命令</h4><blockquote>
+<p>openssl命令的格式：<font color="red">openssl command command-options args</font><br>command部分有很多种命令，这些命令需要依赖于openssl命令才能执行，所以称为伪命令（pseudo-command）。</p>
 <ul>
-<li>汇编程序员眼中的系统结构</li>
-<li>第一条汇编指令</li>
-</ul>
-</blockquote>
-<h4 id="▎一、汇编程序员眼中的系统结构"><a href="#▎一、汇编程序员眼中的系统结构" class="headerlink" title="▎一、汇编程序员眼中的系统结构"></a><font color="brown">▎一、汇编程序员眼中的系统结构</font></h4><p><center><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/KgA9DzzPsW3kfMffIMzuVmtxMrNPEhPE*FDwmFtzILw!/r/dLYAAAAAAAAA" alt></center></p>
-<blockquote>
+<li>支持的标准命令，即伪命令（经常使用的）<br>ca&nbsp;&nbsp;&nbsp;&nbsp;crl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dgst<sup>[1]</sup>&nbsp;&nbsp;&nbsp;&nbsp;dh&nbsp;&nbsp;&nbsp;&nbsp;dhparam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enc<sup>[2]</sup>&nbsp;&nbsp;&nbsp;&nbsp;genpkey&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>genrsa</strong></font>&nbsp;&nbsp;&nbsp;&nbsp; passwd&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>pkey</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;pkeyutl&nbsp;&nbsp;&nbsp;&nbsp;rand&nbsp;&nbsp;&nbsp;&nbsp;req&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>rsa</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;rsautl&nbsp;&nbsp;&nbsp;&nbsp;speed&nbsp;&nbsp;&nbsp;&nbsp;x509<br><br>[1] 指定”dgst”命令时即单向加密支持的最常用的算法：md5<br>[2] 指定对称加密”enc”时支持的对称加密最常用的算法：base64<br><br></li>
+<li><p>各伪命令的选项”-passin”和”-passout”可能使用到的密码传递格式。“-passin”指的是传递解密时的密码， “-passout”指的是传递加密输出文件时的密码。如果不给定密码格式，将提示从终端输入。</p>
 <ul>
-<li><font color="brown">指令寄存器（PC）：</font><br>▷ 下一条指令的地址；<br>▷ EIP（x86-32）或RIP（x86-64）</li>
-<li><font color="brown">寄存器与寄存器堆（Registers）：</font>在处理器内部的以名字来访问的快速存储单元</li>
-<li><font color="brown">条件码（Condition Codes）：</font><br>▷ 用于存储最近执行指令的结果状态信息<br>▷ 用于条件指令的判断执行</li>
-<li><font color="brown">存储器（Memory）：</font><br>▷ 以字节编码的连续存储空间<br>▷ 存放程序代码、数据、运行栈以及操作系统数据</li>
-</ul>
-</blockquote>
-<p><strong>1.如何从C代码生成汇编代码？</strong></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font color=’red&gt;C 代码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的x86-32汇编<br>int sum(int x,int y)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum:<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int t = x+y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp, %ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax<br>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%eax<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp,%esp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br><br>命令行：gcc&nbsp;&nbsp;&nbsp;&nbsp;-02&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;&nbsp;code.c&nbsp;&nbsp;&nbsp;&nbsp;-m32&nbsp;&nbsp;&nbsp;&nbsp;-fno-omit-frame-pointer<br>生成汇编文件：code.s</p>
-</blockquote>
-<p><strong>2.汇编语言数据格式</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/h04H.tsNNvCZbjU.e0tUSlxdl31hO9Tz3D5aTz9zL.k!/r/dLgAAAAAAAAA" alt></p>
-<blockquote>
-<p>在x86-32中，使用“字（Word）”来标识16位证书类型；“双字”表示32位；汇编语言指令所处理的数据类型一般是采用汇编指令的后缀来进行区分。</p>
-</blockquote>
-<h4 id="▎二、第一条汇编指令"><a href="#▎二、第一条汇编指令" class="headerlink" title="▎二、第一条汇编指令"></a><font color="brown">▎二、第一条汇编指令</font></h4><p><strong>1.第一条汇编指令实例</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/02sOeh6T2eTCf*pO37M8FrHfFBGw4UlaYPeS07d.aTg!/r/dL8AAAAAAAAA" alt></p>
-<p><strong>2.数据传送指令（mov）</strong></p>
-<blockquote>
-<p>mov指令是汇编语言中被频繁使用的一个指令</p>
-<ul>
-<li>数据传送（AT&amp;T语法）<br>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dest<br>这是一个常见的指令，是将一个“双字（l）”从Source移到Dest中</li>
-<li>允许的操作数类型<br><font color="red"><strong>立即数：常整数</strong></font>,如：<ul>
-<li>\$0x400,\$-533</li>
-<li>可以被1、2或4个字节来表示<br><font color="red"><strong>寄存器：8个通用寄存器之一</strong></font><br><font color="red"><strong>存储器：四个连续的字节</strong></font>：支持多种访存寻址模式</li>
+<li><strong>格式一</strong>：pass:password：password表示传递的明文密码</li>
+<li><strong>格式二</strong>：env:var：从环境变量var获取密码值</li>
+<li><strong>格式三</strong>：file:filename：filename文件中的第一行为要传递的密码。若filename同时传递给”-passin”和”-passout”选项，则filename的第一行为”-passin”的值，第二行为”-passout”的值；</li>
+<li><p><strong>格式四</strong>：stdin：从标准输入中获取要传递的密码</p>
+<p>例如，要<font color="red">加密某个密钥文件</font>，使得每次使用该密钥文件都需要输入密码，则使用”<font color="red">-passout”指定加密密码</font>，当使用<font color="blue">被加密的密钥文件时需要解密，使用”-passin”传递解密密码</font>。</p>
+</li>
 </ul>
 </li>
-<li><strong>扩展：寄存器和存储器的区别</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/q9hWXpW*Q.YIWzOAHgh3dPf07*NeGsM8IU2YaPrmA94!/r/dMMAAAAAAAAA" alt></li>
 </ul>
 </blockquote>
-<p><strong>3.数据传送指令支持的不同操作数类型组合（以movl为例）</strong></p>
-<blockquote>
+<h4 id="二、openssl-genrsa：生成rsa私钥"><a href="#二、openssl-genrsa：生成rsa私钥" class="headerlink" title="二、openssl genrsa：生成rsa私钥"></a>二、openssl genrsa：生成rsa私钥</h4><blockquote>
+<p><strong>genrsa</strong>命令是<strong>用于生成RSA私钥，但不会生成公钥</strong>，因为公钥提取自私钥。<font color="gray">如果需要查看公钥或生成公钥，可以使用openssl  rsa命令。</font><br><br>genrsa 的用法：</p>
+<p><font color="red">openssl genrsa [-out filename] [-passout arg] [-des] [-des3] [-idea] [numbits]</font><br>参数说明：</p>
 <ul>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$0x4,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = 0x4</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$-147,(%eax)&nbsp;&nbsp;&nbsp;C语言表示：*p = -147</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp1 = temp2</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$eax,(%edx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：*p = temp</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">Mem</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%eax),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = *p<br>▶ Imm：立即数（操作数）<br>▶ Reg：寄存器<br>▶ Mem：存储器<br>▶ (%eax)：表示的是%eax寄存器的内存地址<br><br><strong>注意：不能两个操作数都为内存地址；</strong></li>
+<li><strong>[-out filename]</strong>：将生成的私钥保存至filename文件，若未指定输出文件，则为标准输出。</li>
+<li><strong>[numbits]</strong>：指定要生成的私钥的长度，默认为1024。必须为命令行的最后一项参数。</li>
+<li><strong>[-des]/[-des3]/[-idea]</strong>：指定加密私钥文件用的算法，这样每次使用私钥文件都将输入密码，太麻烦所以很少使用。</li>
+<li><strong>[-passout args]</strong>    ：加密私钥文件时，传递密码的格式，如果要加密私钥文件时未指定该项，则提示输入密码。传递密码的args的格式<a href="https://www.cnblogs.com/liliyang/p/9738929.html" target="_blank" rel="noopener">详情点击这里</a></li>
 </ul>
-</blockquote>
-<p><strong>3.简单的寻址模式</strong></p>
-<blockquote>
+<p>示例：</p>
+<ol>
+<li>生成512位的rsa私钥，输出到屏幕<font color="blue"># openssl genrsa 512</font></li>
+</ol>
 <ul>
-<li><strong>间接寻址模式&nbsp;&nbsp;&nbsp;&nbsp;&amp;nbsp(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg[R]]</strong><br>寄存器R指定内存地址：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%ecx),%eax</li>
-<li>基址 + 偏移量寻址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg(R) + D]<br>寄存器R指定内存起始地址，常数D给出偏移量：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%edx</li>
+<li>numbits：512</li>
 </ul>
+<ol start="2">
+<li>生成512位的rsa私钥，输出到指定的文件genrsa.txt<font color="blue"># openssl genrsa -out genrsa.txt 512</font></li>
+</ol>
+<ul>
+<li>-out filename：-out genrsa.txt</li>
+<li>numbits：512</li>
+</ul>
+<ol start="3">
+<li>加密私钥文件，加密的密码为000000<font color="blue"># openssl genrsa -out genrsa.txt <strong>-des3</strong> &nbsp;-passout pass:000000   512</font></li>
+</ol>
+<ul>
+<li>-out filname：-out genrsa.txt</li>
+<li>-des3：这里使用了<strong>-des3</strong>算法对私钥文件加密，如果不使用-passout选项指定密码，会进入交互式，提示输入密码</li>
+<li>-passout args：加密密码为000000</li>
+<li>numbits：512</li>
+</ul>
+<p>注：通常使用的选项是”-out”和”numbits”选项，分别是输出的文件名称和私钥的长度</p>
 </blockquote>
-<h4 id="▎学习感悟"><a href="#▎学习感悟" class="headerlink" title="▎学习感悟"></a><font color="red">▎学习感悟</font></h4><blockquote>
-<p>今天还是学习了“汇编语言”，感觉自己慢慢的开始对一些概念和语法有了一些更深的理解，给了我以后学习的很大信心，让我觉得只要肯下功夫，就一定能学好的。</p>
+<h4 id="三、openssl-rsa-pkey：查看私钥；从私钥中提取公钥、查看公钥"><a href="#三、openssl-rsa-pkey：查看私钥；从私钥中提取公钥、查看公钥" class="headerlink" title="三、openssl rsa/pkey：查看私钥；从私钥中提取公钥、查看公钥"></a>三、openssl rsa/pkey：查看私钥；从私钥中提取公钥、查看公钥</h4><blockquote>
+<ol>
+<li>命令行功能介绍：</li>
+</ol>
+<ul>
+<li>openssl rsa：RSA对称密钥的处理工具，具有输入和输出私钥或公钥的作用；</li>
+<li>openssl  pkey ：通用非对称密钥处理工具，从私钥中提取出公钥，将文件中私钥或公钥的某部分内容输出到stdout</li>
+</ul>
+<ol start="2">
+<li>命令行用法<br>① rsa 命令格式：<font color="red">openssl rsa [-in filename] [-passin arg] [-passout arg] [-out filename] [-des|-des3|-idea] [-text] [-noout] [-pubin] [-pubout] [-check]</font></li>
+</ol>
+<ul>
+<li><strong>-in filename</strong>：指定密钥输入文件。默认读取的是私钥，若指定”-pubin”选项将表示读取公钥。将从该文件读取密钥，不指定时将从stdin读取；</li>
+<li><strong>-passin arg</strong>：传递解密密钥文件的密码。密码格式<a href="https://www.cnblogs.com/liliyang/p/9738929.html" target="_blank" rel="noopener">详情见这里</a>；</li>
+<li><strong>-passout arg</strong>：指定加密输出文件的密码；</li>
+<li><strong>-out filename</strong>：① 默认情况下，使用openssl rsa将文件中公钥或私钥读取出来显示到stdout，使用该选项将读取的内容输出到指定的文件中；② 读取的是私钥输出的是私钥或公钥（若使用-putout选项从私钥中提取公钥），读取的是公钥输出的一定是公钥；③ 若不指定该选项，默认输出到stdout；</li>
+<li><strong>-des|-des3|-idea</strong>：加密输出文件，使得每次读取输出文件时都需要提供密码；</li>
+<li><strong>-text</strong>：转换输入和输出的密钥文件格式为纯文本格式；</li>
+<li><strong>-noout</strong>：控制不输出任何密钥信息；</li>
+<li><strong>-pubin</strong>：① 读取公钥内容，即从”-in filename”的filename中读取公钥，所以filename必须为公钥文件；② 不指定该选项时，默认是从filename中读取私钥。公钥文件可以通过文件中的公钥标识符；③ “—–BEGIN PUBLIC KEY—–”和”—–END PUBLIC KEY—–”来辨别；</li>
+<li><strong>-pubout</strong>：① 从私钥中提取公钥，即从”-in filename”指定的私钥中提取公钥并输出，此时-in filename中的filename必须是私钥文件；② 当设置了”-pubin”时，默认也设置了”-pubout”；③ 私钥文件可以通过文件中的私钥标识符”—–BEGIN PRIVATE KEY—–”和”—–END PRIVATE KEY—–”来辨别。</li>
+<li><p><strong>-check</strong>：检查RSA密钥是否完整未被修改过，只能检测私钥，因为公钥来源于私钥。因此选项”-in filename”的filename文件只能是私钥文件；</p>
+<p>② pkey 命令格式：</p>
+<font color="red">openssl   pkey    [-in filename]  [-passin arg]    [-passout arg]   [-out filename] [-cipher] [-text] [-noout] [-pubin] [-pubout]</font></li>
+<li>-cipher：等价于openssl rsa的”-des|-des3|-idea”，例如”-cipher des3”；</li>
+<li>其他选项和rsa命令行的格式用法一样；</li>
+</ul>
+<ol start="3">
+<li>示例：<br>① 创建一个rsa私钥文件genrsa.pri，然后从中提取rsa公钥到rsa.pub文件中：</li>
+</ol>
+<ul>
+<li><font color="blue">openssl  genrsa -out private.pem 1024  &nbsp; &nbsp;</font>#生成不加密的私钥</li>
+<li><font color="blue">cat private.pem &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</font>#查看私钥内容</li>
+<li><font color="blue">openssl  rsa -in private.pem &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font> #读取私钥的内容</li>
+<li><font color="blue">openssl rsa -in private.pem -text&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font>#以纯文本格式输出私钥内容</li>
+<li><font color="blue">openssl rsa -in private.pem -text -noout &nbsp;</font>#不输出私钥内容</li>
+<li><font color="blue">openssl rsa -in private.pem  -des3 -passout pass:123456  -out</font></li>
+<li><font color="blue">private_des.pem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>#将生成私钥加密</li>
+<li><p><font color="blue">openssl rsa -in private_des.pem -passin pass:000000&nbsp;</font>#读取加密的私钥</p>
+<p>② 从私钥中提取公钥</p>
+<ul>
+<li><font color="blue">openssl rsa -in private.pem   -pubout -out public.pem</font> #私钥中提取公钥</li>
+<li><font color="blue">openssl rsa -pubin -in public.pem   -text</font> #以文本格式输出公钥内容</li>
+<li><font color="blue">openssl rsa -pubin -in public.pem -text -noout</font> #不输出公钥内容</li>
+</ul>
+<p>③ 移除私钥文件或公钥文件的密码。只需直接输出到新文件即可<br><font color="blue">openssl rsa -in private_des.pem -passin pass:00000</font></p>
+<p>④ check检测私钥文件的一致性，查看私钥文件被修改过<br><font color="blue">openssl rsa -in private.pem -check</font></p>
+</li>
+</ul>
+<p>注：openssl rsa的常用选项就只有<font color="red">“-in filename”、”-out filename”、”-pubout”</font></p>
 </blockquote>
-<h4 id="▎每日一句"><a href="#▎每日一句" class="headerlink" title="▎每日一句"></a><font color="red">▎每日一句</font></h4><blockquote>
-<p>在成功的道路上，激情是需要的，志向是可贵的，但更重要的是那毫无情趣的近乎平常的坚守的毅力和勇气。  </p>
+<h4 id="四、学习感悟"><a href="#四、学习感悟" class="headerlink" title="四、学习感悟"></a>四、学习感悟</h4><blockquote>
+<p>今天系统的又学习了一下openssl的命令行，感觉这对以后RSA算法的学习有了很大的帮助，不着急立马就学会，而是要慢慢积累这些知识点，每总结一个都要弄懂，打好学习的基础</p>
+</blockquote>
+<h4 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h4><blockquote>
+<p>一个人的成功不取决于他的智慧，而是毅力。</p>
 </blockquote>
 
     </article>
@@ -483,9 +530,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/08/2019.04.04（28）/">https://muzibing.github.io/2019/04/08/2019.04.04（28）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/08/2019.04.04（28）/">April 8th 2019, 2:26:55 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/08/2019.04.04（28）/">April 4th 2019, 7:45:37 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/07/2019.04.07（30）/">https://muzibing.github.io/2019/04/07/2019.04.07（30）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/07/2019.04.07（30）/">April 7th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/07/2019.04.07（30）/">April 22nd 2019, 9:42:00 pm</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
@@ -502,8 +549,8 @@ height:50vh;
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/08/2019.04.02（26）/" title="《汇编语言程序设计》学习笔记（五）">
-                    <div class="prevTitle">《汇编语言程序设计》学习笔记（五）</div>
+                <a href="/2019/04/05/2019.04.05（29）/" title="Crypto：What's RSA？解题总结">
+                    <div class="prevTitle">Crypto：What's RSA？解题总结</div>
                 </a>
             
         </li>
@@ -644,7 +691,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#▎一、汇编程序员眼中的系统结构"><span class="toc-number">1.</span> <span class="toc-text">▎一、汇编程序员眼中的系统结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎二、第一条汇编指令"><span class="toc-number">2.</span> <span class="toc-text">▎二、第一条汇编指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎学习感悟"><span class="toc-number">3.</span> <span class="toc-text">▎学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎每日一句"><span class="toc-number">4.</span> <span class="toc-text">▎每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-openssl-命令"><span class="toc-number">1.</span> <span class="toc-text">1.openssl 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、openssl-genrsa：生成rsa私钥"><span class="toc-number">2.</span> <span class="toc-text">二、openssl genrsa：生成rsa私钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、openssl-rsa-pkey：查看私钥；从私钥中提取公钥、查看公钥"><span class="toc-number">3.</span> <span class="toc-text">三、openssl rsa/pkey：查看私钥；从私钥中提取公钥、查看公钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、学习感悟"><span class="toc-number">4.</span> <span class="toc-text">四、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、每日一句"><span class="toc-number">5.</span> <span class="toc-text">五、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -657,40 +704,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1561,12 +1574,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.07（30）/">openssl学习笔记（一）</a>
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
         </li>
     
     
@@ -1581,12 +1589,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.05（29）/">Crypto：What's RSA？解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
         </li>
     
     
@@ -1596,7 +1604,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
         </li>
     
     
@@ -1606,7 +1614,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
         </li>
     
     
@@ -1621,22 +1634,32 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
         </li>
     
     
@@ -1651,42 +1674,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.08（14）/">Web：Calculator解题总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
         </li>
     
     
@@ -1696,12 +1689,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
         </li>
     
     
@@ -1729,7 +1747,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
         </li>
     
     
@@ -1744,20 +1762,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
         </li>
     
     

@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Crypto：What&#39;s RSA？解题总结 · MUZI&#39;s BLOG</title>
+    <title>《So you want to work in security》”读后感 · MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZI&#39;s BLOG.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Crypto：What's RSA？解题总结</a>
+                <a href="#" class="post-name">《So you want to work in security》”读后感</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Crypto：What's RSA？解题总结
+            《So you want to work in security》”读后感
             <!-- 404 -->
             
         </h1>
@@ -279,20 +279,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">931</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/08</span>
+                    <span class="post-intro-time">2019/02/23</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,46 +410,21 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做密码方面的题目，在2月28日的时候，我曾尝试过RSA的题目，但是因为没有深度去思考，就是总结了一下有关原理，当时并没有把这一道题做出来。今天我认真的分析了一下有关这道题的内容，并对上次的博客的内容做了修改和完善，也解出了这道题有了新的收获。</p>
-<h4 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h4><blockquote>
-<ul>
-<li>openssl 命令</li>
-<li>非对称加密体制</li>
-<li><a href="https://muzibing.github.io/2019/02/28/2019.02.28（6）/">RSA加解密原理</a></li>
-</ul>
-</blockquote>
-<h4 id="二、思考过程"><a href="#二、思考过程" class="headerlink" title="二、思考过程"></a>二、思考过程</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我从题目中得到两个文件：flag.encrypt 和 rsa_private_key.pem，这两个文件分别是加密后的密文和密钥。</p>
-<ul>
-<li>在这里首先要说的是加密体制分为：<font color="red">对称加密体制</font>和<font color="red">非对称加密体制</font>。两者的区别是什么呢？</li>
-<li>还要思考一个问题：<font color="brown">题目中的加密文件是用的私钥加密还是公钥加密的？</font>因为题中给出了私钥（rsa_private_key.pem），那么先尝试第一种可能：公钥加密—&gt;私钥解密；那么已知密文和密钥如何推算出明文：</li>
-<li>若方案行不通则尝试第二种可能：私钥加密—&gt;公钥解密， <strong>那么如何从私钥得知公钥呢？</strong><br><br>带着这些问题，我进行了资料查阅。</li>
-</ul>
-</blockquote>
-<h4 id="三、-知识储备"><a href="#三、-知识储备" class="headerlink" title="三、 知识储备"></a>三、 知识储备</h4><blockquote>
-<p>① 对称加密体制和非对称加密体制的区别：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">对称加密体制&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非对称加密体制</font></p>
-<ul>
-<li>加密密钥：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加密和解密密钥相同&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用公钥和私钥</li>
-<li>加密算法：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DES、IDEA和AES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>RSA算法</strong>、DSA（数字签名）</li>
-<li>加/解密方法：密钥既可加密也可解密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;私钥加密—&gt;公钥解密<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公钥加密—&gt;私钥解密</li>
-</ul>
-<p>② 密文和私钥如何得到明文/私钥如何推出公钥：<a href="https://blog.csdn.net/liao20081228/article/details/77159039" target="_blank" rel="noopener">openssl命令详解</a></p>
-</blockquote>
-<h4 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h4><blockquote>
-<p>第一种可能：密文是由公钥加密而得的，那么只要用私钥进行解密，即可得明文。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 打开Linux Kali虚拟机，在目标目录下打开openssl命令行<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZqBPo7WSxPSLNY0gaZEygN3rbA3cvyjWILWJ0fpbWyk!/r/dMAAAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 输入opessl 命令行：<font color="blue">openssl rsautl -decrypt -inkey rsa_private_key.pem -in flag.encrypt -out flag.txt</font>。用私钥来解开密文，得到明文flag.txt；<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MmYn7WDOGgURkSldD2Ein8Qy3es0iT0D6N*ZrjNrwVQ!/r/dL8AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里已经得出flag，说明对方是用公钥对明文加密的，那么第二种可能就排除了，但是在第二种可能中仍有值得思考的地方：如何从私钥得到公钥？<br><br>第二种可能：这种可能已经被排除，那么就总结一下从私钥得到公钥的命令行<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① openssl  rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem #得到公钥<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Jea5zWqW8PI*.KQ2VVB99lNo4h4SKfjPsEdvlkqcPkc!/r/dL4AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② openssl rsa -pubin -in public.pem  -text #以文本格式输出公钥内容<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/bvBfGf63ojpvIgGZs*b43bbXYAi3BNblScD3.QLxNvo!/r/dL8AAAAAAAAA" alt></p>
-</blockquote>
-<h4 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h4><blockquote>
-<p>穷则思变，差则思勤！没有比人更高的山没有比脚更长的路。 </p>
-</blockquote>
+        <p></p><p align="right">——Author:Muzibing</p><br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1551002127528&amp;di=e9b147bf12a8e95119c831d904e1e50c&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.secdoctor.com%2Fuploads%2Fallimg%2F171208%2F705-1G20Q45K9364.jpg" alt="Security"><br>每一遍阅读之后，文章给我的都是不一样的体会和感悟：第一次阅读这篇文章时，因为单词和句型的阻碍，我并没有完全理解文章内容，但被文章中一些好的观点吸引；抱着深入学习的态度，又进行了二次阅读，这次阅读后文章的整体轮廓在我脑中已经清晰，我对作者的观点也在心里发出称赞，我认为这些观点对我很有帮助；于是又研读了第三遍，在内心产生了自己的想法和观点后，我才开始动笔写下感悟。<p></p>
+<p>文章的某些观点与曲老师给我讲的要求不谋而合。作者给出的观点，让我更加清楚在以后学习中应必备的品格和素质，更让我有信心在研究生阶段学好相关技术。</p>
+<p>对在网络与信息安全领域从事者来讲，大部分人的研究方向开始并不是该领域，他们有着不一样的学习背景和经历，但是很多人能够在该领域做得很好，甚至成为本领域的专家，那么在这么长的路上，他们是怎么走下去的？并在技术上不断的有所突破呢？作者给出了答案，<strong>一个很重要的因素就是兴趣</strong>，其次是学习的态度、方法和信心等。这让我不禁想到自己，本科并不是网络安全相关专业，但是自己对该领域有着很大的兴趣，也自学过这方面的知识和技术，不过过于肤浅，所以研究生报考就毅然选择了网络安全方向，就是想在这方面深入的学习，并有所成绩，努力成为该领域的技术精英，那么这篇文章便给了我很大的鼓舞，让我更有信心在研究生阶段精通相关技术。</p>
+<p>随着互联网的快速发展，网络安全领域的技术也在不断飞速地更新、升级，那么现在对于该领域的初学者无疑是增加了不少难度，所以失败也就在所难免，面对失败我们不能惧怕，更不能被击退，要做的是向成功的人学习经验和技术，提升自己的能力。因为我一直相信“天下无难事，只怕有心人”，大多数人之间的智商没有太大的差距，别人的成功也是建立在他们无数次失败的基础上，但他们却从未放弃，只是我们看不见而已，所以我认为别人能做好的事情，我也一定能做好！甚至更好！作者提到的“万事开头难”，让我想起本科期间参加的比赛和项目，每个任务刚开始的时候的确是最难的，这个时候说放弃是一件非常容易的事情，而我就是一个不愿服输的人，所以每次都会努力的克服困难，坚持完成任务。</p>
+<p>除了对学习的兴趣及努力的态度，对于网络安全重要的还应有实践，比如在学习中应多参加一些高质量的比赛，在实训中得到锻炼；在学习中应要充分利用好的学习资源，并不断阅读领域专家的相关优秀文章，时刻关注世界前沿技术的发展动态，从而认清差距，在思维上保持先进性，激发学习动力，通过不断提升自身技术，努力追赶并且超越他们，争取成为网络安全领域的精英。</p>
+<p>正如作者最后所说，这是一个并不辉煌的工作，并没有电影中的那么炫酷，反之还会很累、很枯燥！而这些问题对我来说早已经做好准备，我会像以前享受解数学难题带来的兴奋和激动，去享受网络安全领域带来的挑战。无论前方的道路多么艰难，我都会拼尽全力去迎接未来！因为我坚信，人的一生不应该活在舒服区，更应该主动地去发现问题、解决问题，最大化的延伸自己的人生价值，而我也会不断学习，在技术上不断突破自我。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/08/2019.04.05（29）/">https://muzibing.github.io/2019/04/08/2019.04.05（29）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/08/2019.04.05（29）/">April 8th 2019, 2:26:55 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/08/2019.04.05（29）/">April 7th 2019, 9:49:43 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/02/23/2019.02.23（1）/">https://muzibing.github.io/2019/02/23/2019.02.23（1）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/02/23/2019.02.23（1）/">February 23rd 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/02/23/2019.02.23（1）/">April 22nd 2019, 9:45:19 pm</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
@@ -464,17 +433,12 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/08/2019.04.02（26）/" title="《汇编语言程序设计》学习笔记（五）">
-                    <div class="nextTitle">《汇编语言程序设计》学习笔记（五）</div>
+                <a href="/2019/02/24/2019.02.24（2）/" title="Misc:Signin/Misc:Poem/Misc:Birthday解题总结">
+                    <div class="nextTitle">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</div>
                 </a>
             
         </li>
         <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/08/2019.04.07（30）/" title="openssl学习笔记（一）">
-                    <div class="prevTitle">openssl学习笔记（一）</div>
-                </a>
             
         </li>
     </ul>
@@ -614,7 +578,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、前期准备"><span class="toc-number">1.</span> <span class="toc-text">一、前期准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、思考过程"><span class="toc-number">2.</span> <span class="toc-text">二、思考过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、-知识储备"><span class="toc-number">3.</span> <span class="toc-text">三、 知识储备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、解题过程"><span class="toc-number">4.</span> <span class="toc-text">四、解题过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、每日一句"><span class="toc-number">5.</span> <span class="toc-text">五、每日一句</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -627,40 +591,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1531,12 +1461,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.07（30）/">openssl学习笔记（一）</a>
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
         </li>
     
     
@@ -1551,12 +1476,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.05（29）/">Crypto：What's RSA？解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
         </li>
     
     
@@ -1566,7 +1491,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
         </li>
     
     
@@ -1576,7 +1501,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
         </li>
     
     
@@ -1591,22 +1521,32 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
         </li>
     
     
@@ -1621,42 +1561,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.09（15）/">正则表达式总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.08（14）/">Web：Calculator解题总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
         </li>
     
     
@@ -1666,12 +1576,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
         </li>
     
     
@@ -1699,7 +1634,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
         </li>
     
     
@@ -1714,20 +1649,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
         </li>
     
     
