@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《汇编语言程序设计》学习笔记（十） · MUZI&#39;s BLOG</title>
+    <title>二进制炸弹：Phase_5解题总结 · MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZI&#39;s BLOG.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《汇编语言程序设计》学习笔记（十）</a>
+                <a href="#" class="post-name">二进制炸弹：Phase_5解题总结</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《汇编语言程序设计》学习笔记（十）
+            二进制炸弹：Phase_5解题总结
             <!-- 404 -->
             
         </h1>
@@ -281,18 +281,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/16</span>
+                    <span class="post-intro-time">2019/04/23</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,86 +416,76 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。</p>
-<blockquote>
-<p>汇编语言知识点：</p>
+        <blockquote>
 <ul>
-<li>x86-32下的读取条件码指令</li>
-<li>x86-64下的读取条件码指令</li>
-<li>跳转指令</li>
-<li>条件移动指令</li>
+<li><strong>前言：</strong><br>在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。</li>
 </ul>
 </blockquote>
-<h3 id="一、x86-32位下的读取条件码指令"><a href="#一、x86-32位下的读取条件码指令" class="headerlink" title="一、x86-32位下的读取条件码指令"></a>一、x86-32位下的读取条件码指令</h3><h4 id="1-SetX指令"><a href="#1-SetX指令" class="headerlink" title="1.SetX指令"></a>1.SetX指令</h4><blockquote>
-<p><strong>功能：</strong>读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器</p>
+<h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><h4 id="1-Phase-5的汇编代码"><a href="#1-Phase-5的汇编代码" class="headerlink" title="1.Phase_5的汇编代码"></a>1.Phase_5的汇编代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">08048d5c &lt;phase_5&gt;:</span><br><span class="line"> 8048d5c:	53                   	push   %ebx</span><br><span class="line"> 8048d5d:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048d60:	8b 5c 24 20          	mov    0x20(%esp),%ebx</span><br><span class="line"> 8048d64:	89 1c 24             	mov    %ebx,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用8048fdb处的函数（计算字符串的长度），并将字符串的长度与 6 相比，如果字符串的长度为 6 ，则跳转到8048d76继续执行指令，若不相等，则调用bomb函数；</span><br><span class="line"> 8048d67:	e8 6f 02 00 00       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 8048d6c:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d6f:	74 05                	je     8048d76 &lt;phase_5+0x1a&gt;</span><br><span class="line"> 8048d71:	e8 8f 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> 8048d76:	ba 00 00 00 00       	mov    $0x0,%edx                // edx = v1</span><br><span class="line"> 8048d7b:	b8 00 00 00 00       	mov    $0x0,%eax                // eax = result</span><br><span class="line"></span><br><span class="line"> // 通过一个循环，取出字符串的每一个字符，并将每个字符与15按位做与运算；</span><br><span class="line"> // 也可以这样理解，将每个字符转换对应的十进制，按照二进制的形式与15的二进制形式（1111）做与运算，也就是只取每个字符的最后四位，并将所得的数赋值给 ecx；</span><br><span class="line"> 8048d80:	0f b6 0c 03          	movzbl (%ebx,%eax,1),%ecx</span><br><span class="line"> 8048d84:	83 e1 0f             	and    $0xf,%ecx</span><br><span class="line"></span><br><span class="line"> // edx的值为 0x804a1a0 + 4 * ecx 地址所指向的数据，ecx的值是 把我们输入的每个字符 &amp; 15 的结果作为数组下标，然后在数据中取到的；</span><br><span class="line"> 8048d87:	03 14 8d a0 a1 04 08 	add    0x804a1a0(,%ecx,4),%edx</span><br><span class="line"></span><br><span class="line"> // eax = eax +1 ，然后再将eax的值与 6 相比，如果不等于则跳转到8048d80，形成一个循环，如果想等，则继续向下执行指令；</span><br><span class="line"> 8048d8e:	83 c0 01             	add    $0x1,%eax</span><br><span class="line"> 8048d91:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d94:	75 ea                	jne    8048d80 &lt;phase_5+0x24&gt;</span><br><span class="line"> </span><br><span class="line"> // 将 edx（v1） 中的值与 61 相比较，如果相等的话就跳转到程序的Finish段，不等的话就bomb，这里edx的值是在8048d87处得到的；</span><br><span class="line"> 8048d96:	83 fa 3d             	cmp    $0x3d,%edx</span><br><span class="line"> 8048d99:	74 05                	je     8048da0 &lt;phase_5+0x44&gt;</span><br><span class="line"> 8048d9b:	e8 65 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> // Finish段</span><br><span class="line"> 8048da0:	83 c4 18             	add    $0x18,%esp</span><br><span class="line"> 8048da3:	5b                   	pop    %ebx</span><br><span class="line"> 8048da4:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<h4 id="2-0x804a1a0处的数据"><a href="#2-0x804a1a0处的数据" class="headerlink" title="2.0x804a1a0处的数据"></a>2.0x804a1a0处的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.rodata:0804A1A0 ; int array_3143[]</span><br><span class="line">.rodata:0804A1A0 array_3143      dd 2                   ; DATA XREF: phase_5+2Br</span><br><span class="line">.rodata:0804A1A4                 dd 10</span><br><span class="line">.rodata:0804A1A8                 dd 6</span><br><span class="line">.rodata:0804A1AC                 dd 1</span><br><span class="line">.rodata:0804A1B0                 dd 12</span><br><span class="line">.rodata:0804A1B4                 dd 16</span><br><span class="line">.rodata:0804A1B8                 dd 9</span><br><span class="line">.rodata:0804A1BC                 dd 3</span><br><span class="line">.rodata:0804A1C0                 dd 4</span><br><span class="line">.rodata:0804A1C4                 dd 7</span><br><span class="line">.rodata:0804A1C8                 dd 14</span><br><span class="line">.rodata:0804A1CC                 dd 5</span><br><span class="line">.rodata:0804A1D0                 dd 11</span><br><span class="line">.rodata:0804A1D4                 dd 8</span><br><span class="line">.rodata:0804A1D8                 dd 15</span><br><span class="line">.rodata:0804A1DC                 dd 13</span><br></pre></td></tr></table></figure>
+<h3 id="二、相关伪代码（IDA反编译）"><a href="#二、相关伪代码（IDA反编译）" class="headerlink" title="二、相关伪代码（IDA反编译）"></a>二、相关伪代码（IDA反编译）</h3><h4 id="1-Phase-5的伪代码"><a href="#1-Phase-5的伪代码" class="headerlink" title="1.Phase_5的伪代码"></a>1.Phase_5的伪代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_5(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // edx@3</span><br><span class="line">  int result; // eax@3</span><br><span class="line"></span><br><span class="line">  if ( string_length(a1) != 6 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  v1 = 0;</span><br><span class="line">  result = 0;</span><br><span class="line">  do</span><br><span class="line">    v1 += array_3143[*(_BYTE *)(a1 + result++) &amp; 0xF];</span><br><span class="line">  while ( result != 6 );</span><br><span class="line">  if ( v1 != 61 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><h4 id="1-Phase-5代码分析"><a href="#1-Phase-5代码分析" class="headerlink" title="1.Phase_5代码分析"></a>1.Phase_5代码分析</h4><blockquote>
+<p>通过对汇编代码和伪代码的综合分析，对Phase_5的功能有了如下的认识：</p>
 <ul>
-<li>只存进一个byte，余下的三个字节不会被修改</li>
-<li><strong>把寄存器的最低的字节改掉了，那么高的三个字节怎么办？</strong><font color="red">通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展</font>
-</li>
+<li><font color="green">8048d67</font>：计算输入字符串的长度，判断长度是否等于 6 ，如果不等则爆炸，<strong>也就是要求我们输入的字符串的长度必须为 6</strong> ；<br><font color="red">// if ( string_length(a1) != 6 )<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
+<li><font color="green">8048d84</font>：经过一个循环，在这个循环体中，要求将我们输入的每个字符与 15 做与运算，并且将所得的结果作为数组的index，取出对应的数值相加；<br><font color="red">// v1 += array_3143[*(_BYTE *)(a1 + result++) &amp; 15];</font></li>
+<li><font color="green">8048d91</font>：当循环变量 result = 6 的时候，退出循环体，也就是循环体进行了6次循环运算；<br><font color="red">// while ( result != 6 );</font></li>
+<li><font color="green">8048d96</font>：将经过do while(); 运算后的v1 与61进行比较，不相等则bomb；也就是根据 index 为下标取得数组值得累加为61；<br><font color="red">// if ( v1 != 61 )<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();/font&gt;</font></li>
 </ul>
 </blockquote>
-<h4 id="2-SetX常用指令"><a href="#2-SetX常用指令" class="headerlink" title="2.SetX常用指令"></a>2.SetX常用指令</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>SetX</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Description</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equal / Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setne&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Equal / Not Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Negative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NonNegative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF) | ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~CF&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Above(unsigned)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Below(unsigned)<br>说明：~ 为取反</p>
+<h4 id="2-0x804a1a0处的数据分析"><a href="#2-0x804a1a0处的数据分析" class="headerlink" title="2.0x804a1a0处的数据分析"></a>2.0x804a1a0处的数据分析</h4><blockquote>
+<p>根据上文的内容可以分析到，array[ ]数组中的数据（十进制）为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code></p>
 </blockquote>
-<h4 id="3-SetX指令实例"><a href="#3-SetX指令实例" class="headerlink" title="3.SetX指令实例"></a>3.SetX指令实例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int   gt   (int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">      return x &gt; y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>对应的汇编指令（Body）:</p>
+<h4 id="3-解题思路"><a href="#3-解题思路" class="headerlink" title="3.解题思路"></a>3.解题思路</h4><blockquote>
+<p>经过上文的分析，可以清楚的知道Phase_5做题思路：</p>
 <ul>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;eax = y</li>
-<li>cmpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,8(%ebp)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;Compare&nbsp;&nbsp;x&nbsp;:&nbsp;y</li>
-<li>setg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%al&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;al&nbsp;&nbsp;= x&nbsp;&nbsp;&gt;&nbsp;&nbsp;y </li>
-<li>movzbl&nbsp;&nbsp;&nbsp;%al,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zero&nbsp;&nbsp;rest&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;%eax </li>
-</ul>
-<p><strong>说明：</strong><font color="red">al 是什么意思，为什么在这里可以用 al</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax是32位通用寄存器，它的低16位被称为%ax，%ax中的高8位和低8位成为 ah 和 al ，因为访问的特性要保持后向的兼容，所以在32位结构下面，还是能够以8位的形式，来访问eax的低8位（al）或者次低8位（ah）。</p>
-</blockquote>
-<h3 id="二、x86-64下的读取条件码指令"><a href="#二、x86-64下的读取条件码指令" class="headerlink" title="二、x86-64下的读取条件码指令"></a>二、x86-64下的读取条件码指令</h3><h4 id="1-SetX指令-1"><a href="#1-SetX指令-1" class="headerlink" title="1.SetX指令"></a>1.SetX指令</h4><blockquote>
-<p><strong>功能：</strong>读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器（与32位下的语义一样）</p>
-<ul>
-<li>余下的七个字节不会被修改</li>
+<li>首先我们需要输入一个 6 位长的字符串；</li>
+<li>将字符串中的每个字符以二进制方式与 1111 做与运算，将每次运算的结果作为 index；</li>
+<li>取出0x804a1a0—0804A1DC的数据，并将这些数据按照先后顺序形成一个数组；</li>
+<li>在这16个数据中找出 6 个数字，要求这 6 个数字相加等于 61；</li>
+<li>按照从小到大的顺序，再分别列出这 6 个数字所对应的 index；</li>
+<li>写出脚本，从 a-z，看谁与 1111（二进制）做与运算，得到的结果为上面的 index；</li>
+<li>将这些字符连在一起，就是我们要输入的字符串；</li>
 </ul>
 </blockquote>
-<h4 id="2-x86-64下的函数参数"><a href="#2-x86-64下的函数参数" class="headerlink" title="2.x86-64下的函数参数"></a>2.x86-64下的函数参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//C代码段</span><br><span class="line">int  gt (int x, int y)      long lgt (long x,long y)</span><br><span class="line">&#123;                           &#123;</span><br><span class="line">   return x &gt; y;               return x &gt; y;</span><br><span class="line">&#125;                           &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>说明：x in %rdi；y in %rsi<br><br>上面的int 和 long 代码段所产生的汇编代码是一样的：<br><strong>Body段：</strong></li>
-<li>xorl  %eax,%eax&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;eax = 0</li>
-<li>cmpq %rsi,%rdi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;Compare x : y</li>
-<li>setg %al&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;al = x &gt; y</li>
-</ul>
-<p><font color="red"><strong>问题：</strong></font>xorl %eax,%eax是把eax清零，因为eax是32位寄存器，所以在32位下操作没有问题，但是在64位下低32位被清零，那么高32位怎么处理呢？<br>答：在x86-64位体系下，如果进行一个32位的操作，32位的操作产生一个32位的 result，那么就会自动的零扩展，扩展到高32位。比如eax清零，那么在x86-64位下，0会自动扩展到rax的高32位。</p>
+<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><h4 id="1-列出array-的数据"><a href="#1-列出array-的数据" class="headerlink" title="1.列出array[]的数据"></a>1.列出array[]的数据</h4><blockquote>
+<p>数据为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JtNOrcRtHotSFcAwgSp62LSarCYi*qPNdjwDTnTQjwo!/r/dL8AAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="三、跳转指令"><a href="#三、跳转指令" class="headerlink" title="三、跳转指令"></a>三、跳转指令</h3><h4 id="1-jx指令"><a href="#1-jx指令" class="headerlink" title="1.jx指令"></a>1.jx指令</h4><blockquote>
-<p>依赖当前的条件码选择下一条执行语句（是否顺序执行）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>jX</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Description</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unconditional&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#无条件跳转<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;je&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Equal / Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jne&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Equal / Not Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Negative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonnegative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF) | ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ja&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~CF&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Above(unsigned)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Below(unsigned)</p>
+<h4 id="2-找出-6-个数，其和为-61"><a href="#2-找出-6-个数，其和为-61" class="headerlink" title="2.找出 6 个数，其和为 61"></a>2.找出 6 个数，其和为 61</h4><blockquote>
+<p>经过观察，可以找出 6 个数，他们逐一相加得 61，这 6 个数分别为<font color="red"><code>10、1、16、7、14、13</code></font>，并将这 6 个数形成一个数组<font color="red"><strong>array = [10、1、16、7、14、13]</strong></font>，它们的下标为别为：<code>1，3，5，9，10，15</code></p>
 </blockquote>
-<h4 id="2-x86-32位下条件跳转实例"><a href="#2-x86-32位下条件跳转实例" class="headerlink" title="2.x86-32位下条件跳转实例"></a>2.x86-32位下条件跳转实例</h4><blockquote>
-<p><strong>① 实例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int  absdiff(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int result;</span><br><span class="line">    if(x &gt; y)</span><br><span class="line">        result = x - y;</span><br><span class="line">    else </span><br><span class="line">        result = y - x;</span><br><span class="line">    return result; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-字符逐一与15做与运算"><a href="#3-字符逐一与15做与运算" class="headerlink" title="3.字符逐一与15做与运算"></a>3.字符逐一与15做与运算</h4><blockquote>
+<p>在这里我用到的只是 [a^z] 的字符，分别找到 a 和 z 所对应的十进制，然后写脚本：字符的十进制与15做与运算：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for num in range(97,123):</span><br><span class="line">    print(&quot;Character -&gt;&quot;,chr(num),&quot;|&quot;, num &amp; 15, &quot;&lt;- Index&quot;,);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>编译生成的汇编代码(x86-32位)：<br>01.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absdiff:<br>02.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp</font><br>03.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp,%ebp</font><br>04.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>//把x放到edx中<br>05.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax</font>&nbsp;&nbsp;&nbsp;&nbsp;//把y放到eax中<br>06.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>//用edx - eax 相当于x - y。如果小于等于，则跳到08行；如果大于，则跳到14行<br>07.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.L7</font><br>08.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx</font><br>09.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax</font><br>10.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;.L8:</font><br>11.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leave:</font><br>12.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret:</font><br>13.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;.L7:</font><br>14.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax</font><br>15.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.L8</font><br><br>&nbsp;<font color="red">■</font><font size="2">:Body 1/2</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">■</font><font size="2">:Set up</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">■</font><font size="2">:Finish</font><br><br><strong>② 编译器工作原理</strong><br>编译器在编译的时候，会将原始的C代码变形为“goto”模式，使之接近编译出来的及其语言风格：</p>
+<p>运算的结果如下图：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/AOtg.b6ynDN2bnjeaAnZQgbhvqrF*E*JAdRKDH3vveA!/r/dL8AAAAAAAAA" alt></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#编译后的代码</span><br><span class="line">int goto_ad(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    int result;</span><br><span class="line">    if(x&lt;=y) goto Else;</span><br><span class="line">    result = x - y;</span><br><span class="line">Exit:</span><br><span class="line">    renturn result ;</span><br><span class="line">Else:</span><br><span class="line">    result = y - x;</span><br><span class="line">    goto Exit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="四、条件移动指令"><a href="#四、条件移动指令" class="headerlink" title="四、条件移动指令"></a>四、条件移动指令</h3><h4 id="1-C语言：条件表达式"><a href="#1-C语言：条件表达式" class="headerlink" title="1.C语言：条件表达式"></a>1.C语言：条件表达式</h4><blockquote>
-<p><strong>① 表达式形式：</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val = Test ? Then-Expr : Else-Expr;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val = x - y ? x - y : y - x;<br><br><strong>② 条件表达式的执行顺序：</strong></p>
+<h4 id="4-得到字符串"><a href="#4-得到字符串" class="headerlink" title="4.得到字符串"></a>4.得到字符串</h4><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以从第 2 步得出，要想 v1 = 61，则必须需要找出 6 个数值，这 6 个数值是通过字符串中的每个字符与 15 做与运算，将每次的结果作为数组array[] 的 index，分别取出相应的这 6 个数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经找到了这 6 个数，那么他们对应的下标也分别为<code>1，3，5，9，10，15</code>，那么我们只需要在结果里找到相应的字符即可:</p>
 <ul>
-<li>先求解表达式的Test，若非为0（也就是真），则求解表达式Then-Expr，此时表达式Then-Expr的值就作为整个表达式的值；</li>
-<li>若Test的值为0（也就是假），则求解表达式Else-Expr，此时表达式Else—Expr的值就作为整个表达式的值；</li>
+<li>下标为 1 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;q</strong></font></li>
+<li>下标为 3 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;s</strong></font></li>
+<li>下标为 5 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;e&nbsp;&nbsp;&nbsp;u</strong></font></li>
+<li>下标为 9 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;y</strong></font></li>
+<li>下标为 10 对应的字符为：<font color="red"><strong>j&nbsp;&nbsp;&nbsp;&nbsp;z</strong></font></li>
+<li>下标为 15 对应的字符为：<font color="red"><strong>o</strong></font></li>
 </ul>
-<p><strong>③ Goto语句版本：</strong></p>
+<p>那么我们要找的字符串有 <code>32</code>种可能：<br><code>aceijo、aceizo、aceyjo、aceyzo、acuijo、acuizo、acuyjo、acuyzo</code><br><code>aseijo、aseizo、aseyjo、aceyzo、asuijo、asuizo、asuyjo、asuyzo</code><br><code>qceijo、qceizo、qceyjo、qceyzo、qcuijo、qcuizo、qcuyjo、qcuyzo</code><br><code>qseijo、qseizo、qseyjo、qceyzo、qsuijo、qsuizo、qsuyjo、qsuyzo</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   nt =! Test;</span><br><span class="line">   if (nt) goto Else;</span><br><span class="line">   val = Then - Expr;</span><br><span class="line">Done:</span><br><span class="line">   ...</span><br><span class="line">Else:</span><br><span class="line">   val = Expr - Then;</span><br><span class="line">   goto Done;</span><br></pre></td></tr></table></figure>
-<h4 id="2-x86-64下的条件移动指令"><a href="#2-x86-64下的条件移动指令" class="headerlink" title="2.x86-64下的条件移动指令"></a>2.x86-64下的条件移动指令</h4><blockquote>
-<p><strong>① 实例</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int  absdiff(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int result;</span><br><span class="line">    if(x &gt; y)</span><br><span class="line">        result = x - y;</span><br><span class="line">    else </span><br><span class="line">        result = y - x;</span><br><span class="line">    return result; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编译生成的汇编代码(x86-64位)：<br>01.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absdiff: # x in %edi, y in %esi<br>02.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v = x<br>03.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%edx &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ve = y<br>04.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v  -= y<br>05.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ve  -= x<br>06.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%edi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# x : y<br>07.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmovle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v = ve if &lt;=<br>08.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret<br><br><strong>② 条件传送指令：cmov<em>C</em></strong></p>
+<h4 id="5-验证答案"><a href="#5-验证答案" class="headerlink" title="5.验证答案"></a>5.验证答案</h4><blockquote>
+<p>为了体现答案的正确性，我在每一行随机抽取了一个字符串作为通关口令：</p>
 <ul>
-<li>命令格式：cmove<em>C</em> &nbsp;&nbsp;Src,Dest<br>如果条件<em>C</em>成立，将从数据Src传送到Dest。因为其控制流可预测（即条件<em>C</em>是已知的）从执行角度来看，比一般的条件跳转指令的效率高。</li>
+<li>aceyzo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LDjn6x4Y02kE.ZU3HMyw3*4KVaKg188w8HvclyuAXFA!/r/dMIAAAAAAAAA" alt></li>
+<li>asuizo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/wQk003XkPA2Xduc9BAvyalqluXONbiaySjD02pz8oEs!/r/dDcBAAAAAAAA" alt></li>
+<li>qceijo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/.wtdLHLdDCzljC5MVrIFPQB2GBcj8PVI43UWGLazk4Y!/r/dLYAAAAAAAAA" alt></li>
+<li>qsuizo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/rK.me0wd*26fTCpKgDO4geNminVoG7wKaIpu4cWzRUM!/r/dL8AAAAAAAAA" alt></li>
 </ul>
 </blockquote>
-<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><blockquote>
-<p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。</p>
+<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><blockquote>
+<p>在做这道题目过程中，让我觉得自己有好多要说出来的东西，并没有写出来，隐约地感觉到这道题还有知识点需要我去学习和总结的，第二阶段过后再好好的总结一下相关知识点吧。</p>
+</blockquote>
+<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><blockquote>
+<p>从梦想一开始，我们就未曾冀望过梦想落幕。梦想的舞台跌宕起伏，只是，我们永远不会让梦想谢幕。从导演到编剧，从演员到观众，我们每个人都在为刻画梦想而昂然奋斗，浓墨重彩，抑或淡染素描。 </p>
 </blockquote>
 
     </article>
@@ -503,9 +493,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/16/2019.04.16（38）/">https://muzibing.github.io/2019/04/16/2019.04.16（38）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/16/2019.04.16（38）/">April 16th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/16/2019.04.16（38）/">April 22nd 2019, 9:53:17 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/23/2019.04.23（45）/">https://muzibing.github.io/2019/04/23/2019.04.23（45）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/23/2019.04.23（45）/">April 23rd 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/23/2019.04.23（45）/">April 23rd 2019, 7:20:37 pm</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
@@ -513,17 +503,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/17/2019.04.17（39）/" title="二进制炸弹解题知识储备">
-                    <div class="nextTitle">二进制炸弹解题知识储备</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/15/2019.04.15（37）/" title="reverse：Reverse sign in解题总结">
-                    <div class="prevTitle">reverse：Reverse sign in解题总结</div>
+                <a href="/2019/04/22/2019.04.22（44）/" title="sscanf()函数的详细总结 + 实例">
+                    <div class="prevTitle">sscanf()函数的详细总结 + 实例</div>
                 </a>
             
         </li>
@@ -664,7 +649,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、x86-32位下的读取条件码指令"><span class="toc-number">1.</span> <span class="toc-text">一、x86-32位下的读取条件码指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SetX指令"><span class="toc-number">1.1.</span> <span class="toc-text">1.SetX指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SetX常用指令"><span class="toc-number">1.2.</span> <span class="toc-text">2.SetX常用指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SetX指令实例"><span class="toc-number">1.3.</span> <span class="toc-text">3.SetX指令实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、x86-64下的读取条件码指令"><span class="toc-number">2.</span> <span class="toc-text">二、x86-64下的读取条件码指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SetX指令-1"><span class="toc-number">2.1.</span> <span class="toc-text">1.SetX指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-x86-64下的函数参数"><span class="toc-number">2.2.</span> <span class="toc-text">2.x86-64下的函数参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、跳转指令"><span class="toc-number">3.</span> <span class="toc-text">三、跳转指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-jx指令"><span class="toc-number">3.1.</span> <span class="toc-text">1.jx指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-x86-32位下条件跳转实例"><span class="toc-number">3.2.</span> <span class="toc-text">2.x86-32位下条件跳转实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、条件移动指令"><span class="toc-number">4.</span> <span class="toc-text">四、条件移动指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-C语言：条件表达式"><span class="toc-number">4.1.</span> <span class="toc-text">1.C语言：条件表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-x86-64下的条件移动指令"><span class="toc-number">4.2.</span> <span class="toc-text">2.x86-64下的条件移动指令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、每日一句"><span class="toc-number">5.</span> <span class="toc-text">五、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、相关汇编代码"><span class="toc-number">1.</span> <span class="toc-text">一、相关汇编代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Phase-5的汇编代码"><span class="toc-number">1.1.</span> <span class="toc-text">1.Phase_5的汇编代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-0x804a1a0处的数据"><span class="toc-number">1.2.</span> <span class="toc-text">2.0x804a1a0处的数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、相关伪代码（IDA反编译）"><span class="toc-number">2.</span> <span class="toc-text">二、相关伪代码（IDA反编译）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Phase-5的伪代码"><span class="toc-number">2.1.</span> <span class="toc-text">1.Phase_5的伪代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、代码分析"><span class="toc-number">3.</span> <span class="toc-text">三、代码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Phase-5代码分析"><span class="toc-number">3.1.</span> <span class="toc-text">1.Phase_5代码分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-0x804a1a0处的数据分析"><span class="toc-number">3.2.</span> <span class="toc-text">2.0x804a1a0处的数据分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-解题思路"><span class="toc-number">3.3.</span> <span class="toc-text">3.解题思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、解题过程"><span class="toc-number">4.</span> <span class="toc-text">四、解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-列出array-的数据"><span class="toc-number">4.1.</span> <span class="toc-text">1.列出array[]的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-找出-6-个数，其和为-61"><span class="toc-number">4.2.</span> <span class="toc-text">2.找出 6 个数，其和为 61</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-字符逐一与15做与运算"><span class="toc-number">4.3.</span> <span class="toc-text">3.字符逐一与15做与运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-得到字符串"><span class="toc-number">4.4.</span> <span class="toc-text">4.得到字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-验证答案"><span class="toc-number">4.5.</span> <span class="toc-text">5.验证答案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、学习感悟"><span class="toc-number">5.</span> <span class="toc-text">五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、每日一句"><span class="toc-number">6.</span> <span class="toc-text">六、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
