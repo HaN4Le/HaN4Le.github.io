@@ -361,131 +361,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/03/2019.04.03（27）/">
+        <a class="abstract-title" href="/2019/04/26/2019.04.26（47）/">
             
-                <span>《汇编语言程序设计》学习笔记（六）</span>
+                <span>初识 Caesar 密码</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，也看了关于C语言的教材，总结一下今天学的主要内容：
+            
+☛ 前言：今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。
 
+一、认识Caesar密码
+在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
 
-80x86计算机系统的初步
-80x86处理器与保护模式初步
-
-
-▎一、80x86计算机系统的初步1.计算机系统
-
-
-
-2.主存
-
-存储单元的地址和内容：
-
-存储器以字节（8bits）为单位存储信息；
-每个字节单元有一个地址，从 0 编号，顺序加 1；
-地址用二进制数表示（无符号整数写成十六进制）；
-一个32位字要占用相继的 4 个字节：低位字节存入低地址，高位字节存入高地址；
-字单元地址用它的弟弟值来表示；
-
-
-▎二、80x86处理器与...
+二、Caesar密码的加密
+Caesar密码加密是根据“密钥...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/26</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/02/2019.04.02（26）/">
-            
-                <span>《汇编语言程序设计》学习笔记（五）</span>
-        </a>
-        <div class="abstract-content">
-            今天继续学习了有关浮点数的部分知识：
-
-浮点数的机器表示
-浮点数的规格化和非规格化表示
-浮点数表示的特性
-如何给出浮点数表示
-C语言中的浮点数
-
-一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置
-
-注：越靠近数轴上的原点越紧密，两端的越远越疏散。
-
-2.“小”浮点数实例
-
-
-8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2e-1 - 1 = 24-1 - 1 = 7
-其他规则符合 IEEE 754规范
-规格化/非规格化
-表示0，NaN与无...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/01/2019.04.01（25）/">
-            
-                <span>《汇编语言程序设计》学习笔记（四）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
-
-浮点数的机器表示
-浮点数的规格化和非规格化表示
-浮点数表示的特性
-如何给出浮点数表示
-C语言中的浮点数
-
-
-
-前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="密码学">密码学</a>
     
 </div>
             
@@ -493,10 +392,6 @@ C语言中的浮点数
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/04/page/2/">&#60; PREV</a><a class="page-number" href="/archives/2019/04/">1</a><a class="page-number" href="/archives/2019/04/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
     
 </main>
             <!-- profile -->
