@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2019-04-26T11:19:40.171Z</updated>
+  <updated>2019-04-27T15:20:06.019Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 学习笔记（一）</title>
+    <link href="https://muzibing.github.io/2019/04/27/2019.04.27%EF%BC%8848%EF%BC%89/"/>
+    <id>https://muzibing.github.io/2019/04/27/2019.04.27（48）/</id>
+    <published>2019-04-26T16:00:00.000Z</published>
+    <updated>2019-04-27T15:20:06.019Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>☛ 前言：今天在做第二阶段的 02 号题目，可是一点思路也没有。转而去做了 Misc 的 Another 01 game，经过一段时间的思考和实践，终于将这道题做了出来，但是总结笔记还没有准备好素材。那么今天就主要总结一下python的学习笔记吧。</p></blockquote><h3 id="一、第一个Python程序"><a href="#一、第一个Python程序" class="headerlink" title="一、第一个Python程序"></a>一、第一个Python程序</h3><h4 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h4><blockquote><ol><li>命令行模式：可以执行.py文件</li><li>Python交互模式：在交互模式环境，也可以执行.py文件</li><li>2 * 10 = 20 ；2 ** 10 = 1024 ;</li></ol></blockquote><h4 id="2-使用文本编辑器："><a href="#2-使用文本编辑器：" class="headerlink" title="2.使用文本编辑器："></a>2.使用文本编辑器：</h4><blockquote><ol><li>在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;</li></ol></blockquote><h4 id="3-输入和输出："><a href="#3-输入和输出：" class="headerlink" title="3.输入和输出："></a>3.输入和输出：</h4><blockquote><ol><li>输出：<br>a. 输出格式：print()  这里的括号必须加上；<br>b. Print()函数也可以接受多个字符，用逗号隔开：print(‘a’,’c’,’c’)，打印出来的效果为a c c</li><li>输入：<br>a. 输入格式：input()<br>b. 打印变量<br>c. input() 提示：input(‘please input your name:’) </li></ol></blockquote><h3 id="2-Python基础——数据类型和变量"><a href="#2-Python基础——数据类型和变量" class="headerlink" title="2.Python基础——数据类型和变量"></a>2.Python基础——数据类型和变量</h3><blockquote><ol><li>类型：<br>a. 整数：十六进制的表示方法：前缀为0x<br>b. 浮点数：小数点的位置是可以改变的，1.23*10^9 = 1.23e9<br>c. 字符串：<br>&nbsp;&nbsp;&nbsp;&nbsp;i. 单引号或者双引号括起来的文本；<br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 如果要输入的内容为‘name’，则输入时因用双引号：“‘name’”；<br>&nbsp;&nbsp;&nbsp;&nbsp;iii. 如果字符串内部既包含单引号，又包含双引号，那么要用转义字符\来标识；<br>&nbsp;&nbsp;&nbsp;&nbsp;iv. 转义字符 \ ：可以转义很多字符，\（在行尾时）表示续行符；\ n表示换行等等。<br>&nbsp;&nbsp;&nbsp;&nbsp;v. 如果字符串里面有很多字符都需要转移，python允许使用 r’ ‘ 表示’ ‘ 内部的字符串默认不转义<br>&nbsp;&nbsp;&nbsp;&nbsp;vi. 如果字符串内部有很多换行，python允许用 ‘’’…’’’的格式表示多行内容,如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;&apos;&apos;line1</span><br><span class="line">line2</span><br><span class="line">line3&apos;&apos;&apos;)</span><br><span class="line"></span><br><span class="line">输出结果为：line1</span><br><span class="line">  line2</span><br><span class="line">  line3</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol><li>类型：<br>&nbsp;&nbsp;&nbsp;&nbsp;vii. 多行字符串 ‘’’…’’’ 还可以在前面加上 r 使用（直接写 r 就行）<br>d. 布尔值：<br>&nbsp;&nbsp;&nbsp;&nbsp;i. 布尔值在python中的表示格式为：True 和 False 第一个字符必须要大写<br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 布尔值可以用 and、or 和 not 运算：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) and（与运算）：只有所有都为True，结果才能为True；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) or（或运算）：只要其中有一个True，结果就是True；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) not（是非运算）：单目运算符，把False变为True，把True变为False；<br>&nbsp;&nbsp;&nbsp;&nbsp;e. 空值：空值在Python中用None来表示，不能把None理解为 0 ，因为 0 是有意义的，而None是一个特殊的空值<br>f. 变量：变量名必须是大小写英文、数字和 _ 的组合，且不能用数字开头，变量在内存中的表示： a = ‘ABC’<br>&nbsp;&nbsp;&nbsp;&nbsp;i. 在内存中创建了一个 ‘ABC’  的字符串；<br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 在内存中创建了一个名为 a 的变量，并把它指向 ‘ABC’<br>g. 常量：所谓的常量就是不能变的常量<br>&nbsp;&nbsp;&nbsp;&nbsp;i. 比如 PI = 3.141592653589793 ，但事实上PI仍然是个变量，如果一定要用PI作为变量名，那么 PI 的值为你赋给它的<br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 除法：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) / ：除法结果时浮点数，即使是两个整数恰好相除，结果也是浮点数：9 / 3=3.0 10/3=3.333333333333335<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) // ：称为地板除，也就是C里面的取整：10 // 3 = 3 ；</li></ol></blockquote><h3 id="三、每日一句"><a href="#三、每日一句" class="headerlink" title="三、每日一句"></a>三、每日一句</h3><blockquote><p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;☛ 前言：今天在做第二阶段的 02 号题目，可是一点思路也没有。转而去做了 Misc 的 Another 01 game，经过一段时间的思考和实践，终于将这道题做了出来，但是总结笔记还没有准备好素材。那么今天就主要总结一下python的学习笔记吧。
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://muzibing.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>初识 Caesar 密码</title>
@@ -480,35 +504,6 @@
     
     
       <category term="解题总结" scheme="https://muzibing.github.io/tags/%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《汇编语言程序设计》学习笔记（七）</title>
-    <link href="https://muzibing.github.io/2019/04/04/2019.04.04%EF%BC%8828%EF%BC%89/"/>
-    <id>https://muzibing.github.io/2019/04/04/2019.04.04（28）/</id>
-    <published>2019-04-03T16:00:00.000Z</published>
-    <updated>2019-04-22T13:41:31.284Z</updated>
-    
-    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：</p><blockquote><ul><li>汇编程序员眼中的系统结构</li><li>第一条汇编指令</li></ul></blockquote><h4 id="▎一、汇编程序员眼中的系统结构"><a href="#▎一、汇编程序员眼中的系统结构" class="headerlink" title="▎一、汇编程序员眼中的系统结构"></a><font color="brown">▎一、汇编程序员眼中的系统结构</font></h4><p><center><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/KgA9DzzPsW3kfMffIMzuVmtxMrNPEhPE*FDwmFtzILw!/r/dLYAAAAAAAAA" alt></center></p><blockquote><ul><li><font color="brown">指令寄存器（PC）：</font><br>▷ 下一条指令的地址；<br>▷ EIP（x86-32）或RIP（x86-64）</li><li><font color="brown">寄存器与寄存器堆（Registers）：</font>在处理器内部的以名字来访问的快速存储单元</li><li><font color="brown">条件码（Condition Codes）：</font><br>▷ 用于存储最近执行指令的结果状态信息<br>▷ 用于条件指令的判断执行</li><li><font color="brown">存储器（Memory）：</font><br>▷ 以字节编码的连续存储空间<br>▷ 存放程序代码、数据、运行栈以及操作系统数据</li></ul></blockquote><p><strong>1.如何从C代码生成汇编代码？</strong></p><blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font color=’red&gt;C 代码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的x86-32汇编<br>int sum(int x,int y)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum:<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int t = x+y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp, %ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax<br>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%eax<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp,%esp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br><br>命令行：gcc&nbsp;&nbsp;&nbsp;&nbsp;-02&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;&nbsp;code.c&nbsp;&nbsp;&nbsp;&nbsp;-m32&nbsp;&nbsp;&nbsp;&nbsp;-fno-omit-frame-pointer<br>生成汇编文件：code.s</p></blockquote><p><strong>2.汇编语言数据格式</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/h04H.tsNNvCZbjU.e0tUSlxdl31hO9Tz3D5aTz9zL.k!/r/dLgAAAAAAAAA" alt></p><blockquote><p>在x86-32中，使用“字（Word）”来标识16位证书类型；“双字”表示32位；汇编语言指令所处理的数据类型一般是采用汇编指令的后缀来进行区分。</p></blockquote><h4 id="▎二、第一条汇编指令"><a href="#▎二、第一条汇编指令" class="headerlink" title="▎二、第一条汇编指令"></a><font color="brown">▎二、第一条汇编指令</font></h4><p><strong>1.第一条汇编指令实例</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/02sOeh6T2eTCf*pO37M8FrHfFBGw4UlaYPeS07d.aTg!/r/dL8AAAAAAAAA" alt></p><p><strong>2.数据传送指令（mov）</strong></p><blockquote><p>mov指令是汇编语言中被频繁使用的一个指令</p><ul><li>数据传送（AT&amp;T语法）<br>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dest<br>这是一个常见的指令，是将一个“双字（l）”从Source移到Dest中</li><li>允许的操作数类型<br><font color="red"><strong>立即数：常整数</strong></font>,如：<ul><li>\$0x400,\$-533</li><li>可以被1、2或4个字节来表示<br><font color="red"><strong>寄存器：8个通用寄存器之一</strong></font><br><font color="red"><strong>存储器：四个连续的字节</strong></font>：支持多种访存寻址模式</li></ul></li><li><strong>扩展：寄存器和存储器的区别</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/q9hWXpW*Q.YIWzOAHgh3dPf07*NeGsM8IU2YaPrmA94!/r/dMMAAAAAAAAA" alt></li></ul></blockquote><p><strong>3.数据传送指令支持的不同操作数类型组合（以movl为例）</strong></p><blockquote><ul><li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$0x4,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = 0x4</li><li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$-147,(%eax)&nbsp;&nbsp;&nbsp;C语言表示：*p = -147</li><li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp1 = temp2</li><li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$eax,(%edx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：*p = temp</li><li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">Mem</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%eax),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = *p<br>▶ Imm：立即数（操作数）<br>▶ Reg：寄存器<br>▶ Mem：存储器<br>▶ (%eax)：表示的是%eax寄存器的内存地址<br><br><strong>注意：不能两个操作数都为内存地址；</strong></li></ul></blockquote><p><strong>3.简单的寻址模式</strong></p><blockquote><ul><li><strong>间接寻址模式&nbsp;&nbsp;&nbsp;&nbsp;&amp;nbsp(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg[R]]</strong><br>寄存器R指定内存地址：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%ecx),%eax</li><li>基址 + 偏移量寻址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg(R) + D]<br>寄存器R指定内存起始地址，常数D给出偏移量：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%edx</li></ul></blockquote><h4 id="▎学习感悟"><a href="#▎学习感悟" class="headerlink" title="▎学习感悟"></a><font color="red">▎学习感悟</font></h4><blockquote><p>今天还是学习了“汇编语言”，感觉自己慢慢的开始对一些概念和语法有了一些更深的理解，给了我以后学习的很大信心，让我觉得只要肯下功夫，就一定能学好的。</p></blockquote><h4 id="▎每日一句"><a href="#▎每日一句" class="headerlink" title="▎每日一句"></a><font color="red">▎每日一句</font></h4><blockquote><p>在成功的道路上，激情是需要的，志向是可贵的，但更重要的是那毫无情趣的近乎平常的坚守的毅力和勇气。  </p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;汇编程序员眼中的系统结构&lt;/li&gt;
-&lt;li&gt;第一条汇编指令&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/bloc
-      
-    
-    </summary>
-    
-    
-      <category term="汇编语言" scheme="https://muzibing.github.io/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   
