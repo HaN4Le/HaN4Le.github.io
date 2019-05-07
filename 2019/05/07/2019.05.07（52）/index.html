@@ -462,7 +462,7 @@ height:50vh;
 </ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是说 $\displaystyle{\frac{e}{N}}$ 的前 a<sub>n-1</sub> 个渐近分数中的值肯定有一个是 $\displaystyle{\frac{k}{d}}$ 的值；<br><br><strong>③ 怎么确定 $\displaystyle{\frac{k}{d}}$ 的值？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\displaystyle{\frac{e}{N}}$ 的渐进数可能会有很多情况，那么我们怎么确定哪个渐进数是 $\displaystyle{\frac{k}{d}}$ 的值呢？这个时候我们就要将所有的情况<strong>（k，d）</strong>带入<code>e * d - 1 = k * φ(N)</code>式中，就得到了 φ(N) 的值%%#￥@@（#……#%@%￥￥@%@…………思路太乱了，算了直接上数学做题思路：</p>
 <blockquote>
-<p>∵ 求得了 k、d 的 n-1 个值<br>∴ 也就有 n-1 个 φ(N) 的值<br>∵ φ(N) = (p-1) <em> (q-1) = pq - (p+q) + 1 = N - (p+q) + 1<br>∵ φ(N) 已求出 且 N 已知<br>∴ p + q = N - φ(N) + 1 &nbsp;&nbsp;&nbsp;&nbsp;(x<sub>1</sub> + x<sub>2</sub> = N - φ(N) + 1)<br>∵ p </em> q = N &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x<sub>1</sub> * x<sub>2</sub> = N )<br>∴ 通过韦达定理可得：</p>
+<p>∵ 求得了 k、d 的 n-1 个值<br>∴ 也就有 n-1 个 φ(N) 的值<br>∵ φ(N) = (p-1) * (q-1) = pq - (p+q) + 1 = N - (p+q) + 1<br>∵ φ(N) 已求出 且 N 已知<br>∴ p + q = N - φ(N) + 1 &nbsp;&nbsp;&nbsp;&nbsp;(x<sub>1</sub> + x<sub>2</sub> = N - φ(N) + 1)<br>∵ p * q = N &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x<sub>1</sub> * x<sub>2</sub> = N )<br>∴ 通过韦达定理可得：</p>
 <p><center><font color="red">x<sup>2</sup> - ( N - φ(N) + 1)x + N = 0</font></center><br>&nbsp;&nbsp;&nbsp;&nbsp;将 n-1 个 φ(N) 的值分别代入该式，如果能够求得 x<sub>1</sub> 和 x<sub>2</sub>的有效解，那么 x<sub>1</sub> 和 x<sub>2</sub> 就是 p 、q 的值，也就可以确定 k、d 的值；</p>
 </blockquote>
 </blockquote>
@@ -483,7 +483,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/07/2019.05.07（52）/">https://muzibing.github.io/2019/05/07/2019.05.07（52）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/07/2019.05.07（52）/">May 7th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/07/2019.05.07（52）/">May 8th 2019, 12:08:35 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/07/2019.05.07（52）/">May 8th 2019, 12:09:20 am</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
