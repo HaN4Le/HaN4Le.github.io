@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2019-05-07T15:48:49.354Z</updated>
+  <updated>2019-05-07T15:53:06.220Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="https://muzibing.github.io/2019/05/07/2019.05.07%EF%BC%8852%EF%BC%89/"/>
     <id>https://muzibing.github.io/2019/05/07/2019.05.07（52）/</id>
     <published>2019-05-06T16:00:00.000Z</published>
-    <updated>2019-05-07T15:48:49.354Z</updated>
+    <updated>2019-05-07T15:53:06.220Z</updated>
     
-    <content type="html"><![CDATA[<p>$ x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $</p>]]></content>
+    <content type="html"><![CDATA[<script type="math/tex; mode=display">x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}</script><p>xxs</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;$ x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $&lt;/p&gt;
+        &lt;script type=&quot;math/tex; mode=display&quot;&gt;x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}&lt;/script&gt;&lt;p&gt;xxs&lt;/p&gt;
 
       
     
