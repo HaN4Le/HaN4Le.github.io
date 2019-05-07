@@ -419,18 +419,12 @@ height:50vh;
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经做了13道题目，虽然每次做完题后都会记录一下学习的过程，总结一下相关知识点，但是这几天感觉心里有这些知识，但是没有形成一个体系，也许下次再做的时候可能就不会了，那么这几天主要是对前面几天所学知识进行一下总结，让自己明白每个只是背后的学科是什么样的。</p>
 <h3 id="1-知识目录"><a href="#1-知识目录" class="headerlink" title="1. 知识目录"></a>1. 知识目录</h3><blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(1)隐写问题：图片隐写（LSB、EXIF和图片格式）和文档隐写（docx）；</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)流量分析问题：HTTP流量分析、TCP分析、其他流量分析；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)密码破解问题：明文破解、暴力破解；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)python：python使用、第三方库的使用；</p>
-</blockquote>
-<h3 id="2-知识详解——-1-隐写问题"><a href="#2-知识详解——-1-隐写问题" class="headerlink" title="2. 知识详解——(1)隐写问题"></a>2. 知识详解——(1)隐写问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)什么是隐写？为什么要隐写？</p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐写，顾名思义就是把信息隐藏起来，利用“正常”数据载体，在用户不知名的情况下在信道中进行传递。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之所以信息隐写就是为了想达到隐写者的目的，能够更好地实现恶意攻击、秘密传输等功能，因为<font color="red">信息隐藏的载体是多种多样的，主要有<strong>图片、视频、文档、硬盘</strong>等等</font>，所以信息更不容易被识别。</p>
+<h3 id="2-知识详解——-1-隐写问题"><a href="#2-知识详解——-1-隐写问题" class="headerlink" title="2. 知识详解——(1)隐写问题"></a>2. 知识详解——(1)隐写问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)什么是隐写？为什么要隐写？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐写，顾名思义就是把信息隐藏起来，利用“正常”数据载体，在用户不知名的情况下在信道中进行传递。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之所以信息隐写就是为了想达到隐写者的目的，能够更好地实现恶意攻击、秘密传输等功能，因为<font color="red">信息隐藏的载体是多种多样的，主要有<strong>图片、视频、文档、硬盘</strong>等等</font>，所以信息更不容易被识别。</p>
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)信息隐写有哪些分类呢？</p>
 <blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①语言隐写术<sup>[1]</sup>：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于语法的语言隐写术：利用自然语言的语法结构来嵌入隐秘信息。这类语言隐写术的载密文本是隐写算法在隐秘信息的控制下产生的，因而也可以称作基于文本生成的语言隐写术；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于语义的语言隐写术：是通过同义替换来隐写隐秘信息的，它把隐秘信息嵌入载体文本中的同时，尽可能地维持其语义不变。这类方法根据替换成份可分为<strong>基于同义词</strong>或者<strong>同义短语替换</strong>的隐写术、<strong>基于等价规则替换</strong>的隐写术、<strong>基于同义句子替换</strong>的隐写术和基于翻译的隐写术等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②技术隐写术<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 系统结构层次：纯隐写术、密钥隐写术和公钥隐写术；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 空间结构层次：信道隐写术、时空域隐写术和变换域隐写术；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">▶ 载体对象层次：文本隐写术、图像隐写术、音频隐写术和视频隐写术；</font><br>注：今天主要是总结载体对象层次的隐写方式</p>
-</blockquote>
-<h3 id="3-载体对象层次的隐写"><a href="#3-载体对象层次的隐写" class="headerlink" title="3. 载体对象层次的隐写"></a>3. 载体对象层次的隐写</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)文本隐写</p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①文本主要格式：pdf、doc、docx<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②文本隐写原理：从docx那道题可以看出，文本信息隐写主要是通过对文件结构的分析，将信息隐藏在文件结构中。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③各文本结构：（知识点太多，详情查看原文）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ PDF：<a href="https://lazymind.me/2017/10/pdf-structure/" target="_blank" rel="noopener">https://lazymind.me/2017/10/pdf-structure/</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ DOC：<a href="https://wenku.baidu.com/view/0ab99acaa1c7aa00b52acbc9.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/0ab99acaa1c7aa00b52acbc9.html</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ DOCX：本质是ZIP文件</p>
+<h3 id="3-载体对象层次的隐写"><a href="#3-载体对象层次的隐写" class="headerlink" title="3. 载体对象层次的隐写"></a>3. 载体对象层次的隐写</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)文本隐写<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①文本主要格式：pdf、doc、docx<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②文本隐写原理：从docx那道题可以看出，文本信息隐写主要是通过对文件结构的分析，将信息隐藏在文件结构中。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③各文本结构：（知识点太多，详情查看原文）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ PDF：<a href="https://lazymind.me/2017/10/pdf-structure/" target="_blank" rel="noopener">https://lazymind.me/2017/10/pdf-structure/</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ DOC：<a href="https://wenku.baidu.com/view/0ab99acaa1c7aa00b52acbc9.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/0ab99acaa1c7aa00b52acbc9.html</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ DOCX：本质是ZIP文件</p>
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)图像隐写</p>
 <blockquote>
@@ -443,15 +437,9 @@ height:50vh;
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)视频隐写<sup>[4]</sup></p>
 <blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①视频主要格式：mp4、.rmvb、.avi、.flv<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②视频隐写方法：压缩域视频隐写技术——<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于运动向量的视频隐写：将视频压缩编码框架中运动估计模块生成的运动向量作为密息载体；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于帧内预测模式的视频隐写：将压缩视频中帧内编码（帧内编码）单元采用的帧内预测模式作为密息载体；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于帧间预测模式的视频隐写：将压缩视频中帧间编码（Inter-coded）单元采用的帧间预测模式作为密息载体；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于变换系数的视频隐写：通过修改视频压缩编码框架中变换编码模块生成的变换系数（如DCT系数）以实施隐写，一般具有较大的嵌入容量；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于量化参数的视频隐写：通过调制修改编码单元的量化参数以嵌入密息；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ 基于熵编码的视频隐写：将视频压缩编码框架中熵编码模块生成的码字作为密息载体；<br>注：虽然上面的隐写方法并不是很懂，但是在这里总结是因为自己想在心里有个大体的轮廓，以后再在参考文献上研读；</p>
-</blockquote>
-<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在总结之前本来想在今天弄懂相关知识的，但是在阅读相关文献和博客的时候，发现越往下总结带出来的知识点越多、越南理解，真的没有想到隐写术背后，居然是这么庞大的一个知识体系，看来要想真正掌握隐写题，自己还得在以后的学习中慢慢积累和总结。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就从今天这次的总结经验来看，所有知识点并没有自己想的那么简单，要想在网安领域有所成就，必须得好好努力啦！以后就脚踏实地的向前走吧，走的路上要注重积累。</p>
-</blockquote>
-<h3 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h3><blockquote>
-<p>[1]陈志立. 语言隐写术的分析与设计研究[D].中国科学技术大学,2009.<br>[2]毛炳华,王子驰,张新鹏.基于DCT域相关性的非对称JPEG隐写[J].计算机科学,2019,46(01):196-200.<br>[3]巩锐. GIF图像隐写分析技术研究[D].西南交通大学,2013.<br>[4]张弘,尤玮珂,赵险峰.视频隐写分析技术研究综述[J].信息安全学报,2018,3(06):13-27.</p>
-</blockquote>
-<h3 id="6-每日一句"><a href="#6-每日一句" class="headerlink" title="6. 每日一句"></a>6. 每日一句</h3><blockquote>
-<p>驾驭命运的舵是奋斗。不抱有一丝幻想，不放弃一点机会，不停止一日努力。</p>
+<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在总结之前本来想在今天弄懂相关知识的，但是在阅读相关文献和博客的时候，发现越往下总结带出来的知识点越多、越南理解，真的没有想到隐写术背后，居然是这么庞大的一个知识体系，看来要想真正掌握隐写题，自己还得在以后的学习中慢慢积累和总结。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就从今天这次的总结经验来看，所有知识点并没有自己想的那么简单，要想在网安领域有所成就，必须得好好努力啦！以后就脚踏实地的向前走吧，走的路上要注重积累。</p>
+<h3 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h3><p>[1]陈志立. 语言隐写术的分析与设计研究[D].中国科学技术大学,2009.<br>[2]毛炳华,王子驰,张新鹏.基于DCT域相关性的非对称JPEG隐写[J].计算机科学,2019,46(01):196-200.<br>[3]巩锐. GIF图像隐写分析技术研究[D].西南交通大学,2013.<br>[4]张弘,尤玮珂,赵险峰.视频隐写分析技术研究综述[J].信息安全学报,2018,3(06):13-27.</p>
+<h3 id="6-每日一句"><a href="#6-每日一句" class="headerlink" title="6. 每日一句"></a>6. 每日一句</h3><p>驾驭命运的舵是奋斗。不抱有一丝幻想，不放弃一点机会，不停止一日努力。</p>
 </blockquote>
 
     </article>
@@ -633,46 +621,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1680,9 +1628,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

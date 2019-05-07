@@ -381,8 +381,7 @@ height:50vh;
         <div class="abstract-content">
             
 ☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-
-一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    ...
+一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -448,11 +447,7 @@ height:50vh;
 一、前期工作
 
 所用工具IDA、Linux系统、gdb、objdump、python
-解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
-
-
-二、Phase_1解题过程1.对bomb文件进行反汇编
-objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 ...
+解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -486,11 +481,7 @@ objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 ...
 
 常用的汇编指令
 objdump工具
-gdb编译器的用法
-
-
-一、题目中出现的汇编指令
-
+gdb编译器的用法一、题目中出现的汇编指令
 push、pop、call、cmp、jmp、je、jne、lea
 
 
@@ -502,7 +493,7 @@ ss中存放堆栈段地址
 sp指针中存放偏移地址，
 栈操作都是以字（2字节）为单位。
 
-② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在...
+② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -579,13 +570,11 @@ x86-64下的读取条件码指令
 
 汇编语言知识
 IDA工具的使用
-C语言部分知识
+C语言部分知识二、知识储备
 
-
-二、知识储备
 
 汇编语言关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：笔记一、笔记二、笔记三、笔记四、笔记五、笔记六、笔记七、笔记八、笔记九
-...
+ID...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -734,7 +723,7 @@ RSA算法的原理
 
 
 二、思考过程
-昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q思路：利用yafu工具把 n 分解成p、q =&gt; 用RSA-Tool得到 d =&gt; 合成私钥① 第一步分解质数比较容易，直接用yafu进行分解即可；② 第二布也是一样，不用求解φ...
+昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q思路：利用yafu工具把 n 分解成p、q => 用RSA-Tool得到 d => 合成私钥① 第一步分解质数比较容易，直接用yafu进行分解即可；② 第二布也是一样，不用求解φ(n)，直接...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -968,46 +957,6 @@ RSA算法的原理
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2015,9 +1964,9 @@ RSA算法的原理
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

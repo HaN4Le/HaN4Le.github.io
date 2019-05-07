@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">852</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">851</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -420,27 +420,17 @@ height:50vh;
 <h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
 <ul>
 <li>工具：Advanced Zip Password Recovery</li>
-<li>数据：一个加密zip文件（secret.txt和sqlmap_1.1.10.py）、一个明文zip文件（sqlmap_1.1.10.py）</li>
+<li>数据：一个加密zip文件（secret.txt和sqlmap_1.1.10.py）、一个明文zip文件（sqlmap_1.1.10.py）<h3 id="2-知识储备"><a href="#2-知识储备" class="headerlink" title="2. 知识储备"></a>2. 知识储备</h3></li>
 </ul>
-</blockquote>
-<h3 id="2-知识储备"><a href="#2-知识储备" class="headerlink" title="2. 知识储备"></a>2. 知识储备</h3><blockquote>
 <ol>
 <li><strong>什么是明文攻击?</strong><br>明文攻击是指在已知压缩加密文件内某个文件的明文，那么便可以利用该明文对加密文件进行解密，从而得到整个文件的明文。<br><br></li>
-<li><strong>明文攻击的原理是什么？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要想知道明文攻击的原理，那么先了解一下有关压缩文件加密密码的产生和隐藏：在对zip文件进行加密后，产生的密码会被转成3个32位的key，这3个key被分布在文件数信息位中，<strong>如果一个ZIP文件中有多个文件，那么所有文件的密码都一样</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明文攻击原理就是利用了这一个特性，<font color="red"><strong>找到加密ZIP文件中任一文件的明文后，再用相同的方式对该明文进行压缩（无加密），把将这两个压缩包进行对比，分析这两个压缩包相同的文件，将不同点进行分析和计算</strong></font>，两个相同文件在压缩包中的字节数应该相差12个byte，就能得到那3个Key了，这个时候软件可以利用那3个key对其他文件进行解密了，但是我们却不能从这3个key中得到文件密码。</li>
-</ol>
-</blockquote>
-<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><blockquote>
-<ol>
+<li><strong>明文攻击的原理是什么？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要想知道明文攻击的原理，那么先了解一下有关压缩文件加密密码的产生和隐藏：在对zip文件进行加密后，产生的密码会被转成3个32位的key，这3个key被分布在文件数信息位中，<strong>如果一个ZIP文件中有多个文件，那么所有文件的密码都一样</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明文攻击原理就是利用了这一个特性，<font color="red"><strong>找到加密ZIP文件中任一文件的明文后，再用相同的方式对该明文进行压缩（无加密），把将这两个压缩包进行对比，分析这两个压缩包相同的文件，将不同点进行分析和计算</strong></font>，两个相同文件在压缩包中的字节数应该相差12个byte，就能得到那3个Key了，这个时候软件可以利用那3个key对其他文件进行解密了，但是我们却不能从这3个key中得到文件密码。<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3></li>
 <li>下载<a href="https://www.elcomsoft.com/archpr.html" target="_blank" rel="noopener">Advanced Archive Password Recovery</a>和实验数据</li>
 <li>打开Advanced Archive Password Recovery并选择明文攻击，并选择开始，15秒左右即可破解：<br><img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0r4hg1sckg20db0cwgrc.gif" alt></li>
 <li>破解成功后，便可得到3个Key：<font color="red">37ea6b6d、cfca6bd4、216d632e</font><br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0r4k4t5ckj20c90310sq.jpg" alt></li>
-<li>打开secret.txt文件得到flag</li>
+<li>打开secret.txt文件得到flag<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次的解题相对简单，在知道解题方向后，只需要用Advanced Archive Password Recovery软件直接破解得到flag。前几次的学习经验和教训告诫我，不能为了做题而做题，在得到flag后我又在网上仔细地查了一下有关明文攻击的相关知识，虽然时间相比前面的题短一点，但知道明白了其原理后，这与单单做题的收获完全是不一样的，所以以后不管学习什么，都应该<strong>知其所然</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在背了几天《保密概论》后，总感觉它的知识点多、乱，于是今天早晨做了一个思维导图（还没做好），想理清一下思路，背的时候能有个逻辑衔接。于是今天上午我背《保密概论》的时候，明显感觉整知识点很清楚，然后就是背诵的时候更加有逻辑了，所以不管学习什么，一定要有学习好的方法。明天继续完善思维导图，得加紧背诵了。<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0r5sl58ooj216r0u0wlp.jpg" alt><br><font color="red">#### 每日一句：</font>对自己所做的事要有必胜的决心！</li>
 </ol>
 </blockquote>
-<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次的解题相对简单，在知道解题方向后，只需要用Advanced Archive Password Recovery软件直接破解得到flag。前几次的学习经验和教训告诫我，不能为了做题而做题，在得到flag后我又在网上仔细地查了一下有关明文攻击的相关知识，虽然时间相比前面的题短一点，但知道明白了其原理后，这与单单做题的收获完全是不一样的，所以以后不管学习什么，都应该<strong>知其所然</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在背了几天《保密概论》后，总感觉它的知识点多、乱，于是今天早晨做了一个思维导图（还没做好），想理清一下思路，背的时候能有个逻辑衔接。于是今天上午我背《保密概论》的时候，明显感觉整知识点很清楚，然后就是背诵的时候更加有逻辑了，所以不管学习什么，一定要有学习好的方法。明天继续完善思维导图，得加紧背诵了。<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0r5sl58ooj216r0u0wlp.jpg" alt></p>
-</blockquote>
-<p><font color="red">#### 每日一句：</font>对自己所做的事要有必胜的决心！</p>
 
     </article>
     <!-- license  -->
@@ -621,46 +611,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1668,9 +1618,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

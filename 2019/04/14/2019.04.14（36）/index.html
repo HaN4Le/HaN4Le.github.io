@@ -432,8 +432,6 @@ height:50vh;
 <li>%ebp/%rbp  不再是专用寄存器<br>3.x86-32/64下的swap函数比较<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#C代码</span><br><span class="line">void  swap(int  *xp，int  *yp)</span><br><span class="line">&#123;</span><br><span class="line">	int  t0 = *xp;</span><br><span class="line">	int  t1 = *yp;</span><br><span class="line">	*xp = t1;</span><br><span class="line">	*yp = t0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#x86-32汇编代码</span><br><span class="line">swap：</span><br><span class="line">	#Set up </span><br><span class="line">	pushl  %ebp</span><br><span class="line">	movl   %esp,%ebp</span><br><span class="line">	pushl  %ebp</span><br><span class="line">	#**Body**</span><br><span class="line">	movl   12(%ebp),%ecx</span><br><span class="line">	movl   8(%ebp),%edx</span><br><span class="line">	movl   (%ecx),%eax</span><br><span class="line">	movl   (%edx),%ebx</span><br><span class="line">	movl   %eax,(%edx)	</span><br><span class="line">	movl   %ebx,(%ecx)</span><br><span class="line"></span><br><span class="line">	#Finish</span><br><span class="line">	movl   -4(%ebp),%ebx</span><br><span class="line">	movl   %ebp,%esp</span><br><span class="line">	popl   %ebp</span><br><span class="line">	ret	</span><br><span class="line"></span><br><span class="line">#x86-64汇编代码</span><br><span class="line">swap:</span><br><span class="line">	movl   (%rdi),%edx</span><br><span class="line">	movl   (%rsi),%eax</span><br><span class="line">	movl   %eax,(%rdi)</span><br><span class="line">	movl   %edx,(%rsi)</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>不同点：</strong></p>
 <ul>
 <li>x86-32传参默认是通过内存来传参；</li>
@@ -443,20 +441,16 @@ height:50vh;
 <h4 id="3-变形：x86-64下long-int类型的swap"><a href="#3-变形：x86-64下long-int类型的swap" class="headerlink" title="3.变形：x86-64下long int类型的swap"></a>3.变形：x86-64下long int类型的swap</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#C代码</span><br><span class="line">void  swap_1(int  *xp，int  *yp)</span><br><span class="line">&#123;</span><br><span class="line">	long int  t0 = *xp;</span><br><span class="line">	long int  t1 = *yp;</span><br><span class="line">	*xp = t1;</span><br><span class="line">	*yp = t0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#x86-64下的汇编代码</span><br><span class="line">swap:</span><br><span class="line">	movl   (%rdi),%rdx</span><br><span class="line">	movl   (%rsi),%rax</span><br><span class="line">	movl   %rax,(%rdi)</span><br><span class="line">	movl   %rdx,(%rsi)</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>被操作位的数据是64位，所以使用寄存器%rax、%rdx，以及movq指令（“q”表示“4字”）</p>
-</blockquote>
-<h4 id="4-x86指令的特点"><a href="#4-x86指令的特点" class="headerlink" title="4.x86指令的特点"></a>4.x86指令的特点</h4><blockquote>
-<ul>
+<h4 id="4-x86指令的特点"><a href="#4-x86指令的特点" class="headerlink" title="4.x86指令的特点"></a>4.x86指令的特点</h4><ul>
 <li><strong>支持多种类型的指令操作数：</strong>立即数、寄存器、内存数据</li>
 <li>算术/逻辑指令可以以内存数据为操作数</li>
 <li>支持多种内存地址计算模式<ul>
 <li>Rb + S * Ri + D</li>
-<li>也可用于整数计算（如：leal指令）</li>
+<li>也可用于整数计算（如：leal指令）<h4 id="5-x86汇编的格式"><a href="#5-x86汇编的格式" class="headerlink" title="5.x86汇编的格式"></a>5.x86汇编的格式</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/aDph2GeQBo1NmQrZJ3e9OXyY4gdiGHi.bO.GnfmnyNM!/r/dLYAAAAAAAAA" alt><h4 id="6-练习题"><a href="#6-练习题" class="headerlink" title="6.练习题"></a>6.练习题</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fQjttn30BPLGmWgEKMtUdPmiG94Gx8OI6L0Scgra8xE!/r/dL8AAAAAAAAA" alt></li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h4 id="5-x86汇编的格式"><a href="#5-x86汇编的格式" class="headerlink" title="5.x86汇编的格式"></a>5.x86汇编的格式</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/aDph2GeQBo1NmQrZJ3e9OXyY4gdiGHi.bO.GnfmnyNM!/r/dLYAAAAAAAAA" alt></p>
-<h4 id="6-练习题"><a href="#6-练习题" class="headerlink" title="6.练习题"></a>6.练习题</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fQjttn30BPLGmWgEKMtUdPmiG94Gx8OI6L0Scgra8xE!/r/dL8AAAAAAAAA" alt></p>
 <h3 id="二、条件码"><a href="#二、条件码" class="headerlink" title="二、条件码"></a>二、条件码</h3><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/EkgOFoU6MAPIE825g.JQQmR7mZeoWSCQ1XCls6.t*PE!/r/dFIBAAAAAAAA" alt></p>
 <blockquote>
 <ul>
@@ -479,12 +473,7 @@ height:50vh;
 <p><center>cmpl&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpq&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1</center><br>cmpl b,a 类似于计算a - b（但是不改变目的操作数）</p>
 <ul>
 <li>可用于无符号数的比较<br>&nbsp;&nbsp;&nbsp;ZF  set if a == b<br>&nbsp;&nbsp;&nbsp;SF set if (a &lt; b) &lt; 0<br>&nbsp;&nbsp;&nbsp;OF set if two’s complement overflow</li>
-<li>(a &gt; 0 &amp;&amp; b &lt; 0 &amp;&amp; (a - b) &lt; 0）|| （a &lt; 0 &amp;&amp; b &gt; 0 &amp;&amp; (a - b) &gt; 0)</li>
-</ul>
-</blockquote>
-<h4 id="2-测试指令（Test）"><a href="#2-测试指令（Test）" class="headerlink" title="2.测试指令（Test）"></a>2.测试指令（Test）</h4><blockquote>
-<p><center>testl&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;testq&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1</center><br>计算Src1 &amp; Src2并设置相应的条件码，但是不改变目的操作数</p>
-<ul>
+<li>(a &gt; 0 &amp;&amp; b &lt; 0 &amp;&amp; (a - b) &lt; 0）|| （a &lt; 0 &amp;&amp; b &gt; 0 &amp;&amp; (a - b) &gt; 0)<h4 id="2-测试指令（Test）"><a href="#2-测试指令（Test）" class="headerlink" title="2.测试指令（Test）"></a>2.测试指令（Test）</h4><center>testl&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;testq&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1</center><br>计算Src1 &amp; Src2并设置相应的条件码，但是不改变目的操作数</li>
 <li>ZF set when  a&amp;b == 0</li>
 <li>SF set when a&amp;b &lt; 0</li>
 </ul>
@@ -492,9 +481,7 @@ height:50vh;
 </blockquote>
 <h3 id="四、学习感悟"><a href="#四、学习感悟" class="headerlink" title="四、学习感悟"></a>四、学习感悟</h3><blockquote>
 <p>今天在做逆向的题目，感觉慢慢的对这方面的题目有了自己的理解。在跟着视频学习了一段时间，对我解题时的理解有很大的帮助，我也会坚持学习，直到自己真正理解了逆向的思想和方法。</p>
-</blockquote>
-<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><blockquote>
-<p>不要放弃！坚持下去就是胜利！</p>
+<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><p>不要放弃！坚持下去就是胜利！</p>
 </blockquote>
 
     </article>
@@ -676,46 +663,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1723,9 +1670,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

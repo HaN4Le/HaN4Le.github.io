@@ -420,10 +420,8 @@ height:50vh;
 <h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
 <ul>
 <li>工具：wireshark</li>
-<li>知识：ICMP、ARP、SSH、NFS、RPC有关知识</li>
+<li>知识：ICMP、ARP、SSH、NFS、RPC有关知识<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2. 思考过程"></a>2. 思考过程</h3></li>
 </ul>
-</blockquote>
-<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2. 思考过程"></a>2. 思考过程</h3><blockquote>
 <ol>
 <li>上述协议的工作原理是什么？功能是什么？</li>
 </ol>
@@ -434,25 +432,15 @@ height:50vh;
 <li><strong>NFS</strong>：就是通过网络共享目录，让网络上的其他服务器能够挂载访问共享目录内的数据（一般共享视频，图片等静态数据）；</li>
 <li><strong>RPC(Remote Procedure Call)</strong>：因为NFS本身是没有提供信息传输的协议和功能的，但NFS却能让我们通过网络来分享资料，这是因为NFS使用了一些其它的传输协议，而这些传输协议用到了RPC的功能。</li>
 </ul>
-<ol start="2">
-<li>两台主机间进行的是什么交互过程？<br>打开wireshark，不难发现主要的交互过程是Client A（10.0.0.22）和Sever B（10.0.0.2）用SSHv2对TCP传输的数据进行加密，并传输的文件在服务端共享，在客户端挂载使用的一个大概过程；</li>
-<li>所要找的file应该在哪被找到？<br>可以看出file被加密传输，进行解密对我来说非常困难，那么流量中有NFS，文件是否被网络共享？那么应重点关注的对象是不是NFS？</li>
-</ol>
-</blockquote>
-<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><blockquote>
 <ol>
+<li>两台主机间进行的是什么交互过程？<br>打开wireshark，不难发现主要的交互过程是Client A（10.0.0.22）和Sever B（10.0.0.2）用SSHv2对TCP传输的数据进行加密，并传输的文件在服务端共享，在客户端挂载使用的一个大概过程；</li>
+<li>所要找的file应该在哪被找到？<br>可以看出file被加密传输，进行解密对我来说非常困难，那么流量中有NFS，文件是否被网络共享？那么应重点关注的对象是不是NFS？<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3></li>
 <li>打开wireshark，分析流量的数据，找出SSH的每个过程：<br>&nbsp;&nbsp;&nbsp;①Client端向Server端发起SSH连接请求；<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwehpp2j210f08o3zm.jpg" alt><br>&nbsp;&nbsp;&nbsp;②Server端向Client端发起版本协商。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwi2uy1j211m0brmz6.jpg" alt><br>&nbsp;&nbsp;&nbsp;③协商结束后Server端发送Host Key公钥 Server Key公钥，随机数等信息。到这里所有通信是不加密的。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwk448kj21050av401.jpg" alt><br>&nbsp;&nbsp;&nbsp;④Client端返回确认信息，同时附带用公钥加密过的一个随机数，用于双方计算Session Key。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwohstkj210z09775k.jpg" alt><br>&nbsp;&nbsp;&nbsp;⑤进入认证阶段。从此以后所有通信均加密。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwqbgmqj211209mjss.jpg" alt><br>&nbsp;&nbsp;&nbsp;⑥认证成功后，进入交互阶段。<img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0scwuo217j211y09bdhe.jpg" alt></li>
 <li>因为SSH的过程已经明确，所以对于整个流量分析相对就容易了。在思考过程中已经明确了应注重关注NFS，那么在过滤器中只过滤NFS的流量：<br><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0scwwdffsj210w0evgoa.jpg" alt></li>
 <li>在上图中我们可以得到服务器允许客户端进行读（RD）、查找（LU）、修改（MD）、增加（XT）、删除（DL）操作的信息，而客户端对文件进行了查找（以防止覆盖相同名称文件的内容）、打开（这里建立了flag.txt.gz的压缩包）和写的操作；</li>
 <li>找到OpcodeWRITE/DATA/CONTENT，然后右击点击showPackt Bytes，得到下图：<br><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0sczwcjhtj20pq0frq41.jpg" alt></li>
-<li>设置Decode as Compressed，即可得到flag</li>
+<li>设置Decode as Compressed，即可得到flag<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的总结虽然花的时间比较长，但是我觉得我理解的深度还不够，更需要我认真的去回顾和思考这些问题，切实变成自己的知识。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明天开始我要减缓进度了，因为我感悟前几天的知识消化的还不到位，明天开始要好好的去总结总结学过的知识点。<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h3>行胜于言！</li>
 </ol>
-</blockquote>
-<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的总结虽然花的时间比较长，但是我觉得我理解的深度还不够，更需要我认真的去回顾和思考这些问题，切实变成自己的知识。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明天开始我要减缓进度了，因为我感悟前几天的知识消化的还不到位，明天开始要好好的去总结总结学过的知识点。</p>
-</blockquote>
-<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h3><blockquote>
-<p>行胜于言！</p>
 </blockquote>
 
     </article>
@@ -634,46 +622,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1681,9 +1629,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

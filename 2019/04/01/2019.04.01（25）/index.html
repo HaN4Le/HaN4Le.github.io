@@ -427,10 +427,7 @@ height:50vh;
 <hr>
 <blockquote>
 <p><strong>前言：</strong>浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部分。浮点数是指小数点位置可以浮动的数据类型。<br>简单说浮点数是指能够精确到小数点以后的数值类型</p>
-</blockquote>
-<h4 id="一、-浮点数的机器表示"><a href="#一、-浮点数的机器表示" class="headerlink" title="一、 浮点数的机器表示"></a>一、 浮点数的机器表示</h4><p>1.IEEE的浮点数标准</p>
-<blockquote>
-<p>① IEEE的754标准<br>② 二进制表示方式<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/IKCMmlvVYWpKsKl0RGsbgd2.g*gqSPZWJNUQnWisFec!/r/dL8AAAAAAAAA" alt></p>
+<h4 id="一、-浮点数的机器表示"><a href="#一、-浮点数的机器表示" class="headerlink" title="一、 浮点数的机器表示"></a>一、 浮点数的机器表示</h4><p>1.IEEE的浮点数标准<br>① IEEE的754标准<br>② 二进制表示方式<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/IKCMmlvVYWpKsKl0RGsbgd2.g*gqSPZWJNUQnWisFec!/r/dL8AAAAAAAAA" alt></p>
 </blockquote>
 <p>2.浮点数示例</p>
 <blockquote>
@@ -453,18 +450,15 @@ height:50vh;
 <li>exp域代表的是 E</li>
 <li>frac域代表的是 M<br><strong><font color="red">注意这里代表不是说exp域 = E，frac域 = M，这两者是有个转化的。</font></strong></li>
 <li><strong>单精度浮点数：</strong>s宽度为 1 bit，exp域宽度为 8 bits，frac域宽度为 23 bits，总共为 31 bits；</li>
-<li><strong>双精度浮点数：</strong>s宽度为 1 bit，exp域宽度为 11 bits，frac域宽度为 52 bits，总共为 64 bits；</li>
+<li><strong>双精度浮点数：</strong>s宽度为 1 bit，exp域宽度为 11 bits，frac域宽度为 52 bits，总共为 64 bits；<h4 id="二、浮点数的类型——浮点数的规格化和非规格化表示"><a href="#二、浮点数的类型——浮点数的规格化和非规格化表示" class="headerlink" title="二、浮点数的类型——浮点数的规格化和非规格化表示"></a>二、浮点数的类型——浮点数的规格化和非规格化表示</h4><strong>1.规格化的浮点数</strong></li>
 </ul>
 </li>
-</ul>
-</blockquote>
-<h4 id="二、浮点数的类型——浮点数的规格化和非规格化表示"><a href="#二、浮点数的类型——浮点数的规格化和非规格化表示" class="headerlink" title="二、浮点数的类型——浮点数的规格化和非规格化表示"></a>二、浮点数的类型——浮点数的规格化和非规格化表示</h4><p><strong>1.规格化的浮点数</strong></p>
-<blockquote>
-<ul>
 <li><strong>满足条件</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp ≠ 000…0 且 exp ≠ 111…1</li>
 <li><strong>真实的阶码值需要减一个偏值量</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E = Exp - Bias<ul>
 <li>Exp：exp 域所表示的无符号数值</li>
-<li><font color="red">Bias的取值：bias = 2<sup>e-1</sup>-1，e = exp域的位数<br>▷单精度数：127（Exp：1…254，E：-126…127）<br>▷双精度数：1023（Exp：1…2064，E：-1022…1023）</font></li>
+<li><font color="red">Bias的取值：bias = 2<sup>e-1</sup>-1，e = exp域的位数
+▷单精度数：127（Exp：1...254，E：-126...127）
+▷双精度数：1023（Exp：1...2064，E：-1022...1023）</font></li>
 </ul>
 </li>
 <li>frac 域的第一位隐含为 1<br>M = 1.xxx…x<sub>2</sub><ul>
@@ -692,46 +686,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1739,9 +1693,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

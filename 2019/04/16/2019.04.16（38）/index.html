@@ -430,15 +430,9 @@ height:50vh;
 <p><strong>功能：</strong>读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器</p>
 <ul>
 <li>只存进一个byte，余下的三个字节不会被修改</li>
-<li><strong>把寄存器的最低的字节改掉了，那么高的三个字节怎么办？</strong><font color="red">通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展</font>
+<li><strong>把寄存器的最低的字节改掉了，那么高的三个字节怎么办？</strong><br><font color="red">通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展</font><h4 id="2-SetX常用指令"><a href="#2-SetX常用指令" class="headerlink" title="2.SetX常用指令"></a>2.SetX常用指令</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>SetX</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Description</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equal / Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setne&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Equal / Not Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Negative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NonNegative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF) | ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~CF&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Above(unsigned)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Below(unsigned)<br>说明：~ 为取反<h4 id="3-SetX指令实例"><a href="#3-SetX指令实例" class="headerlink" title="3.SetX指令实例"></a>3.SetX指令实例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int   gt   (int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">      return x &gt; y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
-<h4 id="2-SetX常用指令"><a href="#2-SetX常用指令" class="headerlink" title="2.SetX常用指令"></a>2.SetX常用指令</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>SetX</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Description</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equal / Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setne&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Equal / Not Zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Negative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~SF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NonNegative<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SF^OF) | ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less or Equal(Signed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~CF&amp;~ZF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Above(unsigned)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Below(unsigned)<br>说明：~ 为取反</p>
-</blockquote>
-<h4 id="3-SetX指令实例"><a href="#3-SetX指令实例" class="headerlink" title="3.SetX指令实例"></a>3.SetX指令实例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int   gt   (int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">      return x &gt; y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>对应的汇编指令（Body）:</p>
 <ul>
 <li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;eax = y</li>
@@ -451,13 +445,11 @@ height:50vh;
 <h3 id="二、x86-64下的读取条件码指令"><a href="#二、x86-64下的读取条件码指令" class="headerlink" title="二、x86-64下的读取条件码指令"></a>二、x86-64下的读取条件码指令</h3><h4 id="1-SetX指令-1"><a href="#1-SetX指令-1" class="headerlink" title="1.SetX指令"></a>1.SetX指令</h4><blockquote>
 <p><strong>功能：</strong>读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器（与32位下的语义一样）</p>
 <ul>
-<li>余下的七个字节不会被修改</li>
-</ul>
-</blockquote>
+<li><p>余下的七个字节不会被修改</p>
 <h4 id="2-x86-64下的函数参数"><a href="#2-x86-64下的函数参数" class="headerlink" title="2.x86-64下的函数参数"></a>2.x86-64下的函数参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//C代码段</span><br><span class="line">int  gt (int x, int y)      long lgt (long x,long y)</span><br><span class="line">&#123;                           &#123;</span><br><span class="line">   return x &gt; y;               return x &gt; y;</span><br><span class="line">&#125;                           &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>说明：x in %rdi；y in %rsi<br><br>上面的int 和 long 代码段所产生的汇编代码是一样的：<br><strong>Body段：</strong></li>
+</li>
+<li><p>说明：x in %rdi；y in %rsi<br><br>上面的int 和 long 代码段所产生的汇编代码是一样的：<br><strong>Body段：</strong></p>
+</li>
 <li>xorl  %eax,%eax&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;eax = 0</li>
 <li>cmpq %rsi,%rdi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;Compare x : y</li>
 <li>setg %al&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;al = x &gt; y</li>
@@ -469,8 +461,6 @@ height:50vh;
 </blockquote>
 <h4 id="2-x86-32位下条件跳转实例"><a href="#2-x86-32位下条件跳转实例" class="headerlink" title="2.x86-32位下条件跳转实例"></a>2.x86-32位下条件跳转实例</h4><blockquote>
 <p><strong>① 实例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#C代码段</span><br><span class="line">int  absdiff(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int result;</span><br><span class="line">    if(x &gt; y)</span><br><span class="line">        result = x - y;</span><br><span class="line">    else </span><br><span class="line">        result = y - x;</span><br><span class="line">    return result; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
 <p>编译生成的汇编代码(x86-32位)：<br>01.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absdiff:<br>02.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp</font><br>03.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp,%ebp</font><br>04.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>//把x放到edx中<br>05.<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax</font>&nbsp;&nbsp;&nbsp;&nbsp;//把y放到eax中<br>06.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>//用edx - eax 相当于x - y。如果小于等于，则跳到08行；如果大于，则跳到14行<br>07.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.L7</font><br>08.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx</font><br>09.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax</font><br>10.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;.L8:</font><br>11.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leave:</font><br>12.<font color="orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret:</font><br>13.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;.L7:</font><br>14.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax</font><br>15.<font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.L8</font><br><br>&nbsp;<font color="red">■</font><font size="2">:Body 1/2</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">■</font><font size="2">:Set up</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">■</font><font size="2">:Finish</font><br><br><strong>② 编译器工作原理</strong><br>编译器在编译的时候，会将原始的C代码变形为“goto”模式，使之接近编译出来的及其语言风格：</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#编译后的代码</span><br><span class="line">int goto_ad(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    int result;</span><br><span class="line">    if(x&lt;=y) goto Else;</span><br><span class="line">    result = x - y;</span><br><span class="line">Exit:</span><br><span class="line">    renturn result ;</span><br><span class="line">Else:</span><br><span class="line">    result = y - x;</span><br><span class="line">    goto Exit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -491,11 +481,8 @@ height:50vh;
 <blockquote>
 <p>编译生成的汇编代码(x86-64位)：<br>01.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absdiff: # x in %edi, y in %esi<br>02.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v = x<br>03.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%edx &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ve = y<br>04.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v  -= y<br>05.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ve  -= x<br>06.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi,%edi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# x : y<br>07.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmovle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx,%eax &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# v = ve if &lt;=<br>08.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret<br><br><strong>② 条件传送指令：cmov<em>C</em></strong></p>
 <ul>
-<li>命令格式：cmove<em>C</em> &nbsp;&nbsp;Src,Dest<br>如果条件<em>C</em>成立，将从数据Src传送到Dest。因为其控制流可预测（即条件<em>C</em>是已知的）从执行角度来看，比一般的条件跳转指令的效率高。</li>
+<li>命令格式：cmove<em>C</em> &nbsp;&nbsp;Src,Dest<br>如果条件<em>C</em>成立，将从数据Src传送到Dest。因为其控制流可预测（即条件<em>C</em>是已知的）从执行角度来看，比一般的条件跳转指令的效率高。<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。</li>
 </ul>
-</blockquote>
-<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><blockquote>
-<p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。</p>
 </blockquote>
 
     </article>
@@ -677,46 +664,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1724,9 +1671,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

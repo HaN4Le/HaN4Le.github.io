@@ -400,20 +400,11 @@ J(\theta_0,\theta_1)=\frac{1}{2m} \sum_{i=1}^{m} ( h_{\theta}(x^{(i)})-y^{(i)} )
         <div class="abstract-content">
             
 ☛ 前言：大学本科期间也学习过SQL的知识，但是有些只是点已经忘记，前几天做SQL注入的时候感觉挺费劲的，所以这两天学习了一下MySQL有关查询的常用语句，今天主要对此进行总结。
-
-一、基本查询1.语句格式：
-select * from &lt;表名&gt;说明：
+一、基本查询1.语句格式：select * from 说明：
 
 使用使用’’select’查询的基本语句select * from &lt;表名&gt;可以查询一个表的所有行和所有列的数据
-select查询的结果是一个二维表；
-
-
-二、条件查询1.语句格式：
-select * from &lt;表名&gt; where &lt;条件表达式&gt;
-
-2.条件表达式的中的条件：
-
-第一种...
+select查询的结果是一个二维表；二、条件查询1.语句格式：select * from  where 2.条件表达式的中的条件：
+第一种条件：and条件表达式可以用&lt;条件1&gt; AND &lt;条件2&gt;表...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -444,26 +435,18 @@ select * from &lt;表名&gt; where &lt;条件表达式&gt;
         <div class="abstract-content">
             
 ☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
-
 一、前期准备
-
 crunch 生成字典
 aircrack-ng工具
-wireshark工具
+wireshark工具二、解题思路
 
-
-二、解题思路
 
 首先先观察题目给的流量包，看看都有什么协议；
 根据第一步，然后针对协议的特点做出相应的判断；
 从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
 根据题目提示写出字典；
 暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
-
-
-三、解题步骤1.观察流量包
-用wire...
+但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；三、解题步骤1.观察流量包用wireshark打开数...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -494,15 +477,11 @@ wireshark工具
         <div class="abstract-content">
             
 ☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
-
 一、前期准备
-
 python语言
 二维码的知识（本题中不是重点）
-QQ “扫一扫”
+QQ “扫一扫”二、思考过程
 
-
-二、思考过程
 
 题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
 然后看一下这个数量值，是否是一个数的平方；
@@ -510,7 +489,7 @@ QQ “扫一扫”
 题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
 根据上一步的思考，我们可以有选择地进行替换图形；
 扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
-根据题目提示，可以将字符串当作ASCII码编...
+根据题目提示，可以将字符串当作ASCII码编程，解出...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -541,22 +520,14 @@ QQ “扫一扫”
         <div class="abstract-content">
             
 ☛ 前言：今天在做第二阶段的 02 号题目，可是一点思路也没有。转而去做了 Misc 的 Another 01 game，经过一段时间的思考和实践，终于将这道题做了出来，但是总结笔记还没有准备好素材。那么今天就主要总结一下python的学习笔记吧。
-
 一、第一个Python程序1.介绍：
-
 命令行模式：可以执行.py文件
 Python交互模式：在交互模式环境，也可以执行.py文件
-2 * 10 = 20 ；2 ** 10 = 1024 ;
+2  10 = 20 ；2 * 10 = 1024 ;2.使用文本编辑器：
+在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;3.输入和输出：
 
 
-2.使用文本编辑器：
-
-在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;
-
-
-3.输入和输出：
-
-输出：...
+输出：a. 输出格式：pr...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -587,12 +558,8 @@ Python交互模式：在交互模式环境，也可以执行.py文件
         <div class="abstract-content">
             
 ☛ 前言：今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。
-
-一、认识Caesar密码
-在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
-
-二、Caesar密码的加密
-Caesar密码加密是根据“密钥...
+一、认识Caesar密码在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
+二、Caesar密码的加密Caesar密码加密是根据“密钥”（偏移...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -623,8 +590,7 @@ Caesar密码加密是根据“密钥...
         <div class="abstract-content">
             
 ☛ 前言：今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
-
-一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56...
+一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56 ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -655,10 +621,7 @@ Caesar密码加密是根据“密钥...
         <div class="abstract-content">
             
 
-前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
-
-
-一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d...
+前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d60:...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -696,9 +659,9 @@ Caesar密码加密是根据“密钥...
 sscanf() 是从一个字符串中读进与指定格式相符的数据. 
 
 1.sscanf()格式：
-int sscanf(const char str, const char format, …)
+int sscanf(const char str, const char format, …)&lt;/font&gt;
 
-str：为C 字符串，是函...
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -729,8 +692,7 @@ str：为C 字符串，是函...
         <div class="abstract-content">
             
 ☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-
-一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	su...
+一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -856,46 +818,6 @@ str：为C 字符串，是函...
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1903,9 +1825,9 @@ str：为C 字符串，是函...
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

@@ -425,12 +425,18 @@ height:50vh;
 <blockquote>
 <p><strong>① 正向思维</strong><br>通过对汇编代码和伪代码的分析，对Phase_2的功能有了大概的认识：</p>
 <ul>
-<li><font color="green">8048bc8</font>：首先要求输入六个数字；<br><font color="red">// read_six_numbers(a1, (int)&amp;v3);</font></li>
-<li><font color="green">804916e</font>：判读输入的数字数量是否小于5，也可以说循环5次，不符合则bomb；<br><font color="red">// if ( result &lt;= 5 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
-<li><font color="green">8048bcd</font>：要求第一个数字必须为1，否则就bomb；<br><font color="red">// if ( v3 != 1 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
-<li><font color="green">8048bde</font>：将循环变量从1开始相加（eax + eax）；<br><font color="red">// result = 2 <em> \</em>((_DWORD *)v2 - 1); </font></li>
-<li><font color="green">8048be0</font>：将相加后的%eax与%ebx中的数值（我们输入的六个数字）相比；<br><font color="red">// if ( *(_DWORD *)v2 != result )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb(); </font></li>
-<li><font color="green">8048bec</font>：比较esi和ebx后，如果相等的话，代表即将通关；<br><font color="red">// while ( v2 != &amp;v5 );</font>
+<li><font color="green">8048bc8</font>：首先要求输入六个数字；
+<font color="red">// read_six_numbers(a1, (int)&v3);</font></li>
+<li><font color="green">804916e</font>：判读输入的数字数量是否小于5，也可以说循环5次，不符合则bomb；
+<font color="red">// if ( result <= 5 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();< font></=></font></li>
+<li><font color="green">8048bcd</font>：要求第一个数字必须为1，否则就bomb；
+<font color="red">// if ( v3 != 1 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
+<li><font color="green">8048bde</font>：将循环变量从1开始相加（eax + eax）；
+<font color="red">// result = 2 * \*((\_DWORD \*)v2 - 1); </font></li>
+<li><font color="green">8048be0</font>：将相加后的%eax与%ebx中的数值（我们输入的六个数字）相比；
+<font color="red">// if ( \*(\_DWORD \*)v2 != result )&nbsp;&nbsp;&nbsp;&nbsp;explode\_bomb(); </font></li>
+<li><font color="green">8048bec</font>：比较esi和ebx后，如果相等的话，代表即将通关；
+<font color="red">// while ( v2 != &v5 );</font>
 
 </li>
 </ul>
@@ -452,15 +458,9 @@ height:50vh;
 <li>第五次：16 + 16 = 32;</li>
 </ul>
 <p>那么求得要输入的六个数分别为：<code>1、2、4、8、16、32</code></p>
-</blockquote>
-<h3 id="四、验证答案"><a href="#四、验证答案" class="headerlink" title="四、验证答案"></a>四、验证答案</h3><blockquote>
-<p>运行程序，将得到的六个数据输进去，得到如下结果：<br><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ftJBS4*4qVl8c42g3rgt1BRm2SAbzkhzXNAzUC2jfxE!/r/dMAAAAAAAAAA" alt></p>
-</blockquote>
-<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><blockquote>
-<p>昨天在做题的时候并没有注意到那么多的细节，今天在总结的时候，就发现好多不明白的细节（可能在这篇总结中还存在很多许多修改的地方），说明做题和落实是两码事，也说明了将做题的过程落实下来很重要。虽然总结完了，但是我仍然要抱着不足的心态去对待这篇博文，在后期的学习中，我会根据自己的能力，不断地对这篇博文进行修改。</p>
-</blockquote>
-<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><blockquote>
-<p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。 </p>
+<h3 id="四、验证答案"><a href="#四、验证答案" class="headerlink" title="四、验证答案"></a>四、验证答案</h3><p>运行程序，将得到的六个数据输进去，得到如下结果：<br><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ftJBS4*4qVl8c42g3rgt1BRm2SAbzkhzXNAzUC2jfxE!/r/dMAAAAAAAAAA" alt></p>
+<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><p>昨天在做题的时候并没有注意到那么多的细节，今天在总结的时候，就发现好多不明白的细节（可能在这篇总结中还存在很多许多修改的地方），说明做题和落实是两码事，也说明了将做题的过程落实下来很重要。虽然总结完了，但是我仍然要抱着不足的心态去对待这篇博文，在后期的学习中，我会根据自己的能力，不断地对这篇博文进行修改。</p>
+<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。 </p>
 </blockquote>
 
     </article>
@@ -642,46 +642,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1689,9 +1649,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

@@ -418,14 +418,12 @@ height:50vh;
     <article class="article-entry">
         <blockquote>
 <p><strong>☛ 前言：</strong><br>今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。</p>
-</blockquote>
 <h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><h4 id="1-Phase-6的汇编代码"><a href="#1-Phase-6的汇编代码" class="headerlink" title="1.Phase_6的汇编代码"></a>1.Phase_6的汇编代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">08048da5 &lt;phase_6&gt;:</span><br><span class="line"> 8048da5:	56                   	push   %esi</span><br><span class="line"> 8048da6:	53                   	push   %ebx</span><br><span class="line"> 8048da7:	83 ec 44             	sub    $0x44,%esp</span><br><span class="line"> 8048daa:	8d 44 24 10          	lea    0x10(%esp),%eax</span><br><span class="line"> 8048dae:	89 44 24 04          	mov    %eax,0x4(%esp)</span><br><span class="line"> 8048db2:	8b 44 24 50          	mov    0x50(%esp),%eax</span><br><span class="line"> 8048db6:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"> 8048db9:	e8 6e 03 00 00       	call   804912c &lt;read_six_numbers&gt;</span><br><span class="line"> 8048dbe:	be 00 00 00 00       	mov    $0x0,%esi</span><br><span class="line"> 8048dc3:	8b 44 b4 10          	mov    0x10(%esp,%esi,4),%eax</span><br><span class="line"> 8048dc7:	83 e8 01             	sub    $0x1,%eax</span><br><span class="line"> 8048dca:	83 f8 05             	cmp    $0x5,%eax</span><br><span class="line"> 8048dcd:	76 05                	jbe    8048dd4 &lt;phase_6+0x2f&gt;</span><br><span class="line"> 8048dcf:	e8 31 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> 8048dd4:	83 c6 01             	add    $0x1,%esi</span><br><span class="line"> 8048dd7:	83 fe 06             	cmp    $0x6,%esi</span><br><span class="line"> 8048dda:	74 1b                	je     8048df7 &lt;phase_6+0x52&gt;</span><br><span class="line"> 8048ddc:	89 f3                	mov    %esi,%ebx</span><br><span class="line"> 8048dde:	8b 44 9c 10          	mov    0x10(%esp,%ebx,4),%eax</span><br><span class="line"> 8048de2:	39 44 b4 0c          	cmp    %eax,0xc(%esp,%esi,4)</span><br><span class="line"> 8048de6:	75 05                	jne    8048ded &lt;phase_6+0x48&gt;</span><br><span class="line"> 8048de8:	e8 18 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> 8048ded:	83 c3 01             	add    $0x1,%ebx</span><br><span class="line"> 8048df0:	83 fb 05             	cmp    $0x5,%ebx</span><br><span class="line"> 8048df3:	7e e9                	jle    8048dde &lt;phase_6+0x39&gt;</span><br><span class="line"> 8048df5:	eb cc                	jmp    8048dc3 &lt;phase_6+0x1e&gt;</span><br><span class="line"> 8048df7:	8d 44 24 10          	lea    0x10(%esp),%eax</span><br><span class="line"> 8048dfb:	8d 5c 24 28          	lea    0x28(%esp),%ebx</span><br><span class="line"> 8048dff:	b9 07 00 00 00       	mov    $0x7,%ecx</span><br><span class="line"> 8048e04:	89 ca                	mov    %ecx,%edx</span><br><span class="line"> 8048e06:	2b 10                	sub    (%eax),%edx</span><br><span class="line"> 8048e08:	89 10                	mov    %edx,(%eax)</span><br><span class="line"> 8048e0a:	83 c0 04             	add    $0x4,%eax</span><br><span class="line"> 8048e0d:	39 d8                	cmp    %ebx,%eax</span><br><span class="line"> 8048e0f:	75 f3                	jne    8048e04 &lt;phase_6+0x5f&gt;</span><br><span class="line"> 8048e11:	bb 00 00 00 00       	mov    $0x0,%ebx</span><br><span class="line"> 8048e16:	eb 1d                	jmp    8048e35 &lt;phase_6+0x90&gt;</span><br><span class="line"> 8048e18:	8b 52 08             	mov    0x8(%edx),%edx</span><br><span class="line"> 8048e1b:	83 c0 01             	add    $0x1,%eax</span><br><span class="line"> 8048e1e:	39 c8                	cmp    %ecx,%eax</span><br><span class="line"> 8048e20:	75 f6                	jne    8048e18 &lt;phase_6+0x73&gt;</span><br><span class="line"> 8048e22:	eb 05                	jmp    8048e29 &lt;phase_6+0x84&gt;</span><br><span class="line"> 8048e24:	ba 3c c1 04 08       	mov    $0x804c13c,%edx</span><br><span class="line"> 8048e29:	89 54 b4 28          	mov    %edx,0x28(%esp,%esi,4)</span><br><span class="line"> 8048e2d:	83 c3 01             	add    $0x1,%ebx</span><br><span class="line"> 8048e30:	83 fb 06             	cmp    $0x6,%ebx</span><br><span class="line"> 8048e33:	74 17                	je     8048e4c &lt;phase_6+0xa7&gt;</span><br><span class="line"> 8048e35:	89 de                	mov    %ebx,%esi</span><br><span class="line"> 8048e37:	8b 4c 9c 10          	mov    0x10(%esp,%ebx,4),%ecx</span><br><span class="line"> 8048e3b:	83 f9 01             	cmp    $0x1,%ecx</span><br><span class="line"> 8048e3e:	7e e4                	jle    8048e24 &lt;phase_6+0x7f&gt;</span><br><span class="line"> 8048e40:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line"> 8048e45:	ba 3c c1 04 08       	mov    $0x804c13c,%edx</span><br><span class="line"> 8048e4a:	eb cc                	jmp    8048e18 &lt;phase_6+0x73&gt;</span><br><span class="line"> 8048e4c:	8b 5c 24 28          	mov    0x28(%esp),%ebx</span><br><span class="line"> 8048e50:	8d 44 24 2c          	lea    0x2c(%esp),%eax</span><br><span class="line"> 8048e54:	8d 74 24 40          	lea    0x40(%esp),%esi</span><br><span class="line"> 8048e58:	89 d9                	mov    %ebx,%ecx</span><br><span class="line"> 8048e5a:	8b 10                	mov    (%eax),%edx</span><br><span class="line"> 8048e5c:	89 51 08             	mov    %edx,0x8(%ecx)</span><br><span class="line"> 8048e5f:	83 c0 04             	add    $0x4,%eax</span><br><span class="line"> 8048e62:	39 f0                	cmp    %esi,%eax</span><br><span class="line"> 8048e64:	74 04                	je     8048e6a &lt;phase_6+0xc5&gt;</span><br><span class="line"> 8048e66:	89 d1                	mov    %edx,%ecx</span><br><span class="line"> 8048e68:	eb f0                	jmp    8048e5a &lt;phase_6+0xb5&gt;</span><br><span class="line"> 8048e6a:	c7 42 08 00 00 00 00 	movl   $0x0,0x8(%edx)</span><br><span class="line"> 8048e71:	be 05 00 00 00       	mov    $0x5,%esi</span><br><span class="line"> 8048e76:	8b 43 08             	mov    0x8(%ebx),%eax</span><br><span class="line"> 8048e79:	8b 00                	mov    (%eax),%eax</span><br><span class="line"> 8048e7b:	39 03                	cmp    %eax,(%ebx)</span><br><span class="line"> 8048e7d:	7d 05                	jge    8048e84 &lt;phase_6+0xdf&gt;</span><br><span class="line"> 8048e7f:	e8 81 02 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> 8048e84:	8b 5b 08             	mov    0x8(%ebx),%ebx</span><br><span class="line"> 8048e87:	83 ee 01             	sub    $0x1,%esi</span><br><span class="line"> 8048e8a:	75 ea                	jne    8048e76 &lt;phase_6+0xd1&gt;</span><br><span class="line"> 8048e8c:	83 c4 44             	add    $0x44,%esp</span><br><span class="line"> 8048e8f:	5b                   	pop    %ebx</span><br><span class="line"> 8048e90:	5e                   	pop    %esi</span><br><span class="line"> 8048e91:	c3                   	ret</span><br></pre></td></tr></table></figure>
+</blockquote>
 <h4 id="2-node1-6-处的数据"><a href="#2-node1-6-处的数据" class="headerlink" title="2.node1-6 处的数据"></a>2.node1-6 处的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">.data:0804C13C                 public node1</span><br><span class="line">.data:0804C13C node1           dd 0DDh                 ; DATA XREF: phase_6:loc_8048E24o</span><br><span class="line">.data:0804C13C                                         ; phase_6+A0o</span><br><span class="line">.data:0804C140                 dd 1</span><br><span class="line">.data:0804C144                 dd 804C148h</span><br><span class="line">.data:0804C148                 public node2</span><br><span class="line">.data:0804C148 node2           dd 224h</span><br><span class="line">.data:0804C14C                 dd 2</span><br><span class="line">.data:0804C150                 dd 804C154h</span><br><span class="line">.data:0804C154                 public node3</span><br><span class="line">.data:0804C154 node3           dd 2F4h</span><br><span class="line">.data:0804C158                 dd 3</span><br><span class="line">.data:0804C15C                 dd 804C160h</span><br><span class="line">.data:0804C160                 public node4</span><br><span class="line">.data:0804C160 node4           dd 2F1h</span><br><span class="line">.data:0804C164                 dd 4</span><br><span class="line">.data:0804C168                 dd 804C16Ch</span><br><span class="line">.data:0804C16C                 public node5</span><br><span class="line">.data:0804C16C node5           dd 0FCh</span><br><span class="line">.data:0804C170                 dd 5</span><br><span class="line">.data:0804C174                 dd 804C178h</span><br><span class="line">.data:0804C178                 public node6</span><br><span class="line">.data:0804C178 node6           dd 3BBh</span><br><span class="line">.data:0804C17C                 dd 6</span><br><span class="line">.data:0804C180                 dd 0</span><br></pre></td></tr></table></figure>
 <h3 id="二、相关伪代码（IDA反编译）"><a href="#二、相关伪代码（IDA反编译）" class="headerlink" title="二、相关伪代码（IDA反编译）"></a>二、相关伪代码（IDA反编译）</h3><h4 id="1-Phase-6的伪代码"><a href="#1-Phase-6的伪代码" class="headerlink" title="1.Phase_6的伪代码"></a>1.Phase_6的伪代码</h4><blockquote>
 <p>相关伪代码会在下文列出</p>
-</blockquote>
-<h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><h4 id="1-Phase-6代码分析"><a href="#1-Phase-6代码分析" class="headerlink" title="1.Phase_6代码分析"></a>1.Phase_6代码分析</h4><blockquote>
-<p>通过对汇编代码和伪代码的综合分析，发现Phase_6是由多个循环体构成的，经过对各个循环体的分析有了如下的认识：</p>
+<h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><h4 id="1-Phase-6代码分析"><a href="#1-Phase-6代码分析" class="headerlink" title="1.Phase_6代码分析"></a>1.Phase_6代码分析</h4><p>通过对汇编代码和伪代码的综合分析，发现Phase_6是由多个循环体构成的，经过对各个循环体的分析有了如下的认识：</p>
 </blockquote>
 <p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/rzXVN*ueeLBRu0qUtYsPLPaMa59tZ.J4ia4BrEjNuqc!/r/dLkAAAAAAAAA" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// ①②③④⑤⑥所对应的伪代码</span><br><span class="line">v1 = 0;</span><br><span class="line">while ( 1 )</span><br><span class="line">&#123;</span><br><span class="line">  if ( (unsigned int)(v15[v1] - 1) &gt; 5 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  if ( ++v1 == 6 )</span><br><span class="line">    break;</span><br><span class="line">  v2 = v1;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    if ( *(&amp;v14 + v1) == v15[v2] )</span><br><span class="line">      explode_bomb();</span><br><span class="line">    ++v2;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v2 &lt;= 5 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
@@ -448,11 +446,8 @@ height:50vh;
 <blockquote>
 <ul>
 <li>① 和 ②共同构成一个循环语句；</li>
-<li>③ 和 ④共同构成一个循环语句；</li>
+<li>③ 和 ④共同构成一个循环语句；<h4 id="2-node数据的分析"><a href="#2-node数据的分析" class="headerlink" title="2.node数据的分析"></a>2.node数据的分析</h4>通过对伪代码的分析，发现了相关的结点，我猜测可能与链表有关系，于是针对node又进行了分析：</li>
 </ul>
-</blockquote>
-<h4 id="2-node数据的分析"><a href="#2-node数据的分析" class="headerlink" title="2.node数据的分析"></a>2.node数据的分析</h4><blockquote>
-<p>通过对伪代码的分析，发现了相关的结点，我猜测可能与链表有关系，于是针对node又进行了分析：</p>
 </blockquote>
 <p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JePjt757CYpPwW*RXqt7J2fpMrt9rD9WtE09JECwwic!/r/dLYAAAAAAAAA" alt></p>
 <blockquote>
@@ -463,14 +458,8 @@ height:50vh;
 <ol>
 <li>继续分析每块循环结构的功能；</li>
 <li>继续学习有关gdb的一些操作；</li>
-<li>加深对链表的学习；</li>
+<li>加深对链表的学习；<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3>在做这道题的时候，明显感觉到难度和前几个阶段相比较大，虽然我现在还未能解出该题，但是我将会继续努力学习，真正的掌握这道题所带给我的知识点。<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3>环境永远不会十全十美，消极的人受环境控制，积极的人却控制环境。</li>
 </ol>
-</blockquote>
-<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><blockquote>
-<p>在做这道题的时候，明显感觉到难度和前几个阶段相比较大，虽然我现在还未能解出该题，但是我将会继续努力学习，真正的掌握这道题所带给我的知识点。</p>
-</blockquote>
-<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><blockquote>
-<p>环境永远不会十全十美，消极的人受环境控制，积极的人却控制环境。</p>
 </blockquote>
 
     </article>
@@ -652,46 +641,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1699,9 +1648,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

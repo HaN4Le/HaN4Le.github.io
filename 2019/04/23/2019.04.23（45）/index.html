@@ -418,50 +418,34 @@ height:50vh;
     <article class="article-entry">
         <blockquote>
 <ul>
-<li><strong>前言：</strong><br>在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。</li>
+<li><strong>前言：</strong><br>在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。<h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><h4 id="1-Phase-5的汇编代码"><a href="#1-Phase-5的汇编代码" class="headerlink" title="1.Phase_5的汇编代码"></a>1.Phase_5的汇编代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">08048d5c &lt;phase_5&gt;:</span><br><span class="line"> 8048d5c:	53                   	push   %ebx</span><br><span class="line"> 8048d5d:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048d60:	8b 5c 24 20          	mov    0x20(%esp),%ebx</span><br><span class="line"> 8048d64:	89 1c 24             	mov    %ebx,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用8048fdb处的函数（计算字符串的长度），并将字符串的长度与 6 相比，如果字符串的长度为 6 ，则跳转到8048d76继续执行指令，若不相等，则调用bomb函数；</span><br><span class="line"> 8048d67:	e8 6f 02 00 00       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 8048d6c:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d6f:	74 05                	je     8048d76 &lt;phase_5+0x1a&gt;</span><br><span class="line"> 8048d71:	e8 8f 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> 8048d76:	ba 00 00 00 00       	mov    $0x0,%edx                // edx = v1</span><br><span class="line"> 8048d7b:	b8 00 00 00 00       	mov    $0x0,%eax                // eax = result</span><br><span class="line"></span><br><span class="line"> // 通过一个循环，取出字符串的每一个字符，并将每个字符与15按位做与运算；</span><br><span class="line"> // 也可以这样理解，将每个字符转换对应的十进制，按照二进制的形式与15的二进制形式（1111）做与运算，也就是只取每个字符的最后四位，并将所得的数赋值给 ecx；</span><br><span class="line"> 8048d80:	0f b6 0c 03          	movzbl (%ebx,%eax,1),%ecx</span><br><span class="line"> 8048d84:	83 e1 0f             	and    $0xf,%ecx</span><br><span class="line"></span><br><span class="line"> // edx的值为 0x804a1a0 + 4 * ecx 地址所指向的数据，ecx的值是 把我们输入的每个字符 &amp; 15 的结果作为数组下标，然后在数据中取到的；</span><br><span class="line"> 8048d87:	03 14 8d a0 a1 04 08 	add    0x804a1a0(,%ecx,4),%edx</span><br><span class="line"></span><br><span class="line"> // eax = eax +1 ，然后再将eax的值与 6 相比，如果不等于则跳转到8048d80，形成一个循环，如果想等，则继续向下执行指令；</span><br><span class="line"> 8048d8e:	83 c0 01             	add    $0x1,%eax</span><br><span class="line"> 8048d91:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d94:	75 ea                	jne    8048d80 &lt;phase_5+0x24&gt;</span><br><span class="line"> </span><br><span class="line"> // 将 edx（v1） 中的值与 61 相比较，如果相等的话就跳转到程序的Finish段，不等的话就bomb，这里edx的值是在8048d87处得到的；</span><br><span class="line"> 8048d96:	83 fa 3d             	cmp    $0x3d,%edx</span><br><span class="line"> 8048d99:	74 05                	je     8048da0 &lt;phase_5+0x44&gt;</span><br><span class="line"> 8048d9b:	e8 65 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> // Finish段</span><br><span class="line"> 8048da0:	83 c4 18             	add    $0x18,%esp</span><br><span class="line"> 8048da3:	5b                   	pop    %ebx</span><br><span class="line"> 8048da4:	c3                   	ret</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </blockquote>
-<h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><h4 id="1-Phase-5的汇编代码"><a href="#1-Phase-5的汇编代码" class="headerlink" title="1.Phase_5的汇编代码"></a>1.Phase_5的汇编代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">08048d5c &lt;phase_5&gt;:</span><br><span class="line"> 8048d5c:	53                   	push   %ebx</span><br><span class="line"> 8048d5d:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048d60:	8b 5c 24 20          	mov    0x20(%esp),%ebx</span><br><span class="line"> 8048d64:	89 1c 24             	mov    %ebx,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用8048fdb处的函数（计算字符串的长度），并将字符串的长度与 6 相比，如果字符串的长度为 6 ，则跳转到8048d76继续执行指令，若不相等，则调用bomb函数；</span><br><span class="line"> 8048d67:	e8 6f 02 00 00       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 8048d6c:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d6f:	74 05                	je     8048d76 &lt;phase_5+0x1a&gt;</span><br><span class="line"> 8048d71:	e8 8f 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> 8048d76:	ba 00 00 00 00       	mov    $0x0,%edx                // edx = v1</span><br><span class="line"> 8048d7b:	b8 00 00 00 00       	mov    $0x0,%eax                // eax = result</span><br><span class="line"></span><br><span class="line"> // 通过一个循环，取出字符串的每一个字符，并将每个字符与15按位做与运算；</span><br><span class="line"> // 也可以这样理解，将每个字符转换对应的十进制，按照二进制的形式与15的二进制形式（1111）做与运算，也就是只取每个字符的最后四位，并将所得的数赋值给 ecx；</span><br><span class="line"> 8048d80:	0f b6 0c 03          	movzbl (%ebx,%eax,1),%ecx</span><br><span class="line"> 8048d84:	83 e1 0f             	and    $0xf,%ecx</span><br><span class="line"></span><br><span class="line"> // edx的值为 0x804a1a0 + 4 * ecx 地址所指向的数据，ecx的值是 把我们输入的每个字符 &amp; 15 的结果作为数组下标，然后在数据中取到的；</span><br><span class="line"> 8048d87:	03 14 8d a0 a1 04 08 	add    0x804a1a0(,%ecx,4),%edx</span><br><span class="line"></span><br><span class="line"> // eax = eax +1 ，然后再将eax的值与 6 相比，如果不等于则跳转到8048d80，形成一个循环，如果想等，则继续向下执行指令；</span><br><span class="line"> 8048d8e:	83 c0 01             	add    $0x1,%eax</span><br><span class="line"> 8048d91:	83 f8 06             	cmp    $0x6,%eax</span><br><span class="line"> 8048d94:	75 ea                	jne    8048d80 &lt;phase_5+0x24&gt;</span><br><span class="line"> </span><br><span class="line"> // 将 edx（v1） 中的值与 61 相比较，如果相等的话就跳转到程序的Finish段，不等的话就bomb，这里edx的值是在8048d87处得到的；</span><br><span class="line"> 8048d96:	83 fa 3d             	cmp    $0x3d,%edx</span><br><span class="line"> 8048d99:	74 05                	je     8048da0 &lt;phase_5+0x44&gt;</span><br><span class="line"> 8048d9b:	e8 65 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> // Finish段</span><br><span class="line"> 8048da0:	83 c4 18             	add    $0x18,%esp</span><br><span class="line"> 8048da3:	5b                   	pop    %ebx</span><br><span class="line"> 8048da4:	c3                   	ret</span><br></pre></td></tr></table></figure>
 <h4 id="2-0x804a1a0处的数据"><a href="#2-0x804a1a0处的数据" class="headerlink" title="2.0x804a1a0处的数据"></a>2.0x804a1a0处的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.rodata:0804A1A0 ; int array_3143[]</span><br><span class="line">.rodata:0804A1A0 array_3143      dd 2                   ; DATA XREF: phase_5+2Br</span><br><span class="line">.rodata:0804A1A4                 dd 10</span><br><span class="line">.rodata:0804A1A8                 dd 6</span><br><span class="line">.rodata:0804A1AC                 dd 1</span><br><span class="line">.rodata:0804A1B0                 dd 12</span><br><span class="line">.rodata:0804A1B4                 dd 16</span><br><span class="line">.rodata:0804A1B8                 dd 9</span><br><span class="line">.rodata:0804A1BC                 dd 3</span><br><span class="line">.rodata:0804A1C0                 dd 4</span><br><span class="line">.rodata:0804A1C4                 dd 7</span><br><span class="line">.rodata:0804A1C8                 dd 14</span><br><span class="line">.rodata:0804A1CC                 dd 5</span><br><span class="line">.rodata:0804A1D0                 dd 11</span><br><span class="line">.rodata:0804A1D4                 dd 8</span><br><span class="line">.rodata:0804A1D8                 dd 15</span><br><span class="line">.rodata:0804A1DC                 dd 13</span><br></pre></td></tr></table></figure>
 <h3 id="二、相关伪代码（IDA反编译）"><a href="#二、相关伪代码（IDA反编译）" class="headerlink" title="二、相关伪代码（IDA反编译）"></a>二、相关伪代码（IDA反编译）</h3><h4 id="1-Phase-5的伪代码"><a href="#1-Phase-5的伪代码" class="headerlink" title="1.Phase_5的伪代码"></a>1.Phase_5的伪代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_5(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // edx@3</span><br><span class="line">  int result; // eax@3</span><br><span class="line"></span><br><span class="line">  if ( string_length(a1) != 6 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  v1 = 0;</span><br><span class="line">  result = 0;</span><br><span class="line">  do</span><br><span class="line">    v1 += array_3143[*(_BYTE *)(a1 + result++) &amp; 0xF];</span><br><span class="line">  while ( result != 6 );</span><br><span class="line">  if ( v1 != 61 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><h4 id="1-Phase-5代码分析"><a href="#1-Phase-5代码分析" class="headerlink" title="1.Phase_5代码分析"></a>1.Phase_5代码分析</h4><blockquote>
 <p>通过对汇编代码和伪代码的综合分析，对Phase_5的功能有了如下的认识：</p>
 <ul>
-<li><font color="green">8048d67</font>：计算输入字符串的长度，判断长度是否等于 6 ，如果不等则爆炸，<strong>也就是要求我们输入的字符串的长度必须为 6</strong> ；<br><font color="red">// if ( string_length(a1) != 6 )<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
-<li><font color="green">8048d84</font>：经过一个循环，在这个循环体中，要求将我们输入的每个字符与 15 做与运算，并且将所得的结果作为数组的index，取出对应的数值相加；<br><font color="red">// v1 += array_3143[*(_BYTE *)(a1 + result++) &amp; 15];</font></li>
-<li><font color="green">8048d91</font>：当循环变量 result = 6 的时候，退出循环体，也就是循环体进行了6次循环运算；<br><font color="red">// while ( result != 6 );</font></li>
-<li><font color="green">8048d96</font>：将经过do while(); 运算后的v1 与61进行比较，不相等则bomb；也就是根据 index 为下标取得数组值得累加为61；<br><font color="red">// if ( v1 != 61 )<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();/font&gt;</font></li>
-</ul>
-</blockquote>
-<h4 id="2-0x804a1a0处的数据分析"><a href="#2-0x804a1a0处的数据分析" class="headerlink" title="2.0x804a1a0处的数据分析"></a>2.0x804a1a0处的数据分析</h4><blockquote>
-<p>根据上文的内容可以分析到，array[ ]数组中的数据（十进制）为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code></p>
-</blockquote>
-<h4 id="3-解题思路"><a href="#3-解题思路" class="headerlink" title="3.解题思路"></a>3.解题思路</h4><blockquote>
-<p>经过上文的分析，可以清楚的知道Phase_5做题思路：</p>
-<ul>
+<li><font color="green">8048d67</font>：计算输入字符串的长度，判断长度是否等于 6 ，如果不等则爆炸，**也就是要求我们输入的字符串的长度必须为 6** ；
+<font color="red">// if ( string_length(a1) != 6 )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
+<li><font color="green">8048d84</font>：经过一个循环，在这个循环体中，要求将我们输入的每个字符与 15 做与运算，并且将所得的结果作为数组的index，取出对应的数值相加；
+<font color="red">// v1 += array\_3143[\*(\_BYTE \*)(a1 + result++) & 15];</font></li>
+<li><font color="green">8048d91</font>：当循环变量 result = 6 的时候，退出循环体，也就是循环体进行了6次循环运算；
+<font color="red">// while ( result != 6 );</font></li>
+<li><font color="green">8048d96</font>：将经过do while(); 运算后的v1 与61进行比较，不相等则bomb；也就是根据 index 为下标取得数组值得累加为61；<br><font color="red">// if ( v1 != 61 )<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();/font&gt;<h4 id="2-0x804a1a0处的数据分析"><a href="#2-0x804a1a0处的数据分析" class="headerlink" title="2.0x804a1a0处的数据分析"></a>2.0x804a1a0处的数据分析</h4>根据上文的内容可以分析到，array[ ]数组中的数据（十进制）为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code><h4 id="3-解题思路"><a href="#3-解题思路" class="headerlink" title="3.解题思路"></a>3.解题思路</h4>经过上文的分析，可以清楚的知道Phase_5做题思路：</font></li>
 <li>首先我们需要输入一个 6 位长的字符串；</li>
 <li>将字符串中的每个字符以二进制方式与 1111 做与运算，将每次运算的结果作为 index；</li>
 <li>取出0x804a1a0—0804A1DC的数据，并将这些数据按照先后顺序形成一个数组；</li>
 <li>在这16个数据中找出 6 个数字，要求这 6 个数字相加等于 61；</li>
 <li>按照从小到大的顺序，再分别列出这 6 个数字所对应的 index；</li>
 <li>写出脚本，从 a-z，看谁与 1111（二进制）做与运算，得到的结果为上面的 index；</li>
-<li>将这些字符连在一起，就是我们要输入的字符串；</li>
+<li>将这些字符连在一起，就是我们要输入的字符串；<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><h4 id="1-列出array-的数据"><a href="#1-列出array-的数据" class="headerlink" title="1.列出array[]的数据"></a>1.列出array[]的数据</h4>数据为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JtNOrcRtHotSFcAwgSp62LSarCYi*qPNdjwDTnTQjwo!/r/dL8AAAAAAAAA" alt><h4 id="2-找出-6-个数，其和为-61"><a href="#2-找出-6-个数，其和为-61" class="headerlink" title="2.找出 6 个数，其和为 61"></a>2.找出 6 个数，其和为 61</h4>经过观察，可以找出 6 个数，他们逐一相加得 61，这 6 个数分别为<font color="red"><code>10、1、16、7、14、13</code></font>，并将这 6 个数形成一个数组<font color="red"><strong>array = [10、1、16、7、14、13]</strong></font>，它们的下标为别为：<code>1，3，5，9，10，15</code><h4 id="3-字符逐一与15做与运算"><a href="#3-字符逐一与15做与运算" class="headerlink" title="3.字符逐一与15做与运算"></a>3.字符逐一与15做与运算</h4>在这里我用到的只是 [a^z] 的字符，分别找到 a 和 z 所对应的十进制，然后写脚本：字符的十进制与15做与运算：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for num in range(97,123):</span><br><span class="line">    print(&quot;Character -&gt;&quot;,chr(num),&quot;|&quot;, num &amp; 15, &quot;&lt;- Index&quot;,);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-</blockquote>
-<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><h4 id="1-列出array-的数据"><a href="#1-列出array-的数据" class="headerlink" title="1.列出array[]的数据"></a>1.列出array[]的数据</h4><blockquote>
-<p>数据为<code>2,10,6,1,12,16,9,3,4,7,14,5,11,8,15,13</code><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JtNOrcRtHotSFcAwgSp62LSarCYi*qPNdjwDTnTQjwo!/r/dL8AAAAAAAAA" alt></p>
-</blockquote>
-<h4 id="2-找出-6-个数，其和为-61"><a href="#2-找出-6-个数，其和为-61" class="headerlink" title="2.找出 6 个数，其和为 61"></a>2.找出 6 个数，其和为 61</h4><blockquote>
-<p>经过观察，可以找出 6 个数，他们逐一相加得 61，这 6 个数分别为<font color="red"><code>10、1、16、7、14、13</code></font>，并将这 6 个数形成一个数组<font color="red"><strong>array = [10、1、16、7、14、13]</strong></font>，它们的下标为别为：<code>1，3，5，9，10，15</code></p>
-</blockquote>
-<h4 id="3-字符逐一与15做与运算"><a href="#3-字符逐一与15做与运算" class="headerlink" title="3.字符逐一与15做与运算"></a>3.字符逐一与15做与运算</h4><blockquote>
-<p>在这里我用到的只是 [a^z] 的字符，分别找到 a 和 z 所对应的十进制，然后写脚本：字符的十进制与15做与运算：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for num in range(97,123):</span><br><span class="line">    print(&quot;Character -&gt;&quot;,chr(num),&quot;|&quot;, num &amp; 15, &quot;&lt;- Index&quot;,);</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
 <p>运算的结果如下图：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/AOtg.b6ynDN2bnjeaAnZQgbhvqrF*E*JAdRKDH3vveA!/r/dL8AAAAAAAAA" alt></p>
-</blockquote>
-<h4 id="4-得到字符串"><a href="#4-得到字符串" class="headerlink" title="4.得到字符串"></a>4.得到字符串</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以从第 2 步得出，要想 v1 = 61，则必须需要找出 6 个数值，这 6 个数值是通过字符串中的每个字符与 15 做与运算，将每次的结果作为数组array[] 的 index，分别取出相应的这 6 个数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经找到了这 6 个数，那么他们对应的下标也分别为<code>1，3，5，9，10，15</code>，那么我们只需要在结果里找到相应的字符即可:</p>
+<h4 id="4-得到字符串"><a href="#4-得到字符串" class="headerlink" title="4.得到字符串"></a>4.得到字符串</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以从第 2 步得出，要想 v1 = 61，则必须需要找出 6 个数值，这 6 个数值是通过字符串中的每个字符与 15 做与运算，将每次的结果作为数组array[] 的 index，分别取出相应的这 6 个数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经找到了这 6 个数，那么他们对应的下标也分别为<code>1，3，5，9，10，15</code>，那么我们只需要在结果里找到相应的字符即可:</p>
 <ul>
 <li>下标为 1 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;q</strong></font></li>
 <li>下标为 3 对应的字符为：<font color="red"><strong>&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;s</strong></font></li>
@@ -471,21 +455,13 @@ height:50vh;
 <li>下标为 15 对应的字符为：<font color="red"><strong>o</strong></font></li>
 </ul>
 <p>那么我们要找的字符串有 <code>32</code>种可能：<br><code>aceijo、aceizo、aceyjo、aceyzo、acuijo、acuizo、acuyjo、acuyzo</code><br><code>aseijo、aseizo、aseyjo、aceyzo、asuijo、asuizo、asuyjo、asuyzo</code><br><code>qceijo、qceizo、qceyjo、qceyzo、qcuijo、qcuizo、qcuyjo、qcuyzo</code><br><code>qseijo、qseizo、qseyjo、qceyzo、qsuijo、qsuizo、qsuyjo、qsuyzo</code></p>
-</blockquote>
-<h4 id="5-验证答案"><a href="#5-验证答案" class="headerlink" title="5.验证答案"></a>5.验证答案</h4><blockquote>
-<p>为了体现答案的正确性，我在每一行随机抽取了一个字符串作为通关口令：</p>
+<h4 id="5-验证答案"><a href="#5-验证答案" class="headerlink" title="5.验证答案"></a>5.验证答案</h4><p>为了体现答案的正确性，我在每一行随机抽取了一个字符串作为通关口令：</p>
 <ul>
 <li>aceyzo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LDjn6x4Y02kE.ZU3HMyw3*4KVaKg188w8HvclyuAXFA!/r/dMIAAAAAAAAA" alt></li>
 <li>asuizo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/wQk003XkPA2Xduc9BAvyalqluXONbiaySjD02pz8oEs!/r/dDcBAAAAAAAA" alt></li>
 <li>qceijo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/.wtdLHLdDCzljC5MVrIFPQB2GBcj8PVI43UWGLazk4Y!/r/dLYAAAAAAAAA" alt></li>
-<li>qsuizo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/rK.me0wd*26fTCpKgDO4geNminVoG7wKaIpu4cWzRUM!/r/dL8AAAAAAAAA" alt></li>
+<li>qsuizo<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/rK.me0wd*26fTCpKgDO4geNminVoG7wKaIpu4cWzRUM!/r/dL8AAAAAAAAA" alt><h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3>在做这道题目过程中，让我觉得自己有好多要说出来的东西，并没有写出来，隐约地感觉到这道题还有知识点需要我去学习和总结的，第二阶段过后再好好的总结一下相关知识点吧。<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3>从梦想一开始，我们就未曾冀望过梦想落幕。梦想的舞台跌宕起伏，只是，我们永远不会让梦想谢幕。从导演到编剧，从演员到观众，我们每个人都在为刻画梦想而昂然奋斗，浓墨重彩，抑或淡染素描。 </li>
 </ul>
-</blockquote>
-<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><blockquote>
-<p>在做这道题目过程中，让我觉得自己有好多要说出来的东西，并没有写出来，隐约地感觉到这道题还有知识点需要我去学习和总结的，第二阶段过后再好好的总结一下相关知识点吧。</p>
-</blockquote>
-<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><blockquote>
-<p>从梦想一开始，我们就未曾冀望过梦想落幕。梦想的舞台跌宕起伏，只是，我们永远不会让梦想谢幕。从导演到编剧，从演员到观众，我们每个人都在为刻画梦想而昂然奋斗，浓墨重彩，抑或淡染素描。 </p>
 </blockquote>
 
     </article>
@@ -667,46 +643,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1714,9 +1650,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

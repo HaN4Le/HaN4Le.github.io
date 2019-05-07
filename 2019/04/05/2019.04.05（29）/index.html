@@ -440,12 +440,8 @@ height:50vh;
 <li>加/解密方法：密钥既可加密也可解密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;私钥加密—&gt;公钥解密<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公钥加密—&gt;私钥解密</li>
 </ul>
 <p>② 密文和私钥如何得到明文/私钥如何推出公钥：<a href="https://blog.csdn.net/liao20081228/article/details/77159039" target="_blank" rel="noopener">openssl命令详解</a></p>
-</blockquote>
-<h4 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h4><blockquote>
-<p>第一种可能：密文是由公钥加密而得的，那么只要用私钥进行解密，即可得明文。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 打开Linux Kali虚拟机，在目标目录下打开openssl命令行<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZqBPo7WSxPSLNY0gaZEygN3rbA3cvyjWILWJ0fpbWyk!/r/dMAAAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 输入opessl 命令行：<font color="blue">openssl rsautl -decrypt -inkey rsa_private_key.pem -in flag.encrypt -out flag.txt</font>。用私钥来解开密文，得到明文flag.txt；<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MmYn7WDOGgURkSldD2Ein8Qy3es0iT0D6N*ZrjNrwVQ!/r/dL8AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里已经得出flag，说明对方是用公钥对明文加密的，那么第二种可能就排除了，但是在第二种可能中仍有值得思考的地方：如何从私钥得到公钥？<br><br>第二种可能：这种可能已经被排除，那么就总结一下从私钥得到公钥的命令行<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① openssl  rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem #得到公钥<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Jea5zWqW8PI*.KQ2VVB99lNo4h4SKfjPsEdvlkqcPkc!/r/dL4AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② openssl rsa -pubin -in public.pem  -text #以文本格式输出公钥内容<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/bvBfGf63ojpvIgGZs*b43bbXYAi3BNblScD3.QLxNvo!/r/dL8AAAAAAAAA" alt></p>
-</blockquote>
-<h4 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h4><blockquote>
-<p>穷则思变，差则思勤！没有比人更高的山没有比脚更长的路。 </p>
+<h4 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h4><p>第一种可能：密文是由公钥加密而得的，那么只要用私钥进行解密，即可得明文。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 打开Linux Kali虚拟机，在目标目录下打开openssl命令行<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZqBPo7WSxPSLNY0gaZEygN3rbA3cvyjWILWJ0fpbWyk!/r/dMAAAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 输入opessl 命令行：<font color="blue">openssl rsautl -decrypt -inkey rsa_private_key.pem -in flag.encrypt -out flag.txt</font>。用私钥来解开密文，得到明文flag.txt；<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MmYn7WDOGgURkSldD2Ein8Qy3es0iT0D6N*ZrjNrwVQ!/r/dL8AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里已经得出flag，说明对方是用公钥对明文加密的，那么第二种可能就排除了，但是在第二种可能中仍有值得思考的地方：如何从私钥得到公钥？<br><br>第二种可能：这种可能已经被排除，那么就总结一下从私钥得到公钥的命令行<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① openssl  rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem #得到公钥<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Jea5zWqW8PI*.KQ2VVB99lNo4h4SKfjPsEdvlkqcPkc!/r/dL4AAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② openssl rsa -pubin -in public.pem  -text #以文本格式输出公钥内容<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/bvBfGf63ojpvIgGZs*b43bbXYAi3BNblScD3.QLxNvo!/r/dL8AAAAAAAAA" alt></p>
+<h4 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h4><p>穷则思变，差则思勤！没有比人更高的山没有比脚更长的路。 </p>
 </blockquote>
 
     </article>
@@ -627,46 +623,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1674,9 +1630,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

@@ -419,33 +419,23 @@ height:50vh;
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对Web：Calculator题目做了详细的分析，但是有一个知识点（正则表达式）总结的不是很详细。当时做题的时候也正是正则表达式阻碍了很长时间，今天就详细的总结一下正则表达式的内容。</p>
 <h4 id="1-什么是正则表达式？"><a href="#1-什么是正则表达式？" class="headerlink" title="1.什么是正则表达式？"></a>1.什么是正则表达式？</h4><blockquote>
 <p>正则表达式，又称规则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是一种文本模式，描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。</p>
-</blockquote>
-<h4 id="2-正则表达式的功能？"><a href="#2-正则表达式的功能？" class="headerlink" title="2.正则表达式的功能？"></a>2.正则表达式的功能？</h4><blockquote>
-<p>（1）验证字符串是否符合指定特征，比如验证是否是合法的邮件地址；<br>（2）用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便；<br>（3）用来替换，比普通的替换更强大；</p>
-</blockquote>
-<h4 id="3-正则表达式的语法？"><a href="#3-正则表达式的语法？" class="headerlink" title="3.正则表达式的语法？"></a>3.正则表达式的语法？</h4><p><font color="red"><strong>（1）普通字符</strong></font></p>
-<blockquote>
-<p>普通字符包括没有显式指定为元字符的<strong>所有可打印和不可打印</strong>字符。</p>
+<h4 id="2-正则表达式的功能？"><a href="#2-正则表达式的功能？" class="headerlink" title="2.正则表达式的功能？"></a>2.正则表达式的功能？</h4><p>（1）验证字符串是否符合指定特征，比如验证是否是合法的邮件地址；<br>（2）用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便；<br>（3）用来替换，比普通的替换更强大；</p>
+<h4 id="3-正则表达式的语法？"><a href="#3-正则表达式的语法？" class="headerlink" title="3.正则表达式的语法？"></a>3.正则表达式的语法？</h4><p><font color="red"><strong>（1）普通字符</strong></font><br>普通字符包括没有显式指定为元字符的<strong>所有可打印和不可打印</strong>字符。</p>
 <ul>
 <li><strong>可打印字符</strong>：是在包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。</li>
-<li><strong>不可打印字符</strong>：“\”为转义字符，在指定字母前面加上“\”，则表达的含义就不同了。但是还有其他一些有特殊用处的标点符号，在前面加 “\” 后，就代表该符号本身。比如：\^, \$ 都有特殊意义，如果要想匹配字符串中 “^” 和 “$” 字符，则表达式就需要写成 “\^” 和 “\$”<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/SIFqVBN4to67M1Q3*jDbjcmdrbh6RlY.uThaRLq6f1c!/b/dL4AAAAAAAAA&amp;bo=RAOVAUQDlQEDCSw!&amp;rf=viewer_4" alt></li>
+<li><strong>不可打印字符</strong>：“\”为转义字符，在指定字母前面加上“\”，则表达的含义就不同了。但是还有其他一些有特殊用处的标点符号，在前面加 “\” 后，就代表该符号本身。比如：\^, $ 都有特殊意义，如果要想匹配字符串中 “^” 和 “$” 字符，则表达式就需要写成 “\\^” 和 “\$“<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/SIFqVBN4to67M1Q3*jDbjcmdrbh6RlY.uThaRLq6f1c!/b/dL4AAAAAAAAA&amp;bo=RAOVAUQDlQEDCSw!&amp;rf=viewer_4" alt></li>
 </ul>
 </blockquote>
 <p><font color="red"><strong>（2）元字符</strong></font></p>
 <blockquote>
 <p>所谓元字符就是指那些在正则表达式中具有特殊意义的专用字符，可以用来规定其前导字符（即位于元字符前面的字符）在目标对象中的出现模式。它是一个或一组代替一个或多个字符的字符。下图为元字符的总结，其中红色区域的为经常使用的。<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/Ao7ldqqLiAaW.u76KXR4b5L*tV2CYXMeoCg1YSDxhqA!/b/dL4AAAAAAAAA&amp;bo=QgM1AkIDNQIDCSw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/272gf6z6Rhq*XhZzE8XxfGNJLY1*7hzgRCjC3WI.aWU!/b/dL4AAAAAAAAA&amp;bo=QgNOAkIDTgIDGTw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/kuTmytSMhNiPA2j.pYY0UR5UENdaBEJeyn8cJ8Z2KVw!/b/dL8AAAAAAAAA&amp;bo=QgNiAkIDYgIDGTw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/ZEWHp4gKU83Vtyp.isvvArmmz4U7JXz6WqOddXb60TU!/b/dFIBAAAAAAAA&amp;bo=QgMsAkIDLAIDCSw!&amp;rf=viewer_4" alt><br><br>注：昨天在calculator题目里面，我当时用写的正则表达式为<font color="red">r’&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’</font>，因为我想获取的内容是那个算术公式，所以我要返回给compile的为&lt; form&gt;标签中&lt; span&gt;标签的内容。因为<font color="red">&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;  &lt; /span&gt;</font>是可打印的字符，直接写就可以。而(.*?)表示的意思是：“ . ”是匹配除换行符（\n、\r）之外的任何单个字符。“ * ”是匹配前面的子表达式零次或多次。” .* “表示单个字符匹配任意次。“ ? ”表示匹配模式是非贪婪的，即满足条件的情况只匹配一次。“ ( ) ”在python中表示匹配括号内的表达式，也表示一个组。<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/bmAZW.k4P9N.a9N938e0y*xOMWesy*mdxfmt1A.Y1K4!/b/dL4AAAAAAAAA&amp;bo=3gKVAN4ClQADCSw!&amp;rf=viewer_4" alt></p>
-</blockquote>
-<h4 id="4-运算符的优先级？"><a href="#4-运算符的优先级？" class="headerlink" title="4.运算符的优先级？"></a>4.运算符的优先级？</h4><blockquote>
-<ol>
+<h4 id="4-运算符的优先级？"><a href="#4-运算符的优先级？" class="headerlink" title="4.运算符的优先级？"></a>4.运算符的优先级？</h4><ol>
 <li>\     ——&gt; 转义符</li>
 <li>(), (?:), (?=), [] ——&gt; 圆括号和方括号</li>
 <li>*, +, ?, {n}, {n,}, {n,m} ——&gt; 限定符</li>
 <li>^, $, \任何元字符、任何字符 ——&gt; 定位点和序列（即：位置和顺序）</li>
-<li>| ——&gt; 替换，”或”操作字符具有高于替换运算符的优先级，使得”m|food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m|f)ood”。</li>
+<li>| ——&gt; 替换，”或”操作字符具有高于替换运算符的优先级，使得”m|food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m|f)ood”。<h4 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h4>今天总结的内容，其实是我这几天学习正则表达式的一个总结，因为我还没有彻底学完学懂正则表达式的具体使用和使用规则，所以今天的知识点不全，等以后学懂正则表达式以后，再回来更博吧！（ps：个人在学习正则表达式的过程，有点感觉吃力，感觉知识点有点难）</li>
 </ol>
-</blockquote>
-<h4 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h4><blockquote>
-<p>今天总结的内容，其实是我这几天学习正则表达式的一个总结，因为我还没有彻底学完学懂正则表达式的具体使用和使用规则，所以今天的知识点不全，等以后学懂正则表达式以后，再回来更博吧！（ps：个人在学习正则表达式的过程，有点感觉吃力，感觉知识点有点难）</p>
 </blockquote>
 
     </article>
@@ -627,46 +617,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1674,9 +1624,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

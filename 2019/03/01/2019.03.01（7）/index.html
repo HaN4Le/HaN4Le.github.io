@@ -420,11 +420,8 @@ height:50vh;
 <h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
 <ul>
 <li>工具：wireshark</li>
-<li>知识：HTTP协议（协议过程、请求方法）</li>
+<li>知识：HTTP协议（协议过程、请求方法）<h3 id="2-HTTP有关知识"><a href="#2-HTTP有关知识" class="headerlink" title="2.HTTP有关知识"></a>2.HTTP有关知识</h3><strong>1) HTTP介绍</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它是一个基于TCP/IP的属于应用层协议，工作模式为客户/服务器模式，HTTP协议是无连接、无状态的协议，端口号默认为80。</li>
 </ul>
-</blockquote>
-<h3 id="2-HTTP有关知识"><a href="#2-HTTP有关知识" class="headerlink" title="2.HTTP有关知识"></a>2.HTTP有关知识</h3><blockquote>
-<p><strong>1) HTTP介绍</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它是一个基于TCP/IP的属于应用层协议，工作模式为客户/服务器模式，HTTP协议是无连接、无状态的协议，端口号默认为80。</p>
 <p><strong>2) HTTP工作流程</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 客户端与服务器建立连接（TCP连接）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 客户端向服务器发送请求<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③ 服务器响应客户端的请求，返回结果<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④ …………<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤ 文件传输完毕，连接断开<br>注：HTTP1.0 和HTTP1.1工作流程有所差别，那么有什么差别呢？</p>
 <p><strong>3) HTTP1.0 和HTTP1.1的区别</strong></p>
 <ul>
@@ -442,25 +439,41 @@ height:50vh;
 <li>CONNECT：把请求连接转换到透明的 TCP/IP 通道；</li>
 </ul>
 <p>注：GET和POST的区别，点击<a href="https://www.cnblogs.com/huaxingtianxia/p/5895236.html" target="_blank" rel="noopener">这里</a></p>
-</blockquote>
-<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然有关HTTP的知识总结的差不多了，那就正式开始解题了！（PS：以前用wireshark分析过我们宿舍的局域网流量，所以这次解题就相比简单一些）</p>
-<blockquote>
-<p>1) 用wireshark打开流量包，在“Display Filters”中添加过滤条件“HTTP only：http”；</p>
-<center><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0njqhik7jj20on03o3yk.jpg" alt></center><br>2)在图中我按照时间的先后，对每个信息进行了排序，现在我将每个序号的大概意思叙述一下：<br><center><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0njs40nhzj211y09tq4f.jpg" alt></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1：客户端A 192.168.245.128的56026端口号（以下简称A）向服务器B；192.168.245.136的8080端口号（以下简称B）发送<font color="red">持久连接（HTTP 1.1）的请求；</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2：B向A成功返回网页，返回的网页上的内容为<br><center><form action method="POST"><input name="password" type="text"><input type="submit"></form></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里的“text/html”的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文件时会自动调用html的解析器对文件进行相应的处理；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3：A向B请求favicon.ico略缩图；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4：B向A返回favicon.ico略缩图；<br><center><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0njx3v0tkj205102lq2v.jpg" alt></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5：A在表格中填写“admin”并进行了提交。在这里因为A提交的表格数据需要B进行处理，所以请求方法由GET变为POST；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6：B将A提交的数据与用户先前设置的密码进行对比，匹配不成功于是B返回给A：<br><strong><center><font color="red">Wrong password  </font></center></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7：A重新在表格中填写“test”并进行提交；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8：B将A提交的数据与用户先前设置的密码再次进行对比，匹配不成功于是B还是返回给A：<br><strong><center><font color="red">Wrong password  </font></center></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9：A再次重新在表格中填写<strong><font color="red">“thisisatest”</font></strong>并进行提交；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10：B将A提交的数据与用户先前设置的密码再次进行对比，匹配成功于是B返回给A下面的网页（网页经过我重新编写，在wireshark中看到的只是代码）：<br><center><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0njzs1yr6j20c60610t5.jpg" alt></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11：A向B请求“s3cret.png”图片文件；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12：B向A返回“s3cret.png”图片文件，这时候在wireshark中看到的是图片的信息，如下图：<br><center><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0nk4jek8uj20ix069dgc.jpg" alt></center>
+<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然有关HTTP的知识总结的差不多了，那就正式开始解题了！（PS：以前用wireshark分析过我们宿舍的局域网流量，所以这次解题就相比简单一些）<br>1) 用wireshark打开流量包，在“Display Filters”中添加过滤条件“HTTP only：http”；</p>
+<center>![](https://wx3.sinaimg.cn/mw690/9b08638bly1g0njqhik7jj20on03o3yk.jpg)</center>
+2)在图中我按照时间的先后，对每个信息进行了排序，现在我将每个序号的大概意思叙述一下：
+<center>![](https://wx3.sinaimg.cn/mw690/9b08638bly1g0njs40nhzj211y09tq4f.jpg)</center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1：客户端A 192.168.245.128的56026端口号（以下简称A）向服务器B；192.168.245.136的8080端口号（以下简称B）发送<font color="red">持久连接（HTTP 1.1）的请求；</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2：B向A成功返回网页，返回的网页上的内容为  
+<center><form action method="POST"><input name="password" type="text"><input type="submit"></form></center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里的“text/html”的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文件时会自动调用html的解析器对文件进行相应的处理；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3：A向B请求favicon.ico略缩图；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4：B向A返回favicon.ico略缩图；
+<center>![](https://wx2.sinaimg.cn/mw690/9b08638bly1g0njx3v0tkj205102lq2v.jpg)</center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5：A在表格中填写“admin”并进行了提交。在这里因为A提交的表格数据需要B进行处理，所以请求方法由GET变为POST；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6：B将A提交的数据与用户先前设置的密码进行对比，匹配不成功于是B返回给A：
+**<center><font color="red">Wrong password  </font></center>**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7：A重新在表格中填写“test”并进行提交；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8：B将A提交的数据与用户先前设置的密码再次进行对比，匹配不成功于是B还是返回给A：
+**<center><font color="red">Wrong password  </font></center>**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9：A再次重新在表格中填写**<font color="red">“thisisatest”</font>**并进行提交；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10：B将A提交的数据与用户先前设置的密码再次进行对比，匹配成功于是B返回给A下面的网页（网页经过我重新编写，在wireshark中看到的只是代码）：
+<center>![](https://wx4.sinaimg.cn/mw690/9b08638bly1g0njzs1yr6j20c60610t5.jpg)</center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11：A向B请求“s3cret.png”图片文件；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12：B向A返回“s3cret.png”图片文件，这时候在wireshark中看到的是图片的信息，如下图：
+<center>![](https://wx2.sinaimg.cn/mw690/9b08638bly1g0nk4jek8uj20ix069dgc.jpg)</center>
 
 <p>3)在明确整个HTTP的过程后，对于要找的flag就已经很明确了，因为这个交互过程，就是A向B请求一个名为“s3cret.png”的图片文件，于是我在wireshark中将该图片导出：Portable Network Graphics右击鼠标——&gt;点击Export Packet Bytes…——&gt;命名格式为图片格式，保存类型为All Files，就可以在保存的文件夹找到该图片：</p>
-<p><center><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0njqbarz1j20l108o3z9.jpg" alt></center><br>4)打开图片，找到flag;</p>
-</blockquote>
-<h3 id="4-解题感悟"><a href="#4-解题感悟" class="headerlink" title="4. 解题感悟"></a>4. 解题感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的题目真的是让我重新的复习了一遍HTTP协议，而且这次流量分析与我之前在宿舍的实践感觉完全不一样：</p>
+<p><center>![](https://wx2.sinaimg.cn/mw690/9b08638bly1g0njqbarz1j20l108o3z9.jpg)</center><br>4)打开图片，找到flag;</p>
+<h3 id="4-解题感悟"><a href="#4-解题感悟" class="headerlink" title="4. 解题感悟"></a>4. 解题感悟</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的题目真的是让我重新的复习了一遍HTTP协议，而且这次流量分析与我之前在宿舍的实践感觉完全不一样：</p>
 <ul>
 <li>这次的实践让我更有针对性，而不是像以前那样胡乱的拿出来一段数据就看；</li>
 <li>今天的实践让我更能静下心来，坐在电脑旁认真的去分析每一行的数据；</li>
 <li>以前抓过流量后，并看了流量的内容，但是并没有把它落实，今天的两个小时的实践 + 三个小时的博客总结，让我心中感觉对流量分析的能力又变得充实了；</li>
 </ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今后我还会用更好的态度，去完成每道题并能够知悉背后的原理，同时也要认真做好总结，把每道题、每个知识点变成我自己的。</p>
-</blockquote>
-<h4 id="每日一句：年轻人，你还在等什么呢？再不努力就变老了！"><a href="#每日一句：年轻人，你还在等什么呢？再不努力就变老了！" class="headerlink" title="#每日一句：年轻人，你还在等什么呢？再不努力就变老了！"></a><strong><font color="red">#每日一句：</font></strong>年轻人，你还在等什么呢？再不努力就变老了！</h4>
+<h4 id="每日一句：年轻人，你还在等什么呢？再不努力就变老了！"><a href="#每日一句：年轻人，你还在等什么呢？再不努力就变老了！" class="headerlink" title="#每日一句：年轻人，你还在等什么呢？再不努力就变老了！"></a><strong><font color="red">#每日一句：</font></strong>年轻人，你还在等什么呢？再不努力就变老了！</h4></blockquote>
+
     </article>
     <!-- license  -->
     
@@ -640,46 +653,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1687,9 +1660,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

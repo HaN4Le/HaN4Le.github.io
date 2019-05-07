@@ -434,7 +434,7 @@ height:50vh;
 </blockquote>
 <p><strong>1.如何从C代码生成汇编代码？</strong></p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font color=’red&gt;C 代码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的x86-32汇编<br>int sum(int x,int y)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum:<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int t = x+y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp, %ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax<br>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%eax<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp,%esp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br><br>命令行：gcc&nbsp;&nbsp;&nbsp;&nbsp;-02&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;&nbsp;code.c&nbsp;&nbsp;&nbsp;&nbsp;-m32&nbsp;&nbsp;&nbsp;&nbsp;-fno-omit-frame-pointer<br>生成汇编文件：code.s</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font color=’red&gt;C 代码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的x86-32汇编&lt;/font&gt;<br>int sum(int x,int y)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum:<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int t = x+y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp, %ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax<br>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%eax<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp,%esp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br><br>命令行：gcc&nbsp;&nbsp;&nbsp;&nbsp;-02&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;&nbsp;code.c&nbsp;&nbsp;&nbsp;&nbsp;-m32&nbsp;&nbsp;&nbsp;&nbsp;-fno-omit-frame-pointer<br>生成汇编文件：code.s</p>
 </blockquote>
 <p><strong>2.汇编语言数据格式</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/h04H.tsNNvCZbjU.e0tUSlxdl31hO9Tz3D5aTz9zL.k!/r/dLgAAAAAAAAA" alt></p>
 <blockquote>
@@ -447,7 +447,7 @@ height:50vh;
 <ul>
 <li>数据传送（AT&amp;T语法）<br>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dest<br>这是一个常见的指令，是将一个“双字（l）”从Source移到Dest中</li>
 <li>允许的操作数类型<br><font color="red"><strong>立即数：常整数</strong></font>,如：<ul>
-<li>\$0x400,\$-533</li>
+<li>$0x400,$-533</li>
 <li>可以被1、2或4个字节来表示<br><font color="red"><strong>寄存器：8个通用寄存器之一</strong></font><br><font color="red"><strong>存储器：四个连续的字节</strong></font>：支持多种访存寻址模式</li>
 </ul>
 </li>
@@ -457,11 +457,11 @@ height:50vh;
 <p><strong>3.数据传送指令支持的不同操作数类型组合（以movl为例）</strong></p>
 <blockquote>
 <ul>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$0x4,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = 0x4</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$-147,(%eax)&nbsp;&nbsp;&nbsp;C语言表示：*p = -147</li>
+<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0x4,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = 0x4</li>
+<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$-147,(%eax)&nbsp;&nbsp;&nbsp;C语言表示：*p = -147</li>
 <li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp1 = temp2</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$eax,(%edx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：*p = temp</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">Mem</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%eax),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = *p<br>▶ Imm：立即数（操作数）<br>▶ Reg：寄存器<br>▶ Mem：存储器<br>▶ (%eax)：表示的是%eax寄存器的内存地址<br><br><strong>注意：不能两个操作数都为内存地址；</strong></li>
+<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$eax,(%edx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：*p = temp</li>
+<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">Mem</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%eax),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = <em>p<br>▶ Imm：立即数（操作数）<br>▶ Reg：寄存器<br>▶ Mem：存储器<br>▶ (%eax)：表示的是%eax寄存器的内存地址<br><br><em>*注意：不能两个操作数都为内存地址；</em></em></li>
 </ul>
 </blockquote>
 <p><strong>3.简单的寻址模式</strong></p>
@@ -657,46 +657,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1704,9 +1664,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

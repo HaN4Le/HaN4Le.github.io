@@ -421,19 +421,13 @@ height:50vh;
 <ul>
 <li>工具：wireshark、base64解码器</li>
 <li>对象：shell流量包</li>
-<li>知识：TCP的建立、传输和释放的过程</li>
+<li>知识：TCP的建立、传输和释放的过程<h3 id="2-知识疑问"><a href="#2-知识疑问" class="headerlink" title="2. 知识疑问"></a>2. 知识疑问</h3></li>
 </ul>
-</blockquote>
-<h3 id="2-知识疑问"><a href="#2-知识疑问" class="headerlink" title="2. 知识疑问"></a>2. 知识疑问</h3><blockquote>
 <ol>
 <li>面对这么多的流量，该从何入手？</li>
 <li>怎么对TCP进行流量追踪？</li>
 <li>python中raw_input()的功能是什么？</li>
-<li>python中swapcase()的功能是什么？</li>
-</ol>
-</blockquote>
-<h3 id="3-思考过程"><a href="#3-思考过程" class="headerlink" title="3. 思考过程"></a>3. 思考过程</h3><blockquote>
-<ol>
+<li>python中swapcase()的功能是什么？<h3 id="3-思考过程"><a href="#3-思考过程" class="headerlink" title="3. 思考过程"></a>3. 思考过程</h3></li>
 <li><strong>面对这么多的流量，该从何入手？</strong><br>对于这个问题，说实话一开始也是无处下手，毕竟题目中也没有给出直接的提示，那我就认真的看了看这两台主机（A：192.168.247.128和B：192.168.247.130）发生了什么：</li>
 </ol>
 <ul>
@@ -441,26 +435,16 @@ height:50vh;
 <li>主机B（port：53474）与主机A（port：12345）建立TCP连接（），在接下来B向A传输文件时，紧急位（PSH）置为 1，说明该文件是首先传送的；<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvpsi9xj20wd0c3wgs.jpg" alt="2"></li>
 <li>两台主机传输完毕，连接断开（四次握手，但实际是三次握手，因为本应第二次握手的没有传输文件，所以省去）；</li>
 </ul>
-<ol start="2">
-<li><strong>怎么对TCP进行流量追踪？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分析大概的过程后，我知道应注重对TCP流的分析，那么应该怎样对这么多的数据进行分析呢？在查了wireshark的功能和相关分析方法后，决定用该软件对TCP进行流的追踪：<br><center><font color="red">左击SYN=“1”的一栏—&gt;再次右击鼠标—&gt;点击Follow—&gt;TCP Stream</font></center><br>在弹出的界面会出来一些代码：<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0pyvvpzhej20w70fdtal.jpg" alt><br>其中包括raw_input()和swapcase()，那么他们的功能是什么呢？</li>
-<li><strong>python中raw_input()的功能是什么？</strong><br>raw_input() 会从标准输入（sys.stdin）读取一个输入（输入的类型为字符）并返回一个字符串，且尾部的换行符从末尾移除；<br>##与input()的区别：input() 和 raw_input() 这两个函数均能接收 字符串 ，但 raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）。而对于 input() ，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError 。</li>
-<li><strong>python中swapcase()的功能是什么？</strong><br>python swapcase() 方法用于对字符串的大小写字母进行转换；</li>
-</ol>
-</blockquote>
-<h3 id="4-解题过程"><a href="#4-解题过程" class="headerlink" title="4. 解题过程"></a>4. 解题过程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了这么多的基础知识下，就开始正式的解题过程吧！</p>
-<blockquote>
 <ol>
+<li><strong>怎么对TCP进行流量追踪？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分析大概的过程后，我知道应注重对TCP流的分析，那么应该怎样对这么多的数据进行分析呢？在查了wireshark的功能和相关分析方法后，决定用该软件对TCP进行流的追踪：<br><center><font color="red">左击SYN=“1”的一栏—>再次右击鼠标—>点击Follow—>TCP Stream</font></center><br>在弹出的界面会出来一些代码：<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0pyvvpzhej20w70fdtal.jpg" alt><br>其中包括raw_input()和swapcase()，那么他们的功能是什么呢？</li>
+<li><strong>python中raw_input()的功能是什么？</strong><br>raw_input() 会从标准输入（sys.stdin）读取一个输入（输入的类型为字符）并返回一个字符串，且尾部的换行符从末尾移除；<h2 id="与input-的区别：input-和-raw-input-这两个函数均能接收-字符串-，但-raw-input-直接读取控制台的输入（任何类型的输入它都可以接收）。而对于-input-，它希望能够读取一个合法的-python-表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个-SyntaxError-。"><a href="#与input-的区别：input-和-raw-input-这两个函数均能接收-字符串-，但-raw-input-直接读取控制台的输入（任何类型的输入它都可以接收）。而对于-input-，它希望能够读取一个合法的-python-表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个-SyntaxError-。" class="headerlink" title="与input()的区别：input() 和 raw_input() 这两个函数均能接收 字符串 ，但 raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）。而对于 input() ，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError 。"></a>与input()的区别：input() 和 raw_input() 这两个函数均能接收 字符串 ，但 raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）。而对于 input() ，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError 。</h2></li>
+<li><strong>python中swapcase()的功能是什么？</strong><br>python swapcase() 方法用于对字符串的大小写字母进行转换；<h3 id="4-解题过程"><a href="#4-解题过程" class="headerlink" title="4. 解题过程"></a>4. 解题过程</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了这么多的基础知识下，就开始正式的解题过程吧！</li>
 <li>分析两台主机的交互情况。从上面的“思考过程”中可以看到，本题的切入点在于对的TCP流的分析：追踪TCP流，得到下图的信息：<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvz49coj20w70fd0un.jpg" alt></li>
 <li>分析TCP流的代码。上图中的信息所描述的大概过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①进入www-data@UbuntuServer16的/var/www/html/tmp/flag目录下；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②在该目录下查看flag.text文件（ cat flag.txt）；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③用base64技术对内容进行编码（base64 -w 0 ）；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④把编码后的内容通过大小写字母转换输出（python -c “print raw_input().swapcase()”）；</li>
 <li>找到base64编码后的flag：<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0pyvsxg22j20zp0k60v3.jpg" alt></li>
-<li>将该数据保存早记事本中，将字母的大小写进行转化，并进行base64解码；</li>
+<li>将该数据保存早记事本中，将字母的大小写进行转化，并进行base64解码；<h3 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前几天也做过这个题，因为当时没有深入研究它整个过程是怎样的，也没有去了解该怎么对TCP进行分析，所以当时解题并没有成功，但是随着这几天自己对CTF题的不断的理解，让我面对CTF题时更加稳重和善于思考了，也许这就是这几天我的一个小小的进步吧。<h3 id="6-每日一句"><a href="#6-每日一句" class="headerlink" title="6. 每日一句"></a>6. 每日一句</h3><center><font color="red">**因为不甘平庸，所以选择拼搏与汗水！**</font></center></li>
 </ol>
 </blockquote>
-<h3 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h3><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前几天也做过这个题，因为当时没有深入研究它整个过程是怎样的，也没有去了解该怎么对TCP进行分析，所以当时解题并没有成功，但是随着这几天自己对CTF题的不断的理解，让我面对CTF题时更加稳重和善于思考了，也许这就是这几天我的一个小小的进步吧。</p>
-</blockquote>
-<h3 id="6-每日一句"><a href="#6-每日一句" class="headerlink" title="6. 每日一句"></a>6. 每日一句</h3><blockquote>
-<center><font color="red"><strong>因为不甘平庸，所以选择拼搏与汗水！</strong></font></center></blockquote>
 
     </article>
     <!-- license  -->
@@ -628,7 +612,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-知识疑问"><span class="toc-number">2.</span> <span class="toc-text">2. 知识疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-思考过程"><span class="toc-number">3.</span> <span class="toc-text">3. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题过程"><span class="toc-number">4.</span> <span class="toc-text">4. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-学习感悟"><span class="toc-number">5.</span> <span class="toc-text">5. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-每日一句"><span class="toc-number">6.</span> <span class="toc-text">6. 每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-知识疑问"><span class="toc-number">2.</span> <span class="toc-text">2. 知识疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-思考过程"><span class="toc-number">3.</span> <span class="toc-text">3. 思考过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与input-的区别：input-和-raw-input-这两个函数均能接收-字符串-，但-raw-input-直接读取控制台的输入（任何类型的输入它都可以接收）。而对于-input-，它希望能够读取一个合法的-python-表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个-SyntaxError-。"><span class="toc-number"></span> <span class="toc-text">与input()的区别：input() 和 raw_input() 这两个函数均能接收 字符串 ，但 raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）。而对于 input() ，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError 。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题过程"><span class="toc-number">1.</span> <span class="toc-text">4. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-学习感悟"><span class="toc-number">2.</span> <span class="toc-text">5. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-每日一句"><span class="toc-number">3.</span> <span class="toc-text">6. 每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -641,46 +625,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1688,9 +1632,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

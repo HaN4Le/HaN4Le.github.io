@@ -368,8 +368,7 @@
         <div class="abstract-content">
             
 ☛ 前言：今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
-
-一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56...
+一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56 ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -400,10 +399,7 @@
         <div class="abstract-content">
             
 
-前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
-
-
-一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d...
+前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d60:...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -434,8 +430,7 @@
         <div class="abstract-content">
             
 ☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-
-一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	su...
+一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -466,8 +461,7 @@
         <div class="abstract-content">
             
 ☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-
-一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    ...
+一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -533,11 +527,7 @@
 一、前期工作
 
 所用工具IDA、Linux系统、gdb、objdump、python
-解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
-
-
-二、Phase_1解题过程1.对bomb文件进行反汇编
-objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 ...
+解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -571,11 +561,7 @@ objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 ...
 
 常用的汇编指令
 objdump工具
-gdb编译器的用法
-
-
-一、题目中出现的汇编指令
-
+gdb编译器的用法一、题目中出现的汇编指令
 push、pop、call、cmp、jmp、je、jne、lea
 
 
@@ -587,7 +573,7 @@ ss中存放堆栈段地址
 sp指针中存放偏移地址，
 栈操作都是以字（2字节）为单位。
 
-② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在...
+② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -709,46 +695,6 @@ sp指针中存放偏移地址，
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1756,9 +1702,9 @@ sp指针中存放偏移地址，
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

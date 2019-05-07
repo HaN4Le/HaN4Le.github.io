@@ -448,7 +448,7 @@ height:50vh;
 </blockquote>
 <h3 id="二、地址计算指令与其他"><a href="#二、地址计算指令与其他" class="headerlink" title="二、地址计算指令与其他"></a>二、地址计算指令与其他</h3><p><strong>1、变址寻址</strong></p>
 <blockquote>
-<p>① 常见形式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">D(Rb,Ri,S)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[D+Reg[Rb]+S<em>Reg[Ri]]</em></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>D：</strong>常量（地址偏移量）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Rb：</strong>基址寄存器（8个通用寄存器之一）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ri：</strong>索引寄存器（%esp不做为索引寄存器，%ebp一般也不做为索引寄存器）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>S：</strong>比例因子（1、2、4 or 8 ）<br>也就是上文所说的通用公式：<br>立即数1(寄存器1，寄存器2，立即数2) = Mem[立即数1值+寄存器1值+寄存器2值立即数2值]<br><br>② 其他变形</p>
+<p>① 常见形式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">D(Rb,Ri,S)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[D+Reg[Rb]+S*Reg[Ri]]</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>D：</strong>常量（地址偏移量）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Rb：</strong>基址寄存器（8个通用寄存器之一）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ri：</strong>索引寄存器（%esp不做为索引寄存器，%ebp一般也不做为索引寄存器）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>S：</strong>比例因子（1、2、4 or 8 ）<br>也就是上文所说的通用公式：<br>立即数1(寄存器1，寄存器2，立即数2) = Mem[立即数1值+寄存器1值+寄存器2值*立即数2值]<br><br>② 其他变形</p>
 <ul>
 <li>(Rb,Ri)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg[Rb]+Reg[Ri]]</li>
 <li>D(Rb,Ri)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[D+Reg[Rb]+Reg[Ri]]</li>
@@ -663,46 +663,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1710,9 +1670,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

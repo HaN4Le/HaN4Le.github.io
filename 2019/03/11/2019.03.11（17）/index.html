@@ -428,16 +428,14 @@ height:50vh;
 <li>C 与 x86 汇编</li>
 <li>x86 汇编语言程序格式与基本编程</li>
 </ul>
-<ol start="3">
+<ol>
 <li>MIPS 汇编</li>
 </ol>
 <ul>
 <li>MIPS 计算机组织的初步</li>
 <li>指令系统介绍</li>
-<li>汇编代码与异常处理</li>
+<li>汇编代码与异常处理<h4 id="二、X86指令集简介"><a href="#二、X86指令集简介" class="headerlink" title="二、X86指令集简介"></a>二、X86指令集简介</h4></li>
 </ul>
-</blockquote>
-<h4 id="二、X86指令集简介"><a href="#二、X86指令集简介" class="headerlink" title="二、X86指令集简介"></a>二、X86指令集简介</h4><blockquote>
 <ol>
 <li>X86指令集的基本特色</li>
 </ol>
@@ -448,16 +446,14 @@ height:50vh;
 <li>指令集的通用寄存器个数有限<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X86-32系统下拥有8个通用寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X86-64系统下拥有16个通用寄存器</li>
 <li>至多只有一个操作数在内存中，另一个操作数为立即数会寄存器</li>
 </ul>
-<ol start="2">
+<ol>
 <li>X86-32/64 通用寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r8d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rdx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r9d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rcx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ecx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r10d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rbx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r11d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r12d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rdi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r13d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r14d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rbp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r15d<br>▶ %rax 作为函数返回值使用；<br>▶ %rsp 栈指针寄存器，指向栈顶；<br>▶ %rdi，%rsi，%rdx，%rcx，%r8，%r9 用作函数参数，依次对应第1参数，第2参数……<br>▶ %rbx，%rbp，%r12，%r13，%14，%15 用作数据存储，遵循被调用者使用规则，简单说就是随便用，调用子函数之前要备份它，以防他被修改；<br>▶ %r10，%r11 用作数据存储，遵循调用者使用规则，简单说就是使用之前要先保存原值；<br><strong>注</strong>：<font color="brwon">X86-64中，所有寄存器都是64位，相对32位的x86来说，标识符发生了变化，比如：从原来的%ebp变成了%rbp。为了向后兼容性，%ebp依然可以使用，不过指向了%rbp的低32位。X86-64寄存器的变化，不仅体现在位数上，更加体现在寄存器数量上。新增加寄存器%r8到%r15。加上x86的原有8个，一共16个寄存器。</font></li>
 <li>X86指令集缺点</li>
 </ol>
 <ul>
 <li>向下兼容导致指令集雨来越大、越复杂；</li>
-<li>很多领域而言，资源利用率低</li>
+<li>很多领域而言，资源利用率低<h4 id="三、整数的机器表示"><a href="#三、整数的机器表示" class="headerlink" title="三、整数的机器表示"></a>三、整数的机器表示</h4></li>
 </ul>
-</blockquote>
-<h4 id="三、整数的机器表示"><a href="#三、整数的机器表示" class="headerlink" title="三、整数的机器表示"></a>三、整数的机器表示</h4><blockquote>
 <ol>
 <li>预备知识</li>
 </ol>
@@ -465,7 +461,7 @@ height:50vh;
 <li>特别注意的是在X86里，一个字（Word）占2个字节（Byte）；</li>
 <li>逻辑运算：<br>▶ “与（AND）∧—&amp;”：0:0=0；0:1=0；1:0=0；1:1=1<br>▶ “或（OR）∨— |”：0:0=0；0:1=1；1:0=1；1:1=1<br>▶ “异或（XOR）”：0:0=0；0:1=1；1:0=1；1:1=0<br>▶ “非（NOT）”：0=1；1=0</li>
 </ul>
-<ol start="2">
+<ol>
 <li>数的机器表示</li>
 </ol>
 <ul>
@@ -473,7 +469,7 @@ height:50vh;
 <li><strong>32位字长：</strong>地址的表示空间为 4 GB，所以对于很多内存需求量大的应用而言，非常有限；</li>
 <li><strong>64位字长：</strong>地址的标识空间约为1.8 × 10<sup>19</sup>bytes，而目前的X86-64机型实际支持48位宽的地址：256TB；</li>
 </ul>
-<ol start="3">
+<ol>
 <li>机器字在内存中的组织<br>地址按照字节来定位：机器字中的第一个字节的地址；相邻机器字的地址相差4byte或8byte，<font color="brwon">例如32位第一位Address = 0000，那么第二位Address = 0004，第三位Address = 0008；64位第一位Address = 0000，那么第二位Address = 0008，第三位Address = 0016；</font></li>
 <li>字节序<br>▶ 一个机器字节内的各个字节如何排列的呢？</li>
 </ol>
@@ -482,16 +478,10 @@ height:50vh;
 <li><strong>Little Endian：X86——与LSB相反</strong><img src="http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/kGJNHLaZvdyW3mZ4Xnqd0lcUvQZizyxgs*ds3xXBVZQ!/m/dL8AAAAAAAAAnull&amp;bo=jQMPAY0DDwEDByI!&amp;rf=photolist&amp;t=5" alt></li>
 </ul>
 <p>注：主要了解Little Endian是低字节对低地址，高字节对高地址</p>
-<center><img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/LSE91PXDu4O8zzlmzOzPZwb6PWuDDomkPeU48F0bcic!/m/dL4AAAAAAAAAnull&amp;bo=cwRfAnMEXwIDByI!&amp;rf=photolist&amp;t=5" alt></center>
-</blockquote>
-<h4 id="四、学习疑问"><a href="#四、学习疑问" class="headerlink" title="四、学习疑问"></a>四、学习疑问</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 寄存器的工作原理到底是什么样的？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 多种寻址方式是什么意思？</p>
-</blockquote>
-<h4 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上内容就是今天学习的笔记，也有在学习中遇到的问题和心得。之所以要把老师讲的东西总结下来，就是想通过自己的思考，努力让这门课在我心里成为一个体系。接下来的几天我还是继续学习汇编语言，对学习的知识进行总结，并及时的记录下自己的疑问和不懂的地方。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以后在平常生活中，自己也得多查阅一下相关知识的博客和资料，争取缩短学习周期，跟上大神的步伐。</p>
-</blockquote>
-<h4 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法。 </p>
+<p><center>![](http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/LSE91PXDu4O8zzlmzOzPZwb6PWuDDomkPeU48F0bcic!/m/dL4AAAAAAAAAnull&bo=cwRfAnMEXwIDByI!&rf=photolist&t=5)</center></p>
+<h4 id="四、学习疑问"><a href="#四、学习疑问" class="headerlink" title="四、学习疑问"></a>四、学习疑问</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 寄存器的工作原理到底是什么样的？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 多种寻址方式是什么意思？</p>
+<h4 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上内容就是今天学习的笔记，也有在学习中遇到的问题和心得。之所以要把老师讲的东西总结下来，就是想通过自己的思考，努力让这门课在我心里成为一个体系。接下来的几天我还是继续学习汇编语言，对学习的知识进行总结，并及时的记录下自己的疑问和不懂的地方。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以后在平常生活中，自己也得多查阅一下相关知识的博客和资料，争取缩短学习周期，跟上大神的步伐。</p>
+<h4 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法。 </p>
 </blockquote>
 
     </article>
@@ -673,46 +663,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1720,9 +1670,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     

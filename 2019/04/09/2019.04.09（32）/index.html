@@ -424,12 +424,8 @@ height:50vh;
 <li>Linux Kali系统的安装</li>
 </ul>
 <p>前两个知识点在前面都详细的介绍过了，这篇文章就不一一叙述了。</p>
-</blockquote>
-<h3 id="二、思考过程"><a href="#二、思考过程" class="headerlink" title="二、思考过程"></a>二、思考过程</h3><blockquote>
-<p><strong>1. 题目给了pubkey.pem和flag.encrypt文件，<font color="red">该加密文件是不是由私钥加密，公钥解密呢？</font></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;在做“What‘s RSA？”这道题时，就分析过<a href="https://muzibing.github.io/2019/04/05/2019.04.05%EF%BC%8829%EF%BC%89/">两种可能</a>：公钥加密—&gt;私钥解密；私钥加密—&gt;公钥解密，因为在那道题目中，给出的是一个私钥（rsa_private_key.pem），所以当时直接用的私钥进行解密，得到明文的。这道题会不会和上道题目一样，直接用公钥（pubkey.pem）就可以对密文进行解密呢？<br><br><strong>2. 如果不是由私钥加密的，那么用公钥如何对该加密文件进行解密呢？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;通过学习RSA算法原理，可以知道：公钥可以从私钥中得出，那么<font color="red">通过公钥能否得出私钥呢？</font>（这是本题的关键所在，也是我遇到的一个难点）</p>
-</blockquote>
-<h3 id="三、解题过程"><a href="#三、解题过程" class="headerlink" title="三、解题过程"></a>三、解题过程</h3><h4 id="1-电脑的准备工作"><a href="#1-电脑的准备工作" class="headerlink" title="1.电脑的准备工作"></a>1.电脑的准备工作</h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;因为换了一台电脑，所以配置的环境和软件都要重新安装，遇到了很多问题，在这些问题上花了很多时间，希望在这里总结一下解决这些问题的方法吧。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>①  hexo博客的迁移注意问题</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;首先要对电脑<a href="https://muzibing.github.io/2019/02/25/2019.02.25%EF%BC%883%EF%BC%89/">重新配置环境</a>，在安装了Hexo并创建了新的博客文件后，直接把以前的文件全部粘贴替换，这时候还不能更新博客，<strong>最重的是把.ssh目录下的密钥拷到新电脑的.ssh文件下（ssh-keygon 查找.ssh 的位置）</strong>，这时候就可以更新博客内容了。<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>②  Kali系统安装问题解决办法</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安装Kali可谓一波三折，最终在今天下午成功的安装并配置好。要注重说一下要注意的问题：</p>
+<h3 id="二、思考过程"><a href="#二、思考过程" class="headerlink" title="二、思考过程"></a>二、思考过程</h3><p><strong>1. 题目给了pubkey.pem和flag.encrypt文件，<font color="red">该加密文件是不是由私钥加密，公钥解密呢？</font></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;在做“What‘s RSA？”这道题时，就分析过<a href="https://muzibing.github.io/2019/04/05/2019.04.05%EF%BC%8829%EF%BC%89/">两种可能</a>：公钥加密—&gt;私钥解密；私钥加密—&gt;公钥解密，因为在那道题目中，给出的是一个私钥（rsa_private_key.pem），所以当时直接用的私钥进行解密，得到明文的。这道题会不会和上道题目一样，直接用公钥（pubkey.pem）就可以对密文进行解密呢？<br><br><strong>2. 如果不是由私钥加密的，那么用公钥如何对该加密文件进行解密呢？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;通过学习RSA算法原理，可以知道：公钥可以从私钥中得出，那么<font color="red">通过公钥能否得出私钥呢？</font>（这是本题的关键所在，也是我遇到的一个难点）</p>
+<h3 id="三、解题过程"><a href="#三、解题过程" class="headerlink" title="三、解题过程"></a>三、解题过程</h3><h4 id="1-电脑的准备工作"><a href="#1-电脑的准备工作" class="headerlink" title="1.电脑的准备工作"></a>1.电脑的准备工作</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;因为换了一台电脑，所以配置的环境和软件都要重新安装，遇到了很多问题，在这些问题上花了很多时间，希望在这里总结一下解决这些问题的方法吧。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>①  hexo博客的迁移注意问题</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;首先要对电脑<a href="https://muzibing.github.io/2019/02/25/2019.02.25%EF%BC%883%EF%BC%89/">重新配置环境</a>，在安装了Hexo并创建了新的博客文件后，直接把以前的文件全部粘贴替换，这时候还不能更新博客，<strong>最重的是把.ssh目录下的密钥拷到新电脑的.ssh文件下（ssh-keygon 查找.ssh 的位置）</strong>，这时候就可以更新博客内容了。<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>②  Kali系统安装问题解决办法</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安装Kali可谓一波三折，最终在今天下午成功的安装并配置好。要注重说一下要注意的问题：</p>
 <ul>
 <li><font color="red">问题一：在安装时一直遇到光盘读取错误</font><br>解决办法：在Kali官网下载最新的镜像（保证镜像文件的完整性），在安装时选择Debian x 9.0 64位</li>
 <li><font color="red">问题二：DHCP配置错误</font><br>解决办法：选择桥接模式，并设置虚拟机的网络，在桥接模式选择自己的无线网卡；在安装好kali系统后，用<strong><code>cat /etc/network/interfaces</code></strong>，查看正常应该是下图的内容：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lyMOfhONoxBAKprnY6hVu0mniZHPgnGWZBQSIhvTr6w!/r/dFMBAAAAAAAA" alt><br><center><font size="2" color="gray">注：红圈中的内容就是我补充的</font></center><br>再执行<code>/etc/init.d/networking restart</code>,重启网络，使刚才的配置生效，<code>ifconfig</code>查看网络设置：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZxMeho63mP7e*7tRebJavtQbBb*T.*4wjVc*x0CM26s!/r/dDYBAAAAAAAA" alt><br>说明网络配置成功。</li>
@@ -442,18 +438,23 @@ height:50vh;
 <h4 id="3-尝试用私钥对文件进行解密"><a href="#3-尝试用私钥对文件进行解密" class="headerlink" title="3.尝试用私钥对文件进行解密"></a>3.尝试用私钥对文件进行解密</h4><blockquote>
 <p>1.先将公钥以文件格式输出：<code>openssl rsa -in pubkey.pem -pubin -out pubkey.txt -text</code>，查看文件内容：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/v5ugWNxA*tPviDQ7p7ZI8Ex0xYt1ps4HO5UR26ELlOc!/r/dL8AAAAAAAAA" alt><br>这里可以得到Modulus、Exponent和Public Key的数值。<br><br><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener"><strong>2.分析如何从公钥得到私钥</strong></a><br>首先要分析RSA原理：</p>
 <ul>
-<li><font color="red"><strong>公钥和密钥的生成</strong></font><br>① 选择两个大的质数p、q，且这两个质数互不相等；<br>② 计算模 n = p <em> q，<strong>n 的二进制的位数就是密钥的长度</strong>；<br>③ 根据欧拉函数φ(n) =  (p-1) </em> (q-1)<br>④ 在1 和 φ(n)中间随机选择一个整数 e，e与φ(n）互为质数<br>⑤ 计算e对于φ(n)的模反元素d：e <em> d ≡ 1 (mod φ(n)) 等价于 e </em> d - 1 = k * φ(n)，<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已知φ(n)、e，那么通过”扩展欧几里得算法”得出d 和 k’<br>⑥ 得到公钥和私钥<br><font color="brown"><strong>（n，e）=&gt; 公钥</strong></font><br><font color="brown"><strong>（n，d）=&gt; 私钥</strong></font></li>
+<li><font color="red">**公钥和密钥的生成**</font>
+① 选择两个大的质数p、q，且这两个质数互不相等；
+② 计算模 n = p * q，**n 的二进制的位数就是密钥的长度**；
+③ 根据欧拉函数φ(n) =  (p-1) * (q-1)
+④ 在1 和 φ(n)中间随机选择一个整数 e，e与φ(n）互为质数
+⑤ 计算e对于φ(n)的模反元素d：e * d ≡ 1 (mod φ(n)) 等价于 e * d - 1 = k * φ(n)，
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已知φ(n)、e，那么通过"扩展欧几里得算法"得出d 和 k'
+⑥ 得到公钥和私钥
+<font color="brown">**（n，e）=> 公钥**</font>
+<font color="brown">**（n，d）=> 私钥**</font></li>
 <li><font color="red"><strong>从公钥推导私钥的思想</strong></font><br>① 要想得到私钥，必须知道两个参数：<strong>n 和 d</strong>；<br>② n在公钥中已知，那么<font color="blue"><strong>关键在于得出d（模反元素）</strong></font>；<br>③ 根据RSA算法的过程，看出 d 是由 e<font size="2" color="gray">(从公钥中可知)</font> 和 φ(n)以及”扩展欧几里得算法”得到的；<br>④ φ(n) 是由p 和 q得到的，所以要知道这两个数是关键；<br>⑤ 计算 p 和 q 要知道 分解的模 n，而模 n 在公钥中就能得到，所以最<strong><font color="red">关键的是如何对 n 进行因数分解</font></strong>，再分解过程中有多少可能？</li>
 </ul>
 </blockquote>
 <h4 id="4-现在的问题"><a href="#4-现在的问题" class="headerlink" title="4.现在的问题"></a>4.现在的问题</h4><blockquote>
 <p>现在的最主要问题是，已经得到了公钥的内容，但是文件格式还是没有看懂，所以还没有找到公钥中的 n 和 e；另一个问题是对于欧拉函数和扩展欧几里得算法不是很熟悉，明天就这两个问题继续学习。</p>
-</blockquote>
-<h3 id="四、学习感悟"><a href="#四、学习感悟" class="headerlink" title="四、学习感悟"></a>四、学习感悟</h3><blockquote>
-<p>这两天虽然学到了很多东西，但是做题速度慢了很多，想了想还是效率不是很高，在做题时不能全身心的投入，以后要慢慢的改这个坏习惯。</p>
-</blockquote>
-<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><blockquote>
-<p>失败是什么？没有什么，只是更走近成功一步；成功是什么？就是走过了所有通向失败的路，只剩下一条路，那就是成功的路。 </p>
+<h3 id="四、学习感悟"><a href="#四、学习感悟" class="headerlink" title="四、学习感悟"></a>四、学习感悟</h3><p>这两天虽然学到了很多东西，但是做题速度慢了很多，想了想还是效率不是很高，在做题时不能全身心的投入，以后要慢慢的改这个坏习惯。</p>
+<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><p>失败是什么？没有什么，只是更走近成功一步；成功是什么？就是走过了所有通向失败的路，只剩下一条路，那就是成功的路。 </p>
 </blockquote>
 
     </article>
@@ -635,46 +636,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1682,9 +1643,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
