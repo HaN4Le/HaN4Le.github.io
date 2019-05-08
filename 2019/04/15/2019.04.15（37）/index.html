@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。 一、前期准备  汇编语言知识 IDA工具的使用 C语言部分知识二、知识储备">
+<meta name="keywords" content="reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reverse：Reverse sign in解题总结">
+<meta property="og:url" content="https://muzibing.github.io/2019/04/15/2019.04.15（37）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。 一、前期准备  汇编语言知识 IDA工具的使用 C语言部分知识二、知识储备">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kD5NVpcQoe2DkJZyK*RsDevGKJmRWWs2MJDobK4SQ2Q!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/L.nYfZPLk.qz9znwb.JtqNCwAqqd0YnfYFMoh3wNtT8!/r/dDIBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/mwEGLFbtEWtdE0npIueRGnuleuR5hS0xVDXEDowhZwI!/r/dL4AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/b4fwdQ7NlxCS.AytW7jL8swMDJnVnhbddv*WENY7YmI!/r/dL4AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/yv6Gt4gwT7Kw84*x4Beh85UORlUiV5vI*1QezV4f3u4!/r/dFIBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/c8pufDrxqhiuhZucTe6aZEvBG00KySLvhQ0dms1SUd0!/r/dFIBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Qal6nJC5A5.0dm9fcrXAOJWegNdvoZoXd6AruUUTOh8!/r/dDQBAAAAAAAA">
+<meta property="og:updated_time" content="2019-04-22T13:57:22.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="reverse：Reverse sign in解题总结">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。 一、前期准备  汇编语言知识 IDA工具的使用 C语言部分知识二、知识储备">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kD5NVpcQoe2DkJZyK*RsDevGKJmRWWs2MJDobK4SQ2Q!/r/dL8AAAAAAAAA">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/04/15/2019.04.15（37）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>reverse：Reverse sign in解题总结 | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/04/15/2019.04.15（37）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">reverse：Reverse sign in解题总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-15T00:00:00+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:57:22" itemprop="dateModified" datetime="2019-04-22T21:57:22+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。</p>
+<h3 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h3><blockquote>
+<ul>
+<li>汇编语言知识</li>
+<li>IDA工具的使用</li>
+<li>C语言部分知识<h3 id="二、知识储备"><a href="#二、知识储备" class="headerlink" title="二、知识储备"></a>二、知识储备</h3></li>
+</ul>
+<ol>
+<li>汇编语言<br>关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：<a href="https://muzibing.github.io/2019/03/11/2019.03.11%EF%BC%8817%EF%BC%89/">笔记一</a>、<a href="https://muzibing.github.io/2019/03/12/2019.03.12%EF%BC%8818%EF%BC%89/">笔记二</a>、<a href="https://muzibing.github.io/2019/03/13/2019.03.13%EF%BC%8819%EF%BC%89/">笔记三</a>、<a href="https://muzibing.github.io/2019/04/01/2019.04.01%EF%BC%8825%EF%BC%89/">笔记四</a>、<a href="https://muzibing.github.io/2019/04/02/2019.04.02%EF%BC%8826%EF%BC%89/">笔记五</a>、<a href="https://muzibing.github.io/2019/04/03/2019.04.03%EF%BC%8827%EF%BC%89/">笔记六</a>、<a href="https://muzibing.github.io/2019/04/04/2019.04.04%EF%BC%8828%EF%BC%89/">笔记七</a>、<a href="https://muzibing.github.io/2019/04/12/2019.04.12%EF%BC%8834%EF%BC%89/">笔记八</a>、<a href="https://muzibing.github.io/2019/04/14/2019.04.14%EF%BC%8836%EF%BC%89/">笔记九</a></li>
+<li>IDA工具的使用</li>
+</ol>
+<ul>
+<li>主要说一下关于IDA常用快捷键的使用，以及所对应的功能<ul>
+<li><strong>F5：将一个函数逆向出来(生成c伪代码)；</strong></li>
+<li>ALT+T：搜索字符串(文本搜索)；</li>
+<li>ALT+B：搜索opcode(二进制数据),搜索16进制；</li>
+<li><strong>空格键：反汇编窗口切换文本跟图形；</strong></li>
+<li><strong>F9：动态调试程序(其实IDA主要用作静态分析用的)；</strong></li>
+<li>G：搜索地址或者符号；</li>
+<li><strong>X(ctrl+X)：交叉引用,类似于OD中的栈回溯操作；</strong></li>
+<li>N：重命名；</li>
+<li><strong>H：10进制和十六进制 进行转换；</strong></li>
+<li><strong>Tab： 汇编指令与伪代码之间切换</strong>；</li>
+<li><strong>双击：转到定义处；</strong></li>
+<li><strong>Shift + F12：字符串窗口，用于字符串搜索；</strong></li>
+<li><strong>R 字符转换： 95 —-&gt; “_”;</strong></li>
+<li>A：解释光标的地址为 字符串的首地址；</li>
+<li>Alt +A ： 设置字符串的实现格式，如果是UTF8格式字符串可以显示；</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>C语言的知识——异或运算</li>
+</ol>
+<ul>
+<li>符号：^</li>
+<li>运算法则：<ul>
+<li>0 ^ 1 = 1;  # false XOR true = true;</li>
+<li>0 ^ 0 = 0;  # false XOR false = false;</li>
+<li>1 ^ 1 = 0;  # true XOR true = false;</li>
+<li>1 ^ 0 = 1;  # true XOR false = true;</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;从上面的运算法则可以简单总结：异或运算的两边如果<font color="red"><strong>相同</strong></font>，那么结果就是<font color="red"><strong>false</strong></font>，如果异或运算的两边<font color="blue"><strong>不同</strong></font>，那么结果就为<font color="blue"><strong>true</strong></font>。</p>
+<ul>
+<li><strong>利用异或运算性质进行加密</strong><br>如果两个符号：a 和 b，如果a ^ b = c，那么 c ^ b = a;<br><strong>注：</strong>这里的运算是根据二进制的来进行运算的<h3 id="三、做题思路"><a href="#三、做题思路" class="headerlink" title="三、做题思路"></a>三、做题思路</h3></li>
+</ul>
+<ol>
+<li>然后在kali系统内查看一下rev1的文件信息，查看该文件是多少位的；</li>
+<li>首先打开该文件，看是一个什么文件，并用gdb运行该文件；</li>
+<li>查看该文件用了哪些防护技术，再根据采取的防护技术，进行下一步的操作；</li>
+<li>用IDA对文件进行反编译，分析程序功能；</li>
+<li>根据分析进行相应的操作，找出flag；<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><h4 id="1-在Kali系统内查看该文件的信息"><a href="#1-在Kali系统内查看该文件的信息" class="headerlink" title="1. 在Kali系统内查看该文件的信息"></a>1. 在Kali系统内查看该文件的信息</h4><code>file rev1</code><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kD5NVpcQoe2DkJZyK*RsDevGKJmRWWs2MJDobK4SQ2Q!/r/dL8AAAAAAAAA" alt><br>从上图可以看到该文件是一个 64 位可执行（executable）文件<h4 id="2-用gdb执行该文件"><a href="#2-用gdb执行该文件" class="headerlink" title="2. 用gdb执行该文件"></a>2. 用gdb执行该文件</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/L.nYfZPLk.qz9znwb.JtqNCwAqqd0YnfYFMoh3wNtT8!/r/dDIBAAAAAAAA" alt><br>从上图可以看出，该文件要求输入一个flag，于是我输入了几个随机的字母，出现结果“Wrong”，如下图所示：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/mwEGLFbtEWtdE0npIueRGnuleuR5hS0xVDXEDowhZwI!/r/dL4AAAAAAAAA" alt><h4 id="3-用-IDA-64bit-打开文件rev1"><a href="#3-用-IDA-64bit-打开文件rev1" class="headerlink" title="3. 用 IDA-64bit 打开文件rev1"></a>3. 用 IDA-64bit 打开文件rev1</h4>用IDA打开该文件，想看看这个可执行文件的程序，打开以后以后的页面是汇编指令，如下图：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/b4fwdQ7NlxCS.AytW7jL8swMDJnVnhbddv*WENY7YmI!/r/dL4AAAAAAAAA" alt><h4 id="4-对汇编指令进行反编译（F5），并对main函数进行分析"><a href="#4-对汇编指令进行反编译（F5），并对main函数进行分析" class="headerlink" title="4. 对汇编指令进行反编译（F5），并对main函数进行分析"></a>4. 对汇编指令进行反编译（F5），并对main函数进行分析</h4>反编译之后得到伪C代码：</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># main 函数</span><br><span class="line">__int64 __fastcall main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 result; // rax@2</span><br><span class="line">  __int64 v4; // rdx@7</span><br><span class="line">  char s; // [sp+0h] [bp-30h]@1</span><br><span class="line">  __int64 v6; // [sp+28h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v6 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  printf(&quot;Please input your flag:&quot;, a2, a3);</span><br><span class="line">  __isoc99_scanf(&quot;%32s&quot;, &amp;s);</span><br><span class="line">  if ( strlen(&amp;s) == 32 )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( sub_400686(&amp;s) )</span><br><span class="line">      puts(&quot;Right!&quot;);</span><br><span class="line">    else</span><br><span class="line">      puts(&quot;Wrong!&quot;);</span><br><span class="line">    result = 0LL;</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Wrong!&quot;);</span><br><span class="line">    result = 0LL;</span><br><span class="line">  &#125;</span><br><span class="line">  v4 = *MK_FP(__FS__, 40LL) ^ v6;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>☛ <strong>分析main函数</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;可以看出变量 s 就是我们要输入的flag。<strong>先找怎么让结果输出“Right”</strong>，可以看出变量 s 进入一个 if 语句，然后又进入一个函数 <strong>“sub_400686(&amp;s)”</strong> ，那么有可能是当 s 符合sub_400686(&amp;s)函数的要求，那么就会输出“Right”，那么下一步就让我们来看看sub_400686(&amp;s)函数的功能。</p>
+<h4 id="5-分析-sub-400686-amp-s-函数"><a href="#5-分析-sub-400686-amp-s-函数" class="headerlink" title="5. 分析 sub_400686(&amp;s)函数"></a>5. 分析 sub_400686(&amp;s)函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># sub_400686(&amp;s)函数</span><br><span class="line"></span><br><span class="line">signed __int64 __fastcall sub_400686(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  signed int i; // [sp+Ch] [bp-Ch]@1</span><br><span class="line"></span><br><span class="line">  for ( i = 0; i &lt;= 31; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( (char)(*(_BYTE *)(i + a1) ^ byte_400818[i]) != i )</span><br><span class="line">      return 0LL;</span><br><span class="line">  &#125;</span><br><span class="line">  return 1LL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>☛<strong>sub_400686(&amp;s) 函数分析：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;可以看到，该函数主要的功能是 if 语句，表达的意思为：【如果形参 a1( 实参为s )中每个字符 &nbsp;&nbsp;&nbsp;<font color="red"><strong>XOR</strong></font>&nbsp;&nbsp;&nbsp; byte_400818[i]中的字符 ! = i 】成立则 return 0，说明要想 return 1，则 (char)(*(_BYTE *)(i + a1) ^ byte_400818[i]) == i。在这里就可以用的上“知识储备”中提到的知识点——利用异或运算性质加密，那么下一步要分析一下byte_400818[i]中的数值是多少。</p>
+<h4 id="6-分析-byte-400818-i"><a href="#6-分析-byte-400818-i" class="headerlink" title="6. 分析 byte_400818[i]"></a>6. 分析 byte_400818[i]</h4><p>双击 byte_400818[i] ，查看存放的数据（点击H，转化为十进制）：<br><code>102, 109, 99, 100, 127, 60, 54, 114, 87, 66, 100, 59，123, 82, 124, 60, 102, 84, 96, 96, 39, 74, 73, 127，113, 88, 82, 114, 125, 117, 42, 98, 0</code><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/yv6Gt4gwT7Kw84*x4Beh85UORlUiV5vI*1QezV4f3u4!/r/dFIBAAAAAAAA" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;在这里有个知识点需要说明：<code>2dup(96) = 96, 96</code><br>☛ dup指令：<br>&nbsp;&nbsp;&nbsp;&nbsp;dup是数据定义伪指令，它可以按照给定的次数来复制某个（某些）操作数，可以避免多次键入同样一个数据。例如，把6个12h存入字节中，可以用下面两种方法：</p>
+<ul>
+<li>BUF1 db 12h,12h,12h,12h,12h,12h</li>
+<li>BUF2 db 6dup(12h)</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;可以看出用dup的方法更简便些。</p>
+<h4 id="7-编写计算flag脚本"><a href="#7-编写计算flag脚本" class="headerlink" title="7. 编写计算flag脚本"></a>7. 编写计算flag脚本</h4><ul>
+<li><strong>写脚本前的思考</strong>：<br><code>(char)(\*(\_BYTE \*)(i + a1) ^ byte\_400818[i]) == i</code>，在知识储备那里说过<code>a ^ b = c，则 a = b ^ c</code>，那么 a1 （实参为 s ）的字符串每个字符<code>(char)(\*(\_BYTE \*)(i + a1) = i ^ byte\_400818[i])</code></li>
+<li>执行python脚本，输出得到flag：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*-      </span><br><span class="line">n =  [102, 109, 99, 100, 127, 60, 54, 114, 87, 66, 100, 59,123, 82, 124, 60, 102, 84, 96, 96, 39, 74, 73, 127,113, 88, 82, 114, 125, 117, 42, 98, 0]</span><br><span class="line"></span><br><span class="line">for i in range(0,31):</span><br><span class="line">    print(chr(n[i] ^ i)),</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><strong>该脚本补充知识点：</strong></li>
+</ul>
+<ol>
+<li>python的默认编码文件是用的ASCII码，将文件存成了UTF-8，编译就可以通过。或者或在在py文件开头<font color="red">（必须是第一行）</font>加入 <code>#coding=utf-8</code>或者<code># -*- coding:utf-8 -*-</code></li>
+<li>print输出不换行：<ul>
+<li>对于python 2，只需在print语句后面加上个逗号</li>
+<li>对于python 3，需要写成下列形式print(输出内容 , end = ‘ ‘)</li>
+</ul>
+</li>
+<li>python进制转换函数<ul>
+<li>bin：十进制——&gt;二进制</li>
+<li>int：float——&gt;int</li>
+<li>chr(a)：int——&gt;ASCII码   <font color="gray">#a∈[0，255]</font></li>
+<li>ard(b)：ASCII码——&gt;int  <font color="gray">#b只有8位</font></li>
+<li>hex：十进制——&gt;十六进制<h4 id="8-执行脚本，得到flag"><a href="#8-执行脚本，得到flag" class="headerlink" title="8. 执行脚本，得到flag"></a>8. 执行脚本，得到flag</h4>执行脚本以后，得到的结果如下图所示：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/c8pufDrxqhiuhZucTe6aZEvBG00KySLvhQ0dms1SUd0!/r/dFIBAAAAAAAA" alt><h4 id="9-验证flag"><a href="#9-验证flag" class="headerlink" title="9. 验证flag"></a>9. 验证flag</h4>重新执行rev1可执行文件，将所得的flag输入进去，得到输出“Right”<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Qal6nJC5A5.0dm9fcrXAOJWegNdvoZoXd6AruUUTOh8!/r/dDQBAAAAAAAA" alt><h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3>经过了九九八十一难，在今天上午终于把这道题目做出来了。这道题目的分数虽然不高，但是通过这道题目，给我带来的是全新的知识点，是一个全新的学习过程，刚开始的时候的确是最难的：从一开始什么也看不懂，到现在稍微有点思路，这个过程真的太艰辛了！不过还好没有放弃。虽然今天把这道题目做出来了，但是后面还有更多的困难等着我呢！加油吧！少年！不放弃！<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3>一个人的成功不取决于他的智慧，而是毅力。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/14/2019.04.14（36）/" rel="next" title="《汇编语言程序设计》学习笔记（九）">
+                <i class="fa fa-chevron-left"></i> 《汇编语言程序设计》学习笔记（九）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/16/2019.04.16（38）/" rel="prev" title="《汇编语言程序设计》学习笔记（十）">
+                《汇编语言程序设计》学习笔记（十） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前期准备"><span class="nav-number">1.</span> <span class="nav-text">一、前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、知识储备"><span class="nav-number">2.</span> <span class="nav-text">二、知识储备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、做题思路"><span class="nav-number">3.</span> <span class="nav-text">三、做题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、解题过程"><span class="nav-number">4.</span> <span class="nav-text">四、解题过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在Kali系统内查看该文件的信息"><span class="nav-number">4.1.</span> <span class="nav-text">1. 在Kali系统内查看该文件的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-用gdb执行该文件"><span class="nav-number">4.2.</span> <span class="nav-text">2. 用gdb执行该文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用-IDA-64bit-打开文件rev1"><span class="nav-number">4.3.</span> <span class="nav-text">3. 用 IDA-64bit 打开文件rev1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-对汇编指令进行反编译（F5），并对main函数进行分析"><span class="nav-number">4.4.</span> <span class="nav-text">4. 对汇编指令进行反编译（F5），并对main函数进行分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-分析-sub-400686-amp-s-函数"><span class="nav-number">4.5.</span> <span class="nav-text">5. 分析 sub_400686(&amp;s)函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-分析-byte-400818-i"><span class="nav-number">4.6.</span> <span class="nav-text">6. 分析 byte_400818[i]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-编写计算flag脚本"><span class="nav-number">4.7.</span> <span class="nav-text">7. 编写计算flag脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-执行脚本，得到flag"><span class="nav-number">4.8.</span> <span class="nav-text">8. 执行脚本，得到flag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-验证flag"><span class="nav-number">4.9.</span> <span class="nav-text">9. 验证flag</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、学习感悟"><span class="nav-number">5.</span> <span class="nav-text">五、学习感悟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、每日一句"><span class="nav-number">6.</span> <span class="nav-text">六、每日一句</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

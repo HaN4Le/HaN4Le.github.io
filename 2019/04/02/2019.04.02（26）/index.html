@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="今天继续学习了有关浮点数的部分知识：  浮点数的机器表示 浮点数的规格化和非规格化表示 浮点数表示的特性 如何给出浮点数表示 C语言中的浮点数  一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置  注：越靠近数轴上的原点越紧密，两端的越远越疏散。  2.“小”浮点数实例   8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&amp;nbsp;&amp;nbsp;">
+<meta name="keywords" content="汇编语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《汇编语言程序设计》学习笔记（五）">
+<meta property="og:url" content="https://muzibing.github.io/2019/04/02/2019.04.02（26）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="今天继续学习了有关浮点数的部分知识：  浮点数的机器表示 浮点数的规格化和非规格化表示 浮点数表示的特性 如何给出浮点数表示 C语言中的浮点数  一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置  注：越靠近数轴上的原点越紧密，两端的越远越疏散。  2.“小”浮点数实例   8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&amp;nbsp;&amp;nbsp;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/E25Tm8Q89A*5tZRvN3Z8lU2gDLFPzjgS4z1QLObOpr0!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/M7PxIgSDpM1I*0VP546E59i1rt.vx.V28jlPIZ5FQ5M!/r/dLgAAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/WDJ23KiA.GAEK2qhgo3kCvtMTdd32hczoCeQ2qc*S9g!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LxZ1ZTwceI9rh1y8.maZPja6ROc6ny0.0k1hq6U1lao!/r/dFQBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/R2aKF*9ctgQjTdoeNYarlcc2AtY9iO4NLZuPdIUItXE!/r/dFIBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/gglH0OqflvtE.Cse80HTN1lAoD.7DbG9GwwyRDr75bY!/r/dDcBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ElEbzZz9SKLIXc.SqTQy*yI3JfVmpRtuJizINRDM568!/r/dL4AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/29DLtR3*wogOxfeHgkjdlym65W4QQR29IaSSw4pdA10!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/p7OUZvxIkDyBtG0flPxQaadNRMmAEQ5BAIO82nGITkE!/r/dEkBAAAAAAAA">
+<meta property="og:updated_time" content="2019-04-22T13:56:05.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《汇编语言程序设计》学习笔记（五）">
+<meta name="twitter:description" content="今天继续学习了有关浮点数的部分知识：  浮点数的机器表示 浮点数的规格化和非规格化表示 浮点数表示的特性 如何给出浮点数表示 C语言中的浮点数  一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置  注：越靠近数轴上的原点越紧密，两端的越远越疏散。  2.“小”浮点数实例   8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&amp;nbsp;&amp;nbsp;">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/E25Tm8Q89A*5tZRvN3Z8lU2gDLFPzjgS4z1QLObOpr0!/r/dL8AAAAAAAAA">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/04/02/2019.04.02（26）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《汇编语言程序设计》学习笔记（五） | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/04/02/2019.04.02（26）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《汇编语言程序设计》学习笔记（五）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:56:05" itemprop="dateModified" datetime="2019-04-22T21:56:05+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天继续学习了有关浮点数的部分知识：</p>
+<ul>
+<li>浮点数的机器表示</li>
+<li>浮点数的规格化和非规格化表示</li>
+<li><font color="brwon">浮点数表示的特性</font></li>
+<li><font color="brwon">如何给出浮点数表示</font></li>
+<li><font color="brwon">C语言中的浮点数</font></li>
+</ul>
+<h4 id="一、-浮点数表示的特性"><a href="#一、-浮点数表示的特性" class="headerlink" title="一、 浮点数表示的特性"></a>一、 浮点数表示的特性</h4><p><strong>1.不同浮点数类型在数轴上的相对位置</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/E25Tm8Q89A*5tZRvN3Z8lU2gDLFPzjgS4z1QLObOpr0!/r/dL8AAAAAAAAA" alt></p>
+<blockquote>
+<p>注：越靠近数轴上的原点越紧密，两端的越远越疏散。</p>
+</blockquote>
+<p><strong>2.“小”浮点数实例</strong></p>
+<blockquote>
+<ul>
+<li>8位浮点数表示：<br>exp域的宽度为4bits，frac域宽度为3bits<br>问：Bias = ?<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2<sup>e-1</sup> - 1 = 2<sup>4-1</sup> - 1 = 7</li>
+<li>其他规则符合 IEEE 754规范<ul>
+<li>规格化/非规格化</li>
+<li>表示0，NaN与无穷</li>
+</ul>
+</li>
+<li>Exp域对应的数值关系<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/M7PxIgSDpM1I*0VP546E59i1rt.vx.V28jlPIZ5FQ5M!/r/dLgAAAAAAAAA" alt></li>
+</ul>
+</blockquote>
+<p><strong>3.取值范围</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/WDJ23KiA.GAEK2qhgo3kCvtMTdd32hczoCeQ2qc*S9g!/r/dL8AAAAAAAAA" alt></p>
+<blockquote>
+<p>注：如果只看exp域和frac域的话，在电路上从小到大的比较和无符号位整数没有什么区别</p>
+</blockquote>
+<p><strong>4.一些特例</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LxZ1ZTwceI9rh1y8.maZPja6ROc6ny0.0k1hq6U1lao!/r/dFQBAAAAAAAA" alt></p>
+<p><strong>5.浮点数的一些编码特性</strong></p>
+<blockquote>
+<ul>
+<li>（几乎）可以直接使用无符号整数的比较方式<br><strong>反例（以下情况不能使用无符号整数进行比较）：</strong><ul>
+<li><font color="brwon">必须先比较符号位；</font></li>
+<li><font color="brwon">考虑+0，-0的特例；</font></li>
+<li><font color="brwon">NaN的问题<font color="red">（不考虑符号位的话，NaN比其他值大）</font></font></li>
+</ul>
+</li>
+<li>其他情况都可以直接使用无符号数的比较方式<ul>
+<li><font color="brwon">规格化 vs. 非规格化</font></li>
+<li><font color="brwon">规格化 vs. 无穷<h4 id="二、如何给出浮点数表示？"><a href="#二、如何给出浮点数表示？" class="headerlink" title="二、如何给出浮点数表示？"></a>二、如何给出浮点数表示？</h4><strong>1.给定一个实数，如何给出其浮点数的表示</strong></font></li>
+</ul>
+</li>
+<li><font color="red"><strong>基本流程</strong></font><br><font color="brwon">1. 计算出精确值<br><font color="brwon">2. 将其转化为所需要的精度</font><ul>
+<li>如果指数的绝对值很大的话，可能会产生溢出</li>
+<li>可能需要完成舍入（Rounding）操作</li>
+</ul>
+</font></li>
+<li>各种舍入模式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$1.40 &nbsp;&nbsp;&nbsp;&nbsp; $1.60 &nbsp;&nbsp;&nbsp;&nbsp;$1.50 &nbsp;&nbsp;&nbsp;&nbsp;$2.50 &nbsp;&nbsp;&nbsp;&nbsp;-$1.50<ul>
+<li>Zero&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$1</li>
+<li>Round down&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$2</li>
+<li>Round up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $2  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$2  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$2  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$1</li>
+<li><font color="red">Nearest Even(default)&nbsp;&nbsp;&nbsp; \$1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$2  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$2  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\$2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-\$2</font>
+
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>2.向偶数舍入（Round-To-Even）</strong></p>
+<blockquote>
+<ul>
+<li>☛ 这是计算机内默认的舍入方式，也称为“向最接近值的舍入”（其他方式会产生统计误差）</li>
+<li>关键的设计决策的是确定两个可能结果的中间数值得舍入<ul>
+<li><font color="red">确保舍入后的最低有效数字是偶数</font></li>
+<li>E.g.,round to nearest hundredth <ul>
+<li><font color="brown">1.2349999——&gt;1.23(less than half way)</font></li>
+<li><font color="brown">1.2350001——&gt;1.24(Greater than half way)</font></li>
+<li><font color="brown">1.2350000——&gt;1.24(Half way-Round up)</font></li>
+<li><font color="brown">1.2350000——&gt;1.24(Half way-Round down</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>☛ <strong>对二进制而言</strong><ul>
+<li><font color="red">“Even”意味着最低有效位数字需为0</font></li>
+<li><font color="red">最低有效位数字右侧的位串为100…</font></li>
+<li>实例：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/R2aKF*9ctgQjTdoeNYarlcc2AtY9iO4NLZuPdIUItXE!/r/dFIBAAAAAAAA" alt></li>
+</ul>
+</li>
+<li><strong>具体步骤</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/gglH0OqflvtE.Cse80HTN1lAoD.7DbG9GwwyRDr75bY!/r/dDcBAAAAAAAA" alt><br><br><font color="brown">① 将数值规格化（前导 1）<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ElEbzZz9SKLIXc.SqTQy*yI3JfVmpRtuJizINRDM568!/r/dL4AAAAAAAAA" alt><br><br>② 舍入，以便符合位数的位数需求<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/29DLtR3*wogOxfeHgkjdlym65W4QQR29IaSSw4pdA10!/r/dL8AAAAAAAAA" alt><br><br>③ 调整</font><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/p7OUZvxIkDyBtG0flPxQaadNRMmAEQ5BAIO82nGITkE!/r/dEkBAAAAAAAA" alt></li>
+</ul>
+</blockquote>
+<h4 id="三、C语言中的浮点数"><a href="#三、C语言中的浮点数" class="headerlink" title="三、C语言中的浮点数"></a>三、C语言中的浮点数</h4><blockquote>
+<ol>
+<li>类型：单精度浮点数（float）和双精度浮点数（double）</li>
+<li><font color="red"><strong>类型转换：当int（32bits）、float和double等类型之间进行转换时，基本的原则如下：</strong></font><br>① double/float——&gt;int<br>&nbsp;&nbsp;▶ 尾数部分被截断；<br>&nbsp;&nbsp;▶ 如果发生溢出或者浮点是NaN，则转化结果没有定义，通常置为Tmin 或 Tmax；<br>② int——&gt;double：能够精确转化<br>③ int——&gt;float：不会溢出，但可能被舍入</li>
+</ol>
+</blockquote>
+<h4 id="学习感悟"><a href="#学习感悟" class="headerlink" title="#学习感悟"></a>#学习感悟</h4><blockquote>
+<p>说句实在话，因为基础问题今天学的东西太难理解了，视频反复的听了3、4遍，做笔记的时候又认真的听了一遍，做了一遍笔记，可是有些地方老师讲的跳度太大，跟不上他的思路，所以说<font color="red">“基础很重要啊！”</font>，以后每天还得挤出时间再恶补一下自己的基础知识，到时候再回头重新看一下这里的知识点。</p>
+<h4 id="每日一句："><a href="#每日一句：" class="headerlink" title="#每日一句："></a>#每日一句：</h4><p>在成功的道路上，激情是需要的，志向是可贵的，但更重要的是那毫无情趣的近乎平常的坚守的毅力和勇气</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/汇编语言/" rel="tag"># 汇编语言</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/2019.04.01（25）/" rel="next" title="《汇编语言程序设计》学习笔记（四）">
+                <i class="fa fa-chevron-left"></i> 《汇编语言程序设计》学习笔记（四）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/2019.04.03（27）/" rel="prev" title="《汇编语言程序设计》学习笔记（六）">
+                《汇编语言程序设计》学习笔记（六） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、-浮点数表示的特性"><span class="nav-number">1.</span> <span class="nav-text">一、 浮点数表示的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、如何给出浮点数表示？"><span class="nav-number">2.</span> <span class="nav-text">二、如何给出浮点数表示？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、C语言中的浮点数"><span class="nav-number">3.</span> <span class="nav-text">三、C语言中的浮点数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习感悟"><span class="nav-number">4.</span> <span class="nav-text">#学习感悟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每日一句："><span class="nav-number">5.</span> <span class="nav-text">#每日一句：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在学习了关于Python的基础以及Requests，但经过一番尝试后今天还是没有成功解出一道题目，在解题之前我将问题分解以下几个部分：（不知是否正确）  怎么获取服务器上的参与计算的数字？ 获取之后计算过程该怎样？ 如何将计算的结果返回服务器，并进行提交？  明天我将会继续学习Python基础知识，并围着这三个问题进行学习。前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就">
+<meta name="keywords" content="解题总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建Github+Hexo个人博客总结">
+<meta property="og:url" content="https://muzibing.github.io/2019/02/25/2019.02.25（3）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="在学习了关于Python的基础以及Requests，但经过一番尝试后今天还是没有成功解出一道题目，在解题之前我将问题分解以下几个部分：（不知是否正确）  怎么获取服务器上的参与计算的数字？ 获取之后计算过程该怎样？ 如何将计算的结果返回服务器，并进行提交？  明天我将会继续学习Python基础知识，并围着这三个问题进行学习。前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-22T13:53:15.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建Github+Hexo个人博客总结">
+<meta name="twitter:description" content="在学习了关于Python的基础以及Requests，但经过一番尝试后今天还是没有成功解出一道题目，在解题之前我将问题分解以下几个部分：（不知是否正确）  怎么获取服务器上的参与计算的数字？ 获取之后计算过程该怎样？ 如何将计算的结果返回服务器，并进行提交？  明天我将会继续学习Python基础知识，并围着这三个问题进行学习。前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/02/25/2019.02.25（3）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>创建Github+Hexo个人博客总结 | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/02/25/2019.02.25（3）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">创建Github+Hexo个人博客总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-25T00:00:00+08:00">2019-02-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:53:15" itemprop="dateModified" datetime="2019-04-22T21:53:15+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习了关于Python的基础以及Requests，但经过一番尝试后今天还是没有成功解出一道题目，在解题之前我将问题分解以下几个部分：（不知是否正确）</p>
+<ul>
+<li>怎么获取服务器上的参与计算的数字？</li>
+<li>获取之后计算过程该怎样？</li>
+<li>如何将计算的结果返回服务器，并进行提交？</li>
+</ul>
+<p>明天我将会继续学习Python基础知识，并围着这三个问题进行学习。<br>前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就总结一下昨天用GitHub和Hexo上创建博客的情况吧。</p>
+<h4 id="1、前期准备"><a href="#1、前期准备" class="headerlink" title="1、前期准备"></a>1、前期准备</h4><blockquote>
+<ul>
+<li>操作系统：windows 7 </li>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载git</a></li>
+<li><a href="https://github.com/" target="_blank" rel="noopener">注册Github账号</a></li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载node.js</a></li>
+<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">下载Hexo</a></li>
+<li><a href="http://marxi.co/" target="_blank" rel="noopener">Markdown在线编写器marxi</a></li>
+</ul>
+</blockquote>
+<h4 id="2、正式开始"><a href="#2、正式开始" class="headerlink" title="2、正式开始"></a>2、正式开始</h4><p> 1)创建GitHub仓库</p>
+<blockquote>
+<p>仓库名称要与用户名一直，固定格式为：用户名称.github.io</p>
+</blockquote>
+<p> 2)git与GitHub连接起来（通过SSH秘钥）</p>
+<blockquote>
+<ul>
+<li>$ssh-keygon </li>
+</ul>
+<p>//在命令行提示的路径中找到”id_rsa.pub”文件，并用记事本打开，复制密钥；在GitHub中找到“setting”，然后点击“SSH and GPG keys”，将复制的密钥粘贴到”SSH keys”中</p>
+</blockquote>
+<p> 3)确认git和Github成功连接</p>
+<blockquote>
+<ol>
+<li>在指定位置新建一个文件夹，打开git输入</li>
+</ol>
+<ul>
+<li>git init //初始化文件夹</li>
+<li>git remote add origin  刚才建立的github仓库的地址 //将本地的文件夹与github上的仓库连接起来了</li>
+<li>git pull origin master</li>
+</ul>
+<ol>
+<li>查看新建的文件夹，是否有Github仓库中的文件，如有则代表连接成功</li>
+</ol>
+</blockquote>
+<p>4)安装Hexo</p>
+<blockquote>
+<p>npm install -g hexo-cli </p>
+</blockquote>
+<p>5)在项目文件夹中，右击并点击”Git Bash Here “</p>
+<blockquote>
+<p>hexo init //初始化文件夹<br>hexo install //安装一些依赖包<br>npm install hexo-deployer-git —save //安装插件</p>
+</blockquote>
+<p>6)用Visual Studio Code打开项目文件夹中的.config.yml文件</p>
+<blockquote>
+<p>type: git<br>repo: github仓库的地址<br>branch: master<br><strong>注意</strong>：“：”后要有一个空格（Markdown语法规定）</p>
+</blockquote>
+<p>7)把hexo的博客部署在github仓库中</p>
+<blockquote>
+<p>hexo g -d //这时的网址为Hexo默认样式</p>
+</blockquote>
+<p>8)更改博客样式</p>
+<blockquote>
+<ul>
+<li>增加博客文章：项目文件夹/source/_posts   新建.md文件，并用Markdown语言编写。<font color="gray">注：每次修改完本地Hexo的文件夹中的文件，都要hexo g -d 对Github仓库进行重新配置。</font></li>
+<li>更改博客主题：打开<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo官网</a>——&gt;Theme——&gt;选择自己喜欢的，按照安装要求进行安装，并在项目文件夹/theme/主题名称 的.cofig.yml修改样式的内容。</li>
+</ul>
+</blockquote>
+<p>说明：本博文可能在内容上出现差错，作者还将检查并进行修改。 </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/解题总结/" rel="tag"># 解题总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/24/2019.02.24（2）/" rel="next" title="Misc:Signin/Misc:Poem/Misc:Birthday解题总结">
+                <i class="fa fa-chevron-left"></i> Misc:Signin/Misc:Poem/Misc:Birthday解题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/26/2019.02.26（4）/" rel="prev" title="Misc:docx解题过程+学习总结">
+                Misc:docx解题过程+学习总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、前期准备"><span class="nav-number">1.</span> <span class="nav-text">1、前期准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、正式开始"><span class="nav-number">2.</span> <span class="nav-text">2、正式开始</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
