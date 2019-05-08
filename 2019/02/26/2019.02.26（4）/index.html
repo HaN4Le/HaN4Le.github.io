@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="· 解题进度昨晚经过查阅案例和资料后，终于解出了Misc：docx题目，因为昨天的思考并没有深入，所以今天白天的时候又看看了相关的知识，系统的回顾了一下这道题目，今天就总结一下这道题目的相关内容。 1. 有关知识点  word doxc文件本质 文件的结构   2. 知识详解  word doxc文件本质docx格式的文件本质上是一个ZIP文件：docx 格式文件的主要内容是保存为XML格式的，但">
+<meta name="keywords" content="解题总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Misc:docx解题过程+学习总结">
+<meta property="og:url" content="https://muzibing.github.io/2019/02/26/2019.02.26（4）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="· 解题进度昨晚经过查阅案例和资料后，终于解出了Misc：docx题目，因为昨天的思考并没有深入，所以今天白天的时候又看看了相关的知识，系统的回顾了一下这道题目，今天就总结一下这道题目的相关内容。 1. 有关知识点  word doxc文件本质 文件的结构   2. 知识详解  word doxc文件本质docx格式的文件本质上是一个ZIP文件：docx 格式文件的主要内容是保存为XML格式的，但">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/9b08638bly1g0k57th2w9j20gt01k3yf.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/9b08638bly1g0k5anjnorj20h303k74e.jpg">
+<meta property="og:updated_time" content="2019-04-22T13:53:30.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Misc:docx解题过程+学习总结">
+<meta name="twitter:description" content="· 解题进度昨晚经过查阅案例和资料后，终于解出了Misc：docx题目，因为昨天的思考并没有深入，所以今天白天的时候又看看了相关的知识，系统的回顾了一下这道题目，今天就总结一下这道题目的相关内容。 1. 有关知识点  word doxc文件本质 文件的结构   2. 知识详解  word doxc文件本质docx格式的文件本质上是一个ZIP文件：docx 格式文件的主要内容是保存为XML格式的，但">
+<meta name="twitter:image" content="https://wx4.sinaimg.cn/mw690/9b08638bly1g0k57th2w9j20gt01k3yf.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/02/26/2019.02.26（4）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Misc:docx解题过程+学习总结 | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Zeitplan</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/02/26/2019.02.26（4）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Misc:docx解题过程+学习总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-26T00:00:00+08:00">2019-02-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:53:30" itemprop="dateModified" datetime="2019-04-22T21:53:30+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="·-解题进度"><a href="#·-解题进度" class="headerlink" title="· 解题进度"></a><font color="brown">· 解题进度</font></h3><p>昨晚经过查阅案例和资料后，终于解出了Misc：docx题目，因为昨天的思考并没有深入，所以今天白天的时候又看看了相关的知识，系统的回顾了一下这道题目，今天就总结一下这道题目的相关内容。</p>
+<h4 id="1-有关知识点"><a href="#1-有关知识点" class="headerlink" title="1. 有关知识点"></a>1. 有关知识点</h4><blockquote>
+<ul>
+<li>word doxc文件本质</li>
+<li>文件的结构</li>
+</ul>
+</blockquote>
+<h4 id="2-知识详解"><a href="#2-知识详解" class="headerlink" title="2. 知识详解"></a>2. 知识详解</h4><blockquote>
+<ul>
+<li>word doxc文件本质<br>docx格式的文件本质上是一个ZIP文件：docx 格式文件的主要内容是保存为XML格式的，但文件并非直接保存于磁盘。它是保存在一个ZIP文件中，然后取扩展名为docx。</li>
+<li>doxc文件的结构<ul>
+<li>_rels 表示资源；</li>
+<li>docProps 表示文档资源</li>
+<li>theme 表示主题、格式</li>
+<li>Content_types 表示内容类型</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h4><blockquote>
+<ul>
+<li>因为docx文件本质上是一个ZIP文件，所以首先将文档的后缀名改为“zip”<br><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0k57th2w9j20gt01k3yf.jpg" alt></li>
+<li>将修改过的文件进行解压，得到docx文件的结构<br><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0k5anjnorj20h303k74e.jpg" alt></li>
+<li>在解压后的文件夹中会发现Flag.xml，打开该文件既得答案</li>
+</ul>
+</blockquote>
+<h3 id="·-每日学习内容"><a href="#·-每日学习内容" class="headerlink" title="· 每日学习内容"></a><font color="brown">· 每日学习内容</font></h3><h4 id="1-知识概括"><a href="#1-知识概括" class="headerlink" title="1. 知识概括"></a>1. 知识概括</h4><blockquote>
+<ul>
+<li>Python文本编辑器：命令行和Python的交互式命令</li>
+<li>Python基础：数据类型和变量、字符串和编码</li>
+<li>《保密概论》第三章的背诵<h4 id="2-学习感悟"><a href="#2-学习感悟" class="headerlink" title="2. 学习感悟"></a>2. 学习感悟</h4></li>
+<li>在刚开始接触Python的时候，觉得语言比C++更容易理解，但是它的一些编程思想和C/C++没有太大的差距，不管是什么编程语言<font color="red"><strong>“万变不离其宗”</strong></font>，在以后的学习Python以及其他语言时，都应该将这种思想横贯其中。以前也了解过Python，但是从这几天的解题过程中，我慢慢的觉得这门语言是一个很强大的工具，只不过是我还没有掌握这种能力，将促使我一定要掌握住这门语言，我也会认真的学习。</li>
+<li>背诵了一上午和半个下午的《保密概论》，内容实在多的不行。刚开始背的时候，觉得这么多怎么可能一字不漏的背完呢？从这两天的情况来看，已经背诵了8页，对于背完还是有信心的，明天继续加油！</li>
+</ul>
+</blockquote>
+<h5 id="每日一句：要把现在的努力当做一个习惯，自己一定能学有所成！"><a href="#每日一句：要把现在的努力当做一个习惯，自己一定能学有所成！" class="headerlink" title="#每日一句：要把现在的努力当做一个习惯，自己一定能学有所成！"></a><font color="red">#每日一句</font>：要把现在的努力当做一个习惯，自己一定能学有所成！</h5>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/解题总结/" rel="tag"># 解题总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/2019.02.25（3）/" rel="next" title="创建Github+Hexo个人博客总结">
+                <i class="fa fa-chevron-left"></i> 创建Github+Hexo个人博客总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/27/2019.02.27（5）/" rel="prev" title="Misc:LSB解题总结+学习总结">
+                Misc:LSB解题总结+学习总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#·-解题进度"><span class="nav-number">1.</span> <span class="nav-text">· 解题进度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-有关知识点"><span class="nav-number">1.1.</span> <span class="nav-text">1. 有关知识点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-知识详解"><span class="nav-number">1.2.</span> <span class="nav-text">2. 知识详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-解题过程"><span class="nav-number">1.3.</span> <span class="nav-text">3. 解题过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#·-每日学习内容"><span class="nav-number">2.</span> <span class="nav-text">· 每日学习内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-知识概括"><span class="nav-number">2.1.</span> <span class="nav-text">1. 知识概括</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-学习感悟"><span class="nav-number">2.2.</span> <span class="nav-text">2. 学习感悟</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#每日一句：要把现在的努力当做一个习惯，自己一定能学有所成！"><span class="nav-number">2.2.1.</span> <span class="nav-text">#每日一句：要把现在的努力当做一个习惯，自己一定能学有所成！</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

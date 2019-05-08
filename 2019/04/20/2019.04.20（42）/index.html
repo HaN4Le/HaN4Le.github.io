@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="☛ 前言：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。 一、相关汇编代码① &amp;lt; phase_3 &amp;gt;的汇编代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta name="keywords" content="二进制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二进制炸弹：Phase_3解题总结">
+<meta property="og:url" content="https://muzibing.github.io/2019/04/20/2019.04.20（42）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="☛ 前言：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。 一、相关汇编代码① &amp;lt; phase_3 &amp;gt;的汇编代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uebkb7kyLfuagkMFDUnEv2l2VBxESq6RivHdIPZW5eM!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JzPJX69JrGsTEmh4zAtUaX4056QeeoU*gBdiDl4bUpM!/r/dL4AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Vm8eWkiEhHfHuKVirEy4MlKAKzCB0EUWrsHxvlwIIMc!/r/dFQBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/blptjF*bOmgIGWiVjkq6ut*RDPUjZxYOqzRkZm0Jthw!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/4*FX5y8v2gfjpbp78E4S0JFaR8VGYmthDpEVgZv2Ovw!/r/dLkAAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZLL6kawle3Hhb7pEsmf02fQzPBETaQizWZwvR9g6Pf8!/r/dEgBAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/avFJfWo*a6F0fD2Wl3obST1DQJVHIyUst0uh5YwiMzo!/r/dLYAAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Tv9D10hHp3j4U2VgRfmak6qqFpzxTzRuCiD3gMiYqUk!/r/dLkAAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/C7uIZbONzog9vn0Z21ooDixaxVuo0J3FH2sHfN1GStQ!/r/dLgAAAAAAAAA">
+<meta property="og:updated_time" content="2019-04-22T13:56:44.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二进制炸弹：Phase_3解题总结">
+<meta name="twitter:description" content="☛ 前言：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。 一、相关汇编代码① &amp;lt; phase_3 &amp;gt;的汇编代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uebkb7kyLfuagkMFDUnEv2l2VBxESq6RivHdIPZW5eM!/r/dL8AAAAAAAAA">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/04/20/2019.04.20（42）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>二进制炸弹：Phase_3解题总结 | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Zeitplan</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/04/20/2019.04.20（42）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">二进制炸弹：Phase_3解题总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-20T00:00:00+08:00">2019-04-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:56:44" itemprop="dateModified" datetime="2019-04-22T21:56:44+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>☛ 前言：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。</p>
+<h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><p><strong>① &lt; phase_3 &gt;的汇编代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">08048c02 &lt;phase_3&gt;:</span><br><span class="line"> 8048c02:	83 ec 2c             	sub    $0x2c,%esp</span><br><span class="line"> 8048c05:	8d 44 24 1c          	lea    0x1c(%esp),%eax</span><br><span class="line"> 8048c09:	89 44 24 0c          	mov    %eax,0xc(%esp)</span><br><span class="line"> 8048c0d:	8d 44 24 18          	lea    0x18(%esp),%eax</span><br><span class="line"> 8048c11:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"></span><br><span class="line"> // 通过x/1s 0x804a2ef可以看到这里需要输入两个整型数值；</span><br><span class="line"> 8048c15:	c7 44 24 04 ef a2 04 	movl   $0x804a2ef,0x4(%esp)</span><br><span class="line"> 8048c1c:	08 </span><br><span class="line"> 8048c1d:	8b 44 24 30          	mov    0x30(%esp),%eax</span><br><span class="line"> 8048c21:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用8048860的函数，将返回的参数的个数与1相比较，若大于1，则跳转到8048c33，小于等于1 则bomb；</span><br><span class="line"> 8048c24:	e8 37 fc ff ff       	call   8048860 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line"> 8048c29:	83 f8 01             	cmp    $0x1,%eax</span><br><span class="line"> 8048c2c:	7f 05                	jg     8048c33 &lt;phase_3+0x31&gt;</span><br><span class="line"> 8048c2e:	e8 d2 04 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> // 8048c2c处的跳转跳到这里，又将第一个数值与7相比，若大于7，则跳转到8048c76，执行bomb，若小于等于7，则执行8048c3a处的指令；</span><br><span class="line"> 8048c33:	83 7c 24 18 07       	cmpl   $0x7,0x18(%esp)</span><br><span class="line"> 8048c38:	77 3c                	ja     8048c76 &lt;phase_3+0x74&gt;</span><br><span class="line"></span><br><span class="line"> // 将输入的第一个数值送到%eax中，然后跳转到0x804a180 + 4 * eax的地址；</span><br><span class="line"> 8048c3a:	8b 44 24 18          	mov    0x18(%esp),%eax</span><br><span class="line"> 8048c3e:	ff 24 85 80 a1 04 08 	jmp    *0x804a180(,%eax,4)</span><br><span class="line"> </span><br><span class="line"> // 从8048c45 —— 8048c74 都是将指定位置的数值送到寄存器%eax中，然后跳转到8048c87（可以发现这里是个switch语句）；</span><br><span class="line"> 8048c45:	b8 7f 01 00 00       	mov    $0x17f,%eax</span><br><span class="line"> 8048c4a:	eb 3b                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c4c:	b8 ff 01 00 00       	mov    $0x1ff,%eax</span><br><span class="line"> 8048c51:	eb 34                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c53:	b8 78 00 00 00       	mov    $0x78,%eax</span><br><span class="line"> 8048c58:	eb 2d                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c5a:	b8 bf 02 00 00       	mov    $0x2bf,%eax</span><br><span class="line"> 8048c5f:	eb 26                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c61:	b8 08 03 00 00       	mov    $0x308,%eax</span><br><span class="line"> 8048c66:	eb 1f                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c68:	b8 49 01 00 00       	mov    $0x149,%eax</span><br><span class="line"> 8048c6d:	eb 18                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> 8048c6f:	b8 43 02 00 00       	mov    $0x243,%eax</span><br><span class="line"> 8048c74:	eb 11                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"></span><br><span class="line"> // 调用bomb</span><br><span class="line"> 8048c76:	e8 8a 04 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> 8048c7b:	b8 00 00 00 00       	mov    $0x0,%eax</span><br><span class="line"> 8048c80:	eb 05                	jmp    8048c87 &lt;phase_3+0x85&gt;</span><br><span class="line"> 8048c82:	b8 b2 00 00 00       	mov    $0xb2,%eax</span><br><span class="line"></span><br><span class="line"> // 将根据第一个数据得到的数值，与一开始输入的第二个数据进行比较：如果两者相等，则跳转至8048c92处；不相等则执行bomb；</span><br><span class="line"> 8048c87:	3b 44 24 1c          	cmp    0x1c(%esp),%eax</span><br><span class="line"> 8048c8b:	74 05                	je     8048c92 &lt;phase_3+0x90&gt;</span><br><span class="line"> 8048c8d:	e8 73 04 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"></span><br><span class="line"> 8048c92:	83 c4 2c             	add    $0x2c,%esp</span><br><span class="line"> 8048c95:	c3                   	ret</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="二、相关伪代码（IDA反编译）"><a href="#二、相关伪代码（IDA反编译）" class="headerlink" title="二、相关伪代码（IDA反编译）"></a>二、相关伪代码（IDA反编译）</h3><p><strong>① Phase_3的伪代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">signed int __cdecl phase_3(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  signed int result; // eax@4</span><br><span class="line">  int v2; // [sp+18h] [bp-14h]@1</span><br><span class="line">  int v3; // [sp+1Ch] [bp-10h]@1</span><br><span class="line"></span><br><span class="line">  if ( __isoc99_sscanf(a1, &quot;%d %d&quot;, &amp;v2, &amp;v3) &lt;= 1 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  switch ( v2 )</span><br><span class="line">  &#123;</span><br><span class="line">    case 0:</span><br><span class="line">      result = 383;</span><br><span class="line">      break;</span><br><span class="line">    case 2:</span><br><span class="line">      result = 511;</span><br><span class="line">      break;</span><br><span class="line">    case 3:</span><br><span class="line">      result = 120;</span><br><span class="line">      break;</span><br><span class="line">    case 4:</span><br><span class="line">      result = 703;</span><br><span class="line">      break;</span><br><span class="line">    case 5:</span><br><span class="line">      result = 776;</span><br><span class="line">      break;</span><br><span class="line">    case 6:</span><br><span class="line">      result = 329;</span><br><span class="line">      break;</span><br><span class="line">    case 7:</span><br><span class="line">      result = 579;</span><br><span class="line">      break;</span><br><span class="line">    case 1:</span><br><span class="line">      result = 178;</span><br><span class="line">      break;</span><br><span class="line">    default:</span><br><span class="line">      explode_bomb();</span><br><span class="line">      return result;</span><br><span class="line">  &#125;</span><br><span class="line">  if ( result != v3 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><p><strong>1.Phase_3函数的功能</strong></p>
+<blockquote>
+<p>通过对汇编代码和伪代码的综合分析，对Phase_3的功能有了如下的大概认识：</p>
+<ul>
+<li><font color="green">8048c15</font>：要求输入2个整型数值；<br><font color="red">// __isoc99_sscanf&nbsp;&nbsp;&nbsp;&nbsp;(a1, “%d %d”, &amp;v2, &amp;v3)</font><br><br></li>
+<li><font color="green">8048c29</font>：判读输入参数的个数 &lt;= 1，如果小于等于1，则bomb，大于1就继续执行下面的指令，根据上文也就是说我们输入的第一个数字必须要等于 2；<br><font color="red">// if ( __isoc99_sscanf(a1, “%d %d”, &amp;v2, &amp;v3) &lt;= 1 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font><br><br></li>
+<li><font color="green">8048c33</font>：还要求第一个数字不能大于7，否则就bomb；<br><font color="red">// default:&nbsp;&nbsp;&nbsp;&nbsp; explode_bomb();</font><br><br></li>
+<li><font color="green">8048c87</font>：将在switch得到的result和输入的第二个数据（v3）进行比较，如果不相同的话，则bomb；<br><font color="red">// if ( result != v3 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font><br><br></li>
+</ul>
+</blockquote>
+<p><strong>2.解题思路</strong></p>
+<blockquote>
+<p>经过上面四步的分析，可以清晰的知道了这一关的要求以及做题的思路：</p>
+<ul>
+<li>首先弄清楚我们需要输入两个整型数据；</li>
+<li>第一个数据要在[0，7]范围内；</li>
+<li>第二个数据要与switch语句中相应case对应的result相等。</li>
+</ul>
+<p>若满足上述两个条件，则通关。</p>
+</blockquote>
+<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><blockquote>
+<ol>
+<li><strong>需要输入的数据</strong><br>通过<code>x/1s 0x804a2ef</code>来查看需要输入的格式：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uebkb7kyLfuagkMFDUnEv2l2VBxESq6RivHdIPZW5eM!/r/dL8AAAAAAAAA" alt></li>
+<li><strong>得出第一个数值</strong><br>从上述分析中可以得到第一个数据为：<strong><font color="red">[0，7]</font></strong></li>
+<li><strong>得出第二个数值</strong><br>通过对bomb文件反编译，得到可执行程序的伪代码，那么在为代码中可以很简单的得到第二个数值：</li>
+</ol>
+<ul>
+<li><font color="green">case <font color="red">0</font>：result = <font color="red">383;</font></font></li>
+<li><font color="green">case <font color="red">1</font>：result = <font color="red">178;</font></font></li>
+<li><font color="green">case <font color="red">2</font>：result = <font color="red">511;</font></font></li>
+<li><font color="green">case <font color="red">3</font>：result = <font color="red">120;</font></font></li>
+<li><font color="green">case <font color="red">4</font>：result = <font color="red">703;</font></font></li>
+<li><font color="green">case <font color="red">5</font>：result = <font color="red">776;</font></font></li>
+<li><font color="green">case <font color="red">6</font>：result = <font color="red">329;</font></font></li>
+<li><font color="green">case <font color="red">7</font>：result = <font color="red">579;</font></font></li>
+</ul>
+<ol>
+<li><strong>得到答案</strong><br>因为第一个数据取值范围为：(1，7]，所以第三关有 <font color="red"><strong>6</strong></font> 种答案：<br><br><center>`0 383；1 178；2 511；3 120；4 703；5 776；6 329；7 579`</center><h3 id="四、验证答案"><a href="#四、验证答案" class="headerlink" title="四、验证答案"></a>四、验证答案</h3></li>
+<li><code>0 383</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/JzPJX69JrGsTEmh4zAtUaX4056QeeoU*gBdiDl4bUpM!/r/dL4AAAAAAAAA" alt></li>
+<li><code>1 178</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Vm8eWkiEhHfHuKVirEy4MlKAKzCB0EUWrsHxvlwIIMc!/r/dFQBAAAAAAAA" alt></li>
+<li><code>2 511</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/blptjF*bOmgIGWiVjkq6ut*RDPUjZxYOqzRkZm0Jthw!/r/dL8AAAAAAAAA" alt></li>
+<li><code>3 120</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/4*FX5y8v2gfjpbp78E4S0JFaR8VGYmthDpEVgZv2Ovw!/r/dLkAAAAAAAAA" alt></li>
+<li><code>4 703</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ZLL6kawle3Hhb7pEsmf02fQzPBETaQizWZwvR9g6Pf8!/r/dEgBAAAAAAAA" alt></li>
+<li><code>5 776</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/avFJfWo*a6F0fD2Wl3obST1DQJVHIyUst0uh5YwiMzo!/r/dLYAAAAAAAAA" alt></li>
+<li><code>6 329</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Tv9D10hHp3j4U2VgRfmak6qqFpzxTzRuCiD3gMiYqUk!/r/dLkAAAAAAAAA" alt></li>
+<li><code>7 579</code>的结果输出如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/C7uIZbONzog9vn0Z21ooDixaxVuo0J3FH2sHfN1GStQ!/r/dLgAAAAAAAAA" alt><h3 id="六、学习感悟"><a href="#六、学习感悟" class="headerlink" title="六、学习感悟"></a>六、学习感悟</h3>今天的感悟还是和昨天一样，在做题和总结时，完全是两个不同的状态，通过总结能够把我做题时的问题、没有想到的知识点，完全地暴露在我的眼前，并且还出现了一下“意料之外”的问题。不过通过总结，让我对知识点有了更深的认识和感悟，也让我真正的把有关知识点去落实。<h3 id="七、每日一句"><a href="#七、每日一句" class="headerlink" title="七、每日一句"></a>七、每日一句</h3>人生的挑战，无处不在，满怀信心，轻装上路，明天永远是充满希望的战场。 </li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二进制/" rel="tag"># 二进制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/19/2019.04.19（41）/" rel="next" title="二进制炸弹：Phase_2解题总结">
+                <i class="fa fa-chevron-left"></i> 二进制炸弹：Phase_2解题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/21/2019.04.21（43）/" rel="prev" title="二进制炸弹：Phase_4解题总结">
+                二进制炸弹：Phase_4解题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、相关汇编代码"><span class="nav-number">1.</span> <span class="nav-text">一、相关汇编代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、相关伪代码（IDA反编译）"><span class="nav-number">2.</span> <span class="nav-text">二、相关伪代码（IDA反编译）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、代码分析"><span class="nav-number">3.</span> <span class="nav-text">三、代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、解题过程"><span class="nav-number">4.</span> <span class="nav-text">四、解题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、验证答案"><span class="nav-number">5.</span> <span class="nav-text">四、验证答案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、学习感悟"><span class="nav-number">6.</span> <span class="nav-text">六、学习感悟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、每日一句"><span class="nav-number">7.</span> <span class="nav-text">七、每日一句</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
