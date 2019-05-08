@@ -1,2081 +1,2789 @@
 <!DOCTYPE html>
-<html lang="">
-    <!-- title -->
 
 
 
 
-<!-- keywords -->
 
 
 
 
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="author" content="MUZIBing">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="MUZIBing">
-    
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
-    
-    <meta name="description" content>
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>MUZI&#39;s BLOG</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
-
-    body {
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
-
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
-
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-</style>
-
-    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
-
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
+  };
 </script>
 
-    <link rel="icon" href="/assets/favicon.ico">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js" as="script">
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-        <!-- algolia -->
-        <script>
-            
-            var hits = JSON.parse('{"per_page":10}')
-            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
 
-            var algolia = {
-                applicationID: '7YQC8ZUSIO',
-                apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
-                indexName: 'muzibing',
-                hits: hits,
-                labels: labels
-            }
-        </script>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="MUZI&#39;s BLOG">
+<meta property="og:url" content="https://muzibing.github.io/page/4/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MUZI&#39;s BLOG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/page/4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </head>
 
-    
-        <body class="home-body">
-    
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header index-header">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
+  
+  
     
-    <a class="home-link" href="/">MUZI's BLOG.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style="
+  
 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
 
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-
-
-
-
-height:50vh;
-">
-    
-    <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            MUZI's BLOG.
-            <!-- 文章页  -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-                Always exploring the unknown
-            
-            <!-- 文章页  -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
-    </div>
-</div>
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
-
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
-
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
-
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/17/2019.03.17（22）/">
-            
-                <span>《保密概论》总知识点提纲</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天背完了《保密概论的知识点》第8、9章的知识，终于把所有的知识都背完了，但是后面的几章还不是特别熟悉，前面的知识也有些遗忘，明天还要继续复习和背诵。今天就总结一下《保密概论》整本知识提纲，用做接下来的几天背诵抓手。
-第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识1.保密工作概要
-
-
-“保密”、“保密工作”的概念 ；
-保密工作的特征；
-保密工作的指导思想、依据；
-保密工作的指导方针和基本原则；
-
-
-2.国家秘密及其确定
-
-
-国家秘密的概念和特征（三要素）；
-国家秘密的等级和...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《保密概论》">《保密概论》</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/16/2019.03.16（21）/">
-            
-                <span>《保密概论》第6、7章知识点提纲</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》第6、7章的知识提纲，现在的进度还差第8章就背完了，明天还要继续复习和背诵。
-第六章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密法律法规1.保密法律、法规、规章的概念及相互关系
-
-
-保密法律的概念、制定主体、类别、涉及的相关法律名称；
-保密法规的概念、制定主体、类别、涉及的相关法规名称；
-保密规章的概念、制定主体、类别、涉及的相关规章名称；
-保密法律、法规和规章的相互关系；
-
-
-2.保密法及其实施办法
-
-
-《保密法》的立法背景：①②③；
-《保密法》的内容...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《保密概论》">《保密概论》</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/14/2019.03.14（20）/">
-            
-                <span>《保密概论》前五章知识点提纲</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》前5章的知识摘要，一方面是回顾一下自己背诵的知识，另一方面是为以后的背诵制定一个知识纲要；
-第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识1.保密工作概要
-
-
-“保密”、“保密工作”的概念 ；
-保密工作的特征；
-保密工作的指导思想、依据；
-保密工作的指导方针和基本原则；
-
-
-2.国家秘密及其确定
-
-
-国家秘密的概念和特征（三要素）；
-国家秘密的等级和划分标准；
-国家秘密事项的确定：定密责任人制度、三种情况、确定权限；
-国家秘密事项保密期限的确...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/13/2019.03.13（19）/">
-            
-                <span>《汇编语言程序设计》学习笔记（三）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂。下面就写一下相关的学习笔记。
-一、无符号与带符号的转化
-无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的二进制串的表示是不变的，只不过是二者的解释不同而已。问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？
-二、C 语言中...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/12/2019.03.12（18）/">
-            
-                <span>《汇编语言程序设计》学习笔记（二）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）
-一、计算机中整数的编码方式和操作整数1.基本数据类型的大小
-![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)
-
-2.编码方式
-
-
-B2U...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/11/2019.03.11（17）/">
-            
-                <span>《汇编语言程序设计》学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天被通知测试停止，认真的准备复试，我想着在复习剩余的时间不能停止学习，这几天正好是第二阶段测试，我想趁这个时间段好好学习一下汇编语言，课程是清华大学的“汇编语言程序设计”网上课程，这几天我会在博客上更新每天学到的知识点。
-一、课程内容与目标
-
-基本知识这门课程主要讲述的是各类指令集的初步、数制与整数表示、浮点数表示
-x86汇编
-
-
-80x86计算机组织与保护模式
-x86指令系统与寻址方式
-C 与 x86 汇编
-x86 汇编语言程序格式与基本编程
-
-
-MIPS 汇编
-
-
-MIPS 计算机组织的初步
-指令系统介绍
-汇编...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/10/2019.03.10（16）/">
-            
-                <span>Binary Bombs——汇编语言学习总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天晚上拿到了第二阶段的测试，是关于逻辑炸弹的题目，涉及的知识点有：汇编语言、机器语言、调试器和逆向工程，自己根据文档的提示尝试了一下，但是对汇编语言的指令读不懂，今天的主要任务就是对汇编语言进行了学习，就先简单的总结一下今天所学的只是吧！
-1. 什么是汇编语言？
-汇编语言（assembly language）是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。其特点主要有以下：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①它是在直接面向处理器的语言；&nb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/09/2019.03.09（15）/">
-            
-                <span>正则表达式总结（1）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对Web：Calculator题目做了详细的分析，但是有一个知识点（正则表达式）总结的不是很详细。当时做题的时候也正是正则表达式阻碍了很长时间，今天就详细的总结一下正则表达式的内容。
-1.什么是正则表达式？
-正则表达式，又称规则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是一种文本模式，描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。
-2.正则表达式的功能？（1）验证字符串是否符...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/08/2019.03.08（14）/">
-            
-                <span>Web：Calculator解题总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这几天做出来的题目，难度最大且花费时间最长的莫不过Web：Calculator和Web：RapidTyping，今天又对Web：Calculator这道题目的脚本做了一下改善，并分析了一下GET和POST的区别。
-1. 前期准备
-
-工具：谷歌浏览器
-知识：python Requests模块（POST | GET | Session()）、Re模块（findall() | compile()）、正则表达式、eval()2. 思考过程1.如何计算网页上的算数公式，并提交成功，服务器响应请求呢？这是在做这道题首先要弄明白的问题，只有将...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/07/2019.03.07（13）/">
-            
-                <span>Misc：Invisible flag解题总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对隐写题做了个大概的总结，发现关于图片的信息隐写的总结还不完整，对于png格式的图像只是说了LSB方法，今天看到Misc：Invisible flag题目，再来说一个关于png隐写的类型：实质还是通过png格式的结构来隐写的。
-1.前期准备
-
-工具：010editor
-知识：png格式的文件结构2.思考过程1.png图片文档结构是什么？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实这个问题在昨天的总结里面已经有过介绍，但是有关png图片文件的结构对今天的解题至关重要，那么在详细地讲述一下。&nb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">NEXT &#62;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/Misaka.jpg">
-    <div class="profile-name">MUZI</div>
-    
-    <div class="profile-signature">
-        Witness Me
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
     
     
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="//weibo.com/2601018251/profile?topnav=1&wvr=6&is_all=1" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
-            
-        
-    
-        
-            
-                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title="wechat">
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png">
-                </span>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer qq" title="qq">
-                  
-                  <img class="profile-qr" src="/assets/QQ.png">
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+  </div>
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href="//weibo.com/u/5629040889" target="_black">Love</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href="//weibo.com/u/5886362815" target="_black">Brother</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href="//weibo.com/u/5743639776" target="_black">friend</a>
-                    </span>
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href="/about">ABOUT ME</a>
-        </div>
-    
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-            
-        </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
     
-    <div class="social">
-        
     
-        
-            
-                <a href="//weibo.com/2601018251/profile?topnav=1&wvr=6&is_all=1" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
-            
-        
     
-        
-            
-                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title="wechat">
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png">
-                </span>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer qq" title="qq">
-                  
-                  <img class="profile-qr" src="/assets/QQ.png">
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
+      
     
 
-    </div>
     
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">个人博客:<a href="https://muzibing.github.io/" target="_blank">Muzibing</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Email: <a href="https://mail.126.com/" target="_blank">lishuo_1129@126.com</a></span>
-    </div>
-    <!-- 不蒜子  -->
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
     
-    <div class="busuanzi-container">
     
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
     
-    </div>
+      
     
-</footer>
-    </div>
-    <!-- toc -->
+
     
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
     </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 52
-        </div>
-        <!-- search  -->
-        
-            <div class="site-search popup-trigger">
-                <span class="iconfont-archer search-icon">&#xe627;</span>
-            </div>
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/07</span><a class="archive-post-title" href="/2019/05/07/2019.05.07（52）/">Wiener Trick解题准备</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2019/05/05/2019.05.05（51）/">MySQL学习笔记（一）——查询</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2019/04/29/2019.04.29（50）/">Misc：RealWiFi解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/2019.04.28（49）/">Another 01game解题详细总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2019/04/27/2019.04.27（48）/">Python 学习笔记（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href="/2019/04/26/2019.04.26（47）/">初识 Caesar 密码</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/2019.04.25（46）/">二进制炸弹：Phase_6解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2019/04/23/2019.04.23（45）/">二进制炸弹：Phase_5解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/2019.04.21（43）/">二进制炸弹：Phase_4解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/15</span><a class="archive-post-title" href="/2019/04/15/2019.04.15（37）/">reverse：Reverse sign in解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/2019.04.14（36）/">《汇编语言程序设计》学习笔记（九）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/13</span><a class="archive-post-title" href="/2019/04/13/2019.04.13（35）/">Crypto：RSA详细总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/12</span><a class="archive-post-title" href="/2019/04/12/2019.04.12（34）/">《汇编语言程序设计》学习笔记（八）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/2019.04.10（33）/">Crypto：RSA2解题总结（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
-        </li>
-    
-    </ul></div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="解题总结"><span class="iconfont-archer">&#xe606;</span>解题总结</span>
-    
-        <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
-    
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
-        <span class="sidebar-tag-name" data-tags="RSA"><span class="iconfont-archer">&#xe606;</span>RSA</span>
-    
-        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
-    
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
-        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
-    
-        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br>
-    1、请确保node版本大于6.2<br>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "MUZIBing"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-        <div class="site-search">
-  <div class="algolia-popup popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
+  
 
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
+  
+    
 
-    <span class="popup-btn-close">
-      <i class="iconfont-archer">&#xe609;</i>
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/17/2019.03.17（22）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </div>
-</div>
-        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
-        <script src="/scripts/search.js" defer></script>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
     
-    <!-- busuanzi  -->
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/2019.03.17（22）/" class="post-title-link" itemprop="url">《保密概论》总知识点提纲</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-17T00:00:00+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:35" itemprop="dateModified" datetime="2019-04-22T21:55:35+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     
-    <!-- CNZZ  -->
     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天背完了《保密概论的知识点》第8、9章的知识，终于把所有的知识都背完了，但是后面的几章还不是特别熟悉，前面的知识也有些遗忘，明天还要继续复习和背诵。今天就总结一下《保密概论》整本知识提纲，用做接下来的几天背诵抓手。</p>
+<p><font color="red"><center>第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识</center></font><br>1.保密工作概要</p>
+<blockquote>
+<ol>
+<li>“保密”、“保密工作”的概念 ；</li>
+<li>保密工作的特征；</li>
+<li>保密工作的指导思想、依据；</li>
+<li>保密工作的指导方针和基本原则；</li>
+</ol>
+</blockquote>
+<p>2.国家秘密及其确定</p>
+<blockquote>
+<ol>
+<li>国家秘密的概念和特征（三要素）；</li>
+<li>国家秘密的等级和划分标准；</li>
+<li>国家秘密事项的确定：定密责任人制度、三种情况、确定权限；</li>
+<li>国家秘密事项保密期限的确定；</li>
+<li>商业秘密的概念和三要素；</li>
+<li>工作秘密的概念、主体；</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第二章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作的地位和作用</center></font></p>
+<blockquote>
+<ol>
+<li>保密工作是维护国家安全和利益的重要手段；<br>① 在经济领域的保密工作；<br>② 涉外活动中的保密工作；<br>③ 军事领域的保密工作；<br>④ 保密科学技术的保密工作；</li>
+<li>保密工作是维护社会安定、保障经济建设和各项事业顺利进行的重要条件；<br>① 保密工作是维护社会安定的客观需要；<br>② 保密工作是保障经济建设和发展的需要；<br>③ 做好保密工作是加快信息化建设的保证；</li>
+<li>保密工作是党政军机关正常行使权利、履行职能的需要<br>前言<br>① 做好保密工作是党政军机关实施国家重大国家决策的客观需要；<br>② 做好保密工作是保卫国家安全的客观需要；<br>③ 做好保密工作是党政军机关维护国家统一、民族团结和社会稳定的客观需要</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第三章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作的历史</center></font><br>1.古代保密思想制度简述</p>
+<blockquote>
+<ol>
+<li>夏商：文书</li>
+<li>西周：一合而再离、三发而一知</li>
+<li>秦汉：依次传行</li>
+<li>唐代：《唐律》</li>
+<li>宋、元、明、清：沿用《唐律》。机构：中书省、枢密院、锦衣卫、军机处；</li>
+</ol>
+</blockquote>
+<p>2.革命战争年代的保密工作</p>
+<blockquote>
+<ol>
+<li>中共一大的主张</li>
+<li>中共二大的主张</li>
+<li>1926年1月<br>① 有关文件<br>② 提出了几个问题</li>
+<li>1927年8月7日的主张</li>
+<li>周恩来——中共中央秘密工作委员会</li>
+<li>抗日战争爆发后的新路线</li>
+<li>1942年，毛泽东的主张</li>
+<li>解放战争中，中央保密委员会</li>
+<li>1948年，章程、保密委员会的性质</li>
+</ol>
+</blockquote>
+<p>3.新中国成立后的保密工作</p>
+<blockquote>
+<ol>
+<li>1950年</li>
+<li>1951年</li>
+<li>1952年6月，条例、意义</li>
+<li>1958年，科学技术</li>
+<li>建国之初到60年代</li>
+<li>60年代中期</li>
+<li>1978年</li>
+<li>1980年《关于调整中央保密委员会和加强保密办事机构的通知》</li>
+<li>1983年《关于中央保密委员会的体制改革和机构设置的报告》</li>
+</ol>
+</blockquote>
+<p>4.新时期的保密工作</p>
+<blockquote>
+<ol>
+<li>邓小平同志：1988年</li>
+<li>江泽民同志：保密的重要性</li>
+<li>胡锦涛同志</li>
+<li>十五期间</li>
+<li>2006年5月</li>
+<li>2008、2009、2010</li>
+<li>保密基础理论：《保密工作概论》、《保密管理工作概论》、《保密法学总论》、《保密法概论》、《信息技术保密学》、《信息安全保密教程》</li>
+<li>保密学科建设：国家保密学院（十所）</li>
+<li>修订《保密法》的时间、会议、内容（5条）、意义</li>
+<li>处理好几个关系</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第四章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作面临的形势与任务</center></font><br>1.依然严峻的保密形势</p>
+<blockquote>
+<ol>
+<li>国际间政治经济科技和军事等方面斗争的特点：1）2）3）</li>
+<li>窃密与反窃密的特点：1）2）3）4）5）</li>
+<li>当前保密工作的现状：1）①②③；2）①②③；3）①②；4）①②③；5）①②③</li>
+<li>保密工作存在的问题：背景；1）①②③；2）①②③④；3）①②③；4）①②③</li>
+</ol>
+</blockquote>
+<p>2.当前保密工作的主要任务</p>
+<blockquote>
+<ol>
+<li>当前保密工作的任务：前言；1）①②；2）①②③④⑤；3）①②③<em>④</em>⑤；4）<em>①</em>②③；5）；6）①②<em>③**④</em></li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第五章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密组织机构</center></font><br>1.保密委员会及其机构</p>
+<blockquote>
+<ol>
+<li>什么是保密委员会？</li>
+<li>保密委员会有谁组建？受谁领导？</li>
+<li>地方各级保密委员会的职责：①②③④⑤⑥⑦⑧</li>
+<li>中央、国家机关各部门保密委员会的职责：①②③④⑤⑥⑦⑧<strong><em>⑨</em></strong>⑩</li>
+</ol>
+</blockquote>
+<p>2.保密行政管理部门及其职责</p>
+<blockquote>
+<ol>
+<li>一个机构，两块牌子；</li>
+<li>各级保密行政管理部门的工作职责：①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮</li>
+</ol>
+</blockquote>
+<p>3.保密工作管理体制</p>
+<blockquote>
+<ol>
+<li>管理体制纵向、横向（①②③④⑤⑥）、单位</li>
+<li>专职保密干部任职条件：①②③④⑤⑥</li>
+<li>保密干部配备要求</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第六章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密法律法规</center></font><br>1.保密法律、法规、规章的概念及相互关系</p>
+<blockquote>
+<ol>
+<li>保密法律的概念、制定主体、类别、涉及的相关法律名称；</li>
+<li>保密法规的概念、制定主体、类别、涉及的相关法规名称；</li>
+<li>保密规章的概念、制定主体、类别、涉及的相关规章名称；</li>
+<li>保密法律、法规和规章的相互关系；</li>
+</ol>
+</blockquote>
+<p>2.保密法及其实施办法</p>
+<blockquote>
+<ol>
+<li>《保密法》的立法背景：①②③；</li>
+<li>《保密法》的内容（六章五十三条）：①总则、②国家秘密的范围和密级、③保密制度、④监督管理、⑤法律责任、⑥附则；</li>
+<li>《实施办法》的基本内容（五章四十一条）：①②③；</li>
+</ol>
+</blockquote>
+<p>3.保密工作有关法规规章:</p>
+<blockquote>
+<p>一共十四个 </p>
+</blockquote>
+<p>4.国外保密法概括</p>
+<blockquote>
+<p>省略</p>
+</blockquote>
+<p><font color="red"><center>第七章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作制度</center></font><br>1.保密领导责任制</p>
+<blockquote>
+<p>三段话；</p>
+</blockquote>
+<p>2.保密宣传教育制度</p>
+<blockquote>
+<ol>
+<li>保密宣传教育的地位、作用；</li>
+<li>保密宣传教育的基本要求；</li>
+<li>保密宣传教育的内容；</li>
+<li>保密宣传教育工作的形式和方法；</li>
+</ol>
+</blockquote>
+<p>3.保密行政管理制度</p>
+<blockquote>
+<ol>
+<li>对物的管理<br>① 国家秘密载体的概念；<br>② 国家秘密载体管理的有关规定；<br>③ 密品的概念<br>④ 涉密计算机系统信息系统的保密管理；<br>⑤ 对计算机信息系统的禁止性规定；<br>② 非涉密信息网络的管理；</li>
+<li>对人的管理<br>① 涉密人员分类管理制度；<br>② 涉密人员资格审查制度；<br>③ 涉密人员上岗培训和承诺制度；<br>④ 涉密人员出境管理制度；<br>⑤ 涉密人员脱密期管理制度；<br>⑥ 涉密人员权益保障制度；<br>⑦ 机关、单位管理涉密人员的规定；</li>
+<li>对特定场所的管理<br>① 对保密要害部门部位的管理；<br>② 什么是保密要害部门？<br>③ 什么是保密要害部位？<br>④ 对军事禁区和属于国家秘密不对外开放的其他部位和场所的管理；<br>⑤ 对涉密资质单位的管理；<br>⑥ 业务工作中保密管理；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❶ 新闻出版等传媒中的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❷ 对外交往与合作的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❸ 涉密会议、活动的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❹ 涉密采购的保密管理</li>
+</ol>
+</blockquote>
+<p>4.日常指导和培训制度</p>
+<blockquote>
+<p>① 保密法第四十二条的规定；<br>② 三个督促指导；<br>③ 保密干部培训的内容和对象；</p>
+</blockquote>
+<p><font color="red"><center>第八章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密监督检查</center></font><br>1.保密检查的目的、对象及内容</p>
+<blockquote>
+<ol>
+<li>保密检查的目的；</li>
+<li>保密检查的对象；</li>
+<li>保密检查的内容；<br>01）①②③④⑤⑥<br>02）①②③④<br>03）①②<br>04）①②③④<br>05）①②③④<br>06）①②③<br>07）①②③④<br>08）①②③<br>09）①②<br>10）①②</li>
+</ol>
+</blockquote>
+<p>2.保密检查的方法及实施</p>
+<blockquote>
+<ol>
+<li>保密检查的办法：①范围 ②相隔时间 ③不同阶段 ④检查主体 ⑤检查手段；</li>
+<li>保密检查的实施：①主体 ②前 ③中 ④后 ⑤总</li>
+</ol>
+</blockquote>
+<p>3.保密检查中所发问题的处理</p>
+<blockquote>
+<ol>
+<li>限期整改</li>
+<li>责令停止使用</li>
+<li>建议处分并调离（《保密法》第四十八条）</li>
+<li>督促、指导查处工作</li>
+<li>涉嫌犯罪的，移送司法机关（《刑法》第111、282、398条）</li>
+</ol>
+</blockquote>
+<p>4.泄密事件的查处工作</p>
+<blockquote>
+<ol>
+<li>泄密事件查处工作的内容：①②③④</li>
+<li>泄密事件查处工作的原则；</li>
+<li>泄密事件查处的职责分工：①②③</li>
+<li>发生泄密事件的报告制度：①②③④</li>
+<li>终结泄密事件查处工作应当具备的条件：①②③④</li>
+<li>泄密事件查处工作的终结期限；</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第九章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密科学技术</center></font><br>1.高速发展的信息技术给保密安全带来的威胁</p>
+<blockquote>
+<p>四段话；</p>
+</blockquote>
+<p>2.加强技术防范是一项十分重要和紧迫的任务</p>
+<blockquote>
+<ol>
+<li>计算机信息系统的保密管理<br>① 计算机信息系统的有关概念；<br>② 计算机信息系统安全保密的概念；<br>③ 计算机信息系统安全保密方面存在的隐患：❶❷❸❹❺❻<br>④ 切实加强计算机信息系统的保密管理；</li>
+<li>有线、无线通信的保密管理；<br>① 现代通信的概念；<br>② 现代通信的主要手段：❶❷❸❹<br>③ 通信泄密的主要渠道：❶❷❸❹❺<br>④ 国外主要的窃听技术：❶❷❸❹❺❻<br>⑤ 应当遵守的保密规定及应采取的保密措施：❶❷❸<h3 id="学习感悟"><a href="#学习感悟" class="headerlink" title="#学习感悟"></a>#学习感悟</h3>今天终于完成了一开始觉得不可能完成的事情，经过这20天的不断的反复背诵，前6章的知识还算比较熟练，但是第7、8、9章的知识还是有点陌生，再加强一下！我要抓紧时间 背熟它啦！你可以的！加油！</li>
+</ol>
+</blockquote>
+
+          
+        
+      
     </div>
-    <!-- async load share.js --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/16/2019.03.16（21）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/16/2019.03.16（21）/" class="post-title-link" itemprop="url">《保密概论》第6、7章知识点提纲</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-16T00:00:00+08:00">2019-03-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:30" itemprop="dateModified" datetime="2019-04-22T21:55:30+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》第6、7章的知识提纲，现在的进度还差第8章就背完了，明天还要继续复习和背诵。</p>
+<p><font color="red"><center>第六章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密法律法规</center></font><br>1.保密法律、法规、规章的概念及相互关系</p>
+<blockquote>
+<ol>
+<li>保密法律的概念、制定主体、类别、涉及的相关法律名称；</li>
+<li>保密法规的概念、制定主体、类别、涉及的相关法规名称；</li>
+<li>保密规章的概念、制定主体、类别、涉及的相关规章名称；</li>
+<li>保密法律、法规和规章的相互关系；</li>
+</ol>
+</blockquote>
+<p>2.保密法及其实施办法</p>
+<blockquote>
+<ol>
+<li>《保密法》的立法背景：①②③；</li>
+<li>《保密法》的内容（六章五十三条）：①总则、②国家秘密的范围和密级、③保密制度、④监督管理、⑤法律责任、⑥附则；</li>
+<li>《实施办法》的基本内容（五章四十一条）：①②③；</li>
+</ol>
+</blockquote>
+<p>3.保密工作有关法规规章</p>
+<blockquote>
+<ol>
+<li>《中华人民共和国保守国家秘密法实施办法》</li>
+<li>《印刷、复印等行业复制国家秘密载体暂行管理办法》</li>
+<li>《国家秘密文件、资料和其他物品标志的规定》</li>
+<li>《国家秘密保密管理期限》</li>
+<li>《国家秘密设备、产品保密规定》</li>
+<li>《国家秘密及其密级具体范围的规定》</li>
+<li>《泄密事件查处办法》（试行）</li>
+<li>《关于禁止邮寄或非法携运国家秘密文件、资料和其他物品出境的规定》</li>
+<li>《报告泄露国家秘密事件的规定》</li>
+<li>《科学技术保密规定》</li>
+<li>《新闻出版保密规定》</li>
+<li>《计算机信息系统保密管理暂行规定》</li>
+<li>《计算机信息系统国际联网保密管理规定》</li>
+<li>《对外经济合作提供资料保密暂行规定》</li>
+</ol>
+</blockquote>
+<p>4.国外保密法概括</p>
+<blockquote>
+<p>省略</p>
+</blockquote>
+<p><font color="red"><center>第七章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作制度</center></font><br>1.保密领导责任制</p>
+<blockquote>
+<p>三段话；</p>
+</blockquote>
+<p>2.保密宣传教育制度</p>
+<blockquote>
+<ol>
+<li>保密宣传教育的地位、作用；</li>
+<li>保密宣传教育的基本要求；</li>
+<li>保密宣传教育的内容；</li>
+<li>保密宣传教育工作的形式和方法；</li>
+</ol>
+</blockquote>
+<p>3.保密行政管理制度</p>
+<blockquote>
+<ol>
+<li>对物的管理<br>① 国家秘密载体的概念；<br>② 国家秘密载体管理的有关规定；<br>③ 密品的概念<br>④ 涉密计算机系统信息系统的保密管理；<br>⑤ 对计算机信息系统的禁止性规定；<br>② 非涉密信息网络的管理；</li>
+<li>对人的管理<br>① 涉密人员分类管理制度；<br>② 涉密人员资格审查制度；<br>③ 涉密人员上岗培训和承诺制度；<br>④ 涉密人员出境管理制度；<br>⑤ 涉密人员脱密期管理制度；<br>⑥ 涉密人员权益保障制度；<br>⑦ 机关、单位管理涉密人员的规定；</li>
+<li>对特定场所的管理<br>① 对保密要害部门部位的管理；<br>② 什么是保密要害部门？<br>③ 什么是保密要害部位？<br>④ 对军事禁区和属于国家秘密不对外开放的其他部位和场所的管理；<br>⑤ 对涉密资质单位的管理；<br>⑥ 业务工作中保密管理；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❶ 新闻出版等传媒中的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❷ 对外交往与合作的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❸ 涉密会议、活动的保密管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❹ 涉密采购的保密管理</li>
+</ol>
+</blockquote>
+<p>4.日常指导和培训制度</p>
+<blockquote>
+<p>① 保密法第四十二条的规定；<br>② 三个督促指导；<br>③ 保密干部培训的内容和对象；</p>
+<h3 id="学习感悟"><a href="#学习感悟" class="headerlink" title="#学习感悟"></a>#学习感悟</h3><p>今天背了一整天，这真的是一个充满挑战的过程，背过了忘，忘过再背，就是这样反反复的我终于背到了第 8 章，再坚持坚持！明天争取背完，后面几天再熟悉熟悉。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/14/2019.03.14（20）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/14/2019.03.14（20）/" class="post-title-link" itemprop="url">《保密概论》前五章知识点提纲</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-14T00:00:00+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:25" itemprop="dateModified" datetime="2019-04-22T21:55:25+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天总结一下《保密概论的知识点》前5章的知识摘要，一方面是回顾一下自己背诵的知识，另一方面是为以后的背诵制定一个知识纲要；</p>
+<p><font color="red"><center>第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识</center></font><br>1.保密工作概要</p>
+<blockquote>
+<ol>
+<li>“保密”、“保密工作”的概念 ；</li>
+<li>保密工作的特征；</li>
+<li>保密工作的指导思想、依据；</li>
+<li>保密工作的指导方针和基本原则；</li>
+</ol>
+</blockquote>
+<p>2.国家秘密及其确定</p>
+<blockquote>
+<ol>
+<li>国家秘密的概念和特征（三要素）；</li>
+<li>国家秘密的等级和划分标准；</li>
+<li>国家秘密事项的确定：定密责任人制度、三种情况、确定权限；</li>
+<li>国家秘密事项保密期限的确定；</li>
+<li>商业秘密的概念和三要素；</li>
+<li>工作秘密的概念、主体；</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第二章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作的地位和作用</center></font></p>
+<blockquote>
+<ol>
+<li>保密工作是维护国家安全和利益的重要手段；<br>① 在经济领域的保密工作；<br>② 涉外活动中的保密工作；<br>③ 军事领域的保密工作；<br>④ 保密科学技术的保密工作；</li>
+<li>保密工作是维护社会安定、保障经济建设和各项事业顺利进行的重要条件；<br>① 保密工作是维护社会安定的客观需要；<br>② 保密工作是保障经济建设和发展的需要；<br>③ 做好保密工作是加快信息化建设的保证；</li>
+<li>保密工作是党政军机关正常行使权利、履行职能的需要<br>前言<br>① 做好保密工作是党政军机关实施国家重大国家决策的客观需要；<br>② 做好保密工作是保卫国家安全的客观需要；<br>③ 做好保密工作是党政军机关维护国家统一、民族团结和社会稳定的客观需要</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第三章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作的历史</center></font><br>1.古代保密思想制度简述</p>
+<blockquote>
+<ol>
+<li>夏商：文书</li>
+<li>西周：一合而再离、三发而一知</li>
+<li>秦汉：依次传行</li>
+<li>唐代：《唐律》</li>
+<li>宋、元、明、清：沿用《唐律》。机构：中书省、枢密院、锦衣卫、军机处；</li>
+</ol>
+</blockquote>
+<p>2.革命战争年代的保密工作</p>
+<blockquote>
+<ol>
+<li>中共一大的主张</li>
+<li>中共二大的主张</li>
+<li>1926年1月<br>① 有关文件<br>② 提出了几个问题</li>
+<li>1927年8月7日的主张</li>
+<li>周恩来——中共中央秘密工作委员会</li>
+<li>抗日战争爆发后的新路线</li>
+<li>1942年，毛泽东的主张</li>
+<li>解放战争中，中央保密委员会</li>
+<li>1948年，章程、保密委员会的性质</li>
+</ol>
+</blockquote>
+<p>3.新中国成立后的保密工作</p>
+<blockquote>
+<ol>
+<li>1950年</li>
+<li>1951年</li>
+<li>1952年6月，条例、意义</li>
+<li>1958年，科学技术</li>
+<li>建国之初到60年代</li>
+<li>60年代中期</li>
+<li>1978年</li>
+<li>1980年《关于调整中央保密委员会和加强保密办事机构的通知》</li>
+<li>1983年《关于中央保密委员会的体制改革和机构设置的报告》</li>
+</ol>
+</blockquote>
+<p>4.新时期的保密工作</p>
+<blockquote>
+<ol>
+<li>邓小平同志：1988年</li>
+<li>江泽民同志：保密的重要性</li>
+<li>胡锦涛同志</li>
+<li>十五期间</li>
+<li>2006年5月</li>
+<li>2008、2009、2010</li>
+<li>保密基础理论：《保密工作概论》、《保密管理工作概论》、《保密法学总论》、《保密法概论》、《信息技术保密学》、《信息安全保密教程》</li>
+<li>保密学科建设：国家保密学院（十所）</li>
+<li>修订《保密法》的时间、会议、内容（5条）、意义</li>
+<li>处理好几个关系</li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第四章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密工作面临的形势与任务</center></font><br>1.依然严峻的保密形势</p>
+<blockquote>
+<ol>
+<li>国际间政治经济科技和军事等方面斗争的特点：1）2）3）</li>
+<li>窃密与反窃密的特点：1）2）3）4）5）</li>
+<li>当前保密工作的现状：1）①②③；2）①②③；3）①②；4）①②③；5）①②③</li>
+<li>保密工作存在的问题：背景；1）①②③；2）①②③④；3）①②③；4）①②③</li>
+</ol>
+</blockquote>
+<p>2.当前保密工作的主要任务</p>
+<blockquote>
+<ol>
+<li>当前保密工作的任务：前言；1）①②；2）①②③④⑤；3）①②③<em>④</em>⑤；4）<em>①</em>②③；5）；6）①②<em>③**④</em></li>
+</ol>
+</blockquote>
+<p><font color="red"><center>第五章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密组织机构</center></font><br>1.保密委员会及其机构</p>
+<blockquote>
+<ol>
+<li>什么是保密委员会？</li>
+<li>保密委员会有谁组建？受谁领导？</li>
+<li>地方各级保密委员会的职责：①②③④⑤⑥⑦⑧</li>
+<li>中央、国家机关各部门保密委员会的职责：①②③④⑤⑥⑦⑧<strong><em>⑨</em></strong>⑩</li>
+</ol>
+</blockquote>
+<p>2.保密行政管理部门及其职责</p>
+<blockquote>
+<ol>
+<li>一个机构，两块牌子；</li>
+<li>各级保密行政管理部门的工作职责：①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮</li>
+</ol>
+</blockquote>
+<p>3.保密工作管理体制</p>
+<blockquote>
+<ol>
+<li>管理体制纵向、横向（①②③④⑤⑥）、单位</li>
+<li>专职保密干部任职条件：①②③④⑤⑥</li>
+<li>保密干部配备要求</li>
+</ol>
+</blockquote>
+<h3 id="学习感悟"><a href="#学习感悟" class="headerlink" title="#学习感悟"></a>#学习感悟</h3><blockquote>
+<p>将近背了半个月的时间，今天终于背完前7章、背熟前5章，首先经历了很大的心理战：总觉得背完这些知识是不可能的，毕竟知识点太多了。然而这15天之后带给我的，是更大的信心，不仅仅是背完《保密概论》也是我在以后解决问题时的信心！明天继续开始复习，要把这些知识点在我脑子里“活”起来。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/13/2019.03.13（19）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/13/2019.03.13（19）/" class="post-title-link" itemprop="url">《汇编语言程序设计》学习笔记（三）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-13T00:00:00+08:00">2019-03-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:21" itemprop="dateModified" datetime="2019-04-22T21:55:21+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：<font color="brwon">无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂</font>。下面就写一下相关的学习笔记。</p>
+<h4 id="一、无符号与带符号的转化"><a href="#一、无符号与带符号的转化" class="headerlink" title="一、无符号与带符号的转化"></a>一、无符号与带符号的转化</h4><blockquote>
+<p>无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的<strong>二进制串的表示是不变的</strong>，只不过是二者的解释不同而已。<br><br>问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？</p>
+<h4 id="二、C-语言中的无符号数与带符号数"><a href="#二、C-语言中的无符号数与带符号数" class="headerlink" title="二、C 语言中的无符号数与带符号数"></a>二、C 语言中的无符号数与带符号数</h4><ol>
+<li>常数默认为带符号数，如果有“u”作为后缀，则是无符号数；</li>
+<li>如果无符号数与带符号数混合使用，则带符号数被转化为无符号数；</li>
+<li>sizeof( ) 回的类型为“无符号数”;<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/9rcZ7tDFTmlP3eLXseDTPpSEQDPS2AWy5KS*U9yVIKU!/b/dL8AAAAAAAAA&amp;bo=dgQEAnYEBAIDCSw!&amp;rf=viewer_4" alt><h4 id="三、何时采用无符号数？"><a href="#三、何时采用无符号数？" class="headerlink" title="三、何时采用无符号数？"></a>三、何时采用无符号数？</h4></li>
+</ol>
+<ul>
+<li>模运算</li>
+<li>按位运算</li>
+<li>注意：不能仅仅因为取值范围是非负而是用无符号数，除了以上两类可以用无符号数，其他尽量不要使用无符号数。<h4 id="五、-无符号数的加法"><a href="#五、-无符号数的加法" class="headerlink" title="五、 无符号数的加法"></a>五、 无符号数的加法</h4><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/ZgVl1qkHWt4bXjKW0ISCAklEs04d.KJiekkNrUILH3s!/b/dL8AAAAAAAAA&amp;bo=7QM6Au0DOgIDByI!&amp;rf=viewer_4" alt><br>注意：如果两个很大的无符号数相加，可能会发生溢出<h4 id="六、补码加法"><a href="#六、补码加法" class="headerlink" title="六、补码加法"></a>六、补码加法</h4></li>
+</ul>
+<ol>
+<li>补码加法准则与无符号数的加法无区别，只不过是解释不同。<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/NkJ8wxad3UF291Bs5iLWYRna5ZIBvsUQ8naJ8dxiyIs!/r/dFIBAAAAAAAA" alt></li>
+<li>补码加法的溢出：（正+正、负+负）<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/5rV9*BQeRe51H2JGPCK6xXdWAKEryXsJJwxeKXFtH04!/r/dL8AAAAAAAAA" alt><h4 id="七、无符号整数除以-2-的-K-次幂"><a href="#七、无符号整数除以-2-的-K-次幂" class="headerlink" title="七、无符号整数除以 2 的 K 次幂"></a>七、无符号整数除以 2 的 K 次幂</h4></li>
+</ol>
+<ul>
+<li>采用逻辑右移，右侧补 0 ；</li>
+<li>u &gt;&gt; k gives [ u / 2<sup>k</sup>]；</li>
+<li>小数点右侧全部去掉，不管四舍五入；<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/vSxNLtonC4TFifC*l.uXh4E8*fTD.Urux9b6anpzVoA!/r/dMMAAAAAAAAA" alt><h4 id="八、带符号数整数除以-2-的次幂"><a href="#八、带符号数整数除以-2-的次幂" class="headerlink" title="八、带符号数整数除以 2 的次幂"></a>八、带符号数整数除以 2 的次幂</h4></li>
+<li>采用算数右移；，如果num ≥ 0，算术右移 = 逻辑右移，但是 x &lt; 0，则舍入错误；</li>
+<li>u &gt;&gt; k gives [ x / 2<sup>k</sup>]；<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Fmn8ZfayeRAOIsz*MgGs06D*RmkhdMdnYtUKMIBsI5Q!/r/dFMBAAAAAAAA" alt></li>
+<li><strong>对于负数整数除以 2 的次幂，要加上一个校正，校正值 = 2<sup>k</sup>-1；</strong><h4 id="九、练习题："><a href="#九、练习题：" class="headerlink" title="九、练习题："></a>九、练习题：</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/DOmxWbRkOqzcGO0C2K.4W8ZjMZa9Bl5Cio.olQrNO*k!/r/dL4AAAAAAAAA" alt><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fB3iAnTbsurzYafrtx22eEYWfnRPdHsi8Zo9xv2oyQc!/r/dLYAAAAAAAAA" alt><h4 id="九、学习感悟"><a href="#九、学习感悟" class="headerlink" title="九、学习感悟"></a>九、学习感悟</h4>在今天的学习过程中，好多知识点都没有听懂，而且对于一些学过的基础知识遗忘的太厉害，感觉太被动了，明天开始博客隔一天更新一次：首天学习知识，第二天复习和回顾学过的知识，以及复习 C 语言相关的知识点，要一步一步走稳。<h4 id="十、每日一句"><a href="#十、每日一句" class="headerlink" title="十、每日一句"></a>十、每日一句</h4>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有！</li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/12/2019.03.12（18）/" class="post-title-link" itemprop="url">《汇编语言程序设计》学习笔记（二）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00+08:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:16" itemprop="dateModified" datetime="2019-04-22T21:55:16+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）</p>
+<h4 id="一、计算机中整数的编码方式和操作整数"><a href="#一、计算机中整数的编码方式和操作整数" class="headerlink" title="一、计算机中整数的编码方式和操作整数"></a>一、计算机中整数的编码方式和操作整数</h4><p>1.基本数据类型的大小</p>
+<center>![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)</center>
+
+<p>2.编码方式</p>
+<blockquote>
+<ol>
+<li><em>B2U<sub>w</sub></em>：将二进制转无符号数；</li>
+<li><em>B2T<sub>w</sub></em>：将二进制转补码（带符号数）；</li>
+<li><em>U2B<sub>w</sub></em>：将无符号数转为二进制；</li>
+<li><em>U2T<sub>w</sub></em>：将无符号数转补码；</li>
+<li><em>T2B<sub>w</sub></em>：将补码转二进制；</li>
+<li><em>T2U<sub>w</sub></em>：将补码转无符号数；</li>
+<li><em>TMin<sub>w</sub></em>：最小补码值；</li>
+<li><em>TMax<sub>w</sub></em>：最大补码值；</li>
+<li><em>UMax<sub>w</sub></em>：最大无符号数;<center>![](http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/marbAH7nzGGsI6Ek6SrQOunxob95AbS49zS*efkpgEM!/m/dEYBAAAAAAAAnull&bo=WgQ6AloEOgIDCSw!&rf=photolist&t=5)</center></li>
+</ol>
+</blockquote>
+<p>3.操作整数</p>
+<blockquote>
+<ol>
+<li><em>+&nbsp;<sup>t</sup><sub>w</sub></em>：补码加法；</li>
+<li><em>+&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数加法；</li>
+<li><em>*&nbsp;<sup>t</sup><sub>w</sub></em>：补码乘法；</li>
+<li><em>*&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数乘法；</li>
+<li><em>-&nbsp;<sup>t</sup><sub>w</sub></em>：补码取反；</li>
+<li><em>-&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数取反；</li>
+</ol>
+</blockquote>
+<p>注：B ——二进制、T/t——补码、U/u——无符号数、w在这里表示数据表示中的位数</p>
+<h4 id="二、数值的定点与浮点表示"><a href="#二、数值的定点与浮点表示" class="headerlink" title="二、数值的定点与浮点表示"></a>二、数值的定点与浮点表示</h4><blockquote>
+<p><strong>1. 浮点数：</strong>由于“指数”的存在以及它的大小不同而使数字部分的小数点位置不同，也可以这样理解，小数点的位置可以是“浮动的”，所以称之为浮点数形式；（在计算机内部，凡实数（即以小数形式所表示的数）都以浮点形式存储）<br><strong>2. 定点数：</strong>凡不带指数部分的数称为定点数，整数都属于定点数；</p>
+<h4 id="三、无符号整数和带符号整数"><a href="#三、无符号整数和带符号整数" class="headerlink" title="三、无符号整数和带符号整数"></a>三、无符号整数和带符号整数</h4><p>1.如何表示正负？<br><strong>1. 可以根据自己决定是否需要正负：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就像我们必须决定某个量使用整数还是实数，使用多大的范围数一样，我们必须自已决定某个量是否需要正负。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在计算机中，可以区分正负的类型，称为<font color="red">有符类型（声明signed）</font>，无正负的类型（只有正值），称为<font color="red">无符类型（声明unsigned）</font>。数值类型分为<strong>整型</strong>或<strong>实型</strong>，其中<font color="brwon">整型又分为无符类型或有符类型，而实型则只有符类型。字符类型也分为有符和无符类型。 </font>比如有两个量，年龄和库存，我们可以定前者为无符的字符类型，后者定为有符的整数类型。<br><strong>2. 二制数中的最高位表示正负：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①指定一个数量是无符号类型时，最高位被称为“符号位”：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最高位为<font color="red">“1”</font>表示该数为<font color="red">负值</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最高位为<font color="red">“0”</font>表示该数为<font color="red">正值</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②指定一个数量是无符号类型时，那么其最高位的1或0，和其它位一样，用来表示该数的大小。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：signed number：1111 1111 的值为 -1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned number：1111 1111 的值为 255</p>
+</blockquote>
+<p>2.有符号数和无符号数的取值范围</p>
+<blockquote>
+<p>▶ 无符号数：UMin（000…0） = 0&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;UMax(111…1) = 2<sup>w</sup>-1<br>▶ 带符号数（补码）：TMin（100…0） = -2<sup>w</sup>-1&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;TMax(011…1) = 2<sup>w-1</sup>-1<br><br>例如：一个字节数来说<br>▶ 无符号数：0~255<br>▶ 有符号数：-128~127<br>虽然有符号数的最大值缩水了，却在负值的方向出现了伸展，但二者能表达的不同的数值的个数都一样是256个。只不过前者表达的是0到255这256个数，后者表达的是-128到+127这256个数。<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/rRjZmKfxKMPeuDNqswo3jBeH4M9yrrzxSho9a4OLRQQ!/m/dDIBAAAAAAAAnull&amp;bo=cgRbAnIEWwIDCSw!&amp;rf=photolist&amp;t=5" alt></p>
+<h4 id="四、原码、反码和补码"><a href="#四、原码、反码和补码" class="headerlink" title="四、原码、反码和补码"></a>四、原码、反码和补码</h4><p>1.反码与补码的作用<br>▶ 反码：解决负数加法运算问题，将减法运算转换为加法运算，从而简化运算规则；<br>▶ 补码：解决负数加法运算正负零问题，弥补了反码的不足。<br><br>总之，反码与补码都是为了解决负数运算问题，跟正数没关系，因此，不管是正整数还是正小数，原码，反码，补码都全部相同。</p>
+</blockquote>
+<p>2.无符号数的原码、反码和补码</p>
+<blockquote>
+<p>因为无符号数只有正数（无符号位）所以：</p>
+<center>原码 = 反码 = 补码 </center>
+
+</blockquote>
+<p>3.有符号数的原码、反码和补码</p>
+<blockquote>
+<p>▶ 正数：原码 = 反码 = 补码<br>▶ 负数：反码 =  原码（除符号位外）每位取反；补码 = 反码 + 1；</p>
+</blockquote>
+<p>4.极易混淆和犯错的知识</p>
+<blockquote>
+<p>在10进制中，1 就代表了 +1，-1 表示和 1 相对的负值，那么就会在二进制（1 个字节）中有个这样的错误认识：1 的二进制为 0000 0001，因为符号位“0”表示正数，“1”表示负数，所以就会认为 1000 0001 应该表示为 -1。这种理解是错误的，事实上计算机的规定相反，-1 的表示方式为：</p>
+<ul>
+<li>先取 -1 的<strong>原码</strong>：1000 0001</li>
+<li>-1（0000 0001） 的原码取反得<strong>反码</strong>：1111 1110</li>
+<li>反码加 1 得<strong>补码</strong>：1111 1111</li>
+</ul>
+<p><font color="red">可见，－1在计算机里用二进制表达就是全1。16进制为：0xFFFFFF。</font></p>
+<h4 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h4><p>今天总结的大部分知识都是在学习 C 语言中学到的，相比当时学的时候，今天的再学习让我感觉对这方面的知识又更加深刻了，还是在于那句话：学习是一个过程，需要“温故知新”。以后还的继续回顾以前的知识，可能学到的东西和理解的层面，完全要比当时的更好，加油吧！</p>
+<h4 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h4><p>只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/11/2019.03.11（17）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/11/2019.03.11（17）/" class="post-title-link" itemprop="url">《汇编语言程序设计》学习笔记（一）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-11T00:00:00+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:12" itemprop="dateModified" datetime="2019-04-22T21:55:12+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天被通知测试停止，认真的准备复试，我想着在复习剩余的时间不能停止学习，这几天正好是第二阶段测试，我想趁这个时间段好好学习一下汇编语言，课程是清华大学的“汇编语言程序设计”网上课程，这几天我会在博客上更新每天学到的知识点。</p>
+<h4 id="一、课程内容与目标"><a href="#一、课程内容与目标" class="headerlink" title="一、课程内容与目标"></a>一、课程内容与目标</h4><blockquote>
+<ol>
+<li>基本知识<br>这门课程主要讲述的是<font color="red">各类指令集的初步、数制与整数表示、浮点数表示</font></li>
+<li>x86汇编</li>
+</ol>
+<ul>
+<li>80x86计算机组织与保护模式</li>
+<li>x86指令系统与寻址方式</li>
+<li>C 与 x86 汇编</li>
+<li>x86 汇编语言程序格式与基本编程</li>
+</ul>
+<ol>
+<li>MIPS 汇编</li>
+</ol>
+<ul>
+<li>MIPS 计算机组织的初步</li>
+<li>指令系统介绍</li>
+<li>汇编代码与异常处理<h4 id="二、X86指令集简介"><a href="#二、X86指令集简介" class="headerlink" title="二、X86指令集简介"></a>二、X86指令集简介</h4></li>
+</ul>
+<ol>
+<li>X86指令集的基本特色</li>
+</ol>
+<ul>
+<li>向下兼容</li>
+<li>变长指令：1—15字节，多数为2—3字节</li>
+<li>多种寻址方式（可访问不对齐内存地址）<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/i3Wc1M4mO6HH9hpEU09eng5hgqNht.WFly6ijzdaifs!/m/dL4AAAAAAAAAnull&amp;bo=dgNfAXYDXwERBzA!&amp;rf=photolist&amp;t=5" alt></li>
+<li>指令集的通用寄存器个数有限<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X86-32系统下拥有8个通用寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X86-64系统下拥有16个通用寄存器</li>
+<li>至多只有一个操作数在内存中，另一个操作数为立即数会寄存器</li>
+</ul>
+<ol>
+<li>X86-32/64 通用寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r8d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rdx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r9d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rcx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ecx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r10d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rbx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r11d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r12d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rdi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%edi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r13d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r14d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%rbp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%r15d<br>▶ %rax 作为函数返回值使用；<br>▶ %rsp 栈指针寄存器，指向栈顶；<br>▶ %rdi，%rsi，%rdx，%rcx，%r8，%r9 用作函数参数，依次对应第1参数，第2参数……<br>▶ %rbx，%rbp，%r12，%r13，%14，%15 用作数据存储，遵循被调用者使用规则，简单说就是随便用，调用子函数之前要备份它，以防他被修改；<br>▶ %r10，%r11 用作数据存储，遵循调用者使用规则，简单说就是使用之前要先保存原值；<br><strong>注</strong>：<font color="brwon">X86-64中，所有寄存器都是64位，相对32位的x86来说，标识符发生了变化，比如：从原来的%ebp变成了%rbp。为了向后兼容性，%ebp依然可以使用，不过指向了%rbp的低32位。X86-64寄存器的变化，不仅体现在位数上，更加体现在寄存器数量上。新增加寄存器%r8到%r15。加上x86的原有8个，一共16个寄存器。</font></li>
+<li>X86指令集缺点</li>
+</ol>
+<ul>
+<li>向下兼容导致指令集雨来越大、越复杂；</li>
+<li>很多领域而言，资源利用率低<h4 id="三、整数的机器表示"><a href="#三、整数的机器表示" class="headerlink" title="三、整数的机器表示"></a>三、整数的机器表示</h4></li>
+</ul>
+<ol>
+<li>预备知识</li>
+</ol>
+<ul>
+<li>特别注意的是在X86里，一个字（Word）占2个字节（Byte）；</li>
+<li>逻辑运算：<br>▶ “与（AND）∧—&amp;”：0:0=0；0:1=0；1:0=0；1:1=1<br>▶ “或（OR）∨— |”：0:0=0；0:1=1；1:0=1；1:1=1<br>▶ “异或（XOR）”：0:0=0；0:1=1；1:0=1；1:1=0<br>▶ “非（NOT）”：0=1；1=0</li>
+</ul>
+<ol>
+<li>数的机器表示</li>
+</ol>
+<ul>
+<li>机器字长：<strong>一般指计算机进行一次整数运算所能处理的二进制数据的位数，通常也包括数据地址长度。</strong></li>
+<li><strong>32位字长：</strong>地址的表示空间为 4 GB，所以对于很多内存需求量大的应用而言，非常有限；</li>
+<li><strong>64位字长：</strong>地址的标识空间约为1.8 × 10<sup>19</sup>bytes，而目前的X86-64机型实际支持48位宽的地址：256TB；</li>
+</ul>
+<ol>
+<li>机器字在内存中的组织<br>地址按照字节来定位：机器字中的第一个字节的地址；相邻机器字的地址相差4byte或8byte，<font color="brwon">例如32位第一位Address = 0000，那么第二位Address = 0004，第三位Address = 0008；64位第一位Address = 0000，那么第二位Address = 0008，第三位Address = 0016；</font></li>
+<li>字节序<br>▶ 一个机器字节内的各个字节如何排列的呢？</li>
+</ol>
+<ul>
+<li>Big Endian：Sun ,PowerPC,Internet——低字节（LSB）占据高地址；</li>
+<li><strong>Little Endian：X86——与LSB相反</strong><img src="http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/kGJNHLaZvdyW3mZ4Xnqd0lcUvQZizyxgs*ds3xXBVZQ!/m/dL8AAAAAAAAAnull&amp;bo=jQMPAY0DDwEDByI!&amp;rf=photolist&amp;t=5" alt></li>
+</ul>
+<p>注：主要了解Little Endian是低字节对低地址，高字节对高地址</p>
+<p><center>![](http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/LSE91PXDu4O8zzlmzOzPZwb6PWuDDomkPeU48F0bcic!/m/dL4AAAAAAAAAnull&bo=cwRfAnMEXwIDByI!&rf=photolist&t=5)</center></p>
+<h4 id="四、学习疑问"><a href="#四、学习疑问" class="headerlink" title="四、学习疑问"></a>四、学习疑问</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 寄存器的工作原理到底是什么样的？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 多种寻址方式是什么意思？</p>
+<h4 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上内容就是今天学习的笔记，也有在学习中遇到的问题和心得。之所以要把老师讲的东西总结下来，就是想通过自己的思考，努力让这门课在我心里成为一个体系。接下来的几天我还是继续学习汇编语言，对学习的知识进行总结，并及时的记录下自己的疑问和不懂的地方。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以后在平常生活中，自己也得多查阅一下相关知识的博客和资料，争取缩短学习周期，跟上大神的步伐。</p>
+<h4 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法。 </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/10/2019.03.10（16）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/10/2019.03.10（16）/" class="post-title-link" itemprop="url">Binary Bombs——汇编语言学习总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-10T00:00:00+08:00">2019-03-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:55:02" itemprop="dateModified" datetime="2019-04-22T21:55:02+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天晚上拿到了第二阶段的测试，是关于逻辑炸弹的题目，涉及的知识点有：<font color="red">汇编语言、机器语言、调试器和逆向工程</font>，自己根据文档的提示尝试了一下，但是对汇编语言的指令读不懂，今天的主要任务就是对汇编语言进行了学习，就先简单的总结一下今天所学的只是吧！</p>
+<h4 id="1-什么是汇编语言？"><a href="#1-什么是汇编语言？" class="headerlink" title="1. 什么是汇编语言？"></a>1. 什么是汇编语言？</h4><blockquote>
+<p>汇编语言（assembly language）是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。其特点主要有以下：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①它是在直接面向处理器的语言；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②它所操作的对象为<font color="red">寄存器</font>或<font color="red">内存器</font>，而得具体的数据；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③因为汇编语言与机器有着密切的关系，所以他的通用性和可移植性要比高级语言低；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">④相比各种编程语言，它与硬件关系最为密切、最直接；</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤再进行处理数据时，需要自己将数据熊相应的寄存器或者内存器取出；<br><br>也可以简单的这样叙述：（参考：《深入理解计算机系统》）</p>
+<ol>
+<li>预处理阶段：预处理器（cpp）根据以字符#开头的命令，修改原始的 C 程序，得到以 .i 为文件扩展名的另外一个 C 程序；</li>
+<li>编译阶段：编译器（ccl）将文本文件  .i 翻译成  .s 的文本文件，它包含一个汇编语言程序；</li>
+<li>汇编阶段：汇编器（as） 将 .s 的文本文件翻译成机器语言指令，把这些指令打包成一种可重定位目标程序的格式，并将结果保存在目标文件 .o 中，该文件为二进制文件。</li>
+<li>链接阶段：如果源程序调用了“printf函数”，因为 printf 函数存在一个名为 printf.o 的单独预编译好的目标文件中，就需要链接（Id）负责将该文件以某种方式合并到  .o 文件中，就得到了可执行文件，被加载到内存中，由系统执行。<h4 id="2-汇编语言的部分指令"><a href="#2-汇编语言的部分指令" class="headerlink" title="2. 汇编语言的部分指令"></a>2. 汇编语言的部分指令</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;汇编语言指令是机器指令的一种符号表示，而不同类型的CPU 有不同的机器指令系统，也就有不同的汇编语言,所以，汇编语言程序与机器有着密切的关系。所以，除了同系列、不同型号CPU 之间的汇编语言程序有一定程度的可移植性之外，其它不同类型CPU 之间的汇编语言程序是无法移植的，这里讲的主要是Inter公司CPU使用汇编语言，也是我们经常使用到的——<font color="red">x86</font>汇编语言的指令。<br>一、数据传送指令</li>
+</ol>
+<ul>
+<li><font color="red">通用数据传送指令：MOV（movb、movw、movl、movq、movabsq）</font></li>
+<li>条件传送指令：CMOVcc</li>
+<li><font color="red">堆栈操作指令：PUSH/PUSHA/PUSHAD/POP/POPA/POPAD</font></li>
+<li>交换指令：XCHG/XLAT/BSWAP</li>
+<li>地址或段描述符选择子传送指令：LEA/LDS/LES/LFS/LGS/LSS等</li>
+</ul>
+<p>二、整数和逻辑运算指令</p>
+<ul>
+<li>加法指令：ADD/ADC</li>
+<li>减法指令：SUB/SBB</li>
+<li>加一指令：INC</li>
+<li>减一指令：DEC</li>
+<li>比较操作指令：CMP</li>
+<li>乘法指令：MUL/IMUL</li>
+<li>除法指令：DIV/IDIV</li>
+<li>符号扩展指令：CBW/CWDE/CDQE</li>
+<li>十进制调整指令：DAA/DAS/AAA/AAS</li>
+<li>逻辑运算指令：NOT/AND/OR/XOR/TEST</li>
+</ul>
+<p>三、移位指令</p>
+<ul>
+<li>逻辑左移指令：SHL</li>
+<li>逻辑右移指令：SHR</li>
+<li>算术左移指令：SAL</li>
+<li>算术右移指令：SAR</li>
+<li>循环左移指令：ROL</li>
+<li>循环右移指令：ROR</li>
+</ul>
+<p>四、位操作指令</p>
+<ul>
+<li>测试指令：BT</li>
+<li>位测试并置位指令：BTS</li>
+<li>位测试并复位指令：BTR</li>
+<li>位测试并取反指令：BTC</li>
+<li>位向前扫描指令：BSF</li>
+<li>位向后扫描指令：BSR</li>
+</ul>
+<p>五、控制转移指令</p>
+<ul>
+<li>无条件转移指令：JMP</li>
+<li><font color="red">条件转移指令：Jcc/JCXZ</font></li>
+<li><font color="red">循环指令：LOOP/LOOPE/LOOPNE</font></li>
+<li><font color="red">过程调用指令：CALL</font></li>
+<li>子过程返回指令：RET</li>
+<li>中断指令：INTn、INT3、INTO、IRET</li>
+</ul>
+<p>六、输入输出指令</p>
+<ul>
+<li>端口输入指令：IN/INS</li>
+<li>端口输出指令：OUT/OUTS<h4 id="3-待解决的问题"><a href="#3-待解决的问题" class="headerlink" title="3. 待解决的问题"></a>3. 待解决的问题</h4></li>
+</ul>
+<ol>
+<li>对寄存器和内存器的理解；</li>
+<li>看懂汇编语言指令；</li>
+<li>gdb指令的使用<h4 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天了解了计算机系统底层的一些东西，虽然我没有太过于了解，但是我隐约的有一种感觉：如果要了解了这些细节的实现，在后面的学习中一定会学的更加透彻。但是今天接触到这些知识点，实着感觉到了难度和压力！这也是我以后要学好这门课的巨大动力！加油吧！明天继续学习。<h4 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h4>把每件小事都做好，那么离成功就不远了。</li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/09/2019.03.09（15）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/09/2019.03.09（15）/" class="post-title-link" itemprop="url">正则表达式总结（1）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-09T00:00:00+08:00">2019-03-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:54:56" itemprop="dateModified" datetime="2019-04-22T21:54:56+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对Web：Calculator题目做了详细的分析，但是有一个知识点（正则表达式）总结的不是很详细。当时做题的时候也正是正则表达式阻碍了很长时间，今天就详细的总结一下正则表达式的内容。</p>
+<h4 id="1-什么是正则表达式？"><a href="#1-什么是正则表达式？" class="headerlink" title="1.什么是正则表达式？"></a>1.什么是正则表达式？</h4><blockquote>
+<p>正则表达式，又称规则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是一种文本模式，描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。</p>
+<h4 id="2-正则表达式的功能？"><a href="#2-正则表达式的功能？" class="headerlink" title="2.正则表达式的功能？"></a>2.正则表达式的功能？</h4><p>（1）验证字符串是否符合指定特征，比如验证是否是合法的邮件地址；<br>（2）用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便；<br>（3）用来替换，比普通的替换更强大；</p>
+<h4 id="3-正则表达式的语法？"><a href="#3-正则表达式的语法？" class="headerlink" title="3.正则表达式的语法？"></a>3.正则表达式的语法？</h4><p><font color="red"><strong>（1）普通字符</strong></font><br>普通字符包括没有显式指定为元字符的<strong>所有可打印和不可打印</strong>字符。</p>
+<ul>
+<li><strong>可打印字符</strong>：是在包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。</li>
+<li><strong>不可打印字符</strong>：“\”为转义字符，在指定字母前面加上“\”，则表达的含义就不同了。但是还有其他一些有特殊用处的标点符号，在前面加 “\” 后，就代表该符号本身。比如：\^, $ 都有特殊意义，如果要想匹配字符串中 “^” 和 “$” 字符，则表达式就需要写成 “\\^” 和 “\$“<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/SIFqVBN4to67M1Q3*jDbjcmdrbh6RlY.uThaRLq6f1c!/b/dL4AAAAAAAAA&amp;bo=RAOVAUQDlQEDCSw!&amp;rf=viewer_4" alt></li>
+</ul>
+</blockquote>
+<p><font color="red"><strong>（2）元字符</strong></font></p>
+<blockquote>
+<p>所谓元字符就是指那些在正则表达式中具有特殊意义的专用字符，可以用来规定其前导字符（即位于元字符前面的字符）在目标对象中的出现模式。它是一个或一组代替一个或多个字符的字符。下图为元字符的总结，其中红色区域的为经常使用的。<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/Ao7ldqqLiAaW.u76KXR4b5L*tV2CYXMeoCg1YSDxhqA!/b/dL4AAAAAAAAA&amp;bo=QgM1AkIDNQIDCSw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/272gf6z6Rhq*XhZzE8XxfGNJLY1*7hzgRCjC3WI.aWU!/b/dL4AAAAAAAAA&amp;bo=QgNOAkIDTgIDGTw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/kuTmytSMhNiPA2j.pYY0UR5UENdaBEJeyn8cJ8Z2KVw!/b/dL8AAAAAAAAA&amp;bo=QgNiAkIDYgIDGTw!&amp;rf=viewer_4" alt><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/ZEWHp4gKU83Vtyp.isvvArmmz4U7JXz6WqOddXb60TU!/b/dFIBAAAAAAAA&amp;bo=QgMsAkIDLAIDCSw!&amp;rf=viewer_4" alt><br><br>注：昨天在calculator题目里面，我当时用写的正则表达式为<font color="red">r’&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’</font>，因为我想获取的内容是那个算术公式，所以我要返回给compile的为&lt; form&gt;标签中&lt; span&gt;标签的内容。因为<font color="red">&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;  &lt; /span&gt;</font>是可打印的字符，直接写就可以。而(.*?)表示的意思是：“ . ”是匹配除换行符（\n、\r）之外的任何单个字符。“ * ”是匹配前面的子表达式零次或多次。” .* “表示单个字符匹配任意次。“ ? ”表示匹配模式是非贪婪的，即满足条件的情况只匹配一次。“ ( ) ”在python中表示匹配括号内的表达式，也表示一个组。<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/bmAZW.k4P9N.a9N938e0y*xOMWesy*mdxfmt1A.Y1K4!/b/dL4AAAAAAAAA&amp;bo=3gKVAN4ClQADCSw!&amp;rf=viewer_4" alt></p>
+<h4 id="4-运算符的优先级？"><a href="#4-运算符的优先级？" class="headerlink" title="4.运算符的优先级？"></a>4.运算符的优先级？</h4><ol>
+<li>\     ——&gt; 转义符</li>
+<li>(), (?:), (?=), [] ——&gt; 圆括号和方括号</li>
+<li>*, +, ?, {n}, {n,}, {n,m} ——&gt; 限定符</li>
+<li>^, $, \任何元字符、任何字符 ——&gt; 定位点和序列（即：位置和顺序）</li>
+<li>| ——&gt; 替换，”或”操作字符具有高于替换运算符的优先级，使得”m|food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m|f)ood”。<h4 id="5-学习感悟"><a href="#5-学习感悟" class="headerlink" title="5. 学习感悟"></a>5. 学习感悟</h4>今天总结的内容，其实是我这几天学习正则表达式的一个总结，因为我还没有彻底学完学懂正则表达式的具体使用和使用规则，所以今天的知识点不全，等以后学懂正则表达式以后，再回来更博吧！（ps：个人在学习正则表达式的过程，有点感觉吃力，感觉知识点有点难）</li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/08/2019.03.08（14）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/08/2019.03.08（14）/" class="post-title-link" itemprop="url">Web：Calculator解题总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-08T00:00:00+08:00">2019-03-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:54:50" itemprop="dateModified" datetime="2019-04-22T21:54:50+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这几天做出来的题目，难度最大且花费时间最长的莫不过Web：Calculator和Web：RapidTyping，今天又对Web：Calculator这道题目的脚本做了一下改善，并分析了一下GET和POST的区别。</p>
+<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
+<ul>
+<li>工具：谷歌浏览器</li>
+<li>知识：python Requests模块（POST | GET | Session()）、Re模块（findall() | compile()）、正则表达式、eval()<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2. 思考过程"></a>2. 思考过程</h3>1.如何计算网页上的算数公式，并提交成功，服务器响应请求呢？<br>这是在做这道题首先要弄明白的问题，只有将整个流程搞懂、弄清，才能分布的去解题：<br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="brwon">①首先要获取网页地址，得到网页上的文本；<br>&nbsp;&nbsp;&nbsp;&nbsp;②把相应的算术公式“拿出来”单独计算，得到结果（answer）；<br>&nbsp;&nbsp;&nbsp;&nbsp;③把所得结果如何提交给请求服务器，返回相应的内容；<br>&nbsp;&nbsp;&nbsp;&nbsp;④如何让服务器知道获得算式的和提交答案的是一个人；</font><br>在正式做题前，我将这个问题拆分为这四步，但是每一步是如何实现的呢？这就有了以下的分析。</li>
+</ul>
+</blockquote>
+<p>2.如何请求获取网页上的内容？</p>
+<blockquote>
+<p>对于获取网页所用的协议为HTTP的原理，其实这个知识点在前面的流量分析中有所提及（<a href="https://muzibing.github.io/2019/03/01/2019.03.01%EF%BC%887%EF%BC%89/">GET和POST的区别</a>），今天就不过多的谈及，那么今天主要讲一下python Requests库中关于两者使用的语法：<br>&nbsp;&nbsp;&nbsp;&nbsp;①首先要<strong>导入requests模块</strong>（它是一个python HTTP库），因为post和get请求都被包含在这个模块中；<br>&nbsp;&nbsp;&nbsp;&nbsp;②GET：如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个?的后面。例如，httpbin.org/get?key=val。 Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">r = requests.get(“url”, <strong>params</strong>={‘key’:value})</font><br>&nbsp;&nbsp;&nbsp;&nbsp;②POST：通常，想要发送一些编码为表单形式的数据——非常像一个 HTML 表单。要实现这个，只需简单地传递一个字典给 data 参数。数据字典在发出请求时会自动编码为表单形式：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = requests.post(“url”, <strong>data</strong>=payload)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(r.text)</font><br>那么对于第①个问题就有了相应的解决办法，那么怎么解决获取算术公式，并加以计算这个问题呢？</p>
+</blockquote>
+<p>3.如何得到要求计算式子的结果呢？</p>
+<blockquote>
+<p>这里也应该相应的进行拆分分析：</p>
+<p><font color="red">1. 我如何才能获取那些数字和计算符号呢？</font><br>通过查阅有关资料，得到了re模块的两个函数<strong>“re.findall()”</strong>和<strong>“re.compile()”</strong>以及有关正则表达式的应用:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>re.findall()</strong>：Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match.（返回字符串中pattern的所有非重叠匹配，作为字符串列表。从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。结果中包含空匹配，除非它们触及另一个匹配的开头）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是官方对re.findall()定义</p>
+<p><center><font color="red">findall(patern, string, flags=0)</font></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>pattern</strong>: 正则中的模式字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>string</strong>: 要被查找替换的原始字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>flags</strong>: 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>re.compile()</strong>：Compile a regular expression pattern, returning a pattern object.（编译正则表达式模式，返回模式对象）这是官方对compile()的定义，可以看出返回的是一个匹配对象，它单独使用就没有任何意义，需要和findall(), search(), match(）搭配使用。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了上面两个重要函数的功能后，就对要获取方法有了目标：①先通过re.compile()将正则表达式的字符串形式编译为Pattern实例，②然后通过re.findall() 从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>正则表达式</strong>：如何使用正则表达式呢？这里就不过多叙述，在下面的解题的时候有所涉及。<br><br><font color="red">2. 如何将提取的算术公式进行运算呢？</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面我们通过re.compile()he re.findall()函数，得到了网页上的算数公示（一个字符串），那么如何将这个字符串进行运算呢？下面再引进一个函数：<br><br><center>**eval(expression, globals=None, locals=None)**</center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方文档中的解释是，eval()可以将字符串str当成有效的表达式来求值并返回计算结果。globals和locals参数是可选的，如果提供了globals参数，那么它必须是dictionary类型；如果提供了locals参数，那么它可以是任意的map对象。</p>
+</blockquote>
+<p>4.在向服务器提交结果时，如何让服务器知道获得算式的和提交答案的是一个人？</p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一开始向服务器发送了请求，并获得了结果，但是在提交答案的时候，服务器怎么知道你是谁？通过查阅资料，引入了<strong>Requests库的Session对象</strong>：session对象能够帮我们跨请求保持某些参数，也会在同一个session实例发出的所有请求之间保持同一个cookies，那么就可以通过相同的cookies让服务器知道获得算式的和提交答案的是一个人。</p>
+<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><p>有了上述的分析和知识后，现在可以进行编写python脚本解题了。下面直接给出代码：</p>
+<pre><code class="lang-python">1  import re 
+2  import requests
+3  t = requests.Session()  
+4  url = &#39;http://web1.blue-whale.me:23331/calculator/&#39;
+5  r = t.get(url)
+6  r.encoding = &#39;utf-8&#39;  
+7  print(r.text)
+8  num = re.findall(re.compile(r&#39;&lt;form action=&quot;&quot; method=&quot;GET&quot;&gt;&lt;span id=&quot;exp&quot;&gt;(.*?)\s+=\s+&lt;/span&gt;&#39;), r.text)[0]  
+9  print (&#39;result:\n\n%s=%d\n&#39; % (num, eval(num))) 
+10 ans=eval(num)
+11 flag = t.get(url, params={&#39;answer&#39;:ans})  
+12 print(flag.text)
+</code></pre>
+<p><font color="red">1.import re</font>  ##这里是导入python的re模块，因为后面用到了re模块的findall()和compile()；</p>
+<p><font color="red">2.import requests</font>  ##这里是导入python的requests模块，因为后面用到了requests模块的session()、get()和post()；</p>
+<p><font color="red">3.t = requests.Session()  </font>  ##生成cookies，为了让服务器知道获得算式的和提交答案的是一个人；</p>
+<p><font color="red">4.url = ‘<a href="http://web1.blue-whale.me:23331/calculator/" target="_blank" rel="noopener">http://web1.blue-whale.me:23331/calculator/</a>‘</font>   ##实验网址，为了以后输入简便直接复制给url对象；</p>
+<p><font color="red">5.r = t.get(url)</font>   ##通过get获取目的网址，生成一个名为 r 的 Response 对象，我们就可以在这个对象中获取我们想要的信息；</p>
+<p><font color="red">6.r.encoding = ‘utf-8’ </font>  ##修改编码 ，因为后期要读取 r 响应对象的信息，而我们在目标地址中看到的ContentType：text/html charset=‘UTF-8’，所以编码为“utf-8”<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0vsw2nmukj20lt06b0t5.jpg" alt></p>
+<p><font color="red">7.print(r.text)</font>  ##打印 r 响应对象的文本内容，如下图；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsw9bdd0j20hu0d30t1.jpg" alt></p>
+<p><font color="red">8.num = re.findall(re.compile(r’&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’), r.text)[0] </font><br>&nbsp;&nbsp;&nbsp;&nbsp;▶ compile括号中的内容：r为转义字符；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶ ‘ ’中的是提取算术表达式的正则表达式；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶ (.*?)表示要返回的列表；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶  \s+表示一个空格；</p>
+<p><font color="red">9. print (‘result:\n\n%s=%d\n’ % (num, eval(num)))</font>  ##打印结果<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vswmdb53j20bt022gle.jpg" alt></p>
+<p><font color="red">10.ans=eval(num)</font>  ##将提取的算术公式进行计算的结果赋值给ans变量；</p>
+<p><font color="red">11. flag = t.get(url, params={‘answer’:ans})</font>  ##因为method被设置为get，所以在这里只能用get的方法进行提交；因为我尝试提交了一下，返回的网页后面的params为answer，所以这里的key值为answer，就被自动被设置为?anwers=ans；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsweeegjj20nv06qjrs.jpg" alt><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswhrom7j20oi06saaq.jpg" alt></p>
+<p><font color="red">12. print(flag.text)</font> ## 打印返回的网页；<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswp0xq8j20hh059wef.jpg" alt></p>
+<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4.学习感悟"></a>4.学习感悟</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的总结，我感觉比我当时做题还难，这也许就是落实的难度大的原因吧！今天又写总结的地方，我感觉缺漏和不足还有很多，以后学习的过程中还得回来不断的更新，慢慢的积累吧！</p>
+<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。 </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/03/07/2019.03.07（13）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/2019.03.07（13）/" class="post-title-link" itemprop="url">Misc：Invisible flag解题总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-07T00:00:00+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:54:45" itemprop="dateModified" datetime="2019-04-22T21:54:45+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对隐写题做了个大概的总结，发现关于图片的信息隐写的总结还不完整，对于png格式的图像只是说了LSB方法，今天看到Misc：Invisible flag题目，再来说一个关于png隐写的类型：实质还是通过png格式的结构来隐写的。</p>
+<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h3><blockquote>
+<ul>
+<li>工具：<a href="https://pan.baidu.com/s/118KMMOZq5mgKI-tZa7stpA?errno=0&amp;errmsg=Auth%20Login%20Sucess&amp;&amp;bduss=&amp;ssnerror=0&amp;traceid=#list/path=%2Fsharelink4279067727-614006013808662%2F5646&amp;parentPath=%2Fsharelink4279067727-614006013808662" target="_blank" rel="noopener">010editor</a></li>
+<li>知识：png格式的文件结构<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2.思考过程"></a>2.思考过程</h3>1.png图片文档结构是什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实这个问题在昨天的总结里面已经有过介绍，但是有关png图片文件的结构对今天的解题至关重要，那么在详细地讲述一下。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png除了开始的文件标识头，PNG还定义了两种数据块：关键数据块和辅助数据块。关键数据块定义了<strong>4</strong>个标准的数据块（<font color="red">文件头数据块-IHDR、调色板数据块（PLTE）、图像数据块-IDAT、图像结束数据块-IEND</font>），除了调色板数据块（PLTE）可选，其他三个是png数据块中必须包含的3个数据块，其他辅助数据块也可以选择性的添加。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png数据流中每个数据块都是有4个部分构成：数据块长度（4byte）、数据块标识（4字节）、数据内容（长度可变）和CRC校验码（4byte）。下面我就说一下这文件标识和4个标准数据块：<br><br><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>①文件标识头：</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始的四个字节固定为<font color="brown">89 50 4E 47 0D 0A 1A 0A</font> (第一个字节为89，超出了ascii表的范围，目的是为了避免将png图像当做文本文件处理)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>②文件头数据块（IHDR）：</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最重要的为文件头数据块，每个png的数据流中只包含一个IHDR，并作为第一个数据块出现在PNG数据流中，包含了png文件中（数据内容）存储了<strong>图像的基本信息</strong>：图像宽度（4byte）、图像高度（4位）、颜色深度（1byte）、颜色类型（1byte）、压缩方法（使用LZ77派生压缩 | 1byte | 规定此字节为0）、滤波器方法（通常此字节为0 | 1byte）、隔行扫描方法（非隔行扫描：0 ，7遍隔行扫描方法：1 | 1byte ）和CRC校验（4byte）<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>③调色板数据块（PLTE）</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;含有与索引彩色图像相关的彩色变换数据，它仅与索引彩色图像有关，位置要放在图像数据块之前。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>④图像数据块（IDAT）</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDAT是一个多数据块，因为PNG的图像数据块（IDAT）存储图像的实际数据，相当于BMP图像的图像数据，由于PNG可包含多幅图像，所以PNG的图像数据块可能是由一幅图像的数据组成，也可能是由多幅图像的数据组成。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于图像数据块是压缩数据，如果能够掌握压缩和解压缩的方法，那么就能轻易而举地将其它类型的图片与PNG图片进行转换。<br><br><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">⑤图像结束数据块（IEND） </font></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标记PNG文件或者数据流已经结束，并且必须要放在文件的尾部。一共有12个字节，如果没有人为进行修改，那么这12个字节通常为：00 00 00 00 49 45 4E 44 AE 42 60 82</li>
+</ul>
+</blockquote>
+<p>2.010editor软件的功能是什么？</p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010编辑是一款非常强大的文本/十六进制编辑器，除了文本/十六进制编辑外，还包括文件解析，计算器，文件比较等功能，但它真正的强大之处还在于文件的解析功能。我们可以使用010Editor官方网站提供的解析脚本（二进制模板）对AVI，BMP，PNG，EXE等简单格式的文件进行解析。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这个题目中，可以用010editor打开，然后观察和修改文件的参数。</p>
+<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><ol>
+<li>下载图片并认真审题，可以从图片（图①）和题目提示：图片长度，可以发现图片的下方可能有信息被隐藏起来了，可以通过010editor修改图片长度（也就是高度）；<img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0umfx8wt2j20fo0b4n00.jpg" alt></li>
+<li>用010editor打开图像，根据前期做的功课，认真分析该png图片的结构：<br><font color="red">①红色区域是png文件的标识符，共有8个字节：89 50 4E 47 0D 0A 1A 0A</font><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0ul0c541bj20m708u75r.jpg" alt><br><br><font color="red">②红色区域是PNG文件的文件头数据块（IHDR）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0ei2tfj20n00a2aby.jpg" alt><br>&nbsp;▶ 00 00 00 0D：数据块长度是13B；<br>&nbsp;▶ 49 48 44 52：数据标识IHDR；<br>&nbsp;▶ 00 00 02 34：图像宽度为564px；<br>&nbsp;▶ 00 00 01 90：图像高度为400px；（可以看到图片高度像素小，可能信息被隐藏）<br>&nbsp;▶ 08：24位颜色深度<br>&nbsp;▶ 02：颜色类型为真彩<br>&nbsp;▶ 00：使用了压缩<br>&nbsp;▶ 00：滤波器方法，通常为0<br>&nbsp;▶ 00：非隔行扫描<br>&nbsp;▶ 36 8C 6D 31：CRC校验码 （循环冗余检测中的值是对第２部分数据块符号和第３部分数据域进行计算得到的）<br><br><font color="red">③红色区域为PNG文件的图像数据块（IDAT）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0gdiw4j20mi0cnwgr.jpg" alt><br>&nbsp;▶ 00 00 FF FF：数据块长度，该png的数据块长度是65535B；（其长度不超过2<sup>31</sup>-1个字节）<br>&nbsp;▶ 49 44 41 54 ：数据标识IDAT；<br>&nbsp;▶ 下面的数据内容、CRC就不介绍了<br><br><font color="red">④红色区域的为PNG文件的图像结束数据块（IEND）</font><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0ul0j0b45j20l407z3zq.jpg" alt><br>&nbsp;▶ 00 00 00 00：数据块长度为0；<br>&nbsp;▶ 49 45 4E 44：数据标识IEND<br>&nbsp;▶ AE 42 60 82：CRC码（因为数据内容为0，所以直接是CRC码）<br>&nbsp;▶ 由于数据块结构的定义，IEND数据块的长度总是0（00 00 00 00，除非人为加入信息），数据标识总是IEND（49 45 4E 44），因此，CRC码也总是AE 42 60 82。</li>
+<li>在对该PNG图片结构进行了分析以后，那么修改一下IHDR中的图片高度为：00 00 02 34（564px）与宽度一样，就得到下面的图片<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0umlun5fij20fp0duwhz.jpg" alt></li>
+<li><strong>疑问：</strong>修改了高度以后，数据流中有哪些数据发生了变化？<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前几天在解这道题的时候，也查了很多资料，也觉得自己的理解更深了，可是今天的回顾和总结，又让我对这个知识点更加理解了。学习是个过程，所以以后不能总要想着“我今天就要把Python学完”，这是不可能的，必须要经过一个循环渐进的过程，只有不断的去思考去总结，才能真正的把学习学到手！<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5. 每日一句"></a>5. 每日一句</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个人最大的挑战，是如何去克服自己的缺点。</li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -2093,8 +2801,50 @@ jsonContent:
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-     
-    </body>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
 </html>
-
-
