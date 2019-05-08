@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7YQC8ZUSIO',
+      apiKey: '6cd7cf29c4e0f003003ac2dcad422b32',
+      indexName: 'muzibing',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="☛ 前言：     今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！   一、相关汇编代码  1.&amp;lt; phase_4 &amp;gt;的汇编代码 12345678910111213141516171819202122232425262728293031323334353">
+<meta name="keywords" content="二进制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二进制炸弹：Phase_4解题总结">
+<meta property="og:url" content="https://muzibing.github.io/2019/04/21/2019.04.21（43）/index.html">
+<meta property="og:site_name" content="MUZI&#39;s BLOG">
+<meta property="og:description" content="☛ 前言：     今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！   一、相关汇编代码  1.&amp;lt; phase_4 &amp;gt;的汇编代码 12345678910111213141516171819202122232425262728293031323334353">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/l.psxdmoYQK84bcREyUSdqtp2VLIBuSZmUpwYkPYrkQ!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Fl2ndXTAEiLKb9W*aYVAkrUu1Ze1p2*hnn6xzVIqWZM!/r/dL8AAAAAAAAA">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/QM*qyzBjA.vxyhQN2LZZz2.hHAH9w0RyjjzUpQYqbJ4!/r/dL8AAAAAAAAA">
+<meta property="og:updated_time" content="2019-04-22T13:56:50.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二进制炸弹：Phase_4解题总结">
+<meta name="twitter:description" content="☛ 前言：     今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！   一、相关汇编代码  1.&amp;lt; phase_4 &amp;gt;的汇编代码 12345678910111213141516171819202122232425262728293031323334353">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/l.psxdmoYQK84bcREyUSdqtp2VLIBuSZmUpwYkPYrkQ!/r/dL8AAAAAAAAA">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="MUZI's BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://muzibing.github.io/2019/04/21/2019.04.21（43）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>二进制炸弹：Phase_4解题总结 | MUZI's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MUZI's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-主页">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-分类">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Zeitplan</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://muzibing.github.io/2019/04/21/2019.04.21（43）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MUZIBing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUZI's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">二进制炸弹：Phase_4解题总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-21T00:00:00+08:00">2019-04-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-22 21:56:50" itemprop="dateModified" datetime="2019-04-22T21:56:50+08:00">2019-04-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Kommentare: </span>
+                <a href="/2019/04/21/2019.04.21（43）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/21/2019.04.21（43）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>☛ 前言：</strong><br>
+    今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！</p>
+</blockquote>
+<h3 id="一-相关汇编代码"><a class="markdownIt-Anchor" href="#一-相关汇编代码"></a> 一、相关汇编代码</h3>
+<h4 id="1-phase_4-的汇编代码"><a class="markdownIt-Anchor" href="#1-phase_4-的汇编代码"></a> 1.&lt; phase_4 &gt;的汇编代码</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">08048cf3 &lt;phase_4&gt;:</span><br><span class="line"> 8048cf3:	83 ec 2c             	sub    $0x2c,%esp</span><br><span class="line"> 8048cf6:	8d 44 24 1c          	lea    0x1c(%esp),%eax</span><br><span class="line"> 8048cfa:	89 44 24 0c          	mov    %eax,0xc(%esp)</span><br><span class="line"> 8048cfe:	8d 44 24 18          	lea    0x18(%esp),%eax</span><br><span class="line"> 8048d02:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"></span><br><span class="line"> // 这里是我们要输入具体的内容类型</span><br><span class="line"> 8048d06:	c7 44 24 04 ef a2 04 	movl   $0x804a2ef,0x4(%esp)</span><br><span class="line"> 8048d0d:	08 </span><br><span class="line"> 8048d0e:	8b 44 24 30          	mov    0x30(%esp),%eax</span><br><span class="line"> 8048d12:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"> </span><br><span class="line"> // 调用输入函数  </span><br><span class="line"> 8048d15:	e8 46 fb ff ff       	call   8048860 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line"></span><br><span class="line"> // 将eax（输入参数的个数）与2相比较，如果eax≠2，则跳转到8048d26，调用bomb函数；如果二者相等，则继续向下执行命令行；</span><br><span class="line"> 8048d1a:	83 f8 02             	cmp    $0x2,%eax</span><br><span class="line"> 8048d1d:	75 07                	jne    8048d26 &lt;phase_4+0x33&gt;</span><br><span class="line"> </span><br><span class="line"> // 将输入的第一个数值与14相比，如果 ≤14 则跳转到8048d2b，否则就执行bomb； </span><br><span class="line"> 8048d1f:	83 7c 24 18 0e       	cmpl   $0xe,0x18(%esp)</span><br><span class="line"> 8048d24:	76 05                	jbe    8048d2b &lt;phase_4+0x38&gt;</span><br><span class="line"> </span><br><span class="line"> 8048d26:	e8 da 03 00 00       	call   8049105 &lt;explode_bomb&gt; </span><br><span class="line"> 8048d2b:	c7 44 24 08 0e 00 00 	movl   $0xe,0x8(%esp)</span><br><span class="line"> 8048d32:	00 </span><br><span class="line"> 8048d33:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)</span><br><span class="line"> 8048d3a:	00 </span><br><span class="line"> 8048d3b:	8b 44 24 18          	mov    0x18(%esp),%eax</span><br><span class="line"> 8048d3f:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用func4函数，该函数的地址为8048c96</span><br><span class="line"> 8048d42:	e8 4f ff ff ff       	call   8048c96 &lt;func4&gt;</span><br><span class="line"></span><br><span class="line"> // 将func4函数输出的结果与19（十六进制为0x13）比较，如果两者不相等，则跳转到8048d53，执行bomb；两者相等的话，则继续向下执行指令；</span><br><span class="line"> 8048d47:	83 f8 13             	cmp    $0x13,%eax</span><br><span class="line"> 8048d4a:	75 07                	jne    8048d53 &lt;phase_4+0x60&gt;</span><br><span class="line"></span><br><span class="line"> // 将输入的第二个数据也与19相比，如果输入的数值等于19，则跳转到8048d58，程序执行完毕；如果不相等的话，则调用bomb函数；</span><br><span class="line"> 8048d4c:	83 7c 24 1c 13       	cmpl   $0x13,0x1c(%esp)</span><br><span class="line"> 8048d51:	74 05                	je     8048d58 &lt;phase_4+0x65&gt;</span><br><span class="line"> 8048d53:	e8 ad 03 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> // Finish程序段</span><br><span class="line"> 8048d58:	83 c4 2c             	add    $0x2c,%esp</span><br><span class="line"> 8048d5b:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<h4 id="2func4-函数的汇编代码"><a class="markdownIt-Anchor" href="#2func4-函数的汇编代码"></a> 2.func4() 函数的汇编代码</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">08048c96 &lt;func4&gt;:</span><br><span class="line"></span><br><span class="line"> /* Set up段 */</span><br><span class="line"> 8048c96:	56                   	push   %esi</span><br><span class="line"> 8048c97:	53                   	push   %ebx</span><br><span class="line"> 8048c98:	83 ec 14             	sub    $0x14,%esp</span><br><span class="line"> // edx为第一个参数 a1</span><br><span class="line"> 8048c9b:	8b 54 24 20          	mov    0x20(%esp),%edx </span><br><span class="line"> // eax为第二个参数 a2</span><br><span class="line"> 8048c9f:	8b 44 24 24          	mov    0x24(%esp),%eax</span><br><span class="line"> // esi为第三个参数 a3</span><br><span class="line"> 8048ca3:	8b 74 24 28          	mov    0x28(%esp),%esi</span><br><span class="line"> 8048ca7:	89 f1                	mov    %esi,%ecx</span><br><span class="line"> </span><br><span class="line"> /* Body */</span><br><span class="line">   </span><br><span class="line"> // t1 = a3 - a2</span><br><span class="line"> 8048ca9:	29 c1                	sub    %eax,%ecx</span><br><span class="line"> // 将计算的结果放到寄存器%ebx中</span><br><span class="line"> 8048cab:	89 cb                	mov    %ecx,%ebx</span><br><span class="line"> // 将ebx逻辑右移；</span><br><span class="line"> 8048cad:	c1 eb 1f             	shr    $0x1f,%ebx</span><br><span class="line"> // 将ebx 与 ecx相加；</span><br><span class="line"> 8048cb0:	01 d9                	add    %ebx,%ecx</span><br><span class="line"> // ecx算术右移一位，也就是ecx中的数值 / 2；</span><br><span class="line"> 8048cb2:	d1 f9                	sar    %ecx</span><br><span class="line"> 8048cb4:	8d 1c 01             	lea    (%ecx,%eax,1),%ebx</span><br><span class="line"> </span><br><span class="line"> // 将edx与ebx中的数值相比较，如果（v3 + a2）ebx ≤ edx（a1）则跳转到8048cd2；如果ebx ≤ edx则继续往下执行指令；</span><br><span class="line"> 8048cb7:	39 d3                	cmp    %edx,%ebx</span><br><span class="line"> 8048cb9:	7e 17                	jle    8048cd2 &lt;func4+0x3c&gt;</span><br><span class="line"> 8048cbb:	8d 4b ff             	lea    -0x1(%ebx),%ecx</span><br><span class="line"> 8048cbe:	89 4c 24 08          	mov    %ecx,0x8(%esp)</span><br><span class="line"> 8048cc2:	89 44 24 04          	mov    %eax,0x4(%esp)</span><br><span class="line"> 8048cc6:	89 14 24             	mov    %edx,(%esp)</span><br><span class="line"></span><br><span class="line"> // 调用fun4() 函数，那么在调用func4() 函数中，可能会再次调用该函数，从这里可以看出应该是递归函数；</span><br><span class="line"> 8048cc9:	e8 c8 ff ff ff       	call   8048c96 &lt;func4&gt;</span><br><span class="line"> //将func4() 输出的数值与ebx中的数据（v4）相加，再无条件跳转到8048ced处；</span><br><span class="line"> 8048cce:	01 d8                	add    %ebx,%eax</span><br><span class="line"> 8048cd0:	eb 1b                	jmp    8048ced &lt;func4+0x57&gt;</span><br><span class="line"></span><br><span class="line"> // 若上述的代码中（v3 + a2）ebx ≤ edx（a1）则条状到这里；将ebx中的数据放到eax中（result = v4）；</span><br><span class="line"> 8048cd2:	89 d8                	mov    %ebx,%eax</span><br><span class="line"> // 比较ebx（v4）与edx（a1）的大小，如果ebx ≥ edx则跳转到8048ced，func4()函数执行完毕；</span><br><span class="line"> 8048cd4:	39 d3                	cmp    %edx,%ebx</span><br><span class="line"> 8048cd6:	7d 15                	jge    8048ced &lt;func4+0x57&gt;</span><br><span class="line"> 8048cd8:	89 74 24 08          	mov    %esi,0x8(%esp)</span><br><span class="line"> 8048cdc:	8d 43 01             	lea    0x1(%ebx),%eax</span><br><span class="line"> 8048cdf:	89 44 24 04          	mov    %eax,0x4(%esp)</span><br><span class="line"> 8048ce3:	89 14 24             	mov    %edx,(%esp) </span><br><span class="line"> 8048ce6:	e8 ab ff ff ff       	call   8048c96 &lt;func4&gt;</span><br><span class="line"> 8048ceb:	01 d8                	add    %ebx,%eax</span><br><span class="line"></span><br><span class="line"> /* Finish段 */</span><br><span class="line"> 8048ced:	83 c4 14             	add    $0x14,%esp</span><br><span class="line"> 8048cf0:	5b                   	pop    %ebx</span><br><span class="line"> 8048cf1:	5e                   	pop    %esi</span><br><span class="line"> 8048cf2:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<h3 id="二-相关伪代码ida反编译"><a class="markdownIt-Anchor" href="#二-相关伪代码ida反编译"></a> 二、相关伪代码（IDA反编译）</h3>
+<h4 id="1phase_4的伪代码"><a class="markdownIt-Anchor" href="#1phase_4的伪代码"></a> 1.Phase_4的伪代码</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_4(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@4</span><br><span class="line">  int v2; // [sp+18h] [bp-14h]@1</span><br><span class="line">  int v3; // [sp+1Ch] [bp-10h]@1</span><br><span class="line"></span><br><span class="line">  if ( __isoc99_sscanf(a1, &quot;%d %d&quot;, &amp;v2, &amp;v3) != 2 || (unsigned int)v2 &gt; 0xE )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  result = func4(v2, 0, 14);</span><br><span class="line">  if ( result != 19 || v3 != 19 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2func4-函数的伪代码"><a class="markdownIt-Anchor" href="#2func4-函数的伪代码"></a> 2.func4() 函数的伪代码</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl func4(int a1, int a2, int a3)</span><br><span class="line">&#123;</span><br><span class="line">  int v3; // ecx@1</span><br><span class="line">  int v4; // ebx@1</span><br><span class="line">  int result; // eax@2</span><br><span class="line"></span><br><span class="line">  v3 = (a3 - a2) / 2;</span><br><span class="line">  v4 = v3 + a2;</span><br><span class="line">  if ( v3 + a2 &lt;= a1 )</span><br><span class="line">  &#123;</span><br><span class="line">    result = v3 + a2;</span><br><span class="line">    if ( v4 &lt; a1 )</span><br><span class="line">      result = v4 + func4(a1, v4 + 1, a3);</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    result = v4 + func4(a1, a2, v4 - 1);</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三-代码分析"><a class="markdownIt-Anchor" href="#三-代码分析"></a> 三、代码分析</h3>
+<h4 id="1phase_4函数的功能"><a class="markdownIt-Anchor" href="#1phase_4函数的功能"></a> 1.Phase_4函数的功能</h4>
+<blockquote>
+<p>通过对汇编代码和伪代码的综合分析，对Phase_4的功能有了如下的大概认识：</p>
+<ul>
+<li><font color="green">8048d06</font>：要求输入2个整型数值：v2，v3；<br>
+<font color="red">// __isoc99_sscanf(a1, “%d %d”, &amp;v2, &amp;v3)</font><br>
+<br></li>
+<li><font color="green">8048d1f</font>：判读输入参数的个数是否等于2，以及输入的第一个数值是否小于等于14，如果参数的个数不等于2，以及第一个数据大于14的话，则bomb。也就是说我们必须要输入两个数字，且输入的第一个数字必须要 ≤14 ；<br>
+<font color="red">// if ( __isoc99_sscanf(a1, “%d %d”, &amp;v2, &amp;v3) != 2 || (unsigned int)v2 &gt; 14 )<br>
+            explode_bomb();</font><br>
+<br></li>
+<li><font color="green">8048d42</font>：调用func4() 函数，返回一个result；<br>
+<font color="red">// result = func4(v2, 0, 14);</font><br>
+<br></li>
+<li><font color="green">8048d47</font>：将func4() 返回的result与19相比，如果两者不相等则bomb；<br>
+<font color="red">// if ( result != 19 || v3 != 19 )     explode_bomb();</font><br>
+<br></li>
+<li><font color="green">8048d4c</font>：将输入的第二个数据也与19相比，如果两者不相等则bomb，相等的话则 return 1；<br>
+<font color="red">// if ( result != 19 || v3 != 19 )    explode_bomb();</font></li>
+</ul>
+</blockquote>
+<h4 id="2func4函数代码分析"><a class="markdownIt-Anchor" href="#2func4函数代码分析"></a> 2.func4()函数代码分析</h4>
+<blockquote>
+<ul>
+<li>现在再针对func4()函数的功能做一下分析：<br>
+通过上文的汇编和伪代码，以及对汇编代码的分析，可以得到<font color="red"><strong>func4( ) 函数</strong>是一个<strong>递归函数</strong></font>，通过参数传递，在多重递归反复计算下，可以返回一个最终的结果</li>
+</ul>
+</blockquote>
+<h4 id="3解题思路"><a class="markdownIt-Anchor" href="#3解题思路"></a> 3.解题思路</h4>
+<blockquote>
+<p>经过上面对 Phase_4和func4()函数的分析，可以清晰的知道了这一关的要求以及做题的思路：</p>
+<ul>
+<li>首先弄清楚我们需要输入两个整型数据；</li>
+<li>第一个数据要在[0，14]范围内；</li>
+<li>第二个数据要等于19；</li>
+<li>紧接着调用一个递归函数func4()，要把输入的第一个数据作为形参之一，传给func4()；</li>
+<li>要通过func4(v2,0,14)函数求得result的值，并且求得的值应为19，同时也能求得第一个数据的值；</li>
+</ul>
+<p>若满足上述五个条件，则通关。</p>
+</blockquote>
+<h3 id="四-解题过程"><a class="markdownIt-Anchor" href="#四-解题过程"></a> 四、解题过程</h3>
+<h4 id="1查看输入的数据格式"><a class="markdownIt-Anchor" href="#1查看输入的数据格式"></a> 1.<strong>查看输入的数据格式</strong></h4>
+<blockquote>
+<p>通过<code>x/1s 0x804a2ef</code>来查看需要输入的格式，需要输入的数据为两个整数类型，如下图所示：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/l.psxdmoYQK84bcREyUSdqtp2VLIBuSZmUpwYkPYrkQ!/r/dL8AAAAAAAAA" alt></p>
+</blockquote>
+<h4 id="2计算第一个数值"><a class="markdownIt-Anchor" href="#2计算第一个数值"></a> 2.<strong>计算第一个数值</strong></h4>
+<blockquote>
+<p>从上述分析中可以得到第一个数据为：**<font color="red">[0,14]</font>**中的一个，并且该数据作为func4()的一个形参，算出最后的结果为19，那么关键就是通过func4()函数，看谁的结果为19：<br>
+<br><strong>① 编写脚本</strong><br>
+     对于一个递归函数如何求得最终的result呢？我一开始就是尝试了自己手工计算，但是越往下算啊越发现越复杂，于是果断的放弃，就选择了第二种方案：机器计算。一开始我用的是C++写的脚本，但是因为我现在初学python，所以我又尝试了用python写了一个脚本。</p>
+</blockquote>
+<blockquote>
+<p>☛ C++脚本:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int func4(int a1,int a2,int a3);</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">  int x,result;</span><br><span class="line">  for(x=0;x&lt;=14;x++)</span><br><span class="line">  &#123;</span><br><span class="line">	  result = func4(x,0,14);</span><br><span class="line">	  cout&lt;&lt;&quot;x is &quot;&lt;&lt;x&lt;&lt;&apos;\n&apos;&lt;&lt;&quot;result is &quot;&lt;&lt;result&lt;&lt;&apos;\n&apos;&lt;&lt;&apos;\n&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int func4(int a1,int a2,int a3)</span><br><span class="line">&#123;</span><br><span class="line">  int v3; // ecx@1</span><br><span class="line">  int v4; // ebx@1</span><br><span class="line">  int result; // eax@2</span><br><span class="line"></span><br><span class="line">  v3 = (a3 - a2) / 2;</span><br><span class="line">  v4 = v3 + a2;</span><br><span class="line">  if ( v3 + a2 &lt;= a1 )</span><br><span class="line">  &#123;</span><br><span class="line">    result = v3 + a2;</span><br><span class="line">    if ( v4 &lt; a1 )</span><br><span class="line">      result = v4 + func4(a1, v4 + 1, a3);</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    result = v4 + func4(a1, a2, v4 - 1);</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>☛ python 脚本:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def func4(num,a2,a3):</span><br><span class="line">    v3 = (a3 - a2) / 2</span><br><span class="line">    v4 = v3 + a2</span><br><span class="line">    if v3 + a2 &lt;= num:</span><br><span class="line">        result = v3 + a2</span><br><span class="line">        if v4 &lt; num:</span><br><span class="line">            result = v4 + func4(num,v4 + 1,a3);</span><br><span class="line">    else:</span><br><span class="line">        result = v4 + func4(num,a2,v4 - 1);</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line">for num in range(0,14):</span><br><span class="line">    result = func4(num,0,14);</span><br><span class="line">    print &quot;x is:&quot;,num,&quot;result is:&quot;,result</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>② 执行脚本</strong><br>
+     上面的程序均可正常执行。下面我只会贴出python版本的答案：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Fl2ndXTAEiLKb9W*aYVAkrUu1Ze1p2*hnn6xzVIqWZM!/r/dL8AAAAAAAAA" alt><br>
+     从所得结果来看，可以很清楚的看到输出结果为19，所对应的 x（也就是我们输入的第一个数据）为 <strong>4</strong> ，那么我们便得到了<font color="red"><strong>第一个数据为 4</strong></font>；</p>
+</blockquote>
+<h4 id="3得第二个数据"><a class="markdownIt-Anchor" href="#3得第二个数据"></a> 3.<strong>得第二个数据</strong></h4>
+<blockquote>
+<p>通过上文的<font color="green"><strong>代码分析</strong></font>和<font color="green"><strong>解题思路</strong></font>模块，可以得出<font color="red"><strong>第二个数据为 19</strong></font>；</p>
+</blockquote>
+<h4 id="4整理答案"><a class="markdownIt-Anchor" href="#4整理答案"></a> 4.<strong>整理答案</strong></h4>
+<blockquote>
+<p>综上所述，Phase_4的通关答案为：<code>4 19</code></p>
+</blockquote>
+<h3 id="四-验证答案"><a class="markdownIt-Anchor" href="#四-验证答案"></a> 四、验证答案</h3>
+<blockquote>
+<p>输入 <code>4 19</code>，得到的结果如下：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/QM*qyzBjA.vxyhQN2LZZz2.hHAH9w0RyjjzUpQYqbJ4!/r/dL8AAAAAAAAA" alt><br>
+说明该答案正确！</p>
+</blockquote>
+<h3 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h3>
+<blockquote>
+<p>在今天做题的时候，忽然发现解决了昨天的问题，我明天再将昨天的问题进行更改和总结。有问题不可怕，可怕的是遇见问题就退缩。不管怎么样，以后的我 还是会认真的坚持，对发现的问题及时解决，及时总结！</p>
+</blockquote>
+<h3 id="七-每日一句"><a class="markdownIt-Anchor" href="#七-每日一句"></a> 七、每日一句</h3>
+<blockquote>
+<p>一般人会在困境面前浑身发抖，而成大事者则能把困境变为成功的有力跳板。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="MUZIBing wechat" style="width: 200px; max-width: 100%;">
+  <div></div>
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二进制/" rel="tag"># 二进制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/20/2019.04.20（42）/" rel="next" title="二进制炸弹：Phase_3解题总结">
+                <i class="fa fa-chevron-left"></i> 二进制炸弹：Phase_3解题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/22/2019.04.22（44）/" rel="prev" title="sscanf()函数的详细总结 + 实例">
+                sscanf()函数的详细总结 + 实例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MUZIBing</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https:////weibo.com/2601018251/profile?topnav=1&wvr=6&is_all=1" title="微博 &rarr; https:////weibo.com/2601018251/profile?topnav=1&wvr=6&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://muzibing.githua.io" title="个人博客 &rarr; https://muzibing.githua.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>个人博客</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-相关汇编代码"><span class="nav-number">1.</span> <span class="nav-text"> 一、相关汇编代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-phase_4-的汇编代码"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.&lt; phase_4 &gt;的汇编代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2func4-函数的汇编代码"><span class="nav-number">1.2.</span> <span class="nav-text"> 2.func4() 函数的汇编代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-相关伪代码ida反编译"><span class="nav-number">2.</span> <span class="nav-text"> 二、相关伪代码（IDA反编译）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1phase_4的伪代码"><span class="nav-number">2.1.</span> <span class="nav-text"> 1.Phase_4的伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2func4-函数的伪代码"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.func4() 函数的伪代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-代码分析"><span class="nav-number">3.</span> <span class="nav-text"> 三、代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1phase_4函数的功能"><span class="nav-number">3.1.</span> <span class="nav-text"> 1.Phase_4函数的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2func4函数代码分析"><span class="nav-number">3.2.</span> <span class="nav-text"> 2.func4()函数代码分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3解题思路"><span class="nav-number">3.3.</span> <span class="nav-text"> 3.解题思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-解题过程"><span class="nav-number">4.</span> <span class="nav-text"> 四、解题过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1查看输入的数据格式"><span class="nav-number">4.1.</span> <span class="nav-text"> 1.查看输入的数据格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2计算第一个数值"><span class="nav-number">4.2.</span> <span class="nav-text"> 2.计算第一个数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3得第二个数据"><span class="nav-number">4.3.</span> <span class="nav-text"> 3.得第二个数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4整理答案"><span class="nav-number">4.4.</span> <span class="nav-text"> 4.整理答案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-验证答案"><span class="nav-number">5.</span> <span class="nav-text"> 四、验证答案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-学习感悟"><span class="nav-number">6.</span> <span class="nav-text"> 五、学习感悟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七-每日一句"><span class="nav-number">7.</span> <span class="nav-text"> 七、每日一句</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUZIBing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://muzibing.github.io/2019/04/21/2019.04.21（43）/";
+    this.page.identifier = "2019/04/21/2019.04.21（43）/";
+    this.page.title = '二进制炸弹：Phase_4解题总结';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
