@@ -19,15 +19,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Wiener Trick解题总结]]></title>
-    <url>%2F2019%2F05%2F07%2F2019.05.08%EF%BC%8853%EF%BC%89%2F</url>
-    <content type="text"></content>
-      <tags>
-        <tag>解题总结</tag>
-        <tag>RSA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MySQL学习笔记（一）——查询]]></title>
     <url>%2F2019%2F05%2F05%2F2019.05.05%EF%BC%8851%EF%BC%89%2F</url>
     <content type="text"><![CDATA[☛ 前言：大学本科期间也学习过SQL的知识，但是有些只是点已经忘记，前几天做SQL注入的时候感觉挺费劲的，所以这两天学习了一下MySQL有关查询的常用语句，今天主要对此进行总结。 一、基本查询 1.语句格式： select * from 说明： - 使用使用''select'查询的基本语句`select * from `可以查询一个表的所有行和所有列的数据 - `select`查询的结果是一个二维表； 二、条件查询 1.语句格式： select * from where 2.条件表达式的中的条件： 第一种条件：and 条件表达式可以用&lt;条件1&gt; AND &lt;条件2&gt;表达满足条件1并且满足条件2 第二种条件：or 第二种条件是&lt;条件1&gt; OR &lt;条件2&gt;，表示满足条件1或者满足条件2 第三种条件：NOT（不常用） 第三种条件是NOT &lt;条件&gt;，表示“不符合该条件”的记录 上述条件的优先级： **NOT > AND > OR** 对于条件表达式中出现的字串需要单引号括起来。 三、投影查询 1.语句格式： select 列1，列2... from…… - 使用列名时，还可以给每一列起一个名字，格式如下：`select 列1 别名1，列2 别名2，列名3 别名3 from……` 2.小结 使用SELECT * 表示查询表的所有列，使用SELECT 列1, 列2, 列3则可以仅返回指定列，这种操作称为投影。 SELECT语句可以对结果集的列进行重命名 四、排序查询 1.语句格式 select * from where order by 2.注意 默认是从低到高排序（ASC），如果加上DESC，则是按照从高到低排序； 语句中要有where子句，则order by 子句要放到where子句后面； 五、分页查询 1.语句格式 select * from limit < M > offset < N > 有关计算： - LIMIT 总是设定为 pageSize； - OFFSET计算公式为 pageSize * (pageIndex - 1)； 2.实例 要获取第1页的记录，可以使用LIMIT 3 OFFSET 0： Select id,name,gender,score from students order by score DESC **limit 3 offset 0**; 上述查询LIMIT 3 OFFSET 0表示，对结果集从0号记录开始，最多取3条。注意SQL记录集的索引从0开始。如果要查询第2页，那么我们只需要“跳过”头3条记录，也就是对结果集从3号记录开始查询，把OFFSET设定为3： - 要获取第2页的记录，可以使用LIMIT 3 OFFSET 3; Select id,name,gender,score from students order by score DESC **limit 3 offset 3**; - 要获取第3页的记录，可以使用LIMIT 3 OFFSET 6： Select id,name,gender,score from students order by score DESC **limit 3 offset 6**; 上述查询LIMIT 3 OFFSET 0表示，对结果集从0号记录开始，最多取3条。注意SQL记录集的索引从0开始。如果要查询第2页，那么我们只需要“跳过”头3条记录，也就是对结果集从3号记录开始查询，把OFFSET设定为3; - 要获取第4页的记录，可以使用LIMIT 3 OFFSET 9; Select id,name,gender,score from students order by score DESC **limit 3 offset 9**; 由于第4页只有1条记录，因此最终结果集按实际数量1显示。LIMIT 3表示的意思是“最多3条记录” 3.注意的点 OFFSET是可选的，如果只写LIMIT 15，那么相当于LIMIT 15 OFFSET 0; 在MySQL中，LIMIT 15 OFFSET 30还可以简写成LIMIT 30, 15; 使用LIMIT OFFSET 分页时，随着N越来越大，查询效率也会越来越低; 六、聚合查询 1.语句格式 select count(*) from ; - count( )是SQL内置的函数查询]]></content>
