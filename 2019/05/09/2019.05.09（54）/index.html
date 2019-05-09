@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《汇编语言程序设计》学习笔记（二） · MUZI&#39;s BLOG</title>
+    <title>Wiener Trick解题总结 · MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZI&#39;s BLOG.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《汇编语言程序设计》学习笔记（二）</a>
+                <a href="#" class="post-name">Wiener Trick解题总结</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《汇编语言程序设计》学习笔记（二）
+            Wiener Trick解题总结
             <!-- 404 -->
             
         </h1>
@@ -281,18 +281,20 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/12</span>
+                    <span class="post-intro-time">2019/05/09</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,98 +418,19 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>      今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）</p>
-<h4 id="一-计算机中整数的编码方式和操作整数"><a class="markdownIt-Anchor" href="#一-计算机中整数的编码方式和操作整数"></a> 一、计算机中整数的编码方式和操作整数</h4>
-<p>1.基本数据类型的大小</p>
-<center>![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)</center>
-<p>2.编码方式</p>
-<blockquote>
-<ol>
-<li><em>B2U<sub>w</sub></em>：将二进制转无符号数；</li>
-<li><em>B2T<sub>w</sub></em>：将二进制转补码（带符号数）；</li>
-<li><em>U2B<sub>w</sub></em>：将无符号数转为二进制；</li>
-<li><em>U2T<sub>w</sub></em>：将无符号数转补码；</li>
-<li><em>T2B<sub>w</sub></em>：将补码转二进制；</li>
-<li><em>T2U<sub>w</sub></em>：将补码转无符号数；</li>
-<li><em>TMin<sub>w</sub></em>：最小补码值；</li>
-<li><em>TMax<sub>w</sub></em>：最大补码值；</li>
-<li><em>UMax<sub>w</sub></em>：最大无符号数;<center><img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/marbAH7nzGGsI6Ek6SrQOunxob95AbS49zS*efkpgEM!/m/dEYBAAAAAAAAnull&amp;bo=WgQ6AloEOgIDCSw!&amp;rf=photolist&amp;t=5" alt></center></li>
-</ol>
-</blockquote>
-<p>3.操作整数</p>
-<blockquote>
-<ol>
-<li><em>+ <sup>t</sup><sub>w</sub></em>：补码加法；</li>
-<li><em>+ <sup>u</sup><sub>w</sub></em>：无符号数加法；</li>
-<li>** <sup>t</sup><sub>w</sub>*：补码乘法；</li>
-<li>** <sup>u</sup><sub>w</sub>*：无符号数乘法；</li>
-<li><em>- <sup>t</sup><sub>w</sub></em>：补码取反；</li>
-<li><em>- <sup>u</sup><sub>w</sub></em>：无符号数取反；</li>
-</ol>
-</blockquote>
-<p>注：B ——二进制、T/t——补码、U/u——无符号数、w在这里表示数据表示中的位数</p>
-<h4 id="二-数值的定点与浮点表示"><a class="markdownIt-Anchor" href="#二-数值的定点与浮点表示"></a> 二、数值的定点与浮点表示</h4>
-<blockquote>
-<p>**1. 浮点数：**由于“指数”的存在以及它的大小不同而使数字部分的小数点位置不同，也可以这样理解，小数点的位置可以是“浮动的”，所以称之为浮点数形式；（在计算机内部，凡实数（即以小数形式所表示的数）都以浮点形式存储）<br>
-**2. 定点数：**凡不带指数部分的数称为定点数，整数都属于定点数；</p>
-</blockquote>
-<h4 id="三-无符号整数和带符号整数"><a class="markdownIt-Anchor" href="#三-无符号整数和带符号整数"></a> 三、无符号整数和带符号整数</h4>
-<p>1.如何表示正负？</p>
-<blockquote>
-<p><strong>1. 可以根据自己决定是否需要正负：</strong><br>
-      就像我们必须决定某个量使用整数还是实数，使用多大的范围数一样，我们必须自已决定某个量是否需要正负。<br>
-<br>      在计算机中，可以区分正负的类型，称为<font color="red">有符类型（声明signed）</font>，无正负的类型（只有正值），称为<font color="red">无符类型（声明unsigned）</font>。数值类型分为<strong>整型</strong>或<strong>实型</strong>，其中<font color="brwon">整型又分为无符类型或有符类型，而实型则只有符类型。字符类型也分为有符和无符类型。 </font>比如有两个量，年龄和库存，我们可以定前者为无符的字符类型，后者定为有符的整数类型。<br>
-<strong>2. 二制数中的最高位表示正负：</strong><br>
-      ①指定一个数量是无符号类型时，最高位被称为“符号位”：<br>
-            最高位为<font color="red">“1”</font>表示该数为<font color="red">负值</font>;<br>
-            最高位为<font color="red">“0”</font>表示该数为<font color="red">正值</font>;<br>
-      ②指定一个数量是无符号类型时，那么其最高位的1或0，和其它位一样，用来表示该数的大小。<br>
-      例如：signed number：1111 1111 的值为 -1<br>
-                unsigned number：1111 1111 的值为 255</p>
-</blockquote>
-<p>2.有符号数和无符号数的取值范围</p>
-<blockquote>
-<p>▶ 无符号数：UMin（000…0） = 0   ~   UMax(111…1) = 2<sup>w</sup>-1<br>
-▶ 带符号数（补码）：TMin（100…0） = -2<sup>w</sup>-1   ~   TMax(011…1) = 2<sup>w-1</sup>-1<br>
-<br>例如：一个字节数来说<br>
-▶ 无符号数：0~255<br>
-▶ 有符号数：-128~127<br>
-虽然有符号数的最大值缩水了，却在负值的方向出现了伸展，但二者能表达的不同的数值的个数都一样是256个。只不过前者表达的是0到255这256个数，后者表达的是-128到+127这256个数。<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/rRjZmKfxKMPeuDNqswo3jBeH4M9yrrzxSho9a4OLRQQ!/m/dDIBAAAAAAAAnull&amp;bo=cgRbAnIEWwIDCSw!&amp;rf=photolist&amp;t=5" alt></p>
-</blockquote>
-<h4 id="四-原码-反码和补码"><a class="markdownIt-Anchor" href="#四-原码-反码和补码"></a> 四、原码、反码和补码</h4>
-<p>1.反码与补码的作用</p>
-<blockquote>
-<p>▶ 反码：解决负数加法运算问题，将减法运算转换为加法运算，从而简化运算规则；<br>
-▶ 补码：解决负数加法运算正负零问题，弥补了反码的不足。<br>
-<br>总之，反码与补码都是为了解决负数运算问题，跟正数没关系，因此，不管是正整数还是正小数，原码，反码，补码都全部相同。</p>
-</blockquote>
-<p>2.无符号数的原码、反码和补码</p>
-<blockquote>
-<p>因为无符号数只有正数（无符号位）所以：</p>
-<center>原码 = 反码 = 补码 </center>
-</blockquote>
-<p>3.有符号数的原码、反码和补码</p>
-<blockquote>
-<p>▶ 正数：原码 = 反码 = 补码<br>
-▶ 负数：反码 =  原码（除符号位外）每位取反；补码 = 反码 + 1；</p>
-</blockquote>
-<p>4.极易混淆和犯错的知识</p>
-<blockquote>
-<p>在10进制中，1 就代表了 +1，-1 表示和 1 相对的负值，那么就会在二进制（1 个字节）中有个这样的错误认识：1 的二进制为 0000 0001，因为符号位“0”表示正数，“1”表示负数，所以就会认为 1000 0001 应该表示为 -1。这种理解是错误的，事实上计算机的规定相反，-1 的表示方式为：</p>
-<ul>
-<li>先取 -1 的<strong>原码</strong>：1000 0001</li>
-<li>-1（0000 0001） 的原码取反得<strong>反码</strong>：1111 1110</li>
-<li>反码加 1 得<strong>补码</strong>：1111 1111</li>
+        <blockquote>
+<p>☛ 前言：前天对Wiener攻击相关的知识点进行了详细总结，但是因为Hexo中Mathjax的渲染问题，导致上一篇博文的数学公式出现了问题，昨天也对该问题进行了探索，但是截至目前位置该问题还没有得到解决，今天我先把昨天博文正确的格式放到上篇的末尾，以后我再对该问题进行解决，今天就先总结一下Wiener Ttick 这道题目的解题步骤吧！</p>
+<h3 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h3><ul>
+<li>openssl 的用法</li>
+<li>Wiener 攻击原理（见上篇博文）</li>
+<li>连分数知识（见上篇博文）</li>
+<li>python 脚本（该脚本是github上的）<h3 id="二、思考过程"><a href="#二、思考过程" class="headerlink" title="二、思考过程"></a>二、思考过程</h3><h4 id="1-该题的解题思路是什么样的？"><a href="#1-该题的解题思路是什么样的？" class="headerlink" title="1.该题的解题思路是什么样的？"></a>1.该题的解题思路是什么样的？</h4>在上个月我曾做了一道这样的RSA题目：已知公钥，用私钥对密文进行解密。那个题目主要的步骤就是“如何从公钥得到私钥”（<a href="https://muzibing.github.io/2019/04/10/2019.04.10%EF%BC%8833%EF%BC%89/">详情请点击这里</a>），在那道题目我们是通过分解整数 N ，得到 p 和 q ，进而得到私钥（n，d）。<br><br>Wiener Trick 这道题目也是给了一个公钥，让我们通过公钥求私钥，进而对密文进行解密，但是该题的公钥中的 n 和 e ，远远大于RSA2那道题目的长度，那么这道题目是不是也可以用这个思路进行呢？如果不可以的话，还可以用什么方法进行解密呢？<h4 id="2-如何从公钥中得到-n-和-e-？"><a href="#2-如何从公钥中得到-n-和-e-？" class="headerlink" title="2.如何从公钥中得到 n 和 e ？"></a>2.如何从公钥中得到 n 和 e ？</h4>题目中的公钥格式只有—-Begin Public Key—-    —-End Public Key—- 里面的内容，没有 n 和 e 的数据，那么应该如何得到这两个参数呢？<h3 id="三、实验过程"><a href="#三、实验过程" class="headerlink" title="三、实验过程"></a>三、实验过程</h3><h4 id="1-对“思考二”进行实验"><a href="#1-对“思考二”进行实验" class="headerlink" title="1.对“思考二”进行实验"></a>1.对“思考二”进行实验</h4>很早之前，我也对openssl的用法进行了总结，但是通过这两次的题目，我意识到那次的总结还有很多地方没有总结，缺漏了很多知识点，以后有时间我将继续完善 openssl 的用法。<br><br>在查阅了很多有关的资料后，我发现openssl有一个用法，可以从—-Begin Public Key—-    —-End Public Key—-中解析出 n 和 e ，这条命令就是：<br><center>`openssl rsa -modulus -in Public.pem -out Public.txt -pubin -text`</center><br>这样一来，我们就得到了 n 和 e 两个数值：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/WfHEqfzbUqA1q.tfk8kaA1fOGtHGIx3xK131qOtXUdI!/r/dL8AAAAAAAAA" alt><br>其中 n 的十进制长度是<code>309</code>，e 的十进制长度是<code>309</code><h4 id="2-对“思考一”进行实验"><a href="#2-对“思考一”进行实验" class="headerlink" title="2.对“思考一”进行实验"></a>2.对“思考一”进行实验</h4>在这个验证过程中，我们就是要实验一下，以前的方法对这道题是否还适用。于是我先进行了第一步：将 n 进行分解。由于 n 很大的缘故，我在分解的过程中，可能需要很长的时间，如下图：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/xt08J7OYmoXV7OnBKEFsLiceZc7afS6zXuvXiVz75zk!/r/dL4AAAAAAAAA" alt><br>看到需要这么长的时间，我果断的放弃了“大数分解”这个思路，那么我必须还要换一种方式，得到私钥（n，d），我又对题目的名称进行了搜索，发现了Wiener攻击的方法，于是有了昨天对这种方法的总结。<br><br>那么下面我用这个方法来解这道题目。<h3 id="四、解题过程"><a href="#四、解题过程" class="headerlink" title="四、解题过程"></a>四、解题过程</h3><h4 id="1-将公钥解析出-n-和-e"><a href="#1-将公钥解析出-n-和-e" class="headerlink" title="1.将公钥解析出 n 和 e"></a>1.将公钥解析出 n 和 e</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/pOFkzKWDYJZqI5G5CE9r3VevMcE1XK3.eI.kJI76Mp8!/r/dDYBAAAAAAAA" alt><br>如上图所示，我们可以成功的将 n 和 e 解析出来。<h4 id="2-利用脚本计算出-d"><a href="#2-利用脚本计算出-d" class="headerlink" title="2.利用脚本计算出 d"></a>2.利用脚本计算出 d</h4>这道题目中求 d 的脚本，我是用的GitHub上的<a href="https://github.com/pablocelayes/rsa-wiener-attack" target="_blank" rel="noopener">WienerAttack脚本</a>，有可能的话我会自己写一个脚本。<br><br>对脚本进行修改直接在主函数中调用 hack_RSA( ) 函数，得到如下的结果：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/7UlpjMiCYyFDopTMQn3F3u9nPUo.35Qj0d7u31oXx6Y!/r/dL8AAAAAAAAA" alt><h4 id="3-利用脚本生成私钥（no—padding）"><a href="#3-利用脚本生成私钥（no—padding）" class="headerlink" title="3.利用脚本生成私钥（no—padding）"></a>3.利用脚本生成私钥（no—padding）</h4>该脚本还是 RSA2 的那个脚本：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import math</span><br><span class="line">import sys</span><br><span class="line">from Crypto.PublicKey import RSA </span><br><span class="line">RSAkey = RSA.generate(1024) </span><br><span class="line"></span><br><span class="line">RSAkey.e = 355949428044394011416525580640727209012115496460578082591540362115366141425837528189633616844162877584613018030741854275756897461200378167436571547815767157785675778909581575938939615940299471388870845995538439614911452236868092605005352109203362643524505566443025399407973408444593940143560487529347856187923</span><br><span class="line"></span><br><span class="line">RSAkey.n = 949603686045205715277174628136022115711156979860824039383799385101249348289935491073325953355239683776503155414384435860534465117430864566291387794089216559280434116213181181405857171075971236007710276483079389558212315153404594351264107147803340895025164316798193753138427414374746336511224920322316865644907 </span><br><span class="line"></span><br><span class="line">RSAkey.d = 93076836824908620642628594590464850812511038475673825979968428923835223225430811644363358529 </span><br><span class="line"></span><br><span class="line">private = open(&apos;private.pem&apos;,&apos;w&apos;)</span><br><span class="line">private.write(RSAkey.exportKey())</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><font color="red">可见，－1在计算机里用二进制表达就是全1。16进制为：0xFFFFFF。</font></p>
-</blockquote>
-<h4 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h4>
-<blockquote>
-<p>今天总结的大部分知识都是在学习 C 语言中学到的，相比当时学的时候，今天的再学习让我感觉对这方面的知识又更加深刻了，还是在于那句话：学习是一个过程，需要“温故知新”。以后还的继续回顾以前的知识，可能学到的东西和理解的层面，完全要比当时的更好，加油吧！</p>
-</blockquote>
-<h4 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h4>
-<blockquote>
-<p>只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
+<p>我们对生成的私钥进行验证，也就是通过该私钥生成公钥，然后与题目中的公钥进行对比：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MEwZZLTbf.ZAgtsK8wtN5*ob9eAjYic20f9aOX.akDM!/r/dDABAAAAAAAA" alt><br>可以看出，两个公钥的信息完全相同，由此说明生成的私钥是正确的。</p>
+<h4 id="4-用私钥对密文进行解密"><a href="#4-用私钥对密文进行解密" class="headerlink" title="4.用私钥对密文进行解密"></a>4.用私钥对密文进行解密</h4><p><center>`openssl rsautl -in flag.enc -inkey private.pem -out flag.txt -decrypt -raw`</center><br>得到的结果会有乱码，可以对其进行设置，便可得到flag；</p>
+<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><p>通过这道题目，可以给我一个很好的启示：通过不断地学习，对以前学的知识进行思考和总结，以及查漏补缺。我缺的就是这种学习精神，不懂得去反思，去回顾。</p>
+<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><p>有望得到的要努力，无望得到的不介意，则无论输赢姿态都会好看。</p>
 </blockquote>
 
     </article>
@@ -515,9 +438,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">https://muzibing.github.io/2019/03/12/2019.03.12（18）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">March 12th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">April 22nd 2019, 9:55:16 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/09/2019.05.09（54）/">https://muzibing.github.io/2019/05/09/2019.05.09（54）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/09/2019.05.09（54）/">May 9th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/09/2019.05.09（54）/">May 9th 2019, 10:53:19 pm</a>
             </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
         </div>
     
@@ -525,17 +448,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/03/13/2019.03.13（19）/" title="《汇编语言程序设计》学习笔记（三）">
-                    <div class="nextTitle">《汇编语言程序设计》学习笔记（三）</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/11/2019.03.11（17）/" title="《汇编语言程序设计》学习笔记（一）">
-                    <div class="prevTitle">《汇编语言程序设计》学习笔记（一）</div>
+                <a href="/2019/05/07/2019.05.07（52）/" title="Wiener Trick解题准备">
+                    <div class="prevTitle">Wiener Trick解题准备</div>
                 </a>
             
         </li>
@@ -676,7 +594,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-计算机中整数的编码方式和操作整数"><span class="toc-number">1.</span> <span class="toc-text"> 一、计算机中整数的编码方式和操作整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-数值的定点与浮点表示"><span class="toc-number">2.</span> <span class="toc-text"> 二、数值的定点与浮点表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-无符号整数和带符号整数"><span class="toc-number">3.</span> <span class="toc-text"> 三、无符号整数和带符号整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-原码-反码和补码"><span class="toc-number">4.</span> <span class="toc-text"> 四、原码、反码和补码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六-每日一句"><span class="toc-number">6.</span> <span class="toc-text"> 六、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、前期准备"><span class="toc-number">1.</span> <span class="toc-text">一、前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、思考过程"><span class="toc-number">2.</span> <span class="toc-text">二、思考过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-该题的解题思路是什么样的？"><span class="toc-number">2.1.</span> <span class="toc-text">1.该题的解题思路是什么样的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-如何从公钥中得到-n-和-e-？"><span class="toc-number">2.2.</span> <span class="toc-text">2.如何从公钥中得到 n 和 e ？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、实验过程"><span class="toc-number">3.</span> <span class="toc-text">三、实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对“思考二”进行实验"><span class="toc-number">3.1.</span> <span class="toc-text">1.对“思考二”进行实验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-对“思考一”进行实验"><span class="toc-number">3.2.</span> <span class="toc-text">2.对“思考一”进行实验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、解题过程"><span class="toc-number">4.</span> <span class="toc-text">四、解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-将公钥解析出-n-和-e"><span class="toc-number">4.1.</span> <span class="toc-text">1.将公钥解析出 n 和 e</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-利用脚本计算出-d"><span class="toc-number">4.2.</span> <span class="toc-text">2.利用脚本计算出 d</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-利用脚本生成私钥（no—padding）"><span class="toc-number">4.3.</span> <span class="toc-text">3.利用脚本生成私钥（no—padding）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-用私钥对密文进行解密"><span class="toc-number">4.4.</span> <span class="toc-text">4.用私钥对密文进行解密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、学习感悟"><span class="toc-number">5.</span> <span class="toc-text">五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、每日一句"><span class="toc-number">6.</span> <span class="toc-text">六、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

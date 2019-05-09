@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="MUZIBing">
     <meta name="renderer" content="webkit">
@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《汇编语言程序设计》学习笔记（二） · MUZI&#39;s BLOG</title>
+    <title>MUZI&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -213,28 +213,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- 谷歌统计  -->
     
 </head>
 
     
-        <body class="post-body">
     
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">MUZI&#39;s BLOG.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">《汇编语言程序设计》学习笔记（二）</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">MUZI's BLOG.</a>
 </header>
@@ -246,74 +235,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            《汇编语言程序设计》学习笔记（二）
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/12</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -414,161 +353,61 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>      今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）</p>
-<h4 id="一-计算机中整数的编码方式和操作整数"><a class="markdownIt-Anchor" href="#一-计算机中整数的编码方式和操作整数"></a> 一、计算机中整数的编码方式和操作整数</h4>
-<p>1.基本数据类型的大小</p>
-<center>![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)</center>
-<p>2.编码方式</p>
-<blockquote>
-<ol>
-<li><em>B2U<sub>w</sub></em>：将二进制转无符号数；</li>
-<li><em>B2T<sub>w</sub></em>：将二进制转补码（带符号数）；</li>
-<li><em>U2B<sub>w</sub></em>：将无符号数转为二进制；</li>
-<li><em>U2T<sub>w</sub></em>：将无符号数转补码；</li>
-<li><em>T2B<sub>w</sub></em>：将补码转二进制；</li>
-<li><em>T2U<sub>w</sub></em>：将补码转无符号数；</li>
-<li><em>TMin<sub>w</sub></em>：最小补码值；</li>
-<li><em>TMax<sub>w</sub></em>：最大补码值；</li>
-<li><em>UMax<sub>w</sub></em>：最大无符号数;<center><img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/marbAH7nzGGsI6Ek6SrQOunxob95AbS49zS*efkpgEM!/m/dEYBAAAAAAAAnull&amp;bo=WgQ6AloEOgIDCSw!&amp;rf=photolist&amp;t=5" alt></center></li>
-</ol>
-</blockquote>
-<p>3.操作整数</p>
-<blockquote>
-<ol>
-<li><em>+ <sup>t</sup><sub>w</sub></em>：补码加法；</li>
-<li><em>+ <sup>u</sup><sub>w</sub></em>：无符号数加法；</li>
-<li>** <sup>t</sup><sub>w</sub>*：补码乘法；</li>
-<li>** <sup>u</sup><sub>w</sub>*：无符号数乘法；</li>
-<li><em>- <sup>t</sup><sub>w</sub></em>：补码取反；</li>
-<li><em>- <sup>u</sup><sub>w</sub></em>：无符号数取反；</li>
-</ol>
-</blockquote>
-<p>注：B ——二进制、T/t——补码、U/u——无符号数、w在这里表示数据表示中的位数</p>
-<h4 id="二-数值的定点与浮点表示"><a class="markdownIt-Anchor" href="#二-数值的定点与浮点表示"></a> 二、数值的定点与浮点表示</h4>
-<blockquote>
-<p>**1. 浮点数：**由于“指数”的存在以及它的大小不同而使数字部分的小数点位置不同，也可以这样理解，小数点的位置可以是“浮动的”，所以称之为浮点数形式；（在计算机内部，凡实数（即以小数形式所表示的数）都以浮点形式存储）<br>
-**2. 定点数：**凡不带指数部分的数称为定点数，整数都属于定点数；</p>
-</blockquote>
-<h4 id="三-无符号整数和带符号整数"><a class="markdownIt-Anchor" href="#三-无符号整数和带符号整数"></a> 三、无符号整数和带符号整数</h4>
-<p>1.如何表示正负？</p>
-<blockquote>
-<p><strong>1. 可以根据自己决定是否需要正负：</strong><br>
-      就像我们必须决定某个量使用整数还是实数，使用多大的范围数一样，我们必须自已决定某个量是否需要正负。<br>
-<br>      在计算机中，可以区分正负的类型，称为<font color="red">有符类型（声明signed）</font>，无正负的类型（只有正值），称为<font color="red">无符类型（声明unsigned）</font>。数值类型分为<strong>整型</strong>或<strong>实型</strong>，其中<font color="brwon">整型又分为无符类型或有符类型，而实型则只有符类型。字符类型也分为有符和无符类型。 </font>比如有两个量，年龄和库存，我们可以定前者为无符的字符类型，后者定为有符的整数类型。<br>
-<strong>2. 二制数中的最高位表示正负：</strong><br>
-      ①指定一个数量是无符号类型时，最高位被称为“符号位”：<br>
-            最高位为<font color="red">“1”</font>表示该数为<font color="red">负值</font>;<br>
-            最高位为<font color="red">“0”</font>表示该数为<font color="red">正值</font>;<br>
-      ②指定一个数量是无符号类型时，那么其最高位的1或0，和其它位一样，用来表示该数的大小。<br>
-      例如：signed number：1111 1111 的值为 -1<br>
-                unsigned number：1111 1111 的值为 255</p>
-</blockquote>
-<p>2.有符号数和无符号数的取值范围</p>
-<blockquote>
-<p>▶ 无符号数：UMin（000…0） = 0   ~   UMax(111…1) = 2<sup>w</sup>-1<br>
-▶ 带符号数（补码）：TMin（100…0） = -2<sup>w</sup>-1   ~   TMax(011…1) = 2<sup>w-1</sup>-1<br>
-<br>例如：一个字节数来说<br>
-▶ 无符号数：0~255<br>
-▶ 有符号数：-128~127<br>
-虽然有符号数的最大值缩水了，却在负值的方向出现了伸展，但二者能表达的不同的数值的个数都一样是256个。只不过前者表达的是0到255这256个数，后者表达的是-128到+127这256个数。<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/rRjZmKfxKMPeuDNqswo3jBeH4M9yrrzxSho9a4OLRQQ!/m/dDIBAAAAAAAAnull&amp;bo=cgRbAnIEWwIDCSw!&amp;rf=photolist&amp;t=5" alt></p>
-</blockquote>
-<h4 id="四-原码-反码和补码"><a class="markdownIt-Anchor" href="#四-原码-反码和补码"></a> 四、原码、反码和补码</h4>
-<p>1.反码与补码的作用</p>
-<blockquote>
-<p>▶ 反码：解决负数加法运算问题，将减法运算转换为加法运算，从而简化运算规则；<br>
-▶ 补码：解决负数加法运算正负零问题，弥补了反码的不足。<br>
-<br>总之，反码与补码都是为了解决负数运算问题，跟正数没关系，因此，不管是正整数还是正小数，原码，反码，补码都全部相同。</p>
-</blockquote>
-<p>2.无符号数的原码、反码和补码</p>
-<blockquote>
-<p>因为无符号数只有正数（无符号位）所以：</p>
-<center>原码 = 反码 = 补码 </center>
-</blockquote>
-<p>3.有符号数的原码、反码和补码</p>
-<blockquote>
-<p>▶ 正数：原码 = 反码 = 补码<br>
-▶ 负数：反码 =  原码（除符号位外）每位取反；补码 = 反码 + 1；</p>
-</blockquote>
-<p>4.极易混淆和犯错的知识</p>
-<blockquote>
-<p>在10进制中，1 就代表了 +1，-1 表示和 1 相对的负值，那么就会在二进制（1 个字节）中有个这样的错误认识：1 的二进制为 0000 0001，因为符号位“0”表示正数，“1”表示负数，所以就会认为 1000 0001 应该表示为 -1。这种理解是错误的，事实上计算机的规定相反，-1 的表示方式为：</p>
-<ul>
-<li>先取 -1 的<strong>原码</strong>：1000 0001</li>
-<li>-1（0000 0001） 的原码取反得<strong>反码</strong>：1111 1110</li>
-<li>反码加 1 得<strong>补码</strong>：1111 1111</li>
-</ul>
-<p><font color="red">可见，－1在计算机里用二进制表达就是全1。16进制为：0xFFFFFF。</font></p>
-</blockquote>
-<h4 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h4>
-<blockquote>
-<p>今天总结的大部分知识都是在学习 C 语言中学到的，相比当时学的时候，今天的再学习让我感觉对这方面的知识又更加深刻了，还是在于那句话：学习是一个过程，需要“温故知新”。以后还的继续回顾以前的知识，可能学到的东西和理解的层面，完全要比当时的更好，加油吧！</p>
-</blockquote>
-<h4 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h4>
-<blockquote>
-<p>只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
-</blockquote>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">https://muzibing.github.io/2019/03/12/2019.03.12（18）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">March 12th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/03/12/2019.03.12（18）/">April 22nd 2019, 9:55:16 pm</a>
-            </p><p>版权声明：本文由MuZibing原创，仅供参考</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/02/24/2019.02.24（2）/">
+            
+                <span>Misc:Signin/Misc:Poem/Misc:Birthday解题总结</span>
+        </a>
+        <div class="abstract-content">
+             1、解题进度
+
+
+Misc:Signin √
+Misc:Poem √
+Misc:Birthday √
+We:Calculator ×
+Crypto:What’s RSA？ ×
+Misc:Terminal ×
+
+
+ 2、解题过程
+1）Signin解题过程
+
+该题并没有太大的技术上的难度，但是由于第一次接触OJ系统，所以在解题前，我认真的阅读了学长发给我的资料，又结合题目的要求，最后将正确答案提交，之后有又认真看了该题的要求，熟悉了提交答案的格式。
+
+2）Poem解题过程
+
+在下载过题中给的图片后，自己先观察了一番，并没有发现什么线索，之后我又将图中每块图像进行了稍微的加工——将图片的名字...
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/03/13/2019.03.13（19）/" title="《汇编语言程序设计》学习笔记（三）">
-                    <div class="nextTitle">《汇编语言程序设计》学习笔记（三）</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/11/2019.03.11（17）/" title="《汇编语言程序设计》学习笔记（一）">
-                    <div class="prevTitle">《汇编语言程序设计》学习笔记（一）</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
-        <script type="text/javascript">
-            (function (d, s) {
-                var j, e = d.getElementsByTagName(s)[0];
-                if (typeof LivereTower === 'function') { return; }
-                j = d.createElement(s);
-                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                j.async = true;
-
-                e.parentNode.insertBefore(j, e);
-            })(document, 'script');
-        </script>
-        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
-
-<!-- City版安装代码已完成 -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/tags/解题总结/page/2/">&#60; PREV</a><a class="page-number" href="/tags/解题总结/">1</a><a class="page-number" href="/tags/解题总结/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
     
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -660,24 +499,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-计算机中整数的编码方式和操作整数"><span class="toc-number">1.</span> <span class="toc-text"> 一、计算机中整数的编码方式和操作整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-数值的定点与浮点表示"><span class="toc-number">2.</span> <span class="toc-text"> 二、数值的定点与浮点表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-无符号整数和带符号整数"><span class="toc-number">3.</span> <span class="toc-text"> 三、无符号整数和带符号整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-原码-反码和补码"><span class="toc-number">4.</span> <span class="toc-text"> 四、原码、反码和补码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六-每日一句"><span class="toc-number">6.</span> <span class="toc-text"> 六、每日一句</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1884,8 +1705,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -1901,7 +1720,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
 
