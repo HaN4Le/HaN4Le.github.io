@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2019-05-13T15:19:15.642Z</updated>
+  <updated>2019-05-14T11:03:24.431Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>本科毕业论文问卷调查</title>
+    <link href="https://muzibing.github.io/2019/05/13/2019.05.13%EF%BC%8857%EF%BC%89/"/>
+    <id>https://muzibing.github.io/2019/05/13/2019.05.13（57）/</id>
+    <published>2019-05-12T16:00:00.000Z</published>
+    <updated>2019-05-14T11:03:24.431Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>因为我在本科论文中需要一些数据，关于消费者的消费行为分析的，希望大家能够帮我填写一下：</p><p><iframe src="https://www.wjx.cn/jq/39396369,i,t.aspx?width=760&source=iframe" width="799" height="800" frameborder="0" style="overflow:auto"></iframe><br>致谢：感谢我身边所有的人，是你们在我前进的路上帮助了我，我也希望在以后的路上我们一起走过，一起去面对困难和挑战！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;因为我在本科论文中需要一些数据，关于消费者的消费行为分析的，希望大家能够帮我填写一下：&lt;/p&gt;
+&lt;p&gt;&lt;iframe src=&quot;https://www.wjx.cn/jq/39396369,i,t.aspx?width=760&amp;source=ifr
+      
+    
+    </summary>
+    
+    
+      <category term="本科论文" scheme="https://muzibing.github.io/tags/%E6%9C%AC%E7%A7%91%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
   
   <entry>
     <title>304号测试学习笔记（一）</title>
@@ -505,33 +530,6 @@
     
     
       <category term="reverse" scheme="https://muzibing.github.io/tags/reverse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《汇编语言程序设计》学习笔记（九）</title>
-    <link href="https://muzibing.github.io/2019/04/14/2019.04.14%EF%BC%8836%EF%BC%89/"/>
-    <id>https://muzibing.github.io/2019/04/14/2019.04.14（36）/</id>
-    <published>2019-04-13T16:00:00.000Z</published>
-    <updated>2019-04-22T13:57:17.105Z</updated>
-    
-    <content type="html"><![CDATA[<p>      今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：</p><blockquote><ul><li>x86-64下的通用寄存器与汇编指令</li><li>条件码</li><li>比较指令与测试指令</li></ul></blockquote><h3 id="一-x86-64下的通用寄存器与汇编指令"><a class="markdownIt-Anchor" href="#一-x86-64下的通用寄存器与汇编指令"></a> 一、x86-64下的通用寄存器与汇编指令</h3><h4 id="1x86-32与x86-64的数据类型宽度"><a class="markdownIt-Anchor" href="#1x86-32与x86-64的数据类型宽度"></a> 1.x86-32与x86-64的数据类型宽度</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/5engFlzEVuOPiby6vwzouAhrRsDRoQI4ZW6fcYtttE0!/r/dDIBAAAAAAAA" alt></p><h4 id="2x86-64的通用寄存器"><a class="markdownIt-Anchor" href="#2x86-64的通用寄存器"></a> 2.x86-64的通用寄存器</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/hgWCZsvfe.5peLUeCwN5Z0eBefBr7G5St.mbab7s.ag!/r/dL4AAAAAAAAA" alt></p><blockquote><ul><li>扩展了现有的，并增加了8个新的</li><li>%ebp/%rbp  不再是专用寄存器<br>3.x86-32/64下的swap函数比较</li></ul></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#C代码</span><br><span class="line">void  swap(int  *xp，int  *yp)</span><br><span class="line">&#123;</span><br><span class="line">int  t0 = *xp;</span><br><span class="line">int  t1 = *yp;</span><br><span class="line">*xp = t1;</span><br><span class="line">*yp = t0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#x86-32汇编代码</span><br><span class="line">swap：</span><br><span class="line">#Set up </span><br><span class="line">pushl  %ebp</span><br><span class="line">movl   %esp,%ebp</span><br><span class="line">pushl  %ebp</span><br><span class="line">#**Body**</span><br><span class="line">movl   12(%ebp),%ecx</span><br><span class="line">movl   8(%ebp),%edx</span><br><span class="line">movl   (%ecx),%eax</span><br><span class="line">movl   (%edx),%ebx</span><br><span class="line">movl   %eax,(%edx)</span><br><span class="line">movl   %ebx,(%ecx)</span><br><span class="line"></span><br><span class="line">#Finish</span><br><span class="line">movl   -4(%ebp),%ebx</span><br><span class="line">movl   %ebp,%esp</span><br><span class="line">popl   %ebp</span><br><span class="line">ret</span><br><span class="line"></span><br><span class="line">#x86-64汇编代码</span><br><span class="line">swap:</span><br><span class="line">movl   (%rdi),%edx</span><br><span class="line">movl   (%rsi),%eax</span><br><span class="line">movl   %eax,(%rdi)</span><br><span class="line">movl   %edx,(%rsi)</span><br><span class="line">retq</span><br></pre></td></tr></table></figure><blockquote><p><strong>不同点：</strong></p><ul><li>x86-32传参默认是通过内存来传参；</li><li>x86-64使用寄存器来传递参数，当参数少于7个时，参数从左到右放入寄存器：rdi、rsi、rdx、rcx、r8、r9。<strong>当参数为7个以上时，前面 6 个传送方式不变</strong>，但后面的依次“从右向左”放入栈中。x86-64 时无栈操作，<strong>被操作数据仍为32位</strong>，所以使用寄存器%eax、%edx以及movl指令</li></ul></blockquote><h4 id="3变形x86-64下long-int类型的swap"><a class="markdownIt-Anchor" href="#3变形x86-64下long-int类型的swap"></a> 3.变形：x86-64下long int类型的swap</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#C代码</span><br><span class="line">void  swap_1(int  *xp，int  *yp)</span><br><span class="line">&#123;</span><br><span class="line">long int  t0 = *xp;</span><br><span class="line">long int  t1 = *yp;</span><br><span class="line">*xp = t1;</span><br><span class="line">*yp = t0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#x86-64下的汇编代码</span><br><span class="line">swap:</span><br><span class="line">movl   (%rdi),%rdx</span><br><span class="line">movl   (%rsi),%rax</span><br><span class="line">movl   %rax,(%rdi)</span><br><span class="line">movl   %rdx,(%rsi)</span><br><span class="line">retq</span><br></pre></td></tr></table></figure><blockquote><p>被操作位的数据是64位，所以使用寄存器%rax、%rdx，以及movq指令（“q”表示“4字”）</p></blockquote><h4 id="4x86指令的特点"><a class="markdownIt-Anchor" href="#4x86指令的特点"></a> 4.x86指令的特点</h4><blockquote><ul><li>**支持多种类型的指令操作数：**立即数、寄存器、内存数据</li><li>算术/逻辑指令可以以内存数据为操作数</li><li>支持多种内存地址计算模式<ul><li>Rb + S * Ri + D</li><li>也可用于整数计算（如：leal指令）</li></ul></li></ul></blockquote><h4 id="5x86汇编的格式"><a class="markdownIt-Anchor" href="#5x86汇编的格式"></a> 5.x86汇编的格式</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/aDph2GeQBo1NmQrZJ3e9OXyY4gdiGHi.bO.GnfmnyNM!/r/dLYAAAAAAAAA" alt></p><h4 id="6练习题"><a class="markdownIt-Anchor" href="#6练习题"></a> 6.练习题</h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fQjttn30BPLGmWgEKMtUdPmiG94Gx8OI6L0Scgra8xE!/r/dL8AAAAAAAAA" alt></p><h3 id="二-条件码"><a class="markdownIt-Anchor" href="#二-条件码"></a> 二、条件码</h3><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/EkgOFoU6MAPIE825g.JQQmR7mZeoWSCQ1XCls6.t*PE!/r/dFIBAAAAAAAA" alt></p><blockquote><ul><li>CF（Carry  Flag）：进位位</li><li>SF（Sign    Flag）：符号位</li><li>ZF（Zero    Flag）：零位</li><li>OF（Overflow  Flag）：溢出位</li></ul><p>☛ 这些条件码由算术指令隐含设置</p><center>addl&nbsp;&nbsp;&nbsp;&nbsp;Src,Dest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addq&nbsp;&nbsp;&nbsp;&nbsp;Src,Dest</center>类似的C语言表达式：<center>t = a + b （a = Src，b = Dest）</center>- CF 进位标志：可用于检测无符号整数运算的溢出- ZF set if t == 0- SF set if t  &nbsp;<  &nbsp;0- OF set if：补码运算溢出（即带符号整数运算）（a > 0 && b >0 && t < 0）|| （a < 0 && b <0 && t> 0）</0></blockquote><h3 id="三-比较指令与测试指令"><a class="markdownIt-Anchor" href="#三-比较指令与测试指令"></a> 三、比较指令与测试指令</h3><h4 id="1比较指令compare指令"><a class="markdownIt-Anchor" href="#1比较指令compare指令"></a> 1.比较指令（Compare）指令</h4><blockquote><center>cmpl&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmpq&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1</center>cmpl b,a 类似于计算a - b（但是不改变目的操作数）- 可用于无符号数的比较&nbsp;&nbsp;&nbsp;ZF  set if a == b&nbsp;&nbsp;&nbsp;SF set if (a < b) < 0&nbsp;&nbsp;&nbsp;OF set if two's complement overflow- (a > 0 && b < 0 && (a - b) < 0）|| （a < 0 && b > 0 && (a - b) > 0)</blockquote><h4 id="2测试指令test"><a class="markdownIt-Anchor" href="#2测试指令test"></a> 2.测试指令（Test）</h4><blockquote><center>testl&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;testq&nbsp;&nbsp;&nbsp;&nbsp;Src2,Src1</center>计算Src1 & Src2并设置相应的条件码，但是不改变目的操作数- ZF set when  a&b == 0- SF set when a&b < 0<p>test 指令使CF、OF为0</p></blockquote><h3 id="四-学习感悟"><a class="markdownIt-Anchor" href="#四-学习感悟"></a> 四、学习感悟</h3><blockquote><p>今天在做逆向的题目，感觉慢慢的对这方面的题目有了自己的理解。在跟着视频学习了一段时间，对我解题时的理解有很大的帮助，我也会坚持学习，直到自己真正理解了逆向的思想和方法。</p></blockquote><h3 id="五-每日一句"><a class="markdownIt-Anchor" href="#五-每日一句"></a> 五、每日一句</h3><blockquote><p>不要放弃！坚持下去就是胜利！</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;      今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;x86-64下的通用寄存器与汇编指令&lt;/li&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="汇编语言" scheme="https://muzibing.github.io/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   
