@@ -458,12 +458,22 @@ RSA加解密原理
 
 
  ▎一、汇编程序员眼中的系统结构
-![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/KgA9DzzPsW3kfMffIMzuVmtxMrNPEhPE*FDwmFtzILw!/r/dLYAAAAAAAAA)
->- 指令寄存器（PC）：
->▷ 下一条指令的地址；
->▷ EIP（x86-32）或RIP（x86-64）
->- 寄存器与寄存器堆（Registers）：在处理器内部的以名字来访问的快速存储单元
->- 条件...
+
+
+
+指令寄存器（PC）：
+▷ 下一条指令的地址；
+▷ EIP（x86-32）或RIP（x86-64）
+寄存器与寄存器堆（Registers）：在处理器内部的以名字来访问的快速存储单元
+条件码（Condition Codes）：
+▷ 用于存储最近执行指令的结果状态信息
+▷ 用于条件指令的判断执行
+存储器（Memory）：
+▷ 以字节编码的连续存储空间
+▷ 存放程序代码、数据、运行栈以及操作系统数据
+
+
+1.如何从C代码生成汇编代...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
