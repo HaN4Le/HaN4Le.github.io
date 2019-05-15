@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">801</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,66 +416,101 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：</p>
+        <p>     今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：</p>
 <blockquote>
 <ul>
 <li>汇编程序员眼中的系统结构</li>
 <li>第一条汇编指令</li>
 </ul>
 </blockquote>
-<h4 id="▎一、汇编程序员眼中的系统结构"><a href="#▎一、汇编程序员眼中的系统结构" class="headerlink" title="▎一、汇编程序员眼中的系统结构"></a><font color="brown">▎一、汇编程序员眼中的系统结构</font></h4><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/KgA9DzzPsW3kfMffIMzuVmtxMrNPEhPE*FDwmFtzILw!/r/dLYAAAAAAAAA" alt></p>
+<h4 id="font-colorbrown一-汇编程序员眼中的系统结构font"><a class="markdownIt-Anchor" href="#font-colorbrown一-汇编程序员眼中的系统结构font"></a> <font color="brown">▎一、汇编程序员眼中的系统结构</font></h4>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/KgA9DzzPsW3kfMffIMzuVmtxMrNPEhPE*FDwmFtzILw!/r/dLYAAAAAAAAA" alt></p>
 <blockquote>
 <ul>
-<li><font color="brown">指令寄存器（PC）：</font><br>▷ 下一条指令的地址；<br>▷ EIP（x86-32）或RIP（x86-64）</li>
+<li><font color="brown">指令寄存器（PC）：</font><br>
+▷ 下一条指令的地址；<br>
+▷ EIP（x86-32）或RIP（x86-64）</li>
 <li><font color="brown">寄存器与寄存器堆（Registers）：</font>在处理器内部的以名字来访问的快速存储单元</li>
-<li><font color="brown">条件码（Condition Codes）：</font><br>▷ 用于存储最近执行指令的结果状态信息<br>▷ 用于条件指令的判断执行</li>
-<li><font color="brown">存储器（Memory）：</font><br>▷ 以字节编码的连续存储空间<br>▷ 存放程序代码、数据、运行栈以及操作系统数据</li>
+<li><font color="brown">条件码（Condition Codes）：</font><br>
+▷ 用于存储最近执行指令的结果状态信息<br>
+▷ 用于条件指令的判断执行</li>
+<li><font color="brown">存储器（Memory）：</font><br>
+▷ 以字节编码的连续存储空间<br>
+▷ 存放程序代码、数据、运行栈以及操作系统数据</li>
 </ul>
 </blockquote>
 <p><strong>1.如何从C代码生成汇编代码？</strong></p>
 <blockquote>
-<p>&lt;font color=’red&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C 代码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的x86-32汇编&lt;/font&gt;<br>int sum(int x,int y)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum:<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int t = x+y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%esp, %ebp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12(%ebp),%eax<br>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%eax<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp,%esp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%ebp<br><br>命令行：gcc&nbsp;&nbsp;&nbsp;&nbsp;-02&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;&nbsp;code.c&nbsp;&nbsp;&nbsp;&nbsp;-m32&nbsp;&nbsp;&nbsp;&nbsp;-fno-omit-frame-pointer<br>生成汇编文件：code.s</p>
+<p>&lt;font color='red&gt;       C 代码                                                          对应的x86-32汇编<br>
+int sum(int x,int y)                                       sum:<br>
+{                                                                            pushl    %ebp<br>
+     int t = x+y;                                                        movl     %esp, %ebp<br>
+     return t;                                                            movl     12(%ebp),%eax<br>
+}                                                                             addl      8(%ebp),%eax<br>
+                                                                              movl     %ebp,%esp<br>
+                                                                              popl      %ebp<br>
+<br>命令行：gcc    -02    -S    code.c    -m32    -fno-omit-frame-pointer<br>
+生成汇编文件：code.s</p>
 </blockquote>
-<p><strong>2.汇编语言数据格式</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/h04H.tsNNvCZbjU.e0tUSlxdl31hO9Tz3D5aTz9zL.k!/r/dLgAAAAAAAAA" alt></p>
+<p><strong>2.汇编语言数据格式</strong><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/h04H.tsNNvCZbjU.e0tUSlxdl31hO9Tz3D5aTz9zL.k!/r/dLgAAAAAAAAA" alt></p>
 <blockquote>
 <p>在x86-32中，使用“字（Word）”来标识16位证书类型；“双字”表示32位；汇编语言指令所处理的数据类型一般是采用汇编指令的后缀来进行区分。</p>
 </blockquote>
-<h4 id="▎二、第一条汇编指令"><a href="#▎二、第一条汇编指令" class="headerlink" title="▎二、第一条汇编指令"></a><font color="brown">▎二、第一条汇编指令</font></h4><p><strong>1.第一条汇编指令实例</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/02sOeh6T2eTCf*pO37M8FrHfFBGw4UlaYPeS07d.aTg!/r/dL8AAAAAAAAA" alt></p>
+<h4 id="font-colorbrown二-第一条汇编指令font"><a class="markdownIt-Anchor" href="#font-colorbrown二-第一条汇编指令font"></a> <font color="brown">▎二、第一条汇编指令</font></h4>
+<p><strong>1.第一条汇编指令实例</strong><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/02sOeh6T2eTCf*pO37M8FrHfFBGw4UlaYPeS07d.aTg!/r/dL8AAAAAAAAA" alt></p>
 <p><strong>2.数据传送指令（mov）</strong></p>
 <blockquote>
 <p>mov指令是汇编语言中被频繁使用的一个指令</p>
 <ul>
-<li>数据传送（AT&amp;T语法）<br>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dest<br>这是一个常见的指令，是将一个“双字（l）”从Source移到Dest中</li>
-<li>允许的操作数类型<br><font color="red"><strong>立即数：常整数</strong></font>,如：<ul>
+<li>数据传送（AT&amp;T语法）<br>
+movl     Source     Dest<br>
+这是一个常见的指令，是将一个“双字（l）”从Source移到Dest中</li>
+<li>允许的操作数类型<br>
+<font color="red"><strong>立即数：常整数</strong></font>,如：
+<ul>
 <li>$0x400,$-533</li>
-<li>可以被1、2或4个字节来表示<br><font color="red"><strong>寄存器：8个通用寄存器之一</strong></font><br><font color="red"><strong>存储器：四个连续的字节</strong></font>：支持多种访存寻址模式</li>
+<li>可以被1、2或4个字节来表示<br>
+<font color="red"><strong>寄存器：8个通用寄存器之一</strong></font><br>
+<font color="red"><strong>存储器：四个连续的字节</strong></font>：支持多种访存寻址模式</li>
 </ul>
 </li>
-<li><strong>扩展：寄存器和存储器的区别</strong><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/q9hWXpW*Q.YIWzOAHgh3dPf07*NeGsM8IU2YaPrmA94!/r/dMMAAAAAAAAA" alt></li>
+<li><strong>扩展：寄存器和存储器的区别</strong><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/q9hWXpW*Q.YIWzOAHgh3dPf07*NeGsM8IU2YaPrmA94!/r/dMMAAAAAAAAA" alt></li>
 </ul>
 </blockquote>
 <p><strong>3.数据传送指令支持的不同操作数类型组合（以movl为例）</strong></p>
 <blockquote>
 <ul>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0x4,%eax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = 0x4</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">Imm</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$-147,(%eax)&nbsp;&nbsp;&nbsp;C语言表示：*p = -147</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%eax,%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp1 = temp2</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">Reg</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$eax,(%edx)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：*p = temp</li>
-<li>movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="brown">Mem</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示例：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%eax),%edx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言表示：temp = <em>p<br>▶ Imm：立即数（操作数）<br>▶ Reg：寄存器<br>▶ Mem：存储器<br>▶ (%eax)：表示的是%eax寄存器的内存地址<br><br><em>*注意：不能两个操作数都为内存地址；</em></em></li>
+<li>movl      <font color="red">Imm</font>      Reg      示例：movl      $0x4,%eax       C语言表示：temp = 0x4</li>
+<li>movl      <font color="red">Imm</font>      Mem     示例：movl      $-147,(%eax)   C语言表示：*p = -147</li>
+<li>movl      <font color="green">Reg</font>      Reg      示例：movl      %eax,%edx       C语言表示：temp1 = temp2</li>
+<li>movl      <font color="green">Reg</font>      Mem     示例：movl      $eax,(%edx)     C语言表示：*p = temp</li>
+<li>movl      <font color="brown">Mem</font>     Reg      示例：movl      (%eax),%edx     C语言表示：temp = *p<br>
+▶ Imm：立即数（操作数）<br>
+▶ Reg：寄存器<br>
+▶ Mem：存储器<br>
+▶ (%eax)：表示的是%eax寄存器的内存地址<br>
+<br><strong>注意：不能两个操作数都为内存地址；</strong></li>
 </ul>
 </blockquote>
 <p><strong>3.简单的寻址模式</strong></p>
 <blockquote>
 <ul>
-<li><strong>间接寻址模式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg[R]]</strong><br>寄存器R指定内存地址：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%ecx),%eax</li>
-<li>基址 + 偏移量寻址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D(R)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mem[Reg(R) + D]<br>寄存器R指定内存起始地址，常数D给出偏移量：movl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8(%ebp),%edx</li>
+<li><strong>间接寻址模式     (R)      Mem[Reg[R]]</strong><br>
+寄存器R指定内存地址：movl      (%ecx),%eax</li>
+<li>基址 + 偏移量寻址       D(R)      Mem[Reg(R) + D]<br>
+寄存器R指定内存起始地址，常数D给出偏移量：movl      8(%ebp),%edx</li>
 </ul>
 </blockquote>
-<h4 id="▎学习感悟"><a href="#▎学习感悟" class="headerlink" title="▎学习感悟"></a><font color="red">▎学习感悟</font></h4><blockquote>
+<h4 id="font-colorred学习感悟font"><a class="markdownIt-Anchor" href="#font-colorred学习感悟font"></a> <font color="red">▎学习感悟</font></h4>
+<blockquote>
 <p>今天还是学习了“汇编语言”，感觉自己慢慢的开始对一些概念和语法有了一些更深的理解，给了我以后学习的很大信心，让我觉得只要肯下功夫，就一定能学好的。</p>
 </blockquote>
-<h4 id="▎每日一句"><a href="#▎每日一句" class="headerlink" title="▎每日一句"></a><font color="red">▎每日一句</font></h4><blockquote>
-<p>在成功的道路上，激情是需要的，志向是可贵的，但更重要的是那毫无情趣的近乎平常的坚守的毅力和勇气。  </p>
+<h4 id="font-colorred每日一句font"><a class="markdownIt-Anchor" href="#font-colorred每日一句font"></a> <font color="red">▎每日一句</font></h4>
+<blockquote>
+<p>在成功的道路上，激情是需要的，志向是可贵的，但更重要的是那毫无情趣的近乎平常的坚守的毅力和勇气。</p>
 </blockquote>
 
     </article>
@@ -485,7 +520,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/04/04/2019.04.04（28）/">https://muzibing.github.io/2019/04/04/2019.04.04（28）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/04/04/2019.04.04（28）/">April 4th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/04/2019.04.04（28）/">May 15th 2019, 5:54:06 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/04/04/2019.04.04（28）/">May 15th 2019, 5:54:14 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -637,7 +672,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#▎一、汇编程序员眼中的系统结构"><span class="toc-number">1.</span> <span class="toc-text">▎一、汇编程序员眼中的系统结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎二、第一条汇编指令"><span class="toc-number">2.</span> <span class="toc-text">▎二、第一条汇编指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎学习感悟"><span class="toc-number">3.</span> <span class="toc-text">▎学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎每日一句"><span class="toc-number">4.</span> <span class="toc-text">▎每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorbrown一-汇编程序员眼中的系统结构font"><span class="toc-number">1.</span> <span class="toc-text"> ▎一、汇编程序员眼中的系统结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorbrown二-第一条汇编指令font"><span class="toc-number">2.</span> <span class="toc-text"> ▎二、第一条汇编指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorred学习感悟font"><span class="toc-number">3.</span> <span class="toc-text"> ▎学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorred每日一句font"><span class="toc-number">4.</span> <span class="toc-text"> ▎每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
