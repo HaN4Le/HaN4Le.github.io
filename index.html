@@ -379,13 +379,9 @@ height:50vh;
                 <span>MySQL学习笔记（二）查询(2)</span>
         </a>
         <div class="abstract-content">
-             一、多表查询
-
+            一、多表查询
 SELECT查询不但可以从一张表查询数据，还可以从多张表同时查询数据。查询多张表的语法是：
-SELECT * FROM  
-例如：SELECT * FROM students, classes;
-这种一次查询两个表的数据，查询的结果也是一个二维表，它是**students表和classes表**的“乘积”，即students表的每一行与classes表的每一行都两两拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是students表和classes表的行数之积。
-这种多表查询又称笛卡尔查询，使用笛卡尔查询时要非常小心，由于结果集是目标表的...
+SELECT * FROM  例如：SELECT  FROM students, classes;这种一次查询两个表的数据，查询的结果也是一个二维表，它是*students表和classes表的“乘积”，即students表的每一行与classes表的每一行都两两拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是students表和classes表的行数之积。这种多表查询又称笛卡尔查询，使用笛卡尔查询时要非常小心，由于结果集是目标表的行数乘积，对两个各...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
