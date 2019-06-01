@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《图解密码技术》第十三章（PGP）学习笔记 · MUZIBing&#39;s BLOG</title>
+    <title>304号测试解题总结（一） · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《图解密码技术》第十三章（PGP）学习笔记</a>
+                <a href="#" class="post-name">304号测试解题总结（一）</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/65.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/58.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《图解密码技术》第十三章（PGP）学习笔记
+            304号测试解题总结（一）
             <!-- 404 -->
             
         </h1>
@@ -281,20 +281,20 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Virtual machine">Virtual machine</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">882</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/29</span>
+                    <span class="post-intro-time">2019/05/15</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -419,91 +419,53 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p><strong>☛  学习的内容：</strong></p>
+<p>✍ 分析了两天myvm汇编指令的指令格式和寻址方式，今天就简单的来总结一下有关内容。因为本人的知识有限，所以在总结的过程可能会出现许多错误，希望大家能够在评论区给我留言，我将及时验证并更正。</p>
+</blockquote>
+<h3 id="一-myvm汇编代码main函数部分"><a class="markdownIt-Anchor" href="#一-myvm汇编代码main函数部分"></a> 一、myvm汇编代码（main函数部分）</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000BD0</span><br><span class="line">.text:0000000000000BD0 ; =============== S U B R O U T I N E =======================================</span><br><span class="line">.text:0000000000000BD0</span><br><span class="line">.text:0000000000000BD0</span><br><span class="line">.text:0000000000000BD0 ; int __cdecl main(int, char **, char **)</span><br><span class="line">.text:0000000000000BD0 main            proc near               ; DATA XREF: start+1Do</span><br><span class="line">.text:0000000000000BD0                 push    r14</span><br><span class="line">.text:0000000000000BD2                 push    rbx</span><br><span class="line">.text:0000000000000BD3                 push    rax</span><br><span class="line">.text:0000000000000BD4                 mov     rbx, rsi</span><br><span class="line">.text:0000000000000BD7                 cmp     edi, 2</span><br><span class="line">.text:0000000000000BDA                 jnz     short loc_C47</span><br><span class="line">.text:0000000000000BDC                 lea     rsi, handler    ; handler</span><br><span class="line">.text:0000000000000BE3                 mov     edi, 2          ; sig</span><br><span class="line">.text:0000000000000BE8                 call    signal</span><br><span class="line">.text:0000000000000BED                 mov     rdi, [rbx+8]</span><br><span class="line">.text:0000000000000BF1                 call    sub_CE0</span><br><span class="line">.text:0000000000000BF6                 mov     rbx, rax</span><br><span class="line">.text:0000000000000BF9                 lea     r14, unk_202014</span><br><span class="line">.text:0000000000000C00                 mov     dword ptr [r14], 1</span><br><span class="line">.text:0000000000000C07                 nop     word ptr [rax+rax+00000000h]</span><br><span class="line">.text:0000000000000C10</span><br><span class="line">.text:0000000000000C10 loc_C10:                                ; CODE XREF: main+50j</span><br><span class="line">.text:0000000000000C10                 mov     rdi, rbx</span><br><span class="line">.text:0000000000000C13                 call    sub_E90</span><br><span class="line">.text:0000000000000C18                 test    eax, eax</span><br><span class="line">.text:0000000000000C1A                 jnz     short loc_C24</span><br><span class="line">.text:0000000000000C1C                 cmp     dword ptr [r14], 0</span><br><span class="line">.text:0000000000000C20                 jnz     short loc_C10</span><br><span class="line">.text:0000000000000C22                 jmp     short loc_C35</span><br><span class="line">.text:0000000000000C24 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000C24</span><br><span class="line">.text:0000000000000C24 loc_C24:                                ; CODE XREF: main+4Aj</span><br><span class="line">.text:0000000000000C24                 cmp     eax, 2</span><br><span class="line">.text:0000000000000C27                 jnz     short loc_C35</span><br><span class="line">.text:0000000000000C29                 lea     rdi, s          ; &quot;Illegal Instruction&quot;</span><br><span class="line">.text:0000000000000C30                 call    puts</span><br><span class="line">.text:0000000000000C35</span><br><span class="line">.text:0000000000000C35 loc_C35:                                ; CODE XREF: main+52j</span><br><span class="line">.text:0000000000000C35                                         ; main+57j</span><br><span class="line">.text:0000000000000C35                 mov     rdi, rbx</span><br><span class="line">.text:0000000000000C38                 call    nullsub_2</span><br><span class="line">.text:0000000000000C3D</span><br><span class="line">.text:0000000000000C3D loc_C3D:                                ; CODE XREF: main+92j</span><br><span class="line">.text:0000000000000C3D                 xor     eax, eax</span><br><span class="line">.text:0000000000000C3F                 add     rsp, 8</span><br><span class="line">.text:0000000000000C43                 pop     rbx</span><br><span class="line">.text:0000000000000C44                 pop     r14</span><br><span class="line">.text:0000000000000C46                 retn</span><br><span class="line">.text:0000000000000C47 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000C47</span><br><span class="line">.text:0000000000000C47 loc_C47:                                ; CODE XREF: main+Aj</span><br><span class="line">.text:0000000000000C47                 mov     rax, cs:stderr_ptr</span><br><span class="line">.text:0000000000000C4E                 mov     rdi, [rax]      ; stream</span><br><span class="line">.text:0000000000000C51                 mov     rdx, [rbx]</span><br><span class="line">.text:0000000000000C54                 lea     rsi, format     ; &quot;Usage: %s &lt;myvm program&gt;\n&quot;</span><br><span class="line">.text:0000000000000C5B                 xor     eax, eax</span><br><span class="line">.text:0000000000000C5D                 call    fprintf</span><br><span class="line">.text:0000000000000C62                 jmp     short loc_C3D</span><br><span class="line">.text:0000000000000C62 main            endp</span><br><span class="line">.text:0000000000000C62</span><br><span class="line">.text:0000000000000C62 ; ---------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<h3 id="二-所含指令总结"><a class="markdownIt-Anchor" href="#二-所含指令总结"></a> 二、所含指令总结</h3>
+<blockquote>
+<p>以上就是myvm程序main函数的汇编指令，在分析了上述指令后，简单的来总结一下所包含的指令以及其功能：</p>
 <ul>
-<li>PGP简介</li>
-<li>生成密钥对</li>
-<li>加密与解密</li>
-<li>生成和验证数字签名</li>
-<li>“生成数字签名并加密”和“解密并验证数字签名”</li>
-<li>信任网</li>
+<li><strong>push</strong>：实现压入操作的指令；</li>
+<li><strong>mov</strong>：<a href="https://muzibing.github.io/2019/04/04/2019.04.04%EF%BC%8828%EF%BC%89/">详细见以前的总结</a>；</li>
+<li>**cmp：**是微型机中的一条比较指令，功能相当于减法指令，但不改变数值；</li>
+<li><strong>jnz：</strong><a href="https://muzibing.github.io/2019/04/16/2019.04.16%EF%BC%8838%EF%BC%89/">这是跳转指令，详细见以前的总结</a>；</li>
+<li>**lea：**取有效地址，也就是取偏移地址；</li>
+<li><strong>call：</strong>“调用”指令，其功能有：<br>
+① 将下一条指令的所在地址（即当时程序计数器PC的内容）入栈；<br>
+② 将子程序的起始地址送入PC（于是CPU的下一条指令就会转去执行子程序）；</li>
+<li>**nop：**执行到NOP指令时，CPU什么也不做，仅仅当做一个指令执行过去并继续执行NOP后面的一条指令。所以NOP指令自然也会占用执行一个指令的CPU时间片</li>
+<li>**test：**将两个操作数进行逻辑与运算，并根据运算结果设置相关的标志位。但是，Test命令的两个操作数不会被改变。运算结果在设置过相关标记位后会被丢弃。</li>
+<li><strong>jmp：</strong><a href="https://muzibing.github.io/2019/04/16/2019.04.16%EF%BC%8838%EF%BC%89/">这是跳转指令，详细见以前的总结</a>；</li>
+<li>**xor：**逻辑运算符——异或</li>
+<li>**add：**相加的指令；</li>
+<li>**pop：**将堆栈段中的一个字单元弹出；</li>
+<li>**retn：**返回”指令，RET指令的功能就是一条：从栈中取出一条数据送入PC；</li>
 </ul>
 </blockquote>
-<h3 id="一-pgp简介"><a class="markdownIt-Anchor" href="#一-pgp简介"></a> 一、PGP简介</h3>
+<h3 id="三-汇编指令的逻辑"><a class="markdownIt-Anchor" href="#三-汇编指令的逻辑"></a> 三、汇编指令的逻辑</h3>
 <blockquote>
-<p><font color="brown"><strong>1.什么是PGP</strong></font><br>
-      <strong>PGP(Pretty Good Private)是一个密码软件，它将多种密码学的技术结合起来，形成的密码技术</strong><br>
-<br><font color="brown"><strong>2.什么是OpenPGP</strong></font><br>
-      OpenPGP 是对密文和数字签名格式进行定义的<strong>标准规格</strong>，有 RFC1991、RFC2440、 RFC4880、RFC5581、RFC6637。</p>
+<p>在总结以上的指令外，我也将汇编指令反编译成伪代码，然后找出了伪代码和汇编指令的对应部分，如下图：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kK6xVW9JzD01p.VWmewzauPGZLgllAWtdz67p.Khgfs!/r/dL4AAAAAAAAA" alt></p>
+</blockquote>
+<h3 id="四-寻址方式main函数"><a class="markdownIt-Anchor" href="#四-寻址方式main函数"></a> 四、寻址方式（main函数）</h3>
+<blockquote>
+<p><strong>【知识储备】</strong></p>
 <ul>
-<li><strong>RFC4880</strong>：增加了对RSA、DSA的支持</li>
-<li><strong>RFC6637</strong>：增加了对椭圆曲线密码的支持，还增加了用于比较密码学强度的平衡性的对照表，如下图：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lTumljk7MNRxh1RxYyUKbckjyTyu76O9HqtuOTE.A5U!/r/dDEBAAAAAAAA" alt></li>
+<li><a href="https://muzibing.github.io/2019/04/12/2019.04.12%EF%BC%8834%EF%BC%89/">有关寻址的总结，我在以前的博文里有所叙述，详情可以点击这里。</a></li>
+<li><a href="https://blog.csdn.net/dingwood/article/details/7009821" target="_blank" rel="noopener">这篇文章是一位博主总结的，比较详细</a></li>
 </ul>
-<p><font color="brown"><strong>3.什么是GUN Private Guard</strong></font><br>
-      GUN Private Guard 是一款基于OpenPGP 标准开发的密码学软件，支持 <strong>加密、数字签名、密钥管理、S/MIME、ssh</strong>等多项功能，并且是基于 GUNPG 协议发布的一款自由软件。<br>
-      GUNPG分为stable、modern 和 classic 三个系列</p>
+<p>对于myvm的main函数来说，主要的寻址方式有：（目前我所知道的）</p>
 <ul>
-<li>GUNPG stable：版本号为2.0.x，支持<strong>OpenPGP、S/MIME 和 ssh</strong></li>
-<li>GUNPG modern：版本号为2.1.x，在stable的基础上增加了对<strong>椭圆曲线密码</strong>的支持</li>
-<li>GUNPG classic：版本号为1.4.x，是较旧的版本</li>
+<li>立即数寻址</li>
+<li>寄存器寻址</li>
+<li>段间间接寻址</li>
 </ul>
-<p><br><font color="brown"><strong>4.PGP的功能</strong></font><br>
-      <strong>▣ 对称密码</strong>：AES、IDEA、CAST、三重DES、Blowfish、Twofish、Camellia等<br>
-      <strong>▣ 公钥密码</strong>：RSA 和 ElGamal等<br>
-      <strong>▣ 数字签名</strong>：可以使用数字签名的算法有 RSA、DSA、ECDSA（椭圆曲线DSA）、EdDSA（爱德华兹DSA）<br>
-      <strong>▣ 单向散列函数</strong>：SHA-1、SHA-224、SHA-256、SHA-384、SHA-512 和 RIPEMD-160、MD5（不推荐使用）等<br>
-      <strong>▣ 证书</strong>：可以生成 OpenGPG 中规定的证书，以及与 X.509 规范兼容的证书；还可以颁发公钥作废证明，也可以使用 CRL 和 OSCP 对证书进行检验<br>
-      <strong>▣ 压缩</strong>：支持对数据的压缩（ZIP、ZLIB、BZIPZ）和解压缩<br>
-      <strong>▣ 文本数据</strong>：可以将<strong>二进制</strong>与<strong>文本数据</strong>（ASCII  radix-64格式）进行转换<br>
-      <strong>▣ 大文件的拆分和拼合</strong><br>
-      <strong>▣ 钥匙串管理</strong>：用于管理密钥的文件称为<strong>钥匙串</strong></p>
 </blockquote>
-<h3 id="二-生成密钥对"><a class="markdownIt-Anchor" href="#二-生成密钥对"></a> 二、生成密钥对</h3>
+<h3 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h3>
 <blockquote>
-<p>PGP 生成密钥对的代码行为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg2 --full-gen-key</span><br></pre></td></tr></table></figure>
-<h3 id="三-加密与解密"><a class="markdownIt-Anchor" href="#三-加密与解密"></a> 三、加密与解密</h3>
-<blockquote>
-<p><font color="brown"><strong>1.加密</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LW3C6tYs4LRcaY11592hDSKHAbQ8tGWdCIflaXDLsxs!/r/dL8AAAAAAAAA" alt><br>
-      <strong>▣ 生成和加密会话密钥</strong><br>
-      <strong>▣ 压缩和加密消息</strong><br>
-<br><font color="brown"><strong>2.解密</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/jKO.AhdrPb5Dn82i6G8SQByG63aAm7bdMIn3xGsqTI0!/r/dL4AAAAAAAAA" alt></p>
-</blockquote>
-<h3 id="四-生成和验证数字签名"><a class="markdownIt-Anchor" href="#四-生成和验证数字签名"></a> 四、生成和验证数字签名</h3>
-<blockquote>
-<p><font color="brown"><strong>1.生成数字签名</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/HbDmdldE7I3V2t6CBmECSLHFvTp2TloKwBsJNmuVWXE!/r/dMAAAAAAAAAA" alt><br>
-      <strong>▣ 解密私钥</strong><br>
-      <strong>▣ 生成数字签名</strong><br>
-<br><font color="brown"><strong>2.验证数字签名</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/jDRsxZc.ySwWWq3ab4nkI3HZeHLoJzGr9DCmZGXW8qI!/r/dMUAAAAAAAAA" alt><br>
-      <strong>▣ 恢复发送者发送的散列值</strong><br>
-      <strong>▣ 对比散列值</strong></p>
-</blockquote>
-<h3 id="五-生成数字签名并加密以及解密并验证数字签名"><a class="markdownIt-Anchor" href="#五-生成数字签名并加密以及解密并验证数字签名"></a> 五、生成数字签名并加密以及解密并验证数字签名</h3>
-<blockquote>
-<p><font color="brown"><strong>1.生成数字签名并加密</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MJPrvtn0m5gcGl4vT*dna*jBQrgtvNf5nO58UKPiRfQ!/r/dFMBAAAAAAAA" alt><br>
-      <strong>▣ 生成数字签名</strong><br>
-      <strong>▣ 加密</strong><br>
-<br><font color="brown"><strong>2.解密并验证数字签名</strong></font><br>
-<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/wVCk*g8hfzp55Ibz.A0HNrJoWrhiCTRpJ2WckGZr3FI!/r/dL8AAAAAAAAA" alt><br>
-      <strong>▣ 解密</strong><br>
-      <strong>▣ 验证数字签名</strong></p>
-</blockquote>
-<h3 id="六-信任网"><a class="markdownIt-Anchor" href="#六-信任网"></a> 六、信任网</h3>
-<blockquote>
-<p><font color="brown"><strong>1.公钥合法性</strong></font><br>
-      对于确认公钥的合法性，我们前面就学习了“证书”相关技术，证书就是认证机构对公钥施加的数字签名，通过验证这个数字签名就可以确认公钥的合法性，而在PGP技术里，不需要通过认证机构来确认公钥的合法性，而是通过一种叫做“<strong>信任网</strong>”的方法，<font color="red"><strong>PGP用户会互相对对方的公钥进行签名</strong> </font><br>
-<br><font color="brown"><strong>2.场景1：通过自己的数字签名进行确认</strong></font><br>
-<br><font color="brown"><strong>3.场景2：通过自己完全信任的人的数字签名进行确认</strong></font><br>
-<br><font color="brown"><strong>4.场景3：通过自己有限信任的多个人的数字签名进行确认</strong></font><br>
-<br><font color="brown"><strong>5.公钥合法性与所有者信任是不同的</strong></font><br>
-<br><font color="brown"><strong>6.所有者信任级别因人而异的</strong></font></p>
+<p>这几天通过对myvm程序的分析，我发现前几天学到的知识点还远远不够，而且对于Virtual machine这道题目来说，我所欠缺的知识点还很多很多，我将继续脚踏实地的学习，不断补充自己。</p>
 </blockquote>
 
     </article>
@@ -511,9 +473,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（65）/">https://muzibing.github.io/2019/05/29/2019.05.29（65）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（65）/">May 29th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（65）/">May 29th 2019, 9:34:01 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/15/2019.05.15（57）/">https://muzibing.github.io/2019/05/15/2019.05.15（57）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/15/2019.05.15（57）/">May 15th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/15/2019.05.15（57）/">May 15th 2019, 9:36:51 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -521,12 +483,17 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/05/16/2019.05.16（58）/" title="《图解密码技术》第八章学习笔记">
+                    <div class="nextTitle">《图解密码技术》第八章学习笔记</div>
+                </a>
+            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/28/2019.05.28（64）/" title="《图解密码技术》第十二章（随机数）学习笔记">
-                    <div class="prevTitle">《图解密码技术》第十二章（随机数）学习笔记</div>
+                <a href="/2019/05/14/2019.05.14（56）/" title="本科毕业论文问卷调查">
+                    <div class="prevTitle">本科毕业论文问卷调查</div>
                 </a>
             
         </li>
@@ -660,7 +627,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-pgp简介"><span class="toc-number">1.</span> <span class="toc-text"> 一、PGP简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-生成密钥对"><span class="toc-number">2.</span> <span class="toc-text"> 二、生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-加密与解密"><span class="toc-number">3.</span> <span class="toc-text"> 三、加密与解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-生成和验证数字签名"><span class="toc-number">4.</span> <span class="toc-text"> 四、生成和验证数字签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-生成数字签名并加密以及解密并验证数字签名"><span class="toc-number">5.</span> <span class="toc-text"> 五、生成数字签名并加密以及解密并验证数字签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-信任网"><span class="toc-number">6.</span> <span class="toc-text"> 六、信任网</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-myvm汇编代码main函数部分"><span class="toc-number">1.</span> <span class="toc-text"> 一、myvm汇编代码（main函数部分）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-所含指令总结"><span class="toc-number">2.</span> <span class="toc-text"> 二、所含指令总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-汇编指令的逻辑"><span class="toc-number">3.</span> <span class="toc-text"> 三、汇编指令的逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-寻址方式main函数"><span class="toc-number">4.</span> <span class="toc-text"> 四、寻址方式（main函数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1620,60 +1587,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 64
+        Total : 65
         </div>
         <!-- search  -->
         
@@ -1693,62 +1609,67 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（65）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（64）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（63）/">MySQL学习笔记（二）查询(2)</a>
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（62）/">《图解密码技术》第十一章学习笔记</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（61）/">《图解密码技术》第十章学习笔记</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（60）/">《图解密码技术》第九章学习笔记</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（59）/">《图解密码技术》第八章学习笔记</a>
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（58）/">304号测试解题总结（一）</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（57）/">本科毕业论文问卷调查</a>
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（56）/">304号测试学习笔记（一）</a>
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（55）/">《图解密码技术》第七章学习笔记</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（54）/">Wiener Trick解题总结</a>
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
         </li>
     
     

@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《图解密码技术》第十一章学习笔记 · MUZIBing&#39;s BLOG</title>
+    <title>《图解密码技术》第八章学习笔记 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《图解密码技术》第十一章学习笔记</a>
+                <a href="#" class="post-name">《图解密码技术》第八章学习笔记</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/62.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/59.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《图解密码技术》第十一章学习笔记
+            《图解密码技术》第八章学习笔记
             <!-- 404 -->
             
         </h1>
@@ -289,12 +289,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">585</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/23</span>
+                    <span class="post-intro-time">2019/05/16</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -418,109 +418,56 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一-什么是密钥"><a class="markdownIt-Anchor" href="#一-什么是密钥"></a> 一、什么是密钥？</h3>
+        <h3 id="一-消息认证码"><a class="markdownIt-Anchor" href="#一-消息认证码"></a> 一、消息认证码</h3>
 <blockquote>
-<p>1.密钥中的数字并不重要，<strong>重要的是密钥空间的大小</strong>，也就是可能出现密钥的总数量，因为密钥空间越大，进行暴力破解越困难，密钥空间的大小是由<strong>密钥长度</strong>决定的；</p>
+<p>1、消息认证码是一种确认完整性并进行认证的技术，MAC（Message Authentication Code）<br>
+2、消息认证码的输入包括：任意长度的消息和一个共享的密钥（在接收者和发送者之间）<br>
+3、消息认证码的输出是一个固定长度的值，这个数据就是MAC<br>
+4、它与单向散列函数的区别（密钥）：它是一种与密钥相关的单行散列函数<br>
+5、消息认证码的步骤：	<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uFhySAULH8U4y2oFl7NqubXQc9662CO1ahBgZcr24ts!/r/dMAAAAAAAAAA" alt></p>
+</blockquote>
+<h3 id="二-消息验证码的应用实例"><a class="markdownIt-Anchor" href="#二-消息验证码的应用实例"></a> 二、消息验证码的应用实例</h3>
+<blockquote>
+<p>1、SWIFT：Society for Worldwide Interbank Financial Telecommunications<br>
+2、IPsec：对IP协议增加安全性的一种方式<br>
+3、SSL/TLS</p>
+</blockquote>
+<h3 id="三-消息认证码的实现方法"><a class="markdownIt-Anchor" href="#三-消息认证码的实现方法"></a> 三、消息认证码的实现方法</h3>
+<blockquote>
+<p>1、使用单向散列函数实现——HMAC<br>
+2、使用密码分组实现：例如AES-CMAC就是一种基于 AES 来实现的消息验证码<br>
+3、其他方法：流密码和公钥密码等</p>
+</blockquote>
+<h3 id="四-认证加密"><a class="markdownIt-Anchor" href="#四-认证加密"></a> 四、认证加密</h3>
+<blockquote>
+<p>1、认证加密是一种将对称密码和消息认证码相结合的技术，同时满足三个功能“机密性”、“完整性”、“认证”<br>
+2、认证加密的方式：</p>
 <ul>
-<li><font color="red">对称DES的密钥长度</font>：56bit</li>
-<li><font color="red">三重DES的密钥长度</font>：① DES-EDE2：112bit  ② DES-EDE3：168bit</li>
-<li><font color="red">对称AES的密钥长度</font>：128、192 和 256bit</li>
+<li>Encrypt-then-MAC</li>
+<li>Encrypt-and-MAC</li>
+<li>MAC-then-Encrypt</li>
+<li>GCM：使用AES等128bit分组密码的CTR模式，并使用一个反复加法和乘法运算的散列函数来计算MAC的值</li>
 </ul>
-<p>2.密钥和明文是等价的<br>
-<font color="brown"><strong>3.密钥算法和密钥</strong>：</font>依靠隐藏密码算法本身的设计来确保信息的机密性是非常危险的！！（重要）信息的机密性不应该依赖于密码算法本身，而是依赖于妥善保管的密钥。</p>
+<p><strong>说 明</strong>：由于CTR模式加密与MAC值的计算使用的是相同的密钥，因此在密钥管理方面也更加容易，专门用于消息认证码的GCM成为CMAC</p>
 </blockquote>
-<h3 id="二-各种不同的密钥"><a class="markdownIt-Anchor" href="#二-各种不同的密钥"></a> 二、各种不同的密钥</h3>
+<h3 id="五-hmac的详细介绍"><a class="markdownIt-Anchor" href="#五-hmac的详细介绍"></a> 五、HMAC的详细介绍</h3>
 <blockquote>
-<p><font color="brown"><strong>◉ 对称密码的密钥</strong></font>：确保机密性的密钥<br>
-<br><font color="brown"><strong>◉ 公钥密码中密钥</strong></font>：确保机密性的密钥<br>
-<br><font color="brown"><strong>◉ 消息认证码中的密钥</strong></font>：用于认证的密钥，共享的密钥<br>
-<br><font color="brown"><strong>◉ 数字签名中的密钥</strong></font>：用于认证的密钥，公钥密码<br>
-<br><font color="blue"><strong>◪ 会话密钥</strong>：</font>通信中只使用一次的密钥<br>
-<br><font color="blue"><strong>◪ 主密钥</strong>：</font>通信中一直被重复使用的密钥<br>
-<br><font color="orange"><strong>◮ 用于加密内容的密钥（CEK）</strong>：</font>加密对象是用户直接使用的信息<br>
-<br><font color="orange"><strong>◮ 用于加密密钥的密钥（KEK）</strong>：</font>加密对象是密钥</p>
+<p>1、HMAC是一种使用单向散列函数来构造消息认证码的方法。（H代表的意思就是Hash）<br>
+2、任何高强度的单向散列函数都可以被用于HMAC：HMAC-SHA1、HMAC-SHA-224、HMAC-SHA-256、HMAC-SHA-384、HMAC-SHA-512<br>
+3、HMAC的具体步骤：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Kl4nCo9aUNYhPkwppWyXklAXs.gmE2A*Rm.UekD5Be0!/r/dLYAAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="三-密钥的管理"><a class="markdownIt-Anchor" href="#三-密钥的管理"></a> 三、密钥的管理</h3>
+<h3 id="六-对消息认证码的攻击"><a class="markdownIt-Anchor" href="#六-对消息认证码的攻击"></a> 六、对消息认证码的攻击</h3>
 <blockquote>
-<p><font color="brown"><strong>1.生成密钥：</strong></font><br>
-<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用随机数生成密钥</strong><br>
-       <font color="navy">这里的伪随机数生成器必须是专门针对密码学用途而设计的</font><br>
-<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用口令生成密钥</strong><br>
-       <font color="navy">将口令输入单向散列函数，然后将散列值作为密钥使用</font>。为了防止<strong>字典攻击</strong>，需要在口令上面附加一串成为**盐（salt）**的随机数，然后再将其输入单向散列函数，这种方法称为“<strong>基于口令的密码（PBE）</strong>”<br>
-<br><font color="brown"><strong>2.配送密钥：</strong></font></p>
-<ul>
-<li>事先共享密钥</li>
-<li>使用密钥分配中心</li>
-<li>使用公钥密码</li>
-<li><strong>Diffie-Hellman 密钥交换</strong></li>
-</ul>
-<p><br><font color="brown"><strong>3.更新密钥：</strong></font><br>
-       在使用共享密钥进行通信的过程中，定期改变密钥。在改变密钥时，发送者和接收者使用单向散列函数计算当前密钥的散列值，并将这个散列值用作新的密钥。也就是，<strong>用当前密钥的散列值作为下一个密钥。</strong><br>
-<br><font color="brown"><strong>4.保存密钥</strong></font><br>
-<br><font color="brown"><strong>5.作废密钥</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Wtbn5vnw2Mf7n8gQgZ28TA0*Vw4LhdIoagBAUxQO*nc!/r/dEYBAAAAAAAA" alt><br>
-<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>如何作废密钥？</strong><br>
-       要完全删除密钥，不但要用到密码软件，还需要设计计算机系统时对信息安全进行充分的考虑。</p>
+<p>1、<strong>重放攻击</strong>：并不会破解消息认证码MAC，而是将它保存下来并加以利用；<br>
+      防止重放攻击的策略：① 序号  ② 时间戳  ③ nonce（一次性的随机数）<br>
+2、密钥推测攻击：暴力破解、生日攻击</p>
 </blockquote>
-<h3 id="四-diffie-hellman-密钥交换"><a class="markdownIt-Anchor" href="#四-diffie-hellman-密钥交换"></a> 四、Diffie-Hellman 密钥交换</h3>
+<h3 id="七-消息认证码无法解决的问题"><a class="markdownIt-Anchor" href="#七-消息认证码无法解决的问题"></a> 七、消息认证码无法解决的问题</h3>
 <blockquote>
-<p><font color="brown"><strong>1.什么是 Diffie-Hellman 密钥交换：</strong></font><br>
-       通信双方仅通过交换一些可以公开地信息就能够生成出共享的秘密数字，而这一秘密数字就可以被用作堆成密码的密钥。<br>
-       一定要清楚的是，虽然叫做“密钥交换”，但是通信双方并没有真正的交换密钥，而是通过计算生成出了一个相同的共享密钥（<strong>利用 mod 算法的困难</strong>）<br>
-<br><font color="brown"><strong>2.Diffie-Hellman 密钥交换的步骤：</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dRxFXwqikYSqkPJaxd0fvu429SqwCTyJgNukJqC945I!/r/dFMBAAAAAAAA" alt><br>
-（一）Alice向Bob发送两个质数 P 和 G（生成元）<br>
-（二）Alice生成一个随机数 A<br>
-（三）Bob生成一个随机数B<br>
-（四）Alice 将G<sup>A</sup> mod P 的结果发送给 Bob<br>
-（五）Bob 将G<sup>B</sup> mod P 的结果发送给 Alice<br>
-（六）Alice 用Bob发送过来的数计算 A 次方并求 P ：<br>
-        （G<sup>B</sup> mod P ）<sup>A</sup> mod P<br>
-       = G<sup>B x A</sup> mod P<br>
-       = G<sup>A x B</sup> mod P<br>
-（七）Bob 用Alice 发送过来的数计算 B 次方并求 P<br>
-        （G<sup>A</sup> mod P ）<sup>B</sup> mod P<br>
-       = G<sup>A x B</sup> mod P<br>
-<br><strong>实质就是运用了 mod 的运算法则和逆运算的困难度</strong><br>
-<br><font color="brown"><strong>3.Diffie-Hellman 的密钥能被窃听者计算出来吗？</strong></font><br>
-        首先我们来分析 Alice 和 Bob 都传输了哪些数据：<strong>P、G、G<sup>A</sup> mod P 和 G<sup>B</sup> mod P</strong> 四个数据，如果 Eve 要想计算出 Diffie-Hellman 的密钥，就必须知道 A、B 这两个数据（如果知道 A 和 B 其中一个就可以计算出 D<sup>AxB</sup>，也就可以解出密钥了）。<br>
-        那么**解出密钥的关键在于 mod P，**因为根据 G<sup>A</sup> mod P 计算出 A 的有效算法还没有出现，这个问题称为<font color="red"><strong>有限域的离散对数问题</strong></font><br>
-<br><font color="navy"><strong>而有限域的离散对数问题的复杂度正是支撑 Diffie-Hellman 密钥交换算法的基础。</strong></font><br>
-<br><font color="brown"><strong>4.生成元的意义</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/GLM*QK*coca0S6twK.I5ZbR6XyqnsnpXsxda7CcPHQs!/r/dFMBAAAAAAAA" alt><br>
-        从上图可以看出，G = 2、6、7 和 11 时，G<sup>A</sup> mod P 所得的值均不相同，所以 2、6、7、11 称为 13 的生成元，需要注意的地方：<strong>G<sup>P-1</sup> mod P 一定等于 “1”</strong><br>
-<br><font color="brown"><strong>5.主动攻击者能否对 Diffie-Hellman 进行中间人攻击呢？</strong></font><br>
-        当然是可以的，具体的我会在后期画出一个示意图，然后再进行补充。<br>
-<br><font color="brown"><strong>6.椭圆曲线 Diffie-Hellman 密钥交换</strong></font><br>
-        Diffie-Hellman 密钥交换是利用“离散对数问题”的复杂度来实现密钥的安全交换的，而椭圆曲线 Diffie-Hellman 密钥交换是将 <strong>“离散对数问题”</strong> 改为 <strong>“椭圆上离散对数问题”</strong>。<br>
-        <font color="navy"><strong>椭圆曲线 Diffie-Hellman 密钥交换能够用较短的密钥长度实现较高的安全性。</strong></font></p>
-</blockquote>
-<h3 id="五-基于口令的密码pbe"><a class="markdownIt-Anchor" href="#五-基于口令的密码pbe"></a> 五、基于口令的密码（PBE）</h3>
-<blockquote>
-<p><font color="brown"><strong>1.什么是基于口令的密码？</strong></font><br>
-        <font color="navy"><strong>基于口令的密码就是一种根据口令生成密钥并用该密钥进行加密的方法，加密和解密使用同一个密钥。</strong></font><br>
-        在使用基于口令的密码时（PBE），<strong>需要将盐和加密后的 CEK 通过物理方式进行保护。</strong><br>
-<br><font color="brown"><strong>2.如何理解 PBE 的意义？</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/2tfsmaKjKFQAapWyiVwSU8brcwzRjaiUgv7DCDF7Z.E!/r/dE0BAAAAAAAA" alt><br>
-<br><font color="brown"><strong>3. PBE 加密的过程</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FTS2RFWW4sB.Hvspa9EeNevTi93bishN6AKjyln8avw!/r/dDQBAAAAAAAA" alt><br>
-<br><font color="brown"><strong>4. PBE 解密的过程</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/OMbT3jhvV8Mx5QLs4yC*g235xDKKFtVVcoBup9sKWRw!/r/dL4AAAAAAAAA" alt><br>
-<br><font color="brown"><strong>5. 盐（salt）的作用</strong></font></p>
-<ul>
-<li>盐是由伪随机数生成器生成的随机数</li>
-<li>盐是用来防御字典攻击的</li>
-</ul>
-<p><br><font color="brown"><strong>6. 如何让通过拉伸来改良 PBE</strong></font><br>
-        拉伸在这里的意思就是通过<strong>多次使用单向散列函数来多次迭代计算盐和口令</strong>。</p>
-</blockquote>
-<h3 id="六-生成安全的口令的方法"><a class="markdownIt-Anchor" href="#六-生成安全的口令的方法"></a> 六、生成安全的口令的方法</h3>
-<blockquote>
-<p><font color="brown"><strong>1.使用只有自己才知道的信息</strong></font><br>
-<br><font color="brown"><strong>2.将多个不同的口令分开使用</strong></font><br>
-<br><font color="brown"><strong>3.有效利用笔记</strong></font><br>
-<br><font color="brown"><strong>4.理解口令的局限性</strong></font><br>
-<br><font color="brown"><strong>5.使用口令生成和管理工具</strong></font></p>
+<p>1、对第三方的证明（数字签名来解决）<br>
+2、防止否认（也是用数字签名来解决）</p>
 </blockquote>
 
     </article>
@@ -528,9 +475,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/23/2019.05.23（62）/">https://muzibing.github.io/2019/05/23/2019.05.23（62）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/23/2019.05.23（62）/">May 23rd 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/23/2019.05.23（62）/">May 23rd 2019, 9:01:18 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/16/2019.05.16（58）/">https://muzibing.github.io/2019/05/16/2019.05.16（58）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/16/2019.05.16（58）/">May 16th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/16/2019.05.16（58）/">May 16th 2019, 9:59:33 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -539,16 +486,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/25/2019.05.25（63）/" title="MySQL学习笔记（二）查询(2)">
-                    <div class="nextTitle">MySQL学习笔记（二）查询(2)</div>
+                <a href="/2019/05/20/2019.05.20（59）/" title="《图解密码技术》第九章学习笔记">
+                    <div class="nextTitle">《图解密码技术》第九章学习笔记</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/21/2019.05.21（61）/" title="《图解密码技术》第十章学习笔记">
-                    <div class="prevTitle">《图解密码技术》第十章学习笔记</div>
+                <a href="/2019/05/15/2019.05.15（57）/" title="304号测试解题总结（一）">
+                    <div class="prevTitle">304号测试解题总结（一）</div>
                 </a>
             
         </li>
@@ -682,7 +629,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是密钥"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是密钥？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-各种不同的密钥"><span class="toc-number">2.</span> <span class="toc-text"> 二、各种不同的密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-密钥的管理"><span class="toc-number">3.</span> <span class="toc-text"> 三、密钥的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-diffie-hellman-密钥交换"><span class="toc-number">4.</span> <span class="toc-text"> 四、Diffie-Hellman 密钥交换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-基于口令的密码pbe"><span class="toc-number">5.</span> <span class="toc-text"> 五、基于口令的密码（PBE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-生成安全的口令的方法"><span class="toc-number">6.</span> <span class="toc-text"> 六、生成安全的口令的方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-消息认证码"><span class="toc-number">1.</span> <span class="toc-text"> 一、消息认证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-消息验证码的应用实例"><span class="toc-number">2.</span> <span class="toc-text"> 二、消息验证码的应用实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-消息认证码的实现方法"><span class="toc-number">3.</span> <span class="toc-text"> 三、消息认证码的实现方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-认证加密"><span class="toc-number">4.</span> <span class="toc-text"> 四、认证加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-hmac的详细介绍"><span class="toc-number">5.</span> <span class="toc-text"> 五、HMAC的详细介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-对消息认证码的攻击"><span class="toc-number">6.</span> <span class="toc-text"> 六、对消息认证码的攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七-消息认证码无法解决的问题"><span class="toc-number">7.</span> <span class="toc-text"> 七、消息认证码无法解决的问题</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1642,60 +1589,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 64
+        Total : 65
         </div>
         <!-- search  -->
         
@@ -1715,62 +1611,67 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（65）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（64）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（63）/">MySQL学习笔记（二）查询(2)</a>
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（62）/">《图解密码技术》第十一章学习笔记</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（61）/">《图解密码技术》第十章学习笔记</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（60）/">《图解密码技术》第九章学习笔记</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（59）/">《图解密码技术》第八章学习笔记</a>
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（58）/">304号测试解题总结（一）</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（57）/">本科毕业论文问卷调查</a>
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（56）/">304号测试学习笔记（一）</a>
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（55）/">《图解密码技术》第七章学习笔记</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（54）/">Wiener Trick解题总结</a>
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
         </li>
     
     

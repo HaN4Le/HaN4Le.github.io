@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《图解密码技术》第十章学习笔记 · MUZIBing&#39;s BLOG</title>
+    <title>《图解密码技术》第十四章（SSL/TSL）学习笔记 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《图解密码技术》第十章学习笔记</a>
+                <a href="#" class="post-name">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/61.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/65.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《图解密码技术》第十章学习笔记
+            《图解密码技术》第十四章（SSL/TSL）学习笔记
             <!-- 404 -->
             
         </h1>
@@ -289,12 +289,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/21</span>
+                    <span class="post-intro-time">2019/06/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -418,69 +418,136 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一-证书pkc"><a class="markdownIt-Anchor" href="#一-证书pkc"></a> 一、证书（PKC）</h3>
-<blockquote>
-<p><font color="brown"><strong>1.什么是证书？</strong></font><br>
-       公钥证书（PKC，Public Key Certificate）包含了个人的公钥、姓名、组织、邮箱、地址等个人信息，是由<strong>认证机构（CA，Certification Authority）施加数字签名</strong>。这里的认证机构就是能够认定“公钥确实属于此人”并能够生成数字签名的<strong>个人</strong>或者<strong>组织</strong><br>
-<br><font color="brown"><strong>2.证书的应用场景</strong></font><br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/sh1m0e6QHMucF0CF.TCobDUAQPQ.TJgCcUseMPyU8A0!/r/dMUAAAAAAAAA" alt><br>
-在上图的过程中，我们需要注意一点：步骤（2）中Trent在收到Bob的公钥后，Trent会确认Bob公钥的真实性，也就是这个公钥是否为Bob本人所有，这个确认的过程就需要“<strong>身份确认和认证业务准则</strong>”</p>
-<p><font color="brown"><strong>3.Symantec证书的内容</strong></font><br>
-       在VeriSign颁发的证书中包含了如下的消息：</p>
+        <blockquote>
+<p><strong>☛  学习的内容：</strong></p>
 <ul>
-<li>VeriSign 颁发的证书，对自己的公钥进行认证；</li>
-<li>VeriSign 颁发的证书，对Symantec的公钥进行认证；</li>
-<li>VeriSign 颁发的证书，对“公钥用户”的公钥进行认证；</li>
+<li>SSL/TSL简介</li>
+<li>使用SSL/TSL进行通信</li>
+<li>对SSL/TSL的攻击</li>
+<li>SSL/TSL用户注意的事项</li>
 </ul>
-<p><font color="brown"><strong>4.证书标准规范</strong></font><br>
-       目前使用最广泛的证书标准规范是由ITU（International Telecommunication Union，国际电信联盟）和 ISO（International Organization for Standardization，国际标准化组织）制定的 <font color="red"><strong>X.509 规范</strong></font>，X.509证书所包含的要素如下：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Og0njVq7JaXvSygPJg86pCJPu.GUrXskI16GRm9ESy8!/r/dAgBAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="二-公钥基础设施pki"><a class="markdownIt-Anchor" href="#二-公钥基础设施pki"></a> 二、公钥基础设施（PKI）</h3>
+<h3 id="一-ssltsl-简介"><a class="markdownIt-Anchor" href="#一-ssltsl-简介"></a> 一、SSL/TSL 简介</h3>
 <blockquote>
-<p><font color="brown"><strong>1.什么是公钥基础设施？</strong></font><br>
-       公钥基础设施（PKI，Public Key Infrastructure）是为了能过够有效地<strong>运用公钥</strong>而制定的一系列<strong>规格和规范</strong>的总称，并非指某一个单独的规格和规范。<br>
-<font color="brown"><br><strong>2.PKI 的基本组成要素是什么？</strong></font><br>
-       PKI的基本组成要素主要有 3 个：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Zq5zODDD6*C65wYmXGy4LVbcbSHBIrhcR4ynHY8ygTw!/r/dL4AAAAAAAAA" alt><br>
-<strong>用户</strong>：使用 PKI 的实体。用户包括两种，一种是希望<strong>使用 PKI 注册自己的公钥的人</strong>，另一种是希望<strong>使用已注册的公钥的</strong>人。<br>
-<strong>认证机构（CA</strong>）：颁发证书的实体，并对证书进行管理。① CA 可以为用户生成密钥对，也可以使用用户自己生成的密钥对；② 在注册公钥时对本人身份进行认证；③ 生成并颁发证书；④ 作废证书 CRL；<br>
-<strong>仓库</strong>：保存证书的数据库，也叫做证书目录</p>
-<p><font color="brown"><br><strong>3.PKI 与 CA 的关系是什么？</strong></font><br>
-       <strong>PKI是一个基于公私钥算法的身份认证体系</strong>，由权威认证机构(CA)、证书注册系统（RA）、数字证书库、密钥备份及恢复系统（KM）、应用接口（API）等基本构成部分。<br>
-<br>       <strong>CA是 PKI 最关键的部分</strong>，是信任的源。负责数字证书的申请、签发、更新、冻结、解冻、废除、发布CRL等<br>
-<font color="brown"><br><strong>4.认证机构（CA）的工作</strong></font></p>
-<ul>
-<li><strong>生成密钥对</strong>：① 由 PKI 用户自行生成；② 由认证机构来生成；</li>
-<li><strong>注册证书</strong>：① 申请证书所使用的规范是由 RFC2986（PKCS #10：Certification Request Syntax Specification Version 1.7）；② 生成证书的格式是<strong>由 X.509 来定义</strong>的；</li>
-<li><strong>作废证书与CRL</strong>：① 要作废证书，CA 要制作一张<strong>证书作废清单</strong>，简称CRL；<font color="green">②  要想查询证书是否有效，不能仅凭<strong>是否在有效期、是否有合法的认证机构的签名</strong>，还需要<strong>查询认证机构最新的CRL</strong>，并确认该证书是否有效，查询 CRL 是由处理该证书的软件来完成，但是很多软件更新CRL并不是很及时，因此会产生 CRL 攻击；</font></li>
-</ul>
-<p>       认证机构（CA）只要对公钥进行签名就行了，因此<strong>任何人都可以成为CA</strong><br>
-<font color="brown"><br><strong>5.证书的层级结构</strong></font><br>
-       对于认证机构的公钥，我们如何确保其公钥的真实性呢？可以由其他的认证机构施加数自签名，从而对认证机构的公钥进行验证，即生成一张认证机构的公钥证书。<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/F*5O6pYJcZYzivZquGmJ9FVMAc*CL.xgw0C7jFGnLa8!/r/dLYAAAAAAAAA" alt><br>
-       在验证公钥的时候，需要从最高级的认证机构（根CA）开始，然后依次往下验证；</p>
+<p><font color="brown"><strong>1.什么是SSL/TSL</strong></font><br>
+      SSL/TSL 是世界上应用最广泛的密码通信方法。SSL/TSL 综合运用了<strong>对称密码、公钥密码、消息认证码、数字签名、伪随机数生成器</strong>等密码技术，SSL/TSL 是一种在 web 服务器中广泛使用的协议。<br>
+      SSL(Security Socket Layer) 与 TSL(Transport Layer Security) 是不同的，TSL 相当于 SSL 的后续版本<br>
+<br><font color="brown"><strong>2.SSL/TSL 承载 HTTP 协议</strong></font><br>
+      SSL 或者 TSL 作为对通信加密的协议，可以<strong>在此之上承载 HTTP 协议</strong>。除了 HTTP 协议外，SSL 或 TSL 也可以保护其他协议，如：<strong>SMTP、POP3</strong>，如下图所示：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kMi8h.n7rNlLfILnyPR20ZuldOXORC8ru7O5zpLb9Ac!/r/dFIBAAAAAAAA" alt><br>
+<br><font color="brown"><strong>3.SSL/TSL 的密码套件</strong></font><br>
+      SSL/TSL 需要解决的问题有<strong>机密性（对称密码）</strong>、<strong>密钥的不可预测性（伪随机数生成器）</strong>、<strong>对称密钥的安全（公钥密码/Diffie-Hellman秒交换）<strong>和</strong>通信对象的真实性（数字签名和证书）</strong>。<br>
+      正如上面所涉及到技术问题，SSL/TSL 提供了一种密码通信的框架，这就意味着<strong>SSL/TSL 中使用的对称密码、公钥密码、数字签名、单向散列函数等技术，都<font color="red">会像零件一样进行替换</font></strong>。但也必须要确保整体的兼容性，所以有推荐的套餐，而这种套餐也被称为”密码套件“。<br>
+<br><font color="brown"><strong>4.SSL/TSL 的区别</strong></font><br>
+      <strong>▣ SSL</strong>：Security Socket Layer，安全套阶层，SSL3.0 协议存在可能导致POODLE攻击，因此SSL3.0 已经不安全了。<br>
+      <strong>▣ TSL</strong>：RSA 和 ElGamal等<br>
+      <strong>▣ 数字签名</strong>：Transport Layer Security ，传输层安全，实际相当于SSL3.1</p>
 </blockquote>
-<h3 id="三-对证书的攻击"><a class="markdownIt-Anchor" href="#三-对证书的攻击"></a> 三、对证书的攻击</h3>
+<h3 id="二-使用-ssltsl-进行通信"><a class="markdownIt-Anchor" href="#二-使用-ssltsl-进行通信"></a> 二、使用 SSL/TSL 进行通信</h3>
 <blockquote>
-<p><font color="brown"><strong>1.在公钥注册之前进行攻击</strong></font>：对施加数字签名之前的公钥进行攻击；<br>
-<font color="brown"><strong>2.注册相似人名进行攻击</strong></font><br>
-<font color="brown"><strong>3.窃取认证机构的私钥进行攻击</strong></font><br>
-<font color="brown"><strong>4.攻击者伪装成认证机构进行攻击</strong></font><br>
-<font color="brown"><strong>5.利用CRL的空子进行攻击（1）</strong></font>：<strong>利用CRL发布的时间差来发动攻击</strong>，其应对对策为：</p>
-<ul>
-<li>当公钥实效时尽快通知认证机构；</li>
-<li>尽快发布CRL</li>
-<li>及时更新CRL</li>
-</ul>
-<p><font color="brown"><strong>6.利用CRL的空子进行攻击（2）</strong></font>：否认自己发送的信息，防止这种攻击，人们设计了一种OCSP协议</p>
+<p><font color="brown"><strong>1.层次化的协议</strong></font><br>
+      TLS 协议由以下两个协议组成：<br>
+<br>          <font color="navy"><strong>▣ TLS 记录协议</strong></font>：位于底层，负责使用<strong>对称密码</strong>对消息进行加密通信的部分，该协议中使用了<strong>对称密码</strong>和<strong>消息认证码</strong><br>
+<br>          <font color="navy"><strong>▣ TLS 握手协议</strong></font>：位于上层，负责除加密以外的其他操作，又分为 4 个子协议：<br>
+                <strong>◈ 握手协议</strong>：负责在客户端和服务器之间协商决定密码算法和共享密钥，它是 4 个子协议中最为复杂的一个<br>
+                <strong>◈ 密码规格变更协议</strong>：负责向通信对象传达变更密码方式的信号<br>
+                <strong>◈ 警告协议</strong>：负责发生错误时，将错误信息传达给对方<br>
+                <strong>◈ 应用数据协议</strong>：将 TSL 上面承载的应用数据传达给对象的协议<br>
+<br><font color="brown"><strong>2.TLS 记录协议</strong></font><br>
+      该协议负责消息的<strong>压缩、加密以及数据的认证</strong>，其处理过程如下：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/kJ*mzVPLOC5**H2Tss2PMFG0kHBIRlSx6IVBva.MJGE!/r/dFQBAAAAAAAA" alt><br>
+                ◈ 消息被分割成多个较短的片段，对每个片段进行压缩<br>
+                ◈ 经过被压缩的片段加上<strong>消息认证码</strong>（完整性），并且为了防止重放攻击，还加上了片段的编号<br>
+                ◈ 被压缩的片段 + 消息认证码通过对称密码进行加密（<strong>CBC模式</strong>，CBC模式初始化的向量通过<strong>主密码</strong>生成）<br>
+                ◈ 将经过加密后的数据 + <strong>数据类型、版本号、压缩后的长度组成的报头</strong> = 最终的报文数据<br>
+<br><font color="brown"><strong>3.握手协议</strong></font><br>
+<br>    <font color="blue"><strong>3-1.TLS 握手协议 - 握手协议</strong></font><br>
+          有关握手协议的过程如下：<br>
+          <font color="navy"><strong>① ClientHello（客户端→服务器）</strong></font>：发送的内容有：<br>
+                ◈ 可用的版本号<br>
+                ◈ 当前时间<br>
+                ◈ 客户端随机数<br>
+                ◈ 会话 ID<br>
+                ◈ 可用的密码套件清单<br>
+                ◈ 可用的压缩方式清单<br>
+          <font color="navy"><strong>②ServerHello（客户端←服务器）</strong></font>：发送的内容有：<br>
+                ◈ 使用的版本号<br>
+                ◈ 当前时间<br>
+                ◈ 服务器随机数<br>
+                ◈ 会话 ID<br>
+                ◈ 使用的密码套件<br>
+                ◈ 使用的压缩方式<br>
+          <font color="navy"><strong>③ Certificate（客户端←服务器）</strong></font>：发送的内容有：<br>
+                ◈ 证书清单：是一组X.509v3 证书序列。先发送的是服务器的证书，然后发送的是对服务器证书签名的认证机构的证书。<br>
+          <font color="navy"><strong>④ ServerKey Exchange（客户端←服务器）</strong></font>：当Certificate消息不足时，服务器会通过ServerKeyExchange消息向客户端发送一些必要的信息。<br>
+          <font color="navy"><strong>⑤ CertificateRequest（客户端←服务器）</strong></font>：发送的内容有：<br>
+                ◈ 服务器能够理解的证书类型清单<br>
+                ◈ 服务器能够理解的认证机构名称清单<br>
+          当不使用客户端认证时，不会发送CertificateRequest消息<br>
+          <font color="navy"><strong>⑥ ServerHelloDone（客户端←服务器）</strong></font>：服务器的“问候”到此结束<br>
+          <font color="navy"><strong>⑦ Certificate（客户端→服务器）</strong></font>：如果 ⑤ 中服务器发送了 CertificateRequest 消息时，客户端会将自己的证书同 Certificate 消息一起发送给服务器。<br>
+          如果 ⑤ 中服务器没有发送 CertificateRequest 消息，客户端就不会发送 Certificate 消息给服务器。<br>
+          <font color="navy"><strong>⑧ ClientKeyExchange（客户端→服务器）</strong></font>：客户端：这是经过加密的预备主密码（它是客户端生成的随机数，之后会被用作主密码的种子）。<br>
+          <font color="navy"><strong>⑨ CertificateVerify（客户端→服务器）</strong></font>：客户端：我确实客户端证书持有的所有者。<br>
+          只有在服务器发送Certificate 消息时才会发送 CertificateVerify 消息。<br>
+          <font color="navy"><strong>⑩ ChangeCipherSpec（客户端→服务器）</strong></font>：客户端：“好，我现在要切换密码了。”该协议实际上不是握手协议，而是密码规格变更协议。<br>
+          <font color="navy"><strong><font size="4">⑪</font> Finished（客户端→服务器）</strong></font>：客户端：握手协议到此结束。<br>
+          <font color="navy"><strong><font size="4">⑫</font> ChangeCipherSpec（客户端←服务器）</strong></font>：服务器：好，现在我要切换密码了。<br>
+          <font color="navy"><strong><font size="4">⑬</font> Finished（客户端←服务器）</strong></font>：服务器：握手协议到此结束。<br>
+          <font color="navy"><strong><font size="4">⑭</font> 切换至应用数据协议</strong></font>：在此之后，客户端和服务器会使用<strong>应用数据协议</strong>和<strong>TSL记录协议</strong>进行密码通信。<br>
+<br>          从上面的步骤可以看出，握手协议完成了如下的操作：<br>
+                <strong>◈ 客户端获得了服务器的合法公钥，完成了服务器的认证</strong><br>
+                <strong>◈ 服务器端获得了客户端的合法公钥，完成了客户端认证（当客户端需要认证时）</strong><br>
+                <strong>◈ 客户端和服务器生成了密码通信中使用的共享密钥</strong><br>
+                <strong>◈ 客户端和服务器生成消息认证码中使用的共享密钥</strong><br>
+<br>    <font color="blue"><strong>3-2.密码规格变更协议</strong></font>：用于密码切换的同步<br>
+<br>    <font color="blue"><strong>3-3.警告协议</strong></font>：发生错误时会使用该协议<br>
+<br>    <font color="blue"><strong>3-4.应用数据协议</strong></font>：用于和通信对象之间<strong>传送应用数据</strong><br>
+<br><font color="brown"><strong>4.主密码</strong></font><br>
+          主密码是一个<strong>48</strong>字节的数值，这个数值非常重要，因为 <strong>TSL 密码通信的机密性和数据的认证全部依靠这个数值</strong>。<br>
+<br>    <font color="blue"><strong>4-1.主密码的计算</strong></font><br>
+          主密码是服务器和客户端根据下列信息计算出来的：<br>
+                <strong>◈ 预备主密码</strong><br>
+                <strong>◈ 客户端随机数</strong>：相当于防止攻击者实现计算出密钥的盐<br>
+                <strong>◈ 服务器随机数</strong>：相当于防止攻击者实现计算出密钥的盐<br>
+          密钥素材的依赖关系如下图：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/n6immRegBWU7*d80B2bexHdGgr*kj6Mzux7ld*92gM0!/r/dE0BAAAAAAAA" alt><br>
+<br>    <font color="blue"><strong>4-2.主密码的目的</strong></font><br>
+          主密码用于生下列 6 种信息<br>
+                <strong>◈ 对称密码的密钥（客户端→服务器）</strong><br>
+                <strong>◈ 对称密码的密钥（客户端←服务器）</strong><br>
+                <strong>◈ 消息认证码的密钥（客户端→服务器）</strong><br>
+                <strong>◈ 消息认证码的密钥（客户端←服务器）</strong><br>
+                <strong>◈ 对称密码的 CBC 模式所使用的初始化向量（客户端→服务器）</strong><br>
+                <strong>◈ 对称密码的 CBC 模式所使用的初始化向量（客户端←服务器）</strong><br>
+<br><font color="brown"><strong>4.TSL 协议中有关的技术总结</strong></font><br>
+          <font color="navy"><strong>▣ TLS 记录协议中使用的密码技术</strong></font>：<br>
+                <strong>◈ 公钥密码</strong>：加密预备主密码<br>
+                <strong>◈ 单向散列函数</strong>：构成伪随机数生成器<br>
+                <strong>◈ 数字签名</strong>：验证服务器和客户端的证书<br>
+                <strong>◈ 伪随机数生成器</strong>：生成预备主密码；根据主密钥生成密钥（RSA/Diffie-Hellman 密码参数）<br>
+          <font color="navy"><strong>▣ TLS 握手协议中使用的密码技术</strong></font>：<br>
+                <strong>◈ 对称密码（CBC模式）</strong>：确保片段的机密性<br>
+                <strong>◈ 消息认证码</strong>：确保片段的完整性并进行认证<br>
+                <strong>◈ 认证加密（AEAD）</strong>：确保片段的完整性和机密性并进行认证</p>
 </blockquote>
-<h3 id="四-一些重要的语句"><a class="markdownIt-Anchor" href="#四-一些重要的语句"></a> 四、一些重要的语句</h3>
+<h3 id="三-对-ssltsl-的攻击"><a class="markdownIt-Anchor" href="#三-对-ssltsl-的攻击"></a> 三、对 SSL/TSL 的攻击</h3>
 <blockquote>
-<p><font color="brown">1.为了确保机密性我们需要密钥，为了解决密钥的配送问题我们需要公钥密码，为了确保完整性我们有了消息码，为了防止否认我们需要数字签名，为了防止公钥被伪造我们需要证书。</font>由此可见在这一信任的链条中，最后的终点是“<strong>对根CA的信任</strong>”<br>
-<br><font color="brown">2.如果认证机构本身不可信，即便证书合法，其中的公钥也不能使用</font><br>
-<br><font color="brown">3.如果能够取得可信的公钥，则不需要认证机构；当持有可信的认证机构公钥，并相信认证机构所进行的身份确认的情况下，则可以信任该认证机构颁发的证书以及通过该途径得到的公钥</font><br>
-<br><font color="brown">4.其实这一章主要的内容就是在** &quot;如何保证公钥的真实性” **</font></p>
+<p><font color="brown"><strong>1.对各个密码技术的攻击</strong></font><br>
+<br><font color="brown"><strong>2.OpenSSL 的心脏出血漏洞</strong></font><br>
+<br><font color="brown"><strong>3.SSL3.0 的漏洞与POODLE的攻击</strong></font><br>
+          ▣ 对 CBC 模式加密时的分组填充操作没有进行严格的规定<br>
+          ▣ 要有效抵御POODLE的攻击，必须禁用 SSL3.0<br>
+<br><font color="brown"><strong>4.FREAK 攻击与密码产品出口管制</strong></font><br>
+<br><font color="brown"><strong>5.对伪随机数生成器的攻击</strong></font><br>
+<br><font color="brown"><strong>6.利用证书的时间差进行攻击</strong></font></p>
+</blockquote>
+<h3 id="四-ssltsl-用户的注意事项"><a class="markdownIt-Anchor" href="#四-ssltsl-用户的注意事项"></a> 四、SSL/TSL 用户的注意事项</h3>
+<blockquote>
+<p><font color="brown"><strong>1.不要误解证书的含义</strong></font><br>
+          这里的认证只是确认了通信对象是经过认证机构确认的服务器，而并不能确认是否可以和该通信对象进行安全的在线购物交易。<br>
+<br><font color="brown"><strong>2.密码通信之前的数据是不受保护的</strong></font><br>
+<br><font color="brown"><strong>3.密码通信之后的数据是不受保护的</strong></font></p>
 </blockquote>
 
     </article>
@@ -488,9 +555,9 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/21/2019.05.21（61）/">https://muzibing.github.io/2019/05/21/2019.05.21（61）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/21/2019.05.21（61）/">May 21st 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/21/2019.05.21（61）/">May 22nd 2019, 12:42:41 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/06/01/2019.06.01（65）/">https://muzibing.github.io/2019/06/01/2019.06.01（65）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/06/01/2019.06.01（65）/">June 1st 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/06/01/2019.06.01（65）/">June 1st 2019, 10:31:12 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -498,17 +565,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/23/2019.05.23（62）/" title="《图解密码技术》第十一章学习笔记">
-                    <div class="nextTitle">《图解密码技术》第十一章学习笔记</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/20/2019.05.20（60）/" title="《图解密码技术》第九章学习笔记">
-                    <div class="prevTitle">《图解密码技术》第九章学习笔记</div>
+                <a href="/2019/05/29/2019.05.29（64）/" title="《图解密码技术》第十三章（PGP）学习笔记">
+                    <div class="prevTitle">《图解密码技术》第十三章（PGP）学习笔记</div>
                 </a>
             
         </li>
@@ -642,7 +704,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-证书pkc"><span class="toc-number">1.</span> <span class="toc-text"> 一、证书（PKC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-公钥基础设施pki"><span class="toc-number">2.</span> <span class="toc-text"> 二、公钥基础设施（PKI）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-对证书的攻击"><span class="toc-number">3.</span> <span class="toc-text"> 三、对证书的攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-一些重要的语句"><span class="toc-number">4.</span> <span class="toc-text"> 四、一些重要的语句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-ssltsl-简介"><span class="toc-number">1.</span> <span class="toc-text"> 一、SSL/TSL 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-使用-ssltsl-进行通信"><span class="toc-number">2.</span> <span class="toc-text"> 二、使用 SSL/TSL 进行通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-对-ssltsl-的攻击"><span class="toc-number">3.</span> <span class="toc-text"> 三、对 SSL/TSL 的攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-ssltsl-用户的注意事项"><span class="toc-number">4.</span> <span class="toc-text"> 四、SSL/TSL 用户的注意事项</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1602,60 +1664,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 64
+        Total : 65
         </div>
         <!-- search  -->
         
@@ -1675,62 +1686,67 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（65）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（64）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（63）/">MySQL学习笔记（二）查询(2)</a>
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（62）/">《图解密码技术》第十一章学习笔记</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（61）/">《图解密码技术》第十章学习笔记</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（60）/">《图解密码技术》第九章学习笔记</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（59）/">《图解密码技术》第八章学习笔记</a>
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（58）/">304号测试解题总结（一）</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（57）/">本科毕业论文问卷调查</a>
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（56）/">304号测试学习笔记（一）</a>
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（55）/">《图解密码技术》第七章学习笔记</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（54）/">Wiener Trick解题总结</a>
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
         </li>
     
     

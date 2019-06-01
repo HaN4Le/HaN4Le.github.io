@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《图解密码技术》第七章学习笔记 · MUZIBing&#39;s BLOG</title>
+    <title>《图解密码技术》第十三章（PGP）学习笔记 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《图解密码技术》第七章学习笔记</a>
+                <a href="#" class="post-name">《图解密码技术》第十三章（PGP）学习笔记</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/55.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/65.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《图解密码技术》第七章学习笔记
+            《图解密码技术》第十三章（PGP）学习笔记
             <!-- 404 -->
             
         </h1>
@@ -289,12 +289,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">882</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/11</span>
+                    <span class="post-intro-time">2019/05/29</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -419,103 +419,91 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>☛ 前言：今天主要对《图解密码技术》的第七章进行了总结，前六章的笔记都写在了OneNote上面，以后我也会把以前的笔记迁移到博客上面来，那么今天主要写一下今天的学习笔记。</p>
-</blockquote>
-<h3 id="一-什么是单向散列函数"><a class="markdownIt-Anchor" href="#一-什么是单向散列函数"></a> 一、什么是单向散列函数</h3>
-<blockquote>
-<ol>
-<li>单向散列函数不同于加密技术，它不是对信息进行加密，而是为了<strong>证明数据的完整性</strong>，防止数据被篡改，但是无法辨别出“伪装”（这个需要认证技术）</li>
-<li>单向散列函数有一个输入和一个输出，其中输入的叫做消息，输出称为散列值，而<strong>散列值的长度与消息的长度无关</strong>。</li>
-<li>单向散列函数的性质：</li>
-</ol>
+<p><strong>☛  学习的内容：</strong></p>
 <ul>
-<li>根据任意长度的消息计算出固定长度的散列值</li>
-<li>能够快速计算出散列值</li>
-<li>消息不同散列值不同：两个不同的消息产生同一个散列值的情况称为碰撞<br>
-<font color="red">☛  弱抗碰撞性：</font><strong>单向散列函数必须确保要找到和该条消息具有相同散列值的另外一条消息是非常困难的，单向散列函数都必须具备弱抗碰撞性；</strong><br>
-<font color="red">☛  强抗碰撞性：</font><strong>是指要找到散列值相同的两条不同的消息是非常困难的；</strong></li>
-<li>具备单向性</li>
-</ul>
-<ol start="4">
-<li>一些术语：</li>
-</ol>
-<ul>
-<li>单向散列函数也称为消息摘要函数、哈希函数或者杂凑函数；</li>
-<li>输入单向散列函数的消息也称为原像；</li>
-<li>单向散列函数输出的散列值也称为消息摘要或者指纹；</li>
-<li>完整性也称为一致性；</li>
+<li>PGP简介</li>
+<li>生成密钥对</li>
+<li>加密与解密</li>
+<li>生成和验证数字签名</li>
+<li>“生成数字签名并加密”和“解密并验证数字签名”</li>
+<li>信任网</li>
 </ul>
 </blockquote>
-<h3 id="二-单向散列函数的应用"><a class="markdownIt-Anchor" href="#二-单向散列函数的应用"></a> 二、单向散列函数的应用</h3>
+<h3 id="一-pgp简介"><a class="markdownIt-Anchor" href="#一-pgp简介"></a> 一、PGP简介</h3>
 <blockquote>
+<p><font color="brown"><strong>1.什么是PGP</strong></font><br>
+      <strong>PGP(Pretty Good Private)是一个密码软件，它将多种密码学的技术结合起来，形成的密码技术</strong><br>
+<br><font color="brown"><strong>2.什么是OpenPGP</strong></font><br>
+      OpenPGP 是对密文和数字签名格式进行定义的<strong>标准规格</strong>，有 RFC1991、RFC2440、 RFC4880、RFC5581、RFC6637。</p>
 <ul>
-<li>检测软件是否被篡改</li>
-<li>基于口令的加密（PBE）</li>
-<li>消息验证码</li>
-<li>数字签名：先通过单向散列函数计算出消息的散列值，然后再对这个散列值施加数字签名</li>
-<li>伪随机数生成器</li>
-<li>一次性口令</li>
+<li><strong>RFC4880</strong>：增加了对RSA、DSA的支持</li>
+<li><strong>RFC6637</strong>：增加了对椭圆曲线密码的支持，还增加了用于比较密码学强度的平衡性的对照表，如下图：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lTumljk7MNRxh1RxYyUKbckjyTyu76O9HqtuOTE.A5U!/r/dDEBAAAAAAAA" alt></li>
 </ul>
+<p><font color="brown"><strong>3.什么是GUN Private Guard</strong></font><br>
+      GUN Private Guard 是一款基于OpenPGP 标准开发的密码学软件，支持 <strong>加密、数字签名、密钥管理、S/MIME、ssh</strong>等多项功能，并且是基于 GUNPG 协议发布的一款自由软件。<br>
+      GUNPG分为stable、modern 和 classic 三个系列</p>
+<ul>
+<li>GUNPG stable：版本号为2.0.x，支持<strong>OpenPGP、S/MIME 和 ssh</strong></li>
+<li>GUNPG modern：版本号为2.1.x，在stable的基础上增加了对<strong>椭圆曲线密码</strong>的支持</li>
+<li>GUNPG classic：版本号为1.4.x，是较旧的版本</li>
+</ul>
+<p><br><font color="brown"><strong>4.PGP的功能</strong></font><br>
+      <strong>▣ 对称密码</strong>：AES、IDEA、CAST、三重DES、Blowfish、Twofish、Camellia等<br>
+      <strong>▣ 公钥密码</strong>：RSA 和 ElGamal等<br>
+      <strong>▣ 数字签名</strong>：可以使用数字签名的算法有 RSA、DSA、ECDSA（椭圆曲线DSA）、EdDSA（爱德华兹DSA）<br>
+      <strong>▣ 单向散列函数</strong>：SHA-1、SHA-224、SHA-256、SHA-384、SHA-512 和 RIPEMD-160、MD5（不推荐使用）等<br>
+      <strong>▣ 证书</strong>：可以生成 OpenGPG 中规定的证书，以及与 X.509 规范兼容的证书；还可以颁发公钥作废证明，也可以使用 CRL 和 OSCP 对证书进行检验<br>
+      <strong>▣ 压缩</strong>：支持对数据的压缩（ZIP、ZLIB、BZIPZ）和解压缩<br>
+      <strong>▣ 文本数据</strong>：可以将<strong>二进制</strong>与<strong>文本数据</strong>（ASCII  radix-64格式）进行转换<br>
+      <strong>▣ 大文件的拆分和拼合</strong><br>
+      <strong>▣ 钥匙串管理</strong>：用于管理密钥的文件称为<strong>钥匙串</strong></p>
 </blockquote>
-<h3 id="三-单向散列函数的具体列子"><a class="markdownIt-Anchor" href="#三-单向散列函数的具体列子"></a> 三、单向散列函数的具体列子</h3>
+<h3 id="二-生成密钥对"><a class="markdownIt-Anchor" href="#二-生成密钥对"></a> 二、生成密钥对</h3>
 <blockquote>
-<ul>
-<li>MD4、MD5：结构是MD（Message Digest）结构</li>
-<li>SHA-1、SHA-2（SHA-256、SHA-384、SHA-512）：SHA-256的上限接近2<sup>64</sup>比特，SHA-384、SHA-512的上限接近2<sup>128</sup>比特，</li>
-<li>ROIPEMD-160：比特币使用的就是该算法；</li>
-<li>SHA-3</li>
-</ul>
+<p>PGP 生成密钥对的代码行为：</p>
 </blockquote>
-<h3 id="四-sha-3的选拔过程"><a class="markdownIt-Anchor" href="#四-sha-3的选拔过程"></a> 四、SHA-3的选拔过程</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg2 --full-gen-key</span><br></pre></td></tr></table></figure>
+<h3 id="三-加密与解密"><a class="markdownIt-Anchor" href="#三-加密与解密"></a> 三、加密与解密</h3>
 <blockquote>
-<ol>
-<li>什么是SHA-3<br>
-2012年正式确定将Keccak算法作为SHA-3标准<br>
-<br></li>
-<li>SHA-3的选拔<br>
-Keccak被选拔为SHA-3的理由如下:</li>
-</ol>
-<ul>
-<li>采用了与SHA-2完全不同的结构</li>
-<li>结构清晰，易于分析</li>
-<li>能够使用各种设备，也适用于嵌入式应用</li>
-<li>在硬件上的实现显示出了很高的性能</li>
-<li>比其他最终候选算法安全性边际更大</li>
-</ul>
+<p><font color="brown"><strong>1.加密</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/LW3C6tYs4LRcaY11592hDSKHAbQ8tGWdCIflaXDLsxs!/r/dL8AAAAAAAAA" alt><br>
+      <strong>▣ 生成和加密会话密钥</strong><br>
+      <strong>▣ 压缩和加密消息</strong><br>
+<br><font color="brown"><strong>2.解密</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/jKO.AhdrPb5Dn82i6G8SQByG63aAm7bdMIn3xGsqTI0!/r/dL4AAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="五-keccak"><a class="markdownIt-Anchor" href="#五-keccak"></a> 五、Keccak</h3>
+<h3 id="四-生成和验证数字签名"><a class="markdownIt-Anchor" href="#四-生成和验证数字签名"></a> 四、生成和验证数字签名</h3>
 <blockquote>
-<ol>
-<li>什么是Keccak<br>
-它是一种被选定为SHA-3标准的单向散列函数，并且输入数据的长度没有上限</li>
-<li>海绵结构<br>
-☛  吸收阶段<br>
-     ① f 的作用：将输入的数据进行复杂的搅拌操作并输出结果，输入和输出的长度均为 b = r + c bit<br>
-     ② 每次吸收的长度为 r 个比特，因此 r 被称为比特率<br>
-     ③ 函数 f 的输入长度不是 r 个比特，而是 r + c个比特，这就意味着内部状态中有 c 个比特是不受输入分组内容的直接影响的，这里的 c 被称为容量，容量 c 的意义在于防止将输入消息中的一些特征泄露出去<br>
-<br>☛ 挤出阶段<br>
-     ① 输出值为 r + c<br>
-     ② 无论是吸收阶段还是挤出阶段，函数 f 的逻辑本身是完全相同的</li>
-<li>双工结构<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/reZI6s3pletXeyuKsbAEF.bd8tOPdh70e.TZY7vVi8w!/r/dPMAAAAAAAAA" alt></li>
-<li>Keccak的内部状态（海面结构）<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/s29l87DKGjf.l6eW2r*7.E0cM*C3PgjnhNnr0*YoAYk!/r/dFQBAAAAAAAA" alt></li>
-</ol>
-<ul>
-<li>xy 平面称为slice，yz 平面称为sheet，xz 平面称为plane</li>
-<li>Keccak本质是实现一个能够将上述结构的 state 进行有效搅拌的函数 f</li>
-<li>可以看成是由与 lane 的长度相同数量的 slice 堆叠而成的</li>
-</ul>
-<ol start="5">
-<li>函数Keccak-f[b]</li>
-</ol>
-<ul>
-<li>b 称为宽度，通过改变宽度 b 就可以改变内部状态的长度，改变的是 lane 的长度，但不能改变slice（5 x 5）</li>
-<li>Keccak 的结构成为套娃结构</li>
-<li>Keccak-f[b] 总共循环 12 + 2ζ 轮，每一轮包含 5 个步骤：θ（西塔）、ρ（柔）、π（派）、χ（凯）、ι（伊欧塔）<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/6Xh2aFOJSSbm6TPtLRApbz4L.OOhZK0XWtzh0KQs1KM!/r/dDMBAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MVo4nFjP0Og6cFZBnzN52OIkzEyDVhcIA8S7yp7Wf1k!/r/dL4AAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/aV0gtX2Q7kjhm1kekF5ZuZ*R9p.O2RZ9AyXSz.aOVQg!/r/dFMBAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/DmoyEUTXat4HKurp8e2fOCpFhJnIhzRc3p*Z7NZSSIg!/r/dL4AAAAAAAAA" alt><br>
-而步骤 ι 是用一个固定的轮常数对整个 state 的所有比特进行XOR运算，目的是为了让内部状态具备非对称性</li>
-</ul>
+<p><font color="brown"><strong>1.生成数字签名</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/HbDmdldE7I3V2t6CBmECSLHFvTp2TloKwBsJNmuVWXE!/r/dMAAAAAAAAAA" alt><br>
+      <strong>▣ 解密私钥</strong><br>
+      <strong>▣ 生成数字签名</strong><br>
+<br><font color="brown"><strong>2.验证数字签名</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/jDRsxZc.ySwWWq3ab4nkI3HZeHLoJzGr9DCmZGXW8qI!/r/dMUAAAAAAAAA" alt><br>
+      <strong>▣ 恢复发送者发送的散列值</strong><br>
+      <strong>▣ 对比散列值</strong></p>
+</blockquote>
+<h3 id="五-生成数字签名并加密以及解密并验证数字签名"><a class="markdownIt-Anchor" href="#五-生成数字签名并加密以及解密并验证数字签名"></a> 五、生成数字签名并加密以及解密并验证数字签名</h3>
+<blockquote>
+<p><font color="brown"><strong>1.生成数字签名并加密</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MJPrvtn0m5gcGl4vT*dna*jBQrgtvNf5nO58UKPiRfQ!/r/dFMBAAAAAAAA" alt><br>
+      <strong>▣ 生成数字签名</strong><br>
+      <strong>▣ 加密</strong><br>
+<br><font color="brown"><strong>2.解密并验证数字签名</strong></font><br>
+<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/wVCk*g8hfzp55Ibz.A0HNrJoWrhiCTRpJ2WckGZr3FI!/r/dL8AAAAAAAAA" alt><br>
+      <strong>▣ 解密</strong><br>
+      <strong>▣ 验证数字签名</strong></p>
+</blockquote>
+<h3 id="六-信任网"><a class="markdownIt-Anchor" href="#六-信任网"></a> 六、信任网</h3>
+<blockquote>
+<p><font color="brown"><strong>1.公钥合法性</strong></font><br>
+      对于确认公钥的合法性，我们前面就学习了“证书”相关技术，证书就是认证机构对公钥施加的数字签名，通过验证这个数字签名就可以确认公钥的合法性，而在PGP技术里，不需要通过认证机构来确认公钥的合法性，而是通过一种叫做“<strong>信任网</strong>”的方法，<font color="red"><strong>PGP用户会互相对对方的公钥进行签名</strong> </font><br>
+<br><font color="brown"><strong>2.场景1：通过自己的数字签名进行确认</strong></font><br>
+<br><font color="brown"><strong>3.场景2：通过自己完全信任的人的数字签名进行确认</strong></font><br>
+<br><font color="brown"><strong>4.场景3：通过自己有限信任的多个人的数字签名进行确认</strong></font><br>
+<br><font color="brown"><strong>5.公钥合法性与所有者信任是不同的</strong></font><br>
+<br><font color="brown"><strong>6.所有者信任级别因人而异的</strong></font></p>
 </blockquote>
 
     </article>
@@ -523,9 +511,9 @@ Keccak被选拔为SHA-3的理由如下:</li>
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/11/2019.05.11（55）/">https://muzibing.github.io/2019/05/11/2019.05.11（55）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/11/2019.05.11（55）/">May 11th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/11/2019.05.11（55）/">May 20th 2019, 10:25:38 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（64）/">https://muzibing.github.io/2019/05/29/2019.05.29（64）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（64）/">May 29th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/05/29/2019.05.29（64）/">May 29th 2019, 9:34:01 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -534,16 +522,16 @@ Keccak被选拔为SHA-3的理由如下:</li>
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/13/2019.05.13（56）/" title="304号测试学习笔记（一）">
-                    <div class="nextTitle">304号测试学习笔记（一）</div>
+                <a href="/2019/06/01/2019.06.01（65）/" title="《图解密码技术》第十四章（SSL/TSL）学习笔记">
+                    <div class="nextTitle">《图解密码技术》第十四章（SSL/TSL）学习笔记</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/09/2019.05.09（54）/" title="Wiener Trick解题总结">
-                    <div class="prevTitle">Wiener Trick解题总结</div>
+                <a href="/2019/05/28/2019.05.28（63）/" title="《图解密码技术》第十二章（随机数）学习笔记">
+                    <div class="prevTitle">《图解密码技术》第十二章（随机数）学习笔记</div>
                 </a>
             
         </li>
@@ -677,7 +665,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是单向散列函数"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是单向散列函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-单向散列函数的应用"><span class="toc-number">2.</span> <span class="toc-text"> 二、单向散列函数的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-单向散列函数的具体列子"><span class="toc-number">3.</span> <span class="toc-text"> 三、单向散列函数的具体列子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-sha-3的选拔过程"><span class="toc-number">4.</span> <span class="toc-text"> 四、SHA-3的选拔过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-keccak"><span class="toc-number">5.</span> <span class="toc-text"> 五、Keccak</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-pgp简介"><span class="toc-number">1.</span> <span class="toc-text"> 一、PGP简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-生成密钥对"><span class="toc-number">2.</span> <span class="toc-text"> 二、生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-加密与解密"><span class="toc-number">3.</span> <span class="toc-text"> 三、加密与解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-生成和验证数字签名"><span class="toc-number">4.</span> <span class="toc-text"> 四、生成和验证数字签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-生成数字签名并加密以及解密并验证数字签名"><span class="toc-number">5.</span> <span class="toc-text"> 五、生成数字签名并加密以及解密并验证数字签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-信任网"><span class="toc-number">6.</span> <span class="toc-text"> 六、信任网</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1637,60 +1625,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 64
+        Total : 65
         </div>
         <!-- search  -->
         
@@ -1710,62 +1647,67 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（65）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（64）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（63）/">MySQL学习笔记（二）查询(2)</a>
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（62）/">《图解密码技术》第十一章学习笔记</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（61）/">《图解密码技术》第十章学习笔记</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（60）/">《图解密码技术》第九章学习笔记</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（59）/">《图解密码技术》第八章学习笔记</a>
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（58）/">304号测试解题总结（一）</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（57）/">本科毕业论文问卷调查</a>
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（56）/">304号测试学习笔记（一）</a>
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（55）/">《图解密码技术》第七章学习笔记</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（54）/">Wiener Trick解题总结</a>
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
         </li>
     
     
