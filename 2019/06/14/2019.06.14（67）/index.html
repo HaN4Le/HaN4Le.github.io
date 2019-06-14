@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="MUZIBing">
     <meta name="renderer" content="webkit">
@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>MUZIBing&#39;s BLOG</title>
+    <title>《图解密码技术》第一章（环游密码世界）学习笔记 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -213,17 +213,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  -->
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
     
+        <body class="post-body">
     
-<header class="header">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">《图解密码技术》第一章（环游密码世界）学习笔记</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">MUZIBing's BLOG</a>
 </header>
@@ -235,24 +246,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/67.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            《图解密码技术》第一章（环游密码世界）学习笔记
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">732</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -353,283 +416,104 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/25/2019.04.25（46）/">
-            
-                <span>二进制炸弹：Phase_6解题总结（1）</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p><font color="brown"><strong>☛  前言：</strong></font><br>
+        今天终于把论文的终稿弄完了，也可以好好的静下来继续测试和学习知识了，以后要抓紧时间，把以前没有完成的内容赶紧补回来，赶上大家的进度，今天我先把《图解密码技术》第一章的基础知识总结一下。</p>
+</blockquote>
+<h3 id="font-colorbrown一-密码font"><a class="markdownIt-Anchor" href="#font-colorbrown一-密码font"></a> <font color="brown">一、密码</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.密码</strong>：</font><br>
+        密码最重要的是<strong>确保机密性</strong>，在这里主要是了解一下几种角色：<br>
+        <strong>◈ 发送者</strong><br>
+        <strong>◈ 接收者</strong><br>
+        <strong>◈ 窃听者</strong>：这里的窃听者Eve不一定是人类，有可能是窃听器，也有可能是邮件、软件和某些程序。<br>
+<br><font color="navy"><strong>2.破译</strong>：</font><br>
+        密码可以保证数据的机密性，但是攻击者可以利用各种漏洞对密码进行攻击 ，这种工作被称为<strong>密码破译</strong>，简称为<strong>破译</strong>。</p>
+</blockquote>
+<h3 id="font-colorbrown二-对称密码和公钥密码font"><a class="markdownIt-Anchor" href="#font-colorbrown二-对称密码和公钥密码font"></a> <font color="brown">二、对称密码和公钥密码</font></h3>
+<blockquote>
+<p>1.加密和解密算法合在一起统称为<strong>密码算法</strong>；<br>
+2.<strong>对称密码</strong>是指加密和解密时使用<font color="blue">同一个密钥</font>的方式；<br>
+3.<strong>公钥密码</strong>是指在加密和解密时使用<font color="blue">不同密钥</font>的方式，又称为非对称密码；<br>
+4.<strong>混合密码系统</strong>是指将对称密码和公钥密码结合起来的密码方式；</p>
+</blockquote>
+<h3 id="font-colorbrown三-其他密码技术font"><a class="markdownIt-Anchor" href="#font-colorbrown三-其他密码技术font"></a> <font color="brown">三、其他密码技术</font></h3>
+<blockquote>
+<p><font color="navy"><strong><a href="https://muzibing.github.io/2019/05/11/2019.05.11%EF%BC%8854%EF%BC%89/">1.单向散列函数</a></strong>：</font>它是为了防止数据被篡改设计出来的，可以根据单向散列函数得出的<strong>散列值</strong>，对数据的<strong>完整性</strong>进行判断。<br>
+<br><font color="navy"><strong><a href="https://muzibing.github.io/2019/05/16/2019.05.16%EF%BC%8858%EF%BC%89/">2.消息认证码</a></strong>：</font>它是为了确认消息是否来自所期待的通信对象。通过消息认证码不仅能够保证<strong>完整性</strong>，也可以提供<strong>认证</strong>机制，但是它并<strong>不能防止否认</strong>和<strong>不能够对第三方进行确认</strong>。<br>
+<br><font color="navy"><strong><a href="https://muzibing.github.io/2019/05/20/2019.05.20%EF%BC%8859%EF%BC%89/">3.数字签名</a></strong>：</font>是一种将现实世界中的签名和盖章移植到数字世界中的技术。数字签名既可以检测出<strong>伪装和篡改</strong>，也可以<strong>防止事后否认</strong>。<br>
+<br><font color="navy"><strong><a href="https://muzibing.github.io/2019/05/28/2019.05.28%EF%BC%8863%EF%BC%89/">4.伪随机数生成器</a></strong>：</font>是一种能够模拟产生随机数列的算法。只有产生具有<strong>不可重现性</strong>（不可重现性 &gt; 不可预测性 &gt; 随机性）数值的伪随机数生成器才能够用于密码技术种。<br>
+<br>对密码体制中的工具来说，可以从下面的图中看出：<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/jUWxTf.ShowB2F*79GG.zmK0Pfu.Yfg2eNCTX28fVHM!/r/dDABAAAAAAAA" alt></p>
+</blockquote>
+<h3 id="font-colorbrown四-隐写术和数字水印font"><a class="markdownIt-Anchor" href="#font-colorbrown四-隐写术和数字水印font"></a> <font color="brown">四、隐写术和数字水印</font></h3>
+<blockquote>
+<p><font color="navy"><strong>密码隐藏的是<font color="red">内容</font>，隐写术隐藏的是<font color="red">消息本身</font></strong></font>。</p>
+</blockquote>
+<h3 id="font-colorbrown五-密码与信息安全常识font"><a class="markdownIt-Anchor" href="#font-colorbrown五-密码与信息安全常识font"></a> <font color="brown">五、密码与信息安全常识</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.不要使用保密的密码算法</strong></font><br>
+<br><font color="navy"><strong>2.使用低强度的密码比不进行任何加密更危险</strong></font><br>
+<br><font color="navy"><strong>3.任何密码总有一天都会被破解</strong></font>：严格的来说，绝对不会被破解的密码算法实际是存在的，这种算法被称为<strong>一次性密码本</strong>。<br>
+<br><font color="navy"><strong>4.密码只是信息安全的一部分</strong></font></p>
+</blockquote>
 
- 一、相关汇编代码
- 1.Phase_6的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/23/2019.04.23（45）/">
-            
-                <span>二进制炸弹：Phase_5解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-
-前言：
-在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
-
-
- 一、相关汇编代码
- 1.Phase_5的汇编代码
-1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp ...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/06/14/2019.06.14（67）/">https://muzibing.github.io/2019/06/14/2019.06.14（67）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/06/14/2019.06.14（67）/">June 14th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/06/14/2019.06.14（67）/">June 14th 2019, 8:28:45 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/2019.04.21（43）/">
-            
-                <span>二进制炸弹：Phase_4解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-    今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-
- 一、相关汇编代码
- 1.&lt; phase_4 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub    $0x2c,%esp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/2019.04.20（42）/">
-            
-                <span>二进制炸弹：Phase_3解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-    今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-
- 一、相关汇编代码
-① &lt; phase_3 &gt;的汇编代码
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $0x2c,%esp 8048c...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/19/2019.04.19（41）/">
-            
-                <span>二进制炸弹：Phase_2解题总结</span>
-        </a>
-        <div class="abstract-content">
-            今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
- 一、相关汇编代码
-① &lt; phase_2 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/18/2019.04.18（40）/">
-            
-                <span>二进制炸弹：Phase_1解题总结</span>
-        </a>
-        <div class="abstract-content">
-            经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
-
-☛ Phase_1、Phase_2、Phase_3、Phase_4
-今天主要总结一下Phase_1的解题过程
-
- 一、前期工作
-
-
-所用工具
-IDA、Linux系统、gdb、objdump、python
-解题思路
-通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
-
-
- 二、Phase_1解题过程
- 1.对bomb文件进行反汇编
-
-objdump -d bomb &gt; bomo.txt
-将bo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
-            
-                <span>二进制炸弹解题知识储备</span>
-        </a>
-        <div class="abstract-content">
-            今天开始了第二阶段的测试，针对题目中频繁出现的汇编指令、gdb编译器以及objdump工具，做了详细的学习，下面就总结一下该题中可能用到的一些知识点，主要内容为：
-
-
-常用的汇编指令
-objdump工具
-gdb编译器的用法
-
-
- 一、题目中出现的汇编指令
-
-
-push、pop、call、cmp、jmp、je、jne、lea
-
-
-1.push 和 pop 指令：堆栈操作指令
-
-**① 说明：**无论是push 还是pop ，都是对堆栈段ss的处理：
-
-ss中存放堆栈段地址
-sp指针中存放偏移地址，
-栈操作都是以字（2字节）为单位。
-
-② 例子：
-☛ 例一：将通用寄存器ax中的数据入栈，pu...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/03/2019.06.03（66）/" title="《图解密码技术》第十五章（密码技术和现实生活）学习笔记">
+                    <div class="prevTitle">《图解密码技术》第十五章（密码技术和现实生活）学习笔记</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -714,6 +598,24 @@ sp指针中存放偏移地址，
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown一-密码font"><span class="toc-number">1.</span> <span class="toc-text"> 一、密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-对称密码和公钥密码font"><span class="toc-number">2.</span> <span class="toc-text"> 二、对称密码和公钥密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-其他密码技术font"><span class="toc-number">3.</span> <span class="toc-text"> 三、其他密码技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown四-隐写术和数字水印font"><span class="toc-number">4.</span> <span class="toc-text"> 四、隐写术和数字水印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown五-密码与信息安全常识font"><span class="toc-number">5.</span> <span class="toc-text"> 五、密码与信息安全常识</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -2230,6 +2132,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -2245,7 +2149,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
 
