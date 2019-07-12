@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2019-06-16T12:07:09.016Z</updated>
+  <updated>2019-07-12T10:35:57.471Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《软件安全分析与应用》第 1 章：绪论学习笔记</title>
+    <link href="https://muzibing.github.io/2019/07/12/2019.07.12%EF%BC%8870%EF%BC%89/"/>
+    <id>https://muzibing.github.io/2019/07/12/2019.07.12（70）/</id>
+    <published>2019-07-11T16:00:00.000Z</published>
+    <updated>2019-07-12T10:35:57.471Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><font color="brown"><strong>☛  前言：</strong></font><br>        今天开始着手为研究生的学习生涯打基础，这一个月我将会回顾有关计算机专业的最基础的知识点，并将缺下的东西补上，主要内容有：<br>           ◈ C 语言、数据结构、C++、汇编语言等<br>           ◈ 实验室的测试内容<br>           ◈ 每月必读的书籍<br>        这两天给我最大的感触就是“自己欠缺的东西太多了”，要想比别人的技术厉害，就要比别人付出更多的努力！必须要严格要求自己！必须要比别人花更多的时间！必须要为自己的梦想坚持下去！拼个 3 年！！</p></blockquote><h3 id="font-colorbrown一-典型的安全问题font"><a class="markdownIt-Anchor" href="#font-colorbrown一-典型的安全问题font"></a> <font color="brown">一、典型的安全问题</font></h3><blockquote><p><font color="navy"><strong>1、恶意软件</strong></font></p><ul><li>传统恶意软件一直发展的 3 个方面：渗透与扩散能力、隐蔽能力、破坏能力</li><li>恶意软件的发展历程：单机传播阶段、网络传播阶段、协同攻击阶段（分布式拒绝服务攻击、多连接跳转攻击）</li></ul><p><font color="navy"><strong>2.APT(Advanced Persistent Threat)</strong></font><br>        高可持续性威胁，RSA 和 Hacking Team 都遭受了 APT 攻击<br><br><font color="navy"><strong>3.Hacking Team 遭受 APT 攻击</strong></font></p><ul><li>各种零日漏洞和相关漏洞利用代码</li><li>远程控制平台</li><li>Fuzz 测试系统</li><li>恶意代码监测系统</li></ul><p><font color="navy"><strong>4.软件漏洞</strong></font><br>    <strong>① 消除软件漏洞很难的原因</strong></p><ul><li>软件自身越来越复杂</li><li>软件漏洞越来越多样化</li><li>软件开发周期越来越短</li></ul><p>    <strong>② JPEG 漏洞</strong><br>        JPEG 格式：文件头为 2B 的起始标志（FFD8），文件尾部为 2B 的结束标志（FFD9），中间数据由子结构组成（2B 标志码 + 2B 的长度域（大端格式） + 信息数据）<br><br><font color="navy"><strong>5.软件后门</strong></font><br>    将软件后门设计为软件漏洞的形式，对于攻击者有如下优势：</p><ul><li>难发现</li><li>易利用</li><li>难取证</li></ul></blockquote><h3 id="font-colorbrown二-软件安全性分析的目标font"><a class="markdownIt-Anchor" href="#font-colorbrown二-软件安全性分析的目标font"></a> <font color="brown">二、软件安全性分析的目标</font></h3><blockquote><p><font color="navy"><strong>1.软件安全性分析一般要回答以下三方面的问题：</strong></font></p><ul><li>存在问题</li><li>机理问题</li><li>对策问题</li></ul><p><font color="navy"><strong>2.对软件的逆向分析存在以下挑战</strong></font></p><ul><li>指令代码的理解</li><li>关联关系的抽取</li><li>复杂逻辑的解析</li></ul></blockquote><h3 id="font-colorbrown三-主要方法与技术font"><a class="markdownIt-Anchor" href="#font-colorbrown三-主要方法与技术font"></a> <font color="brown">三、主要方法与技术</font></h3><blockquote><p><font color="navy"><strong>1.按照软件逆向分析方式的不同，将软件逆向分析分为静态和动态两大类</strong></font></p><ul><li>静态分析：主要直接对软件的可执行代码进行分析，一般是在对代码反编译或反汇编的基础上，对汇编代码或其他高级语言代码进行进一步的分析</li><li>动态分析：动态分析是通过直接运行软件，然后监测软件运行过程，实施分析</li></ul><p>当前的主流分析思路：以动态分析为主，一方面利用模糊测试等技术构造执行的不同路径，另一方面也利用静态分析手段弥补动态分析过程中的不足，优化和提升动态分析的能力。<br><br><font color="navy"><strong>2.根据逆向分析获得信息的层次不同，又可以将软件逆向分析方法与技术分为：</strong></font></p><ul><li>获取代码的反汇编、反编译等</li><li>程序依赖关系分析的程序切片、污点传播分析、符号执行等；</li></ul><p><font color="navy"><strong>3.程序调试的优缺点</strong></font><br><strong>① 优点</strong></p><ul><li>避免用户对指令复杂推理过程</li><li>直接对每条指令的执行结果 进行分析</li></ul><p><strong>② 缺点</strong></p><ul><li>全面性较差（动态分析的共性缺陷）</li><li>软件自保技术的应用可能阻碍调试</li><li>调试仅能提供动态的细节信息，对用户而言，分析、理解难度仍很大</li></ul><p><font color="navy"><strong>4.程序切片</strong></font><br>    程序切片是当前用于局部代码片段分析的一种重要手段，但仍不太适合大规模代码的分析<br><br><font color="navy"><strong>5.污点传播分析</strong></font><br>    <strong>① 基本思想：<strong>将所感兴趣的数据做标记（如同染色一样），即标记为污点数据，然后通过分析对该污点数据的处理过程，根据每条指令的污点传播规则，分析数据的传递关系。<br><br>    ② 污点传播分析一般采取</strong>动态的分析方式</strong>；<br><br>    ③ 动态污点传播分析有很多方式，主要的差异：<strong>如何获得动态执行过程中具体每一条指令和指令执行前后状态</strong>，当前主要的实现方式有“<strong>基于插桩</strong>”、“<strong>基于硬件</strong>”、“<strong>基于编译器扩展</strong>” 和 “<strong>基于硬件模拟器</strong>”等实现方法<br><br><font color="navy"><strong>6.符号执行</strong></font><br>    其基本思想是将目标程序代码中部分变量和运算符号化，通过对各种条件分支的符号化表达来形成路径的约束条件。<br><br>    <font color="red"><strong>符号执行同样是一种数据流分析方法</strong></font>，其基本思想是：用<strong>符号变量</strong>作为输入参数，对程序进行<strong>模拟执行</strong>，然后对程序的执行路径进行分析，并提取路径中的约束条件，通过对约束进行求解实现对程序安全性及路径可达性等分析。<br><br><font color="navy"><strong>7.模糊测试</strong></font><br>    **① 准确来说模糊测试并不是一项逆向分析技术，**他最初的应用主要是为了通过构造各种畸形的数据输入来测试软件实现的正确性<br><br>    **② 主要用途：**尽可能多地触发软件的各种执行路径，弥补了软件动态逆向分析的缺陷<br><br>    **③ 基本思想：**通过构造各种不同的输入数据，尽可能地触发执行软件的各种路径，通过对执行结果的健侧来实现相关的分析或检测目标。<br><br>    **④ 研究重点：**如何提高测试数据生成的针对性，从而提高模糊测试效率</p></blockquote><h3 id="font-colorbrown三-主要分析应用font"><a class="markdownIt-Anchor" href="#font-colorbrown三-主要分析应用font"></a> <font color="brown">三、主要分析应用</font></h3><blockquote><p><font color="navy"><strong>1.恶意软件分析</strong></font><br><br><font color="navy"><strong>2.网络协议逆向分析</strong></font><br>    <strong>① 协议逆向分析的方法</strong></p><ul><li>基于网络流量统计特征展开分析</li><li>直接通过逆向软件进行分析(准确性更高、分析能力更强)</li><li>基于软件逆向分析：结合协议实现代码的静态、动态逆向分析，提取网络协议中的数据包格式、关键字、协议状态机等信息</li></ul><p><font color="navy"><strong>3.软件漏洞分析与利用</strong></font><br>    对于发现软件漏洞唯一的技术手段就是：软件逆向分析</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&quot;brown&quot;&gt;&lt;strong&gt;☛  前言：&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;
+        今天开始着手为研究生的学习生涯打基础，这一个月我将会回顾有关计算机专业的最基础的知识点，并将缺下的东西补上，主要内容有：&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="《软件安全分析与应用》" scheme="https://muzibing.github.io/tags/%E3%80%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E3%80%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>《图解密码技术》第三章（对称密码）学习笔记</title>
@@ -543,32 +568,6 @@
     
     
       <category term="MySQL" scheme="https://muzibing.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Misc：RealWiFi解题总结</title>
-    <link href="https://muzibing.github.io/2019/04/29/2019.04.29%EF%BC%8850%EF%BC%89/"/>
-    <id>https://muzibing.github.io/2019/04/29/2019.04.29（50）/</id>
-    <published>2019-04-28T16:00:00.000Z</published>
-    <updated>2019-04-29T13:09:46.516Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。</p></blockquote><h3 id="一-前期准备"><a class="markdownIt-Anchor" href="#一-前期准备"></a> 一、前期准备</h3><blockquote><ul><li>crunch 生成字典</li><li>aircrack-ng工具</li><li>wireshark工具</li></ul></blockquote><h3 id="二-解题思路"><a class="markdownIt-Anchor" href="#二-解题思路"></a> 二、解题思路</h3><blockquote><ol><li>首先先观察题目给的流量包，看看都有什么协议；</li><li>根据第一步，然后针对协议的特点做出相应的判断；</li><li>从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；</li><li>根据题目提示写出字典；</li><li>暴力破解得到密码；</li><li>但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；</li></ol></blockquote><h3 id="三-解题步骤"><a class="markdownIt-Anchor" href="#三-解题步骤"></a> 三、解题步骤</h3><h4 id="1观察流量包"><a class="markdownIt-Anchor" href="#1观察流量包"></a> 1.观察流量包</h4><blockquote><p>用wireshark打开数据包，观察到流量包的格式为:EAPOL和802.11：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dDpT4nPy6JnwXr04pXAtMt6NPMP8hBU.IhMXZodTttI!/r/dL8AAAAAAAAA" alt><br>于是我去查阅了一下有关EAPOL协议的内容，主要用于网络接入认证。由此我们可以知道这个流量包是一在连接wifi的时候抓取的，而且wifi的SSID为Blue_Whale。</p></blockquote><h4 id="2分析流量"><a class="markdownIt-Anchor" href="#2分析流量"></a> 2.分析流量</h4><blockquote><p>对于这道题给出的提示来看，再加上第一步的分析，可以知道题目让我们通过破解该数据包，得到wifi的密码。</p></blockquote><h4 id="3写出字典"><a class="markdownIt-Anchor" href="#3写出字典"></a> 3.写出字典</h4><blockquote><p>首先要思考的问题是，密码的长度是多少？密码的组合是什么？<br>根据题目给的提示：“密码较弱”，然后根据资料密码最短为“8”位，所以我猜测<strong>密码可能是由8个数字所组成</strong>，然后我用crunch生成字典：</p><center>`crunch 8 8 -t %%%%%%%% >> password.txt`</center>![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fgzqG8GZ50X85tIp6hs171t2txgPRBUaJSHbJrn9Szw!/r/dFQBAAAAAAAA)</blockquote><h4 id="4暴力破解"><a class="markdownIt-Anchor" href="#4暴力破解"></a> 4.暴力破解</h4><blockquote><p>根据我们写的字典，然后用aircrack-ng对其进行暴力破解：</p><center>`aircrack-ng -a2 -wifi.pcap -w password.txt` </center>在第18分41秒的时候，终于破解成功如下图：![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FBU392X7ZJaKA11sJcOOkoyysNB5JX1g4NRvH9ruPTY!/r/dDYBAAAAAAAA)</blockquote><h4 id="5破解流量包得到明文"><a class="markdownIt-Anchor" href="#5破解流量包得到明文"></a> 5.破解流量包，得到明文</h4><blockquote><p>在查了相关的资料后，在已知wifi密码后，可以用下面的方法破解流量包，然后得到明文：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/PlkJNK.2U3gaa.xAiRz8i94DZtVaNP1AQat9DVJbmpo!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/m0Cu81eaAVwYrkbSy1b08ZgYvkquvRSH2lStj9B086s!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/mUUsMsiUe6K7V7G2keppzcx0vMQfSkHpB3MkXD9EDuo!/r/dFQBAAAAAAAA" alt></p></blockquote><h4 id="6分析明文得到flag"><a class="markdownIt-Anchor" href="#6分析明文得到flag"></a> 6.分析明文，得到flag</h4><blockquote><p>对于解密后的流量包，我们可以看到产生了HTTP、TCP等协议，我首先想到的是分析HTTP协议，因为他传输的都是明文，最终在POST中找到了Flag<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lbkrWeM06qmj4oMuv0FiSLnavPX75AvYrXdG6HmrBE4!/r/dD4BAAAAAAAA" alt></p></blockquote><h3 id="四-参考资料"><a class="markdownIt-Anchor" href="#四-参考资料"></a> 四、参考资料</h3><blockquote><p>因为本题所涉及的知识较多，我将一些我认为比较全面的参考资料贴出来，方便以后查阅和学习：</p><ul><li><a href="https://blog.csdn.net/qq_42025840/article/details/81125584" target="_blank" rel="noopener">crunch的详细总结</a></li><li><a href="https://blog.csdn.net/amazingjwb/article/details/71192001" target="_blank" rel="noopener">aircrack-ng详细总结</a></li><li><a href="https://blog.csdn.net/printfmylife20140214/article/details/19419159" target="_blank" rel="noopener">EAPOL协议详细总结</a></li></ul></blockquote><h3 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h3><blockquote><p>虽然今天总结了一下这个题目，但是还是感觉有些知识没有掌握，一些命令的用法没有理解。我有了个新的想法，根据我以前做出来的题目，我要将每道题目所涉及的知识点再复习一下，对于一些未能掌握，或者还不够熟悉的知识点进行总结和归纳，然后将这些盲区彻底搞懂。</p></blockquote><h3 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h3><blockquote><p>坚持了这么久，也成为了一种习惯。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;一-前期准备&quot;&gt;&lt;a class=&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="Misc" scheme="https://muzibing.github.io/tags/Misc/"/>
     
   </entry>
   

@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>MUZIBing&#39;s BLOG</title>
+    <title>《软件安全分析与应用》第 1 章：绪论学习笔记 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -216,14 +218,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header index-header">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">《软件安全分析与应用》第 1 章：绪论学习笔记</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">MUZIBing's BLOG</a>
 </header>
@@ -242,17 +253,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            MUZIBing's BLOG
-            <!-- 文章页  -->
+            《软件安全分析与应用》第 1 章：绪论学习笔记
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -260,12 +271,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="《软件安全分析与应用》">《软件安全分析与应用》</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -366,516 +414,174 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
-            
-                <span>Misc：RealWiFi解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p><font color="brown"><strong>☛  前言：</strong></font><br>
+        今天开始着手为研究生的学习生涯打基础，这一个月我将会回顾有关计算机专业的最基础的知识点，并将缺下的东西补上，主要内容有：<br>
+           ◈ C 语言、数据结构、C++、汇编语言等<br>
+           ◈ 实验室的测试内容<br>
+           ◈ 每月必读的书籍<br>
+        这两天给我最大的感触就是“自己欠缺的东西太多了”，要想比别人的技术厉害，就要比别人付出更多的努力！必须要严格要求自己！必须要比别人花更多的时间！必须要为自己的梦想坚持下去！拼个 3 年！！</p>
+</blockquote>
+<h3 id="font-colorbrown一-典型的安全问题font"><a class="markdownIt-Anchor" href="#font-colorbrown一-典型的安全问题font"></a> <font color="brown">一、典型的安全问题</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1、恶意软件</strong></font></p>
+<ul>
+<li>传统恶意软件一直发展的 3 个方面：渗透与扩散能力、隐蔽能力、破坏能力</li>
+<li>恶意软件的发展历程：单机传播阶段、网络传播阶段、协同攻击阶段（分布式拒绝服务攻击、多连接跳转攻击）</li>
+</ul>
+<p><font color="navy"><strong>2.APT(Advanced Persistent Threat)</strong></font><br>
+        高可持续性威胁，RSA 和 Hacking Team 都遭受了 APT 攻击<br>
+<br><font color="navy"><strong>3.Hacking Team 遭受 APT 攻击</strong></font></p>
+<ul>
+<li>各种零日漏洞和相关漏洞利用代码</li>
+<li>远程控制平台</li>
+<li>Fuzz 测试系统</li>
+<li>恶意代码监测系统</li>
+</ul>
+<p><font color="navy"><strong>4.软件漏洞</strong></font><br>
+    <strong>① 消除软件漏洞很难的原因</strong></p>
+<ul>
+<li>软件自身越来越复杂</li>
+<li>软件漏洞越来越多样化</li>
+<li>软件开发周期越来越短</li>
+</ul>
+<p>    <strong>② JPEG 漏洞</strong><br>
+        JPEG 格式：文件头为 2B 的起始标志（FFD8），文件尾部为 2B 的结束标志（FFD9），中间数据由子结构组成（2B 标志码 + 2B 的长度域（大端格式） + 信息数据）<br>
+<br><font color="navy"><strong>5.软件后门</strong></font><br>
+    将软件后门设计为软件漏洞的形式，对于攻击者有如下优势：</p>
+<ul>
+<li>难发现</li>
+<li>易利用</li>
+<li>难取证</li>
+</ul>
+</blockquote>
+<h3 id="font-colorbrown二-软件安全性分析的目标font"><a class="markdownIt-Anchor" href="#font-colorbrown二-软件安全性分析的目标font"></a> <font color="brown">二、软件安全性分析的目标</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.软件安全性分析一般要回答以下三方面的问题：</strong></font></p>
+<ul>
+<li>存在问题</li>
+<li>机理问题</li>
+<li>对策问题</li>
+</ul>
+<p><font color="navy"><strong>2.对软件的逆向分析存在以下挑战</strong></font></p>
+<ul>
+<li>指令代码的理解</li>
+<li>关联关系的抽取</li>
+<li>复杂逻辑的解析</li>
+</ul>
+</blockquote>
+<h3 id="font-colorbrown三-主要方法与技术font"><a class="markdownIt-Anchor" href="#font-colorbrown三-主要方法与技术font"></a> <font color="brown">三、主要方法与技术</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.按照软件逆向分析方式的不同，将软件逆向分析分为静态和动态两大类</strong></font></p>
+<ul>
+<li>静态分析：主要直接对软件的可执行代码进行分析，一般是在对代码反编译或反汇编的基础上，对汇编代码或其他高级语言代码进行进一步的分析</li>
+<li>动态分析：动态分析是通过直接运行软件，然后监测软件运行过程，实施分析</li>
+</ul>
+<p>当前的主流分析思路：以动态分析为主，一方面利用模糊测试等技术构造执行的不同路径，另一方面也利用静态分析手段弥补动态分析过程中的不足，优化和提升动态分析的能力。<br>
+<br><font color="navy"><strong>2.根据逆向分析获得信息的层次不同，又可以将软件逆向分析方法与技术分为：</strong></font></p>
+<ul>
+<li>获取代码的反汇编、反编译等</li>
+<li>程序依赖关系分析的程序切片、污点传播分析、符号执行等；</li>
+</ul>
+<p><font color="navy"><strong>3.程序调试的优缺点</strong></font><br>
+<strong>① 优点</strong></p>
+<ul>
+<li>避免用户对指令复杂推理过程</li>
+<li>直接对每条指令的执行结果 进行分析</li>
+</ul>
+<p><strong>② 缺点</strong></p>
+<ul>
+<li>全面性较差（动态分析的共性缺陷）</li>
+<li>软件自保技术的应用可能阻碍调试</li>
+<li>调试仅能提供动态的细节信息，对用户而言，分析、理解难度仍很大</li>
+</ul>
+<p><font color="navy"><strong>4.程序切片</strong></font><br>
+    程序切片是当前用于局部代码片段分析的一种重要手段，但仍不太适合大规模代码的分析<br>
+<br><font color="navy"><strong>5.污点传播分析</strong></font><br>
+    <strong>① 基本思想：<strong>将所感兴趣的数据做标记（如同染色一样），即标记为污点数据，然后通过分析对该污点数据的处理过程，根据每条指令的污点传播规则，分析数据的传递关系。<br>
+<br>    ② 污点传播分析一般采取</strong>动态的分析方式</strong>；<br>
+<br>    ③ 动态污点传播分析有很多方式，主要的差异：<strong>如何获得动态执行过程中具体每一条指令和指令执行前后状态</strong>，当前主要的实现方式有“<strong>基于插桩</strong>”、“<strong>基于硬件</strong>”、“<strong>基于编译器扩展</strong>” 和 “<strong>基于硬件模拟器</strong>”等实现方法<br>
+<br><font color="navy"><strong>6.符号执行</strong></font><br>
+    其基本思想是将目标程序代码中部分变量和运算符号化，通过对各种条件分支的符号化表达来形成路径的约束条件。<br>
+<br>    <font color="red"><strong>符号执行同样是一种数据流分析方法</strong></font>，其基本思想是：用<strong>符号变量</strong>作为输入参数，对程序进行<strong>模拟执行</strong>，然后对程序的执行路径进行分析，并提取路径中的约束条件，通过对约束进行求解实现对程序安全性及路径可达性等分析。<br>
+<br><font color="navy"><strong>7.模糊测试</strong></font><br>
+    **① 准确来说模糊测试并不是一项逆向分析技术，**他最初的应用主要是为了通过构造各种畸形的数据输入来测试软件实现的正确性<br>
+<br>    **② 主要用途：**尽可能多地触发软件的各种执行路径，弥补了软件动态逆向分析的缺陷<br>
+<br>    **③ 基本思想：**通过构造各种不同的输入数据，尽可能地触发执行软件的各种路径，通过对执行结果的健侧来实现相关的分析或检测目标。<br>
+<br>    **④ 研究重点：**如何提高测试数据生成的针对性，从而提高模糊测试效率</p>
+</blockquote>
+<h3 id="font-colorbrown三-主要分析应用font"><a class="markdownIt-Anchor" href="#font-colorbrown三-主要分析应用font"></a> <font color="brown">三、主要分析应用</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.恶意软件分析</strong></font><br>
+<br><font color="navy"><strong>2.网络协议逆向分析</strong></font><br>
+    <strong>① 协议逆向分析的方法</strong></p>
+<ul>
+<li>基于网络流量统计特征展开分析</li>
+<li>直接通过逆向软件进行分析(准确性更高、分析能力更强)</li>
+<li>基于软件逆向分析：结合协议实现代码的静态、动态逆向分析，提取网络协议中的数据包格式、关键字、协议状态机等信息</li>
+</ul>
+<p><font color="navy"><strong>3.软件漏洞分析与利用</strong></font><br>
+    对于发现软件漏洞唯一的技术手段就是：软件逆向分析</p>
+</blockquote>
 
- 一、前期准备
-
-
-crunch 生成字典
-aircrack-ng工具
-wireshark工具
-
-
- 二、解题思路
-
-
-首先先观察题目给的流量包，看看都有什么协议；
-根据第一步，然后针对协议的特点做出相应的判断；
-从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
-根据题目提示写出字典；
-暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
-
-
- 三、解题步骤
- 1.观察流量...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/28/2019.04.28（49）/">
-            
-                <span>Another 01game解题详细总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
-
- 一、前期准备
-
-
-python语言
-二维码的知识（本题中不是重点）
-QQ “扫一扫”
-
-
- 二、思考过程
-
-
-题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
-然后看一下这个数量值，是否是一个数的平方；
-如果是一个数的平方，那么就将这个字符串排成一个正方形；
-题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
-根据上一步的思考，我们可以有选择地进行替换图形；
-扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
-根据题目提示，可以将字符串当作ASC...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2019/07/12/2019.07.12（70）/">https://muzibing.github.io/2019/07/12/2019.07.12（70）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2019/07/12/2019.07.12（70）/">July 12th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/07/12/2019.07.12（70）/">July 12th 2019, 6:35:57 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/27/2019.04.27（48）/">
-            
-                <span>Python 学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天在做第二阶段的 02 号题目，可是一点思路也没有。转而去做了 Misc 的 Another 01 game，经过一段时间的思考和实践，终于将这道题做了出来，但是总结笔记还没有准备好素材。那么今天就主要总结一下python的学习笔记吧。
-
- 一、第一个Python程序
- 1.介绍：
-
-
-命令行模式：可以执行.py文件
-Python交互模式：在交互模式环境，也可以执行.py文件
-2 * 10 = 20 ；2 ** 10 = 1024 ;
-
-
- 2.使用文本编辑器：
-
-
-在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;
-
-
- 3.输入和输...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/26/2019.04.26（47）/">
-            
-                <span>初识 Caesar 密码</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。
-
- 一、认识Caesar密码
-
-在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
-
- 二、Caesar密码的加密
-
-Caesar密码加密是...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="密码学">密码学</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/25/2019.04.25（46）/">
-            
-                <span>二进制炸弹：Phase_6解题总结（1）</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
-
- 一、相关汇编代码
- 1.Phase_6的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/23/2019.04.23（45）/">
-            
-                <span>二进制炸弹：Phase_5解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-
-前言：
-在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
-
-
- 一、相关汇编代码
- 1.Phase_5的汇编代码
-1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/22/2019.04.22（44）/">
-            
-                <span>sscanf()函数的详细总结 + 实例</span>
-        </a>
-        <div class="abstract-content">
-            
-
-前言：
-今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
-
-
- 一、有关描述[1]
-
-sscanf() 是从一个字符串中读进与指定格式相符的数据.
-
- 1.sscanf()格式：
-
-int sscanf(const char *str, const char *format, ...)
-- str：...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/2019.04.21（43）/">
-            
-                <span>二进制炸弹：Phase_4解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-    今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-
- 一、相关汇编代码
- 1.&lt; phase_4 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub    $0x2c,%esp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/2019.04.20（42）/">
-            
-                <span>二进制炸弹：Phase_3解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：
-    今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-
- 一、相关汇编代码
-① &lt; phase_3 &gt;的汇编代码
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $0x2c,%esp 8048c...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/19/2019.04.19（41）/">
-            
-                <span>二进制炸弹：Phase_2解题总结</span>
-        </a>
-        <div class="abstract-content">
-            今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
- 一、相关汇编代码
-① &lt; phase_2 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">NEXT &#62;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/Misaka.jpg">
-    <div class="profile-name">木子冰</div>
-    
-    <div class="profile-signature">
-        Always exploring
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/16/2019.06.16（69）/" title="《图解密码技术》第三章（对称密码）学习笔记">
+                    <div class="prevTitle">《图解密码技术》第三章（对称密码）学习笔记</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
     </div>
+
+<!-- City版安装代码已完成 -->
     
     
-    <div class="profile-social">
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
-        
-    
-        
-            
-                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title="wechat">
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png">
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href="//www.baidu.com" target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href="//www.google.com" target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href="/about">ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -958,6 +664,24 @@ int sscanf(const char *str, const char *format, ...)
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown一-典型的安全问题font"><span class="toc-number">1.</span> <span class="toc-text"> 一、典型的安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-软件安全性分析的目标font"><span class="toc-number">2.</span> <span class="toc-text"> 二、软件安全性分析的目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-主要方法与技术font"><span class="toc-number">3.</span> <span class="toc-text"> 三、主要方法与技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-主要分析应用font"><span class="toc-number">4.</span> <span class="toc-text"> 三、主要分析应用</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -2590,6 +2314,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
