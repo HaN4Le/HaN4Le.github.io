@@ -374,6 +374,53 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/10/2019.04.10（33）/">
+            
+                <span>Crypto：RSA2解题总结（二）</span>
+        </a>
+        <div class="abstract-content">
+                  因为昨天没有做出来RSA2，今天又重点的做了一下这道题，花了整整一天时间。今天更新一下有关这道题目的内容。
+ 一、前期准备
+
+
+openssl 的功能
+RSA算法的原理
+大素数分解工具：yafu-x64.exe
+求模反元素工具：RSA-Tool
+
+
+ 二、思考过程
+
+昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q
+思路：利用yafu工具把 n 分解成p、q =&gt; 用RSA-Tool得到 d =&gt; 合成私钥
+① 第一步分解质数比较容易，直接用yafu进行分解即可；
+② 第二布也是一样，不用求解φ(n)，直接得到 模反元素 d；
+③ 这道题最...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/09/2019.04.09（32）/">
             
                 <span>Crypto：RSA2解题总结（一）</span>
@@ -755,61 +802,6 @@ C语言中的浮点数
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/18/2019.03.18（23）/">
-            
-                <span>复试复习总结</span>
-        </a>
-        <div class="abstract-content">
-                 今天的学习内容主要有：回顾第7、8、9章的知识点；准备了英语自我介绍和面试的问题，就说一下今天的学习总结和感悟吧！
- 1.《保密概论》第7、8、9章的薄弱点
-第七章   薄弱点
-
-
-对特定场所的保密管理；
-业务工作中的保密管理；
-注：特别是新闻出版的保密管理
-保密工作的日常指导
-① 《保密法》第四十二条；
-② 保密培训的对象；
-
-
-第八章   薄弱点
-
-
-保密检查的内容：第8、9、10点；
-保密检查的实施：第5点；
-保密检查中的问题：第4、5点；
-整个第四节  泄密事件的查处工作；
-
-
-第九章   薄弱点
-
-整个第九章还需要进一步巩固
-
-以上就是第7、8、9章的知识比较薄弱的部...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/18</span>
             </div>
             <!-- tags  -->
             
@@ -2120,9 +2112,38 @@ C语言中的浮点数
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 72
+        Total : 73
         </div>
         <!-- search  -->
         
@@ -2139,6 +2160,11 @@ C语言中的浮点数
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/2019.07.18（73）/">最小公倍数的加法算法实现</a>
+        </li>
     
     
         <li class="archive-post-item">
