@@ -472,7 +472,7 @@ height:50vh;
 </blockquote>
 <h3 id="font-color-brown二-前期准备font"><a class="markdownIt-Anchor" href="#font-color-brown二-前期准备font"></a> <font color="brown">二、前期准备</font></h3>
 <h4 id="font-color-navy1-分析题目font"><a class="markdownIt-Anchor" href="#font-color-navy1-分析题目font"></a> <font color="navy">1. 分析题目</font></h4>
-<p><img src="/img/1564370610(1).png" alt></p>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/MTZLFomu6xu1alifDSR4tqOgYCQI47UjbPjRyv0R.L8!/r/dE0BAAAAAAAA" alt></p>
 <blockquote>
 <p>​		通过上面的题目的提示，我们一点一点的来分析题目的要求：</p>
 <ul>
@@ -523,24 +523,25 @@ height:50vh;
 <h4 id="font-color-navy2-利用-xss-平台获取-cookieadminfont"><a class="markdownIt-Anchor" href="#font-color-navy2-利用-xss-平台获取-cookieadminfont"></a> <font color="navy">2. 利用 XSS 平台获取 Cookie（admin）</font></h4>
 <blockquote>
 <p>​		如果上一步提交的字符串正确的话，那么我们就可以与服务器成功建立连接，但是这是一种非持久连接，如果我们用这时的 Cookie 再点击 admin.PHP 的话，我们就可以获取 Flag。</p>
-<p>​		我们将 XSS 平台的代码放到 message 中，再将得到的数值放入 MD5 中，进行提交，在 XSS 平台上 我们可以获得如下的界面：<img src="E:%5CBlog%5Csource%5Cimg%5C1564370868(1).png" alt></p>
+<p>​		我们将 XSS 平台的代码放到 message 中，再将得到的数值放入 MD5 中，进行提交，在 XSS 平台上 我们可以获得如下的界面：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/yoGqYpHiRIjLqEU3n4YiTlf13dUDCTnr8KfDkBfaF*w!/r/dL4AAAAAAAAA" alt></p>
 <p>​		这个时候我们截取到了浏览器与服务器交互的 Cookie 中的 token 令牌</p>
 </blockquote>
 <h4 id="font-color-navy3-设置-burp-suitefont"><a class="markdownIt-Anchor" href="#font-color-navy3-设置-burp-suitefont"></a> <font color="navy">3. 设置 Burp Suite</font></h4>
 <blockquote>
 <p>​		在替换 Cookie 之前，我们需要用 Burp Suite 软件（需要配置 Java 环境）截断浏览器发给服务器的 Cookie，首先需要设置代理，如下图：左图为 Burp Suite 的代理，右图为浏览器（Microsoft Edge）的代理设置。两者的代理设置要一致。</p>
-<p><img src="E:%5CBlog%5Csource%5Cimg%5C1564382001(1).png" alt></p>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/sfiunwZ0AA4FlXCvFgkcSS8PAB4UKTFtOoH1r8WWRSU!/r/dFQBAAAAAAAA" alt></p>
 </blockquote>
 <h4 id="font-color-navy4-替换-cookiefont"><a class="markdownIt-Anchor" href="#font-color-navy4-替换-cookiefont"></a> <font color="navy">4. 替换 Cookie</font></h4>
 <blockquote>
 <p>​		当我们只是“单纯”的点击 admin.PHP 链接后，服务器会给我们一个这样的页面：</p>
-<p><img src="E:%5CBlog%5Csource%5Cimg%5C1564371256(1).png" alt></p>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/6dv26Wy04Py1bAfWA0fOze0*Xv0nhmSK8mEC2lc.HQw!/r/dL8AAAAAAAAA" alt></p>
 <p>​		该页面说明我们不是以管理员的身份访问服务器的，所以自然也不能得到 flag。那么我们该怎么以管理员的身份访问服务器呢？前面我们提交了一个 MD5 加密前的一个字符串，以及一个 XSS 代码，服务器给我们返回的页面如下：</p>
-<p><img src="E:%5CBlog%5Csource%5Cimg%5C1564372505(1).png" alt></p>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/RnJVyZn0qtflOXlmBUGUBjtmFfYQ*YOW8LCIxIZqAAc!/r/dFQBAAAAAAAA" alt></p>
 <p>​		红色标注意思为：<font color="red"><strong>您的邮件已在管理员列表的队列中</strong></font>，说明前面我们前面得到的 Cookie 已经被放入管理员列表中了，我们可以通过 XSS 平台获取的 Cookie 进入 admin.PHP （也就是以管理员的身份进入 admin.PHP）得到 flag。</p>
-<p>​		我们点击<font color="navy"> admin.PHP</font> 后，Burp Suite 会为我们截获一个浏览器发送给服务器的请求，在这个请求会存在一个 Cookie，这个Cookie 的数据就是我们将要替换的目标，如下图所示：<img src="E:%5CBlog%5Csource%5Cimg%5C1564370985(1).png" alt></p>
-<p>​		在将 Cookie 进行替换后，下一步只需要点击 “Forward” 按钮，将网页数据发送给服务器，这个时候服务器会识别 GET 中的 Cookie，发现该 Cookie 在管理员的列表中，服务器于是认为发送该请求的主体是 admin，于是服务器会把 flag 返回给浏览器，如下图：</p>
-<p><img src="E:%5CBlog%5Csource%5Cimg%5C1564371053(1).png" alt></p>
+<p>​		我们点击<font color="navy"> admin.PHP</font> 后，Burp Suite 会为我们截获一个浏览器发送给服务器的请求，在这个请求会存在一个 Cookie，这个Cookie 的数据就是我们将要替换的目标，如下图所示：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/iBXwrFzF1PCvzaOgvNpKTUL3qTURpCRykNIEau1lmio!/r/dFMBAAAAAAAA" alt></p>
+<p>​		在将 Cookie 进行替换后，下一步只需要点击 “Forward” 按钮，将网页数据发送给服务器。		<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/x5oLgkHhVxJEYsMj0xQ1fijgbE2jwvDPxWstkc2H10k!/r/dLYAAAAAAAAA" alt></p>
+<p>​		这个时候服务器会识别 GET 中的 Cookie，发现该 Cookie 在管理员的列表中，服务器于是认为发送该请求的主体是 admin，于是服务器会把 flag 返回给浏览器，如下图：</p>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ArLdu7aCmVNQAYYMQYQxajyakybQlwqBSrSLvdprhvo!/r/dLgAAAAAAAAA" alt></p>
 </blockquote>
 <h3 id="font-color-brown四-遗留问题font"><a class="markdownIt-Anchor" href="#font-color-brown四-遗留问题font"></a> <font color="brown">四、遗留问题</font></h3>
 <blockquote>
@@ -561,7 +562,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/07/27/2019.07.27（76）/">https://muzibing.github.io/2019/07/27/2019.07.27（76）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/07/27/2019.07.27（76）/">July 27th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/07/27/2019.07.27（76）/">July 29th 2019, 2:54:33 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/07/27/2019.07.27（76）/">July 29th 2019, 3:02:39 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
