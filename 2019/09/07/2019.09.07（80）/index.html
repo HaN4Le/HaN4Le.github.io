@@ -436,14 +436,14 @@ height:50vh;
 <p><img src="/images/80-1.png" alt></p>
 </blockquote>
 <h3 id="font-color-brown二-代码插桩font"><a class="markdownIt-Anchor" href="#font-color-brown二-代码插桩font"></a> <font color="brown">二、代码插桩</font></h3>
-<h3 id="font-color-navy1什么是插桩font"><a class="markdownIt-Anchor" href="#font-color-navy1什么是插桩font"></a> <font color="navy">1.什么是插桩？</font></h3>
+<h4 id="font-color-navy1什么是插桩font"><a class="markdownIt-Anchor" href="#font-color-navy1什么是插桩font"></a> <font color="navy">1.什么是插桩？</font></h4>
 <blockquote>
 <p>    在AFL编译文件时候afl-gcc会在规定位置插入桩代码，可以理解为一个个的<font color="red"><strong>探针</strong></font>(但是没有暂停功能)，在后续fuzz的过程中会<font color="red"><strong>根据这些桩代码进行路径探索，测试等</strong>。</font>对于插桩的理解也可以这样理解，如下图：</p>
 <p><img src="/images/80-2.jpg" alt></p>
 <p>    如果我们输入的数据是：a = 3,b = 3，那么程序会输出多少呢？通过程序的执行可以得到一个路径：<font color="red">ABDCFG</font>，那么在这个程序里 printf 语句就是我们插入的代码。</p>
 <p>​    在简单的了解了什么是插桩后，下面我们来介绍一下 afl 中的插桩。</p>
 </blockquote>
-<h3 id="font-color-navy2afl-中的插桩font"><a class="markdownIt-Anchor" href="#font-color-navy2afl-中的插桩font"></a> <font color="navy">2.AFL 中的插桩</font></h3>
+<h4 id="font-color-navy2afl-中的插桩font"><a class="markdownIt-Anchor" href="#font-color-navy2afl-中的插桩font"></a> <font color="navy">2.AFL 中的插桩</font></h4>
 <blockquote>
 <p><strong>① 插桩存在 afl 测试中的哪一个环节？</strong></p>
 <p>​     <img src="/images/80-3.png" alt></p>
@@ -496,7 +496,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/09/07/2019.09.07（80）/">https://muzibing.github.io/2019/09/07/2019.09.07（80）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/09/07/2019.09.07（80）/">September 7th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/09/07/2019.09.07（80）/">September 7th 2019, 6:31:50 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/09/07/2019.09.07（80）/">September 7th 2019, 6:36:22 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -643,7 +643,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-什么是-aflfont"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是 AFL？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-代码插桩font"><span class="toc-number">2.</span> <span class="toc-text"> 二、代码插桩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy1什么是插桩font"><span class="toc-number">3.</span> <span class="toc-text"> 1.什么是插桩？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy2afl-中的插桩font"><span class="toc-number">4.</span> <span class="toc-text"> 2.AFL 中的插桩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3实现代码插桩的途径font"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.实现代码插桩的途径</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-什么是-aflfont"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是 AFL？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-代码插桩font"><span class="toc-number">2.</span> <span class="toc-text"> 二、代码插桩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1什么是插桩font"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.什么是插桩？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2afl-中的插桩font"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.AFL 中的插桩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3实现代码插桩的途径font"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.实现代码插桩的途径</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
