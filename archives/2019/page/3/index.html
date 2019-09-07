@@ -361,6 +361,45 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/21/2019.05.21（60）/">
+            
+                <span>《图解密码技术》第十章学习笔记</span>
+        </a>
+        <div class="abstract-content">
+             一、证书（PKC）
+
+1.什么是证书？
+       公钥证书（PKC，Public Key Certificate）包含了个人的公钥、姓名、组织、邮箱、地址等个人信息，是由认证机构（CA，Certification Authority）施加数字签名。这里的认证机构就是能够认定“公钥确实属于此人”并能够生成数字签名的个人或者组织
+2.证书的应用场景
+
+在上图的过程中，我们需要注意一点：步骤（2）中Trent在收到Bob的公钥后，Trent会确认Bob公钥的真实性，也就是这个公钥是否为Bob本人所有，这个确认的过程就需要“身份确认和认证业务准则”
+3.Symantec证书的内容
+    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/20/2019.05.20（59）/">
             
                 <span>《图解密码技术》第九章学习笔记</span>
@@ -740,58 +779,6 @@ sele...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
-            
-                <span>Misc：RealWiFi解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
-
- 一、前期准备
-
-
-crunch 生成字典
-aircrack-ng工具
-wireshark工具
-
-
- 二、解题思路
-
-
-首先先观察题目给的流量包，看看都有什么协议；
-根据第一步，然后针对协议的特点做出相应的判断；
-从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
-根据题目提示写出字典；
-暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
-
-
- 三、解题步骤
- 1.观察流量...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
     
 </div>
             
@@ -2179,84 +2166,9 @@ wireshark工具
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 79
+        Total : 80
         </div>
         <!-- search  -->
         
@@ -2273,6 +2185,11 @@ wireshark工具
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2019/09/07/2019.09.07（80）/">AFL 的代码插桩问题</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2722,6 +2639,8 @@ wireshark工具
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -2811,22 +2730,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    </body>
 </html>
 
 
