@@ -379,7 +379,21 @@ height:50vh;
                 <span>AFL 的代码插桩问题</span>
         </a>
         <div class="abstract-content">
-            
+             一、什么是 AFL？
+
+    AFL 是一款用于发现漏洞的模糊测试工具，是由下面三个部分组成的：
+
+
+编译器wrapper：他的功能在于对目标软件（开源）进行编译，编译过程中插入一些AFL识别的函数用以识别探索路径，众所周知的linux下的C/C编译工具gcc/g，afl的编译工具为afl-gcc/afl-g++,afl-clang等。
+
+
+测试器fuzzer （主体）：afl-fuzz，就是AFL重要的主体，用以对软件进行fuzzing。
+
+
+其他工具：如afl-cmin,afl-tmin等，一个成功的C位都必须多个辅助才行，这些工具都是为提升测试的效率和成功率而服务的。
+
+
+  ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
