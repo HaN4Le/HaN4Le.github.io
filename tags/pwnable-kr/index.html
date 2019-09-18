@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="MUZIBing">
     <meta name="renderer" content="webkit">
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -211,15 +213,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- 谷歌统计  -->
     
 </head>
 
     
-        <body class="home-body">
     
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -235,34 +235,21 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            MUZIBing's BLOG
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -374,236 +361,28 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/05/25/2019.05.25（62）/">
+        <a class="abstract-title" href="/2019/09/17/2019.09.17（82）/">
             
-                <span>MySQL学习笔记（二）查询(2)</span>
+                <span>bash 漏洞（pwnable-shellshock）</span>
         </a>
         <div class="abstract-content">
-             一、多表查询
+             一、前言
 
-SELECT查询不但可以从一张表查询数据，还可以从多张表同时查询数据。查询多张表的语法是：
-SELECT * FROM  
-例如：SELECT * FROM students, classes
-这种一次查询两个表的数据，查询的结果也是一个二维表，它是students表和classes表的“乘积”，即students表的每一行与classes表的每一行都两两拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是students表和classes表的行数之积。
-这种多表查询又称笛卡尔查询，使用笛卡尔查询时要非常小心，由于结果集是目标表的行数乘积，...
+pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
+
+ 二、基础知识
+ 1.setresuid
+
+setresuid() 被执行的条件有：
+    ① 当前进程的 euid 是 root
+    ② 三个参数，每个等于原来某个 id 中的一个
+
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/23/2019.05.23（61）/">
-            
-                <span>《图解密码技术》第十一章学习笔记</span>
-        </a>
-        <div class="abstract-content">
-             一、什么是密钥？
-
-1.密钥中的数字并不重要，重要的是密钥空间的大小，也就是可能出现密钥的总数量，因为密钥空间越大，进行暴力破解越困难，密钥空间的大小是由密钥长度决定的；
-
-对称DES的密钥长度：56bit
-三重DES的密钥长度：① DES-EDE2：112bit  ② DES-EDE3：168bit
-对称AES的密钥长度：128、192 和 256bit
-
-2.密钥和明文是等价的
-3.密钥算法和密钥：依靠隐藏密码算法本身的设计来确保信息的机密性是非常危险的！！（重要）信息的机密性不应该依赖于密码算法本身，而是依赖于妥善保管的密钥。
-
- 二、各种不同的密钥
-
-◉ 对称密码的密钥：确保机...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/21/2019.05.21（60）/">
-            
-                <span>《图解密码技术》第十章学习笔记</span>
-        </a>
-        <div class="abstract-content">
-             一、证书（PKC）
-
-1.什么是证书？
-       公钥证书（PKC，Public Key Certificate）包含了个人的公钥、姓名、组织、邮箱、地址等个人信息，是由认证机构（CA，Certification Authority）施加数字签名。这里的认证机构就是能够认定“公钥确实属于此人”并能够生成数字签名的个人或者组织
-2.证书的应用场景
-
-在上图的过程中，我们需要注意一点：步骤（2）中Trent在收到Bob的公钥后，Trent会确认Bob公钥的真实性，也就是这个公钥是否为Bob本人所有，这个确认的过程就需要“身份确认和认证业务准则”
-3.Symantec证书的内容
-    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/20/2019.05.20（59）/">
-            
-                <span>《图解密码技术》第九章学习笔记</span>
-        </a>
-        <div class="abstract-content">
-             一、数字签名
-
-1.数字签名是一种相当于现实世界中的盖章，它的功能在计算机世界中进行实现的技术；
-2.数字签名的功能：保证数据的完整性，还可以防止否认
-3.数字签名和消息验证码的区别：
-
-4.公钥密码和数字签名的联系：
-☛ 公钥密码是用公钥加密，私钥解密
-☛ 数字签名是用私钥加密，公钥解密。之所以将公钥签名的逆过程说成数字签名，是因为只有签名者拥有私钥，而其他人不可能拥有
-
- 二、数字签名的方法
-
-数字签名的方法有两种：
-☛ 直接对消息签名的方法
-
-☛ 对消息的散列值签名的方法
-
-
- 三、对数字签名的疑问
-
-
-密文为什么具备签名的意义？
-数字签名是利用了“没有私钥的人事实上无法生成使用...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/16/2019.05.16（58）/">
-            
-                <span>《图解密码技术》第八章学习笔记</span>
-        </a>
-        <div class="abstract-content">
-             一、消息认证码
-
-1、消息认证码是一种确认完整性并进行认证的技术，MAC（Message Authentication Code）
-2、消息认证码的输入包括：任意长度的消息和一个共享的密钥（在接收者和发送者之间）
-3、消息认证码的输出是一个固定长度的值，这个数据就是MAC
-4、它与单向散列函数的区别（密钥）：它是一种与密钥相关的单行散列函数
-5、消息认证码的步骤：	
-
-
- 二、消息验证码的应用实例
-
-1、SWIFT：Society for Worldwide Interbank Financial Telecommunications
-2、IPsec：对IP协议增加安全性的一种方式
-3...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/15/2019.05.15（57）/">
-            
-                <span>304号测试解题总结（一）</span>
-        </a>
-        <div class="abstract-content">
-            
-✍ 分析了两天myvm汇编指令的指令格式和寻址方式，今天就简单的来总结一下有关内容。因为本人的知识有限，所以在总结的过程可能会出现许多错误，希望大家能够在评论区给我留言，我将及时验证并更正。
-
- 一、myvm汇编代码（main函数部分）
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162.text:0000000000000BD0.text:0000000000000BD0 ; ===============...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/15</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/17</span>
             </div>
             <!-- tags  -->
             
@@ -611,178 +390,9 @@ SELECT * FROM
     
         <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Virtual machine">Virtual machine</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/14/2019.05.14（56）/">
-            
-                <span>本科毕业论文问卷调查</span>
-        </a>
-        <div class="abstract-content">
-            
-因为我在本科论文中需要一些数据，关于消费者的消费行为分析的，希望大家能够帮我填写一下：
-
-
-
-致谢：感谢我身边所有的人，是你们在我前进的路上帮助了我，我也希望在以后的路上我们一起走过，一起去面对困难和挑战！
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="本科论文">本科论文</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/13/2019.05.13（55）/">
-            
-                <span>304号测试学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：好多天就开始做Virtual machine了，但是自己前天才把题目给的文件给解压出来（一开始没看懂文件的类型），觉得这件事真的好丢人，于是这两天我好好的为Virtual machine这道题目做了大量的功课，学习了一下这道题目有关的知识点，今天就重点来介绍一下这两天来学习的内容。
-
- 一、知识清单
-
-
-汇编器
-反汇编器
-基于寄存器的的虚拟机
-x86指令编码格式解析
-
-
- 二、知识详解
- 1.汇编器
-
-在做过二进制炸弹的题目后，我其实对汇编器有了大概的了解，但是发现内容还是不够详细，前天又对汇编器做了一下总结：
-汇编器（Assembler）是将汇编语言翻译为机器语言的程序。一...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Virtual machine">Virtual machine</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/11/2019.05.11（54）/">
-            
-                <span>《图解密码技术》第七章学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天主要对《图解密码技术》的第七章进行了总结，前六章的笔记都写在了OneNote上面，以后我也会把以前的笔记迁移到博客上面来，那么今天主要写一下今天的学习笔记。
-
- 一、什么是单向散列函数
-
-
-单向散列函数不同于加密技术，它不是对信息进行加密，而是为了证明数据的完整性，防止数据被篡改，但是无法辨别出“伪装”（这个需要认证技术）
-单向散列函数有一个输入和一个输出，其中输入的叫做消息，输出称为散列值，而散列值的长度与消息的长度无关。
-单向散列函数的性质：
-
-
-根据任意长度的消息计算出固定长度的散列值
-能够快速计算出散列值
-消息不同散列值不同：两个不同的消息产生同一个散列值的情况称...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/09/2019.05.09（53）/">
-            
-                <span>Wiener Trick解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：前天对Wiener攻击相关的知识点进行了详细总结，但是因为Hexo中Mathjax的渲染问题，导致上一篇博文的数学公式出现了问题，昨天也对该问题进行了探索，但是截至目前位置该问题还没有得到解决，今天我先把昨天博文正确的格式放到上篇的末尾，以后我再对该问题进行解决，今天就先总结一下Wiener Ttick 这道题目的解题步骤吧！
-
- 一、前期准备
-
-
-openssl 的用法
-Wiener 攻击原理（见上篇博文）
-连分数知识（见上篇博文）
-python 脚本（该脚本是github上的）
-
-
- 二、思考过程
- 1.该题的解题思路是什么样的？
-
-在上个月我曾做了一道这样的RSA题目：...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -791,109 +401,8 @@ python 脚本（该脚本是github上的）
     
     <!-- paginator  -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">NEXT &#62;</a>
-    </nav>
-    
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/Misaka.jpg">
-    <div class="profile-name">木子冰</div>
-    
-    <div class="profile-signature">
-        Always exploring
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
-        
-    
-        
-            
-                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title="wechat">
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png">
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href="//www.baidu.com" target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href="//www.google.com" target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href="/about">ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
@@ -2865,7 +2374,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
 

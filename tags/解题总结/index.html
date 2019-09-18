@@ -361,6 +361,50 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/17/2019.09.17（82）/">
+            
+                <span>bash 漏洞（pwnable-shellshock）</span>
+        </a>
+        <div class="abstract-content">
+             一、前言
+
+pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
+
+ 二、基础知识
+ 1.setresuid
+
+setresuid() 被执行的条件有：
+    ① 当前进程的 euid 是 root
+    ② 三个参数，每个等于原来某个 id 中的一个
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/10/2019.09.10（81）/">
             
                 <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
@@ -734,51 +778,6 @@ Linux Kali系统的安装
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/05/2019.04.05（29）/">
-            
-                <span>Crypto：What&#39;s RSA？解题总结（2）</span>
-        </a>
-        <div class="abstract-content">
-                  今天开始做密码方面的题目，在2月28日的时候，我曾尝试过RSA的题目，但是因为没有深度去思考，就是总结了一下有关原理，当时并没有把这一道题做出来。今天我认真的分析了一下有关这道题的内容，并对上次的博客的内容做了修改和完善，也解出了这道题有了新的收获。
- 一、前期准备
-
-
-openssl 命令
-非对称加密体制
-RSA加解密原理
-
-
- 二、思考过程
-
-      我从题目中得到两个文件：flag.encrypt 和 rsa_private_key.pem，这两个文件分别是加密后的密文和密钥。
-
-在这里首先要说的是加密体制分为：对称加密体制和非对称加密体制。两者的区别是什么呢？
-还...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
             </div>
             <!-- tags  -->
             
@@ -2178,38 +2177,9 @@ RSA加解密原理
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 81
+        Total : 82
         </div>
         <!-- search  -->
         
@@ -2226,6 +2196,11 @@ RSA加解密原理
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2019/09/17/2019.09.17（82）/">bash 漏洞（pwnable-shellshock）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2690,6 +2665,8 @@ RSA加解密原理
         <span class="sidebar-tag-name" data-tags="pwanable.kr"><span class="iconfont-archer">&#xe606;</span>pwanable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
