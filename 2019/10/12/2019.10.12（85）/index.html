@@ -435,14 +435,14 @@ height:50vh;
 <p>     <strong>注释：m 和 m’ 分别代表两个不同的明文</strong></p>
 <p><br><font color="orage"><strong>③ 变色龙哈希函数的原理</strong></font></p>
 <p>     假设有一个明文为 <code>m</code>，<font color="red">Alice</font> 用变色龙哈希函数计算 <code>m</code> 的哈希值，计算步骤如下：</p>
-<p>        ※ Alice 随机选取一个指数 x，这个 x 被称为<strong>私钥</strong>或者**后门 ** ☛ (sk = x)</p>
+<p>        ※ Alice 随机选取一个指数 x，这个 x 被称为 <strong>私钥</strong> 或者 **后门 ** ☛ (sk = x)</p>
 <p>        ※ Alice 计算所对应的<strong>公钥</strong>：h = g<sup>x</sup>  ☛(pk = （g,h))</p>
 <p>        ※ 生成变色龙哈希对应的随机数 <code>r</code></p>
 <p>        ※ 计算明文 <code>m</code> 的相关哈希值：C_H = g<sup>m</sup> * h<sup>r</sup> = g<sup>m</sup> * g<sup>xr</sup> = g<sup>m+xr</sup></p>
 <p>     Alice 就把所得到的 Chameleon Hash 值发给了 Bob，在发送的路上这个值被 Attacker 截取了，攻击者想把明文消息进行篡改，但得到相同的 ChameleonHash ，这就是找变色龙哈希函数值的碰撞，实验过程如下：</p>
 <p>        <strong>※</strong> 攻击者构造想要构造一个明文 <code>m'</code>，使得：</p>
 <center>g<sup>m+xr</sup> = g<sup>m'+xr'</sup></center> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是 `m + xr = m' + xr'`  ——> `m' = m + xr - xr'` ，在这里可以随意构造一个明文 `m'`， 使得 `C_H = C_H'` ，但就必须要找出一个 `r'` 满足上述关系式：r' = $ {\displaystyle {\frac {m+xr-m'}{x}}，在这里 `m'、m、r` 已知，但是 x 是 Alice 的密钥，所以攻击者无法成功构造一个 `C_H' = C_H`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是 `m + xr = m' + xr'`  ——> `m' = m + xr - xr'` ，在这里可以随意构造一个明文 `m'`， 使得 `C_H = C_H'` ，但就必须要找出一个 `r'` 满足上述关系式：r' = $  \frac {m+xr-m'}{x} $，在这里 `m'、m、r` 已知，但是 x 是 Alice 的密钥，所以攻击者无法成功构造一个 `C_H' = C_H`
 <p>     <strong>总结</strong>：因为对于其他人来说，其不知道 x 的值，因此，如果想构造出一个碰撞，其他人必须在指数上面解方程 g<sup>m + xr</sup> = g<sup>m’ + xr‘</sup>，也就是说去求一个<font color="red"><strong>离散对数问题</strong></font>。但是，离散对数问题直到现在为止都没有一个很快的算法（最快也是指数级的）。因此对于其他人来说，很难找到碰撞。</p>
 <br>
 <p><font color="orage"><strong>④ 变色龙哈希函数的应用实例</strong></font></p>
@@ -524,7 +524,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2019/10/12/2019.10.12（85）/">https://muzibing.github.io/2019/10/12/2019.10.12（85）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2019/10/12/2019.10.12（85）/">October 12th 2019, 6:11:41 pm</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/10/12/2019.10.12（85）/">October 14th 2019, 1:00:13 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2019/10/12/2019.10.12（85）/">October 14th 2019, 1:04:37 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
