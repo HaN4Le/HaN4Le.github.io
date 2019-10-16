@@ -366,7 +366,9 @@
                 <span>PWN 实战 - shellcode 题解</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.shellcode
+             一、基础知识
+ 1.shellcode
+
 有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
 
 
@@ -377,15 +379,18 @@ PWN-shellcode获取与编写
 
 
 
-二、解题步骤1,查看文件类型1file pwn3
+ 二、解题步骤
+ 1,查看文件类型
+1file pwn3
 
 
 从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
 
-2.查看 pwn3 开启的保护1checksec pwn3
+ 2.查看 pwn3 开启的保护
+1checksec pwn3
 
 
-从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开启了栈上数据可执行，...
+从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
