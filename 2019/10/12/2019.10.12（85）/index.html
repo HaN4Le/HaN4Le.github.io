@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.9k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,87 +416,100 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、变色龙哈希（Chameleon-Hash）"><a href="#一、变色龙哈希（Chameleon-Hash）" class="headerlink" title="一、变色龙哈希（Chameleon Hash）"></a><font color="brown">一、变色龙哈希（Chameleon Hash）</font></h3><h4 id="1-哈希函数？"><a href="#1-哈希函数？" class="headerlink" title="1.哈希函数？"></a><font color="navy">1.哈希函数？</font></h4><blockquote>
-<font color="orage">**① 什么是哈希函数？**</font>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以<font color="red">将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。</font></p>
+        <h3 id="font-color-brown一-变色龙哈希chameleon-hashfont"><a class="markdownIt-Anchor" href="#font-color-brown一-变色龙哈希chameleon-hashfont"></a> <font color="brown">一、变色龙哈希（Chameleon Hash）</font></h3>
+<h4 id="font-color-navy1哈希函数font"><a class="markdownIt-Anchor" href="#font-color-navy1哈希函数font"></a> <font color="navy">1.哈希函数？</font></h4>
+<blockquote>
+<p><font color="orage"><strong>① 什么是哈希函数？</strong></font></p>
+<p>     哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以<font color="red">将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。</font></p>
 <p><br><font color="orage"><strong>② 哈希函数的特征</strong></font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = Hash(m’)。这一性质成为广义碰撞抵抗性。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 进一步，很难找到任意两个m和m’，使得Hash(m) = Hash(m’)。这里我们没有固定的m和m’，因此这一要求比第一个要求更为严格。这一性质成为严格碰撞抵抗性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.抗篡改能力，对于一个数据块，哪怕只改动其一个比特位，其hash值的改动也会非常大。</p>
+<p>     1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = Hash(m’)。这一性质成为广义碰撞抵抗性。</p>
+<p>     2. 进一步，很难找到任意两个m和m’，使得Hash(m) = Hash(m’)。这里我们没有固定的m和m’，因此这一要求比第一个要求更为严格。这一性质成为严格碰撞抵抗性。<br>
+     3.抗篡改能力，对于一个数据块，哪怕只改动其一个比特位，其hash值的改动也会非常大。</p>
 </blockquote>
-<h4 id="2-变色龙哈希函数"><a href="#2-变色龙哈希函数" class="headerlink" title="2.变色龙哈希函数"></a><font color="navy">2.变色龙哈希函数</font></h4><blockquote>
-<font color="orage">**① 什么是变色龙哈希函数**</font>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chameleon Hash 是一类特殊的 Hash 函数，对于绝大多数使用者，其同样满足 Hash 的碰撞抵抗性。然而，如果某个人知道 Chameleon Hash 的一些秘密（我们用sk表示），其可以非常容易破坏Hash的碰撞抵抗性。也就是说，对于任意 m，其很容易能够找到 m’ \\neq m，使得ChameleonHash(m’) = ChameleonHash(m)。这似乎破坏了Hash的碰撞抵抗性，但是在绝大多数使用者来说，其还是安全的Hash。</p>
+<h4 id="font-color-navy2变色龙哈希函数font"><a class="markdownIt-Anchor" href="#font-color-navy2变色龙哈希函数font"></a> <font color="navy">2.变色龙哈希函数</font></h4>
+<blockquote>
+<p><font color="orage"><strong>① 什么是变色龙哈希函数</strong></font></p>
+<p>     Chameleon Hash 是一类特殊的 Hash 函数，对于绝大多数使用者，其同样满足 Hash 的碰撞抵抗性。然而，如果某个人知道 Chameleon Hash 的一些秘密（我们用sk表示），其可以非常容易破坏Hash的碰撞抵抗性。也就是说，对于任意 m，其很容易能够找到 m’ \neq m，使得ChameleonHash(m’) = ChameleonHash(m)。这似乎破坏了Hash的碰撞抵抗性，但是在绝大多数使用者来说，其还是安全的Hash。</p>
 <p><br><font color="orage"><strong>② 变色龙哈希函数的特点</strong></font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ChameleonHash(m) = ChameleonHash(m‘)</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>注释：m 和 m’ 分别代表两个不同的明文</strong></p>
+<p>     ChameleonHash(m) = ChameleonHash(m‘)</p>
+<p>     <strong>注释：m 和 m’ 分别代表两个不同的明文</strong></p>
 <p><br><font color="orage"><strong>③ 变色龙哈希函数的原理</strong></font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有一个明文为 <code>m</code>，<font color="red">Alice</font> 用变色龙哈希函数计算 <code>m</code> 的哈希值，计算步骤如下：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ Alice 随机选取一个指数 x，这个 x 被称为 <strong>私钥</strong> 或者 <strong>后门 </strong>&nbsp;☛ (sk = x)</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ Alice 计算所对应的<strong>公钥</strong>：h = g<sup>x</sup> &nbsp;☛(pk = （g,h))</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 生成变色龙哈希对应的随机数 <code>r</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 计算明文 <code>m</code> 的相关哈希值：C_H = g<sup>m</sup>&nbsp;<em> h<sup>r</sup> = g<sup>m</sup> </em> g<sup>xr</sup> = g<sup>m+xr</sup></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alice 就把所得到的 Chameleon Hash 值发给了 Bob，在发送的路上这个值被 Attacker 截取了，攻击者想把明文消息进行篡改，但得到相同的 ChameleonHash ，这就是找变色龙哈希函数值的碰撞，实验过程如下：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>※</strong> 攻击者构造想要构造一个明文 <code>m&#39;</code>，使得：</p>
-<p><center>g<sup>m+xr</sup> = g<sup>m'+xr'</sup></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是 <code>m + xr = m&#39; + xr&#39;</code>  ——&gt; <code>m&#39; = m + xr - xr&#39;</code> ，在这里可以随意构造一个明文 <code>m&#39;</code>， 使得 <code>C_H = C_H&#39;</code> ，但就必须要找出一个 <code>r&#39;</code> 满足上述关系式：r’ = $  \frac {m+xr-m’}{x} $，在这里 <code>m&#39;、m、r</code> 已知，但是 x 是 Alice 的密钥，所以攻击者无法成功构造一个 <code>C_H&#39; = C_H</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>总结</strong>：因为对于其他人来说，其不知道 x 的值，因此，如果想构造出一个碰撞，其他人必须在指数上面解方程 g<sup>m + xr</sup> = g<sup>m’ + xr‘</sup>，也就是说去求一个<font color="red"><strong>离散对数问题</strong></font>。但是，离散对数问题直到现在为止都没有一个很快的算法（最快也是指数级的）。因此对于其他人来说，很难找到碰撞。</p>
-<p><br></p>
-<font color="orage">**④ 变色龙哈希函数的应用实例**</font>
-
+<p>     假设有一个明文为 <code>m</code>，<font color="red">Alice</font> 用变色龙哈希函数计算 <code>m</code> 的哈希值，计算步骤如下：</p>
+<p>        ※ Alice 随机选取一个指数 x，这个 x 被称为 <strong>私钥</strong> 或者 **后门 ** ☛ (sk = x)</p>
+<p>        ※ Alice 计算所对应的<strong>公钥</strong>：h = g<sup>x</sup>  ☛(pk = （g,h))</p>
+<p>        ※ 生成变色龙哈希对应的随机数 <code>r</code></p>
+<p>        ※ 计算明文 <code>m</code> 的相关哈希值：C_H = g<sup>m</sup> * h<sup>r</sup> = g<sup>m</sup> * g<sup>xr</sup> = g<sup>m+xr</sup></p>
+<p>     Alice 就把所得到的 Chameleon Hash 值发给了 Bob，在发送的路上这个值被 Attacker 截取了，攻击者想把明文消息进行篡改，但得到相同的 ChameleonHash ，这就是找变色龙哈希函数值的碰撞，实验过程如下：</p>
+<p>        <strong>※</strong> 攻击者构造想要构造一个明文 <code>m'</code>，使得：</p>
+<center>g<sup>m+xr</sup> = g<sup>m'+xr'</sup></center> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是 `m + xr = m' + xr'`  ——> `m' = m + xr - xr'` ，在这里可以随意构造一个明文 `m'`， 使得 `C_H = C_H'` ，但就必须要找出一个 `r'` 满足上述关系式：r' = $  \frac {m+xr-m'}{x} $，在这里 `m'、m、r` 已知，但是 x 是 Alice 的密钥，所以攻击者无法成功构造一个 `C_H' = C_H`
+<p>     <strong>总结</strong>：因为对于其他人来说，其不知道 x 的值，因此，如果想构造出一个碰撞，其他人必须在指数上面解方程 g<sup>m + xr</sup> = g<sup>m’ + xr‘</sup>，也就是说去求一个<font color="red"><strong>离散对数问题</strong></font>。但是，离散对数问题直到现在为止都没有一个很快的算法（最快也是指数级的）。因此对于其他人来说，很难找到碰撞。</p>
+<br>
+<p><font color="orage"><strong>④ 变色龙哈希函数的应用实例</strong></font></p>
 <blockquote>
 <p>假设小明和小红达成协议，小明将家族产业10%股份转让给小红。签了合同小名很担心啊，如果小红把这件事告诉别人怎么办？这时候就可以用变色龙函数进行签名。小红生成一个只有她才能找到碰撞的函数交给小明，小明再用这个函数来签电子文档。这下小红把签名后的文件丢给大家也没人相信她了。为什么呢？她掌握着哈希函数的弱点，可以随便生成哈希碰撞啊。她把10%股份改成99%都能保证哈希不会变，进而创造出新文件本来就是小明签的这种假象。因此出自小红之手的文件可信度为零。<strong>这个特性叫non-transferability，即两者之间达成的信任不能转到第三方。</strong></p>
 <p>“你知道的太多了” 此时此刻成了真正的包袱。</p>
 <p>问题来了，小明抵赖怎么破？如果小明死死咬定转让10%股份是小红伪造，事实上只有1%呢？事实上小明也不能信口开河，他得提供对应的证据。证据就是哈希碰撞。假设双方达成的最初合同是A，而小红将其篡改成了相同哈希的A’，那么小明看到A’这份伪证之后一定能拿出最早那个A来并表明A和A’形成哈希碰撞，否则A’就是真货了。因为正常情况下小明无论如何也找不到碰撞，他就不能抵赖。<strong>这个特性叫non-repudiation。</strong></p>
 <p>————————————————</p>
 <p>☛ 注：引用知乎用户<a href="https://www.zhihu.com/people/yifei.teng/activities" target="_blank" rel="noopener">@滕亦飞</a>的回答</p>
-<p>原文链接： <a href="https://www.zhihu.com/question/38545889" target="_blank" rel="noopener">https://www.zhihu.com/question/38545889</a> </p>
+<p>原文链接： <a href="https://www.zhihu.com/question/38545889" target="_blank" rel="noopener">https://www.zhihu.com/question/38545889</a></p>
 </blockquote>
-<p><br></p>
-<font color="orage">**⑤ 变色龙哈希函数的攻击案例**</font>
-
+<br>
+<p><font color="orage"><strong>⑤ 变色龙哈希函数的攻击案例</strong></font></p>
 <blockquote>
-<p>如果某个网站中密码验证的Hash是这么计算的，而这个网站自己本身有Hash所对应的sk，那么，网站自身就可以伪造所有的密码，来窃取用户数据了。所以，有些时候我们需要怀疑一下一些声称安全的网站到底是不是有后门的。即使说是使用Hash验证，或者加上这样那样的功能来进一步提高安全性，但是如果有这样的后门，对于用户来说还是无能为力的。<br>————————————————<br>☞ 注：引用于CSDN用户@ <a href="https://me.csdn.net/u013590498" target="_blank" rel="noopener">刘巍然-BUAA</a> 的博文<br>原文链接：<a href="https://blog.csdn.net/liuweiran900217/article/details/21819637" target="_blank" rel="noopener">https://blog.csdn.net/liuweiran900217/article/details/21819637</a></p>
+<p>如果某个网站中密码验证的Hash是这么计算的，而这个网站自己本身有Hash所对应的sk，那么，网站自身就可以伪造所有的密码，来窃取用户数据了。所以，有些时候我们需要怀疑一下一些声称安全的网站到底是不是有后门的。即使说是使用Hash验证，或者加上这样那样的功能来进一步提高安全性，但是如果有这样的后门，对于用户来说还是无能为力的。<br>
+————————————————<br>
+☞ 注：引用于CSDN用户@ <a href="https://me.csdn.net/u013590498" target="_blank" rel="noopener">刘巍然-BUAA</a> 的博文<br>
+原文链接：<a href="https://blog.csdn.net/liuweiran900217/article/details/21819637" target="_blank" rel="noopener">https://blog.csdn.net/liuweiran900217/article/details/21819637</a></p>
 </blockquote>
 </blockquote>
-<h4 id="3-对哈希函数重要的误区"><a href="#3-对哈希函数重要的误区" class="headerlink" title="3.对哈希函数重要的误区"></a><font color="navy">3.对哈希函数重要的误区</font></h4><blockquote>
+<h4 id="font-color-navy3对哈希函数重要的误区font"><a class="markdownIt-Anchor" href="#font-color-navy3对哈希函数重要的误区font"></a> <font color="navy">3.对哈希函数重要的误区</font></h4>
+<blockquote>
 <p><strong>哈希函数计算出哈希值的过程不是一个加密过程</strong>，所以不能说<strong>哈希加密/哈希解密</strong>之类的话。</p>
 </blockquote>
-<h3 id="二、零知识证明"><a href="#二、零知识证明" class="headerlink" title="二、零知识证明"></a><font color="brown">二、零知识证明</font></h3><h4 id="1-什么是零知识证明？"><a href="#1-什么是零知识证明？" class="headerlink" title="1.什么是零知识证明？"></a><font color="navy">1.什么是零知识证明？</font></h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它指的是证明者能够在不向验证者提供任何有用的信息的情况下，使验证者相信某个论断是正确的。零知识证明实质上是一种涉及两方或更多方的协议，即两方或更多方完成一项任务所需采取的一系列步骤。证明者向验证者证明并使其相信自己知道或拥有某一消息，但证明过程不能向验证者泄漏任何关于被证明消息的信息。顾名思义，零知识证明就是既能充分证明自己是某种权益的合法拥有者，又不把有关的信息泄露出去——即给外界的“知识”为“零”。 </p>
+<h3 id="font-color-brown二-零知识证明font"><a class="markdownIt-Anchor" href="#font-color-brown二-零知识证明font"></a> <font color="brown">二、零知识证明</font></h3>
+<h4 id="font-color-navy1什么是零知识证明font"><a class="markdownIt-Anchor" href="#font-color-navy1什么是零知识证明font"></a> <font color="navy">1.什么是零知识证明？</font></h4>
+<blockquote>
+<p>     它指的是证明者能够在不向验证者提供任何有用的信息的情况下，使验证者相信某个论断是正确的。零知识证明实质上是一种涉及两方或更多方的协议，即两方或更多方完成一项任务所需采取的一系列步骤。证明者向验证者证明并使其相信自己知道或拥有某一消息，但证明过程不能向验证者泄漏任何关于被证明消息的信息。顾名思义，零知识证明就是既能充分证明自己是某种权益的合法拥有者，又不把有关的信息泄露出去——即给外界的“知识”为“零”。</p>
 </blockquote>
-<h4 id="2-零知识满足的性质"><a href="#2-零知识满足的性质" class="headerlink" title="2.零知识满足的性质"></a><font color="navy">2.零知识满足的性质</font></h4><blockquote>
+<h4 id="font-color-navy2零知识满足的性质font"><a class="markdownIt-Anchor" href="#font-color-navy2零知识满足的性质font"></a> <font color="navy">2.零知识满足的性质</font></h4>
+<blockquote>
 <p><strong>(1)正确性</strong>。P无法欺骗V。换言之，若P不知道一个定理的证明方法，则P使V相信他会证明定理的概率很低。</p>
 <p><strong>(2)完备性</strong>。V无法欺骗P。若P知道一个定理的证明方法，则P使V以绝对优势的概率相信他能证明。</p>
 <p><strong>(3)零知识性</strong>。V无法获取任何额外的知识。</p>
 </blockquote>
-<h4 id="3-零知识的属性"><a href="#3-零知识的属性" class="headerlink" title="3.零知识的属性"></a><font color="navy">3.零知识的属性</font></h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;零知识证明需要满足三个属性：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、如果语句为真，诚实的验证者（即：正确遵循协议的验证者）将由诚实的证明者确信这一事实。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、如果语句为假，不排除有概率欺骗者可以说服诚实的验证者它是真的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、如果语句为真，证明者的目的就是向验证者证明并使验证者相信自己知道或拥有某一消息，而在证明过程中不可向验证者泄漏任何有关被证明消息的内容。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;零知识证明并不是数学意义上的证明，因为它存在小概率的误差，欺骗者有可能通过虚假陈述骗过证明者。换句话来说，零知识证明是概率证明而不是确定性证明。但是也存在有技术能将误差降低到可以忽略的值。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;零知识的形式定义必须使用一些计算模型，最常见的是图灵机的计算模型。</p>
+<h4 id="font-color-navy3零知识的属性font"><a class="markdownIt-Anchor" href="#font-color-navy3零知识的属性font"></a> <font color="navy">3.零知识的属性</font></h4>
+<blockquote>
+<p>     零知识证明需要满足三个属性：</p>
+<p>        1、如果语句为真，诚实的验证者（即：正确遵循协议的验证者）将由诚实的证明者确信这一事实。</p>
+<p>        2、如果语句为假，不排除有概率欺骗者可以说服诚实的验证者它是真的。</p>
+<p>        3、如果语句为真，证明者的目的就是向验证者证明并使验证者相信自己知道或拥有某一消息，而在证明过程中不可向验证者泄漏任何有关被证明消息的内容。</p>
+<p>     零知识证明并不是数学意义上的证明，因为它存在小概率的误差，欺骗者有可能通过虚假陈述骗过证明者。换句话来说，零知识证明是概率证明而不是确定性证明。但是也存在有技术能将误差降低到可以忽略的值。</p>
+<p>     零知识的形式定义必须使用一些计算模型，最常见的是图灵机的计算模型。</p>
 </blockquote>
-<h4 id="4-零知识的例子"><a href="#4-零知识的例子" class="headerlink" title="4.零知识的例子"></a><font color="navy">4.零知识的例子</font></h4><blockquote>
+<h4 id="font-color-navy4零知识的例子font"><a class="markdownIt-Anchor" href="#font-color-navy4零知识的例子font"></a> <font color="navy">4.零知识的例子</font></h4>
+<blockquote>
 <p>1.A要向B证明自己拥有某个房间的钥匙，假设该房间只能用钥匙打开锁，而其他任何方法都打不开。这时有2个方法：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① A把钥匙出示给B，B用这把钥匙打开该房间的锁，从而证明A拥有该房间的正确的钥匙。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② B确定该房间内有某一物体，A用自己拥有的钥匙打开该房间的门，然后把物体拿出来出示给B，从而证明自己确实拥有该房间的钥匙。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面的②方法属于零知识证明。它的好处在于，在整个证明的过程中，B始终不能看到钥匙的样子，从而避免了钥匙的泄露。</p>
+<p>     ① A把钥匙出示给B，B用这把钥匙打开该房间的锁，从而证明A拥有该房间的正确的钥匙。</p>
+<p>     ② B确定该房间内有某一物体，A用自己拥有的钥匙打开该房间的门，然后把物体拿出来出示给B，从而证明自己确实拥有该房间的钥匙。</p>
+<p>     后面的②方法属于零知识证明。它的好处在于，在整个证明的过程中，B始终不能看到钥匙的样子，从而避免了钥匙的泄露。</p>
 <p><br>2.A拥有B的公钥，A没有见过B，而B见过A的照片，偶然一天两个人见面了，B认出了A，但A不能确定面前的人是否是B，这时B要向A证明自己是B，也有2个方法。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① B把自己的私钥给A，A用公钥对某个数据加密，然后用B的私钥解密，如果正确，则证明对方确实是B。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② A给出一个随机值，并使用B的公钥对其加密，然后将加密后的数据交给B，B用自己的私钥解密并展示给A，如果与A给出的随机值相同，则证明对方是B。</p>
+<p>     ① B把自己的私钥给A，A用公钥对某个数据加密，然后用B的私钥解密，如果正确，则证明对方确实是B。</p>
+<p>     ② A给出一个随机值，并使用B的公钥对其加密，然后将加密后的数据交给B，B用自己的私钥解密并展示给A，如果与A给出的随机值相同，则证明对方是B。</p>
 <p>后面的方法属于零知识证明。</p>
 <p><br>3.有一个缺口环形的长廊，出口和入口距离非常近（在目距之内），但走廊中间某处有一道只能用钥匙打开的门，A要向B证明自己拥有该门的钥匙。采用零知识证明，则B看着A从入口进入走廊，然后又从出口走出走廊，这时B没有得到任何关于这个钥匙的信息，但是完全可以证明A拥有钥匙。</p>
 </blockquote>
-<h3 id="三、广播加密"><a href="#三、广播加密" class="headerlink" title="三、广播加密"></a><font color="brown">三、广播加密</font></h3><h4 id="1-什么是广播加密？"><a href="#1-什么是广播加密？" class="headerlink" title="1.什么是广播加密？"></a><font color="navy">1.什么是广播加密？</font></h4><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 广播加密是一种在不安全信道上给一组用户传输加密信息的密码体制，它可使发送者选取任意用户集合进行广播加密，只有授权用户才能够解密密文。广播加密有着广泛的实际应用背景，例如，<strong>数字版权管理、付费电视、卫星广播通信</strong>等。一个广播加密方案满足完全抗同谋攻击（fully collusion resistant），即所有撤销用户合作，也无法解密密文。对于一个公钥广播加密方案，用户私钥长度、系统公钥长度、密文长度以及加密解密计算复杂度是衡量性能优劣的重要标准。 </p>
+<h3 id="font-color-brown三-广播加密font"><a class="markdownIt-Anchor" href="#font-color-brown三-广播加密font"></a> <font color="brown">三、广播加密</font></h3>
+<h4 id="font-color-navy1什么是广播加密font"><a class="markdownIt-Anchor" href="#font-color-navy1什么是广播加密font"></a> <font color="navy">1.什么是广播加密？</font></h4>
+<blockquote>
+<p>      广播加密是一种在不安全信道上给一组用户传输加密信息的密码体制，它可使发送者选取任意用户集合进行广播加密，只有授权用户才能够解密密文。广播加密有着广泛的实际应用背景，例如，<strong>数字版权管理、付费电视、卫星广播通信</strong>等。一个广播加密方案满足完全抗同谋攻击（fully collusion resistant），即所有撤销用户合作，也无法解密密文。对于一个公钥广播加密方案，用户私钥长度、系统公钥长度、密文长度以及加密解密计算复杂度是衡量性能优劣的重要标准。</p>
 </blockquote>
-<h3 id="四、参考文章"><a href="#四、参考文章" class="headerlink" title="四、参考文章"></a><font color="brown">四、参考文章</font></h3><ul>
+<h3 id="font-color-brown四-参考文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-参考文章font"></a> <font color="brown">四、参考文章</font></h3>
+<ul>
 <li><a href="https://blog.csdn.net/jerry81333/article/details/76141596" target="_blank" rel="noopener">变色龙哈希函数 Chameleon Hash 可变型区块链</a></li>
 <li><a href="https://blog.csdn.net/liuweiran900217/article/details/21819637" target="_blank" rel="noopener">Cryptography - Chameleon Hash</a></li>
 <li><a href="https://www.zhihu.com/question/38545889" target="_blank" rel="noopener">变色龙哈希函数是什么？</a></li>
-<li><a href="https://baike.baidu.com/item/零知识证明" target="_blank" rel="noopener">零知识证明</a></li>
+<li><a href="https://baike.baidu.com/item/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E" target="_blank" rel="noopener">零知识证明</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/24440530" target="_blank" rel="noopener">不是程序员也能看懂的ZCash零知识证明</a></li>
 <li><a href="https://www.leiphone.com/news/201803/egFu5MwIsweBU2WY.html" target="_blank" rel="noopener">零知识证明（Zero-Knowledge Proof）原理详解：非交互式证明实现自动验证防止作假</a></li>
 <li><a href="https://blog.csdn.net/sxjinmingjie/article/details/77746232" target="_blank" rel="noopener">区块链解读-零知识证明</a></li>
@@ -663,7 +676,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、变色龙哈希（Chameleon-Hash）"><span class="toc-number">1.</span> <span class="toc-text">一、变色龙哈希（Chameleon Hash）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-哈希函数？"><span class="toc-number">1.1.</span> <span class="toc-text">1.哈希函数？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-变色龙哈希函数"><span class="toc-number">1.2.</span> <span class="toc-text">2.变色龙哈希函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-对哈希函数重要的误区"><span class="toc-number">1.3.</span> <span class="toc-text">3.对哈希函数重要的误区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、零知识证明"><span class="toc-number">2.</span> <span class="toc-text">二、零知识证明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是零知识证明？"><span class="toc-number">2.1.</span> <span class="toc-text">1.什么是零知识证明？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-零知识满足的性质"><span class="toc-number">2.2.</span> <span class="toc-text">2.零知识满足的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-零知识的属性"><span class="toc-number">2.3.</span> <span class="toc-text">3.零知识的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-零知识的例子"><span class="toc-number">2.4.</span> <span class="toc-text">4.零知识的例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、广播加密"><span class="toc-number">3.</span> <span class="toc-text">三、广播加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是广播加密？"><span class="toc-number">3.1.</span> <span class="toc-text">1.什么是广播加密？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考文章"><span class="toc-number">4.</span> <span class="toc-text">四、参考文章</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-变色龙哈希chameleon-hashfont"><span class="toc-number">1.</span> <span class="toc-text"> 一、变色龙哈希（Chameleon Hash）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1哈希函数font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.哈希函数？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2变色龙哈希函数font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.变色龙哈希函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3对哈希函数重要的误区font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.对哈希函数重要的误区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-零知识证明font"><span class="toc-number">2.</span> <span class="toc-text"> 二、零知识证明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1什么是零知识证明font"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.什么是零知识证明？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2零知识满足的性质font"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.零知识满足的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3零知识的属性font"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.零知识的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy4零知识的例子font"><span class="toc-number">2.4.</span> <span class="toc-text"> 4.零知识的例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-广播加密font"><span class="toc-number">3.</span> <span class="toc-text"> 三、广播加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1什么是广播加密font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.什么是广播加密？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-参考文章font"><span class="toc-number">4.</span> <span class="toc-text"> 四、参考文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -676,6 +689,98 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2529,21 +2634,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2551,31 +2656,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwanable.kr"><span class="iconfont-archer">&#xe606;</span>pwanable.kr</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     

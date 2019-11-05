@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,74 +416,74 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、知识点摘要"><a href="#一、知识点摘要" class="headerlink" title="一、知识点摘要"></a><font color="brown">一、知识点摘要</font></h3><blockquote>
+        <h3 id="font-color-brown一-知识点摘要font"><a class="markdownIt-Anchor" href="#font-color-brown一-知识点摘要font"></a> <font color="brown">一、知识点摘要</font></h3>
+<blockquote>
 <ol>
 <li>系统调用 int 80h 中断</li>
 <li>#ifdef ……# endif 的含义和用法</li>
 </ol>
 </blockquote>
-<h3 id="二、知识点介绍"><a href="#二、知识点介绍" class="headerlink" title="二、知识点介绍"></a><font color="brown">二、知识点介绍</font></h3><h4 id="1-int-80h-中断"><a href="#1-int-80h-中断" class="headerlink" title="1.int 80h 中断"></a><font color="navy">1.int 80h 中断</font></h4><blockquote>
-<font color="orange">1) 什么是 system call?</font>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(<a href="[https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F](https://zh.wikipedia.org/wiki/操作系统">操作系统—WIKI</a> ))</p>
+<h3 id="font-color-brown二-知识点介绍font"><a class="markdownIt-Anchor" href="#font-color-brown二-知识点介绍font"></a> <font color="brown">二、知识点介绍</font></h3>
+<h4 id="font-color-navy1int-80h-中断font"><a class="markdownIt-Anchor" href="#font-color-navy1int-80h-中断font"></a> <font color="navy">1.int 80h 中断</font></h4>
+<blockquote>
+<p><font color="orange">1) 什么是 system call?</font></p>
+<p>        system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(<a href="%5Bhttps://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%5D(https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)">操作系统—WIKI</a>)</p>
 <p><br><font color="orange">2) 什么是 int 80h 中断？</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux 的 system call 就是通过<code>int 80h</code>来实现的，<code>int 80h</code> 是通过<font color="red">系统调用号</font>来区分入口的函数。</p>
+<p>        Linux 的 system call 就是通过<code>int 80h</code>来实现的，<code>int 80h</code> 是通过<font color="red">系统调用号</font>来区分入口的函数。</p>
 <p><br><font color="orange">3) 操作系统实现 <code>system call</code> 的基本过程:</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①&nbsp;&nbsp;应用程序调用库函数（API）；</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②&nbsp;&nbsp;API 将系统调用号存入 eax，然后通过中断调用使系统进入内核态；</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③&nbsp;&nbsp;内核中的中断处理函数根据系统调用号，调用对应的内核函数（系统调用）；</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④&nbsp;&nbsp;系统调用完成相应功能，将返回值存入eax，返回到中断处理函数；</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤&nbsp;&nbsp;中断处理函数返回到 API 中；</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥&nbsp;&nbsp;API 将 eax 返回给应用程序。<br><br><font color="orange">4) 系统调用号</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们再来想几个小问题：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 系统调用号定义在哪里？</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux 的系统调用号定义在了 <code>/usr/include/asm/unistd.h</code> 文件中，如下所示：</p>
+<p>        ①  应用程序调用库函数（API）；</p>
+<p>        ②  API 将系统调用号存入 eax，然后通过中断调用使系统进入内核态；</p>
+<p>        ③  内核中的中断处理函数根据系统调用号，调用对应的内核函数（系统调用）；</p>
+<p>        ④  系统调用完成相应功能，将返回值存入eax，返回到中断处理函数；</p>
+<p>        ⑤  中断处理函数返回到 API 中；</p>
+<p>        ⑥  API 将 eax 返回给应用程序。<br>
+<br><font color="orange">4) 系统调用号</font></p>
+<p>        我们再来想几个小问题：</p>
+<p>            ※ 系统调用号定义在哪里？</p>
+<p>              Linux 的系统调用号定义在了 <code>/usr/include/asm/unistd.h</code> 文件中，如下所示：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="meta"># cat /usr/<span class="meta-keyword">include</span>/asm/unistd.h</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">ifndef</span> _ASM_X86_UNISTD_H</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> _ASM_X86_UNISTD_H</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">/* x32 syscall flag bit */</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __X32_SYSCALL_BIT	0x40000000</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta"># <span class="meta-keyword">ifdef</span> __i386__</span></span><br><span class="line">&gt; <span class="meta">#  <span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/unistd_32.h&gt;</span></span></span><br><span class="line">&gt; <span class="meta"># <span class="meta-keyword">elif</span> defined(__ILP32__)</span></span><br><span class="line">&gt; <span class="meta">#  <span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/unistd_x32.h&gt;</span></span></span><br><span class="line">&gt; <span class="meta"># <span class="meta-keyword">else</span></span></span><br><span class="line">&gt; <span class="meta">#  <span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/unistd_64.h&gt;</span></span></span><br><span class="line">&gt; <span class="meta"># <span class="meta-keyword">endif</span></span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* _ASM_X86_UNISTD_H */</span></span></span><br><span class="line">&gt; </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再来简单的看一下 <code>unistd_x32</code> 、<code>unisted_32</code>和 <code>unisted64</code> 中的信息</p>
+<p>              再来简单的看一下 <code>unistd_x32</code> 、<code>unisted_32</code>和 <code>unisted64</code> 中的信息</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&gt; #/usr/include/<span class="keyword">asm</span>/unistd_x32.h</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">ifndef</span> _ASM_X86_UNISTD_X32_H</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> _ASM_X86_UNISTD_X32_H 1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_read (__X32_SYSCALL_BIT + 0)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_write (__X32_SYSCALL_BIT + 1)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_open (__X32_SYSCALL_BIT + 2)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_close (__X32_SYSCALL_BIT + 3)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_stat (__X32_SYSCALL_BIT + 4)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_fstat (__X32_SYSCALL_BIT + 5)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_lstat (__X32_SYSCALL_BIT + 6)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_poll (__X32_SYSCALL_BIT + 7)</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_lseek (__X32_SYSCALL_BIT + 8)</span></span><br><span class="line">&gt; …………………………………………………………………………</span><br><span class="line">&gt; </span><br><span class="line">&gt; #/usr/include/<span class="keyword">asm</span>/unistd_32.h</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">ifndef</span> _ASM_X86_UNISTD_32_H</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> _ASM_X86_UNISTD_32_H 1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_restart_syscall 0</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_exit 1</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_fork 2</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_read 3</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_write 4</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_open 5</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_close 6</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_waitpid 7</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_creat 8</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_link 9</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_unlink 10</span></span><br><span class="line">&gt; …………………………………………………………………………</span><br><span class="line">&gt; </span><br><span class="line">&gt; #/usr/include/<span class="keyword">asm</span>/unistd_64.h</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">ifndef</span> _ASM_X86_UNISTD_64_H</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> _ASM_X86_UNISTD_64_H 1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_read 0</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_write 1</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_open 2</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_close 3</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_stat 4</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_fstat 5</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_lstat 6</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_poll 7</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_lseek 8</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_mmap 9</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> __NR_mprotect 10</span></span><br><span class="line">&gt; …………………………………………………………………………</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 系统调用号的含义是什么？</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于不同的系统调用号，所代表的入口函数是不一样的，其实我们在上面的定义中就能知道不同序号代表的函数是什么，下面我以 32 位的系统给出几个系统调用表对应的函数：</p>
+<p>            ※ 系统调用号的含义是什么？</p>
+<p>              对于不同的系统调用号，所代表的入口函数是不一样的，其实我们在上面的定义中就能知道不同序号代表的函数是什么，下面我以 32 位的系统给出几个系统调用表对应的函数：</p>
 <p><img src="/images/87-1.jpg" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 如何执行 <code>system call</code> ?</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里，我们用一个例子来详细的解释一下：</p>
+<p>             ※ 如何执行 <code>system call</code> ?</p>
+<p>              在这里，我们用一个例子来详细的解释一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; .text:08048087                 mov     ecx, esp        	; addr</span><br><span class="line">&gt; .text:08048089                 mov     dl, 14h         	; len，对应参数为：size_t count</span><br><span class="line">&gt; .text:0804808B                 mov     bl, 1           	; fd，对应参数 fd，fd = 1，在linux 中对应于 stdout，指的是显示屏的标准输出</span><br><span class="line">&gt; .text:0804808D                 mov     al, 4		   	; 系统调用号为 4，sys_write</span><br><span class="line">&gt; .text:0804808F                 int     80h             	; LINUX - sys_write</span><br><span class="line">&gt; .text:08048091                 xor     ebx, ebx			; ebx = 0，对应的参数 fd = 0，在 Linux 中对应于 stdin，指的是显示屏的标准输入</span><br><span class="line">&gt; .text:08048093                 mov     dl, 3Ch			; len，对应参数为：size_t count</span><br><span class="line">&gt; .text:08048095                 mov     al, 3		   	; 系统调用号为3，sys_read</span><br><span class="line">&gt; .text:08048097                 int     80h             	; LINUX - sys_read</span><br><span class="line">&gt; .text:08048099                 add     esp, 14h</span><br><span class="line">&gt; .text:0804809C                 retn</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将上面的汇编语言反汇编成伪代码，如下：</p>
+<p>              将上面的汇编语言反汇编成伪代码，如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; sys_write(<span class="keyword">unsigned</span> <span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">char</span> * buf, <span class="keyword">size_t</span> count);</span><br><span class="line">&gt; </span><br><span class="line">&gt; sys_read(<span class="keyword">unsigned</span> <span class="keyword">int</span> fd, <span class="keyword">char</span> * buf, <span class="keyword">size_t</span> count);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="2-if……-endif"><a href="#2-if……-endif" class="headerlink" title="2.#if……# endif"></a><font color="navy">2.#if……# endif</font></h4><blockquote>
-<font color="orange">1)  \#if……\#endif 是什么？</font>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #if ……#endif 其实是 <code>C#</code>两个预处理器指令， 如果 C# 编译器遇到最后面跟有 <a href="http://technet.microsoft.com/zh-cn/hyx43has(v=vs.85" target="_blank" rel="noopener">#endif</a>) 指令的#if 指令，则仅当指定的符号已定义时，它才会编译这两个指令之间的代码。 例如：</p>
+<h4 id="font-color-navy2if-endiffont"><a class="markdownIt-Anchor" href="#font-color-navy2if-endiffont"></a> <font color="navy">2.#if……# endif</font></h4>
+<blockquote>
+<p><font color="orange">1)  #if……#endif 是什么？</font></p>
+<p>         #if ……#endif 其实是 <code>C#</code>两个预处理器指令， 如果 C# 编译器遇到最后面跟有 <a href="http://technet.microsoft.com/zh-cn/hyx43has(v=vs.85)" target="_blank" rel="noopener">#endif</a> 指令的#if 指令，则仅当指定的符号已定义时，它才会编译这两个指令之间的代码。 例如：</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; --在最顶端必须声明自定义的名称DEBUG或者START</span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">define</span> DEBUG  </span></span><br><span class="line">&gt; <span class="comment">//#define START</span></span><br><span class="line">&gt; <span class="comment">//using System;</span></span><br><span class="line">&gt; <span class="comment">//...</span></span><br><span class="line">&gt;  </span><br><span class="line">&gt;  </span><br><span class="line">&gt;     在你需要的代码中插入<span class="meta">#<span class="meta-keyword">if</span>..#<span class="meta-keyword">endif</span>，编译器会自动寻找，并执行之间的这段代码</span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">if</span> DEBUG</span></span><br><span class="line">&gt;      Console.WriteLine(<span class="string">"Debug version"</span>);</span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&gt;  </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">if</span> START</span></span><br><span class="line">&gt;      Console.WriteLine(<span class="string">"START PROCESS"</span>);</span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
 <blockquote>
-<p><br><font color="orange">2)  预处理器的指令还有哪些？</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if" target="_blank" rel="noopener">#if</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-else" target="_blank" rel="noopener">#else</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-elif" target="_blank" rel="noopener">#elif</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endif" target="_blank" rel="noopener">#endif</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define" target="_blank" rel="noopener">#define</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-undef" target="_blank" rel="noopener">#undef</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-warning" target="_blank" rel="noopener">#warning</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-error" target="_blank" rel="noopener">#error</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-line" target="_blank" rel="noopener">#line</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region" target="_blank" rel="noopener">#region</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion" target="_blank" rel="noopener">#endregion</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma" target="_blank" rel="noopener">#pragma</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning" target="_blank" rel="noopener">#pragma warning</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-checksum" target="_blank" rel="noopener">#pragma checksum</a> </p>
+<p><br><font color="orange">2)  预处理器的指令还有哪些？</font></p>
+<p>         <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if" target="_blank" rel="noopener">#if</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-else" target="_blank" rel="noopener">#else</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-elif" target="_blank" rel="noopener">#elif</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endif" target="_blank" rel="noopener">#endif</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define" target="_blank" rel="noopener">#define</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-undef" target="_blank" rel="noopener">#undef</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-warning" target="_blank" rel="noopener">#warning</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-error" target="_blank" rel="noopener">#error</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-line" target="_blank" rel="noopener">#line</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region" target="_blank" rel="noopener">#region</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion" target="_blank" rel="noopener">#endregion</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma" target="_blank" rel="noopener">#pragma</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning" target="_blank" rel="noopener">#pragma warning</a> 、 <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-checksum" target="_blank" rel="noopener">#pragma checksum</a></p>
 <p><br><font color="orange">3)  #if 0，#if 1，#else，#endif语句 </font></p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">&gt; </span><br><span class="line">&gt;     code1</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">&gt; </span><br><span class="line">&gt;     code2</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此时code1的语句被注释掉了，永远没有办法执行，而code2是被编译的；如果将#if 0变为#if 1，code1被编译，而code2永远没有办法被执行。 </p>
+<p>        此时code1的语句被注释掉了，永远没有办法执行，而code2是被编译的；如果将#if 0变为#if 1，code1被编译，而code2永远没有办法被执行。</p>
 </blockquote>
-<h3 id="三、相关知识点"><a href="#三、相关知识点" class="headerlink" title="三、相关知识点"></a><font color="brown">三、相关知识点</font></h3><blockquote>
+<h3 id="font-color-brown三-相关知识点font"><a class="markdownIt-Anchor" href="#font-color-brown三-相关知识点font"></a> <font color="brown">三、相关知识点</font></h3>
+<blockquote>
 <ol>
 <li>操作系统的内核和用户的关系</li>
 <li>Linux下 文件描述符（fd）与 文件指针（FILE*）</li>
 <li>C语言的 open, read, write函数，及文件读写</li>
 </ol>
 </blockquote>
-<h3 id="四、参考文章"><a href="#四、参考文章" class="headerlink" title="四、参考文章"></a><font color="brown">四、参考文章</font></h3><blockquote>
+<h3 id="font-color-brown四-参考文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-参考文章font"></a> <font color="brown">四、参考文章</font></h3>
+<blockquote>
 <ol>
 <li><a href="https://blog.csdn.net/xiaominthere/article/details/17287965" target="_blank" rel="noopener">Linux系统调用 int 80h int 0x80</a> ★★★★</li>
 <li><a href="http://www.voidcn.com/article/p-avzzaclp-bkb.html" target="_blank" rel="noopener">《第一篇 linux 0.12 系统调用(int 0x80)详解》</a>★★</li>
@@ -494,7 +494,7 @@ height:50vh;
 <li><a href="https://blog.csdn.net/wwwsssZheRen/article/details/79077141" target="_blank" rel="noopener">C语言中#if 0，#if 1，#else，#endif的作用</a></li>
 <li><a href="https://blog.csdn.net/t55p318/article/details/77602164" target="_blank" rel="noopener">C#中 #if #endif的使用</a></li>
 <li><a href="https://blog.csdn.net/mm_hh/article/details/71374474" target="_blank" rel="noopener">Linux下 文件描述符（fd）与 文件指针（FILE*）</a>(待看)</li>
-<li><a href="[https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F](https://zh.wikipedia.org/wiki/操作系统">操作系统</a> )</li>
+<li><a href="%5Bhttps://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%5D(https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)">操作系统</a></li>
 </ol>
 </blockquote>
 
@@ -652,7 +652,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、知识点摘要"><span class="toc-number">1.</span> <span class="toc-text">一、知识点摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、知识点介绍"><span class="toc-number">2.</span> <span class="toc-text">二、知识点介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-int-80h-中断"><span class="toc-number">2.1.</span> <span class="toc-text">1.int 80h 中断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-if……-endif"><span class="toc-number">2.2.</span> <span class="toc-text">2.#if……# endif</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、相关知识点"><span class="toc-number">3.</span> <span class="toc-text">三、相关知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考文章"><span class="toc-number">4.</span> <span class="toc-text">四、参考文章</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-知识点摘要font"><span class="toc-number">1.</span> <span class="toc-text"> 一、知识点摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-知识点介绍font"><span class="toc-number">2.</span> <span class="toc-text"> 二、知识点介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1int-80h-中断font"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.int 80h 中断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2if-endiffont"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.#if……# endif</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-相关知识点font"><span class="toc-number">3.</span> <span class="toc-text"> 三、相关知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-参考文章font"><span class="toc-number">4.</span> <span class="toc-text"> 四、参考文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -665,6 +665,98 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2518,21 +2610,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2540,31 +2632,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwanable.kr"><span class="iconfont-archer">&#xe606;</span>pwanable.kr</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
