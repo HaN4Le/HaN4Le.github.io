@@ -374,6 +374,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/01/2019.08.01（78）/">
+            
+                <span>BabyPHP 解题总结</span>
+        </a>
+        <div class="abstract-content">
+             一、PHP 部分漏洞
+ 1.$_GET 和 $_POST
+
+如果 GET 参数中设置 name[]=a，那么 $_GET['name'] = [a]，php 会把 []=a 当成数组传入， $_GET 会自动对参数调用 urldecode。
+$_POST 同样存在此漏洞，提交的表单数据，user[]=admin，$_POST['user'] 得到的是 ['admin'] 是一个数组。
+
+ 2.sha1 和 md5 函数
+
+PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所以如果两个不同的密码经过哈希以后，其...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/31/2019.07.31（77）/">
             
                 <span>JavaScript 学习笔记（一）</span>
@@ -722,54 +763,6 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/15/2019.06.15（68）/">
-            
-                <span>《图解密码技术》第二章（历史上的密码）学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-☛  前言：
-        今天主要回顾的内容有：
-                ◈ 凯撒密码
-                ◈ 简单替换密码
-                ◈ Enigma
-                ◈ 暴力破解
-                ◈ 频率分析
-
- 一、恺撒密码
-
-1.什么是恺撒密码：
-
-        凯撒密码是通过将明文中所使用的字母表按照一定的字数“平移”来进行加密。
-2.凯撒密码的加密：
-        凯撒密码的加密过程是通过对字母进行平移进行加密，而平移字母的数量相当于**“密钥”。
-3.凯撒密码的解密：
-        对凯撒...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/15</span>
             </div>
             <!-- tags  -->
             
@@ -2459,9 +2452,26 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 87
+        Total : 88
         </div>
         <!-- search  -->
         
@@ -2478,6 +2488,11 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href="/2019/11/07/2019.11.07（88）/">Cookie、Session、Token那点事儿（转载）</a>
+        </li>
     
     
         <li class="archive-post-item">
