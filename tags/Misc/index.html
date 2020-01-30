@@ -361,95 +361,58 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
+        <a class="abstract-title" href="/2020/01/30/2020.01.30（91）/">
             
-                <span>Misc：RealWiFi解题总结</span>
+                <span>XCFT misc新手阶段 —— writeup</span>
         </a>
         <div class="abstract-content">
-            
-☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
+             一、PDF
+ 1.基础知识
 
- 一、前期准备
+无
 
+ 2.题目要求
 
-crunch 生成字典
-aircrack-ng工具
-wireshark工具
+ 3.做题步骤
 
+直接 pdf 转换为 word （转换工具点击这里），然后将 word 中的图片进行移动，会发现图片下的 flag。
 
- 二、解题思路
-
-
-首先先观察题目给的流量包，看看都有什么协议；
-根据第一步，然后针对协议的特点做出相应的判断；
-从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
-根据题目提示写出字典；
-暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
+ 二、如来十三掌
+ 1.基础知识
 
 
- 三、解题步骤
- 1.观察流量...
+与佛论禅算法的原理和本质
+ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个字符）
+
+
+ 2.题目要求
+
+ 3.做题步骤
+
+
+
+下载附件，得到一个 word 文件，打开该文档，发现里面的内容如下：
+
+
+
+将文字放到“与佛论禅”破解网站里面进行翻译，如下图：
+
+
+
+根据题目“如来十三掌”的题目提示，我们用 rot-13 进行解密，脚本代码如下...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/30</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/28/2019.04.28（49）/">
-            
-                <span>Another 01game解题详细总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
-
- 一、前期准备
-
-
-python语言
-二维码的知识（本题中不是重点）
-QQ “扫一扫”
-
-
- 二、思考过程
-
-
-题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
-然后看一下这个数量值，是否是一个数的平方；
-如果是一个数的平方，那么就将这个字符串排成一个正方形；
-题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
-根据上一步的思考，我们可以有选择地进行替换图形；
-扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
-根据题目提示，可以将字符串当作ASC...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="misc">misc</a>
     
 </div>
             
@@ -2066,9 +2029,13 @@ QQ “扫一扫”
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 89
+        Total : 91
         </div>
         <!-- search  -->
         
@@ -2083,8 +2050,27 @@ QQ “扫一扫”
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2592,6 +2578,12 @@ QQ “扫一扫”
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -2651,6 +2643,56 @@ jsonContent:
     
         <div class="site-search">
   <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
+
+
+ <div class="algolia-popup popup">
     <div class="algolia-search">
       <div class="algolia-search-input-icon">
         <i class="fa fa-search"></i>

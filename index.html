@@ -374,6 +374,105 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/01/30/2020.01.30（91）/">
+            
+                <span>XCFT misc新手阶段 —— writeup</span>
+        </a>
+        <div class="abstract-content">
+             一、PDF
+ 1.基础知识
+
+无
+
+ 2.题目要求
+
+ 3.做题步骤
+
+直接 pdf 转换为 word （转换工具点击这里），然后将 word 中的图片进行移动，会发现图片下的 flag。
+
+ 二、如来十三掌
+ 1.基础知识
+
+
+与佛论禅算法的原理和本质
+ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个字符）
+
+
+ 2.题目要求
+
+ 3.做题步骤
+
+
+
+下载附件，得到一个 word 文件，打开该文档，发现里面的内容如下：
+
+
+
+将文字放到“与佛论禅”破解网站里面进行翻译，如下图：
+
+
+
+根据题目“如来十三掌”的题目提示，我们用 rot-13 进行解密，脚本代码如下...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="misc">misc</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/23/2019.11.23（90）/">
+            
+                <span>以太坊智能合约漏洞 | Fallback函数</span>
+        </a>
+        <div class="abstract-content">
+             一、Fallback 函数介绍
+
+合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
+除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="智能合约漏洞">智能合约漏洞</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/19/2019.11.19（89）/">
             
                 <span>XSS Challenge（Stage1-4）writeup</span>
@@ -730,98 +829,10 @@ setresuid() 被执行的条件有：
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/10/2019.09.10（81）/">
-            
-                <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
-        </a>
-        <div class="abstract-content">
-             一、前言
-
-pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 GOT 表的一种题型吧。
-
- 二、基础知识
- 1.GOT 表
-
-① 什么是 GOT 表？
-    每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
-② GOT 表的作用是什么？
-    把位置无关的地址计算重定位到一个绝对地址。程...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/07/2019.09.07（80）/">
-            
-                <span>AFL 的代码插桩问题</span>
-        </a>
-        <div class="abstract-content">
-             一、什么是 AFL？
-
-    AFL 是一款用于发现漏洞的模糊测试工具，是由下面三个部分组成的：
-
-
-编译器wrapper：他的功能在于对目标软件（开源）进行编译，编译过程中插入一些AFL识别的函数用以识别探索路径，众所周知的linux下的C/C编译工具gcc/g，afl的编译工具为afl-gcc/afl-g++,afl-clang等。
-
-
-测试器fuzzer （主体）：afl-fuzz，就是AFL重要的主体，用以对软件进行fuzzing。
-
-
-其他工具：如afl-cmin,afl-tmin等，一个成功的C位都必须多个辅助才行，这些工具都是为提升测试的效率和成功率而服务的。
-
-
-  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="fuzz">fuzz</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2529,9 +2540,13 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 89
+        Total : 91
         </div>
         <!-- search  -->
         
@@ -2546,8 +2561,27 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3054,6 +3088,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

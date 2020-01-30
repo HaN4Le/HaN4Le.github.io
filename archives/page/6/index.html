@@ -361,6 +361,85 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/19/2019.04.19（41）/">
+            
+                <span>二进制炸弹：Phase_2解题总结</span>
+        </a>
+        <div class="abstract-content">
+            今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
+ 一、相关汇编代码
+① &lt; phase_2 &gt;的汇编代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/18/2019.04.18（40）/">
+            
+                <span>二进制炸弹：Phase_1解题总结</span>
+        </a>
+        <div class="abstract-content">
+            经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
+
+☛ Phase_1、Phase_2、Phase_3、Phase_4
+今天主要总结一下Phase_1的解题过程
+
+ 一、前期工作
+
+
+所用工具
+IDA、Linux系统、gdb、objdump、python
+解题思路
+通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
+
+
+ 二、Phase_1解题过程
+ 1.对bomb文件进行反汇编
+
+objdump -d bomb &gt; bomo.txt
+将bo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
             
                 <span>二进制炸弹解题知识储备</span>
@@ -723,84 +802,10 @@ Linux Kali系统的安装
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/08/2019.04.08（31）/">
-            
-                <span>openssl学习笔记（二）</span>
-        </a>
-        <div class="abstract-content">
-                 昨天总结了一下openssl的一些选项的功能，今天还是重点的来总结一下其他的选项：openssl speed/rand/passwd/dgst/rsautl
- 一、openssl speed
-
-① **功能说明：**测试加密算法的性能
-② 支持的算法：openssl speed [md2] [mdc2] [md5] [hmac] [sha1] [rmd160] [idea-cbc] [rc2-cbc] [rc5-cbc] [bf-cbc] [des-cbc] [des-ede3] [rc4] [rsa512] [rsa1024] [rsa2048] [rsa4096] [dsa...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/07/2019.04.07（30）/">
-            
-                <span>openssl学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-                  在前天做了RSA的题目，发现openssl发挥着重要的作用，但是我只知道零星一点知识，今天我就系统的总结一下吧。
- 1.openssl 命令
-
-openssl命令的格式：openssl command command-options args
-command部分有很多种命令，这些命令需要依赖于openssl命令才能执行，所以称为伪命令（pseudo-command）。
-
-
-支持的标准命令，即伪命令（经常使用的）
-ca    crl     dgst[1]    dh    dhparam     enc[2]    genpkey    genrsa     passwd  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/5/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/7/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/page/5/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/7/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2411,9 +2416,13 @@ ca    crl     dgst[1]    dh    dhparam     enc[2]    g
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 89
+        Total : 91
         </div>
         <!-- search  -->
         
@@ -2428,8 +2437,27 @@ ca    crl     dgst[1]    dh    dhparam     enc[2]    g
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2936,6 +2964,12 @@ ca    crl     dgst[1]    dh    dhparam     enc[2]    g
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

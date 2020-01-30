@@ -361,6 +361,101 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/05/2019.05.05（51）/">
+            
+                <span>MySQL学习笔记（一）查询(1)</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：大学本科期间也学习过SQL的知识，但是有些只是点已经忘记，前几天做SQL注入的时候感觉挺费劲的，所以这两天学习了一下MySQL有关查询的常用语句，今天主要对此进行总结。
+
+ 一、基本查询
+ 1.语句格式：
+
+select * from 
+说明：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用select查询的基本语句 `select * from `可以查询一个表的所有行和所有列的数据 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`select`查询的结果是一个二维表；
+
+ 二、条件查询
+ 1.语句格式：
+
+sele...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
+            
+                <span>Misc：RealWiFi解题总结</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
+
+ 一、前期准备
+
+
+crunch 生成字典
+aircrack-ng工具
+wireshark工具
+
+
+ 二、解题思路
+
+
+首先先观察题目给的流量包，看看都有什么协议；
+根据第一步，然后针对协议的特点做出相应的判断；
+从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
+根据题目提示写出字典；
+暴力破解得到密码；
+但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
+
+
+ 三、解题步骤
+ 1.观察流量...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/28/2019.04.28（49）/">
             
                 <span>Another 01game解题详细总结</span>
@@ -674,89 +769,10 @@ int sscanf(const char *str, const char *format, ...)
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/19/2019.04.19（41）/">
-            
-                <span>二进制炸弹：Phase_2解题总结</span>
-        </a>
-        <div class="abstract-content">
-            今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
- 一、相关汇编代码
-① &lt; phase_2 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/18/2019.04.18（40）/">
-            
-                <span>二进制炸弹：Phase_1解题总结</span>
-        </a>
-        <div class="abstract-content">
-            经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
-
-☛ Phase_1、Phase_2、Phase_3、Phase_4
-今天主要总结一下Phase_1的解题过程
-
- 一、前期工作
-
-
-所用工具
-IDA、Linux系统、gdb、objdump、python
-解题思路
-通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
-
-
- 二、Phase_1解题过程
- 1.对bomb文件进行反汇编
-
-objdump -d bomb &gt; bomo.txt
-将bo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/4/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/6/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/page/4/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/6/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2367,9 +2383,13 @@ objdump -d bomb &gt; bomo.txt
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 89
+        Total : 91
         </div>
         <!-- search  -->
         
@@ -2384,8 +2404,27 @@ objdump -d bomb &gt; bomo.txt
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2892,6 +2931,12 @@ objdump -d bomb &gt; bomo.txt
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

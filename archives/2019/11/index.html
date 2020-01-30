@@ -361,6 +361,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/23/2019.11.23（90）/">
+            
+                <span>以太坊智能合约漏洞 | Fallback函数</span>
+        </a>
+        <div class="abstract-content">
+             一、Fallback 函数介绍
+
+合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
+除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="智能合约漏洞">智能合约漏洞</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/19/2019.11.19（89）/">
             
                 <span>XSS Challenge（Stage1-4）writeup</span>
@@ -2096,9 +2131,13 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 89
+        Total : 91
         </div>
         <!-- search  -->
         
@@ -2113,8 +2152,27 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2621,6 +2679,12 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
