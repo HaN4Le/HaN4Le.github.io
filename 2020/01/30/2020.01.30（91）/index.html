@@ -256,7 +256,7 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/91.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">236</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">668</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -464,6 +464,69 @@ height:50vh;
 </li>
 </ol>
 </blockquote>
+<h3 id="font-color-brown三-give-you-flagfont"><a class="markdownIt-Anchor" href="#font-color-brown三-give-you-flagfont"></a> <font color="brown">三、give you flag</font></h3>
+<h4 id="font-color-navy1基础知识font-3"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-3"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><font color="orange">二维码的原理</font></p>
+<ul>
+<li><a href="http://blog.sae.sina.com.cn/archives/1139" target="_blank" rel="noopener">http://blog.sae.sina.com.cn/archives/1139</a></li>
+<li><a href="https://blog.csdn.net/weiwei9363/article/details/81112795" target="_blank" rel="noopener">https://blog.csdn.net/weiwei9363/article/details/81112795</a></li>
+<li><a href="https://blog.csdn.net/u012611878/article/details/53167009" target="_blank" rel="noopener">https://blog.csdn.net/u012611878/article/details/53167009</a></li>
+</ul>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-3"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-3"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-8.jpg" alt></p>
+<h4 id="font-color-navy3做题步骤font-3"><a class="markdownIt-Anchor" href="#font-color-navy3做题步骤font-3"></a> <font color="navy">3.做题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>下载并打开附件，发现是一张格式为 gif 的图片，在图片最后会看到一个类似于二维码的图片，但是出现的时间太短了，无法截图</p>
+<p><img src="/images/91-9.jpg" alt></p>
+</li>
+<li>
+<p>那怎么办呢？一个字，“干”就完事了！写脚本，将这个 gif 动图一帧一帧的分离出来，说写咱就写！</p>
+<p><img src="/images/91-10.jpg" alt></p>
+</li>
+<li>
+<p>运行脚本就能得到 gif 每一帧的图片，其中红框标的的图片（名字为 49.jpg）的就是我们要得到的图片</p>
+<p><img src="/images/91-11.jpg" alt></p>
+</li>
+<li>
+<p>打开图片后，发现这并不是一个完整的二维码，那么这里就需要<font color="navy">“基础知识”</font>中所给连接的知识了。在查过相关资料后，发现得到的“残二维码”缺少三个定位图形，下面用 PS 将这三个定位图形加上，得到如下的图片：</p>
+<p><img src="/images/91-12.png" alt></p>
+</li>
+<li>
+<p>打开微信扫描二维码，得到 flag</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="font-color-brown四-坚持-60-sfont"><a class="markdownIt-Anchor" href="#font-color-brown四-坚持-60-sfont"></a> <font color="brown">四、坚持 60 s</font></h3>
+<h4 id="font-color-navy1基础知识font-4"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-4"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><strong>java 的逆向</strong>：JD — GUI</p>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-4"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-4"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-13.jpg" alt></p>
+<h4 id="font-color-navy3做题步骤font-4"><a class="markdownIt-Anchor" href="#font-color-navy3做题步骤font-4"></a> <font color="navy">3.做题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>下载附件，发现是一个 java 程序包，运行该程序（前提电脑要有 java 运行环境），如下图：</p>
+<p><img src="/images/91-14.jpg" alt></p>
+</li>
+<li>
+<p>开始玩这个游戏，发现自己怎么也坚持不住 60s，无奈只能对该程序进行逆向（我用的是 JD - GUI），在逆向的结果中搜索“flag”，发现在“PlaneGameFrame.class”中有该结果，于是打开该文件，得到如下结果：</p>
+<p><img src="/images/91-15.jpg" alt></p>
+</li>
+<li>
+<p>发现 flag 中的好像进行了 base64 加密，于是用 python 进行解密，如下：</p>
+<p><img src="/images/91-16.jpg" alt></p>
+</li>
+<li>
+<p>提交 flag ，回答正确。</p>
+</li>
+</ol>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -472,7 +535,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">https://muzibing.github.io/2020/01/30/2020.01.30（91）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">January 30th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">January 30th 2020, 6:57:16 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">February 2nd 2020, 3:02:50 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -619,7 +682,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-pdffont"><span class="toc-number">1.</span> <span class="toc-text"> 一、PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-如来十三掌font"><span class="toc-number">2.</span> <span class="toc-text"> 二、如来十三掌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-pdffont"><span class="toc-number">1.</span> <span class="toc-text"> 一、PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-如来十三掌font"><span class="toc-number">2.</span> <span class="toc-text"> 二、如来十三掌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-give-you-flagfont"><span class="toc-number">3.</span> <span class="toc-text"> 三、give you flag</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-坚持-60-sfont"><span class="toc-number">4.</span> <span class="toc-text"> 四、坚持 60 s</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-4"><span class="toc-number">4.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-4"><span class="toc-number">4.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-4"><span class="toc-number">4.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
