@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">668</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -527,6 +527,145 @@ height:50vh;
 </li>
 </ol>
 </blockquote>
+<h3 id="font-color-brown五-giffont"><a class="markdownIt-Anchor" href="#font-color-brown五-giffont"></a> <font color="brown">五、gif</font></h3>
+<h4 id="font-color-navy1基础知识font-5"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-5"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><strong>python 的 <a href="https://www.runoob.com/python/os-file-methods.html" target="_blank" rel="noopener">os</a> 和 <a href="https://pillow.readthedocs.io/en/stable/" target="_blank" rel="noopener">Pillow</a> 模块</strong></p>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-5"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-5"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-17.jpg" alt></p>
+<h4 id="font-color-navy3解题步骤font"><a class="markdownIt-Anchor" href="#font-color-navy3解题步骤font"></a> <font color="navy">3.解题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>下载附件，解压压缩包，打开 gif 文件夹，发现该文件夹里面由下面一系列图片构成：</p>
+<p><img src="/image/91-18.jpg" alt></p>
+</li>
+<li>
+<p>这些图片代表什么意思呢？在分析了这些图片之后，得到大概的一个想法：这些图片是只由黑、白两种纯色构成，那么黑白的意思是不是代表 二进制中的1 和 0 呢？本着这个想法，我们开始想办法将这些图片用 1 和 0 代替。PS：因为图片太多，我想着用脚本来识别这些图片，再输出相应的数字，脚本如下：</p>
+<p><img src="/images/91-19.jpg" alt></p>
+</li>
+<li>
+<p>运行脚本，得到如下的结果：</p>
+<p><img src="/images/91-20.jpg" alt></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="font-color-brown六-掀桌子font"><a class="markdownIt-Anchor" href="#font-color-brown六-掀桌子font"></a> <font color="brown">六、掀桌子</font></h3>
+<h4 id="font-color-navy1基础知识font-6"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-6"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><strong>ASCII 值和字符的对应关系</strong></p>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-6"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-6"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-22.png" alt></p>
+<h4 id="font-color-navy3解题步骤font-2"><a class="markdownIt-Anchor" href="#font-color-navy3解题步骤font-2"></a> <font color="navy">3.解题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>打开题目，看到题目中给出一串字符串，但是这和掀桌子有什么关系呢？？？？？？？</p>
+<p>难道只是将这些字符转代表的 ASCII 值转换为对应的字符？？？？？</p>
+</li>
+<li>
+<p>下面查查这些字符有多少吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;    &gt;&gt;&gt; len(<span class="string">"c8e9aca0c6f2e5f3e8c4efe7a1a0d4e8e5a0e6ece1e7a0e9f3baa0e8eafae3f9e4eafae2eae4e3eaebfaebe3f5e7e9f3e4e3e8eaf9eaf3e2e4e6f2"</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>得到的答案是“118”，正好是偶数，那么两两字符的 ASCII 值正好对应一个字符，说干就干！！</p>
+<ol start="3">
+<li>
+<p>写出脚本，计算出两两字符的ASCII值，并转换为对应的字符：</p>
+<p><img src="/images/91-23.jpg" alt></p>
+<p>得到如下的结果：</p>
+<p><img src="/images/91-24.jpg" alt></p>
+<p>从上面的结果可以看到，得到的 ASCII 值均大于 128，那么我们再减去 128 的基础上，算出他们的字符，代码如下：</p>
+<p><img src="/images/91-25.jpg" alt></p>
+<p>执行修改过的代码，得到如下结果：</p>
+<p><img src="/images/91-26.jpg" alt></p>
+<p>从上图的红圈中可以看到“flag is”说明我们的思路没有错误，那么下面我们只需要提交 flag{hjzcydjzbjdcjkzkcugisdchjyjsbdfr} 即可</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="font-color-brown七-simplerarfont隐写题"><a class="markdownIt-Anchor" href="#font-color-brown七-simplerarfont隐写题"></a> <font color="brown">七、SimpleRAR</font>（隐写题）</h3>
+<h4 id="font-color-navy1基础知识font-7"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-7"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><strong>png 在 WinRAR 中的文件头格式</strong>：<a href="https://wenku.baidu.com/view/b7889b64783e0912a2162aa4.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/b7889b64783e0912a2162aa4.html</a></p>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-7"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-7"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-28.jpg" alt></p>
+<h4 id="font-color-navy3解题步骤font-3"><a class="markdownIt-Anchor" href="#font-color-navy3解题步骤font-3"></a> <font color="navy">3.解题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>下载附件，并解压附件，只得到一个 “flag.txt” 的文件，打开该文件文件，得到如下内容：</p>
+<p><img src="/images/91-29.jpg" alt></p>
+<p>从这个文件里面并没有得到实际的信息，那么下一步的思路是什么呢？</p>
+</li>
+<li>
+<p>查了查相关的 writeup 才知道这个压缩包用 WinRAR 打开，修改一下数据：</p>
+<p><img src="/images/91-27.jpg" alt></p>
+<p>将上述蓝色阴影的 “A” 换成 “4”，然后保存，再将文件进行解压，得到如下的文件：</p>
+<p><img src="/images/91-30.jpg" alt></p>
+</li>
+<li>
+<p>用 WinRAR 打开 secret.png 图片，得到下面的信息：</p>
+<p><img src="/images/91-31.jpg" alt></p>
+<p>通过查阅资料，可以得到文件以“47 49 46 38 39 61”开头的图片格式是 gif 格式</p>
+<p><img src="/images/91-32.jpg" alt></p>
+</li>
+<li>
+<p>将文件后缀名改为 <strong>.gif</strong>，再打开文件但是没有什么反应，于是用 Photoshop 打开该文件，可以看出有两个图层：</p>
+<p><img src="/images/91-33.jpg" alt></p>
+</li>
+<li>
+<p>分别将这两个图层单独保存成两个 png 文件：1.png 和 2.png，再用 StegSolve 分别打开这两个图片，会得到两个图形，如下：</p>
+<p><img src="/images/91-34.jpg" alt></p>
+</li>
+<li>
+<p>将这两个图形合到一起，再增加一个定位图形，会得到一个完整的二维码：</p>
+<p><img src="/images/91-35.png" alt></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="font-color-brown八-base64stegofont隐写题"><a class="markdownIt-Anchor" href="#font-color-brown八-base64stegofont隐写题"></a> <font color="brown">八、base64Stego</font>（隐写题）</h3>
+<h4 id="font-color-navy1基础知识font-8"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-8"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote>
+<p><strong>base64 的隐写</strong>：</p>
+<ul>
+<li><a href="https://www.tr0y.wang/2017/06/14/Base64steg/index.html" target="_blank" rel="noopener">https://www.tr0y.wang/2017/06/14/Base64steg/index.html</a></li>
+<li><a href="https://cltheorem.github.io/2018/10/base64%E9%9A%90%E5%86%99/" target="_blank" rel="noopener">https://cltheorem.github.io/2018/10/base64隐写/</a></li>
+</ul>
+<p><strong>python 的几个方法</strong>:</p>
+<ul>
+<li>zfill 方法</li>
+<li>index 方法</li>
+<li>readlines 方法</li>
+<li>count 方法</li>
+</ul>
+</blockquote>
+<h4 id="font-color-navy2题目要求font-8"><a class="markdownIt-Anchor" href="#font-color-navy2题目要求font-8"></a> <font color="navy">2.题目要求</font></h4>
+<p><img src="/images/91-36.jpg" alt></p>
+<h4 id="font-color-navy3解题步骤font-4"><a class="markdownIt-Anchor" href="#font-color-navy3解题步骤font-4"></a> <font color="navy">3.解题步骤</font></h4>
+<blockquote>
+<ol>
+<li>
+<p>下载并打开附件，发现好多行都是类似于 base64 编码后的数据，于是第一开始的思路是将这些数据 通过自己写的 base64 解码工具进行解码，脚本如下：</p>
+<p><img src="/images/91-37.jpg" alt></p>
+<p>运行脚本，得到如下的结果：</p>
+<p><img src="/images/91-38.jpg" alt></p>
+</li>
+<li>
+<p>通过分析得到的文本，并没有得到想要的 flag，但是得出这是一道隐写题：有关 base64 的隐写题，在查阅而资料后（第一部分的两个链接），写出了如下的脚本：</p>
+<p><img src="/images/91-39.jpg" alt></p>
+<p>运行脚本，得到 flag：</p>
+<p><img src="/images/91-40.jpg" alt></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="font-color-brown九-ext3font"><a class="markdownIt-Anchor" href="#font-color-brown九-ext3font"></a> <font color="brown">九、ext3</font></h3>
+<h4 id="font-color-navy1基础知识font-9"><a class="markdownIt-Anchor" href="#font-color-navy1基础知识font-9"></a> <font color="navy">1.基础知识</font></h4>
+<blockquote></blockquote>
 
     </article>
     <!-- license  -->
@@ -535,7 +674,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">https://muzibing.github.io/2020/01/30/2020.01.30（91）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">January 30th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">February 2nd 2020, 3:02:50 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/01/30/2020.01.30（91）/">February 4th 2020, 3:56:32 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -682,7 +821,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-pdffont"><span class="toc-number">1.</span> <span class="toc-text"> 一、PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-如来十三掌font"><span class="toc-number">2.</span> <span class="toc-text"> 二、如来十三掌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-give-you-flagfont"><span class="toc-number">3.</span> <span class="toc-text"> 三、give you flag</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-坚持-60-sfont"><span class="toc-number">4.</span> <span class="toc-text"> 四、坚持 60 s</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-4"><span class="toc-number">4.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-4"><span class="toc-number">4.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-4"><span class="toc-number">4.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-pdffont"><span class="toc-number">1.</span> <span class="toc-text"> 一、PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-如来十三掌font"><span class="toc-number">2.</span> <span class="toc-text"> 二、如来十三掌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-give-you-flagfont"><span class="toc-number">3.</span> <span class="toc-text"> 三、give you flag</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-坚持-60-sfont"><span class="toc-number">4.</span> <span class="toc-text"> 四、坚持 60 s</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-4"><span class="toc-number">4.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-4"><span class="toc-number">4.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3做题步骤font-4"><span class="toc-number">4.3.</span> <span class="toc-text"> 3.做题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown五-giffont"><span class="toc-number">5.</span> <span class="toc-text"> 五、gif</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-5"><span class="toc-number">5.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-5"><span class="toc-number">5.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3解题步骤font"><span class="toc-number">5.3.</span> <span class="toc-text"> 3.解题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown六-掀桌子font"><span class="toc-number">6.</span> <span class="toc-text"> 六、掀桌子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-6"><span class="toc-number">6.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-6"><span class="toc-number">6.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3解题步骤font-2"><span class="toc-number">6.3.</span> <span class="toc-text"> 3.解题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown七-simplerarfont隐写题"><span class="toc-number">7.</span> <span class="toc-text"> 七、SimpleRAR（隐写题）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-7"><span class="toc-number">7.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-7"><span class="toc-number">7.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3解题步骤font-3"><span class="toc-number">7.3.</span> <span class="toc-text"> 3.解题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown八-base64stegofont隐写题"><span class="toc-number">8.</span> <span class="toc-text"> 八、base64Stego（隐写题）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-8"><span class="toc-number">8.1.</span> <span class="toc-text"> 1.基础知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2题目要求font-8"><span class="toc-number">8.2.</span> <span class="toc-text"> 2.题目要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3解题步骤font-4"><span class="toc-number">8.3.</span> <span class="toc-text"> 3.解题步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown九-ext3font"><span class="toc-number">9.</span> <span class="toc-text"> 九、ext3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1基础知识font-9"><span class="toc-number">9.1.</span> <span class="toc-text"> 1.基础知识</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
