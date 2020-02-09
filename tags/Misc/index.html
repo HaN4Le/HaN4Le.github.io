@@ -363,7 +363,7 @@
     <article class="index-post">
         <a class="abstract-title" href="/2020/01/30/2020.01.30（91）/">
             
-                <span>XCFT misc新手阶段 —— writeup</span>
+                <span>【WP】XCFT misc新手阶段</span>
         </a>
         <div class="abstract-content">
              一、PDF
@@ -2055,7 +2055,7 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">XCFT misc新手阶段 —— writeup</a>
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">【WP】XCFT misc新手阶段</a>
         </li>
     
     
@@ -2673,22 +2673,62 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+    </body>
+</html>
+
+
+/div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "MUZIBing"
+    }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
 </html>
 
 
