@@ -361,6 +361,90 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/02/09/2020.02.09（92）/">
+            
+                <span>[Untitled Post]</span>
+        </a>
+        <div class="abstract-content">
+            
+
+
+文件类型
+文件头
+文件尾
+
+
+
+
+JPEG
+FFD8FF
+FF D9
+
+
+PNG (png)
+89504E47
+AE 42 60 82
+
+
+GIF (gif)
+47494638
+00 3B
+
+
+ZIP Archive (zip)
+504B0304
+50 4B
+
+
+TIFF (tif)
+49492A00
+——
+
+
+Windows Bitmap (bmp)
+424D
+——
+
+
+CAD (dwg)
+41433130
+——
+
+
+Adobe Photoshop (psd)
+38425053
+——
+
+
+Rich Text Format (rtf)
+7B5C727466
+——
+
+
+XML (xm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/01/30/2020.01.30（91）/">
             
                 <span>【WP】XCFT misc新手阶段</span>
@@ -766,50 +850,6 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
         <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/17/2019.09.17（82）/">
-            
-                <span>bash 漏洞（pwnable-shellshock）</span>
-        </a>
-        <div class="abstract-content">
-             一、前言
-
-pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
-
- 二、基础知识
- 1.setresuid
-
-setresuid() 被执行的条件有：
-    ① 当前进程的 euid 是 root
-    ② 三个参数，每个等于原来某个 id 中的一个
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -2427,16 +2467,9 @@ setresuid() 被执行的条件有：
     
     
     
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 91
+        Total : 92
         </div>
         <!-- search  -->
         
@@ -2453,6 +2486,11 @@ setresuid() 被执行的条件有：
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href="/2020/02/09/2020.02.09（92）/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3074,7 +3112,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
