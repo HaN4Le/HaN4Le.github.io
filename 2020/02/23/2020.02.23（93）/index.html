@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="MUZIBing">
     <meta name="renderer" content="webkit">
@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>MUZIBing&#39;s BLOG</title>
+    <title>【转载】文件 HOSTS 的简介和修改方法 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -213,17 +213,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  -->
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
     
+        <body class="post-body">
     
-<header class="header">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">【转载】文件 HOSTS 的简介和修改方法</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">MUZIBing's BLOG</a>
 </header>
@@ -235,24 +246,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/93.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            【转载】文件 HOSTS 的简介和修改方法
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/23</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -353,441 +414,171 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/07/2019.03.07（13）/">
-            
-                <span>Misc：Invisible flag解题总结</span>
-        </a>
-        <div class="abstract-content">
-                  昨天对隐写题做了个大概的总结，发现关于图片的信息隐写的总结还不完整，对于png格式的图像只是说了LSB方法，今天看到Misc：Invisible flag题目，再来说一个关于png隐写的类型：实质还是通过png格式的结构来隐写的。
- 1.前期准备
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="一-什么是-hosts"><a class="markdownIt-Anchor" href="#一-什么是-hosts"></a> 一、什么是 hosts</h2>
+<p>hosts —— the static table lookup for host name（主机名查询静态表）。</p>
+<p>hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。</p>
+<p>Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D/86062" target="_blank" rel="noopener">域名</a>与其对应的<a href="https://baike.baidu.com/item/IP%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">IP地址</a>建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从<a href="https://baike.baidu.com/item/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">Hosts文件</a>中寻找对应的<a href="https://baike.baidu.com/item/IP%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">IP地址</a>，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener">域名解析</a>服务器进行IP地址的解析。</p>
+<p>优先级 ： dns缓存 &gt; hosts &gt; dns服务</p>
+<h2 id="二-hosts的位置"><a class="markdownIt-Anchor" href="#二-hosts的位置"></a> 二、hosts的位置</h2>
+<p><a href="https://laod.cn/tag/hosts" target="_blank" rel="noopener">hosts</a>在各个系统中所在的文件夹：</p>
+<ul>
+<li>Windows 系统<a href="https://laod.cn/tag/host" target="_blank" rel="noopener">host</a>s位于 C:\Windows\System32\drivers\etc\hosts</li>
+<li>Android（安卓）系统hosts位于 /etc/hosts</li>
+<li>Mac（苹果电脑）系统hosts位于 /etc/hosts</li>
+<li>iPhone（iOS）系统hosts位于 /etc/hosts</li>
+<li>Linux系统hosts位于 /etc/hosts</li>
+<li>绝大多数Unix系统都是在 /etc/hosts</li>
+</ul>
+<h2 id="三-hosts的内容"><a class="markdownIt-Anchor" href="#三-hosts的内容"></a> 三、hosts的内容</h2>
+<p>Windows版本的hosts文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line"># # This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line">#</span><br><span class="line"> # This file contains the mappings of IP addresses to host names. Each </span><br><span class="line"># entry should be kept on an individual line. The IP address should</span><br><span class="line"># be placed in the first column followed by the corresponding host name. </span><br><span class="line"># The IP address and the host name should be separated by at least one </span><br><span class="line"># space.</span><br><span class="line"># </span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"># lines or following the machine name denoted by a &apos;#&apos; symbol.</span><br><span class="line"># </span><br><span class="line"># For example:</span><br><span class="line">#</span><br><span class="line"> # 102.54.94.97 rhino.acme.com # source server</span><br><span class="line"> # 38.25.63.10 x.acme.com # x client host</span><br><span class="line"># localhost name resolution is handled within DNS itself.</span><br><span class="line"> # 127.0.0.1 localhost</span><br><span class="line"># ::1 localhost</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>#后都是注释，所以清空hosts文件对系统正常运行并没有什么影响。</p>
+<p>在一个局域网中，每台机器都有一个主机名，用于区分主机，便于相互访问。</p>
+<p>一般/etc/hosts的内容一般有如下类似内容：</p>
+<p>127.0.0.1  localhost.localdomain   localhost</p>
+<p>192.168.1.100   <a href="http://linumu100.com" target="_blank" rel="noopener">linumu100.com</a>   linumu100</p>
+<p>192.168.1.120  ftpserver   ftp120</p>
+<p>一般情况下hosts文件的每行尾一个主机，每行由三部分组成，每个部分由空格隔开。</p>
+<p>第一部分：网络IP地址；</p>
+<p>第二部分：主机名或域名；</p>
+<p>第三部分：主机名别名；</p>
+<p>当然每行也可以是两部分，即主机IP地址和主机名。</p>
+<p>主机名（hostname)和域名（domain)的区别：</p>
+<p>主机名通常在局域网内使用，通过hosts文件，主机名就被解析到对应IP;</p>
+<p>域名通常在INTERNET上使用，但如果本机不想使用internet上的域名解析，这时就可以更改hosts文件，加入自己的域名解析。</p>
+<h2 id="四-hosts的作用"><a class="markdownIt-Anchor" href="#四-hosts的作用"></a> 四、hosts的作用</h2>
+<p>1、加快<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener">域名解析</a></p>
+<p>对于要经常访问的网站，我们可以通过在Hosts中配置<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>和IP的映射关系，提高域名解析速度。由于有了映射关系，当我们输入域名计算机就能很快解析出IP，而不用请求网络上的DNS服务器。</p>
+<p>2、方便局域网用户</p>
+<p>在很多单位的局域网中，会有服务器提供给用户使用。但由于局域网中一般很少架设DNS服务器，访问这些服务器时，要输入难记的IP地址。这对不少人来说相当麻烦。可以分别给这些服务器取个容易记住的名字，然后在Hosts中建立IP映射，这样以后访问的时候，只要输入这个服务器的名字就行了。</p>
+<p>3、屏蔽网站（<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E9%87%8D%E5%AE%9A%E5%90%91" target="_blank" rel="noopener">域名重定向</a>）</p>
+<p>有很多网站不经过用户同意就将各种各样的<a href="https://baike.baidu.com/item/%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">插件</a>安装到你的计算机中，其中有些说不定就是木马或病毒。对于这些网站我们可以利用Hosts把该网站的<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>映射到错误的IP或本地计算机的IP，这样就不用访问了。</p>
+<p>4、顺利连接系统</p>
+<p>对于Lotus的服务器和一些<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">数据库服务器</a>，在访问时如果直接输入IP地址那是不能访问的，只能输入服务器名才能访问。那么我们配置好Hosts文件，这样输入服务器名就能顺利连接了。</p>
+<p>5.虚拟域名</p>
+<p>很多时候，网站建设者需要把”软环境“搭建好，再进行上传调试。但类似于邮件服务，则需要使用域名来辅助调试，这时就可以将本地 IP 地址与一个”虚拟域名“做地址指向，就可以达到要求的效果，且无需花费。如：</p>
+<ul>
+<li>127.0.0.1 网站域名</li>
+<li>之后在浏览器地址栏中输入对应的网站域名即可。</li>
+</ul>
+<h2 id="五-如何修改hosts"><a class="markdownIt-Anchor" href="#五-如何修改hosts"></a> 五、如何修改hosts</h2>
+<h3 id="1-屏蔽网站域名重定向"><a class="markdownIt-Anchor" href="#1-屏蔽网站域名重定向"></a> 1、屏蔽网站（域名重定向）</h3>
+<p>在WINDOWS系统中，约定 127.0.0.1 为本地计算机的IP地址, 0.0.0.0是错误的IP地址。</p>
+<p>如果，我们在hosts中，写入以下内容：</p>
+<p>127.0.0.1 要屏蔽的网站A的域名</p>
+<p>0.0.0.0 要屏蔽的网站B的域名</p>
+<p>这样，计算机<a href="https://baike.baidu.com/item/%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">解析域名</a>A和 B时，就解析到本机IP或错误的IP，达到了屏蔽网站A 和B的目的。</p>
+<p>在修改hosts文件时候，还常常遇到修改保存后无效的情况，这里要提醒大家注意的一点：很多人是写在最后行，写完最后一行后在没有回车的情况下，这一行是不生效的。一定要记得回车。建议大家遵循这样的习惯：“ip地址+Tab+<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>+换行” 添加记录。</p>
+<h3 id="2-局域网用户访问"><a class="markdownIt-Anchor" href="#2-局域网用户访问"></a> 2、局域网用户访问</h3>
+<p>如果，我们在A主机的hosts中，写入以下内容：</p>
+<p>B主机的ip B主机名</p>
+<p>这样我们就可以通过B主机名找到B主机及其服务。</p>
+<h3 id="3-android系统的hosts修改"><a class="markdownIt-Anchor" href="#3-android系统的hosts修改"></a> 3、android系统的hosts修改</h3>
+<p>在 Android 下，/etc 是 link 到 /system/etc 的，我们需要修改 /system/etc/hosts 来实现。但是这个文件是只读，不能通过 shell 直接修改。可以通过连接到 PC 上使用 adb 来修改。步骤如下：</p>
+<p>（1）获得<a href="https://baike.baidu.com/item/root%E6%9D%83%E9%99%90" target="_blank" rel="noopener">root权限</a>：adb root</p>
+<p>（2）设置/system为可读写：adb remount</p>
+<p>（3）将<a href="https://baike.baidu.com/item/hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">hosts文件</a>复制到PC：adb pull /system/etc/hosts</p>
+<p>（4）修改PC机上文件</p>
+<p>（5）将PC机上文件复制到手机：adb push /system/etc/hosts</p>
+<p>如果要查看是否修改成功，可以在PC上执行adb shell，运行cat /system/etc/hosts;或者在手机上运行cat /system/etc/hosts。</p>
+<p>在Android系统中，hosts文件格式有一点与PC机Linux不同：不能在一行中一个IP对应多个<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>，比如：</p>
+<p>127.0.0.1 <a href="http://host1.example.com" target="_blank" rel="noopener">host1.example.com</a> <a href="http://host2.example.com" target="_blank" rel="noopener">host2.example.com</a> <a href="http://host3.example.com" target="_blank" rel="noopener">host3.example.com</a></p>
+<p>在大多PC机Linux系统是合法的，但不能在Android上起作用，需要拆成每个域名一行才能使用：</p>
+<p>x.x.x.x <a href="http://host1.example.com" target="_blank" rel="noopener">host1.example.com</a></p>
+<p>x.x.x.x <a href="http://host2.example.com" target="_blank" rel="noopener">host2.example.com</a></p>
+<p>x.x.x.x <a href="http://host3.example.com" target="_blank" rel="noopener">host3.example.com</a></p>
+<h3 id="4-通过修改hosts上google"><a class="markdownIt-Anchor" href="#4-通过修改hosts上google"></a> 4、通过修改hosts上google</h3>
+<p>第一步：下载可以正常使用的hosts文件</p>
+<p>可以在百度搜索类似“Google hosts”等相关关键词或者老D，找到最新可用的host文件。</p>
+<p>第二步：修改本地hosts文件</p>
+<p>在电脑系统中找到hosts，路径基本上是C:\Windows\System32\drivers\etc，然后将下载的hosts文件将本地hosts文件替换，或者在本地hosts文件中直接在地址栏修改即可！</p>
+<p>第三步：刷新本地dns</p>
+<p>第二步完成本地hosts文件的修改之后，可以使用dos命令完成最后的操作。</p>
+<p>（1）使用WIN+R键，启动运行，键入cmd</p>
+<p>（2）在dos界面输入“ipcong /flushdns”</p>
+<p>（3）dos命令窗提示“已成功刷新DNS解析缓存”，就完成了。</p>
+<h2 id="六-其他"><a class="markdownIt-Anchor" href="#六-其他"></a> 六、其他</h2>
+<h3 id="1-怎么获取域名所对应的ip地址"><a class="markdownIt-Anchor" href="#1-怎么获取域名所对应的ip地址"></a> 1、怎么获取域名所对应的IP地址</h3>
+<p>打开“开始――运行”，输入“cmd”，在命令行界面输入“ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>”，回车。</p>
+<p>显示结果类似：Reply from 220.181.6.18:bytes=32 time=24msTTL=55。</p>
+<p>其中的220.181.6.18就是域名所对应IP地址（百度的）。呵呵！</p>
+<h3 id="2-修改hosts后生效方法"><a class="markdownIt-Anchor" href="#2-修改hosts后生效方法"></a> 2、修改hosts后生效方法</h3>
+<p>（1）Windows</p>
+<p>开始 -&gt; 运行 -&gt; 输入cmd -&gt; 在CMD窗口输入</p>
+<p>ipconfig /flushdns</p>
+<p>（2）Linux</p>
+<p>打开终端</p>
+<p>重启网络：</p>
+<p>sudo /etc/init.d/networking restart</p>
+<p>desktop版可以这样重启：</p>
+<p>sudo service network-manager restart</p>
+<p>如果只是修改了某个网卡(例如eth0)的信息，也可以通过重启网卡的方式使其修改生效。</p>
+<p>sudo ifdown eth0 sudo ifup eth0</p>
+<p>如果不懂请都尝试下</p>
+<p>（3）Mac OS X终端输入</p>
+<p>sudo killall -HUP mDNSResponder</p>
+<p>（4）Android</p>
+<p>开启飞行模式 -&gt; 关闭飞行模式</p>
+<p>（5）通用方法</p>
+<p>拔网线(断网) -&gt; 插网线(重新连接网络)</p>
+<p>如不行请清空浏览器缓存（建议不要使用国产浏览器，请使用谷歌Chrome浏览器）</p>
 
-
-工具：010editor
-知识：png格式的文件结构
-
-
- 2.思考过程
-1.png图片文档结构是什么？
-
-     其实这个问题在昨天的总结里面已经有过介绍，但是有关png图片文件的结构对今天的解题至关重要，那么在详细地讲述一下。
-     png除了开始的文件标识头，PNG还定义了两种数据块：关键数据块和辅助数据块。关键数据...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/06/2019.03.06（12）/">
-            
-                <span>学习总结（1）：隐写术</span>
-        </a>
-        <div class="abstract-content">
-                   已经做了13道题目，虽然每次做完题后都会记录一下学习的过程，总结一下相关知识点，但是这几天感觉心里有这些知识，但是没有形成一个体系，也许下次再做的时候可能就不会了，那么这几天主要是对前面几天所学知识进行一下总结，让自己明白每个只是背后的学科是什么样的。
- 1. 知识目录
-
-     (1)隐写问题：图片隐写（LSB、EXIF和图片格式）和文档隐写（docx）；
-     (2)流量分析问题：HTTP流量分析、TCP分析、其他流量分析；
-     (3)密码破解问题：明文破解、暴力破解；
-     (4)python：python使用、第三方库的使用；
-
- 2. 知识详解——...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（93）/">https://muzibing.github.io/2020/02/23/2020.02.23（93）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（93）/">February 23rd 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（93）/">February 23rd 2020, 8:40:59 am</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/05/2019.03.05（11）/">
-            
-                <span>Misc：Forensics2解题总结 + 学习总结</span>
-        </a>
-        <div class="abstract-content">
-                    今天又成功解出两道题，虽然很累，但是带来的收获确实很大，今天先总结一下关于Misc：Forensics2题目的知识吧。（PS：越往下做越感觉难度增加，我准备先继续做题了，这两天再好好的回顾和总结一下以前的知识点）
- 1. 前期准备
-
-
-工具：wireshark
-知识：ICMP、ARP、SSH、NFS、RPC有关知识
-
-
- 2. 思考过程
-
-
-上述协议的工作原理是什么？功能是什么？
-
-
-ICMP：它位于ISO参考模型的网络层，是网络控制报文协议，当IP数据包传送过程中发生错误时（源点抑制、路由不可达、参数问题等），ICMP协议会将错误信息封包，然后返回给主机。它有两大类：查...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/04/2019.03.04（10）/">
-            
-                <span>Misc：PkCrack解题总结 + 学习总结</span>
-        </a>
-        <div class="abstract-content">
-                   花了将近一天的时间终于在刚才把Web：Rapid Typing这道题做出来了，本来是打算做Calculator的，但是每次提交上去返回的页面还是计算页面，并没有返回结果，等写完总结再好好看看那道题，今天我先不总结做出来的题，总结一下前天Misc：PkCrack这道题。
- 1. 前期准备
-
-
-工具：Advanced Zip Password Recovery
-数据：一个加密zip文件（secret.txt和sqlmap_1.1.10.py）、一个明文zip文件（sqlmap_1.1.10.py）
-
-
- 2. 知识储备
-
-
-什么是明文攻击?
-明文攻击是指在已知压缩加密文件内某个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/2019.03.03（9）/">
-            
-                <span>Misc：shell解题总结 + 学习总结</span>
-        </a>
-        <div class="abstract-content">
-                    前天在写了有关流量分析的总结后，我昨天又趁热打铁把shell这道题做了出来，今天就分析一下这道题的相关问题吧！
- 1. 前期准备
-
-
-工具：wireshark、base64解码器
-对象：shell流量包
-知识：TCP的建立、传输和释放的过程
-
-
- 2. 知识疑问
-
-
-面对这么多的流量，该从何入手？
-怎么对TCP进行流量追踪？
-python中raw_input()的功能是什么？
-python中swapcase()的功能是什么？
-
-
- 3. 思考过程
-
-
-面对这么多的流量，该从何入手？
-对于这个问题，说实话一开始也是无处下手，毕竟题目中也没有给出直接的提示，那我就认真的看了看...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/02/2019.03.02（8）/">
-            
-                <span>Misc：Exif 解题总结 + 学习总结</span>
-        </a>
-        <div class="abstract-content">
-                    昨天详细的介绍了有关HTTP协议的流量分析，那么今天就来说一下Misc：Exif这道题目的详细内容吧。
- 1. 前期准备
-
-
-知识点：exif、编码类型
-工具：ExifTool
-
-
- 2.相关知识
-
-
-Exif介绍
-可交换图像文件格式（英语：Exchangeable image file format，官方简称Exif），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。（以上来源百度百科）这些属性信息主要包括：光圈大小、快门速度、白平衡、ISO速度、焦距大小、日期时间等各种和拍摄条件以及相机品牌、型号、色彩编码等信息。
-如何查看Exif信息
-
-
-本地查...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/01/2019.03.01（7）/">
-            
-                <span>Misc：Forensics1 解题总结</span>
-        </a>
-        <div class="abstract-content">
-                   今天解出了两道题目：Misc：Forensics1和Misc：Exif，因为以前接触过流量分析和HTTP的知识，今天就先写一下关于Forensics1这道题的总结吧！
- 1. 前期准备
-
-
-工具：wireshark
-知识：HTTP协议（协议过程、请求方法）
-
-
- 2.HTTP有关知识
-
-1) HTTP介绍
-       HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它是一个基于TCP/IP的属于应用层协议，工作模式为客户/服务器模式，HTTP协议是无连接、无状态的协议，端口号默认为...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/28/2019.02.28（6）/">
-            
-                <span>Crypto：What&#39;s RSA？解题总结（1）</span>
-        </a>
-        <div class="abstract-content">
-            今天解题内容是Crypto：What’s RSA。在本科学习《计算机网络》时，老师在讲解加密和解密的内容时，就对RSA做了简单的介绍，但并没有深入讲它的原理。虽然今天花了很长时间还是没有把它解出来，那就先写一下今天学习关于RSA的知识吧。
- 1.什么是RSA
-
-       RSA是第一个既能用于数据加密也能用于数字签名的算法，它的命名是以其三位发明者的名字命名——Ron Rivest、 Adi Shamir和Leonard Adleman。
-
- 2.RSA算法原理
-
-       ① 首先选取两个大素数p和q，为了获得更高的安全性，设两数的长度一样；
-       ② 计算n = p*...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/27/2019.02.27（5）/">
-            
-                <span>Misc:LSB解题总结+学习总结</span>
-        </a>
-        <div class="abstract-content">
-            经过查阅和学习有关资料，在不断的实践中，将Misc：LSB题目成功解出，下面就详细的总结一下有关内容，仅供大家参考。
- 1.前期准备
-
-
-工具：Stegsolve.jar
-环境：Java
-知识储备：有关LSB的原理
-
-
- 2.相关问题
-
- 1)为什么要进行图片隐写
-      在没接触图片隐形写题之前，我认为安全传递信息的途径是通过数据的加密，让攻击者及时获取信息也得不到相应的明文信息。然而图片隐写的技术，可以更好地将核心信息隐藏起来，更不易被攻击者发现。图片信息隐藏是一种对信息存在本身或信息的存在位置进行保密的保密方式，那么信息隐藏的原理是什么呢？
- 2)信息隐藏原理、相关技术
-
-原理...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/26/2019.02.26（4）/">
-            
-                <span>Misc:docx解题过程+学习总结</span>
-        </a>
-        <div class="abstract-content">
-             · 解题进度
-昨晚经过查阅案例和资料后，终于解出了Misc：docx题目，因为昨天的思考并没有深入，所以今天白天的时候又看看了相关的知识，系统的回顾了一下这道题目，今天就总结一下这道题目的相关内容。
- 1. 有关知识点
-
-
-word doxc文件本质
-文件的结构
-
-
- 2. 知识详解
-
-
-word doxc文件本质
-docx格式的文件本质上是一个ZIP文件：docx 格式文件的主要内容是保存为XML格式的，但文件并非直接保存于磁盘。它是保存在一个ZIP文件中，然后取扩展名为docx。
-doxc文件的结构
-_rels 表示资源；
-docProps 表示文档资源
-theme 表示主题、格式...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/02/09/2020.02.09（92）/" title="各种文件的文件头和文件尾总结">
+                    <div class="prevTitle">各种文件的文件头和文件尾总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/8/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/10/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -872,6 +663,24 @@ theme 表示主题、格式...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-什么是-hosts"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是 hosts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-hosts的位置"><span class="toc-number">2.</span> <span class="toc-text"> 二、hosts的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-hosts的内容"><span class="toc-number">3.</span> <span class="toc-text"> 三、hosts的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-hosts的作用"><span class="toc-number">4.</span> <span class="toc-text"> 四、hosts的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-如何修改hosts"><span class="toc-number">5.</span> <span class="toc-text"> 五、如何修改hosts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-屏蔽网站域名重定向"><span class="toc-number">5.1.</span> <span class="toc-text"> 1、屏蔽网站（域名重定向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-局域网用户访问"><span class="toc-number">5.2.</span> <span class="toc-text"> 2、局域网用户访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-android系统的hosts修改"><span class="toc-number">5.3.</span> <span class="toc-text"> 3、android系统的hosts修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-通过修改hosts上google"><span class="toc-number">5.4.</span> <span class="toc-text"> 4、通过修改hosts上google</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-其他"><span class="toc-number">6.</span> <span class="toc-text"> 六、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-怎么获取域名所对应的ip地址"><span class="toc-number">6.1.</span> <span class="toc-text"> 1、怎么获取域名所对应的IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改hosts后生效方法"><span class="toc-number">6.2.</span> <span class="toc-text"> 2、修改hosts后生效方法</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -3073,6 +2882,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -3088,7 +2899,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
 
