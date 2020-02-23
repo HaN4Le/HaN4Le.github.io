@@ -374,6 +374,46 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/07/20/2019.07.20（74）/">
+            
+                <span>乘法链算法的实现</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“乘法链算”实现的过程吧。
+
+ 一、基础知识
+
+1.模运算
+      ① 概念：模运算，即为求余数的运算
+      ② 运算符：模运算的运算符记为 mod
+            例如：a mod b = n
+            表示的意思是a 除以 b 所得的余数为 r，而上式中的 N 通常称为模数
+            例子：17 mod 11 = 6
+                   ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="密码算法">密码算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/18/2019.07.18（73）/">
             
                 <span>最小公倍数的加法算法实现</span>
@@ -741,56 +781,6 @@ SSL/TSL用户注意的事项
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/29/2019.05.29（64）/">
-            
-                <span>《图解密码技术》第十三章（PGP）学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-☛  学习的内容：
-
-PGP简介
-生成密钥对
-加密与解密
-生成和验证数字签名
-“生成数字签名并加密”和“解密并验证数字签名”
-信任网
-
-
- 一、PGP简介
-
-1.什么是PGP
-      PGP(Pretty Good Private)是一个密码软件，它将多种密码学的技术结合起来，形成的密码技术
-2.什么是OpenPGP
-      OpenPGP 是对密文和数字签名格式进行定义的标准规格，有 RFC1991、RFC2440、 RFC4880、RFC5581、RFC6637。
-
-RFC4880：增加了对RSA、DSA的支持
-RFC6637：增加了对椭圆曲线密码的支持，还增加了用于比较密...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/29</span>
             </div>
             <!-- tags  -->
             
@@ -2544,9 +2534,24 @@ RFC6637：增加了对椭圆曲线密码的支持，还增加了用于比较密.
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 93
+        Total : 94
         </div>
         <!-- search  -->
         
@@ -2567,6 +2572,11 @@ RFC6637：增加了对椭圆曲线密码的支持，还增加了用于比较密.
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【装载】 XSS 总结</a>
         </li>
     
     
@@ -3192,9 +3202,24 @@ jsonContent:
     <!-- CNZZ  -->
     
     </div>
-    <!-- async load share.js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
 
 
