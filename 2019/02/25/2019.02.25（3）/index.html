@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">679</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">671</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -422,12 +422,10 @@ height:50vh;
 <li>获取之后计算过程该怎样？</li>
 <li>如何将计算的结果返回服务器，并进行提交？</li>
 </ul>
-<p>明天我将会继续学习Python基础知识，并围着这三个问题进行学习。<br>
-前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就总结一下昨天用GitHub和Hexo上创建博客的情况吧。</p>
-<h4 id="1-前期准备"><a class="markdownIt-Anchor" href="#1-前期准备"></a> 1、前期准备</h4>
-<blockquote>
+<p>明天我将会继续学习Python基础知识，并围着这三个问题进行学习。<br>前两天创建自己的博客，花了不少时间，在翻阅很多文章后，终于成功创建，下面就总结一下昨天用GitHub和Hexo上创建博客的情况吧。</p>
+<h4 id="1、前期准备"><a href="#1、前期准备" class="headerlink" title="1、前期准备"></a>1、前期准备</h4><blockquote>
 <ul>
-<li>操作系统：windows 7</li>
+<li>操作系统：windows 7 </li>
 <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载git</a></li>
 <li><a href="https://github.com/" target="_blank" rel="noopener">注册Github账号</a></li>
 <li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载node.js</a></li>
@@ -435,19 +433,18 @@ height:50vh;
 <li><a href="http://marxi.co/" target="_blank" rel="noopener">Markdown在线编写器marxi</a></li>
 </ul>
 </blockquote>
-<h4 id="2-正式开始"><a class="markdownIt-Anchor" href="#2-正式开始"></a> 2、正式开始</h4>
-<p>1)创建GitHub仓库</p>
+<h4 id="2、正式开始"><a href="#2、正式开始" class="headerlink" title="2、正式开始"></a>2、正式开始</h4><p> 1)创建GitHub仓库</p>
 <blockquote>
-<p>仓库名称要与用户名一直，固定格式为：<a href="http://xn--eqr924avxo7pe.github.io" target="_blank" rel="noopener">用户名称.github.io</a></p>
+<p>仓库名称要与用户名一直，固定格式为：用户名称.github.io</p>
 </blockquote>
-<p>2)git与GitHub连接起来（通过SSH秘钥）</p>
+<p> 2)git与GitHub连接起来（通过SSH秘钥）</p>
 <blockquote>
 <ul>
-<li>$ssh-keygon</li>
+<li>$ssh-keygon </li>
 </ul>
-<p>//在命令行提示的路径中找到&quot;id_rsa.pub&quot;文件，并用记事本打开，复制密钥；在GitHub中找到“setting”，然后点击“SSH and GPG keys”，将复制的密钥粘贴到&quot;SSH keys&quot;中</p>
+<p>//在命令行提示的路径中找到”id_rsa.pub”文件，并用记事本打开，复制密钥；在GitHub中找到“setting”，然后点击“SSH and GPG keys”，将复制的密钥粘贴到”SSH keys”中</p>
 </blockquote>
-<p>3)确认git和Github成功连接</p>
+<p> 3)确认git和Github成功连接</p>
 <blockquote>
 <ol>
 <li>在指定位置新建一个文件夹，打开git输入</li>
@@ -457,26 +454,21 @@ height:50vh;
 <li>git remote add origin  刚才建立的github仓库的地址 //将本地的文件夹与github上的仓库连接起来了</li>
 <li>git pull origin master</li>
 </ul>
-<ol start="2">
+<ol>
 <li>查看新建的文件夹，是否有Github仓库中的文件，如有则代表连接成功</li>
 </ol>
 </blockquote>
 <p>4)安装Hexo</p>
 <blockquote>
-<p>npm install -g hexo-cli</p>
+<p>npm install -g hexo-cli </p>
 </blockquote>
-<p>5)在项目文件夹中，右击并点击&quot;Git Bash Here &quot;</p>
+<p>5)在项目文件夹中，右击并点击”Git Bash Here “</p>
 <blockquote>
-<p>hexo init //初始化文件夹<br>
-hexo install //安装一些依赖包<br>
-npm install hexo-deployer-git --save //安装插件</p>
+<p>hexo init //初始化文件夹<br>hexo install //安装一些依赖包<br>npm install hexo-deployer-git —save //安装插件</p>
 </blockquote>
 <p>6)用Visual Studio Code打开项目文件夹中的.config.yml文件</p>
 <blockquote>
-<p>type: git<br>
-repo: github仓库的地址<br>
-branch: master<br>
-<strong>注意</strong>：“：”后要有一个空格（Markdown语法规定）</p>
+<p>type: git<br>repo: github仓库的地址<br>branch: master<br><strong>注意</strong>：“：”后要有一个空格（Markdown语法规定）</p>
 </blockquote>
 <p>7)把hexo的博客部署在github仓库中</p>
 <blockquote>
@@ -489,7 +481,7 @@ branch: master<br>
 <li>更改博客主题：打开<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo官网</a>——&gt;Theme——&gt;选择自己喜欢的，按照安装要求进行安装，并在项目文件夹/theme/主题名称 的.cofig.yml修改样式的内容。</li>
 </ul>
 </blockquote>
-<p>说明：本博文可能在内容上出现差错，作者还将检查并进行修改。</p>
+<p>说明：本博文可能在内容上出现差错，作者还将检查并进行修改。 </p>
 
     </article>
     <!-- license  -->
@@ -650,7 +642,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1、前期准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-正式开始"><span class="toc-number">2.</span> <span class="toc-text"> 2、正式开始</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、前期准备"><span class="toc-number">1.</span> <span class="toc-text">1、前期准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、正式开始"><span class="toc-number">2.</span> <span class="toc-text">2、正式开始</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -663,6 +655,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2295,12 +2303,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2785,21 +2793,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2807,25 +2815,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2834,10 +2846,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

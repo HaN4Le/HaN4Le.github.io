@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">804</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">782</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,74 +418,24 @@ height:50vh;
     <article class="article-entry">
         <blockquote>
 <p>☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。</p>
-</blockquote>
-<h3 id="一-前期准备"><a class="markdownIt-Anchor" href="#一-前期准备"></a> 一、前期准备</h3>
-<blockquote>
-<ul>
+<h3 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h3><ul>
 <li>crunch 生成字典</li>
 <li>aircrack-ng工具</li>
-<li>wireshark工具</li>
+<li>wireshark工具<h3 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h3></li>
 </ul>
-</blockquote>
-<h3 id="二-解题思路"><a class="markdownIt-Anchor" href="#二-解题思路"></a> 二、解题思路</h3>
-<blockquote>
 <ol>
 <li>首先先观察题目给的流量包，看看都有什么协议；</li>
 <li>根据第一步，然后针对协议的特点做出相应的判断；</li>
 <li>从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；</li>
 <li>根据题目提示写出字典；</li>
 <li>暴力破解得到密码；</li>
-<li>但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；</li>
+<li>但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；<h3 id="三、解题步骤"><a href="#三、解题步骤" class="headerlink" title="三、解题步骤"></a>三、解题步骤</h3><h4 id="1-观察流量包"><a href="#1-观察流量包" class="headerlink" title="1.观察流量包"></a>1.观察流量包</h4>用wireshark打开数据包，观察到流量包的格式为:EAPOL和802.11：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dDpT4nPy6JnwXr04pXAtMt6NPMP8hBU.IhMXZodTttI!/r/dL8AAAAAAAAA" alt><br>于是我去查阅了一下有关EAPOL协议的内容，主要用于网络接入认证。由此我们可以知道这个流量包是一在连接wifi的时候抓取的，而且wifi的SSID为Blue_Whale。<h4 id="2-分析流量"><a href="#2-分析流量" class="headerlink" title="2.分析流量"></a>2.分析流量</h4>对于这道题给出的提示来看，再加上第一步的分析，可以知道题目让我们通过破解该数据包，得到wifi的密码。<h4 id="3-写出字典"><a href="#3-写出字典" class="headerlink" title="3.写出字典"></a>3.写出字典</h4>首先要思考的问题是，密码的长度是多少？密码的组合是什么？<br>根据题目给的提示：“密码较弱”，然后根据资料密码最短为“8”位，所以我猜测<strong>密码可能是由8个数字所组成</strong>，然后我用crunch生成字典：<br><center>`crunch 8 8 -t %%%%%%%% >> password.txt`</center><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fgzqG8GZ50X85tIp6hs171t2txgPRBUaJSHbJrn9Szw!/r/dFQBAAAAAAAA" alt><h4 id="4-暴力破解"><a href="#4-暴力破解" class="headerlink" title="4.暴力破解"></a>4.暴力破解</h4>根据我们写的字典，然后用aircrack-ng对其进行暴力破解：<br><center>`aircrack-ng -a2 -wifi.pcap -w password.txt` </center><br>在第18分41秒的时候，终于破解成功如下图：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FBU392X7ZJaKA11sJcOOkoyysNB5JX1g4NRvH9ruPTY!/r/dDYBAAAAAAAA" alt><h4 id="5-破解流量包，得到明文"><a href="#5-破解流量包，得到明文" class="headerlink" title="5.破解流量包，得到明文"></a>5.破解流量包，得到明文</h4>在查了相关的资料后，在已知wifi密码后，可以用下面的方法破解流量包，然后得到明文：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/PlkJNK.2U3gaa.xAiRz8i94DZtVaNP1AQat9DVJbmpo!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/m0Cu81eaAVwYrkbSy1b08ZgYvkquvRSH2lStj9B086s!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/mUUsMsiUe6K7V7G2keppzcx0vMQfSkHpB3MkXD9EDuo!/r/dFQBAAAAAAAA" alt><h4 id="6-分析明文，得到flag"><a href="#6-分析明文，得到flag" class="headerlink" title="6.分析明文，得到flag"></a>6.分析明文，得到flag</h4>对于解密后的流量包，我们可以看到产生了HTTP、TCP等协议，我首先想到的是分析HTTP协议，因为他传输的都是明文，最终在POST中找到了Flag<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lbkrWeM06qmj4oMuv0FiSLnavPX75AvYrXdG6HmrBE4!/r/dD4BAAAAAAAA" alt><h3 id="四、参考资料"><a href="#四、参考资料" class="headerlink" title="四、参考资料"></a>四、参考资料</h3>因为本题所涉及的知识较多，我将一些我认为比较全面的参考资料贴出来，方便以后查阅和学习：</li>
 </ol>
-</blockquote>
-<h3 id="三-解题步骤"><a class="markdownIt-Anchor" href="#三-解题步骤"></a> 三、解题步骤</h3>
-<h4 id="1观察流量包"><a class="markdownIt-Anchor" href="#1观察流量包"></a> 1.观察流量包</h4>
-<blockquote>
-<p>用wireshark打开数据包，观察到流量包的格式为:EAPOL和802.11：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dDpT4nPy6JnwXr04pXAtMt6NPMP8hBU.IhMXZodTttI!/r/dL8AAAAAAAAA" alt><br>
-于是我去查阅了一下有关EAPOL协议的内容，主要用于网络接入认证。由此我们可以知道这个流量包是一在连接wifi的时候抓取的，而且wifi的SSID为Blue_Whale。</p>
-</blockquote>
-<h4 id="2分析流量"><a class="markdownIt-Anchor" href="#2分析流量"></a> 2.分析流量</h4>
-<blockquote>
-<p>对于这道题给出的提示来看，再加上第一步的分析，可以知道题目让我们通过破解该数据包，得到wifi的密码。</p>
-</blockquote>
-<h4 id="3写出字典"><a class="markdownIt-Anchor" href="#3写出字典"></a> 3.写出字典</h4>
-<blockquote>
-<p>首先要思考的问题是，密码的长度是多少？密码的组合是什么？<br>
-根据题目给的提示：“密码较弱”，然后根据资料密码最短为“8”位，所以我猜测<strong>密码可能是由8个数字所组成</strong>，然后我用crunch生成字典：</p>
-<center>`crunch 8 8 -t %%%%%%%% >> password.txt`</center>
-![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fgzqG8GZ50X85tIp6hs171t2txgPRBUaJSHbJrn9Szw!/r/dFQBAAAAAAAA)
-</blockquote>
-<h4 id="4暴力破解"><a class="markdownIt-Anchor" href="#4暴力破解"></a> 4.暴力破解</h4>
-<blockquote>
-<p>根据我们写的字典，然后用aircrack-ng对其进行暴力破解：</p>
-<center>`aircrack-ng -a2 -wifi.pcap -w password.txt` </center>
-在第18分41秒的时候，终于破解成功如下图：![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FBU392X7ZJaKA11sJcOOkoyysNB5JX1g4NRvH9ruPTY!/r/dDYBAAAAAAAA)
-</blockquote>
-<h4 id="5破解流量包得到明文"><a class="markdownIt-Anchor" href="#5破解流量包得到明文"></a> 5.破解流量包，得到明文</h4>
-<blockquote>
-<p>在查了相关的资料后，在已知wifi密码后，可以用下面的方法破解流量包，然后得到明文：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/PlkJNK.2U3gaa.xAiRz8i94DZtVaNP1AQat9DVJbmpo!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/m0Cu81eaAVwYrkbSy1b08ZgYvkquvRSH2lStj9B086s!/r/dLsAAAAAAAAA" alt><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/mUUsMsiUe6K7V7G2keppzcx0vMQfSkHpB3MkXD9EDuo!/r/dFQBAAAAAAAA" alt></p>
-</blockquote>
-<h4 id="6分析明文得到flag"><a class="markdownIt-Anchor" href="#6分析明文得到flag"></a> 6.分析明文，得到flag</h4>
-<blockquote>
-<p>对于解密后的流量包，我们可以看到产生了HTTP、TCP等协议，我首先想到的是分析HTTP协议，因为他传输的都是明文，最终在POST中找到了Flag<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/lbkrWeM06qmj4oMuv0FiSLnavPX75AvYrXdG6HmrBE4!/r/dD4BAAAAAAAA" alt></p>
-</blockquote>
-<h3 id="四-参考资料"><a class="markdownIt-Anchor" href="#四-参考资料"></a> 四、参考资料</h3>
-<blockquote>
-<p>因为本题所涉及的知识较多，我将一些我认为比较全面的参考资料贴出来，方便以后查阅和学习：</p>
 <ul>
 <li><a href="https://blog.csdn.net/qq_42025840/article/details/81125584" target="_blank" rel="noopener">crunch的详细总结</a></li>
 <li><a href="https://blog.csdn.net/amazingjwb/article/details/71192001" target="_blank" rel="noopener">aircrack-ng详细总结</a></li>
-<li><a href="https://blog.csdn.net/printfmylife20140214/article/details/19419159" target="_blank" rel="noopener">EAPOL协议详细总结</a></li>
+<li><a href="https://blog.csdn.net/printfmylife20140214/article/details/19419159" target="_blank" rel="noopener">EAPOL协议详细总结</a><h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3>虽然今天总结了一下这个题目，但是还是感觉有些知识没有掌握，一些命令的用法没有理解。我有了个新的想法，根据我以前做出来的题目，我要将每道题目所涉及的知识点再复习一下，对于一些未能掌握，或者还不够熟悉的知识点进行总结和归纳，然后将这些盲区彻底搞懂。<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3>坚持了这么久，也成为了一种习惯。</li>
 </ul>
-</blockquote>
-<h3 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h3>
-<blockquote>
-<p>虽然今天总结了一下这个题目，但是还是感觉有些知识没有掌握，一些命令的用法没有理解。我有了个新的想法，根据我以前做出来的题目，我要将每道题目所涉及的知识点再复习一下，对于一些未能掌握，或者还不够熟悉的知识点进行总结和归纳，然后将这些盲区彻底搞懂。</p>
-</blockquote>
-<h3 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h3>
-<blockquote>
-<p>坚持了这么久，也成为了一种习惯。</p>
 </blockquote>
 
     </article>
@@ -647,7 +597,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 一、前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-解题思路"><span class="toc-number">2.</span> <span class="toc-text"> 二、解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-解题步骤"><span class="toc-number">3.</span> <span class="toc-text"> 三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1观察流量包"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.观察流量包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2分析流量"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.分析流量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3写出字典"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.写出字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4暴力破解"><span class="toc-number">3.4.</span> <span class="toc-text"> 4.暴力破解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5破解流量包得到明文"><span class="toc-number">3.5.</span> <span class="toc-text"> 5.破解流量包，得到明文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6分析明文得到flag"><span class="toc-number">3.6.</span> <span class="toc-text"> 6.分析明文，得到flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-参考资料"><span class="toc-number">4.</span> <span class="toc-text"> 四、参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-每日一句"><span class="toc-number">6.</span> <span class="toc-text"> 六、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、前期准备"><span class="toc-number">1.</span> <span class="toc-text">一、前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、解题思路"><span class="toc-number">2.</span> <span class="toc-text">二、解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、解题步骤"><span class="toc-number">3.</span> <span class="toc-text">三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-观察流量包"><span class="toc-number">3.1.</span> <span class="toc-text">1.观察流量包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-分析流量"><span class="toc-number">3.2.</span> <span class="toc-text">2.分析流量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-写出字典"><span class="toc-number">3.3.</span> <span class="toc-text">3.写出字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-暴力破解"><span class="toc-number">3.4.</span> <span class="toc-text">4.暴力破解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-破解流量包，得到明文"><span class="toc-number">3.5.</span> <span class="toc-text">5.破解流量包，得到明文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-分析明文，得到flag"><span class="toc-number">3.6.</span> <span class="toc-text">6.分析明文，得到flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考资料"><span class="toc-number">4.</span> <span class="toc-text">四、参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、学习感悟"><span class="toc-number">5.</span> <span class="toc-text">五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、每日一句"><span class="toc-number">6.</span> <span class="toc-text">六、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -660,6 +610,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2292,12 +2258,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2782,21 +2748,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2804,25 +2770,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2831,10 +2801,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

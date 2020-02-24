@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">749</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">755</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,18 +416,17 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>     今天继续学习的是《汇编语言程序设计》，也看了关于C语言的教材，总结一下今天学的主要内容：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，也看了关于C语言的教材，总结一下今天学的主要内容：</p>
 <blockquote>
 <ul>
 <li>80x86计算机系统的初步</li>
 <li>80x86处理器与保护模式初步</li>
 </ul>
 </blockquote>
-<h4 id="font-colorbrown一-80x86计算机系统的初步font"><a class="markdownIt-Anchor" href="#font-colorbrown一-80x86计算机系统的初步font"></a> <font color="brown">▎一、80x86计算机系统的初步</font></h4>
-<p><strong>1.计算机系统</strong></p>
+<h4 id="▎一、80x86计算机系统的初步"><a href="#▎一、80x86计算机系统的初步" class="headerlink" title="▎一、80x86计算机系统的初步"></a><font color="brown">▎一、80x86计算机系统的初步</font></h4><p><strong>1.计算机系统</strong></p>
 <blockquote>
-<center>![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/ThCWBauTPApPUkVJN57W37vc1sRSsbu94Tase835GXE!/m/dL8AAAAAAAAAnull&bo=hwSHAocEhwIDByI!&rf=photolist&t=5)
-</center></blockquote>
+<p><center><img src="http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/ThCWBauTPApPUkVJN57W37vc1sRSsbu94Tase835GXE!/m/dL8AAAAAAAAAnull&amp;bo=hwSHAocEhwIDByI!&amp;rf=photolist&amp;t=5" alt></center></p>
+</blockquote>
 <p><strong>2.主存</strong></p>
 <blockquote>
 <p>存储单元的地址和内容：</p>
@@ -439,12 +438,9 @@ height:50vh;
 <li>字单元地址用它的弟弟值来表示；</li>
 </ul>
 </blockquote>
-<h4 id="font-colorbrown二-80x86处理器与保护模式初步font"><a class="markdownIt-Anchor" href="#font-colorbrown二-80x86处理器与保护模式初步font"></a> <font color="brown">▎二、80x86处理器与保护模式初步</font></h4>
-<p><strong>1.80x86处理器的发展历史</strong></p>
+<h4 id="▎二、80x86处理器与保护模式初步"><a href="#▎二、80x86处理器与保护模式初步" class="headerlink" title="▎二、80x86处理器与保护模式初步"></a><font color="brown">▎二、80x86处理器与保护模式初步</font></h4><p><strong>1.80x86处理器的发展历史</strong></p>
 <blockquote>
-<p>① 8086/8088 微处理器 <img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/4hZPxBpKCFz14ZQiM6PvBym24wI5Atv1CqU9TpfAN5w!/r/dL8AAAAAAAAA" alt><br>
-<br>② 80186和80286微处理器<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/TKI53xQEDELhigWWs04YmkhJp*69Ry8mIxcoyqxi5oE!/r/dL8AAAAAAAAA" alt><br>
-<br>③  32位80x86微处理器——80386微处理器<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/*TeU.Ai8yCMZTYs7tg1YrrXY9unKG6x1bXMgTCFNKlQ!/r/dDQBAAAAAAAA" alt></p>
+<p>① 8086/8088 微处理器 <img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/4hZPxBpKCFz14ZQiM6PvBym24wI5Atv1CqU9TpfAN5w!/r/dL8AAAAAAAAA" alt><br><br>② 80186和80286微处理器<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/TKI53xQEDELhigWWs04YmkhJp*69Ry8mIxcoyqxi5oE!/r/dL8AAAAAAAAA" alt><br><br>③  32位80x86微处理器——80386微处理器<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/*TeU.Ai8yCMZTYs7tg1YrrXY9unKG6x1bXMgTCFNKlQ!/r/dDQBAAAAAAAA" alt></p>
 </blockquote>
 <p><strong>2.80386 的3种工作模式</strong></p>
 <blockquote>
@@ -460,21 +456,14 @@ height:50vh;
 <ul>
 <li><font color="red"><strong>8</strong></font> 个通用寄存器：%eax、%edx、%ecx、%ebx、%esi、%edi、%esp、%ebp；</li>
 <li>指令寄存器扩展为 32 位，EIP；</li>
-<li>6 个段寄存器（<font color="gray">段寄存器是因为对内存的分段管理而设置的</font>）：CS、DS、SS、ES、FS、GS；<br>
-计算机需要对内存分段，以分配给不同的程序使用（类似于硬盘分页）。在描述内存分段时，需要有如下段的信息：<br>
-      1.段的大小；<br>
-      2.段的起始地址；<br>
-      3.段的管理属性（禁止写入/禁止执行/系统专用等）。<br>
-需要用8个字节（64位）存储这些信息，但段寄存器只有16位，因此段寄存器中只能存储段号，再由段号映射到存在内存中的GDT，读取段的信息。段寄存器的长度均为 16 位，其中 13 位代表内存段的一个编号，称为“段选择器”。</li>
+<li>6 个段寄存器（<font color="gray">段寄存器是因为对内存的分段管理而设置的</font>）：CS、DS、SS、ES、FS、GS；<br>计算机需要对内存分段，以分配给不同的程序使用（类似于硬盘分页）。在描述内存分段时，需要有如下段的信息：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.段的大小；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.段的起始地址；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.段的管理属性（禁止写入/禁止执行/系统专用等）。<br>需要用8个字节（64位）存储这些信息，但段寄存器只有16位，因此段寄存器中只能存储段号，再由段号映射到存在内存中的GDT，读取段的信息。段寄存器的长度均为 16 位，其中 13 位代表内存段的一个编号，称为“段选择器”。</li>
 </ul>
 </blockquote>
-<h4 id="font-colorred学习感悟font"><a class="markdownIt-Anchor" href="#font-colorred学习感悟font"></a> <font color="red">#学习感悟</font></h4>
-<blockquote>
+<h4 id="学习感悟"><a href="#学习感悟" class="headerlink" title="#学习感悟"></a><font color="red">#学习感悟</font></h4><blockquote>
 <p>虽然自己的进度不是很快，但是听起课来还是很吃力，我决定先暂停“汇编语言”的学习，先把自己的知识课打牢，再来学习汇编语言，同时明天开始做第二阶段的测试。</p>
 </blockquote>
-<h4 id="font-colorred每日一句font"><a class="markdownIt-Anchor" href="#font-colorred每日一句font"></a> <font color="red">#每日一句</font></h4>
-<blockquote>
-<p>人生的挑战，无处不在，满怀信心，轻装上路，明天永远是充满希望的战场。</p>
+<h4 id="每日一句"><a href="#每日一句" class="headerlink" title="#每日一句"></a><font color="red">#每日一句</font></h4><blockquote>
+<p>人生的挑战，无处不在，满怀信心，轻装上路，明天永远是充满希望的战场。 </p>
 </blockquote>
 
     </article>
@@ -636,7 +625,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorbrown一-80x86计算机系统的初步font"><span class="toc-number">1.</span> <span class="toc-text"> ▎一、80x86计算机系统的初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorbrown二-80x86处理器与保护模式初步font"><span class="toc-number">2.</span> <span class="toc-text"> ▎二、80x86处理器与保护模式初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorred学习感悟font"><span class="toc-number">3.</span> <span class="toc-text"> #学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorred每日一句font"><span class="toc-number">4.</span> <span class="toc-text"> #每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#▎一、80x86计算机系统的初步"><span class="toc-number">1.</span> <span class="toc-text">▎一、80x86计算机系统的初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#▎二、80x86处理器与保护模式初步"><span class="toc-number">2.</span> <span class="toc-text">▎二、80x86处理器与保护模式初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习感悟"><span class="toc-number">3.</span> <span class="toc-text">#学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每日一句"><span class="toc-number">4.</span> <span class="toc-text">#每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -649,6 +638,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2281,12 +2286,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2771,21 +2776,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2793,25 +2798,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2820,10 +2829,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

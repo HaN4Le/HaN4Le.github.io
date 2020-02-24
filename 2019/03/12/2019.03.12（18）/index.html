@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,10 +416,10 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>      今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）</p>
-<h4 id="一-计算机中整数的编码方式和操作整数"><a class="markdownIt-Anchor" href="#一-计算机中整数的编码方式和操作整数"></a> 一、计算机中整数的编码方式和操作整数</h4>
-<p>1.基本数据类型的大小</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）</p>
+<h4 id="一、计算机中整数的编码方式和操作整数"><a href="#一、计算机中整数的编码方式和操作整数" class="headerlink" title="一、计算机中整数的编码方式和操作整数"></a>一、计算机中整数的编码方式和操作整数</h4><p>1.基本数据类型的大小</p>
 <center>![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)</center>
+
 <p>2.编码方式</p>
 <blockquote>
 <ol>
@@ -431,65 +431,39 @@ height:50vh;
 <li><em>T2U<sub>w</sub></em>：将补码转无符号数；</li>
 <li><em>TMin<sub>w</sub></em>：最小补码值；</li>
 <li><em>TMax<sub>w</sub></em>：最大补码值；</li>
-<li><em>UMax<sub>w</sub></em>：最大无符号数;<center><img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/marbAH7nzGGsI6Ek6SrQOunxob95AbS49zS*efkpgEM!/m/dEYBAAAAAAAAnull&amp;bo=WgQ6AloEOgIDCSw!&amp;rf=photolist&amp;t=5" alt></center></li>
+<li><em>UMax<sub>w</sub></em>：最大无符号数;<center>![](http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/marbAH7nzGGsI6Ek6SrQOunxob95AbS49zS*efkpgEM!/m/dEYBAAAAAAAAnull&bo=WgQ6AloEOgIDCSw!&rf=photolist&t=5)</center></li>
 </ol>
 </blockquote>
 <p>3.操作整数</p>
 <blockquote>
 <ol>
-<li><em>+ <sup>t</sup><sub>w</sub></em>：补码加法；</li>
-<li><em>+ <sup>u</sup><sub>w</sub></em>：无符号数加法；</li>
-<li>** <sup>t</sup><sub>w</sub>*：补码乘法；</li>
-<li>** <sup>u</sup><sub>w</sub>*：无符号数乘法；</li>
-<li><em>- <sup>t</sup><sub>w</sub></em>：补码取反；</li>
-<li><em>- <sup>u</sup><sub>w</sub></em>：无符号数取反；</li>
+<li><em>+&nbsp;<sup>t</sup><sub>w</sub></em>：补码加法；</li>
+<li><em>+&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数加法；</li>
+<li><em>*&nbsp;<sup>t</sup><sub>w</sub></em>：补码乘法；</li>
+<li><em>*&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数乘法；</li>
+<li><em>-&nbsp;<sup>t</sup><sub>w</sub></em>：补码取反；</li>
+<li><em>-&nbsp;<sup>u</sup><sub>w</sub></em>：无符号数取反；</li>
 </ol>
 </blockquote>
 <p>注：B ——二进制、T/t——补码、U/u——无符号数、w在这里表示数据表示中的位数</p>
-<h4 id="二-数值的定点与浮点表示"><a class="markdownIt-Anchor" href="#二-数值的定点与浮点表示"></a> 二、数值的定点与浮点表示</h4>
-<blockquote>
-<p>**1. 浮点数：**由于“指数”的存在以及它的大小不同而使数字部分的小数点位置不同，也可以这样理解，小数点的位置可以是“浮动的”，所以称之为浮点数形式；（在计算机内部，凡实数（即以小数形式所表示的数）都以浮点形式存储）<br>
-**2. 定点数：**凡不带指数部分的数称为定点数，整数都属于定点数；</p>
-</blockquote>
-<h4 id="三-无符号整数和带符号整数"><a class="markdownIt-Anchor" href="#三-无符号整数和带符号整数"></a> 三、无符号整数和带符号整数</h4>
-<p>1.如何表示正负？</p>
-<blockquote>
-<p><strong>1. 可以根据自己决定是否需要正负：</strong><br>
-      就像我们必须决定某个量使用整数还是实数，使用多大的范围数一样，我们必须自已决定某个量是否需要正负。<br>
-<br>      在计算机中，可以区分正负的类型，称为<font color="red">有符类型（声明signed）</font>，无正负的类型（只有正值），称为<font color="red">无符类型（声明unsigned）</font>。数值类型分为<strong>整型</strong>或<strong>实型</strong>，其中<font color="brwon">整型又分为无符类型或有符类型，而实型则只有符类型。字符类型也分为有符和无符类型。 </font>比如有两个量，年龄和库存，我们可以定前者为无符的字符类型，后者定为有符的整数类型。<br>
-<strong>2. 二制数中的最高位表示正负：</strong><br>
-      ①指定一个数量是无符号类型时，最高位被称为“符号位”：<br>
-            最高位为<font color="red">“1”</font>表示该数为<font color="red">负值</font>;<br>
-            最高位为<font color="red">“0”</font>表示该数为<font color="red">正值</font>;<br>
-      ②指定一个数量是无符号类型时，那么其最高位的1或0，和其它位一样，用来表示该数的大小。<br>
-      例如：signed number：1111 1111 的值为 -1<br>
-                unsigned number：1111 1111 的值为 255</p>
+<h4 id="二、数值的定点与浮点表示"><a href="#二、数值的定点与浮点表示" class="headerlink" title="二、数值的定点与浮点表示"></a>二、数值的定点与浮点表示</h4><blockquote>
+<p><strong>1. 浮点数：</strong>由于“指数”的存在以及它的大小不同而使数字部分的小数点位置不同，也可以这样理解，小数点的位置可以是“浮动的”，所以称之为浮点数形式；（在计算机内部，凡实数（即以小数形式所表示的数）都以浮点形式存储）<br><strong>2. 定点数：</strong>凡不带指数部分的数称为定点数，整数都属于定点数；</p>
+<h4 id="三、无符号整数和带符号整数"><a href="#三、无符号整数和带符号整数" class="headerlink" title="三、无符号整数和带符号整数"></a>三、无符号整数和带符号整数</h4><p>1.如何表示正负？<br><strong>1. 可以根据自己决定是否需要正负：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就像我们必须决定某个量使用整数还是实数，使用多大的范围数一样，我们必须自已决定某个量是否需要正负。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在计算机中，可以区分正负的类型，称为<font color="red">有符类型（声明signed）</font>，无正负的类型（只有正值），称为<font color="red">无符类型（声明unsigned）</font>。数值类型分为<strong>整型</strong>或<strong>实型</strong>，其中<font color="brwon">整型又分为无符类型或有符类型，而实型则只有符类型。字符类型也分为有符和无符类型。 </font>比如有两个量，年龄和库存，我们可以定前者为无符的字符类型，后者定为有符的整数类型。<br><strong>2. 二制数中的最高位表示正负：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①指定一个数量是无符号类型时，最高位被称为“符号位”：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最高位为<font color="red">“1”</font>表示该数为<font color="red">负值</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最高位为<font color="red">“0”</font>表示该数为<font color="red">正值</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②指定一个数量是无符号类型时，那么其最高位的1或0，和其它位一样，用来表示该数的大小。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：signed number：1111 1111 的值为 -1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned number：1111 1111 的值为 255</p>
 </blockquote>
 <p>2.有符号数和无符号数的取值范围</p>
 <blockquote>
-<p>▶ 无符号数：UMin（000…0） = 0   ~   UMax(111…1) = 2<sup>w</sup>-1<br>
-▶ 带符号数（补码）：TMin（100…0） = -2<sup>w</sup>-1   ~   TMax(011…1) = 2<sup>w-1</sup>-1<br>
-<br>例如：一个字节数来说<br>
-▶ 无符号数：0~255<br>
-▶ 有符号数：-128~127<br>
-虽然有符号数的最大值缩水了，却在负值的方向出现了伸展，但二者能表达的不同的数值的个数都一样是256个。只不过前者表达的是0到255这256个数，后者表达的是-128到+127这256个数。<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/rRjZmKfxKMPeuDNqswo3jBeH4M9yrrzxSho9a4OLRQQ!/m/dDIBAAAAAAAAnull&amp;bo=cgRbAnIEWwIDCSw!&amp;rf=photolist&amp;t=5" alt></p>
-</blockquote>
-<h4 id="四-原码-反码和补码"><a class="markdownIt-Anchor" href="#四-原码-反码和补码"></a> 四、原码、反码和补码</h4>
-<p>1.反码与补码的作用</p>
-<blockquote>
-<p>▶ 反码：解决负数加法运算问题，将减法运算转换为加法运算，从而简化运算规则；<br>
-▶ 补码：解决负数加法运算正负零问题，弥补了反码的不足。<br>
-<br>总之，反码与补码都是为了解决负数运算问题，跟正数没关系，因此，不管是正整数还是正小数，原码，反码，补码都全部相同。</p>
+<p>▶ 无符号数：UMin（000…0） = 0&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;UMax(111…1) = 2<sup>w</sup>-1<br>▶ 带符号数（补码）：TMin（100…0） = -2<sup>w</sup>-1&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;TMax(011…1) = 2<sup>w-1</sup>-1<br><br>例如：一个字节数来说<br>▶ 无符号数：0~255<br>▶ 有符号数：-128~127<br>虽然有符号数的最大值缩水了，却在负值的方向出现了伸展，但二者能表达的不同的数值的个数都一样是256个。只不过前者表达的是0到255这256个数，后者表达的是-128到+127这256个数。<img src="http://a3.qpic.cn/psb?/V11UAV0k0TKwM6/rRjZmKfxKMPeuDNqswo3jBeH4M9yrrzxSho9a4OLRQQ!/m/dDIBAAAAAAAAnull&amp;bo=cgRbAnIEWwIDCSw!&amp;rf=photolist&amp;t=5" alt></p>
+<h4 id="四、原码、反码和补码"><a href="#四、原码、反码和补码" class="headerlink" title="四、原码、反码和补码"></a>四、原码、反码和补码</h4><p>1.反码与补码的作用<br>▶ 反码：解决负数加法运算问题，将减法运算转换为加法运算，从而简化运算规则；<br>▶ 补码：解决负数加法运算正负零问题，弥补了反码的不足。<br><br>总之，反码与补码都是为了解决负数运算问题，跟正数没关系，因此，不管是正整数还是正小数，原码，反码，补码都全部相同。</p>
 </blockquote>
 <p>2.无符号数的原码、反码和补码</p>
 <blockquote>
 <p>因为无符号数只有正数（无符号位）所以：</p>
 <center>原码 = 反码 = 补码 </center>
+
 </blockquote>
 <p>3.有符号数的原码、反码和补码</p>
 <blockquote>
-<p>▶ 正数：原码 = 反码 = 补码<br>
-▶ 负数：反码 =  原码（除符号位外）每位取反；补码 = 反码 + 1；</p>
+<p>▶ 正数：原码 = 反码 = 补码<br>▶ 负数：反码 =  原码（除符号位外）每位取反；补码 = 反码 + 1；</p>
 </blockquote>
 <p>4.极易混淆和犯错的知识</p>
 <blockquote>
@@ -500,14 +474,8 @@ height:50vh;
 <li>反码加 1 得<strong>补码</strong>：1111 1111</li>
 </ul>
 <p><font color="red">可见，－1在计算机里用二进制表达就是全1。16进制为：0xFFFFFF。</font></p>
-</blockquote>
-<h4 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h4>
-<blockquote>
-<p>今天总结的大部分知识都是在学习 C 语言中学到的，相比当时学的时候，今天的再学习让我感觉对这方面的知识又更加深刻了，还是在于那句话：学习是一个过程，需要“温故知新”。以后还的继续回顾以前的知识，可能学到的东西和理解的层面，完全要比当时的更好，加油吧！</p>
-</blockquote>
-<h4 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h4>
-<blockquote>
-<p>只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
+<h4 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h4><p>今天总结的大部分知识都是在学习 C 语言中学到的，相比当时学的时候，今天的再学习让我感觉对这方面的知识又更加深刻了，还是在于那句话：学习是一个过程，需要“温故知新”。以后还的继续回顾以前的知识，可能学到的东西和理解的层面，完全要比当时的更好，加油吧！</p>
+<h4 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h4><p>只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
 </blockquote>
 
     </article>
@@ -669,7 +637,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-计算机中整数的编码方式和操作整数"><span class="toc-number">1.</span> <span class="toc-text"> 一、计算机中整数的编码方式和操作整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-数值的定点与浮点表示"><span class="toc-number">2.</span> <span class="toc-text"> 二、数值的定点与浮点表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-无符号整数和带符号整数"><span class="toc-number">3.</span> <span class="toc-text"> 三、无符号整数和带符号整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-原码-反码和补码"><span class="toc-number">4.</span> <span class="toc-text"> 四、原码、反码和补码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六-每日一句"><span class="toc-number">6.</span> <span class="toc-text"> 六、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、计算机中整数的编码方式和操作整数"><span class="toc-number">1.</span> <span class="toc-text">一、计算机中整数的编码方式和操作整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、数值的定点与浮点表示"><span class="toc-number">2.</span> <span class="toc-text">二、数值的定点与浮点表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、无符号整数和带符号整数"><span class="toc-number">3.</span> <span class="toc-text">三、无符号整数和带符号整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、原码、反码和补码"><span class="toc-number">4.</span> <span class="toc-text">四、原码、反码和补码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、学习感悟"><span class="toc-number">5.</span> <span class="toc-text">五、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六、每日一句"><span class="toc-number">6.</span> <span class="toc-text">六、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -682,6 +650,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2314,12 +2298,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2804,21 +2788,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2826,25 +2810,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2853,10 +2841,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

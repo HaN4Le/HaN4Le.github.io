@@ -368,23 +368,12 @@
         <div class="abstract-content">
             经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
 
-☛ Phase_1、Phase_2、Phase_3、Phase_4
-今天主要总结一下Phase_1的解题过程
+☛ Phase_1、Phase_2、Phase_3、Phase_4今天主要总结一下Phase_1的解题过程
 
- 一、前期工作
+一、前期工作
 
-
-所用工具
-IDA、Linux系统、gdb、objdump、python
-解题思路
-通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
-
-
- 二、Phase_1解题过程
- 1.对bomb文件进行反汇编
-
-objdump -d bomb &gt; bomo.txt
-将bo...
+所用工具IDA、Linux系统、gdb、objdump、python
+解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -418,25 +407,19 @@ objdump -d bomb &gt; bomo.txt
 
 常用的汇编指令
 objdump工具
-gdb编译器的用法
-
-
- 一、题目中出现的汇编指令
-
-
+gdb编译器的用法一、题目中出现的汇编指令
 push、pop、call、cmp、jmp、je、jne、lea
 
 
 1.push 和 pop 指令：堆栈操作指令
 
-**① 说明：**无论是push 还是pop ，都是对堆栈段ss的处理：
+① 说明：无论是push 还是pop ，都是对堆栈段ss的处理：
 
 ss中存放堆栈段地址
 sp指针中存放偏移地址，
 栈操作都是以字（2字节）为单位。
 
-② 例子：
-☛ 例一：将通用寄存器ax中的数据入栈，pu...
+② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -465,26 +448,21 @@ sp指针中存放偏移地址，
                 <span>《汇编语言程序设计》学习笔记（十）</span>
         </a>
         <div class="abstract-content">
-                  今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
 
 汇编语言知识点：
-
 
 x86-32下的读取条件码指令
 x86-64下的读取条件码指令
 跳转指令
 条件移动指令
 
- 一、x86-32位下的读取条件码指令
- 1.SetX指令
 
-**功能：**读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
+一、x86-32位下的读取条件码指令1.SetX指令
+功能：读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
 
 只存进一个byte，余下的三个字节不会被修改
-把寄存器的最低的字节改掉了，那么高的三个字节怎么办？
-通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展
-
-...
+把寄存器的最低的字节改掉了，那么高的三个字节怎么办？通常使用“movzbl...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -513,24 +491,16 @@ x86-64下的读取条件码指令
                 <span>reverse：Reverse sign in解题总结</span>
         </a>
         <div class="abstract-content">
-                  经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。
- 一、前期准备
-
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。
+一、前期准备
 
 汇编语言知识
 IDA工具的使用
-C语言部分知识
+C语言部分知识二、知识储备
 
 
- 二、知识储备
-
-
-汇编语言
-关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：笔记一、笔记二、笔记三、笔记四、笔记五、笔记六、笔记七、笔记八、笔记九
-IDA工具的使用
-
-
-主要说一下关于IDA常用快捷...
+汇编语言关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：笔记一、笔记二、笔记三、笔记四、笔记五、笔记六、笔记七、笔记八、笔记九
+ID...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -559,7 +529,7 @@ IDA工具的使用
                 <span>《汇编语言程序设计》学习笔记（九）</span>
         </a>
         <div class="abstract-content">
-                  今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：
 
 
 x86-64下的通用寄存器与汇编指令
@@ -567,19 +537,12 @@ x86-64下的通用寄存器与汇编指令
 比较指令与测试指令
 
 
- 一、x86-64下的通用寄存器与汇编指令
- 1.x86-32与x86-64的数据类型宽度
-
- 2.x86-64的通用寄存器
-
+一、x86-64下的通用寄存器与汇编指令1.x86-32与x86-64的数据类型宽度
+2.x86-64的通用寄存器
 
 
 扩展了现有的，并增加了8个新的
-%ebp/%rbp  不再是专用寄存器
-3.x86-32/64下的swap函数比较
-
-
-12345678910111213141516171819202122232425262728...
+%ebp/%rbp  不再是专用寄存器3.x86-32/64下的swap函数比较123456789101112131415161718...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -608,19 +571,11 @@ x86-64下的通用寄存器与汇编指令
                 <span>Crypto：RSA详细总结</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.互质关系的结论
+            一、基础知识1.互质关系的结论
+① 任意两个质数构成互质关系，比如13和61② 一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系，比如3和10③ 如果两个数之中，较大的那个数是质数，则两者构成互质关系，比如97和57④ 1和任意一个自然数是都是互质关系，比如1和99⑤ p是大于1的整数，则p和p-1构成互质关系，比如57和56⑥ p是大于1的奇数，则p和p-2构成互质关系，比如17和15
 
-① 任意两个质数构成互质关系，比如13和61
-② 一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系，比如3和10
-③ 如果两个数之中，较大的那个数是质数，则两者构成互质关系，比如97和57
-④ 1和任意一个自然数是都是互质关系，比如1和99
-⑤ p是大于1的整数，则p和p-1构成互质关系，比如57和56
-⑥ p是大于1的奇数，则p和p-2构成互质关系，比如17和15
-
- 2.欧拉函数
-
-在数论，对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目（φ(1)=1）。此函数以其首名研究者欧拉命名(Euler’s totient func...
+2.欧拉函数
+在数论，对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目（φ(1)=1）。此函数以其首名研究者欧拉命名(Euler’s totient function)，它又称为E...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -649,19 +604,13 @@ x86-64下的通用寄存器与汇编指令
                 <span>《汇编语言程序设计》学习笔记（八）</span>
         </a>
         <div class="abstract-content">
-                  今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
 
 寻址模式
 地址计算指令与其他
 
- #知识储备
-
-① $立即数，则取得的操作数就是立即数
-② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数
-③ 寄存器，则取得的操作数就是以寄存器的值
-④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数
-⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即数2)，表示为：
-(立即数1值+寄存器1值+寄存...
+#知识储备
+① $立即数，则取得的操作数就是立即数② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数③ 寄存器，则取得的操作数就是以寄存器的值④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -690,9 +639,8 @@ x86-64下的通用寄存器与汇编指令
                 <span>Crypto：RSA2解题总结（二）</span>
         </a>
         <div class="abstract-content">
-                  因为昨天没有做出来RSA2，今天又重点的做了一下这道题，花了整整一天时间。今天更新一下有关这道题目的内容。
- 一、前期准备
-
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为昨天没有做出来RSA2，今天又重点的做了一下这道题，花了整整一天时间。今天更新一下有关这道题目的内容。
+一、前期准备
 
 openssl 的功能
 RSA算法的原理
@@ -700,13 +648,8 @@ RSA算法的原理
 求模反元素工具：RSA-Tool
 
 
- 二、思考过程
-
-昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q
-思路：利用yafu工具把 n 分解成p、q =&gt; 用RSA-Tool得到 d =&gt; 合成私钥
-① 第一步分解质数比较容易，直接用yafu进行分解即可；
-② 第二布也是一样，不用求解φ(n)，直接得到 模反元素 d；
-③ 这道题最...
+二、思考过程
+昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q思路：利用yafu工具把 n 分解成p、q => 用RSA-Tool得到 d => 合成私钥① 第一步分解质数比较容易，直接用yafu进行分解即可；② 第二布也是一样，不用求解φ(n)，直接...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -737,20 +680,15 @@ RSA算法的原理
                 <span>Crypto：RSA2解题总结（一）</span>
         </a>
         <div class="abstract-content">
-                  在学习了有关openssl的内容后，今天开始了“RSA”的解题，但是今天没有解出来，主要说一下我的整个解题的思路和步骤。
- 一、前期准备
-
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在学习了有关openssl的内容后，今天开始了“RSA”的解题，但是今天没有解出来，主要说一下我的整个解题的思路和步骤。
+一、前期准备
 
 openssl 的功能
 RSA算法的原理
 Linux Kali系统的安装
 
 前两个知识点在前面都详细的介绍过了，这篇文章就不一一叙述了。
-
- 二、思考过程
-
-1. 题目给了pubkey.pem和flag.encrypt文件，该加密文件是不是由私钥加密，公钥解密呢？
-    在做“What‘s RSA？”这道题时，就分析过两种可能：公钥加密—&gt;私钥解密；私钥加密—&gt;公钥解密，因为在那道题目中，给出的是一个私钥（rsa_priv...
+二、思考过程1. 题目给了pubkey.pem和flag.encrypt文件，该加密文件是不是由私钥加密，公钥解密呢？&nbsp;&nbsp;&nbsp;&nbsp;在做“What‘s RSA？”这道题时，就分析过两种可能：公钥加密—&gt;私钥...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -781,11 +719,9 @@ Linux Kali系统的安装
                 <span>openssl学习笔记（二）</span>
         </a>
         <div class="abstract-content">
-                 昨天总结了一下openssl的一些选项的功能，今天还是重点的来总结一下其他的选项：openssl speed/rand/passwd/dgst/rsautl
- 一、openssl speed
-
-① **功能说明：**测试加密算法的性能
-② 支持的算法：openssl speed [md2] [mdc2] [md5] [hmac] [sha1] [rmd160] [idea-cbc] [rc2-cbc] [rc5-cbc] [bf-cbc] [des-cbc] [des-ede3] [rc4] [rsa512] [rsa1024] [rsa2048] [rsa4096] [dsa...
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天总结了一下openssl的一些选项的功能，今天还是重点的来总结一下其他的选项：openssl speed/rand/passwd/dgst/rsautl
+一、openssl speed
+① 功能说明：测试加密算法的性能② 支持的算法：openssl speed [md2] [mdc2] [md5] [hmac] [sha1] [rmd160] [idea-cbc] [rc2-cbc] [rc5-cbc] [bf-cbc] [des-cbc] [des-ede3] [rc4] [rsa512] [rsa1024] [rsa20...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2511,6 +2447,22 @@ Linux Kali系统的安装
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 95
@@ -2538,12 +2490,12 @@ Linux Kali系统的安装
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3028,21 +2980,21 @@ Linux Kali系统的安装
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3050,25 +3002,29 @@ Linux Kali系统的安装
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -3077,10 +3033,6 @@ Linux Kali系统的安装
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

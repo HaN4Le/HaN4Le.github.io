@@ -366,29 +366,23 @@
                 <span>pwn-bof（基础类型题目）</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.内存中栈的结构
-
+            一、基础知识1.内存中栈的结构
 
 正如上图所示，栈是由“由高地址向低地址”方向生长。
 
- 2.常见的漏洞类型
-
+2.常见的漏洞类型
 常见的漏洞类型有如下几种：
-① 逻辑错误
+**① 逻辑错误**
+
 ② 内存破坏
-    ✦ 栈溢出
-    ✦ 整数溢出
-    ✦ 格式化字符串
-    ✦ 堆溢出
-    ✦ 释放后使用
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 栈溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 整数溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 格式化字符串
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 堆溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 释放后使用
 
- 二、解题思路
- 1.寻找漏洞
-
-通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 sub_8048573 中，有一个明显的漏洞——read（）函数。我们是如何知道该处是一个漏洞呢？
-
-123456789ssize_t sub_8048573()&#123;  char bu...
+二、解题思路1.寻找漏洞
+通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -419,16 +413,13 @@
                 <span>bash 漏洞（pwnable-shellshock）</span>
         </a>
         <div class="abstract-content">
-             一、前言
-
+            一、前言
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
 
- 二、基础知识
- 1.setresuid
-
+二、基础知识1.setresuid
 setresuid() 被执行的条件有：
-    ① 当前进程的 euid 是 root
-    ② 三个参数，每个等于原来某个 id 中的一个
+&nbsp;&nbsp;&nbsp;&nbsp;① 当前进程的 euid 是 root
+&nbsp;&nbsp;&nbsp;&nbsp;② 三个参数，每个等于原来某个 id 中的一个
 
 
         </div>
@@ -463,17 +454,14 @@ setresuid() 被执行的条件有：
                 <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
         </a>
         <div class="abstract-content">
-             一、前言
-
+            一、前言
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 GOT 表的一种题型吧。
 
- 二、基础知识
- 1.GOT 表
-
+二、基础知识1.GOT 表
 ① 什么是 GOT 表？
-    每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
+&nbsp;&nbsp;&nbsp;&nbsp;每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
 ② GOT 表的作用是什么？
-    把位置无关的地址计算重定位到一个绝对地址。程...
+&nbsp;&nbsp;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -506,21 +494,14 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
                 <span>AFL 的代码插桩问题</span>
         </a>
         <div class="abstract-content">
-             一、什么是 AFL？
+            一、什么是 AFL？
+&nbsp;&nbsp;&nbsp;&nbsp;AFL 是一款用于发现漏洞的模糊测试工具，是由下面三个部分组成的：
 
-    AFL 是一款用于发现漏洞的模糊测试工具，是由下面三个部分组成的：
-
-
-编译器wrapper：他的功能在于对目标软件（开源）进行编译，编译过程中插入一些AFL识别的函数用以识别探索路径，众所周知的linux下的C/C编译工具gcc/g，afl的编译工具为afl-gcc/afl-g++,afl-clang等。
-
+编译器wrapper：他的功能在于对目标软件（开源）进行编译，编译过程中插入一些AFL识别的函数用以识别探索路径，众所周知的linux下的C/C++编译工具gcc/g++，afl的编译工具为afl-gcc/afl-g++,afl-clang等。
 
 测试器fuzzer （主体）：afl-fuzz，就是AFL重要的主体，用以对软件进行fuzzing。
 
-
-其他工具：如afl-cmin,afl-tmin等，一个成功的C位都必须多个辅助才行，这些工具都是为提升测试的效率和成功率而服务的。
-
-
-  ...
+其他工具：如afl-cmin,afl-tmin等，一个成功的C位都必须多个辅助才行，这些工具都是为提升...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -567,9 +548,7 @@ webshell
 command execution
 simple php
 
-
-
-In order to make the knowledge points involved in ...
+In order to make the knowledge points involved in ea...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2293,6 +2272,22 @@ In order to make the knowledge points involved in ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 95
@@ -2320,12 +2315,12 @@ In order to make the knowledge points involved in ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2810,21 +2805,21 @@ In order to make the knowledge points involved in ...
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2832,25 +2827,29 @@ In order to make the knowledge points involved in ...
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2859,10 +2858,6 @@ In order to make the knowledge points involved in ...
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

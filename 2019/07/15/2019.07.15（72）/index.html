@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -419,49 +419,12 @@ height:50vh;
         <blockquote>
 <p>☛ 今天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“欧几里得算法”的过程吧。</p>
 </blockquote>
-<h3 id="font-colorbrown一-基础知识font"><a class="markdownIt-Anchor" href="#font-colorbrown一-基础知识font"></a> <font color="brown">一、基础知识</font></h3>
-<blockquote>
-<p><font color="navy"><strong>1.最大公约数的概念</strong></font><br>
-      公约数中最大的那个称为a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>的最大公约数，记为：<strong>gcd(a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>)</strong>。<br>
-      例如：<br>
-      gcd(11,77) = 11<br>
-<br><font color="navy"><strong>2.互素</strong></font><br>
-      若 <strong>gcd(a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>) = 1</strong>，也就是说 a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub> 的<strong>最大公约数为 1</strong>，那么称 a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub> 是互素的。<br>
-<br><font color="navy"><strong>3.最大公约数的性质</strong></font><br>
-      ❁ <strong>在互素的正整数中，不一定有素数</strong><br>
-            例如：gcd(25,42) = 1，但是 25 和 42 都不是素数<br>
-      ❁ <strong>在个数不少于 3 个的互素正整数中，不一定两两互素</strong><br>
-            例如：gcd(6,10,45) = 1，但是：<br>
-            gcd(6,10) = 2；gcd(6,45) = 3；gcd(10,45) = 5；</p>
+<h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><blockquote>
+<p><font color="navy"><strong>1.最大公约数的概念</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公约数中最大的那个称为a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>的最大公约数，记为：<strong>gcd(a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>)</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gcd(11,77) = 11<br><br><font color="navy"><strong>2.互素</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若 <strong>gcd(a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub>) = 1</strong>，也就是说 a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub> 的<strong>最大公约数为 1</strong>，那么称 a<sub>1</sub>，a<sub>2</sub>，……，a<sub>n</sub> 是互素的。<br><br><font color="navy"><strong>3.最大公约数的性质</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❁ <strong>在互素的正整数中，不一定有素数</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：gcd(25,42) = 1，但是 25 和 42 都不是素数<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❁ <strong>在个数不少于 3 个的互素正整数中，不一定两两互素</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：gcd(6,10,45) = 1，但是：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gcd(6,10) = 2；gcd(6,45) = 3；gcd(10,45) = 5；</p>
 </blockquote>
-<h3 id="font-colorbrown二-欧几里得算法font"><a class="markdownIt-Anchor" href="#font-colorbrown二-欧几里得算法font"></a> <font color="brown">二、欧几里得算法</font></h3>
-<blockquote>
-<p><font color="navy"><strong>1.欧几里得算法（辗转相除法）</strong></font><br>
-      辗转相除法， 又名欧几里德算法（Euclidean algorithm），<strong>是求最大公约数的一种方法</strong>。它的具体做法是：<font color="blue">用较大数除以较小数，再用出现的余数（第一余数）去除除数，再用出现的余数（第二余数）去除第一余数，如此反复，直到最后余数是0为止。如果是求两个数的最大公约数，那么最后的除数就是这两个数的最大公约数。</font><br>
-<br><font color="navy"><strong>2.欧几里得算法的原理</strong></font><br>
-      <strong>若 a = b * d + r，则 gcd(a,b) = gcd(b,r)</strong><br>
-      <strong>注释</strong>：a：被除数；b：除数；d：商；r：余数；<br>
-<br>      <strong>【例子】</strong>：已知 a = 63，b = 24，利用欧几里得算法求得两个数的最大公约数。<br>
-      <strong>【解】</strong><br>
-                 63 ÷ 24 = 2 ······ 15<br>
-                 24 ÷ 15 = 1 ······ 9<br>
-                 15 ÷ 9 = 1 ······ 6<br>
-                 9 ÷ 6 = 1 ······ 3<br>
-                 6 ÷ 3 = 2<br>
-             <strong>∴</strong> gcd(63,24) = gcd(6,3) = 3<br>
-<br><font color="navy"><strong>3.欧几里得算法的推导</strong></font><br>
-      设两数为a、b(a&gt;b)，用 gcd(a,b) 表示a，b的最大公约数，r = a (mod b) 为 a 除以 b 的余数，k 为 a 除以 b 的商，即 a÷ b = k ······ r  。辗转相除法即是要证明 gcd(a,b) = gcd(b,r)  。<br>
-      <strong>第一步</strong>：令 c = gcd(a,b)  ，则设 a = mc，b = nc<br>
-      <strong>第二步</strong>：根据前提可知  <strong><code>r = a - kb = mc - knc = (m - kn) * c</code></strong><br>
-      <strong>第三步</strong>：根据第二步结果可知， c 也是 r 的因数<br>
-      <strong>第四步</strong>：可以断定 <strong>m -kn  与 n 互质</strong>（这里用反证法进行证明：设 <strong><code>m -kn = xd，n = yd (d &gt; 1)</code></strong> ，则 <strong><code>m = kn +xd = kyd + xd = (ky + x) * d ，则 a = mc =(ky + x) * cd，b = nc = ycd</code></strong>，则 a 与 b 的一个公约数 cd &gt; c ，故c非a与b的最大公约数，与前面结论矛盾，因此c也是b与r的最大公约数）从而可知 gcd(b,r) = c ，继而  gcd(a,b) = gcd(b,r) 。<br>
-      证毕<br>
-      注：以上步骤的操作是建立在刚开始时 r ≠ 0 的基础之上的，即 m 与 n 亦互质。<br>
-<br><font color="navy"><strong>3.欧几里得算法的实现（C语言实现）</strong></font></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">Date: 2019.7.15</span><br><span class="line">Function：欧几里得算法的实现</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a1,a2,temp,gcd,n;</span><br><span class="line">	printf(&quot;Please input two number:&quot;);</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;a1,&amp;a2);</span><br><span class="line">	printf(&quot;gcd(%d,%d) = &quot;,a1,a2);</span><br><span class="line">	</span><br><span class="line">	/*对所求的两个数进行排序，从大到小*/</span><br><span class="line">	if(a1 &lt;= a2)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = a2;</span><br><span class="line">		a2 = a1;</span><br><span class="line">		a1 = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/*欧几里得算法的实现*/</span><br><span class="line">	n = a1 % a2;					// 求大数对小数的取余</span><br><span class="line">	while(n)						// 如果求得的余数不等于0，则按照辗转相除的方法进行计算，知道得到的余数等于0</span><br><span class="line">	&#123;</span><br><span class="line">		a1 = a2;							</span><br><span class="line">		a2 = n;</span><br><span class="line">		n = a1 % a2;</span><br><span class="line">		if(!n)</span><br><span class="line">			gcd = a2;</span><br><span class="line">	&#125;</span><br><span class="line">	gcd = a2;						// 如果求得的余数等于0，说明a1能被a2整除，也就是说a2是a1的一个公约数，那么a1和a2的最大公约数就是a2</span><br><span class="line">	printf(&quot;gcd(%d,%d) = %d\n&quot;,a1,a2,gcd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>**说明：**上面的代码实现是我按照自己的思路写出来的，可能在逻辑上会出现一些错误，还希望各位大神批评，或者有更好的算法，也希望各位大神能够在评论区附上你们的算法代码，感激不尽。</p>
+<h3 id="二、欧几里得算法"><a href="#二、欧几里得算法" class="headerlink" title="二、欧几里得算法"></a><font color="brown">二、欧几里得算法</font></h3><blockquote>
+<p><font color="navy"><strong>1.欧几里得算法（辗转相除法）</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辗转相除法， 又名欧几里德算法（Euclidean algorithm），<strong>是求最大公约数的一种方法</strong>。它的具体做法是：<font color="blue">用较大数除以较小数，再用出现的余数（第一余数）去除除数，再用出现的余数（第二余数）去除第一余数，如此反复，直到最后余数是0为止。如果是求两个数的最大公约数，那么最后的除数就是这两个数的最大公约数。</font><br><br><font color="navy"><strong>2.欧几里得算法的原理</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>若 a = b * d + r，则 gcd(a,b) = gcd(b,r)</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>注释</strong>：a：被除数；b：除数；d：商；r：余数；<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>【例子】</strong>：已知 a = 63，b = 24，利用欧几里得算法求得两个数的最大公约数。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>【解】</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63 ÷ 24 = 2 ······ 15<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24 ÷ 15 = 1 ······ 9<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15 ÷ 9 = 1 ······ 6<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9 ÷ 6 = 1 ······ 3<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 ÷ 3 = 2<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>∴</strong> gcd(63,24) = gcd(6,3) = 3<br><br><font color="navy"><strong>3.欧几里得算法的推导</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设两数为a、b(a&gt;b)，用 gcd(a,b) 表示a，b的最大公约数，r = a (mod b) 为 a 除以 b 的余数，k 为 a 除以 b 的商，即 a÷ b = k ······ r  。辗转相除法即是要证明 gcd(a,b) = gcd(b,r)  。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>第一步</strong>：令 c = gcd(a,b)  ，则设 a = mc，b = nc<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>第二步</strong>：根据前提可知  <strong><code>r = a - kb = mc - knc = (m - kn) * c</code></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>第三步</strong>：根据第二步结果可知， c 也是 r 的因数<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>第四步</strong>：可以断定 <strong>m -kn  与 n 互质</strong>（这里用反证法进行证明：设 <strong><code>m -kn = xd，n = yd (d &gt; 1)</code></strong> ，则 <strong><code>m = kn +xd = kyd + xd = (ky + x) * d ，则 a = mc =(ky + x) * cd，b = nc = ycd</code></strong>，则 a 与 b 的一个公约数 cd &gt; c ，故c非a与b的最大公约数，与前面结论矛盾，因此c也是b与r的最大公约数）从而可知 gcd(b,r) = c ，继而  gcd(a,b) = gcd(b,r) 。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证毕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：以上步骤的操作是建立在刚开始时 r ≠ 0 的基础之上的，即 m 与 n 亦互质。<br><br><font color="navy"><strong>3.欧几里得算法的实现（C语言实现）</strong></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">Date: 2019.7.15</span><br><span class="line">Function：欧几里得算法的实现</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a1,a2,temp,gcd,n;</span><br><span class="line">	printf(&quot;Please input two number:&quot;);</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;a1,&amp;a2);</span><br><span class="line">	printf(&quot;gcd(%d,%d) = &quot;,a1,a2);</span><br><span class="line">	</span><br><span class="line">	/*对所求的两个数进行排序，从大到小*/</span><br><span class="line">	if(a1 &lt;= a2)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = a2;</span><br><span class="line">		a2 = a1;</span><br><span class="line">		a1 = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/*欧几里得算法的实现*/</span><br><span class="line">	n = a1 % a2;					// 求大数对小数的取余</span><br><span class="line">	while(n)						// 如果求得的余数不等于0，则按照辗转相除的方法进行计算，知道得到的余数等于0</span><br><span class="line">	&#123;</span><br><span class="line">		a1 = a2;							</span><br><span class="line">		a2 = n;</span><br><span class="line">		n = a1 % a2;</span><br><span class="line">		if(!n)</span><br><span class="line">			gcd = a2;</span><br><span class="line">	&#125;</span><br><span class="line">	gcd = a2;						// 如果求得的余数等于0，说明a1能被a2整除，也就是说a2是a1的一个公约数，那么a1和a2的最大公约数就是a2</span><br><span class="line">	printf(&quot;gcd(%d,%d) = %d\n&quot;,a1,a2,gcd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>说明：</strong>上面的代码实现是我按照自己的思路写出来的，可能在逻辑上会出现一些错误，还希望各位大神批评，或者有更好的算法，也希望各位大神能够在评论区附上你们的算法代码，感激不尽。</p>
 </blockquote>
 
     </article>
@@ -623,7 +586,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-欧几里得算法font"><span class="toc-number">2.</span> <span class="toc-text"> 二、欧几里得算法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基础知识"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、欧几里得算法"><span class="toc-number">2.</span> <span class="toc-text">二、欧几里得算法</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -636,6 +599,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2268,12 +2247,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2758,21 +2737,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2780,25 +2759,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2807,10 +2790,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

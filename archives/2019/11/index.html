@@ -366,11 +366,10 @@
                 <span>以太坊智能合约漏洞 | Fallback函数</span>
         </a>
         <div class="abstract-content">
-             一、Fallback 函数介绍
-
+            一、Fallback 函数介绍
 合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
 除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
-在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量...
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量廉价...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -404,17 +403,13 @@
             
 题目链接：XSS Challenges（共19关）
 
- Stage #1
- ① 题目
-
- ② 相关知识点
-
+Stage #1① 题目
+② 相关知识点
 
 XSS 的类型
 
 
- ③ 解题步骤
-
+③ 解题步骤
 ▣ 首先看一下是否存在 XSS 攻击
 
 ⚁ 首次尝试填入信息：
@@ -423,7 +418,7 @@ XSS 的类型
 
 1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
 
-▣ 点击 se...
+▣ 点击 search 之后，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -458,10 +453,9 @@ XSS 的类型
 来自：简书，作者：骑小猪看流星
 链接：https://www.jianshu.com/p/bd1be47a16c1
 
- 一、什么是Cookie？
-
+一、什么是Cookie？
 Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互联网时代的策马奔腾，带宽等限制不存在了，人们需要更复杂的互联网交互活动，就必须同服务器保持活动状态（简称：保活）。
-于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Se...
+于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Sess...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -490,20 +484,18 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
                 <span>有关内核调用问题和预编译指令</span>
         </a>
         <div class="abstract-content">
-             一、知识点摘要
-
+            一、知识点摘要
 
 系统调用 int 80h 中断
 #ifdef ……# endif 的含义和用法
 
 
- 二、知识点介绍
- 1.int 80h 中断
-
+二、知识点介绍1.int 80h 中断
 1) 什么是 system call?
-        system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI ))
 2) 什么是 int 80h 中断？
-        Linux 的 system call 就是通过int 80h来实现的，int 80...
+&nbsp;&nbsp;&...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2223,6 +2215,22 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 95
@@ -2250,12 +2258,12 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2740,21 +2748,21 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -2762,25 +2770,29 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -2789,10 +2801,6 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -368,16 +368,10 @@
         <div class="abstract-content">
             
 ☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
-
- 一、前期准备
-
-
+一、前期准备
 crunch 生成字典
 aircrack-ng工具
-wireshark工具
-
-
- 二、解题思路
+wireshark工具二、解题思路
 
 
 首先先观察题目给的流量包，看看都有什么协议；
@@ -385,11 +379,7 @@ wireshark工具
 从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
 根据题目提示写出字典；
 暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；
-
-
- 三、解题步骤
- 1.观察流量...
+但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；三、解题步骤1.观察流量包用wireshark打开数...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -420,16 +410,10 @@ wireshark工具
         <div class="abstract-content">
             
 ☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
-
- 一、前期准备
-
-
+一、前期准备
 python语言
 二维码的知识（本题中不是重点）
-QQ “扫一扫”
-
-
- 二、思考过程
+QQ “扫一扫”二、思考过程
 
 
 题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
@@ -438,7 +422,7 @@ QQ “扫一扫”
 题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
 根据上一步的思考，我们可以有选择地进行替换图形；
 扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
-根据题目提示，可以将字符串当作ASC...
+根据题目提示，可以将字符串当作ASCII码编程，解出...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -469,23 +453,14 @@ QQ “扫一扫”
         <div class="abstract-content">
             
 ☛ 前言：今天在做第二阶段的 02 号题目，可是一点思路也没有。转而去做了 Misc 的 Another 01 game，经过一段时间的思考和实践，终于将这道题做了出来，但是总结笔记还没有准备好素材。那么今天就主要总结一下python的学习笔记吧。
-
- 一、第一个Python程序
- 1.介绍：
-
-
+一、第一个Python程序1.介绍：
 命令行模式：可以执行.py文件
 Python交互模式：在交互模式环境，也可以执行.py文件
-2 * 10 = 20 ；2 ** 10 = 1024 ;
+2  10 = 20 ；2 * 10 = 1024 ;2.使用文本编辑器：
+在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;3.输入和输出：
 
 
- 2.使用文本编辑器：
-
-
-在windows上不可以直接运行.py文件，但是在Mac和Linux上是可以直接运行的;
-
-
- 3.输入和输...
+输出：a. 输出格式：pr...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -515,16 +490,9 @@ Python交互模式：在交互模式环境，也可以执行.py文件
         </a>
         <div class="abstract-content">
             
-☛ 前言：
-今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。
-
- 一、认识Caesar密码
-
-在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
-
- 二、Caesar密码的加密
-
-Caesar密码加密是...
+☛ 前言：今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。
+一、认识Caesar密码在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：
+二、Caesar密码的加密Caesar密码加密是根据“密钥”（偏移...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -554,12 +522,8 @@ Caesar密码加密是...
         </a>
         <div class="abstract-content">
             
-☛ 前言：
-今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
-
- 一、相关汇编代码
- 1.Phase_6的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da...
+☛ 前言：今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
+一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56 ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -590,13 +554,7 @@ Caesar密码加密是...
         <div class="abstract-content">
             
 
-前言：
-在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
-
-
- 一、相关汇编代码
- 1.Phase_5的汇编代码
-1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp ...
+前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d60:...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -627,18 +585,16 @@ Caesar密码加密是...
         <div class="abstract-content">
             
 
-前言：
-今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
+前言：今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
 
 
- 一、有关描述[1]
+一、有关描述[1]
+sscanf() 是从一个字符串中读进与指定格式相符的数据. 
 
-sscanf() 是从一个字符串中读进与指定格式相符的数据.
+1.sscanf()格式：
+int sscanf(const char str, const char format, …)&lt;/font&gt;
 
- 1.sscanf()格式：
-
-int sscanf(const char *str, const char *format, ...)
-- str：...
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -668,12 +624,8 @@ int sscanf(const char *str, const char *format, ...)
         </a>
         <div class="abstract-content">
             
-☛ 前言：
-    今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-
- 一、相关汇编代码
- 1.&lt; phase_4 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub    $0x2c,%esp...
+☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
+一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -703,12 +655,8 @@ int sscanf(const char *str, const char *format, ...)
         </a>
         <div class="abstract-content">
             
-☛ 前言：
-    今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-
- 一、相关汇编代码
-① &lt; phase_3 &gt;的汇编代码
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $0x2c,%esp 8048c...
+☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
+一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -738,9 +686,7 @@ int sscanf(const char *str, const char *format, ...)
         </a>
         <div class="abstract-content">
             今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
- 一、相关汇编代码
-① &lt; phase_2 &gt;的汇编代码
-123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
+一、相关汇编代码① &lt; phase_2 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34            s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2464,6 +2410,22 @@ int sscanf(const char *str, const char *format, ...)
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 95
@@ -2491,12 +2453,12 @@ int sscanf(const char *str, const char *format, ...)
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2981,21 +2943,21 @@ int sscanf(const char *str, const char *format, ...)
     
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
-        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3003,25 +2965,29 @@ int sscanf(const char *str, const char *format, ...)
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -3030,10 +2996,6 @@ int sscanf(const char *str, const char *format, ...)
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
