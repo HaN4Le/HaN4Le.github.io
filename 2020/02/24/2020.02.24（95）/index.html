@@ -650,7 +650,7 @@ height:50vh;
 <blockquote>
 <p>能被执行。分析过程如下：</p>
 <p><code>步骤 ①</code> ：首先是HTML 解析，将 <code>&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;</code>  解码为 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> </p>
-<p><code>步骤 ②</code> ：因为 <code>href</code> 属性，因为存在着 <code>javascript:</code> 伪协议，所以紧接着进行 <code>URL 解析</code>，将 <code>`javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> 解析为 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code> </p>
+<p><code>步骤 ②</code> ：因为 <code>href</code> 属性，因为存在着 <code>javascript:</code> 伪协议，所以紧接着进行 <code>URL 解析</code>，将 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> 解析为 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code> </p>
 <p><code>步骤 ③</code>：最后通过 <code>javascript 解析器</code> 将 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code>  解码为 <code>javascript:alert(15)</code> ，所以最终得到的结果是 <code>&lt;a href=javascript:alert(15)&gt;&lt;/a&gt;</code>，在<code>Unicode</code> 解码过程中，并没有控制字符被编码，所以 <code>javascript:alert(15)</code> 能成功地被执行。</p>
 </blockquote>
 <h3 id="四、参考文献"><a href="#四、参考文献" class="headerlink" title="四、参考文献"></a><font color="navy">四、参考文献</font></h3><p><strong>0x01</strong> 深入理解浏览器解析机制和XSS向量编码：<a href="http://bobao.360.cn/learning/detail/292.html" target="_blank" rel="noopener">http://bobao.360.cn/learning/detail/292.html</a></p>
@@ -670,7 +670,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">https://muzibing.github.io/2020/02/24/2020.02.24（95）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">February 24th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">February 25th 2020, 11:46:25 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">February 25th 2020, 11:52:00 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
