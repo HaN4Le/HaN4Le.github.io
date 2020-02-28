@@ -366,7 +366,9 @@
                 <span>PWN 实战 - shellcode 题解</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.shellcode
+             一、基础知识
+ 1.shellcode
+
 有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
 
 
@@ -377,15 +379,18 @@ PWN-shellcode获取与编写
 
 
 
-二、解题步骤1,查看文件类型1file pwn3
+ 二、解题步骤
+ 1,查看文件类型
+1file pwn3
 6
 
 从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
 
-2.查看 pwn3 开启的保护1checksec pwn3
+ 2.查看 pwn3 开启的保护
+1checksec pwn3
 
 
-从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开启了栈上数据可执行...
+从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -416,20 +421,19 @@ PWN-shellcode获取与编写
                 <span>pwn-ROP(GOT表泄露)</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.GOT 表、PLT 表和 libc 库的相关知识① 什么是 GOT 表？
-
+             一、基础知识
+ 1.GOT 表、PLT 表和 libc 库的相关知识
+① 什么是 GOT 表？
 
 GOT(Global Offset Table) 表，即全局偏移量表，里面是函数在 libc 库中的绝对地址。
 
 ② 什么是 PLT 表？
 
-
 PLT(Procedure Link Table) 表，即程序链接表，里面是函数在 GOT 表中的地址。
 
 ③ 什么是 libc 库？
 
-
-libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常数...
+libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -460,23 +464,29 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
                 <span>pwn-bof（基础类型题目）</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.内存中栈的结构
+             一、基础知识
+ 1.内存中栈的结构
+
 
 正如上图所示，栈是由“由高地址向低地址”方向生长。
 
-2.常见的漏洞类型
+ 2.常见的漏洞类型
+
 常见的漏洞类型有如下几种：
-**① 逻辑错误**
-
+① 逻辑错误
 ② 内存破坏
-&nbsp;&nbsp;&nbsp;&nbsp;✦ 栈溢出
-&nbsp;&nbsp;&nbsp;&nbsp;✦ 整数溢出
-&nbsp;&nbsp;&nbsp;&nbsp;✦ 格式化字符串
-&nbsp;&nbsp;&nbsp;&nbsp;✦ 堆溢出
-&nbsp;&nbsp;&nbsp;&nbsp;✦ 释放后使用
+    ✦ 栈溢出
+    ✦ 整数溢出
+    ✦ 格式化字符串
+    ✦ 堆溢出
+    ✦ 释放后使用
 
-二、解题思路1.寻找漏洞
-通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 s...
+ 二、解题思路
+ 1.寻找漏洞
+
+通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 sub_8048573 中，有一个明显的漏洞——read（）函数。我们是如何知道该处是一个漏洞呢？
+
+123456789ssize_t sub_8048573()&#123;  char bu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -507,13 +517,16 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
                 <span>bash 漏洞（pwnable-shellshock）</span>
         </a>
         <div class="abstract-content">
-            一、前言
+             一、前言
+
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
 
-二、基础知识1.setresuid
+ 二、基础知识
+ 1.setresuid
+
 setresuid() 被执行的条件有：
-&nbsp;&nbsp;&nbsp;&nbsp;① 当前进程的 euid 是 root
-&nbsp;&nbsp;&nbsp;&nbsp;② 三个参数，每个等于原来某个 id 中的一个
+    ① 当前进程的 euid 是 root
+    ② 三个参数，每个等于原来某个 id 中的一个
 
 
         </div>
@@ -548,14 +561,17 @@ setresuid() 被执行的条件有：
                 <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
         </a>
         <div class="abstract-content">
-            一、前言
+             一、前言
+
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 GOT 表的一种题型吧。
 
-二、基础知识1.GOT 表
+ 二、基础知识
+ 1.GOT 表
+
 ① 什么是 GOT 表？
-&nbsp;&nbsp;&nbsp;&nbsp;每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
+    每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
 ② GOT 表的作用是什么？
-&nbsp;&nbsp;...
+    把位置无关的地址计算重定位到一个绝对地址。程...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -604,7 +620,9 @@ webshell
 command execution
 simple php
 
-In order to make the knowledge points involved in ea...
+
+
+In order to make the knowledge points involved in ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -637,12 +655,15 @@ In order to make the knowledge points involved in ea...
                 <span>BabyPHP 解题总结</span>
         </a>
         <div class="abstract-content">
-            一、PHP 部分漏洞1.$_GET 和 $_POST
-如果 GET 参数中设置 name[]=a，那么 $_GET[&#39;name&#39;] = [a]，php 会把 []=a 当成数组传入， $_GET 会自动对参数调用 urldecode。
-$_POST 同样存在此漏洞，提交的表单数据，user[]=admin，$_POST[&#39;user&#39;] 得到的是 [&#39;admin&#39;] 是一个数组。
+             一、PHP 部分漏洞
+ 1.$_GET 和 $_POST
 
-2.sha1 和 md5 函数
-PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所...
+如果 GET 参数中设置 name[]=a，那么 $_GET['name'] = [a]，php 会把 []=a 当成数组传入， $_GET 会自动对参数调用 urldecode。
+$_POST 同样存在此漏洞，提交的表单数据，user[]=admin，$_POST['user'] 得到的是 ['admin'] 是一个数组。
+
+ 2.sha1 和 md5 函数
+
+PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所以如果两个不同的密码经过哈希以后，其...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -675,12 +696,15 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
                 <span>BaByXSS 解题总结</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1. XSS 攻击
+             一、基础知识
+ 1. XSS 攻击
+
 ​        有关 XSS 攻击的基础知识、原理、手段、类别和目的均已在昨天的博文中均有涉及，具体的可以点击这里进行查看，有关 XSS 攻击更详细的知识，我还会将在后期陆续进行更新和补充。
 
-2. Cookie 
+ 2. Cookie 
+
 ① 什么是 Cookie？
-​        Cookie（复数形态Cookies），又称为“小甜饼”。类型为“小型文本文件”[1]，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。当前使用最广泛的 Cookie标准...
+​        Cookie（复数形态Cookies），又称为“小甜饼”。类型为“小型文本文件”[1]，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。当前使用最广泛的 Co...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -715,7 +739,9 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
         <div class="abstract-content">
             
 ✍ 分析了两天myvm汇编指令的指令格式和寻址方式，今天就简单的来总结一下有关内容。因为本人的知识有限，所以在总结的过程可能会出现许多错误，希望大家能够在评论区给我留言，我将及时验证并更正。
-一、myvm汇编代码（main函数部分）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162.text:0000000000000BD0.text:0000000000000BD0 ; =============== S ...
+
+ 一、myvm汇编代码（main函数部分）
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162.text:0000000000000BD0.text:0000000000000BD0 ; ===============...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -749,7 +775,8 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
             
 ☛ 前言：前天对Wiener攻击相关的知识点进行了详细总结，但是因为Hexo中Mathjax的渲染问题，导致上一篇博文的数学公式出现了问题，昨天也对该问题进行了探索，但是截至目前位置该问题还没有得到解决，今天我先把昨天博文正确的格式放到上篇的末尾，以后我再对该问题进行解决，今天就先总结一下Wiener Ttick 这道题目的解题步骤吧！
 
-一、前期准备
+ 一、前期准备
+
 
 openssl 的用法
 Wiener 攻击原理（见上篇博文）
@@ -757,8 +784,10 @@ Wiener 攻击原理（见上篇博文）
 python 脚本（该脚本是github上的）
 
 
-二、思考过程1.该题的解题思路是什么样的？
-在上个月我曾做了一道这样的RSA题目：已知公钥，用...
+ 二、思考过程
+ 1.该题的解题思路是什么样的？
+
+在上个月我曾做了一道这样的RSA题目：...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -879,6 +908,32 @@ python 脚本（该脚本是github上的）
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -3009,17 +3064,17 @@ python 脚本（该脚本是github上的）
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -3029,11 +3084,11 @@ python 脚本（该脚本是github上的）
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

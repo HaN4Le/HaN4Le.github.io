@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">688</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">682</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,31 +416,69 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：<font color="brwon">无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂</font>。下面就写一下相关的学习笔记。</p>
-<h4 id="一、无符号与带符号的转化"><a href="#一、无符号与带符号的转化" class="headerlink" title="一、无符号与带符号的转化"></a>一、无符号与带符号的转化</h4><blockquote>
-<p>无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的<strong>二进制串的表示是不变的</strong>，只不过是二者的解释不同而已。<br><br>问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？</p>
-<h4 id="二、C-语言中的无符号数与带符号数"><a href="#二、C-语言中的无符号数与带符号数" class="headerlink" title="二、C 语言中的无符号数与带符号数"></a>二、C 语言中的无符号数与带符号数</h4><ol>
+        <p>      今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：<font color="brwon">无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂</font>。下面就写一下相关的学习笔记。</p>
+<h4 id="一-无符号与带符号的转化"><a class="markdownIt-Anchor" href="#一-无符号与带符号的转化"></a> 一、无符号与带符号的转化</h4>
+<blockquote>
+<p>无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的<strong>二进制串的表示是不变的</strong>，只不过是二者的解释不同而已。<br>
+<br>问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？</p>
+</blockquote>
+<h4 id="二-c-语言中的无符号数与带符号数"><a class="markdownIt-Anchor" href="#二-c-语言中的无符号数与带符号数"></a> 二、C 语言中的无符号数与带符号数</h4>
+<blockquote>
+<ol>
 <li>常数默认为带符号数，如果有“u”作为后缀，则是无符号数；</li>
 <li>如果无符号数与带符号数混合使用，则带符号数被转化为无符号数；</li>
-<li>sizeof( ) 回的类型为“无符号数”;<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/9rcZ7tDFTmlP3eLXseDTPpSEQDPS2AWy5KS*U9yVIKU!/b/dL8AAAAAAAAA&amp;bo=dgQEAnYEBAIDCSw!&amp;rf=viewer_4" alt><h4 id="三、何时采用无符号数？"><a href="#三、何时采用无符号数？" class="headerlink" title="三、何时采用无符号数？"></a>三、何时采用无符号数？</h4></li>
+<li>sizeof( ) 回的类型为“无符号数”;<img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/9rcZ7tDFTmlP3eLXseDTPpSEQDPS2AWy5KS*U9yVIKU!/b/dL8AAAAAAAAA&amp;bo=dgQEAnYEBAIDCSw!&amp;rf=viewer_4" alt></li>
 </ol>
+</blockquote>
+<h4 id="三-何时采用无符号数"><a class="markdownIt-Anchor" href="#三-何时采用无符号数"></a> 三、何时采用无符号数？</h4>
+<blockquote>
 <ul>
 <li>模运算</li>
 <li>按位运算</li>
-<li>注意：不能仅仅因为取值范围是非负而是用无符号数，除了以上两类可以用无符号数，其他尽量不要使用无符号数。<h4 id="五、-无符号数的加法"><a href="#五、-无符号数的加法" class="headerlink" title="五、 无符号数的加法"></a>五、 无符号数的加法</h4><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/ZgVl1qkHWt4bXjKW0ISCAklEs04d.KJiekkNrUILH3s!/b/dL8AAAAAAAAA&amp;bo=7QM6Au0DOgIDByI!&amp;rf=viewer_4" alt><br>注意：如果两个很大的无符号数相加，可能会发生溢出<h4 id="六、补码加法"><a href="#六、补码加法" class="headerlink" title="六、补码加法"></a>六、补码加法</h4></li>
+<li>注意：不能仅仅因为取值范围是非负而是用无符号数，除了以上两类可以用无符号数，其他尽量不要使用无符号数。</li>
 </ul>
+</blockquote>
+<h4 id="五-无符号数的加法"><a class="markdownIt-Anchor" href="#五-无符号数的加法"></a> 五、 无符号数的加法</h4>
+<blockquote>
+<p><img src="http://m.qpic.cn/psb?/V11UAV0k0TKwM6/ZgVl1qkHWt4bXjKW0ISCAklEs04d.KJiekkNrUILH3s!/b/dL8AAAAAAAAA&amp;bo=7QM6Au0DOgIDByI!&amp;rf=viewer_4" alt><br>
+注意：如果两个很大的无符号数相加，可能会发生溢出</p>
+</blockquote>
+<h4 id="六-补码加法"><a class="markdownIt-Anchor" href="#六-补码加法"></a> 六、补码加法</h4>
+<blockquote>
 <ol>
 <li>补码加法准则与无符号数的加法无区别，只不过是解释不同。<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/NkJ8wxad3UF291Bs5iLWYRna5ZIBvsUQ8naJ8dxiyIs!/r/dFIBAAAAAAAA" alt></li>
-<li>补码加法的溢出：（正+正、负+负）<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/5rV9*BQeRe51H2JGPCK6xXdWAKEryXsJJwxeKXFtH04!/r/dL8AAAAAAAAA" alt><h4 id="七、无符号整数除以-2-的-K-次幂"><a href="#七、无符号整数除以-2-的-K-次幂" class="headerlink" title="七、无符号整数除以 2 的 K 次幂"></a>七、无符号整数除以 2 的 K 次幂</h4></li>
+<li>补码加法的溢出：（正+正、负+负）<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/5rV9*BQeRe51H2JGPCK6xXdWAKEryXsJJwxeKXFtH04!/r/dL8AAAAAAAAA" alt></li>
 </ol>
+</blockquote>
+<h4 id="七-无符号整数除以-2-的-k-次幂"><a class="markdownIt-Anchor" href="#七-无符号整数除以-2-的-k-次幂"></a> 七、无符号整数除以 2 的 K 次幂</h4>
+<blockquote>
 <ul>
 <li>采用逻辑右移，右侧补 0 ；</li>
 <li>u &gt;&gt; k gives [ u / 2<sup>k</sup>]；</li>
-<li>小数点右侧全部去掉，不管四舍五入；<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/vSxNLtonC4TFifC*l.uXh4E8*fTD.Urux9b6anpzVoA!/r/dMMAAAAAAAAA" alt><h4 id="八、带符号数整数除以-2-的次幂"><a href="#八、带符号数整数除以-2-的次幂" class="headerlink" title="八、带符号数整数除以 2 的次幂"></a>八、带符号数整数除以 2 的次幂</h4></li>
+<li>小数点右侧全部去掉，不管四舍五入；<br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/vSxNLtonC4TFifC*l.uXh4E8*fTD.Urux9b6anpzVoA!/r/dMMAAAAAAAAA" alt></li>
+</ul>
+</blockquote>
+<h4 id="八-带符号数整数除以-2-的次幂"><a class="markdownIt-Anchor" href="#八-带符号数整数除以-2-的次幂"></a> 八、带符号数整数除以 2 的次幂</h4>
+<blockquote>
+<ul>
 <li>采用算数右移；，如果num ≥ 0，算术右移 = 逻辑右移，但是 x &lt; 0，则舍入错误；</li>
 <li>u &gt;&gt; k gives [ x / 2<sup>k</sup>]；<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Fmn8ZfayeRAOIsz*MgGs06D*RmkhdMdnYtUKMIBsI5Q!/r/dFMBAAAAAAAA" alt></li>
-<li><strong>对于负数整数除以 2 的次幂，要加上一个校正，校正值 = 2<sup>k</sup>-1；</strong><h4 id="九、练习题："><a href="#九、练习题：" class="headerlink" title="九、练习题："></a>九、练习题：</h4><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/DOmxWbRkOqzcGO0C2K.4W8ZjMZa9Bl5Cio.olQrNO*k!/r/dL4AAAAAAAAA" alt><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fB3iAnTbsurzYafrtx22eEYWfnRPdHsi8Zo9xv2oyQc!/r/dLYAAAAAAAAA" alt><h4 id="九、学习感悟"><a href="#九、学习感悟" class="headerlink" title="九、学习感悟"></a>九、学习感悟</h4>在今天的学习过程中，好多知识点都没有听懂，而且对于一些学过的基础知识遗忘的太厉害，感觉太被动了，明天开始博客隔一天更新一次：首天学习知识，第二天复习和回顾学过的知识，以及复习 C 语言相关的知识点，要一步一步走稳。<h4 id="十、每日一句"><a href="#十、每日一句" class="headerlink" title="十、每日一句"></a>十、每日一句</h4>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有！</li>
+<li><strong>对于负数整数除以 2 的次幂，要加上一个校正，校正值 = 2<sup>k</sup>-1；</strong></li>
 </ul>
+</blockquote>
+<h4 id="九-练习题"><a class="markdownIt-Anchor" href="#九-练习题"></a> 九、练习题：</h4>
+<blockquote>
+<p><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/DOmxWbRkOqzcGO0C2K.4W8ZjMZa9Bl5Cio.olQrNO*k!/r/dL4AAAAAAAAA" alt><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/fB3iAnTbsurzYafrtx22eEYWfnRPdHsi8Zo9xv2oyQc!/r/dLYAAAAAAAAA" alt></p>
+</blockquote>
+<h4 id="九-学习感悟"><a class="markdownIt-Anchor" href="#九-学习感悟"></a> 九、学习感悟</h4>
+<blockquote>
+<p>在今天的学习过程中，好多知识点都没有听懂，而且对于一些学过的基础知识遗忘的太厉害，感觉太被动了，明天开始博客隔一天更新一次：首天学习知识，第二天复习和回顾学过的知识，以及复习 C 语言相关的知识点，要一步一步走稳。</p>
+</blockquote>
+<h4 id="十-每日一句"><a class="markdownIt-Anchor" href="#十-每日一句"></a> 十、每日一句</h4>
+<blockquote>
+<p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有！</p>
 </blockquote>
 
     </article>
@@ -602,7 +640,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、无符号与带符号的转化"><span class="toc-number">1.</span> <span class="toc-text">一、无符号与带符号的转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、C-语言中的无符号数与带符号数"><span class="toc-number">2.</span> <span class="toc-text">二、C 语言中的无符号数与带符号数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、何时采用无符号数？"><span class="toc-number">3.</span> <span class="toc-text">三、何时采用无符号数？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、-无符号数的加法"><span class="toc-number">4.</span> <span class="toc-text">五、 无符号数的加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六、补码加法"><span class="toc-number">5.</span> <span class="toc-text">六、补码加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#七、无符号整数除以-2-的-K-次幂"><span class="toc-number">6.</span> <span class="toc-text">七、无符号整数除以 2 的 K 次幂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#八、带符号数整数除以-2-的次幂"><span class="toc-number">7.</span> <span class="toc-text">八、带符号数整数除以 2 的次幂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#九、练习题："><span class="toc-number">8.</span> <span class="toc-text">九、练习题：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#九、学习感悟"><span class="toc-number">9.</span> <span class="toc-text">九、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#十、每日一句"><span class="toc-number">10.</span> <span class="toc-text">十、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-无符号与带符号的转化"><span class="toc-number">1.</span> <span class="toc-text"> 一、无符号与带符号的转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-c-语言中的无符号数与带符号数"><span class="toc-number">2.</span> <span class="toc-text"> 二、C 语言中的无符号数与带符号数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-何时采用无符号数"><span class="toc-number">3.</span> <span class="toc-text"> 三、何时采用无符号数？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-无符号数的加法"><span class="toc-number">4.</span> <span class="toc-text"> 五、 无符号数的加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六-补码加法"><span class="toc-number">5.</span> <span class="toc-text"> 六、补码加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#七-无符号整数除以-2-的-k-次幂"><span class="toc-number">6.</span> <span class="toc-text"> 七、无符号整数除以 2 的 K 次幂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#八-带符号数整数除以-2-的次幂"><span class="toc-number">7.</span> <span class="toc-text"> 八、带符号数整数除以 2 的次幂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#九-练习题"><span class="toc-number">8.</span> <span class="toc-text"> 九、练习题：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#九-学习感悟"><span class="toc-number">9.</span> <span class="toc-text"> 九、学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#十-每日一句"><span class="toc-number">10.</span> <span class="toc-text"> 十、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -615,6 +653,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2745,17 +2809,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2765,11 +2829,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

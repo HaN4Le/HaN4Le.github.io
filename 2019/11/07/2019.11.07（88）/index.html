@@ -420,7 +420,8 @@ height:50vh;
 <p><strong>来自：简书，作者：骑小猪看流星</strong></p>
 <p>链接：<a href="https://www.jianshu.com/p/bd1be47a16c1" target="_blank" rel="noopener">https://www.jianshu.com/p/bd1be47a16c1</a></p>
 </blockquote>
-<h3 id="一、什么是Cookie？"><a href="#一、什么是Cookie？" class="headerlink" title="一、什么是Cookie？"></a><font color="brown">一、什么是Cookie？</font></h3><blockquote>
+<h3 id="font-color-brown一-什么是cookiefont"><a class="markdownIt-Anchor" href="#font-color-brown一-什么是cookiefont"></a> <font color="brown">一、什么是Cookie？</font></h3>
+<blockquote>
 <p>Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互联网时代的策马奔腾，带宽等限制不存在了，人们需要更复杂的互联网交互活动，就必须同服务器保持活动状态（简称：保活）。</p>
 <p><br>于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Session Cookies），一旦用户从该网站或服务器退出，Cookie 可存储在用户本地的硬盘上 （此种 Cookies 称作 Persistent Cookies）。</p>
 <p><br>Cookie 起源：1993 年，网景公司雇员 Lou Montulli 为了让用户在访问某网站时，进一步提高访问速度，同时也为了进一步实现个人化网络，发明了今天广泛使用的 Cookie。（所以，适当的偷懒也会促进人类计算机发展史的一小步~）</p>
@@ -428,27 +429,29 @@ height:50vh;
 <p><br>Cookie使用限制：Cookie 必须在 HTML 文件的内容输出之前设置；不同的浏览器 (Netscape Navigator、Internet Explorer) 对 Cookie 的处理不一致，使用时一定要考虑；客户端用户如果设置禁止 Cookie，则 Cookie 不能建立。 并且在客户端，一个浏览器能创建的 Cookie 数量最多为 300 个，并且每个不能超过 4KB，每个 Web 站点能设置的 Cookie 总数不能超过 20 个。</p>
 <p><br>执行流程：</p>
 <blockquote>
-<p> A：首先，客户端会发送一个http请求到服务器端。</p>
-<p> B： 服务器端接受客户端请求后，发送一个http响应到客户端，这个响应头，其中就包含Set-Cookie头部。</p>
+<p>A：首先，客户端会发送一个http请求到服务器端。</p>
+<p>B： 服务器端接受客户端请求后，发送一个http响应到客户端，这个响应头，其中就包含Set-Cookie头部。</p>
 <p>C：在客户端发起的第二次请求（注意：如果服务器需要我们带上Cookie，我们就需要在B步骤上面拿到这个Cookie然后作为请求头一起发起第二次请求），提供给了服务器端可以用来唯一标识客户端身份的信息。这时，服务器端也就可以判断客户端是否启用了cookies。尽管，用户可能在和应用程序交互的过程中突然禁用cookies的使用，但是，这个情况基本是不太可能发生的，所以可以不加以考虑，这在实践中也被证明是对的。</p>
 </blockquote>
 <p><br>为了方便理解，可以先看下这张流程执行图加深概念:</p>
 <p><img src="/images/88-1.png" alt></p>
-<p> 那么，在浏览器上面的请求头和Cookie在那？下图给大家截取了其中一种:</p>
+<p>那么，在浏览器上面的请求头和Cookie在那？下图给大家截取了其中一种:</p>
 <p><img src="/images/88-2.png" alt></p>
 </blockquote>
-<h3 id="二、Session"><a href="#二、Session" class="headerlink" title="二、Session"></a><font color="brown">二、Session</font></h3><blockquote>
+<h3 id="font-color-brown二-sessionfont"><a class="markdownIt-Anchor" href="#font-color-brown二-sessionfont"></a> <font color="brown">二、Session</font></h3>
+<blockquote>
 <p>Session是对于服务端来说的，客户端是没有Session一说的。Session是服务器在和客户端建立连接时添加客户端连接标志，最终会在服务器软件（Apache、Tomcat、JBoss）转化为一个临时Cookie发送给给客户端，当客户端第一请求时服务器会检查是否携带了这个Session（临时Cookie），如果没有则会添加Session，如果有就拿出这个Session来做相关操作。</p>
 <p><br>在这里引用别人家的一个小故事来加深印象：</p>
 <blockquote>
 <p>在说session是啥之前，我们先来说说为什么会出现session会话，它出现的机理是什么？</p>
-<p><br>我们知道，我们用浏览器打开一个网页，用到的是HTTP协议，了解计算机的应该都知道这个协议，它是无状态的，什么是无状态呢？就是说这一次请求和上一次请求是没有任何关系的，互不认识的，没有关联的。但是这种无状态的的好处是快速。所以就会带来一个问题就是，我希望几个请求的页面要有关联，比如：我在www.a.com/login.php里面登陆了，我在www.a.com/index.php 也希望是登陆状态，但是，这是2个不同的页面，也就是2个不同的HTTP请求，这2个HTTP请求是无状态的，也就是无关联的，所以无法单纯的在index.php中读取到它在login.php中已经登陆了！</p>
-<p><br>那咋搞呢？我不可能这2个页面我都去登陆一遍吧。或者用笨方法这2个页面都去查询数据库，如果有登陆状态，就判断是登陆的了。这种查询数据库的方案虽然可行，但是每次都要去查询数据库不是个事，会造成数据库的压力。所以正是这种诉求，这个时候，一个新的客户端存储数据方式出现了：cookie。cookie是把少量的信息存储在用户自己的电脑上，它在一个域名下是一个全局的，只要设置它的存储路径在域名www.a.com下 ，那么当用户用浏览器访问时，php就可以从这个域名的任意页面读取cookie中的信息。所以就很好的解决了我在www.a.com/login.php页面登陆了，我也可以在www.a.com/index.php获取到这个登陆信息了。</p>
+<p><br>我们知道，我们用浏览器打开一个网页，用到的是HTTP协议，了解计算机的应该都知道这个协议，它是无状态的，什么是无状态呢？就是说这一次请求和上一次请求是没有任何关系的，互不认识的，没有关联的。但是这种无状态的的好处是快速。所以就会带来一个问题就是，我希望几个请求的页面要有关联，比如：<a href="http://xn--www-lp6eu21c.a.com/login.php%E9%87%8C%E9%9D%A2%E7%99%BB%E9%99%86%E4%BA%86%EF%BC%8C%E6%88%91%E5%9C%A8www.a.com/index.php" target="_blank" rel="noopener">我在www.a.com/login.php里面登陆了，我在www.a.com/index.php</a> 也希望是登陆状态，但是，这是2个不同的页面，也就是2个不同的HTTP请求，这2个HTTP请求是无状态的，也就是无关联的，所以无法单纯的在index.php中读取到它在login.php中已经登陆了！</p>
+<p><br>那咋搞呢？我不可能这2个页面我都去登陆一遍吧。或者用笨方法这2个页面都去查询数据库，如果有登陆状态，就判断是登陆的了。这种查询数据库的方案虽然可行，但是每次都要去查询数据库不是个事，会造成数据库的压力。所以正是这种诉求，这个时候，一个新的客户端存储数据方式出现了：cookie。cookie是把少量的信息存储在用户自己的电脑上，它在一个域名下是一个全局的，只要设置它的存储路径在域名www.a.com下 ，那么当用户用浏览器访问时，php就可以从这个域名的任意页面读取cookie中的信息。<a href="http://xn--www-0h9d0q42lp0lnue67gktjcih6pax98svx0c.a.com/login.php%E9%A1%B5%E9%9D%A2%E7%99%BB%E9%99%86%E4%BA%86%EF%BC%8C%E6%88%91%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%9C%A8www.a.com/index.php%E8%8E%B7%E5%8F%96%E5%88%B0%E8%BF%99%E4%B8%AA%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E4%BA%86%E3%80%82" target="_blank" rel="noopener">所以就很好的解决了我在www.a.com/login.php页面登陆了，我也可以在www.a.com/index.php获取到这个登陆信息了。</a></p>
 <p><br>同时又不用反复去查询数据库。虽然这种方案很不错，也很快速方便，但是由于cookie 是存在用户端，而且它本身存储的尺寸大小也有限，最关键是用户可以是可见的，并可以随意的修改，很不安全。那如何又要安全，又可以方便的全局读取信息呢？于是，这个时候，一种新的存储会话机制：session 诞生了。</p>
 <p><br> Session 就是在一次会话中解决2次HTTP的请求的关联，让它们产生联系，让2两个页面都能读取到找个这个全局的session信息。session信息存在于服务器端，所以也就很好的解决了安全问题。</p>
 </blockquote>
 </blockquote>
-<h3 id="三、Token"><a href="#三、Token" class="headerlink" title="三、Token"></a><font color="brown">三、Token</font></h3><blockquote>
+<h3 id="font-color-brown三-tokenfont"><a class="markdownIt-Anchor" href="#font-color-brown三-tokenfont"></a> <font color="brown">三、Token</font></h3>
+<blockquote>
 <p>token是用户身份的验证方式，我们通常叫它：令牌。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。还可以把不变的参数也放进token，避免多次查库。</p>
 <p><br>应用场景：</p>
 <p><br>A：当用户首次登录成功（注册也是一种可以适用的场景）之后, 服务器端就会生成一个 token 值，这个值，会在服务器保存token值(保存在数据库中)，再将这个token值返回给客户端.</p>
@@ -459,26 +462,31 @@ height:50vh;
 <p>对比二：如果没有这个 token 值, 则说明没有登录成功.</p>
 <p>对比三：如果 token 值不同: 说明原来的登录信息已经失效,让用户重新登录.</p>
 </blockquote>
-<h3 id="四、三者的区别"><a href="#四、三者的区别" class="headerlink" title="四、三者的区别"></a><font color="brown">四、三者的区别</font></h3><h4 id="1-Cookie和Session的区别"><a href="#1-Cookie和Session的区别" class="headerlink" title="1. Cookie和Session的区别"></a><font color="navy">1. Cookie和Session的区别</font></h4><blockquote>
+<h3 id="font-color-brown四-三者的区别font"><a class="markdownIt-Anchor" href="#font-color-brown四-三者的区别font"></a> <font color="brown">四、三者的区别</font></h3>
+<h4 id="font-color-navy1-cookie和session的区别font"><a class="markdownIt-Anchor" href="#font-color-navy1-cookie和session的区别font"></a> <font color="navy">1. Cookie和Session的区别</font></h4>
+<blockquote>
 <ol>
 <li>cookie数据存放在客户的浏览器上，session数据放在服务器上。</li>
 <li>cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗,考虑到安全应当使用session。</li>
 <li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能,考虑到减轻服务器性能方面，应当使用cookie。</li>
 <li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</li>
-<li>所以个人建议：<ul>
+<li>所以个人建议：
+<ul>
 <li>将登陆信息等重要信息存放为session</li>
 <li>其他信息如果需要保留，可以放在cookie中</li>
 </ul>
 </li>
 </ol>
 </blockquote>
-<h4 id="2-Token-和-Session-的区别"><a href="#2-Token-和-Session-的区别" class="headerlink" title="2. Token 和 Session 的区别"></a><font color="navy">2. Token 和 Session 的区别</font></h4><blockquote>
+<h4 id="font-color-navy2-token-和-session-的区别font"><a class="markdownIt-Anchor" href="#font-color-navy2-token-和-session-的区别font"></a> <font color="navy">2. Token 和 Session 的区别</font></h4>
+<blockquote>
 <p>Session和 token并不矛盾，作为身份认证token安全性比session好，因为每个请求都有签名还能防止监听以及重放攻击，而session就必须靠链路层来保障通讯安全了。如上所说，如果你需要实现有状态的会话，仍然可以增加session来在服务器端保存一些状态。</p>
 <p><br>App通常用restful api跟server打交道。Rest是stateless的，也就是app不需要像browser那样用cookie来保存session,因此用session token来标示自己就够了，session/state由api server的逻辑处理。如果你的后端不是stateless的rest api,那么你可能需要在app里保存session.可以在app里嵌入webkit,用一个隐藏的browser来管理cookie session.</p>
 <p><br>Session是一种HTTP存储机制，目的是为无状态的HTTP提供的持久机制。所谓Session认证只是简单的把User信息存储到Session里，因为SID的不可预测性，暂且认为是安全的。这是一种认证手段。而Token，如果指的是OAuth Token或类似的机制的话，提供的是 认证 和 授权 ，认证是针对用户，授权是针对App。其目的是让 某App有权利访问 某用户 的信息。这里的Token是唯一的。不可以转移到其它App上，也不可以转到其它 用户 上。转过来说Session。Session只提供一种简单的认证，即有此SID，即认为有此User的全部权利。是需要严格保密的，这个数据应该只保存在站方，不应该共享给其它网站或者第三方App。所以简单来说，如果你的用户数据可能需要和第三方共享，或者允许第三方调用API接口，用Token。如果永远只是自己的网站，自己的App，用什么就无所谓了。</p>
 <p><br>token就是令牌，比如你授权（登录）一个程序时，他就是个依据，判断你是否已经授权该软件；cookie就是写在客户端的一个txt文件，里面包括你登录信息之类的，这样你下次在登录某个网站，就会自动调用cookie自动登录用户名；session和cookie差不多，只是session是写在服务器端的文件，也需要在客户端写入cookie文件，但是文件里是你的浏览器编号.Session的状态是存储在服务器端，客户端只有session id；而Token的状态是存储在客户端。</p>
 </blockquote>
-<h3 id="四、相关文章"><a href="#四、相关文章" class="headerlink" title="四、相关文章"></a><font color="brown">四、相关文章</font></h3><blockquote>
+<h3 id="font-color-brown四-相关文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-相关文章font"></a> <font color="brown">四、相关文章</font></h3>
+<blockquote>
 <ol>
 <li><a href="https://mp.weixin.qq.com/s/b8h6_3CMlwsE8PtkrPr9FA" target="_blank" rel="noopener">Cookie、Session、Token那点事儿</a></li>
 <li><a href="https://segmentfault.com/a/1190000017831088" target="_blank" rel="noopener">彻底弄懂session，cookie，token</a></li>
@@ -645,7 +653,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、什么是Cookie？"><span class="toc-number">1.</span> <span class="toc-text">一、什么是Cookie？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Session"><span class="toc-number">2.</span> <span class="toc-text">二、Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Token"><span class="toc-number">3.</span> <span class="toc-text">三、Token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、三者的区别"><span class="toc-number">4.</span> <span class="toc-text">四、三者的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Cookie和Session的区别"><span class="toc-number">4.1.</span> <span class="toc-text">1. Cookie和Session的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Token-和-Session-的区别"><span class="toc-number">4.2.</span> <span class="toc-text">2. Token 和 Session 的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、相关文章"><span class="toc-number">5.</span> <span class="toc-text">四、相关文章</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-什么是cookiefont"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是Cookie？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-sessionfont"><span class="toc-number">2.</span> <span class="toc-text"> 二、Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-tokenfont"><span class="toc-number">3.</span> <span class="toc-text"> 三、Token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-三者的区别font"><span class="toc-number">4.</span> <span class="toc-text"> 四、三者的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1-cookie和session的区别font"><span class="toc-number">4.1.</span> <span class="toc-text"> 1. Cookie和Session的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2-token-和-session-的区别font"><span class="toc-number">4.2.</span> <span class="toc-text"> 2. Token 和 Session 的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-相关文章font"><span class="toc-number">5.</span> <span class="toc-text"> 四、相关文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -658,6 +666,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2788,17 +2822,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2808,11 +2842,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

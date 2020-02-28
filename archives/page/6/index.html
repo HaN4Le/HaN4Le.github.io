@@ -367,8 +367,12 @@
         </a>
         <div class="abstract-content">
             
-☛ 前言：今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
-一、相关汇编代码1.Phase_6的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da5:	56 ...
+☛ 前言：
+今天对Phase_6做了分析，觉得Phase_6 的难度明显大了很多，但是通过分析，我对于Phase_6整体的功能有了大概的认识，现在就我分析的内容进行总结。
+
+ 一、相关汇编代码
+ 1.Phase_6的汇编代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798008048da5 &lt;phase_6&gt;: 8048da...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -399,7 +403,13 @@
         <div class="abstract-content">
             
 
-前言：在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。一、相关汇编代码1.Phase_5的汇编代码1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp 8048d60:...
+前言：
+在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
+
+
+ 一、相关汇编代码
+ 1.Phase_5的汇编代码
+1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -430,16 +440,18 @@
         <div class="abstract-content">
             
 
-前言：今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
+前言：
+今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
 
 
-一、有关描述[1]
-sscanf() 是从一个字符串中读进与指定格式相符的数据. 
+ 一、有关描述[1]
 
-1.sscanf()格式：
-int sscanf(const char str, const char format, …)&lt;/font&gt;
+sscanf() 是从一个字符串中读进与指定格式相符的数据.
 
-...
+ 1.sscanf()格式：
+
+int sscanf(const char *str, const char *format, ...)
+- str：...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -469,8 +481,12 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
         </a>
         <div class="abstract-content">
             
-☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub...
+☛ 前言：
+    今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
+
+ 一、相关汇编代码
+ 1.&lt; phase_4 &gt;的汇编代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub    $0x2c,%esp...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -500,8 +516,12 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
         </a>
         <div class="abstract-content">
             
-☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $...
+☛ 前言：
+    今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
+
+ 一、相关汇编代码
+① &lt; phase_3 &gt;的汇编代码
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $0x2c,%esp 8048c...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -531,7 +551,9 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
         </a>
         <div class="abstract-content">
             今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。
-一、相关汇编代码① &lt; phase_2 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34            s...
+ 一、相关汇编代码
+① &lt; phase_2 &gt;的汇编代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434408048bb4 &lt;phase_2&gt;: //执行push栈 8048bb4:	56                  push   %esi 8048bb5:	53                  push   %ebx 8048bb6:	83 ec 34          ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -562,12 +584,23 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
         <div class="abstract-content">
             经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
 
-☛ Phase_1、Phase_2、Phase_3、Phase_4今天主要总结一下Phase_1的解题过程
+☛ Phase_1、Phase_2、Phase_3、Phase_4
+今天主要总结一下Phase_1的解题过程
 
-一、前期工作
+ 一、前期工作
 
-所用工具IDA、Linux系统、gdb、objdump、python
-解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
+
+所用工具
+IDA、Linux系统、gdb、objdump、python
+解题思路
+通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。
+
+
+ 二、Phase_1解题过程
+ 1.对bomb文件进行反汇编
+
+objdump -d bomb &gt; bomo.txt
+将bo...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -601,19 +634,25 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
 
 常用的汇编指令
 objdump工具
-gdb编译器的用法一、题目中出现的汇编指令
+gdb编译器的用法
+
+
+ 一、题目中出现的汇编指令
+
+
 push、pop、call、cmp、jmp、je、jne、lea
 
 
 1.push 和 pop 指令：堆栈操作指令
 
-① 说明：无论是push 还是pop ，都是对堆栈段ss的处理：
+**① 说明：**无论是push 还是pop ，都是对堆栈段ss的处理：
 
 ss中存放堆栈段地址
 sp指针中存放偏移地址，
 栈操作都是以字（2字节）为单位。
 
-② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
+② 例子：
+☛ 例一：将通用寄存器ax中的数据入栈，pu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -642,21 +681,26 @@ sp指针中存放偏移地址，
                 <span>《汇编语言程序设计》学习笔记（十）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
+                  今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
 
 汇编语言知识点：
+
 
 x86-32下的读取条件码指令
 x86-64下的读取条件码指令
 跳转指令
 条件移动指令
 
+ 一、x86-32位下的读取条件码指令
+ 1.SetX指令
 
-一、x86-32位下的读取条件码指令1.SetX指令
-功能：读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
+**功能：**读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
 
 只存进一个byte，余下的三个字节不会被修改
-把寄存器的最低的字节改掉了，那么高的三个字节怎么办？通常使用“movzbl...
+把寄存器的最低的字节改掉了，那么高的三个字节怎么办？
+通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展
+
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -685,16 +729,24 @@ x86-64下的读取条件码指令
                 <span>reverse：Reverse sign in解题总结</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。
-一、前期准备
+                  经过这几天的“浴血奋战”，终于在今天上午把这道题目解了出来。对我初学者来说，的确是个不小的挑战。那今天就先总结一下整个解题的思路和所用的知识点，内容上可能会出现一些纰漏，我也将会在后期的学习中不断更新和改正，也希望各位大佬们对我所写的内容有所指点。
+ 一、前期准备
+
 
 汇编语言知识
 IDA工具的使用
-C语言部分知识二、知识储备
+C语言部分知识
 
 
-汇编语言关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：笔记一、笔记二、笔记三、笔记四、笔记五、笔记六、笔记七、笔记八、笔记九
-ID...
+ 二、知识储备
+
+
+汇编语言
+关于汇编语言的知识，我目前还在学习，但是已经学习了一部分，能够看懂一些代码和语句，下面我将这些笔记汇总如下：笔记一、笔记二、笔记三、笔记四、笔记五、笔记六、笔记七、笔记八、笔记九
+IDA工具的使用
+
+
+主要说一下关于IDA常用快捷...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -813,6 +865,32 @@ ID...
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2943,17 +3021,17 @@ ID...
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2963,11 +3041,11 @@ ID...
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

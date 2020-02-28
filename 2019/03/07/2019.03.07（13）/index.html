@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,22 +416,74 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天对隐写题做了个大概的总结，发现关于图片的信息隐写的总结还不完整，对于png格式的图像只是说了LSB方法，今天看到Misc：Invisible flag题目，再来说一个关于png隐写的类型：实质还是通过png格式的结构来隐写的。</p>
-<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h3><blockquote>
+        <p>      昨天对隐写题做了个大概的总结，发现关于图片的信息隐写的总结还不完整，对于png格式的图像只是说了LSB方法，今天看到Misc：Invisible flag题目，再来说一个关于png隐写的类型：实质还是通过png格式的结构来隐写的。</p>
+<h3 id="1前期准备"><a class="markdownIt-Anchor" href="#1前期准备"></a> 1.前期准备</h3>
+<blockquote>
 <ul>
 <li>工具：<a href="https://pan.baidu.com/s/118KMMOZq5mgKI-tZa7stpA?errno=0&amp;errmsg=Auth%20Login%20Sucess&amp;&amp;bduss=&amp;ssnerror=0&amp;traceid=#list/path=%2Fsharelink4279067727-614006013808662%2F5646&amp;parentPath=%2Fsharelink4279067727-614006013808662" target="_blank" rel="noopener">010editor</a></li>
-<li>知识：png格式的文件结构<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2.思考过程"></a>2.思考过程</h3>1.png图片文档结构是什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实这个问题在昨天的总结里面已经有过介绍，但是有关png图片文件的结构对今天的解题至关重要，那么在详细地讲述一下。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png除了开始的文件标识头，PNG还定义了两种数据块：关键数据块和辅助数据块。关键数据块定义了<strong>4</strong>个标准的数据块（<font color="red">文件头数据块-IHDR、调色板数据块（PLTE）、图像数据块-IDAT、图像结束数据块-IEND</font>），除了调色板数据块（PLTE）可选，其他三个是png数据块中必须包含的3个数据块，其他辅助数据块也可以选择性的添加。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png数据流中每个数据块都是有4个部分构成：数据块长度（4byte）、数据块标识（4字节）、数据内容（长度可变）和CRC校验码（4byte）。下面我就说一下这文件标识和4个标准数据块：<br><br><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>①文件标识头：</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始的四个字节固定为<font color="brown">89 50 4E 47 0D 0A 1A 0A</font> (第一个字节为89，超出了ascii表的范围，目的是为了避免将png图像当做文本文件处理)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>②文件头数据块（IHDR）：</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最重要的为文件头数据块，每个png的数据流中只包含一个IHDR，并作为第一个数据块出现在PNG数据流中，包含了png文件中（数据内容）存储了<strong>图像的基本信息</strong>：图像宽度（4byte）、图像高度（4位）、颜色深度（1byte）、颜色类型（1byte）、压缩方法（使用LZ77派生压缩 | 1byte | 规定此字节为0）、滤波器方法（通常此字节为0 | 1byte）、隔行扫描方法（非隔行扫描：0 ，7遍隔行扫描方法：1 | 1byte ）和CRC校验（4byte）<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>③调色板数据块（PLTE）</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;含有与索引彩色图像相关的彩色变换数据，它仅与索引彩色图像有关，位置要放在图像数据块之前。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><strong>④图像数据块（IDAT）</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDAT是一个多数据块，因为PNG的图像数据块（IDAT）存储图像的实际数据，相当于BMP图像的图像数据，由于PNG可包含多幅图像，所以PNG的图像数据块可能是由一幅图像的数据组成，也可能是由多幅图像的数据组成。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于图像数据块是压缩数据，如果能够掌握压缩和解压缩的方法，那么就能轻易而举地将其它类型的图片与PNG图片进行转换。<br><br><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">⑤图像结束数据块（IEND） </font></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标记PNG文件或者数据流已经结束，并且必须要放在文件的尾部。一共有12个字节，如果没有人为进行修改，那么这12个字节通常为：00 00 00 00 49 45 4E 44 AE 42 60 82</li>
+<li>知识：png格式的文件结构</li>
 </ul>
+</blockquote>
+<h3 id="2思考过程"><a class="markdownIt-Anchor" href="#2思考过程"></a> 2.思考过程</h3>
+<p>1.png图片文档结构是什么？</p>
+<blockquote>
+<p>     其实这个问题在昨天的总结里面已经有过介绍，但是有关png图片文件的结构对今天的解题至关重要，那么在详细地讲述一下。<br>
+<br>     png除了开始的文件标识头，PNG还定义了两种数据块：关键数据块和辅助数据块。关键数据块定义了<strong>4</strong>个标准的数据块（<font color="red">文件头数据块-IHDR、调色板数据块（PLTE）、图像数据块-IDAT、图像结束数据块-IEND</font>），除了调色板数据块（PLTE）可选，其他三个是png数据块中必须包含的3个数据块，其他辅助数据块也可以选择性的添加。<br>
+<br>     png数据流中每个数据块都是有4个部分构成：数据块长度（4byte）、数据块标识（4字节）、数据内容（长度可变）和CRC校验码（4byte）。下面我就说一下这文件标识和4个标准数据块：<br>
+<br><font color="red">     <strong>①文件标识头：</strong></font><br>
+      开始的四个字节固定为<font color="brown">89 50 4E 47 0D 0A 1A 0A</font> (第一个字节为89，超出了ascii表的范围，目的是为了避免将png图像当做文本文件处理)<br>
+<br>     <font color="red"><strong>②文件头数据块（IHDR）：</strong></font><br>
+     最重要的为文件头数据块，每个png的数据流中只包含一个IHDR，并作为第一个数据块出现在PNG数据流中，包含了png文件中（数据内容）存储了<strong>图像的基本信息</strong>：图像宽度（4byte）、图像高度（4位）、颜色深度（1byte）、颜色类型（1byte）、压缩方法（使用LZ77派生压缩 | 1byte | 规定此字节为0）、滤波器方法（通常此字节为0 | 1byte）、隔行扫描方法（非隔行扫描：0 ，7遍隔行扫描方法：1 | 1byte ）和CRC校验（4byte）<br>
+<br>     <font color="red"><strong>③调色板数据块（PLTE）</strong></font><br>
+     含有与索引彩色图像相关的彩色变换数据，它仅与索引彩色图像有关，位置要放在图像数据块之前。<br>
+<br>     <font color="red"><strong>④图像数据块（IDAT）</strong></font><br>
+     IDAT是一个多数据块，因为PNG的图像数据块（IDAT）存储图像的实际数据，相当于BMP图像的图像数据，由于PNG可包含多幅图像，所以PNG的图像数据块可能是由一幅图像的数据组成，也可能是由多幅图像的数据组成。<br>
+     由于图像数据块是压缩数据，如果能够掌握压缩和解压缩的方法，那么就能轻易而举地将其它类型的图片与PNG图片进行转换。<br>
+<br><strong>     <font color="red">⑤图像结束数据块（IEND） </font></strong><br>
+     标记PNG文件或者数据流已经结束，并且必须要放在文件的尾部。一共有12个字节，如果没有人为进行修改，那么这12个字节通常为：00 00 00 00 49 45 4E 44 AE 42 60 82</p>
 </blockquote>
 <p>2.010editor软件的功能是什么？</p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010编辑是一款非常强大的文本/十六进制编辑器，除了文本/十六进制编辑外，还包括文件解析，计算器，文件比较等功能，但它真正的强大之处还在于文件的解析功能。我们可以使用010Editor官方网站提供的解析脚本（二进制模板）对AVI，BMP，PNG，EXE等简单格式的文件进行解析。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这个题目中，可以用010editor打开，然后观察和修改文件的参数。</p>
-<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><ol>
+<p>     010编辑是一款非常强大的文本/十六进制编辑器，除了文本/十六进制编辑外，还包括文件解析，计算器，文件比较等功能，但它真正的强大之处还在于文件的解析功能。我们可以使用010Editor官方网站提供的解析脚本（二进制模板）对AVI，BMP，PNG，EXE等简单格式的文件进行解析。<br>
+     在这个题目中，可以用010editor打开，然后观察和修改文件的参数。</p>
+</blockquote>
+<h3 id="3-解题过程"><a class="markdownIt-Anchor" href="#3-解题过程"></a> 3. 解题过程</h3>
+<blockquote>
+<ol>
 <li>下载图片并认真审题，可以从图片（图①）和题目提示：图片长度，可以发现图片的下方可能有信息被隐藏起来了，可以通过010editor修改图片长度（也就是高度）；<img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0umfx8wt2j20fo0b4n00.jpg" alt></li>
-<li>用010editor打开图像，根据前期做的功课，认真分析该png图片的结构：<br><font color="red">①红色区域是png文件的标识符，共有8个字节：89 50 4E 47 0D 0A 1A 0A</font><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0ul0c541bj20m708u75r.jpg" alt><br><br><font color="red">②红色区域是PNG文件的文件头数据块（IHDR）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0ei2tfj20n00a2aby.jpg" alt><br>&nbsp;▶ 00 00 00 0D：数据块长度是13B；<br>&nbsp;▶ 49 48 44 52：数据标识IHDR；<br>&nbsp;▶ 00 00 02 34：图像宽度为564px；<br>&nbsp;▶ 00 00 01 90：图像高度为400px；（可以看到图片高度像素小，可能信息被隐藏）<br>&nbsp;▶ 08：24位颜色深度<br>&nbsp;▶ 02：颜色类型为真彩<br>&nbsp;▶ 00：使用了压缩<br>&nbsp;▶ 00：滤波器方法，通常为0<br>&nbsp;▶ 00：非隔行扫描<br>&nbsp;▶ 36 8C 6D 31：CRC校验码 （循环冗余检测中的值是对第２部分数据块符号和第３部分数据域进行计算得到的）<br><br><font color="red">③红色区域为PNG文件的图像数据块（IDAT）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0gdiw4j20mi0cnwgr.jpg" alt><br>&nbsp;▶ 00 00 FF FF：数据块长度，该png的数据块长度是65535B；（其长度不超过2<sup>31</sup>-1个字节）<br>&nbsp;▶ 49 44 41 54 ：数据标识IDAT；<br>&nbsp;▶ 下面的数据内容、CRC就不介绍了<br><br><font color="red">④红色区域的为PNG文件的图像结束数据块（IEND）</font><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0ul0j0b45j20l407z3zq.jpg" alt><br>&nbsp;▶ 00 00 00 00：数据块长度为0；<br>&nbsp;▶ 49 45 4E 44：数据标识IEND<br>&nbsp;▶ AE 42 60 82：CRC码（因为数据内容为0，所以直接是CRC码）<br>&nbsp;▶ 由于数据块结构的定义，IEND数据块的长度总是0（00 00 00 00，除非人为加入信息），数据标识总是IEND（49 45 4E 44），因此，CRC码也总是AE 42 60 82。</li>
+<li>用010editor打开图像，根据前期做的功课，认真分析该png图片的结构：<br>
+<font color="red">①红色区域是png文件的标识符，共有8个字节：89 50 4E 47 0D 0A 1A 0A</font><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0ul0c541bj20m708u75r.jpg" alt><br>
+<br><font color="red">②红色区域是PNG文件的文件头数据块（IHDR）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0ei2tfj20n00a2aby.jpg" alt><br>
+ ▶ 00 00 00 0D：数据块长度是13B；<br>
+ ▶ 49 48 44 52：数据标识IHDR；<br>
+ ▶ 00 00 02 34：图像宽度为564px；<br>
+ ▶ 00 00 01 90：图像高度为400px；（可以看到图片高度像素小，可能信息被隐藏）<br>
+ ▶ 08：24位颜色深度<br>
+ ▶ 02：颜色类型为真彩<br>
+ ▶ 00：使用了压缩<br>
+ ▶ 00：滤波器方法，通常为0<br>
+ ▶ 00：非隔行扫描<br>
+ ▶ 36 8C 6D 31：CRC校验码 （循环冗余检测中的值是对第２部分数据块符号和第３部分数据域进行计算得到的）<br>
+<br><font color="red">③红色区域为PNG文件的图像数据块（IDAT）</font><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0ul0gdiw4j20mi0cnwgr.jpg" alt><br>
+ ▶ 00 00 FF FF：数据块长度，该png的数据块长度是65535B；（其长度不超过2<sup>31</sup>-1个字节）<br>
+ ▶ 49 44 41 54 ：数据标识IDAT；<br>
+ ▶ 下面的数据内容、CRC就不介绍了<br>
+<br><font color="red">④红色区域的为PNG文件的图像结束数据块（IEND）</font><img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0ul0j0b45j20l407z3zq.jpg" alt><br>
+ ▶ 00 00 00 00：数据块长度为0；<br>
+ ▶ 49 45 4E 44：数据标识IEND<br>
+ ▶ AE 42 60 82：CRC码（因为数据内容为0，所以直接是CRC码）<br>
+ ▶ 由于数据块结构的定义，IEND数据块的长度总是0（00 00 00 00，除非人为加入信息），数据标识总是IEND（49 45 4E 44），因此，CRC码也总是AE 42 60 82。</li>
 <li>在对该PNG图片结构进行了分析以后，那么修改一下IHDR中的图片高度为：00 00 02 34（564px）与宽度一样，就得到下面的图片<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0umlun5fij20fp0duwhz.jpg" alt></li>
-<li><strong>疑问：</strong>修改了高度以后，数据流中有哪些数据发生了变化？<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前几天在解这道题的时候，也查了很多资料，也觉得自己的理解更深了，可是今天的回顾和总结，又让我对这个知识点更加理解了。学习是个过程，所以以后不能总要想着“我今天就要把Python学完”，这是不可能的，必须要经过一个循环渐进的过程，只有不断的去思考去总结，才能真正的把学习学到手！<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5. 每日一句"></a>5. 每日一句</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个人最大的挑战，是如何去克服自己的缺点。</li>
+<li>**疑问：**修改了高度以后，数据流中有哪些数据发生了变化？</li>
 </ol>
+</blockquote>
+<h3 id="4-学习感悟"><a class="markdownIt-Anchor" href="#4-学习感悟"></a> 4. 学习感悟</h3>
+<blockquote>
+<p>     前几天在解这道题的时候，也查了很多资料，也觉得自己的理解更深了，可是今天的回顾和总结，又让我对这个知识点更加理解了。学习是个过程，所以以后不能总要想着“我今天就要把Python学完”，这是不可能的，必须要经过一个循环渐进的过程，只有不断的去思考去总结，才能真正的把学习学到手！</p>
+</blockquote>
+<h3 id="5-每日一句"><a class="markdownIt-Anchor" href="#5-每日一句"></a> 5. 每日一句</h3>
+<blockquote>
+<p>     一个人最大的挑战，是如何去克服自己的缺点。</p>
 </blockquote>
 
     </article>
@@ -593,7 +645,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1.前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text">2.思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text">3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text">4. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-每日一句"><span class="toc-number">5.</span> <span class="toc-text">5. 每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1.前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2思考过程"><span class="toc-number">2.</span> <span class="toc-text"> 2.思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text"> 3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 5. 每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -606,6 +658,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2736,17 +2814,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2756,11 +2834,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

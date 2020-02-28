@@ -380,9 +380,11 @@ height:50vh;
         </a>
         <div class="abstract-content">
             
-这是我在无意中遇到的一个xss 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于n浏览器编码问题)，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 xss 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 xss 知识点，当然这并不意味着结束了 xss 的学习，这只不过是一个开头，好了！步入正题。
+这是我在无意中遇到的一个xss 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于n浏览器编码问题，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 xss 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 xss 知识点，当然这并不意味着结束了 xss 的学习，这只不过是一个开头，好了！步入正题。
 
-0x00 简单闭合问题① JS 代码12345function escape(input) &#123;    // warm up...
+ 0x00 简单闭合问题
+ ① JS 代码
+12345function escape(input) &#123;    // warm...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -443,9 +445,10 @@ height:50vh;
                 <span>【转载】文件 HOSTS 的简介和修改方法</span>
         </a>
         <div class="abstract-content">
-            一、什么是 hostshosts —— the static table lookup for host name（主机名查询静态表）。
+             一、什么是 hosts
+hosts —— the static table lookup for host name（主机名查询静态表）。
 hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应...
+Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -474,8 +477,10 @@ Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的
                 <span>【转载】 XSS 总结</span>
         </a>
         <div class="abstract-content">
-            简述XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧妙的方法注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是JavaScript，但实际上也可以包括Java，VBScript，ActiveX，Flash或者甚至是普通的HTML。攻击成功后，攻击者可能得到更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。
-常用的XSS攻击手段和目的123451.盗用cookie，获取敏感信息。2.利用植入Flash，通过crossdomain权限设置进一步获取更高权限；或者利用Java等得到类似的操作。3.利用iframe、frame...
+             简述
+XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧妙的方法注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是JavaScript，但实际上也可以包括Java，VBScript，ActiveX，Flash或者甚至是普通的HTML。攻击成功后，攻击者可能得到更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。
+ 常用的XSS攻击手段和目的
+123451.盗用cookie，获取敏感信息。2.利用植入Flash，通过crossdomain权限设置进一步获取更高权限；或者利用Java等得到类似的操作。3.利用iframe、f...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -507,7 +512,6 @@ Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的
         </a>
         <div class="abstract-content">
             
-
 
 
 文件类型
@@ -562,7 +566,7 @@ Rich Text Format (rtf)
 ——
 
 
-XML (x...
+XML (xm...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -591,34 +595,40 @@ XML (x...
                 <span>【WP】XCFT misc新手阶段</span>
         </a>
         <div class="abstract-content">
-            一、PDF1.基础知识
+             一、PDF
+ 1.基础知识
+
 无
 
-2.题目要求
-3.做题步骤
+ 2.题目要求
+
+ 3.做题步骤
+
 直接 pdf 转换为 word （转换工具点击这里），然后将 word 中的图片进行移动，会发现图片下的 flag。
 
-二、如来十三掌1.基础知识
+ 二、如来十三掌
+ 1.基础知识
+
 
 与佛论禅算法的原理和本质
 ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个字符）
 
 
-2.题目要求
-3.做题步骤
+ 2.题目要求
+
+ 3.做题步骤
+
+
 
 下载附件，得到一个 word 文件，打开该文档，发现里面的内容如下：
+
 
 
 将文字放到“与佛论禅”破解网站里面进行翻译，如下图：
 
 
-根据题目“如来十三掌”的题目提示，我们用 rot-13 进行解密，脚本代码如下：
 
-
-运行脚本，得到对应的密文：
-
-...
+根据题目“如来十三掌”的题目提示，我们用 rot-13 进行解密，脚本代码如下...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -649,10 +659,11 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
                 <span>以太坊智能合约漏洞 | Fallback函数</span>
         </a>
         <div class="abstract-content">
-            一、Fallback 函数介绍
+             一、Fallback 函数介绍
+
 合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
 除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
-在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量廉价...
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -686,13 +697,17 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
             
 题目链接：XSS Challenges（共19关）
 
-Stage #1① 题目
-② 相关知识点
+ Stage #1
+ ① 题目
+
+ ② 相关知识点
+
 
 XSS 的类型
 
 
-③ 解题步骤
+ ③ 解题步骤
+
 ▣ 首先看一下是否存在 XSS 攻击
 
 ⚁ 首次尝试填入信息：
@@ -701,7 +716,7 @@ XSS 的类型
 
 1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
 
-▣ 点击 search 之后，...
+▣ 点击 se...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -736,9 +751,10 @@ XSS 的类型
 来自：简书，作者：骑小猪看流星
 链接：https://www.jianshu.com/p/bd1be47a16c1
 
-一、什么是Cookie？
+ 一、什么是Cookie？
+
 Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互联网时代的策马奔腾，带宽等限制不存在了，人们需要更复杂的互联网交互活动，就必须同服务器保持活动状态（简称：保活）。
-于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Sess...
+于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Se...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -767,18 +783,20 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
                 <span>有关内核调用问题和预编译指令</span>
         </a>
         <div class="abstract-content">
-            一、知识点摘要
+             一、知识点摘要
+
 
 系统调用 int 80h 中断
 #ifdef ……# endif 的含义和用法
 
 
-二、知识点介绍1.int 80h 中断
-1) 什么是 system call?
+ 二、知识点介绍
+ 1.int 80h 中断
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI ))
+1) 什么是 system call?
+        system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI)
 2) 什么是 int 80h 中断？
-&nbsp;&nbsp;&...
+        Linux 的 system call 就是通过int 80h来实现的，int 80...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -994,6 +1012,32 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -3124,17 +3168,17 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -3144,11 +3188,11 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

@@ -366,7 +366,9 @@
                 <span>PWN 实战 - shellcode 题解</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.shellcode
+             一、基础知识
+ 1.shellcode
+
 有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
 
 
@@ -377,15 +379,18 @@ PWN-shellcode获取与编写
 
 
 
-二、解题步骤1,查看文件类型1file pwn3
+ 二、解题步骤
+ 1,查看文件类型
+1file pwn3
 6
 
 从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
 
-2.查看 pwn3 开启的保护1checksec pwn3
+ 2.查看 pwn3 开启的保护
+1checksec pwn3
 
 
-从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开启了栈上数据可执行...
+从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -416,12 +421,14 @@ PWN-shellcode获取与编写
                 <span>变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</span>
         </a>
         <div class="abstract-content">
-            一、变色龙哈希（Chameleon Hash）1.哈希函数？
-**① 什么是哈希函数？**
+             一、变色龙哈希（Chameleon Hash）
+ 1.哈希函数？
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。
+① 什么是哈希函数？
+     哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。
 ② 哈希函数的特征
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = H...
+     1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = Hash(m’)。这一性质成为广义碰撞抵抗性。
+     2. 进一步，很难找到任意两个m和m’，使得H...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -450,20 +457,19 @@ PWN-shellcode获取与编写
                 <span>pwn-ROP(GOT表泄露)</span>
         </a>
         <div class="abstract-content">
-            一、基础知识1.GOT 表、PLT 表和 libc 库的相关知识① 什么是 GOT 表？
-
+             一、基础知识
+ 1.GOT 表、PLT 表和 libc 库的相关知识
+① 什么是 GOT 表？
 
 GOT(Global Offset Table) 表，即全局偏移量表，里面是函数在 libc 库中的绝对地址。
 
 ② 什么是 PLT 表？
 
-
 PLT(Procedure Link Table) 表，即程序链接表，里面是函数在 GOT 表中的地址。
 
 ③ 什么是 libc 库？
 
-
-libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常数...
+libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -580,6 +586,32 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2710,17 +2742,17 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2730,11 +2762,11 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

@@ -396,9 +396,10 @@
                 <span>【转载】文件 HOSTS 的简介和修改方法</span>
         </a>
         <div class="abstract-content">
-            一、什么是 hostshosts —— the static table lookup for host name（主机名查询静态表）。
+             一、什么是 hosts
+hosts —— the static table lookup for host name（主机名查询静态表）。
 hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应...
+Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -428,7 +429,6 @@ Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的
         </a>
         <div class="abstract-content">
             
-
 
 
 文件类型
@@ -483,7 +483,7 @@ Rich Text Format (rtf)
 ——
 
 
-XML (x...
+XML (xm...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -514,16 +514,18 @@ XML (x...
         <div class="abstract-content">
             
 
-前言：今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
+前言：
+今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
 
 
-一、有关描述[1]
-sscanf() 是从一个字符串中读进与指定格式相符的数据. 
+ 一、有关描述[1]
 
-1.sscanf()格式：
-int sscanf(const char str, const char format, …)&lt;/font&gt;
+sscanf() 是从一个字符串中读进与指定格式相符的数据.
 
-...
+ 1.sscanf()格式：
+
+int sscanf(const char *str, const char *format, ...)
+- str：...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -638,6 +640,32 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2768,17 +2796,17 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2788,11 +2816,11 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

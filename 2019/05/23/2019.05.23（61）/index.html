@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,76 +418,110 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、什么是密钥？"><a href="#一、什么是密钥？" class="headerlink" title="一、什么是密钥？"></a>一、什么是密钥？</h3><blockquote>
+        <h3 id="一-什么是密钥"><a class="markdownIt-Anchor" href="#一-什么是密钥"></a> 一、什么是密钥？</h3>
+<blockquote>
 <p>1.密钥中的数字并不重要，<strong>重要的是密钥空间的大小</strong>，也就是可能出现密钥的总数量，因为密钥空间越大，进行暴力破解越困难，密钥空间的大小是由<strong>密钥长度</strong>决定的；</p>
 <ul>
 <li><font color="red">对称DES的密钥长度</font>：56bit</li>
 <li><font color="red">三重DES的密钥长度</font>：① DES-EDE2：112bit  ② DES-EDE3：168bit</li>
 <li><font color="red">对称AES的密钥长度</font>：128、192 和 256bit</li>
 </ul>
-<p>2.密钥和明文是等价的</p>
-<p><font color="brown"><strong>3.密钥算法和密钥</strong>：</font>依靠隐藏密码算法本身的设计来确保信息的机密性是非常危险的！！（重要）信息的机密性不应该依赖于密码算法本身，而是依赖于妥善保管的密钥。</p>
+<p>2.密钥和明文是等价的<br>
+<font color="brown"><strong>3.密钥算法和密钥</strong>：</font>依靠隐藏密码算法本身的设计来确保信息的机密性是非常危险的！！（重要）信息的机密性不应该依赖于密码算法本身，而是依赖于妥善保管的密钥。</p>
 </blockquote>
-<h3 id="二、各种不同的密钥"><a href="#二、各种不同的密钥" class="headerlink" title="二、各种不同的密钥"></a>二、各种不同的密钥</h3><blockquote>
-<p><font color="brown"><strong>◉ 对称密码的密钥</strong></font>：确保机密性的密钥<br><br><font color="brown"><strong>◉ 公钥密码中密钥</strong></font>：确保机密性的密钥<br><br><font color="brown"><strong>◉ 消息认证码中的密钥</strong></font>：用于认证的密钥，共享的密钥<br><br><font color="brown"><strong>◉ 数字签名中的密钥</strong></font>：用于认证的密钥，公钥密码<br><br><font color="blue"><strong>◪ 会话密钥</strong>：</font>通信中只使用一次的密钥<br><br><font color="blue"><strong>◪ 主密钥</strong>：</font>通信中一直被重复使用的密钥<br><br><font color="orange"><strong>◮ 用于加密内容的密钥（CEK）</strong>：</font>加密对象是用户直接使用的信息<br><br><font color="orange"><strong>◮ 用于加密密钥的密钥（KEK）</strong>：</font>加密对象是密钥</p>
+<h3 id="二-各种不同的密钥"><a class="markdownIt-Anchor" href="#二-各种不同的密钥"></a> 二、各种不同的密钥</h3>
+<blockquote>
+<p><font color="brown"><strong>◉ 对称密码的密钥</strong></font>：确保机密性的密钥<br>
+<br><font color="brown"><strong>◉ 公钥密码中密钥</strong></font>：确保机密性的密钥<br>
+<br><font color="brown"><strong>◉ 消息认证码中的密钥</strong></font>：用于认证的密钥，共享的密钥<br>
+<br><font color="brown"><strong>◉ 数字签名中的密钥</strong></font>：用于认证的密钥，公钥密码<br>
+<br><font color="blue"><strong>◪ 会话密钥</strong>：</font>通信中只使用一次的密钥<br>
+<br><font color="blue"><strong>◪ 主密钥</strong>：</font>通信中一直被重复使用的密钥<br>
+<br><font color="orange"><strong>◮ 用于加密内容的密钥（CEK）</strong>：</font>加密对象是用户直接使用的信息<br>
+<br><font color="orange"><strong>◮ 用于加密密钥的密钥（KEK）</strong>：</font>加密对象是密钥</p>
 </blockquote>
-<h3 id="三、密钥的管理"><a href="#三、密钥的管理" class="headerlink" title="三、密钥的管理"></a>三、密钥的管理</h3><blockquote>
-<p><font color="brown"><strong>1.生成密钥：</strong></font><br><br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用随机数生成密钥</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">这里的伪随机数生成器必须是专门针对密码学用途而设计的</font><br><br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用口令生成密钥</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">将口令输入单向散列函数，然后将散列值作为密钥使用</font>。为了防止<strong>字典攻击</strong>，需要在口令上面附加一串成为<strong>盐（salt）</strong>的随机数，然后再将其输入单向散列函数，这种方法称为“<strong>基于口令的密码（PBE）</strong>”<br><br><font color="brown"><strong>2.配送密钥：</strong></font></p>
+<h3 id="三-密钥的管理"><a class="markdownIt-Anchor" href="#三-密钥的管理"></a> 三、密钥的管理</h3>
+<blockquote>
+<p><font color="brown"><strong>1.生成密钥：</strong></font><br>
+<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用随机数生成密钥</strong><br>
+       <font color="navy">这里的伪随机数生成器必须是专门针对密码学用途而设计的</font><br>
+<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>用口令生成密钥</strong><br>
+       <font color="navy">将口令输入单向散列函数，然后将散列值作为密钥使用</font>。为了防止<strong>字典攻击</strong>，需要在口令上面附加一串成为**盐（salt）**的随机数，然后再将其输入单向散列函数，这种方法称为“<strong>基于口令的密码（PBE）</strong>”<br>
+<br><font color="brown"><strong>2.配送密钥：</strong></font></p>
 <ul>
 <li>事先共享密钥</li>
 <li>使用密钥分配中心</li>
 <li>使用公钥密码</li>
 <li><strong>Diffie-Hellman 密钥交换</strong></li>
 </ul>
-<p><br><font color="brown"><strong>3.更新密钥：</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在使用共享密钥进行通信的过程中，定期改变密钥。在改变密钥时，发送者和接收者使用单向散列函数计算当前密钥的散列值，并将这个散列值用作新的密钥。也就是，<strong>用当前密钥的散列值作为下一个密钥。</strong><br><br><font color="brown"><strong>4.保存密钥</strong></font><br><br><font color="brown"><strong>5.作废密钥</strong></font><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Wtbn5vnw2Mf7n8gQgZ28TA0*Vw4LhdIoagBAUxQO*nc!/r/dEYBAAAAAAAA" alt><br><br><font color="#999999">■</font><font color="gray">■</font>■ <strong>如何作废密钥？</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要完全删除密钥，不但要用到密码软件，还需要设计计算机系统时对信息安全进行充分的考虑。</p>
+<p><br><font color="brown"><strong>3.更新密钥：</strong></font><br>
+       在使用共享密钥进行通信的过程中，定期改变密钥。在改变密钥时，发送者和接收者使用单向散列函数计算当前密钥的散列值，并将这个散列值用作新的密钥。也就是，<strong>用当前密钥的散列值作为下一个密钥。</strong><br>
+<br><font color="brown"><strong>4.保存密钥</strong></font><br>
+<br><font color="brown"><strong>5.作废密钥</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Wtbn5vnw2Mf7n8gQgZ28TA0*Vw4LhdIoagBAUxQO*nc!/r/dEYBAAAAAAAA" alt><br>
+<br><font color="#999999">■</font><font color="gray">■</font>■ <strong>如何作废密钥？</strong><br>
+       要完全删除密钥，不但要用到密码软件，还需要设计计算机系统时对信息安全进行充分的考虑。</p>
 </blockquote>
-<h3 id="四、Diffie-Hellman-密钥交换"><a href="#四、Diffie-Hellman-密钥交换" class="headerlink" title="四、Diffie-Hellman 密钥交换"></a>四、Diffie-Hellman 密钥交换</h3><blockquote>
-<font color="brown">**1.什么是 Diffie-Hellman 密钥交换：**</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通信双方仅通过交换一些可以公开地信息就能够生成出共享的秘密数字，而这一秘密数字就可以被用作堆成密码的密钥。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一定要清楚的是，虽然叫做“密钥交换”，但是通信双方并没有真正的交换密钥，而是通过计算生成出了一个相同的共享密钥（**利用 mod 算法的困难**）
-<br><font color="brown">**2.Diffie-Hellman 密钥交换的步骤：**</font>
-![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dRxFXwqikYSqkPJaxd0fvu429SqwCTyJgNukJqC945I!/r/dFMBAAAAAAAA)
-（一）Alice向Bob发送两个质数 P 和 G（生成元）
-（二）Alice生成一个随机数 A
-（三）Bob生成一个随机数B
-（四）Alice 将G<sup>A</sup> mod P 的结果发送给 Bob
-（五）Bob 将G<sup>B</sup> mod P 的结果发送给 Alice
-（六）Alice 用Bob发送过来的数计算 A 次方并求 P ：
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（G<sup>B</sup> mod P ）<sup>A</sup> mod P 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= G<sup>B x A</sup> mod P
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= G<sup>A x B</sup> mod P
-（七）Bob 用Alice 发送过来的数计算 B 次方并求 P
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（G<sup>A</sup> mod P ）<sup>B</sup> mod P 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= G<sup>A x B</sup> mod P
-<br>**实质就是运用了 mod 的运算法则和逆运算的困难度**
-<br><font color="brown">**3.Diffie-Hellman 的密钥能被窃听者计算出来吗？**</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我们来分析 Alice 和 Bob 都传输了哪些数据：**P、G、G<sup>A</sup> mod P 和 G<sup>B</sup> mod P** 四个数据，如果 Eve 要想计算出 Diffie-Hellman 的密钥，就必须知道 A、B 这两个数据（如果知道 A 和 B 其中一个就可以计算出 D<sup>AxB</sup>，也就可以解出密钥了）。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么**解出密钥的关键在于 mod P，**因为根据 G<sup>A</sup> mod P 计算出 A 的有效算法还没有出现，这个问题称为<font color="red">**有限域的离散对数问题**</font>
-<br><font color="navy">**而有限域的离散对数问题的复杂度正是支撑 Diffie-Hellman 密钥交换算法的基础。**</font>
-<br><font color="brown">**4.生成元的意义**</font>
-![](http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/GLM*QK*coca0S6twK.I5ZbR6XyqnsnpXsxda7CcPHQs!/r/dFMBAAAAAAAA)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图可以看出，G = 2、6、7 和 11 时，G<sup>A</sup> mod P 所得的值均不相同，所以 2、6、7、11 称为 13 的生成元，需要注意的地方：**G<sup>P-1</sup> mod P 一定等于 “1”**
-<br><font color="brown">**5.主动攻击者能否对 Diffie-Hellman 进行中间人攻击呢？**</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然是可以的，具体的我会在后期画出一个示意图，然后再进行补充。
-<br><font color="brown">**6.椭圆曲线 Diffie-Hellman 密钥交换**</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Diffie-Hellman 密钥交换是利用“离散对数问题”的复杂度来实现密钥的安全交换的，而椭圆曲线 Diffie-Hellman 密钥交换是将 **“离散对数问题”** 改为 **“椭圆上离散对数问题”**。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy">**椭圆曲线 Diffie-Hellman 密钥交换能够用较短的密钥长度实现较高的安全性。**</font>
-
+<h3 id="四-diffie-hellman-密钥交换"><a class="markdownIt-Anchor" href="#四-diffie-hellman-密钥交换"></a> 四、Diffie-Hellman 密钥交换</h3>
+<blockquote>
+<p><font color="brown"><strong>1.什么是 Diffie-Hellman 密钥交换：</strong></font><br>
+       通信双方仅通过交换一些可以公开地信息就能够生成出共享的秘密数字，而这一秘密数字就可以被用作堆成密码的密钥。<br>
+       一定要清楚的是，虽然叫做“密钥交换”，但是通信双方并没有真正的交换密钥，而是通过计算生成出了一个相同的共享密钥（<strong>利用 mod 算法的困难</strong>）<br>
+<br><font color="brown"><strong>2.Diffie-Hellman 密钥交换的步骤：</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/dRxFXwqikYSqkPJaxd0fvu429SqwCTyJgNukJqC945I!/r/dFMBAAAAAAAA" alt><br>
+（一）Alice向Bob发送两个质数 P 和 G（生成元）<br>
+（二）Alice生成一个随机数 A<br>
+（三）Bob生成一个随机数B<br>
+（四）Alice 将G<sup>A</sup> mod P 的结果发送给 Bob<br>
+（五）Bob 将G<sup>B</sup> mod P 的结果发送给 Alice<br>
+（六）Alice 用Bob发送过来的数计算 A 次方并求 P ：<br>
+        （G<sup>B</sup> mod P ）<sup>A</sup> mod P<br>
+       = G<sup>B x A</sup> mod P<br>
+       = G<sup>A x B</sup> mod P<br>
+（七）Bob 用Alice 发送过来的数计算 B 次方并求 P<br>
+        （G<sup>A</sup> mod P ）<sup>B</sup> mod P<br>
+       = G<sup>A x B</sup> mod P<br>
+<br><strong>实质就是运用了 mod 的运算法则和逆运算的困难度</strong><br>
+<br><font color="brown"><strong>3.Diffie-Hellman 的密钥能被窃听者计算出来吗？</strong></font><br>
+        首先我们来分析 Alice 和 Bob 都传输了哪些数据：<strong>P、G、G<sup>A</sup> mod P 和 G<sup>B</sup> mod P</strong> 四个数据，如果 Eve 要想计算出 Diffie-Hellman 的密钥，就必须知道 A、B 这两个数据（如果知道 A 和 B 其中一个就可以计算出 D<sup>AxB</sup>，也就可以解出密钥了）。<br>
+        那么**解出密钥的关键在于 mod P，**因为根据 G<sup>A</sup> mod P 计算出 A 的有效算法还没有出现，这个问题称为<font color="red"><strong>有限域的离散对数问题</strong></font><br>
+<br><font color="navy"><strong>而有限域的离散对数问题的复杂度正是支撑 Diffie-Hellman 密钥交换算法的基础。</strong></font><br>
+<br><font color="brown"><strong>4.生成元的意义</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/GLM*QK*coca0S6twK.I5ZbR6XyqnsnpXsxda7CcPHQs!/r/dFMBAAAAAAAA" alt><br>
+        从上图可以看出，G = 2、6、7 和 11 时，G<sup>A</sup> mod P 所得的值均不相同，所以 2、6、7、11 称为 13 的生成元，需要注意的地方：<strong>G<sup>P-1</sup> mod P 一定等于 “1”</strong><br>
+<br><font color="brown"><strong>5.主动攻击者能否对 Diffie-Hellman 进行中间人攻击呢？</strong></font><br>
+        当然是可以的，具体的我会在后期画出一个示意图，然后再进行补充。<br>
+<br><font color="brown"><strong>6.椭圆曲线 Diffie-Hellman 密钥交换</strong></font><br>
+        Diffie-Hellman 密钥交换是利用“离散对数问题”的复杂度来实现密钥的安全交换的，而椭圆曲线 Diffie-Hellman 密钥交换是将 <strong>“离散对数问题”</strong> 改为 <strong>“椭圆上离散对数问题”</strong>。<br>
+        <font color="navy"><strong>椭圆曲线 Diffie-Hellman 密钥交换能够用较短的密钥长度实现较高的安全性。</strong></font></p>
 </blockquote>
-<h3 id="五、基于口令的密码（PBE）"><a href="#五、基于口令的密码（PBE）" class="headerlink" title="五、基于口令的密码（PBE）"></a>五、基于口令的密码（PBE）</h3><blockquote>
-<p><font color="brown"><strong>1.什么是基于口令的密码？</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="navy"><strong>基于口令的密码就是一种根据口令生成密钥并用该密钥进行加密的方法，加密和解密使用同一个密钥。</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在使用基于口令的密码时（PBE），<strong>需要将盐和加密后的 CEK 通过物理方式进行保护。</strong><br><br><font color="brown"><strong>2.如何理解 PBE 的意义？</strong></font><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/2tfsmaKjKFQAapWyiVwSU8brcwzRjaiUgv7DCDF7Z.E!/r/dE0BAAAAAAAA" alt><br><br><font color="brown"><strong>3. PBE 加密的过程</strong></font><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FTS2RFWW4sB.Hvspa9EeNevTi93bishN6AKjyln8avw!/r/dDQBAAAAAAAA" alt><br><br><font color="brown"><strong>4. PBE 解密的过程</strong></font><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/OMbT3jhvV8Mx5QLs4yC*g235xDKKFtVVcoBup9sKWRw!/r/dL4AAAAAAAAA" alt><br><br><font color="brown"><strong>5. 盐（salt）的作用</strong></font></p>
+<h3 id="五-基于口令的密码pbe"><a class="markdownIt-Anchor" href="#五-基于口令的密码pbe"></a> 五、基于口令的密码（PBE）</h3>
+<blockquote>
+<p><font color="brown"><strong>1.什么是基于口令的密码？</strong></font><br>
+        <font color="navy"><strong>基于口令的密码就是一种根据口令生成密钥并用该密钥进行加密的方法，加密和解密使用同一个密钥。</strong></font><br>
+        在使用基于口令的密码时（PBE），<strong>需要将盐和加密后的 CEK 通过物理方式进行保护。</strong><br>
+<br><font color="brown"><strong>2.如何理解 PBE 的意义？</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/2tfsmaKjKFQAapWyiVwSU8brcwzRjaiUgv7DCDF7Z.E!/r/dE0BAAAAAAAA" alt><br>
+<br><font color="brown"><strong>3. PBE 加密的过程</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/FTS2RFWW4sB.Hvspa9EeNevTi93bishN6AKjyln8avw!/r/dDQBAAAAAAAA" alt><br>
+<br><font color="brown"><strong>4. PBE 解密的过程</strong></font><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/OMbT3jhvV8Mx5QLs4yC*g235xDKKFtVVcoBup9sKWRw!/r/dL4AAAAAAAAA" alt><br>
+<br><font color="brown"><strong>5. 盐（salt）的作用</strong></font></p>
 <ul>
 <li>盐是由伪随机数生成器生成的随机数</li>
 <li>盐是用来防御字典攻击的</li>
 </ul>
-<p><br><font color="brown"><strong>6. 如何让通过拉伸来改良 PBE</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拉伸在这里的意思就是通过<strong>多次使用单向散列函数来多次迭代计算盐和口令</strong>。</p>
+<p><br><font color="brown"><strong>6. 如何让通过拉伸来改良 PBE</strong></font><br>
+        拉伸在这里的意思就是通过<strong>多次使用单向散列函数来多次迭代计算盐和口令</strong>。</p>
 </blockquote>
-<h3 id="六、生成安全的口令的方法"><a href="#六、生成安全的口令的方法" class="headerlink" title="六、生成安全的口令的方法"></a>六、生成安全的口令的方法</h3><blockquote>
-<font color="brown">**1.使用只有自己才知道的信息**</font>
-<br><font color="brown">**2.将多个不同的口令分开使用**</font>
-<br><font color="brown">**3.有效利用笔记**</font>
-<br><font color="brown">**4.理解口令的局限性**</font>
-<br><font color="brown">**5.使用口令生成和管理工具**</font></blockquote>
+<h3 id="六-生成安全的口令的方法"><a class="markdownIt-Anchor" href="#六-生成安全的口令的方法"></a> 六、生成安全的口令的方法</h3>
+<blockquote>
+<p><font color="brown"><strong>1.使用只有自己才知道的信息</strong></font><br>
+<br><font color="brown"><strong>2.将多个不同的口令分开使用</strong></font><br>
+<br><font color="brown"><strong>3.有效利用笔记</strong></font><br>
+<br><font color="brown"><strong>4.理解口令的局限性</strong></font><br>
+<br><font color="brown"><strong>5.使用口令生成和管理工具</strong></font></p>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -648,7 +682,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、什么是密钥？"><span class="toc-number">1.</span> <span class="toc-text">一、什么是密钥？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、各种不同的密钥"><span class="toc-number">2.</span> <span class="toc-text">二、各种不同的密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、密钥的管理"><span class="toc-number">3.</span> <span class="toc-text">三、密钥的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、Diffie-Hellman-密钥交换"><span class="toc-number">4.</span> <span class="toc-text">四、Diffie-Hellman 密钥交换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、基于口令的密码（PBE）"><span class="toc-number">5.</span> <span class="toc-text">五、基于口令的密码（PBE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、生成安全的口令的方法"><span class="toc-number">6.</span> <span class="toc-text">六、生成安全的口令的方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是密钥"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是密钥？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-各种不同的密钥"><span class="toc-number">2.</span> <span class="toc-text"> 二、各种不同的密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-密钥的管理"><span class="toc-number">3.</span> <span class="toc-text"> 三、密钥的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-diffie-hellman-密钥交换"><span class="toc-number">4.</span> <span class="toc-text"> 四、Diffie-Hellman 密钥交换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-基于口令的密码pbe"><span class="toc-number">5.</span> <span class="toc-text"> 五、基于口令的密码（PBE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-生成安全的口令的方法"><span class="toc-number">6.</span> <span class="toc-text"> 六、生成安全的口令的方法</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -661,6 +695,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2791,17 +2851,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2811,11 +2871,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

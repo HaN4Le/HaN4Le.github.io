@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">886</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -419,23 +419,42 @@ height:50vh;
         <blockquote>
 <p>☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“<strong>乘法链算</strong>”实现的过程吧。</p>
 </blockquote>
-<h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><blockquote>
-<p><font color="navy">1.模运算</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>① 概念</strong>：模运算，即为<font color="red"><strong>求余数的运算</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>② 运算符</strong>：模运算的运算符记为 <strong>mod</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：a mod b = n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表示的意思是<strong>a 除以 b 所得的余数为 r</strong>，而上式中的 <strong>N</strong> 通常称为<strong>模数</strong><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>例子</strong>：17 mod 11 = 6<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 mod 7 = 1<br><br><font color="navy">2.同余的相关内容</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>① 概念</strong>：若 <strong>a mod n = b mod n = r</strong>，记为 a ≡ b (mod n)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>② 例如</strong>：13 mod 7 = 20 mod 7 = 6 ，则<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<p><center><font color="red">13 ≡ 20 (mod 7)</font></center>&lt;/font&gt;</p>
-<p><font color="navy">3.模运算的性质</font></p>
-<ul>
-<li>加法运算：(a + b) mod n = (a mod n + b mod n) mod n;</li>
-<li>减法运算：(a - b) mod n = (a mod n - b mod n) mod n;</li>
-<li>乘法运算：(a × b) mod n = ((a mod n) × (b mod n)) mod n</li>
-<li>分配律：((a + b) mod p × c) mod n = ((a × c) mod p + (b × c) mod p) mod n = (((a × c) mod p) mod n + ((b × c) mod p) mod n)</li>
-<li>结合律：((a + b) mod n + c) mod n = (a + (b + c) mod n) mod n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((a <em> b) mod n </em> c) mod n = (a <em> (b </em> c) mod n) mod n</li>
-<li>交换律：(a + b) mod n = (b + a) mod n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;(a <em> b) mod n = (b </em> a) mod n</li>
-</ul>
+<h3 id="font-colorbrown一-基础知识font"><a class="markdownIt-Anchor" href="#font-colorbrown一-基础知识font"></a> <font color="brown">一、基础知识</font></h3>
+<blockquote>
+<p><font color="navy">1.模运算</font><br>
+      <strong>① 概念</strong>：模运算，即为<font color="red"><strong>求余数的运算</strong></font><br>
+      <strong>② 运算符</strong>：模运算的运算符记为 <strong>mod</strong><br>
+            例如：a mod b = n<br>
+            表示的意思是<strong>a 除以 b 所得的余数为 r</strong>，而上式中的 <strong>N</strong> 通常称为<strong>模数</strong><br>
+<br>            <strong>例子</strong>：17 mod 11 = 6<br>
+                        8 mod 7 = 1<br>
+<br><font color="navy">2.同余的相关内容</font><br>
+      <strong>① 概念</strong>：若 <strong>a mod n = b mod n = r</strong>，记为 a ≡ b (mod n)<br>
+      <strong>② 例如</strong>：13 mod 7 = 20 mod 7 = 6 ，则<br>
+            </p>
+<center><font color="red">13 ≡ 20 (mod 7)</font></center>
+<font color="navy">3.模运算的性质</font>
+- 加法运算：(a + b) mod n = (a mod n + b mod n) mod n;
+- 减法运算：(a - b) mod n = (a mod n - b mod n) mod n;
+- 乘法运算：(a × b) mod n = ((a mod n) × (b mod n)) mod n
+- 分配律：((a + b) mod p × c) mod n = ((a × c) mod p + (b × c) mod p) mod n = (((a × c) mod p) mod n + ((b × c) mod p) mod n)
+- 结合律：((a + b) mod n + c) mod n = (a + (b + c) mod n) mod n
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((a * b) mod n * c) mod n = (a * (b * c) mod n) mod n
+- 交换律：(a + b) mod n = (b + a) mod n
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;(a * b) mod n = (b * a) mod n
 </blockquote>
-<h3 id="二、乘法链算法"><a href="#二、乘法链算法" class="headerlink" title="二、乘法链算法"></a><font color="brown">二、乘法链算法</font></h3><blockquote>
-<p><font color="navy">1.什么是乘法链算法</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>① 如何计算 a<sup>m</sup> mod n？</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不要直接计算（a × a × a × … × a）mod n，这样会导致因中间结果巨大而计算溢出；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>② 解决的思路</strong>：利用模运算的性质简化中间结果，但即使这样，仍然有技巧，如果直接计算 a × （a ×  … × （a mod n) mod n）mod n，需要计算 m 次模运算，仍然不够优化。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>③ 正确的思路</strong>：<font color="red"><strong>将 m 看成 2  的幂次方之和，再利用模运算的性质。</strong></font><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>④ 例子</strong>：计算 a<sup>25</sup> mod n（m = 25 是 11001）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  a<sup>25 = 11001</sup> mod n = (a<sup>16</sup> <em> a<sup>8</sup> </em> a<sup>1</sup>) mod n ——&gt; <strong>乘法链算法</strong></p>
+<h3 id="font-colorbrown二-乘法链算法font"><a class="markdownIt-Anchor" href="#font-colorbrown二-乘法链算法font"></a> <font color="brown">二、乘法链算法</font></h3>
+<blockquote>
+<p><font color="navy">1.什么是乘法链算法</font><br>
+      <strong>① 如何计算 a<sup>m</sup> mod n？</strong>：<br>
+            不要直接计算（a × a × a × … × a）mod n，这样会导致因中间结果巨大而计算溢出；<br>
+      <strong>② 解决的思路</strong>：利用模运算的性质简化中间结果，但即使这样，仍然有技巧，如果直接计算 a × （a ×  … × （a mod n) mod n）mod n，需要计算 m 次模运算，仍然不够优化。<br>
+<br>      <strong>③ 正确的思路</strong>：<font color="red"><strong>将 m 看成 2  的幂次方之和，再利用模运算的性质。</strong></font><br>
+<br>      <strong>④ 例子</strong>：计算 a<sup>25</sup> mod n（m = 25 是 11001）<br>
+                          a<sup>25 = 11001</sup> mod n = (a<sup>16</sup> * a<sup>8</sup> * a<sup>1</sup>) mod n ——&gt; <strong>乘法链算法</strong></p>
 </blockquote>
-<h3 id="三、最小公倍数的加法算法代码实现"><a href="#三、最小公倍数的加法算法代码实现" class="headerlink" title="三、最小公倍数的加法算法代码实现"></a><font color="brown">三、最小公倍数的加法算法代码实现</font></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Date: 2019.7.15</span></span><br><span class="line"><span class="comment">Function：实现乘法链算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,n,u,s = <span class="number">1</span>,index,result;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">int</span> b[<span class="number">1000</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter the base of the dividend:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter the index of the dividend:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;u);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter a divisor:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	index = u;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*将被除数幂形式的指数展开为二进制形式*/</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;u != <span class="number">0</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(u % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">			b[i] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			b[i] = <span class="number">0</span>;</span><br><span class="line">		u = u &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*乘法链算法实现代码*/</span></span><br><span class="line">	t = a;											<span class="comment">// 对 a 进行初始化；</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>;m &lt; i;m++)	</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[m])									<span class="comment">// 当二进制的所在位的值为 1 时进行运算</span></span><br><span class="line">			s = t % n * s;							<span class="comment">// 求的是将幂次展开后，每个幂次 mod n 的结果之积:（s1 mod n）*（s2 mod n）*……*（si mod n）</span></span><br><span class="line">		result = s % n;								<span class="comment">// 将所求的结果再与 n 进行模运算：（（s1 mod n）*（s2 mod n）*……*（si mod n））mod n</span></span><br><span class="line">		t = <span class="built_in">pow</span>(t,<span class="number">2</span>);								<span class="comment">// 每进行一次循环，t 的值就要翻倍</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d^%d mod %d = %d\n"</span>,a,index,n,result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="font-colorbrown三-最小公倍数的加法算法代码实现font"><a class="markdownIt-Anchor" href="#font-colorbrown三-最小公倍数的加法算法代码实现font"></a> <font color="brown">三、最小公倍数的加法算法代码实现</font></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Date: 2019.7.15</span></span><br><span class="line"><span class="comment">Function：实现乘法链算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,n,u,s = <span class="number">1</span>,index,result;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">int</span> b[<span class="number">1000</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter the base of the dividend:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter the index of the dividend:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;u);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter a divisor:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	index = u;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*将被除数幂形式的指数展开为二进制形式*/</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;u != <span class="number">0</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(u % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">			b[i] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			b[i] = <span class="number">0</span>;</span><br><span class="line">		u = u &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*乘法链算法实现代码*/</span></span><br><span class="line">	t = a;											<span class="comment">// 对 a 进行初始化；</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>;m &lt; i;m++)	</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[m])									<span class="comment">// 当二进制的所在位的值为 1 时进行运算</span></span><br><span class="line">			s = t % n * s;							<span class="comment">// 求的是将幂次展开后，每个幂次 mod n 的结果之积:（s1 mod n）*（s2 mod n）*……*（si mod n）</span></span><br><span class="line">		result = s % n;								<span class="comment">// 将所求的结果再与 n 进行模运算：（（s1 mod n）*（s2 mod n）*……*（si mod n））mod n</span></span><br><span class="line">		t = <span class="built_in">pow</span>(t,<span class="number">2</span>);								<span class="comment">// 每进行一次循环，t 的值就要翻倍</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d^%d mod %d = %d\n"</span>,a,index,n,result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>说明</strong>：上面的代码实现是我按照自己的思路写出来的，可能在逻辑上会出现一些错误，还希望各位大神批评，或者有更好的算法，也希望各位大神能够在评论区附上你们的算法代码，感激不尽。</p>
 </blockquote>
@@ -599,7 +618,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基础知识"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、乘法链算法"><span class="toc-number">2.</span> <span class="toc-text">二、乘法链算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、最小公倍数的加法算法代码实现"><span class="toc-number">3.</span> <span class="toc-text">三、最小公倍数的加法算法代码实现</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-乘法链算法font"><span class="toc-number">2.</span> <span class="toc-text"> 二、乘法链算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-最小公倍数的加法算法代码实现font"><span class="toc-number">3.</span> <span class="toc-text"> 三、最小公倍数的加法算法代码实现</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -612,6 +631,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2742,17 +2787,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2762,11 +2807,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

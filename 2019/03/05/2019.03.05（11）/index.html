@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,31 +416,64 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天又成功解出两道题，虽然很累，但是带来的收获确实很大，今天先总结一下关于Misc：Forensics2题目的知识吧。（PS：越往下做越感觉难度增加，我准备先继续做题了，这两天再好好的回顾和总结一下以前的知识点）</p>
-<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
+        <p>        今天又成功解出两道题，虽然很累，但是带来的收获确实很大，今天先总结一下关于Misc：Forensics2题目的知识吧。（PS：越往下做越感觉难度增加，我准备先继续做题了，这两天再好好的回顾和总结一下以前的知识点）</p>
+<h3 id="1-前期准备"><a class="markdownIt-Anchor" href="#1-前期准备"></a> 1. 前期准备</h3>
+<blockquote>
 <ul>
 <li>工具：wireshark</li>
-<li>知识：ICMP、ARP、SSH、NFS、RPC有关知识<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2. 思考过程"></a>2. 思考过程</h3></li>
+<li>知识：ICMP、ARP、SSH、NFS、RPC有关知识</li>
 </ul>
+</blockquote>
+<h3 id="2-思考过程"><a class="markdownIt-Anchor" href="#2-思考过程"></a> 2. 思考过程</h3>
+<blockquote>
 <ol>
 <li>上述协议的工作原理是什么？功能是什么？</li>
 </ol>
 <ul>
 <li><strong>ICMP</strong>：它位于ISO参考模型的网络层，是网络控制报文协议，当IP数据包传送过程中发生错误时（源点抑制、路由不可达、参数问题等），ICMP协议会将错误信息封包，然后返回给主机。它有两大类：查询报文和差错报文，而在这个数据包中的ICMP是查询报文的类型（PING）；</li>
 <li><strong>ARP</strong>：简单介绍它的功能用来通过MAC查询IP地址；</li>
-<li><strong>SSH</strong>：SSH协议（Secure Shell）是基于应用层的协议，他能在传输过程中为明文数据进行加密，安全性更高；它的工作过程大概为：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①版本号协商阶段：SSH目前包括 SSHv1和SSHv2两个版本， 双方通过版本协商确定使用的版本；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②密钥和算法协商阶段：SSH支持多种加密算法， 双方根据本端和对端支持的算法，协商出最终使用的算法；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③认证阶段：SSH客户端向服务器端发起认证请求， 服务器端对客户端进行认证；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④会话请求阶段：认证通过后，客户端向服务器端发送会话请求；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤交互会话阶段 ：会话请求通过后，服务器端和客户端进行信息的交互</li>
+<li><strong>SSH</strong>：SSH协议（Secure Shell）是基于应用层的协议，他能在传输过程中为明文数据进行加密，安全性更高；它的工作过程大概为：<br>
+      ①版本号协商阶段：SSH目前包括 SSHv1和SSHv2两个版本， 双方通过版本协商确定使用的版本；<br>
+      ②密钥和算法协商阶段：SSH支持多种加密算法， 双方根据本端和对端支持的算法，协商出最终使用的算法；<br>
+      ③认证阶段：SSH客户端向服务器端发起认证请求， 服务器端对客户端进行认证；<br>
+      ④会话请求阶段：认证通过后，客户端向服务器端发送会话请求；<br>
+      ⑤交互会话阶段 ：会话请求通过后，服务器端和客户端进行信息的交互</li>
 <li><strong>NFS</strong>：就是通过网络共享目录，让网络上的其他服务器能够挂载访问共享目录内的数据（一般共享视频，图片等静态数据）；</li>
 <li><strong>RPC(Remote Procedure Call)</strong>：因为NFS本身是没有提供信息传输的协议和功能的，但NFS却能让我们通过网络来分享资料，这是因为NFS使用了一些其它的传输协议，而这些传输协议用到了RPC的功能。</li>
 </ul>
-<ol>
-<li>两台主机间进行的是什么交互过程？<br>打开wireshark，不难发现主要的交互过程是Client A（10.0.0.22）和Sever B（10.0.0.2）用SSHv2对TCP传输的数据进行加密，并传输的文件在服务端共享，在客户端挂载使用的一个大概过程；</li>
-<li>所要找的file应该在哪被找到？<br>可以看出file被加密传输，进行解密对我来说非常困难，那么流量中有NFS，文件是否被网络共享？那么应重点关注的对象是不是NFS？<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3></li>
-<li>打开wireshark，分析流量的数据，找出SSH的每个过程：<br>&nbsp;&nbsp;&nbsp;①Client端向Server端发起SSH连接请求；<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwehpp2j210f08o3zm.jpg" alt><br>&nbsp;&nbsp;&nbsp;②Server端向Client端发起版本协商。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwi2uy1j211m0brmz6.jpg" alt><br>&nbsp;&nbsp;&nbsp;③协商结束后Server端发送Host Key公钥 Server Key公钥，随机数等信息。到这里所有通信是不加密的。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwk448kj21050av401.jpg" alt><br>&nbsp;&nbsp;&nbsp;④Client端返回确认信息，同时附带用公钥加密过的一个随机数，用于双方计算Session Key。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwohstkj210z09775k.jpg" alt><br>&nbsp;&nbsp;&nbsp;⑤进入认证阶段。从此以后所有通信均加密。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwqbgmqj211209mjss.jpg" alt><br>&nbsp;&nbsp;&nbsp;⑥认证成功后，进入交互阶段。<img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0scwuo217j211y09bdhe.jpg" alt></li>
-<li>因为SSH的过程已经明确，所以对于整个流量分析相对就容易了。在思考过程中已经明确了应注重关注NFS，那么在过滤器中只过滤NFS的流量：<br><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0scwwdffsj210w0evgoa.jpg" alt></li>
-<li>在上图中我们可以得到服务器允许客户端进行读（RD）、查找（LU）、修改（MD）、增加（XT）、删除（DL）操作的信息，而客户端对文件进行了查找（以防止覆盖相同名称文件的内容）、打开（这里建立了flag.txt.gz的压缩包）和写的操作；</li>
-<li>找到OpcodeWRITE/DATA/CONTENT，然后右击点击showPackt Bytes，得到下图：<br><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0sczwcjhtj20pq0frq41.jpg" alt></li>
-<li>设置Decode as Compressed，即可得到flag<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的总结虽然花的时间比较长，但是我觉得我理解的深度还不够，更需要我认真的去回顾和思考这些问题，切实变成自己的知识。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明天开始我要减缓进度了，因为我感悟前几天的知识消化的还不到位，明天开始要好好的去总结总结学过的知识点。<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h3>行胜于言！</li>
+<ol start="2">
+<li>两台主机间进行的是什么交互过程？<br>
+打开wireshark，不难发现主要的交互过程是Client A（10.0.0.22）和Sever B（10.0.0.2）用SSHv2对TCP传输的数据进行加密，并传输的文件在服务端共享，在客户端挂载使用的一个大概过程；</li>
+<li>所要找的file应该在哪被找到？<br>
+可以看出file被加密传输，进行解密对我来说非常困难，那么流量中有NFS，文件是否被网络共享？那么应重点关注的对象是不是NFS？</li>
 </ol>
+</blockquote>
+<h3 id="3-解题过程"><a class="markdownIt-Anchor" href="#3-解题过程"></a> 3. 解题过程</h3>
+<blockquote>
+<ol>
+<li>打开wireshark，分析流量的数据，找出SSH的每个过程：<br>
+   ①Client端向Server端发起SSH连接请求；<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwehpp2j210f08o3zm.jpg" alt><br>
+   ②Server端向Client端发起版本协商。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwi2uy1j211m0brmz6.jpg" alt><br>
+   ③协商结束后Server端发送Host Key公钥 Server Key公钥，随机数等信息。到这里所有通信是不加密的。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwk448kj21050av401.jpg" alt><br>
+   ④Client端返回确认信息，同时附带用公钥加密过的一个随机数，用于双方计算Session Key。<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0scwohstkj210z09775k.jpg" alt><br>
+   ⑤进入认证阶段。从此以后所有通信均加密。<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0scwqbgmqj211209mjss.jpg" alt><br>
+   ⑥认证成功后，进入交互阶段。<img src="https://wx1.sinaimg.cn/mw690/9b08638bly1g0scwuo217j211y09bdhe.jpg" alt></li>
+<li>因为SSH的过程已经明确，所以对于整个流量分析相对就容易了。在思考过程中已经明确了应注重关注NFS，那么在过滤器中只过滤NFS的流量：<br>
+<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0scwwdffsj210w0evgoa.jpg" alt></li>
+<li>在上图中我们可以得到服务器允许客户端进行读（RD）、查找（LU）、修改（MD）、增加（XT）、删除（DL）操作的信息，而客户端对文件进行了查找（以防止覆盖相同名称文件的内容）、打开（这里建立了flag.txt.gz的压缩包）和写的操作；</li>
+<li>找到OpcodeWRITE/DATA/CONTENT，然后右击点击showPackt Bytes，得到下图：<br>
+<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0sczwcjhtj20pq0frq41.jpg" alt></li>
+<li>设置Decode as Compressed，即可得到flag</li>
+</ol>
+</blockquote>
+<h3 id="4-学习感悟"><a class="markdownIt-Anchor" href="#4-学习感悟"></a> 4. 学习感悟</h3>
+<blockquote>
+<p>      今天的总结虽然花的时间比较长，但是我觉得我理解的深度还不够，更需要我认真的去回顾和思考这些问题，切实变成自己的知识。<br>
+      明天开始我要减缓进度了，因为我感悟前几天的知识消化的还不到位，明天开始要好好的去总结总结学过的知识点。</p>
+</blockquote>
+<h3 id="5每日一句"><a class="markdownIt-Anchor" href="#5每日一句"></a> 5.每日一句</h3>
+<blockquote>
+<p>行胜于言！</p>
 </blockquote>
 
     </article>
@@ -602,7 +635,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text">2. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text">3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text">4. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-每日一句"><span class="toc-number">5.</span> <span class="toc-text">5.每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text"> 2. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text"> 3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4. 学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 5.每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -615,6 +648,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2745,17 +2804,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2765,11 +2824,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

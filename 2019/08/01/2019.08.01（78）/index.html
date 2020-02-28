@@ -420,16 +420,20 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、PHP-部分漏洞"><a href="#一、PHP-部分漏洞" class="headerlink" title="一、PHP 部分漏洞"></a><font color="brown">一、PHP 部分漏洞</font></h3><h4 id="1-GET-和-POST"><a href="#1-GET-和-POST" class="headerlink" title="1.$_GET 和 $_POST"></a><font color="navy">1.$_GET 和 $_POST</font></h4><blockquote>
-<p>如果 GET 参数中设置 <code>name[]=a</code>，那么 <code>$_GET[&#39;name&#39;] = [a]</code>，php 会把 <code>[]=a</code> 当成数组传入， <code>$_GET</code> 会自动对参数调用 <code>urldecode</code>。</p>
-<p><code>$_POST</code> 同样存在此漏洞，提交的表单数据，<code>user[]=admin</code>，<code>$_POST[&#39;user&#39;]</code> 得到的是 <code>[&#39;admin&#39;]</code> 是一个数组。</p>
+        <h3 id="font-color-brown一-php-部分漏洞font"><a class="markdownIt-Anchor" href="#font-color-brown一-php-部分漏洞font"></a> <font color="brown">一、PHP 部分漏洞</font></h3>
+<h4 id="font-color-navy1_get-和-_postfont"><a class="markdownIt-Anchor" href="#font-color-navy1_get-和-_postfont"></a> <font color="navy">1.$_GET 和 $_POST</font></h4>
+<blockquote>
+<p>如果 GET 参数中设置 <code>name[]=a</code>，那么 <code>$_GET['name'] = [a]</code>，php 会把 <code>[]=a</code> 当成数组传入， <code>$_GET</code> 会自动对参数调用 <code>urldecode</code>。</p>
+<p><code>$_POST</code> 同样存在此漏洞，提交的表单数据，<code>user[]=admin</code>，<code>$_POST['user']</code> 得到的是 <code>['admin']</code> 是一个数组。</p>
 </blockquote>
-<h4 id="2-sha1-和-md5-函数"><a href="#2-sha1-和-md5-函数" class="headerlink" title="2.sha1 和 md5 函数"></a><font color="navy">2.sha1 和 md5 函数</font></h4><blockquote>
+<h4 id="font-color-navy2sha1-和-md5-函数font"><a class="markdownIt-Anchor" href="#font-color-navy2sha1-和-md5-函数font"></a> <font color="navy">2.sha1 和 md5 函数</font></h4>
+<blockquote>
 <p>PHP在处理哈希字符串时，<strong>会利用 ”!=” 或 ”==” 来对哈希值进行比较</strong>，它把每一个以 “0E” 开头的哈希值都解释为 <strong>0</strong>，所以<font color="red">如果两个不同的密码经过哈希以后，其哈希值都是以 “0E” 开头的，那么PHP将会认为它们都是 <strong>0</strong></font>。</p>
 <p>MD5不能处理数组，若有以下判断则可用数组<strong>绕过</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">if</span>(@md5($_GET[<span class="string">'a'</span>]) == @md5($_GET[<span class="string">'b'</span>]))</span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;     <span class="keyword">echo</span> <span class="string">"yes"</span>;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="3-”-“-符号"><a href="#3-”-“-符号" class="headerlink" title="3.” === “ 符号"></a><font color="navy">3.” === “ 符号</font></h4><blockquote>
+<h4 id="font-color-navy3-符号font"><a class="markdownIt-Anchor" href="#font-color-navy3-符号font"></a> <font color="navy">3.&quot; === &quot; 符号</font></h4>
+<blockquote>
 <p>在数学计算中我们习惯的用 “a = b”，表示的意思是 a 的值与 b 的值相等，而在计算机世界中这样的说法是完全错误的，在计算机的计算中</p>
 <ul>
 <li>“ <strong>a = b</strong> ”：表示的意思是将 b 的值赋值给 a；</li>
@@ -437,15 +441,18 @@ height:50vh;
 <li>“ <strong>a === b</strong> ”：表示的意思是 a 的<strong>类型</strong>以及<strong>相应的值</strong>与 b 的<strong>类型</strong>以及<strong>相应的值</strong>是否相等，如果返回 1，则表示，a 与 b 是同类型同值关系；</li>
 </ul>
 </blockquote>
-<h3 id="二、分析题目"><a href="#二、分析题目" class="headerlink" title="二、分析题目"></a><font color="brown">二、分析题目</font></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt; </span><br><span class="line">&lt;html&gt; </span><br><span class="line">&lt;head&gt; </span><br><span class="line">    &lt;title&gt;Exercise&lt;/title&gt; </span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt; </span><br><span class="line">&lt;/head&gt; </span><br><span class="line">&lt;body&gt; </span><br><span class="line">&lt;h1&gt;PHP&apos;s basic feature&lt;/h1&gt;&lt;!--好吧其实是老套路了--&gt; </span><br><span class="line">&lt;?php </span><br><span class="line">require_once(&apos;flag.php&apos;); </span><br><span class="line"></span><br><span class="line">if (isset($_GET[&apos;name&apos;]) and isset($_GET[&apos;password&apos;]) &amp;&amp; isset($_GET[&apos;test&apos;]))&#123; </span><br><span class="line">    // ========== Stage 1 ==========  </span><br><span class="line">    $test=$_GET[&apos;test&apos;];  </span><br><span class="line">    $test=md5($test);  </span><br><span class="line"></span><br><span class="line">    if($test==&apos;0&apos;) &#123;  </span><br><span class="line">        print &apos;You passed stage 1.&lt;br /&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">    else&#123; </span><br><span class="line">        print &quot;Game over at stage 1.&quot;;  </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // ========== Stage 2 ==========  </span><br><span class="line">    if ($_GET[&apos;name&apos;] == $_GET[&apos;password&apos;])&#123; </span><br><span class="line">        print &apos;Your password can not be your name.&apos;; </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line">    else if (sha1($_GET[&apos;name&apos;]) === sha1($_GET[&apos;password&apos;]))&#123; </span><br><span class="line">        print &apos;You passed stage 2.&lt;br /&gt;&apos;; </span><br><span class="line">        print &apos;Flag: &apos;.$flag; </span><br><span class="line">    &#125; </span><br><span class="line">    else&#123; </span><br><span class="line">        print &apos;Invalid password&apos;; </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">echo &apos;&lt;hr /&gt;&apos;; </span><br><span class="line">show_source(__FILE__); </span><br><span class="line">?&gt; </span><br><span class="line">&lt;/body&gt; </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="1-stage-1-分析"><a href="#1-stage-1-分析" class="headerlink" title="1.stage 1 分析"></a><font color="navy">1.stage 1 分析</font></h4><blockquote>
+<h3 id="font-color-brown二-分析题目font"><a class="markdownIt-Anchor" href="#font-color-brown二-分析题目font"></a> <font color="brown">二、分析题目</font></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt; </span><br><span class="line">&lt;html&gt; </span><br><span class="line">&lt;head&gt; </span><br><span class="line">    &lt;title&gt;Exercise&lt;/title&gt; </span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt; </span><br><span class="line">&lt;/head&gt; </span><br><span class="line">&lt;body&gt; </span><br><span class="line">&lt;h1&gt;PHP&apos;s basic feature&lt;/h1&gt;&lt;!--好吧其实是老套路了--&gt; </span><br><span class="line">&lt;?php </span><br><span class="line">require_once(&apos;flag.php&apos;); </span><br><span class="line"></span><br><span class="line">if (isset($_GET[&apos;name&apos;]) and isset($_GET[&apos;password&apos;]) &amp;&amp; isset($_GET[&apos;test&apos;]))&#123; </span><br><span class="line">    // ========== Stage 1 ==========  </span><br><span class="line">    $test=$_GET[&apos;test&apos;];  </span><br><span class="line">    $test=md5($test);  </span><br><span class="line"></span><br><span class="line">    if($test==&apos;0&apos;) &#123;  </span><br><span class="line">        print &apos;You passed stage 1.&lt;br /&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">    else&#123; </span><br><span class="line">        print &quot;Game over at stage 1.&quot;;  </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // ========== Stage 2 ==========  </span><br><span class="line">    if ($_GET[&apos;name&apos;] == $_GET[&apos;password&apos;])&#123; </span><br><span class="line">        print &apos;Your password can not be your name.&apos;; </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line">    else if (sha1($_GET[&apos;name&apos;]) === sha1($_GET[&apos;password&apos;]))&#123; </span><br><span class="line">        print &apos;You passed stage 2.&lt;br /&gt;&apos;; </span><br><span class="line">        print &apos;Flag: &apos;.$flag; </span><br><span class="line">    &#125; </span><br><span class="line">    else&#123; </span><br><span class="line">        print &apos;Invalid password&apos;; </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">echo &apos;&lt;hr /&gt;&apos;; </span><br><span class="line">show_source(__FILE__); </span><br><span class="line">?&gt; </span><br><span class="line">&lt;/body&gt; </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="font-color-navy1stage-1-分析font"><a class="markdownIt-Anchor" href="#font-color-navy1stage-1-分析font"></a> <font color="navy">1.stage 1 分析</font></h4>
+<blockquote>
 <p>如上面的代码所示，需要输入三个参数：name、password 和 test，对 stage 1 代码分析：</p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$test=$_GET[<span class="string">'test'</span>];  </span><br><span class="line">$test=md5($test);  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($test == <span class="string">'0'</span>) &#123;  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'You passed stage 1.&lt;br /&gt;'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span>&#123; </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Game over at stage 1."</span>;  </span><br><span class="line">    <span class="keyword">exit</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>对输入的 test 值进行 md5 加密，使得加密后的结果等于 0 ，这样就可以通过 stage 1，那么我们在解题时需要做的就是如何使得 test 加密后的结果等于 0 呢？</p>
 </blockquote>
-<h4 id="2-stage-2-分析"><a href="#2-stage-2-分析" class="headerlink" title="2.stage 2 分析"></a><font color="navy">2.stage 2 分析</font></h4><blockquote>
+<h4 id="font-color-navy2stage-2-分析font"><a class="markdownIt-Anchor" href="#font-color-navy2stage-2-分析font"></a> <font color="navy">2.stage 2 分析</font></h4>
+<blockquote>
 <p>在分析了 stage 1 后，我们再继续对 stage 2 的代码进行分析：</p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($_GET[<span class="string">'name'</span>] == $_GET[<span class="string">'password'</span>])&#123; </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Your password can not be your name.'</span>; </span><br><span class="line">    <span class="keyword">exit</span>(); </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (sha1($_GET[<span class="string">'name'</span>]) === sha1($_GET[<span class="string">'password'</span>]))&#123; </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'You passed stage 2.&lt;br /&gt;'</span>; </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Flag: '</span>.$flag; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span>&#123; </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Invalid password'</span>; </span><br><span class="line">    <span class="keyword">exit</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -456,9 +463,11 @@ height:50vh;
 </ul>
 <p>如果上述的方法不能实现，那么我们再根据 PHP 的漏洞进行攻击。</p>
 </blockquote>
-<h3 id="三、解题步骤"><a href="#三、解题步骤" class="headerlink" title="三、解题步骤"></a><font color="brown">三、解题步骤</font></h3><h4 id="1-找出-test-的值"><a href="#1-找出-test-的值" class="headerlink" title="1.找出 test 的值"></a><font color="navy">1.找出 test 的值</font></h4><blockquote>
+<h3 id="font-color-brown三-解题步骤font"><a class="markdownIt-Anchor" href="#font-color-brown三-解题步骤font"></a> <font color="brown">三、解题步骤</font></h3>
+<h4 id="font-color-navy1找出-test-的值font"><a class="markdownIt-Anchor" href="#font-color-navy1找出-test-的值font"></a> <font color="navy">1.找出 test 的值</font></h4>
+<blockquote>
 <p>在 BabyXSS 题目中，我们曾经写过一个是关于求通过输入数据，数据经过 md5 加密并匹配给定的字符串的脚本，那么我们将那个程序直接拿过来用，把给定的字符串替换为 0 ，我们尝试求一下解，果然我们得到了一个数值：27，但是将 test = 27 放到 URL 中，结果是错误的。</p>
-<p><br></p>
+<br>
 <p>那么我们再换个思维去思考这个问题，在 PHP 漏洞的总结中可以知道，<code>PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所以如果两个不同的密码经过哈希以后，其哈希值都是以 “0E” 开头的，那么PHP将会认为它们都是 0。</code>那么我们只需要找到加密后的结果是以 <strong>0E</strong> 开头的原文就可以了，那么经过尝试我们得出以下几个原文和密文：</p>
 <ul>
 <li>QNKCDZO ——&gt; 0e830400451993494058024219903391</li>
@@ -473,16 +482,19 @@ height:50vh;
 <p>我们只需要选择其中的一个就可以，在这里我们选择 “<strong>QNKCDZO</strong>” 进行尝试得到下图的结果：</p>
 <p><img src="/images/1564657630.jpg" alt></p>
 </blockquote>
-<h4 id="2-求-name-和-password"><a href="#2-求-name-和-password" class="headerlink" title="2.求 name 和 password"></a><font color="navy">2.求 name 和 password</font></h4><blockquote>
+<h4 id="font-color-navy2求-name-和-passwordfont"><a class="markdownIt-Anchor" href="#font-color-navy2求-name-和-passwordfont"></a> <font color="navy">2.求 name 和 password</font></h4>
+<blockquote>
 <p>下面我们要求 name 和 password 的值了，在这里需要提的一个就是 sha1 碰撞，通过这种碰撞是可以找出两个数的 sha1 值相等的，但是花的时间和精力就相对大些，那我们是不是也可以通过 PHP 的漏洞，绕过 sha1 使得满足 if 条件呢？</p>
-<p><br></p>
+<br>
 <p>答案是肯定的，在 PHP 漏洞总结中，我们有一个是关于 sha1 的，<code>sha1([]) 和 md5([]) 处理数组不会报错，直接返回false</code>，那么我们可以通过使 name 和 password 为数组类型，sha1 对数组处理后返回 null 绕过 “===” 。</p>
-<p><br>现在我们使 <font color="red"><strong>name[]=0&amp;password[]=2</strong></font>，这个时候能够成功的满足<code>if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])</code>不相等，在<code>else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))</code>的条件中，sha1 对 name 和 password 的数组类型无法理解都返回 <code>null</code>，也就使得 null === null ，所以也就满足第二个条件。</p>
+<p><br>现在我们使 <font color="red"><strong>name[]=0&amp;password[]=2</strong></font>，这个时候能够成功的满足<code>if ($_GET['name'] == $_GET['password'])</code>不相等，在<code>else if (sha1($_GET['name']) === sha1($_GET['password']))</code>的条件中，sha1 对 name 和 password 的数组类型无法理解都返回 <code>null</code>，也就使得 null === null ，所以也就满足第二个条件。</p>
 </blockquote>
-<h4 id="3-提交构造的-payload，获取-flag"><a href="#3-提交构造的-payload，获取-flag" class="headerlink" title="3.提交构造的 payload，获取 flag"></a><font color="navy">3.提交构造的 payload，获取 flag</font></h4><blockquote>
+<h4 id="font-color-navy3提交构造的-payload获取-flagfont"><a class="markdownIt-Anchor" href="#font-color-navy3提交构造的-payload获取-flagfont"></a> <font color="navy">3.提交构造的 payload，获取 flag</font></h4>
+<blockquote>
 <p>经过以上两步的分析，我们可以得到三个参数的值，那么下面我们构造一下 payload ：</p>
-<p><center><font color="red">http://123.207.149.64:23331/feature/?test=QNKCDZO&password[]=2&name[]=0</font></center><br>我们可以从服务器得到 flag：</p>
-<p><img src="/images/1564661617(1" alt>.png)</p>
+<center><font color="red">http://123.207.149.64:23331/feature/?test=QNKCDZO&password[]=2&name[]=0</font></center>
+我们可以从服务器得到 flag：
+<p><img src="/images/1564661617(1).png" alt></p>
 </blockquote>
 <p><img src="https://www.canva.cn/learn/wp-content/uploads/sites/17/2019/07/%E5%BB%BA%E5%86%9B%E8%8A%82%E7%BA%AA%E5%BF%B5%E6%97%A5%E2%94%82%E4%B8%BA%E5%86%9B%E5%93%A5%E5%93%A5%E6%89%93call%E7%9A%84%E7%AC%AC92%E5%B9%B422.jpg" alt></p>
 
@@ -645,7 +657,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、PHP-部分漏洞"><span class="toc-number">1.</span> <span class="toc-text">一、PHP 部分漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-GET-和-POST"><span class="toc-number">1.1.</span> <span class="toc-text">1.$_GET 和 $_POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-sha1-和-md5-函数"><span class="toc-number">1.2.</span> <span class="toc-text">2.sha1 和 md5 函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-”-“-符号"><span class="toc-number">1.3.</span> <span class="toc-text">3.” === “ 符号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、分析题目"><span class="toc-number">2.</span> <span class="toc-text">二、分析题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-stage-1-分析"><span class="toc-number">2.1.</span> <span class="toc-text">1.stage 1 分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-stage-2-分析"><span class="toc-number">2.2.</span> <span class="toc-text">2.stage 2 分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、解题步骤"><span class="toc-number">3.</span> <span class="toc-text">三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-找出-test-的值"><span class="toc-number">3.1.</span> <span class="toc-text">1.找出 test 的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-求-name-和-password"><span class="toc-number">3.2.</span> <span class="toc-text">2.求 name 和 password</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-提交构造的-payload，获取-flag"><span class="toc-number">3.3.</span> <span class="toc-text">3.提交构造的 payload，获取 flag</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-php-部分漏洞font"><span class="toc-number">1.</span> <span class="toc-text"> 一、PHP 部分漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1_get-和-_postfont"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.$_GET 和 $_POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2sha1-和-md5-函数font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.sha1 和 md5 函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3-符号font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.&quot; === &quot; 符号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-分析题目font"><span class="toc-number">2.</span> <span class="toc-text"> 二、分析题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1stage-1-分析font"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.stage 1 分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2stage-2-分析font"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.stage 2 分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-解题步骤font"><span class="toc-number">3.</span> <span class="toc-text"> 三、解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1找出-test-的值font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.找出 test 的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2求-name-和-passwordfont"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.求 name 和 password</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3提交构造的-payload获取-flagfont"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.提交构造的 payload，获取 flag</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -658,6 +670,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2788,17 +2826,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2808,11 +2846,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

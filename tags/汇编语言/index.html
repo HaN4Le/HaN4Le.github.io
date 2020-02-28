@@ -366,21 +366,26 @@
                 <span>《汇编语言程序设计》学习笔记（十）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
+                  今天开始着手做第二阶段的题目，但是发现第二阶段的题目对一些知识点要求比较高，于是今天先学习了一下第二阶段要用到的工具和知识，今天注重总结一下关于汇编语言的笔记。
 
 汇编语言知识点：
+
 
 x86-32下的读取条件码指令
 x86-64下的读取条件码指令
 跳转指令
 条件移动指令
 
+ 一、x86-32位下的读取条件码指令
+ 1.SetX指令
 
-一、x86-32位下的读取条件码指令1.SetX指令
-功能：读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
+**功能：**读取当前的条件码（或者某些条件码的组合），并存入目的字节寄存器
 
 只存进一个byte，余下的三个字节不会被修改
-把寄存器的最低的字节改掉了，那么高的三个字节怎么办？通常使用“movzbl...
+把寄存器的最低的字节改掉了，那么高的三个字节怎么办？
+通常使用“movzbl”指令对目的寄存器进行高位的“0”扩展
+
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -409,7 +414,7 @@ x86-64下的读取条件码指令
                 <span>《汇编语言程序设计》学习笔记（九）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：
+                  今天还是继续学习了汇编语言的知识点，并结合reverse的题目和《深入理解计算机系统》的题目来学习，感觉对汇编语言的理解开始变得深入。今天主要学习的内容主要有：
 
 
 x86-64下的通用寄存器与汇编指令
@@ -417,12 +422,19 @@ x86-64下的通用寄存器与汇编指令
 比较指令与测试指令
 
 
-一、x86-64下的通用寄存器与汇编指令1.x86-32与x86-64的数据类型宽度
-2.x86-64的通用寄存器
+ 一、x86-64下的通用寄存器与汇编指令
+ 1.x86-32与x86-64的数据类型宽度
+
+ 2.x86-64的通用寄存器
+
 
 
 扩展了现有的，并增加了8个新的
-%ebp/%rbp  不再是专用寄存器3.x86-32/64下的swap函数比较123456789101112131415161718...
+%ebp/%rbp  不再是专用寄存器
+3.x86-32/64下的swap函数比较
+
+
+12345678910111213141516171819202122232425262728...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -451,13 +463,19 @@ x86-64下的通用寄存器与汇编指令
                 <span>《汇编语言程序设计》学习笔记（八）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
+                  今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
 
 寻址模式
 地址计算指令与其他
 
-#知识储备
-① $立即数，则取得的操作数就是立即数② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数③ 寄存器，则取得的操作数就是以寄存器的值④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即...
+ #知识储备
+
+① $立即数，则取得的操作数就是立即数
+② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数
+③ 寄存器，则取得的操作数就是以寄存器的值
+④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数
+⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即数2)，表示为：
+(立即数1值+寄存器1值+寄存...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -486,20 +504,30 @@ x86-64下的通用寄存器与汇编指令
                 <span>《汇编语言程序设计》学习笔记（七）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：
+                 今天继续学习的是《汇编语言程序设计》，来总结一下今天学的主要内容：
 
 
 汇编程序员眼中的系统结构
 第一条汇编指令
 
 
-▎一、汇编程序员眼中的系统结构
+ ▎一、汇编程序员眼中的系统结构
 
 
-指令寄存器（PC）：▷ 下一条指令的地址；▷ EIP（x86-32）或RIP（x86-64）
+
+指令寄存器（PC）：
+▷ 下一条指令的地址；
+▷ EIP（x86-32）或RIP（x86-64）
 寄存器与寄存器堆（Registers）：在处理器内部的以名字来访问的快速存储单元
-条件码（Condition Codes）：▷ 用于存储最近执行指令的结果状态信息▷ 用于条件指令的判断执行
-存储器（Memory）：▷ 以字节编码的连续存储空间▷ 存放程序代码、数据、运行栈以及操作系统数...
+条件码（Condition Codes）：
+▷ 用于存储最近执行指令的结果状态信息
+▷ 用于条件指令的判断执行
+存储器（Memory）：
+▷ 以字节编码的连续存储空间
+▷ 存放程序代码、数据、运行栈以及操作系统数据
+
+
+1.如何从C代码生成汇编代...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -528,29 +556,24 @@ x86-64下的通用寄存器与汇编指令
                 <span>《汇编语言程序设计》学习笔记（六）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天继续学习的是《汇编语言程序设计》，也看了关于C语言的教材，总结一下今天学的主要内容：
+                 今天继续学习的是《汇编语言程序设计》，也看了关于C语言的教材，总结一下今天学的主要内容：
 
 
 80x86计算机系统的初步
 80x86处理器与保护模式初步
 
 
-▎一、80x86计算机系统的初步1.计算机系统
+ ▎一、80x86计算机系统的初步
+1.计算机系统
 
-
+![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/ThCWBauTPApPUkVJN57W37vc1sRSsbu94Tase835GXE!/m/dL8AAAAAAAAAnull&bo=hwSHAocEhwIDByI!&rf=photolist&t=5)
 
 2.主存
 
 存储单元的地址和内容：
 
 存储器以字节（8bits）为单位存储信息；
-每个字节单元有一个地址，从 0 编号，顺序加 1；
-地址用二进制数表示（无符号整数写成十六进制）；
-一个32位字要占用相继的 4 个字节：低位字节存入低地址，高位字节存入高地址；
-字单元地址用它的弟弟值来表示；
-
-
-▎二、80x86处理器与...
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -587,17 +610,30 @@ x86-64下的通用寄存器与汇编指令
 如何给出浮点数表示
 C语言中的浮点数
 
-一、 浮点数表示的特性1.不同浮点数类型在数轴上的相对位置
+ 一、 浮点数表示的特性
+1.不同浮点数类型在数轴上的相对位置
+
 
 注：越靠近数轴上的原点越紧密，两端的越远越疏散。
 
 2.“小”浮点数实例
 
 
-8位浮点数表示：exp域的宽度为4bits，frac域宽度为3bits问：Bias = ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2e-1 - 1 = 24-1 - 1 = 7
+8位浮点数表示：
+exp域的宽度为4bits，frac域宽度为3bits
+问：Bias = ?
+       Bias = 2e-1 - 1 = 24-1 - 1 = 7
 其他规则符合 IEEE 754规范
 规格化/非规格化
-表示0，NaN与无...
+表示0，NaN与无穷
+Exp域对应的数值关系
+
+
+
+3.取值范围
+
+
+注：如...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -626,7 +662,7 @@ C语言中的浮点数
                 <span>《汇编语言程序设计》学习笔记（四）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
+                  博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：
 
 浮点数的机器表示
 浮点数的规格化和非规格化表示
@@ -636,7 +672,8 @@ C语言中的浮点数
 
 
 
-前言：浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部...
+**前言：**浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部分。浮点数是指小数点位置可以浮动的数据类型。
+简单说...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -665,10 +702,16 @@ C语言中的浮点数
                 <span>《汇编语言程序设计》学习笔记（三）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂。下面就写一下相关的学习笔记。
-一、无符号与带符号的转化
-无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的二进制串的表示是不变的，只不过是二者的解释不同而已。问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？
-二、C 语言中...
+                  今天主要学习的内容为：无符号整数与带符号整数的知识。其主要包括：无符号数与带符号数的转化、C 语言中的无符号数与带符号数、何时采用无符号数、无符号数加法、补码加法、补码加法的溢出、无符号整数除以 2 的 K 次幂、带符号整数除以 2 的 K 次幂。下面就写一下相关的学习笔记。
+ 一、无符号与带符号的转化
+
+无符号数和带符号数，在机器层面并无区别，都是 0 1 字符串，所以两者的二进制串的表示是不变的，只不过是二者的解释不同而已。
+问题①：既然二者在存储和基本运算指令中无区别，那么在 C 语言中怎么去别的呢？
+
+ 二、C 语言中的无符号数与带符号数
+
+
+常数默认为带符号数，如果...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -697,14 +740,15 @@ C语言中的浮点数
                 <span>《汇编语言程序设计》学习笔记（二）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）
-一、计算机中整数的编码方式和操作整数1.基本数据类型的大小
+                  今天的博客内容主要是“整数的机器表示”和“无符号整数和带符号整数”：（视频课程：清华大学的《汇编语言程序设计》；学习教材：《深入理解计算机系统》）
+ 一、计算机中整数的编码方式和操作整数
+1.基本数据类型的大小
 ![](http://a4.qpic.cn/psb?/V11UAV0k0TKwM6/rNi60QbuR5bdZplwcgKCHYoi2Uzq3XpMUjXMtqOEUBk!/m/dL8AAAAAAAAAnull&bo=dgQjAnYEIwIDCSw!&rf=photolist&t=5)
-
 2.编码方式
 
 
-B2U...
+B2Uw：将二进制转无符号数；
+B2Tw：将二进制转补码（带符号...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -733,10 +777,12 @@ B2U...
                 <span>《汇编语言程序设计》学习笔记（一）</span>
         </a>
         <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天被通知测试停止，认真的准备复试，我想着在复习剩余的时间不能停止学习，这几天正好是第二阶段测试，我想趁这个时间段好好学习一下汇编语言，课程是清华大学的“汇编语言程序设计”网上课程，这几天我会在博客上更新每天学到的知识点。
-一、课程内容与目标
+                  昨天被通知测试停止，认真的准备复试，我想着在复习剩余的时间不能停止学习，这几天正好是第二阶段测试，我想趁这个时间段好好学习一下汇编语言，课程是清华大学的“汇编语言程序设计”网上课程，这几天我会在博客上更新每天学到的知识点。
+ 一、课程内容与目标
 
-基本知识这门课程主要讲述的是各类指令集的初步、数制与整数表示、浮点数表示
+
+基本知识
+这门课程主要讲述的是各类指令集的初步、数制与整数表示、浮点数表示
 x86汇编
 
 
@@ -751,7 +797,13 @@ MIPS 汇编
 
 MIPS 计算机组织的初步
 指令系统介绍
-汇编...
+汇编代码与异常处理
+
+
+ 二、X86指令集简介
+
+
+X86...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -866,6 +918,32 @@ MIPS 计算机组织的初步
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2996,17 +3074,17 @@ MIPS 计算机组织的初步
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -3016,11 +3094,11 @@ MIPS 计算机组织的初步
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">697</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">510</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -419,17 +419,40 @@ height:50vh;
         <blockquote>
 <p>☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“<strong>最小公倍数的加法算法</strong>”实现的过程吧。</p>
 </blockquote>
-<h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><blockquote>
-<p><font color="navy"><strong>1.公倍数的概念</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>如果 a₁| b,……，an | b，则称 b 是 a1，……，an 的公倍数。</code>而最小公倍数就是所有公倍数里最小的。<br><br><font color="navy"><strong>2.最小公倍数的表示形式</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最小公倍数的表示形式为</p>
-<p><center><font color="red">**lcm (a,b) = a 和 b 的最小公倍数**</font></center>&lt;/font&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：lcm (18,24) = 72</p>
-</blockquote>
-<h3 id="二、求最小公倍数"><a href="#二、求最小公倍数" class="headerlink" title="二、求最小公倍数"></a><font color="brown">二、求最小公倍数</font></h3><blockquote>
-<p><font color="navy"><strong>1.lcm (a,b) = ab / gcd (a,b)</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>① 推导过程如下</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设a，b的最大公约数为 d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;则a，b的最小公倍数为d <em> a/d </em> b/d = ab / d<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以a，b的最小公倍数 <em> 最大公约数 = ab /d </em> d = ab<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以ab = lcm（a，b）<em> gcd（a，b）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>*② 存在的问题</em></em>：用此方法来求最小公倍数，会计算大量乘法和除法，效率仍然不够高。</p>
-<p><br><font color="navy"><strong>2.加法计算最小公倍数</strong></font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>① 方法</strong>：两者取最小，反复加自己，相等时停止。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>② 例子</strong>：lcm (6,15) = 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>06</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>15</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30</p>
-</blockquote>
-<h3 id="三、最小公倍数的加法算法代码实现"><a href="#三、最小公倍数的加法算法代码实现" class="headerlink" title="三、最小公倍数的加法算法代码实现"></a><font color="brown">三、最小公倍数的加法算法代码实现</font></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">Date: 2019.7.15</span><br><span class="line">Function：实现寻找最小公倍数</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a1,a2,a,b,lcm;</span><br><span class="line">	printf(&quot;Please input two numbers:&quot;);</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;a1,&amp;a2);</span><br><span class="line">	a = a1;</span><br><span class="line">	b = a2;</span><br><span class="line">	while(a!=b)</span><br><span class="line">	&#123;</span><br><span class="line">		if(a &lt; b)</span><br><span class="line">			a = a + a1;</span><br><span class="line">		else</span><br><span class="line">			b = b + a2;</span><br><span class="line">	&#125;</span><br><span class="line">	lcm = a;</span><br><span class="line">	printf(&quot;lcm(%d,%d) = %d\n&quot;,a1,a2,lcm);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="font-colorbrown一-基础知识font"><a class="markdownIt-Anchor" href="#font-colorbrown一-基础知识font"></a> <font color="brown">一、基础知识</font></h3>
 <blockquote>
-<p><strong>说明：</strong>上面的代码实现是我按照自己的思路写出来的，可能在逻辑上会出现一些错误，还希望各位大神批评，或者有更好的算法，也希望各位大神能够在评论区附上你们的算法代码，感激不尽。</p>
+<p><font color="navy"><strong>1.公倍数的概念</strong></font><br>
+      <code>如果 a₁| b,……，an | b，则称 b 是 a1，……，an 的公倍数。</code>而最小公倍数就是所有公倍数里最小的。<br>
+<br><font color="navy"><strong>2.最小公倍数的表示形式</strong></font><br>
+      最小公倍数的表示形式为</p>
+<center><font color="red">**lcm (a,b) = a 和 b 的最小公倍数**</font></center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：lcm (18,24) = 72
+</blockquote>
+<h3 id="font-colorbrown二-求最小公倍数font"><a class="markdownIt-Anchor" href="#font-colorbrown二-求最小公倍数font"></a> <font color="brown">二、求最小公倍数</font></h3>
+<blockquote>
+<p><font color="navy"><strong>1.lcm (a,b) = ab / gcd (a,b)</strong></font><br>
+      <strong>① 推导过程如下</strong>：<br>
+            设a，b的最大公约数为 d<br>
+            则a，b的最小公倍数为d * a/d * b/d = ab / d<br>
+            所以a，b的最小公倍数 * 最大公约数 = ab /d * d = ab<br>
+            所以ab = lcm（a，b）* gcd（a，b）<br>
+      <strong>② 存在的问题</strong>：用此方法来求最小公倍数，会计算大量乘法和除法，效率仍然不够高。</p>
+</blockquote>
+<blockquote>
+<p><br><font color="navy"><strong>2.加法计算最小公倍数</strong></font><br>
+      <strong>① 方法</strong>：两者取最小，反复加自己，相等时停止。<br>
+      <strong>② 例子</strong>：lcm (6,15) = 30<br>
+            <strong>06</strong>            <strong>15</strong><br>
+            12<br>
+                            30<br>
+            18<br>
+            24<br>
+            30</p>
+</blockquote>
+<h3 id="font-colorbrown三-最小公倍数的加法算法代码实现font"><a class="markdownIt-Anchor" href="#font-colorbrown三-最小公倍数的加法算法代码实现font"></a> <font color="brown">三、最小公倍数的加法算法代码实现</font></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">Date: 2019.7.15</span><br><span class="line">Function：实现寻找最小公倍数</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a1,a2,a,b,lcm;</span><br><span class="line">	printf(&quot;Please input two numbers:&quot;);</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;a1,&amp;a2);</span><br><span class="line">	a = a1;</span><br><span class="line">	b = a2;</span><br><span class="line">	while(a!=b)</span><br><span class="line">	&#123;</span><br><span class="line">		if(a &lt; b)</span><br><span class="line">			a = a + a1;</span><br><span class="line">		else</span><br><span class="line">			b = b + a2;</span><br><span class="line">	&#125;</span><br><span class="line">	lcm = a;</span><br><span class="line">	printf(&quot;lcm(%d,%d) = %d\n&quot;,a1,a2,lcm);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>**说明：**上面的代码实现是我按照自己的思路写出来的，可能在逻辑上会出现一些错误，还希望各位大神批评，或者有更好的算法，也希望各位大神能够在评论区附上你们的算法代码，感激不尽。</p>
 </blockquote>
 
     </article>
@@ -591,7 +614,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基础知识"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、求最小公倍数"><span class="toc-number">2.</span> <span class="toc-text">二、求最小公倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、最小公倍数的加法算法代码实现"><span class="toc-number">3.</span> <span class="toc-text">三、最小公倍数的加法算法代码实现</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-求最小公倍数font"><span class="toc-number">2.</span> <span class="toc-text"> 二、求最小公倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-最小公倍数的加法算法代码实现font"><span class="toc-number">3.</span> <span class="toc-text"> 三、最小公倍数的加法算法代码实现</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -604,6 +627,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2734,17 +2783,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2754,11 +2803,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

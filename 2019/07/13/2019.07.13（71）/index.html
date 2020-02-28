@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -440,23 +440,55 @@ height:50vh;
 <p>IA-32 的 CPU 寄存器包括指令指针寄存器、通用数据寄存器、地址指针寄存器、变址指针寄存器、标志位寄存器、段寄存器、控制寄存器等</p>
 <ul>
 <li><font color="red"><strong>指令指针寄存器</strong></font>：EIP，存储了当前执行指令的地址，系统根据该寄存器进行寻址，从内存中取出指令，然后再译码、执行；</li>
-<li><font color="red"><strong>通用数据寄存器</strong></font>：EAX、ECX、EDX、EBX<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ EAX、EDX，常作为乘除法指令的隐含操作数；16位的通用数据寄存器为AX、CX、DX、BX；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ ECX，常被用于存储循环处理指令的循环次数；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ EBX</li>
-<li><font color="red"><strong>地址指针寄存器</strong></font>：ESP、EBP<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ ESP：记录了当前的栈顶，call、ret、push、pop、pusha、popa等指令会改变ESP寄存器的值；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ EBP：通常记录的是当前函数的栈底</li>
-<li><font color="red"><strong>变址指针寄存器</strong></font>：ESI、EDI，这两个操作数常作为隐含操作数，指令执行完成后自动递增实现变址<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ ESI：操作数源地址<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ EDI：操作数目的地址</li>
-<li><font color="red"><strong>标志位寄存器</strong></font>：统称为 EFLAGS：CF、PF、AF、ZF、SF、TF、IF、DF、OF、IOPL、NT、RF、VM、AC、VIF、VIP、ID<br><br>标志位寄存器是仅仅用来操纵bit的寄存器，任何指令都会根据计算的结果影响到标志位寄存器。比如说，经过一个减法操作，如果结果是0，那么zero flag就会被设置，如果不是0，其值会被清掉<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ CF：进位标志，如果无符号运算产生进位或借位则值为1，否则值为0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ PF：奇偶标志，用于表示运算结果中1的个数的奇偶性，偶数个 1 时值为 1，奇数个 1 时值为 1；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ AF：辅助进位标志，在字节操作时标记低字节（低 4 位）是否向高字节（高 4 位）进位或借位；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ ZF：零标志，运算结果为 0 时其值置 1 ，否则置 0；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ SF：符号标志，有符号数运算结果小于 0 时置 1，否则置 0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ IF：中断允许标志，，决定 CPU　是否响应 CPU 外部的可屏蔽中断发出的中断请求，置 1 时可以响应中断，置 0 时不响应中断<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ DF：方向标志<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ OF：溢出标志，有符号运算发生溢出时置 1，否则置 0；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ IOPL：用于表示当前进程的 I/O 特权级别，只有当前进程的 CPL 小于或等于 IOPL 时才能访问 I/O 地址空间<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ NT：嵌套任务标志，置 1 表明当前任务是在另一个任务中嵌套执行，置 0 表明非嵌套<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ RF：恢复标志，置 1 禁用指令断点，置 0 允许指令断点<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ VM：虚拟 8086 模式标志，置 1 运行在虚拟 8086 模式，置 0 运行在保护模式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ AC：对齐检测标志<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ VIF：虚拟中断标志，是 IF 标志的一个虚拟映像，与 VIP 标志一起使用<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ VIP：虚拟中断等待标志，置 1 表示有一个等待处理的中断，置 0 表示没有等待处理的中断<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚑ ID：识别标志，置 1 表示支持 CPUID 指令，置 0 表示不支持</li>
-<li><font color="red"><strong>段寄存器</strong></font>：代码段寄存器 CS，数据段寄存器 DS，堆栈段寄存器 SS，附加段寄存器 ES、FS、GS<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ 实模式下段寄存器通常与指针寄存器（如ESP、EDI、ESI等）联合使用</li>
+<li><font color="red"><strong>通用数据寄存器</strong></font>：EAX、ECX、EDX、EBX<br>
+     ○ EAX、EDX，常作为乘除法指令的隐含操作数；16位的通用数据寄存器为AX、CX、DX、BX；<br>
+     ○ ECX，常被用于存储循环处理指令的循环次数；<br>
+     ○ EBX</li>
+<li><font color="red"><strong>地址指针寄存器</strong></font>：ESP、EBP<br>
+     ○ ESP：记录了当前的栈顶，call、ret、push、pop、pusha、popa等指令会改变ESP寄存器的值；<br>
+     ○ EBP：通常记录的是当前函数的栈底</li>
+<li><font color="red"><strong>变址指针寄存器</strong></font>：ESI、EDI，这两个操作数常作为隐含操作数，指令执行完成后自动递增实现变址<br>
+     ○ ESI：操作数源地址<br>
+     ○ EDI：操作数目的地址</li>
+<li><font color="red"><strong>标志位寄存器</strong></font>：统称为 EFLAGS：CF、PF、AF、ZF、SF、TF、IF、DF、OF、IOPL、NT、RF、VM、AC、VIF、VIP、ID<br>
+<br>标志位寄存器是仅仅用来操纵bit的寄存器，任何指令都会根据计算的结果影响到标志位寄存器。比如说，经过一个减法操作，如果结果是0，那么zero flag就会被设置，如果不是0，其值会被清掉<br>
+     ⚑ CF：进位标志，如果无符号运算产生进位或借位则值为1，否则值为0<br>
+     ⚑ PF：奇偶标志，用于表示运算结果中1的个数的奇偶性，偶数个 1 时值为 1，奇数个 1 时值为 1；<br>
+     ⚑ AF：辅助进位标志，在字节操作时标记低字节（低 4 位）是否向高字节（高 4 位）进位或借位；<br>
+     ⚑ ZF：零标志，运算结果为 0 时其值置 1 ，否则置 0；<br>
+     ⚑ SF：符号标志，有符号数运算结果小于 0 时置 1，否则置 0<br>
+     ⚑ IF：中断允许标志，，决定 CPU　是否响应 CPU 外部的可屏蔽中断发出的中断请求，置 1 时可以响应中断，置 0 时不响应中断<br>
+     ⚑ DF：方向标志<br>
+     ⚑ OF：溢出标志，有符号运算发生溢出时置 1，否则置 0；<br>
+     ⚑ IOPL：用于表示当前进程的 I/O 特权级别，只有当前进程的 CPL 小于或等于 IOPL 时才能访问 I/O 地址空间<br>
+     ⚑ NT：嵌套任务标志，置 1 表明当前任务是在另一个任务中嵌套执行，置 0 表明非嵌套<br>
+     ⚑ RF：恢复标志，置 1 禁用指令断点，置 0 允许指令断点<br>
+     ⚑ VM：虚拟 8086 模式标志，置 1 运行在虚拟 8086 模式，置 0 运行在保护模式<br>
+     ⚑ AC：对齐检测标志<br>
+     ⚑ VIF：虚拟中断标志，是 IF 标志的一个虚拟映像，与 VIP 标志一起使用<br>
+     ⚑ VIP：虚拟中断等待标志，置 1 表示有一个等待处理的中断，置 0 表示没有等待处理的中断<br>
+     ⚑ ID：识别标志，置 1 表示支持 CPUID 指令，置 0 表示不支持</li>
+<li><font color="red"><strong>段寄存器</strong></font>：代码段寄存器 CS，数据段寄存器 DS，堆栈段寄存器 SS，附加段寄存器 ES、FS、GS<br>
+     ○ 实模式下段寄存器通常与指针寄存器（如ESP、EDI、ESI等）联合使用</li>
 <li><font color="red"><strong>控制寄存器</strong></font>：CR0、CR1、CR2、CR3、CR4，用于记录处理器的运行模式和当前执行任务的属性</li>
 </ul>
 </blockquote>
 <p><font color="navy"><strong>4.常用寄存器的说明</strong></font></p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>寄存器</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>全称</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>说明</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EAX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Accumulator X    累加寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A代表Accumulator<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ECX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Counting X    计数寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C代表counting<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Destination Indexing    目的索引寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D代表destnation，I代表Indexing<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Source Indexing    源索引寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S代表Source，I代表Indexing<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Stack Pointer    栈指针寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S代表Stack<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EBP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended (Stack) Base Pointer    栈基指针寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B代表Base<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EIP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Instructions Pointer    指令寄存器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I代表Instruction</p>
+<p>    <strong>寄存器</strong>                                <strong>全称</strong>                                                                          <strong>说明</strong><br>
+     EAX              Extended Accumulator X	累加寄存器                              A代表Accumulator<br>
+     ECX              Extended Counting X	计数寄存器                                      C代表counting<br>
+     EDI           Extended Destination Indexing	目的索引寄存器          D代表destnation，I代表Indexing<br>
+     ESI           Extended Source Indexing	源索引寄存器                     S代表Source，I代表Indexing<br>
+     ESP            Extended Stack Pointer	栈指针寄存器                                       S代表Stack<br>
+     EBP          Extended (Stack) Base Pointer	栈基指针寄存器                          B代表Base<br>
+     EIP             Extended Instructions Pointer	指令寄存器                            I代表Instruction</p>
 </blockquote>
 <p><font color="navy"><strong>5.有关寄存器的代码</strong></font></p>
 <blockquote>
-<p>下面的代码很具有参考价值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void SomeProcedure (int anArgument)</span><br><span class="line">&#123;</span><br><span class="line">  int aVariable;</span><br><span class="line">  aVariable = anArgument;</span><br><span class="line">&#125;</span><br><span class="line">SomeProcedure: PUSH EBP            ;save original value of EBP on stack</span><br><span class="line">               MOV  EBP,ESP        ;store top of stack address in EBP</span><br><span class="line">               SUB  ESP,4          ;allocate space for aVariable on stack</span><br><span class="line">               MOV  EAX,[EBP+8]    ;fetch anArgument into EAX, which is</span><br><span class="line">                                   ;8 bytes below the stored top of stack</span><br><span class="line">               MOV  [EBP-4],EAX    ;4 bytes above the stored top of stack</span><br><span class="line">		       MOV  ESP,EBP        ;free space allocated for aVariable</span><br><span class="line">               POP  EBP            ;restore original value of EBP</span><br><span class="line">               RET                 ;return to the caller</span><br></pre></td></tr></table></figure></p>
+<p>下面的代码很具有参考价值</p>
 </blockquote>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void SomeProcedure (int anArgument)</span><br><span class="line">&#123;</span><br><span class="line">  int aVariable;</span><br><span class="line">  aVariable = anArgument;</span><br><span class="line">&#125;</span><br><span class="line">SomeProcedure: PUSH EBP            ;save original value of EBP on stack</span><br><span class="line">               MOV  EBP,ESP        ;store top of stack address in EBP</span><br><span class="line">               SUB  ESP,4          ;allocate space for aVariable on stack</span><br><span class="line">               MOV  EAX,[EBP+8]    ;fetch anArgument into EAX, which is</span><br><span class="line">                                   ;8 bytes below the stored top of stack</span><br><span class="line">               MOV  [EBP-4],EAX    ;4 bytes above the stored top of stack</span><br><span class="line">		       MOV  ESP,EBP        ;free space allocated for aVariable</span><br><span class="line">               POP  EBP            ;restore original value of EBP</span><br><span class="line">               RET                 ;return to the caller</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -629,6 +661,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2759,17 +2817,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2779,11 +2837,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     

@@ -417,30 +417,39 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>今天对以前的博文的一些地方进行了补充，也再总结一下Phase_2有关内容。</p>
-<h3 id="一、相关汇编代码"><a href="#一、相关汇编代码" class="headerlink" title="一、相关汇编代码"></a>一、相关汇编代码</h3><p><strong>① &lt; phase_2 &gt;的汇编代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">08048bb4 &lt;phase_2&gt;:</span><br><span class="line"> //执行push栈</span><br><span class="line"> 8048bb4:	56                  push   %esi</span><br><span class="line"> 8048bb5:	53                  push   %ebx</span><br><span class="line"> 8048bb6:	83 ec 34            sub    $0x34,%esp</span><br><span class="line"> 8048bb9:	8d 44 24 18        	lea    0x18(%esp),%eax</span><br><span class="line"> 8048bbd:	89 44 24 04        	mov    %eax,0x4(%esp)</span><br><span class="line"> 8048bc1:	8b 44 24 40        	mov    0x40(%esp),%eax</span><br><span class="line"> 8048bc5:	89 04 24           	mov    %eax,(%esp)</span><br><span class="line"> </span><br><span class="line"> //调用 804912c处的地址：要求输入 6 个数字</span><br><span class="line"> 8048bc8:	e8 5f 05 00 00     	call   804912c &lt;read_six_numbers&gt;</span><br><span class="line"></span><br><span class="line"> //将esp+0x18地址处的内容与 1 作比较，如果相等则跳转，不相等则bomb </span><br><span class="line"> 8048bcd:	83 7c 24 18 01     	cmpl   $0x1,0x18(%esp)</span><br><span class="line"> 8048bd2:	74 1e              	je     8048bf2 &lt;phase_2+0x3e&gt;</span><br><span class="line"> 8048bd4:	e8 2c 05 00 00      call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> 8048bd9:	eb 17              	jmp    8048bf2 &lt;phase_2+0x3e&gt;</span><br><span class="line"></span><br><span class="line"> //8048bfa处的无条件跳转到这里，两个数相加，并与%ebx中的数值比较，如果相等则跳转到8048be9</span><br><span class="line"> 8048bdb:	8b 43 fc           	mov    -0x4(%ebx),%eax</span><br><span class="line"> 8048bde:	01 c0              	add    %eax,%eax</span><br><span class="line"> 8048be0:	39 03              	cmp    %eax,(%ebx)</span><br><span class="line"> 8048be2:	74 05              	je     8048be9 &lt;phase_2+0x35&gt;</span><br><span class="line"> 8048be4:	e8 1c 05 00 00     	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> //8048be9 处的 je 跳转到这里，ebx = ebx + 4；将ebx与esi进行比较，不相等则跳转到8048bdb，相等则无条件跳转到8048bfc处（在这里会形成一个循环）</span><br><span class="line"> 8048be9:	83 c3 04          	add    $0x4,%ebx</span><br><span class="line"> 8048bec:	39 f3              	cmp    %esi,%ebx</span><br><span class="line"> 8048bee:	75 eb              	jne    8048bdb &lt;phase_2+0x27&gt;</span><br><span class="line"> 8048bf0:	eb 0a              	jmp    8048bfc &lt;phase_2+0x48&gt;</span><br><span class="line"></span><br><span class="line"> //8048bd2处的 je 跳转到这里（第一个数字为 1 时），将两个地址分别放到ebx、esi中，然后无条件跳转到8048bdb</span><br><span class="line"> 8048bf2:	8d 5c 24 1c        	lea    0x1c(%esp),%ebx</span><br><span class="line"> 8048bf6:	8d 74 24 30        	lea    0x30(%esp),%esi</span><br><span class="line"> 8048bfa:	eb df             	jmp    8048bdb &lt;phase_2+0x27&gt;</span><br><span class="line"></span><br><span class="line"> //8048bf0处的 jmp 跳转到这里，执行pop栈</span><br><span class="line"> 8048bfc:	83 c4 34           	add    $0x34,%esp</span><br><span class="line"> 8048bff:	5b                 	pop    %ebx</span><br><span class="line"> 8048c00:	5e                 	pop    %esi</span><br><span class="line"> 8048c01:	c3                 	ret</span><br></pre></td></tr></table></figure></p>
-<p><strong>②  0804912c的汇编代码主要部分</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">0804912c &lt;read_six_numbers&gt;:</span><br><span class="line"> </span><br><span class="line"> ……</span><br><span class="line"> ……</span><br><span class="line"> ……</span><br><span class="line"> </span><br><span class="line"> //调用输入函数（8048860），将eax与 5 作比较，如果eax &gt; 5则跳转到8049178，小于等于的话则bomb</span><br><span class="line"> 8049169:	e8 f2 f6 ff ff       	call   8048860 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line"> 804916e:	83 f8 05             	cmp    $0x5,%eax</span><br><span class="line"> 8049171:	7f 05                	jg     8049178 &lt;read_six_numbers+0x4c&gt;</span><br><span class="line"> 8049173:	e8 8d ff ff ff       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> 8049178:	83 c4 2c             	add    $0x2c,%esp</span><br><span class="line"> 804917b:	c3                   	ret</span><br></pre></td></tr></table></figure></p>
-<h3 id="二、相关伪代码（IDA反编译）"><a href="#二、相关伪代码（IDA反编译）" class="headerlink" title="二、相关伪代码（IDA反编译）"></a>二、相关伪代码（IDA反编译）</h3><p><strong>① Phase_2的伪代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_2(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@3</span><br><span class="line">  char *v2; // ebx@5</span><br><span class="line">  int   v3; // [sp+18h] [bp-24h]@1</span><br><span class="line">  char  v4; // [sp+1Ch] [bp-20h]@7</span><br><span class="line">  char  v5; // [sp+30h] [bp-Ch]@5</span><br><span class="line"></span><br><span class="line">  read_six_numbers(a1, (int)&amp;v3);</span><br><span class="line">  if ( v3 != 1 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  v2 = &amp;v4;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    result = 2 * *((_DWORD *)v2 - 1);</span><br><span class="line">    if ( *(_DWORD *)v2 != result )</span><br><span class="line">      explode_bomb();</span><br><span class="line">    v2 += 4;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v2 != &amp;v5 );</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>② read_six_numbers() 的伪代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl read_six_numbers(int a1, int a2)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@1</span><br><span class="line"></span><br><span class="line">  result = __isoc99_sscanf(a1, (const char *)&amp;unk_804A2E3, a2, a2 + 4, a2 + 8, a2 + 12, a2 + 16, a2 + 20);</span><br><span class="line">  if ( result &lt;= 5 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="三、代码分析"><a href="#三、代码分析" class="headerlink" title="三、代码分析"></a>三、代码分析</h3><p><strong>1.Phase_2函数的功能</strong></p>
+<h3 id="一-相关汇编代码"><a class="markdownIt-Anchor" href="#一-相关汇编代码"></a> 一、相关汇编代码</h3>
+<p><strong>① &lt; phase_2 &gt;的汇编代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">08048bb4 &lt;phase_2&gt;:</span><br><span class="line"> //执行push栈</span><br><span class="line"> 8048bb4:	56                  push   %esi</span><br><span class="line"> 8048bb5:	53                  push   %ebx</span><br><span class="line"> 8048bb6:	83 ec 34            sub    $0x34,%esp</span><br><span class="line"> 8048bb9:	8d 44 24 18        	lea    0x18(%esp),%eax</span><br><span class="line"> 8048bbd:	89 44 24 04        	mov    %eax,0x4(%esp)</span><br><span class="line"> 8048bc1:	8b 44 24 40        	mov    0x40(%esp),%eax</span><br><span class="line"> 8048bc5:	89 04 24           	mov    %eax,(%esp)</span><br><span class="line"> </span><br><span class="line"> //调用 804912c处的地址：要求输入 6 个数字</span><br><span class="line"> 8048bc8:	e8 5f 05 00 00     	call   804912c &lt;read_six_numbers&gt;</span><br><span class="line"></span><br><span class="line"> //将esp+0x18地址处的内容与 1 作比较，如果相等则跳转，不相等则bomb </span><br><span class="line"> 8048bcd:	83 7c 24 18 01     	cmpl   $0x1,0x18(%esp)</span><br><span class="line"> 8048bd2:	74 1e              	je     8048bf2 &lt;phase_2+0x3e&gt;</span><br><span class="line"> 8048bd4:	e8 2c 05 00 00      call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> 8048bd9:	eb 17              	jmp    8048bf2 &lt;phase_2+0x3e&gt;</span><br><span class="line"></span><br><span class="line"> //8048bfa处的无条件跳转到这里，两个数相加，并与%ebx中的数值比较，如果相等则跳转到8048be9</span><br><span class="line"> 8048bdb:	8b 43 fc           	mov    -0x4(%ebx),%eax</span><br><span class="line"> 8048bde:	01 c0              	add    %eax,%eax</span><br><span class="line"> 8048be0:	39 03              	cmp    %eax,(%ebx)</span><br><span class="line"> 8048be2:	74 05              	je     8048be9 &lt;phase_2+0x35&gt;</span><br><span class="line"> 8048be4:	e8 1c 05 00 00     	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> //8048be9 处的 je 跳转到这里，ebx = ebx + 4；将ebx与esi进行比较，不相等则跳转到8048bdb，相等则无条件跳转到8048bfc处（在这里会形成一个循环）</span><br><span class="line"> 8048be9:	83 c3 04          	add    $0x4,%ebx</span><br><span class="line"> 8048bec:	39 f3              	cmp    %esi,%ebx</span><br><span class="line"> 8048bee:	75 eb              	jne    8048bdb &lt;phase_2+0x27&gt;</span><br><span class="line"> 8048bf0:	eb 0a              	jmp    8048bfc &lt;phase_2+0x48&gt;</span><br><span class="line"></span><br><span class="line"> //8048bd2处的 je 跳转到这里（第一个数字为 1 时），将两个地址分别放到ebx、esi中，然后无条件跳转到8048bdb</span><br><span class="line"> 8048bf2:	8d 5c 24 1c        	lea    0x1c(%esp),%ebx</span><br><span class="line"> 8048bf6:	8d 74 24 30        	lea    0x30(%esp),%esi</span><br><span class="line"> 8048bfa:	eb df             	jmp    8048bdb &lt;phase_2+0x27&gt;</span><br><span class="line"></span><br><span class="line"> //8048bf0处的 jmp 跳转到这里，执行pop栈</span><br><span class="line"> 8048bfc:	83 c4 34           	add    $0x34,%esp</span><br><span class="line"> 8048bff:	5b                 	pop    %ebx</span><br><span class="line"> 8048c00:	5e                 	pop    %esi</span><br><span class="line"> 8048c01:	c3                 	ret</span><br></pre></td></tr></table></figure>
+<p><strong>②  0804912c的汇编代码主要部分</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">0804912c &lt;read_six_numbers&gt;:</span><br><span class="line"> </span><br><span class="line"> ……</span><br><span class="line"> ……</span><br><span class="line"> ……</span><br><span class="line"> </span><br><span class="line"> //调用输入函数（8048860），将eax与 5 作比较，如果eax &gt; 5则跳转到8049178，小于等于的话则bomb</span><br><span class="line"> 8049169:	e8 f2 f6 ff ff       	call   8048860 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line"> 804916e:	83 f8 05             	cmp    $0x5,%eax</span><br><span class="line"> 8049171:	7f 05                	jg     8049178 &lt;read_six_numbers+0x4c&gt;</span><br><span class="line"> 8049173:	e8 8d ff ff ff       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> 8049178:	83 c4 2c             	add    $0x2c,%esp</span><br><span class="line"> 804917b:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<h3 id="二-相关伪代码ida反编译"><a class="markdownIt-Anchor" href="#二-相关伪代码ida反编译"></a> 二、相关伪代码（IDA反编译）</h3>
+<p><strong>① Phase_2的伪代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_2(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@3</span><br><span class="line">  char *v2; // ebx@5</span><br><span class="line">  int   v3; // [sp+18h] [bp-24h]@1</span><br><span class="line">  char  v4; // [sp+1Ch] [bp-20h]@7</span><br><span class="line">  char  v5; // [sp+30h] [bp-Ch]@5</span><br><span class="line"></span><br><span class="line">  read_six_numbers(a1, (int)&amp;v3);</span><br><span class="line">  if ( v3 != 1 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  v2 = &amp;v4;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    result = 2 * *((_DWORD *)v2 - 1);</span><br><span class="line">    if ( *(_DWORD *)v2 != result )</span><br><span class="line">      explode_bomb();</span><br><span class="line">    v2 += 4;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v2 != &amp;v5 );</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>② read_six_numbers() 的伪代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl read_six_numbers(int a1, int a2)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@1</span><br><span class="line"></span><br><span class="line">  result = __isoc99_sscanf(a1, (const char *)&amp;unk_804A2E3, a2, a2 + 4, a2 + 8, a2 + 12, a2 + 16, a2 + 20);</span><br><span class="line">  if ( result &lt;= 5 )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三-代码分析"><a class="markdownIt-Anchor" href="#三-代码分析"></a> 三、代码分析</h3>
+<p><strong>1.Phase_2函数的功能</strong></p>
 <blockquote>
-<p><strong>① 正向思维</strong><br>通过对汇编代码和伪代码的分析，对Phase_2的功能有了大概的认识：</p>
+<p><strong>① 正向思维</strong><br>
+通过对汇编代码和伪代码的分析，对Phase_2的功能有了大概的认识：</p>
 <ul>
-<li><font color="green">8048bc8</font>：首先要求输入六个数字；
-<font color="red">// read_six_numbers(a1, (int)&v3);</font></li>
-<li><font color="green">804916e</font>：判读输入的数字数量是否小于5，也可以说循环5次，不符合则bomb；
-<font color="red">// if ( result <= 5 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();< font></=></font></li>
-<li><font color="green">8048bcd</font>：要求第一个数字必须为1，否则就bomb；
-<font color="red">// if ( v3 != 1 )&nbsp;&nbsp;&nbsp;&nbsp;explode_bomb();</font></li>
-<li><font color="green">8048bde</font>：将循环变量从1开始相加（eax + eax）；
-<font color="red">// result = 2 * \*((\_DWORD \*)v2 - 1); </font></li>
-<li><font color="green">8048be0</font>：将相加后的%eax与%ebx中的数值（我们输入的六个数字）相比；
-<font color="red">// if ( \*(\_DWORD \*)v2 != result )&nbsp;&nbsp;&nbsp;&nbsp;explode\_bomb(); </font></li>
-<li><font color="green">8048bec</font>：比较esi和ebx后，如果相等的话，代表即将通关；
-<font color="red">// while ( v2 != &v5 );</font>
-
-</li>
+<li><font color="green">8048bc8</font>：首先要求输入六个数字；<br>
+<font color="red">// read_six_numbers(a1, (int)&amp;v3);</font></li>
+<li><font color="green">804916e</font>：判读输入的数字数量是否小于5，也可以说循环5次，不符合则bomb；<br>
+<font color="red">// if ( result &lt;= 5 )    explode_bomb();</font></li>
+<li><font color="green">8048bcd</font>：要求第一个数字必须为1，否则就bomb；<br>
+<font color="red">// if ( v3 != 1 )    explode_bomb();</font></li>
+<li><font color="green">8048bde</font>：将循环变量从1开始相加（eax + eax）；<br>
+<font color="red">// result = 2 * *((_DWORD *)v2 - 1); </font></li>
+<li><font color="green">8048be0</font>：将相加后的%eax与%ebx中的数值（我们输入的六个数字）相比；<br>
+<font color="red">// if ( *(_DWORD *)v2 != result )    explode_bomb(); </font></li>
+<li><font color="green">8048bec</font>：比较esi和ebx后，如果相等的话，代表即将通关；<br>
+<font color="red">// while ( v2 != &amp;v5 );</font></li>
 </ul>
-<p><strong>② 逆向思维</strong><br>逆向思维的思路主要是从函数的输出分析，从下往上分析，避开所有的bomb，推导出符合各个环节的参数：<br><code>8048bfc—&gt;8048bf0—&gt;8048bee—&gt;8048bec—&gt;8048be9—&gt;8048be2—&gt;8048be0—&gt;8048bde—&gt;8048bdb—&gt;8048bfa—&gt;8048bf6—&gt;8048bf2—&gt;8048bd2—&gt;8048bcd—&gt;8048bc8</code><br>上述的一个过程，是一个反推的过程。</p>
+<p><strong>② 逆向思维</strong><br>
+逆向思维的思路主要是从函数的输出分析，从下往上分析，避开所有的bomb，推导出符合各个环节的参数：<br>
+<code>8048bfc—&gt;8048bf0—&gt;8048bee—&gt;8048bec—&gt;8048be9—&gt;8048be2—&gt;8048be0—&gt;8048bde—&gt;8048bdb—&gt;8048bfa—&gt;8048bf6—&gt;8048bf2—&gt;8048bd2—&gt;8048bcd—&gt;8048bc8</code><br>
+上述的一个过程，是一个反推的过程。</p>
 </blockquote>
 <p><strong>2.求目标数</strong></p>
 <blockquote>
@@ -458,9 +467,19 @@ height:50vh;
 <li>第五次：16 + 16 = 32;</li>
 </ul>
 <p>那么求得要输入的六个数分别为：<code>1、2、4、8、16、32</code></p>
-<h3 id="四、验证答案"><a href="#四、验证答案" class="headerlink" title="四、验证答案"></a>四、验证答案</h3><p>运行程序，将得到的六个数据输进去，得到如下结果：<br><br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ftJBS4*4qVl8c42g3rgt1BRm2SAbzkhzXNAzUC2jfxE!/r/dMAAAAAAAAAA" alt></p>
-<h3 id="五、学习感悟"><a href="#五、学习感悟" class="headerlink" title="五、学习感悟"></a>五、学习感悟</h3><p>昨天在做题的时候并没有注意到那么多的细节，今天在总结的时候，就发现好多不明白的细节（可能在这篇总结中还存在很多许多修改的地方），说明做题和落实是两码事，也说明了将做题的过程落实下来很重要。虽然总结完了，但是我仍然要抱着不足的心态去对待这篇博文，在后期的学习中，我会根据自己的能力，不断地对这篇博文进行修改。</p>
-<h3 id="六、每日一句"><a href="#六、每日一句" class="headerlink" title="六、每日一句"></a>六、每日一句</h3><p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。 </p>
+</blockquote>
+<h3 id="四-验证答案"><a class="markdownIt-Anchor" href="#四-验证答案"></a> 四、验证答案</h3>
+<blockquote>
+<p>运行程序，将得到的六个数据输进去，得到如下结果：<br><br>
+<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/ftJBS4*4qVl8c42g3rgt1BRm2SAbzkhzXNAzUC2jfxE!/r/dMAAAAAAAAAA" alt></p>
+</blockquote>
+<h3 id="五-学习感悟"><a class="markdownIt-Anchor" href="#五-学习感悟"></a> 五、学习感悟</h3>
+<blockquote>
+<p>昨天在做题的时候并没有注意到那么多的细节，今天在总结的时候，就发现好多不明白的细节（可能在这篇总结中还存在很多许多修改的地方），说明做题和落实是两码事，也说明了将做题的过程落实下来很重要。虽然总结完了，但是我仍然要抱着不足的心态去对待这篇博文，在后期的学习中，我会根据自己的能力，不断地对这篇博文进行修改。</p>
+</blockquote>
+<h3 id="六-每日一句"><a class="markdownIt-Anchor" href="#六-每日一句"></a> 六、每日一句</h3>
+<blockquote>
+<p>人生目标确定容易实现难，但如果不去行动，那么连实现的可能也不会有。</p>
 </blockquote>
 
     </article>
@@ -622,7 +641,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、相关汇编代码"><span class="toc-number">1.</span> <span class="toc-text">一、相关汇编代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、相关伪代码（IDA反编译）"><span class="toc-number">2.</span> <span class="toc-text">二、相关伪代码（IDA反编译）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、代码分析"><span class="toc-number">3.</span> <span class="toc-text">三、代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、验证答案"><span class="toc-number">4.</span> <span class="toc-text">四、验证答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、学习感悟"><span class="toc-number">5.</span> <span class="toc-text">五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、每日一句"><span class="toc-number">6.</span> <span class="toc-text">六、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-相关汇编代码"><span class="toc-number">1.</span> <span class="toc-text"> 一、相关汇编代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-相关伪代码ida反编译"><span class="toc-number">2.</span> <span class="toc-text"> 二、相关伪代码（IDA反编译）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-代码分析"><span class="toc-number">3.</span> <span class="toc-text"> 三、代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-验证答案"><span class="toc-number">4.</span> <span class="toc-text"> 四、验证答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-学习感悟"><span class="toc-number">5.</span> <span class="toc-text"> 五、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-每日一句"><span class="toc-number">6.</span> <span class="toc-text"> 六、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -635,6 +654,32 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -2765,17 +2810,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
@@ -2785,11 +2830,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
