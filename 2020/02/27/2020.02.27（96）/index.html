@@ -419,7 +419,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>这是我在无意中遇到的一个<code>xss</code> 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于n<a href="[https://muzibing.github.io/2020/02/24/2020.02.24%EF%BC%8895%EF%BC%89/](https://muzibing.github.io/2020/02/24/2020.02.24（95）/">浏览器编码问题</a>)，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 <code>xss</code> 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 <code>xss</code> 知识点，当然这并不意味着结束了 <code>xss</code> 的学习，这只不过是一个开头，好了！步入正题。</p>
+<p>这是我在无意中遇到的一个<code>xss</code> 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于<a href="[https://muzibing.github.io/2020/02/24/2020.02.24%EF%BC%8895%EF%BC%89/](https://muzibing.github.io/2020/02/24/2020.02.24（95）/">浏览器编码问题</a>)，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 <code>xss</code> 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 <code>xss</code> 知识点，当然这并不意味着结束了 <code>xss</code> 的学习，这只不过是一个开头，好了！步入正题。</p>
 </blockquote>
 <h3 id="0x00-简单闭合问题"><a href="#0x00-简单闭合问题" class="headerlink" title="0x00 简单闭合问题"></a><font color="navy">0x00 简单闭合问题</font></h3><h4 id="①-JS-代码"><a href="#①-JS-代码" class="headerlink" title="① JS 代码"></a><code>① JS 代码</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// warm up</span></span><br><span class="line">    <span class="comment">// script should be executed without user interaction</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;input type="text" value="'</span> + input + <span class="string">'"&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="②-题目分析"><a href="#②-题目分析" class="headerlink" title="② 题目分析"></a><code>② 题目分析</code></h4><blockquote>
@@ -964,7 +964,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             <p>原文链接：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">https://muzibing.github.io/2020/02/27/2020.02.27（96）/</a>
             <p>发表日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 27th 2020, 12:00:00 am</a>
-            <p>更新日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 29th 2020, 11:31:09 am</a>
+            <p>更新日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 29th 2020, 11:34:03 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
