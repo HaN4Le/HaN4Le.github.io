@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.5k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.6k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -597,14 +597,14 @@ height:50vh;
 <p><img src="/images/95-5.png" alt></p>
 </blockquote>
 <p><code>0x07</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span></span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>待续</p>
+<p>因为 <code>confirm</code> <code>alert</code> <code>prompt</code> 函数的功能都有弹出窗口的作用，<code>&amp;#39</code> 在 HTML 解析阶段被编码为<code>'</code>，所以能成功执行。</p>
 </blockquote>
 <p><code>0x08</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>待续</p>
+<p>这道题和上一道题相似，但只不过是实体编码换成了 unicode 编码，因为 js 解码 Unicode 之后得到的结果知识字符，而 <code>'</code> 又是一个控制字符，但是不会被当作控制字符，所以不会被成功执行。</p>
 </blockquote>
 <p><code>0x09</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#57;&amp;#41;&amp;#59;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -676,7 +676,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">https://muzibing.github.io/2020/02/24/2020.02.24（95）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">February 24th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">February 28th 2020, 12:20:06 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/02/24/2020.02.24（95）/">March 1st 2020, 9:48:11 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -2465,9 +2465,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 96
+        Total : 97
         </div>
         <!-- search  -->
         
@@ -2484,6 +2499,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3042,6 +3062,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
     
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

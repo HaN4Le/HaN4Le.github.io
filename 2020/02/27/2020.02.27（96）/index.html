@@ -1062,7 +1062,7 @@ height:50vh;
 <h4 id="3-相关知识点-16"><a class="markdownIt-Anchor" href="#3-相关知识点-16"></a> <code>③ 相关知识点</code></h4>
 <blockquote>
 <ol>
-<li><code>&lt;svg&gt;</code> 注释：在默认 HTML 语境下， HTML 注释是没办法在 JS 代码中使用的，但是可以借助 <code>&lt;script&gt;</code> 标签强制解析 XML 语法的特点：在 <code>&lt;scrript&gt;</code> 标签中若包含 JS 代码，即使使用 HTML 注释 <code>&lt;!-- --&gt;</code> 也是可以被成功解析的。例如：</li>
+<li><code>&lt;svg&gt;</code> ：在默认 HTML 语境下， HTML 注释是没办法在 JS 代码中使用的，但是可以借助 <code>&lt;svg&gt;</code> 标签强制解析 XML 语法的特点：在 <code>&lt;svg&gt;</code> 标签中若包含 JS 代码，即使使用 HTML 注释 <code>&lt;!-- --&gt;</code> 也是可以被成功解析的。例如：</li>
 </ol>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg&gt;</span><br><span class="line">    &lt;!-- xxxx --&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &lt;!-- yyyy --&gt;</span><br><span class="line">        alert(<span class="number">1</span>)</span><br><span class="line">        &lt;!-- zzzz --&gt;</span><br><span class="line">        alert(<span class="number">2</span>)</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>svg&gt;</span><br></pre></td></tr></table></figure>
@@ -1091,13 +1091,18 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             <p>原文链接：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">https://muzibing.github.io/2020/02/27/2020.02.27（96）/</a>
             <p>发表日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 27th 2020, 12:00:00 am</a>
-            <p>更新日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">February 29th 2020, 11:35:44 am</a>
+            <p>更新日期：<a href="https://muzibing.github.io/2020/02/27/2020.02.27（96）/">March 1st 2020, 11:01:35 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/03/04/2020.03.04（97）/" title= "【转载】JavaScript 的隐式转换">
+                    <div class="nextTitle">【转载】JavaScript 的隐式转换</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -2875,9 +2880,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 96
+        Total : 97
         </div>
         <!-- search  -->
         
@@ -2894,6 +2914,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3452,6 +3477,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
     
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
