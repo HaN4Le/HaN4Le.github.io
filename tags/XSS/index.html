@@ -363,19 +363,21 @@
     <article class="index-post">
         <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
             
-                <span>Thi1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
+                <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
         </a>
         <div class="abstract-content">
-            0x05 Length limited textHint
+             0x05 Length limited text
+ Hint
+
 length limited text box
 
+ 题目分析
 
-题目分析
 ① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
 
 1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
 
-不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2159,7 +2161,7 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Thi1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
         </li>
     
     
@@ -2840,7 +2842,7 @@ jsonContent:
 </html>
 
 
-: #ccc; font-size: 0.6rem;">
+; color: #ccc; font-size: 0.6rem;">
     缺失模块。<br>
     1、请确保node版本大于6.2<br>
     2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
