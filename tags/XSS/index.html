@@ -361,6 +361,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
+            
+                <span>Thi1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
+        </a>
+        <div class="abstract-content">
+            0x05 Length limited textHint
+length limited text box
+
+
+题目分析
+① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
+
+1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
+
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/02/27/2020.02.27（96）/">
             
                 <span>This_1s_pr0mpt.ml_writeup</span>
@@ -2097,22 +2137,9 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 98
+        Total : 99
         </div>
         <!-- search  -->
         
@@ -2129,6 +2156,11 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Thi1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2808,29 +2840,7 @@ jsonContent:
 </html>
 
 
-data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
-        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
-    
-        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
-    
-        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
-    
-        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
-    
-        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
-    
-        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
-    
-        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+; font-size: 0.6rem;">
     缺失模块。<br>
     1、请确保node版本大于6.2<br>
     2、在博客根目录（注意不是archer根目录）执行以下命令：<br>

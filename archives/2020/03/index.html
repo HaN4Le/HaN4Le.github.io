@@ -361,6 +361,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
+            
+                <span>Thi1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
+        </a>
+        <div class="abstract-content">
+            0x05 Length limited textHint
+length limited text box
+
+
+题目分析
+① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
+
+1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
+
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/04/2020.03.04（97）/">
             
                 <span>【转载】JavaScript 的隐式转换</span>
@@ -2135,22 +2175,9 @@ Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 98
+        Total : 99
         </div>
         <!-- search  -->
         
@@ -2167,6 +2194,11 @@ Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Thi1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+        </li>
     
     
         <li class="archive-post-item">
