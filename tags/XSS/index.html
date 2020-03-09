@@ -361,6 +361,51 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/09/2020.03.08（100）/">
+            
+                <span>xss_payload_构造总结及深度剖析(持续更新中……)</span>
+        </a>
+        <div class="abstract-content">
+            一、绕过 XSS Filter 的方法1.逃离 &quot;&quot; 的束缚※ 普通的闭合
+
+有的并没有进行过滤，只需要简单的闭合即可逃离；
+
+※ 利用反引号代替
+
+条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 \” \”，以到达闭合的作用；
+
+※ 利用换行的特性
+
+详情见 prompt.ml 0x08 题目
+
+2.&lt; 和 /&gt; 过滤类型的题目※ 利用事件触发 payload
+
+虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror、onload、onmous...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
             
                 <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
@@ -2139,9 +2184,128 @@ length limited text box
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 99
+        Total : 100
         </div>
         <!-- search  -->
         
@@ -2158,6 +2322,11 @@ length limited text box
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/2020.03.08（100）/">xss_payload_构造总结及深度剖析(持续更新中……)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2842,56 +3011,7 @@ jsonContent:
 </html>
 
 
-; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br>
-    1、请确保node版本大于6.2<br>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "MUZIBing"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+\x3C/script>')
         }
     </script>
     <script src="/scripts/main.js"></script>
