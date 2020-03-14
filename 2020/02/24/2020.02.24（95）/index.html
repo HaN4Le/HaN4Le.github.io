@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.7k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.6k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,23 +416,24 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、判断下列语句能否成功执行"><a href="#一、判断下列语句能否成功执行" class="headerlink" title="一、判断下列语句能否成功执行"></a><font color="navy">一、判断下列语句能否成功执行</font></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">Basics</span><br><span class="line"></span><br><span class="line">0x01. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">// URL encoded "javascript:alert(1)"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x02. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61</span></span></span><br><span class="line"><span class="tag"><span class="string">%6c%65%72%74%28%32%29"</span>&gt;</span></span><br><span class="line">// Character entity encoded "javascript" and URL encoded "alert(2)"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x03. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript%3aalert(3)"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">// URL encoded ":"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x04. <span class="tag">&lt;<span class="name">div</span>&gt;</span>&amp;#60;img src=x onerror=alert(4)&amp;#62;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">// Character entity encoded <span class="tag">&lt; <span class="attr">and</span> &gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x05. <span class="tag">&lt;<span class="name">textarea</span>&gt;</span>&amp;#60;script&amp;#62;alert(5)&amp;#60;/script&amp;#62;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">// Character entity encoded <span class="tag">&lt; <span class="attr">and</span> &gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute AND the character entities will NOT</span><br><span class="line">be decoded either</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x06. <span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert(6)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Advanced</span><br><span class="line">0x07. <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">// Character entity encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x08. <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">// Unicode escape sequence encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x09. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Character entity encoded alert(9);</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0A. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0B. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert(11)</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0C. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert and 12 </span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0D. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode escape sequence encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0E. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">alert(<span class="string">'14\u000a'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// escape sequence encoded line feed.</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line">Bonus</span><br><span class="line">0x0F. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br></pre></td></tr></table></figure>
-<h3 id="二、相关知识"><a href="#二、相关知识" class="headerlink" title="二、相关知识"></a><font color="navy">二、相关知识</font></h3><h4 id="0x01-HTML-解析"><a href="#0x01-HTML-解析" class="headerlink" title="0x01 HTML 解析"></a>0x01 HTML 解析</h4><blockquote>
-<font color="red">**浏览器最早开始解析HTML，将标签转化为内容树中的DOM 节点，此时识别标签的时候，HTML 解析器是无法识别那边被实体编码的内容的，即 HTML解析器 不会做解码的工作。**</font>
-
-
-
+        <h3 id="font-color-navy一-判断下列语句能否成功执行font"><a class="markdownIt-Anchor" href="#font-color-navy一-判断下列语句能否成功执行font"></a> <font color="navy">一、判断下列语句能否成功执行</font></h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">Basics</span><br><span class="line"></span><br><span class="line">0x01. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">// URL encoded "javascript:alert(1)"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x02. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61</span></span></span><br><span class="line"><span class="tag"><span class="string">%6c%65%72%74%28%32%29"</span>&gt;</span></span><br><span class="line">// Character entity encoded "javascript" and URL encoded "alert(2)"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x03. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript%3aalert(3)"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">// URL encoded ":"</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x04. <span class="tag">&lt;<span class="name">div</span>&gt;</span>&amp;#60;img src=x onerror=alert(4)&amp;#62;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">// Character entity encoded <span class="tag">&lt; <span class="attr">and</span> &gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x05. <span class="tag">&lt;<span class="name">textarea</span>&gt;</span>&amp;#60;script&amp;#62;alert(5)&amp;#60;/script&amp;#62;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">// Character entity encoded <span class="tag">&lt; <span class="attr">and</span> &gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute AND the character entities will NOT</span><br><span class="line">be decoded either</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x06. <span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert(6)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Advanced</span><br><span class="line">0x07. <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">// Character entity encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x08. <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">// Unicode escape sequence encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x09. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Character entity encoded alert(9);</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0A. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0B. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert(11)</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0C. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode Escape sequence encoded alert and 12 </span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0D. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// Unicode escape sequence encoded '</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will NOT execute.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0x0E. <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">alert(<span class="string">'14\u000a'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// escape sequence encoded line feed.</span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br><span class="line"></span><br><span class="line">Bonus</span><br><span class="line">0x0F. <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// Answer: The javascript will execute.</span><br></pre></td></tr></table></figure>
+<h3 id="font-color-navy二-相关知识font"><a class="markdownIt-Anchor" href="#font-color-navy二-相关知识font"></a> <font color="navy">二、相关知识</font></h3>
+<h4 id="0x01-html-解析"><a class="markdownIt-Anchor" href="#0x01-html-解析"></a> 0x01 HTML 解析</h4>
+<blockquote>
+<p><font color="red"><strong>浏览器最早开始解析HTML，将标签转化为内容树中的DOM 节点，此时识别标签的时候，HTML 解析器是无法识别那边被实体编码的内容的，即 HTML解析器 不会做解码的工作。</strong></font></p>
 <p><strong>只有建立起DOM 树，才能对每个节点的内容进行识别，这时候如果出现实体编码，则会进行实体解码。但是这时候解析出来假如有新的标签，那么不会在加入DOM树,只是作为字符串处理。比如<code>&lt;textarea&gt;</code>和<code>&lt;title&gt;</code>。</strong></p>
 <p>并且不是所有节点内容都会进行实体解码，比如<code>&lt;script&gt;</code> 和 <code>&lt;style&gt;</code> 里面的代码<sup>0x04</sup>。</p>
 <p>以上对于标签的识别，并不只是标签头本身，也包括其中的属性、结构等。</p>
 </blockquote>
 <p><code>小知识点：</code></p>
 <ol>
-<li><strong>script标签内无法解析HTML实体编码</strong>，因为其不是在 data state 数据段内，<code>SVG</code> 属于支持 <code>XML</code> 解析，所以那么我们就很好理解了，因为下 <code>xml</code> 支持在标签内解析 <code>HTML</code> 实体字符，所以在 <code>XML</code> 中&#40;会被解析成（</li>
+<li><strong>script标签内无法解析HTML实体编码</strong>，因为其不是在 data state 数据段内，<code>SVG</code> 属于支持 <code>XML</code> 解析，所以那么我们就很好理解了，因为下 <code>xml</code> 支持在标签内解析 <code>HTML</code> 实体字符，所以在 <code>XML</code> 中(会被解析成（</li>
 <li>当HTML 解析器处于<code>数据状态（DataState）</code>、<code>RCDATA 状态（RCDATA State）</code>、<code>属性值状态（Attribute Value State）</code>时，字符实体会被解码为对应的字符。</li>
 <li>在原始文本元素（<code>&lt;script&gt;</code> 和 <code>&lt;style&gt;</code>）类型标签下的所有字符实体编码都不会被 HTML 解码。</li>
 </ol>
-<h4 id="0x02-JavaScript-解析"><a href="#0x02-JavaScript-解析" class="headerlink" title="0x02 JavaScript 解析"></a>0x02 JavaScript 解析</h4><p><code>javascript解析器的入口：</code></p>
+<h4 id="0x02-javascript-解析"><a class="markdownIt-Anchor" href="#0x02-javascript-解析"></a> 0x02 JavaScript 解析</h4>
+<p><code>javascript解析器的入口：</code></p>
 <blockquote>
 <ul>
 <li><strong>标签</strong></li>
@@ -445,7 +446,7 @@ height:50vh;
 </blockquote>
 <p><code>Unicode转义序列出现的地方</code></p>
 <blockquote>
-<p>从上下文来看，可以分为三个地方：<strong>字符串中，标识符名称中和控制字符（(,),;,”,’等）中。</strong></p>
+<p>从上下文来看，可以分为三个地方：<strong>字符串中，标识符名称中和控制字符（(,),;,&quot;,'等）中。</strong></p>
 <ul>
 <li>字符串中：转义序列只会被解释为正规字符，而不是单引号，双引号或者换行符这些能够打破字符串上下文的字符。</li>
 <li>标识符名称中：转义序列会被解码并解释为标识符名称的一部分，例如函数名，属性名等等。</li>
@@ -458,21 +459,20 @@ height:50vh;
 <blockquote>
 <p>形如 \uXXXX 这样的 Unicode 字符转义序列或 Hex 编码是否能被解码需要看情况。 首先，JavaScript 中有三个地方可以出现 Unicode 字符转义序列：</p>
 <p>1、字符串中（in String）</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unicode 转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，<code>&lt;script&gt;alert(“\u0031\u0030″);&lt;/script&gt;</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被编码转义的部分为 10，是字符串，会被正常解码，JS 代码也会被执行。</p>
+<p>      Unicode 转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。</p>
+<p>      例如，<code>&lt;script&gt;alert(“\u0031\u0030″);&lt;/script&gt;</code></p>
+<p>      被编码转义的部分为 10，是字符串，会被正常解码，JS 代码也会被执行。</p>
 <p>2、标识符中（in identifier names）</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若 Unicode 转义序列存在于标识符中，即变量名（如函数名等…），它会被进行解码。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，<code>&lt;script&gt;\u0061\u006c\u0065\u0072\u0074(10);&lt;/script&gt;</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被编码转义的部分为 alert 字符，是函数名，属于在标识符中的情况，因此会被正常解码，JS 代码也会被执行。</p>
+<p>      若 Unicode 转义序列存在于标识符中，即变量名（如函数名等…），它会被进行解码。</p>
+<p>      例如，<code>&lt;script&gt;\u0061\u006c\u0065\u0072\u0074(10);&lt;/script&gt;</code></p>
+<p>      被编码转义的部分为 alert 字符，是函数名，属于在标识符中的情况，因此会被正常解码，JS 代码也会被执行。</p>
 <p>3、控制字符中（in control characters）</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若 Unicode 转义序列存在于控制字符中，那么它会被解码但不会被解释为控制字符，而会被解释为标识符或字符串字符的一部分。 控制字符即’、”、()等。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，<code>&lt;script&gt;alert\u0028″xss”);&lt;/script&gt;</code>，(进行了 Unicode 编码，那么解码后它不再是作为控制字符，而是作为标识符的一部分alert(。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此函数的括号之类的控制字符进行 Unicode 转义后是不能被正常解释的。</p>
+<p>      若 Unicode 转义序列存在于控制字符中，那么它会被解码但不会被解释为控制字符，而会被解释为标识符或字符串字符的一部分。 控制字符即’、”、()等。</p>
+<p>      例如，<code>&lt;script&gt;alert\u0028″xss”);&lt;/script&gt;</code>，(进行了 Unicode 编码，那么解码后它不再是作为控制字符，而是作为标识符的一部分alert(。</p>
+<p>      因此函数的括号之类的控制字符进行 Unicode 转义后是不能被正常解释的。</p>
 </blockquote>
 <p><code>例题</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:alert(1)"</span>)&gt;</span>test<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:alert(\u0031)"</span>)&gt;</span>test1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:alert('\u0031')"</span>)&gt;</span>test2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:\u0061\u006c\u0065\u0072\u0074(1)"</span>)&gt;</span>test3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0029"</span>)&gt;</span>test4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"\u006a\u0061\u0076\u0061\u0073\u0063\u0072\u0069\u0070\u0074:alert(1)"</span>)&gt;</span>test5<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript\u003aalert(1)"</span>)&gt;</span>test6<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:alert('1\u000a')"</span>)&gt;</span>test7<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -491,7 +491,7 @@ height:50vh;
 </tr>
 <tr>
 <td style="text-align:center">test2</td>
-<td style="text-align:center">弹框，编码 ‘ 则失败</td>
+<td style="text-align:center">弹框，编码 ’ 则失败</td>
 </tr>
 <tr>
 <td style="text-align:center">test3</td>
@@ -515,27 +515,29 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-</div>
 <p><code>个人理解</code></p>
 <blockquote>
 <ul>
 <li>javascript 解码后的结果是<code>字符串</code>或者是<code>标识符名称</code>，</li>
-<li>控制符有 <code>(</code>、<code>)</code>、<code>;</code>、<code>&quot;</code> 和 <code>&#39;</code> 等</li>
+<li>控制符有 <code>(</code>、<code>)</code>、<code>;</code>、<code>&quot;</code> 和 <code>'</code> 等</li>
 </ul>
 </blockquote>
 <p><code>javascript 解码本质</code></p>
 <blockquote>
-<font color="red">**Unicode 序列不能出现在控制字符中，否则不能被解释。**</font>
-
+<p><font color="red"><strong>Unicode 序列不能出现在控制字符中，否则不能被解释。</strong></font></p>
 </blockquote>
-<h4 id="0x03-URL-解码"><a href="#0x03-URL-解码" class="headerlink" title="0x03 URL 解码"></a>0x03 URL 解码</h4><blockquote>
+<h4 id="0x03-url-解码"><a class="markdownIt-Anchor" href="#0x03-url-解码"></a> 0x03 URL 解码</h4>
+<blockquote>
 <ol>
-<li><p><code>&lt;a href=&quot;%6A%61%76%61%73%63%72%69%70%74:%61%6C%65%72%74%28%31%29&quot;&gt;test1&lt;/a&gt;</code></p>
-<font color="brown">URL解析过程中的一个细节：**URL 不能对协议类型进行任何的编码操作**，否则URL解析器会认为它无类型，就导致上述被编码的“javascript”没有解码，当然不会被URL解析器识别了。</font>
+<li>
+<p><code>&lt;a href=&quot;%6A%61%76%61%73%63%72%69%70%74:%61%6C%65%72%74%28%31%29&quot;&gt;test1&lt;/a&gt;</code></p>
+<p><font color="brown">URL解析过程中的一个细节：<strong>URL 不能对协议类型进行任何的编码操作</strong>，否则URL解析器会认为它无类型，就导致上述被编码的“javascript”没有解码，当然不会被URL解析器识别了。</font></p>
 </li>
-<li><p>src 中是可以进行 URL 编码的，当输出环境在 href     或者 src 属性内时，可通过javascript 伪协议来执行 JS 代码 。</p>
+<li>
+<p>src 中是可以进行 URL 编码的，当输出环境在 href     或者 src 属性内时，可通过javascript 伪协议来执行 JS 代码 。</p>
 </li>
-<li><p>html中的 <code>&lt;a&gt;</code> 标签的 href 属性，url 解析器会对 href 内部的内容进行一次url解析，js中的window.open(),url解析器会对括号内部的内容进行一次url解析，URL解析过程中的一个细节了，不能对伪协议类型进行任何的编码操作，否则URL解析器会认为它无类型。这个协议类型的格式是javascript:不是只是javascript。除此了javascript:伪协议可以执行js代码之外，还有IE下的vbscript,Mozilla下的dataURL(data:text/html;这里可以直接添加html的<code>&lt;script&gt;</code>标签，会执行)</p>
+<li>
+<p>html中的 <code>&lt;a&gt;</code> 标签的 href 属性，url 解析器会对 href 内部的内容进行一次url解析，js中的window.open(),url解析器会对括号内部的内容进行一次url解析，URL解析过程中的一个细节了，不能对伪协议类型进行任何的编码操作，否则URL解析器会认为它无类型。这个协议类型的格式是javascript:不是只是javascript。除此了javascript:伪协议可以执行js代码之外，还有IE下的vbscript,Mozilla下的dataURL(data:text/html;这里可以直接添加html的<code>&lt;script&gt;</code>标签，会执行)</p>
 </li>
 </ol>
 </blockquote>
@@ -545,14 +547,16 @@ height:50vh;
 <blockquote>
 <p>首先，要注意的是 URL 的 Scheme 部分（协议部分）必须为 ASCII 字符，即不能被任何编码，否则 URL 解析器的状态机将进入 No Scheme 状态。</p>
 <p>▪ <strong>示例1</strong>：<code>&lt;a href=&quot;%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29&quot;&gt;&lt;/a&gt;</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL 编码部分的是javascript:alert(1)，但是 JS 不会被执行，因为作为 Scheme 部分的”javascript”这个字符串被编码（其中javascript是一种伪协议），导致 URL 解析 器状态机进入 No Scheme 状态。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL 中的 : （冒号）也不能被以任何方式编码，否则 URL 解析器的状态机也将进入 No Scheme 状态。<code>&lt;a href=&quot;javascript%3aalert(3)&quot;&gt;&lt;/a&gt;</code>由于 : (冒号)被 URL 编码为%3a，导致 URL 状态机进入 NoScheme 状态，JS 代码不能执行。</p>
+<p>        URL 编码部分的是javascript:alert(1)，但是 JS 不会被执行，因为作为 Scheme 部分的”javascript”这个字符串被编码（其中javascript是一种伪协议），导致 URL 解析 器状态机进入 No Scheme 状态。</p>
+<p>        URL 中的 : （冒号）也不能被以任何方式编码，否则 URL 解析器的状态机也将进入 No Scheme 状态。<code>&lt;a href=&quot;javascript%3aalert(3)&quot;&gt;&lt;/a&gt;</code>由于 : (冒号)被 URL 编码为%3a，导致 URL 状态机进入 NoScheme 状态，JS 代码不能执行。</p>
 <p>▪ <strong>示例2</strong>：<code>&lt;a href=&quot;&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61%6c%65%72%74%28%32%29&quot;&gt;&lt;/a&gt;</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“JavaScript” 这个字符串被实体化编码，: （冒号）没有被编码，alert(2) 被 URL编码，成功执行。首先，在 HTML 解析器中，HTML状态机处于属性值状态（Attribute Value State）时，字符实体时会被解码的，此处在 href 属性中，所以被实体化编码的 “javascript”字符串会被解码。其次，HTML 解析是在URL解析之前的，所以在进行 URL 解析之前，Scheme 部分的”javascript”字符串已被解码，而并不再是被实体编码的状态。</p>
+<p>        “JavaScript” 这个字符串被实体化编码，: （冒号）没有被编码，alert(2) 被 URL编码，成功执行。首先，在 HTML 解析器中，HTML状态机处于属性值状态（Attribute Value State）时，字符实体时会被解码的，此处在 href 属性中，所以被实体化编码的 “javascript”字符串会被解码。其次，HTML 解析是在URL解析之前的，所以在进行 URL 解析之前，Scheme 部分的”javascript”字符串已被解码，而并不再是被实体编码的状态。</p>
 </blockquote>
-<h4 id="0x04-相关实践"><a href="#0x04-相关实践" class="headerlink" title="0x04 相关实践"></a>0x04 相关实践</h4><p><img src="/images/95-3.png" alt></p>
+<h4 id="0x04-相关实践"><a class="markdownIt-Anchor" href="#0x04-相关实践"></a> 0x04 相关实践</h4>
+<p><img src="/images/95-3.png" alt></p>
 <p><img src="/images/95-2.png" alt></p>
-<h3 id="三、详解每条原因"><a href="#三、详解每条原因" class="headerlink" title="三、详解每条原因"></a><font color="navy">三、详解每条原因</font></h3><p><code>0x01</code></p>
+<h3 id="font-color-navy三-详解每条原因font"><a class="markdownIt-Anchor" href="#font-color-navy三-详解每条原因font"></a> <font color="navy">三、详解每条原因</font></h3>
+<p><code>0x01</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>不能弹出。因为 <code>“%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29”</code> 是 <code>URL</code> 编码，在 HTML 解析上述语句所得到的还是该语句本身，而 <code>URL</code> 编码在编码 <code>URL</code> 时，要求 <code>URL</code> 的 <code>Scheme</code>  部分（协议部分）必须为 <code>ASCII 字符</code>，即不能被任何编码，否则 <code>URL 解析器</code>的状态机将进入 <code>No Scheme 状态</code>。所以作为Scheme 部分的 <code>”javascript”</code> 这个字符串被编码（其中 <code>javascript</code> 是一种伪协议），导致 <code>URL 解析器</code>状态机进入 <code>No Scheme 状态</code>。</p>
@@ -572,9 +576,11 @@ height:50vh;
 <blockquote>
 <p>不能弹窗。</p>
 <ul>
-<li><p><font color="red"><strong>分析一</strong></font>：HTML 解析过程：<code>一个HTML解析器作为一个状态机，它从输入流中获取字符并按照转换规则转换到另一种状态。在解析过程中，任何时候它只要遇到一个&#39;&lt;&#39;符号（后面没有跟&#39;/&#39;符号）就会进入“标签开始状态(Tag open state)”。然后转变到“标签名状态(Tag name state)”，“前属性名状态(before attribute name state)”......最后进入“数据状态(Data state)”并释放当前标签的token。当解析器处于“数据状态(Data state)”时，它会继续解析，每当发现一个完整的标签，就会释放出一个token。这里有三种情况可以容纳字符实体，“数据状态中的字符引用”，“RCDATA 状态中的字符引用”和“属性值状态中的字符引用”。在这些状态中HTML字符实体将会从“&amp;#...”形式解码，对应的解码字符会被放入数据缓冲区中。</code>在该问题中，“<code>&lt;</code>”和“<code>&gt;</code>”字符被编码为“<code>&amp;#60;</code>”和“<code>\&amp;#62;</code>”。当解析器解析完“<code>&lt;div&gt;</code>”并处于“数据状态”时，这两个字符将会被解析。当解析器遇到“&amp;”字符，它会知道这是“数据状态的字符引用”，因此会消耗一个字符引用（例如 “<code>&amp;#60;</code>” ）并释放出对应字符的 <code>token</code>。在这个例子中，对应字符指的是 “<code>&lt;</code>” 和 “<code>&gt;</code>” 。读者可能会想：这是不是意味着“<code>&lt;</code>”和“<code>&gt;</code>”的 <code>token</code> 将会被理解为标签的开始和结束，然后其中的脚本会被执行？答案是脚本并不会被执行。原因是解析器在解析这个字符引用后不会转换到“标签开始状态”。正因为如此，就不会建立新标签。因此，我们能够利用字符实体编码这个行为来转义用户输入的数据从而确保用户输入的数据只能被解析成 “数据”。</p>
+<li>
+<p><font color="red"><strong>分析一</strong></font>：HTML 解析过程：<code>一个HTML解析器作为一个状态机，它从输入流中获取字符并按照转换规则转换到另一种状态。在解析过程中，任何时候它只要遇到一个'&lt;'符号（后面没有跟'/'符号）就会进入“标签开始状态(Tag open state)”。然后转变到“标签名状态(Tag name state)”，“前属性名状态(before attribute name state)”......最后进入“数据状态(Data state)”并释放当前标签的token。当解析器处于“数据状态(Data state)”时，它会继续解析，每当发现一个完整的标签，就会释放出一个token。这里有三种情况可以容纳字符实体，“数据状态中的字符引用”，“RCDATA 状态中的字符引用”和“属性值状态中的字符引用”。在这些状态中HTML字符实体将会从“&amp;#...”形式解码，对应的解码字符会被放入数据缓冲区中。</code>在该问题中，“<code>&lt;</code>”和“<code>&gt;</code>”字符被编码为“<code>&amp;#60;</code>”和“<code>\&amp;#62;</code>”。当解析器解析完“<code>&lt;div&gt;</code>”并处于“数据状态”时，这两个字符将会被解析。当解析器遇到“&amp;”字符，它会知道这是“数据状态的字符引用”，因此会消耗一个字符引用（例如 “<code>&amp;#60;</code>” ）并释放出对应字符的 <code>token</code>。在这个例子中，对应字符指的是 “<code>&lt;</code>” 和 “<code>&gt;</code>” 。读者可能会想：这是不是意味着“<code>&lt;</code>”和“<code>&gt;</code>”的 <code>token</code> 将会被理解为标签的开始和结束，然后其中的脚本会被执行？答案是脚本并不会被执行。原因是解析器在解析这个字符引用后不会转换到“标签开始状态”。正因为如此，就不会建立新标签。因此，我们能够利用字符实体编码这个行为来转义用户输入的数据从而确保用户输入的数据只能被解析成 “数据”。</p>
 </li>
-<li><p><font color="red"><strong>分析二</strong></font>：&lt;和&gt;被编码为字符实体&#60;和&#62;。 当 HTML 解析器解析完<div>时，会进入数据状态（Data State）并发布标签令牌。接着解析到实体&#60;时因为处在数据状态（Data State）就会对实体进行解码为&lt;，后面 的&#62;同样道理被解码为&gt;。因为解析器在使用字符引用后不会转换到标签打开状态（Tag OpenState），不进入标签打开状态就不会被发布为 HTML 标签。因此，不会创建新 HTML 标签， 只会将其作为数据来处理。 这也是为什么我们可以使用字符实体来避免用户不安全输入导致 XSS 的原因。</div></p>
+<li>
+<p><font color="red"><strong>分析二</strong></font>：&lt;和&gt;被编码为字符实体&lt;和&gt;。 当 HTML 解析器解析完<div>时，会进入数据状态（Data State）并发布标签令牌。接着解析到实体&lt;时因为处在数据状态（Data State）就会对实体进行解码为&lt;，后面 的&gt;同样道理被解码为&gt;。因为解析器在使用字符引用后不会转换到标签打开状态（Tag OpenState），不进入标签打开状态就不会被发布为 HTML 标签。因此，不会创建新 HTML 标签， 只会将其作为数据来处理。 这也是为什么我们可以使用字符实体来避免用户不安全输入导致 XSS 的原因。</div></p>
 </li>
 </ul>
 </blockquote>
@@ -593,12 +599,12 @@ height:50vh;
 <p><code>0x07</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span></span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>因为 <code>confirm</code> <code>alert</code> <code>prompt</code> 函数的功能都有弹出窗口的作用，<code>&amp;#39</code> 在 HTML 解析阶段被编码为<code>&#39;</code>，所以能成功执行。</p>
+<p>因为 <code>confirm</code> <code>alert</code> <code>prompt</code> 函数的功能都有弹出窗口的作用，<code>&amp;#39</code> 在 HTML 解析阶段被编码为<code>'</code>，所以能成功执行。</p>
 </blockquote>
 <p><code>0x08</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>这道题和上一道题相似，但只不过是实体编码换成了 unicode 编码，因为 js 解码 Unicode 之后得到的结果知识字符，而 <code>&#39;</code> 又是一个控制字符，但是不会被当作控制字符，所以不会被成功执行。</p>
+<p>这道题和上一道题相似，但只不过是实体编码换成了 unicode 编码，因为 js 解码 Unicode 之后得到的结果知识字符，而 <code>'</code> 又是一个控制字符，但是不会被当作控制字符，所以不会被成功执行。</p>
 </blockquote>
 <p><code>0x09</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#57;&amp;#41;&amp;#59;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -608,12 +614,14 @@ height:50vh;
 <p><code>0x0A-</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#57;&amp;#41;&amp;#59;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>能弹窗。<sup>[0x08] &amp; [0x09]</sup> </p>
+<p>能弹窗。<sup>[0x08] &amp; [0x09]</sup></p>
 <p><img src="/images/95-6.jpg" alt></p>
 <ul>
-<li><p><font color="red"><strong>分析一</strong></font>：因为 <code>&lt;svg&gt;</code> 属于 <code>XML</code> 元素，不是 <code>HTML</code> 标签，因为下 xml 支持在标签内解析HTML实体字符，所以实体编码在 XML 中会被解析，并被执行。在 XML 中实体会自动转义，除了<code>&lt;![CDATA[</code>和<code>]]&gt;</code>包含的实体。</p>
+<li>
+<p><font color="red"><strong>分析一</strong></font>：因为 <code>&lt;svg&gt;</code> 属于 <code>XML</code> 元素，不是 <code>HTML</code> 标签，因为下 xml 支持在标签内解析HTML实体字符，所以实体编码在 XML 中会被解析，并被执行。在 XML 中实体会自动转义，除了<code>&lt;![CDATA[</code>和<code>]]&gt;</code>包含的实体。</p>
 </li>
-<li><p><font color="red"><strong>分析二</strong></font>：待续</p>
+<li>
+<p><font color="red"><strong>分析二</strong></font>：待续</p>
 </li>
 </ul>
 </blockquote>
@@ -630,35 +638,36 @@ height:50vh;
 <p><code>0x0C</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>不能弹窗。被编码部分为 alert 及括号内为12。原因在于括号内被编码的部分不能被正常解释，即使反编码之后为数字，但是仍然按照<code>字符串</code>来处理（<font color="navy"><strong>这里的12为字符串12，并不是int整数</strong></font>）。要么使用 ASCII 数字，要么加” “或’ ‘使其变为字符串，作为字符串也只能作为普通字符。</p>
+<p>不能弹窗。被编码部分为 alert 及括号内为12。原因在于括号内被编码的部分不能被正常解释，即使反编码之后为数字，但是仍然按照<code>字符串</code>来处理（<font color="navy"><strong>这里的12为字符串12，并不是int整数</strong></font>）。要么使用 ASCII 数字，要么加” &quot;或’ '使其变为字符串，作为字符串也只能作为普通字符。</p>
 </blockquote>
 <p><code>0x0D</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>不能被执行。<code>\u0027</code> 被编码为 <code>&#39;</code> ，该符号属于控制字符，所以这里控制字符被编码了，解码后的 <code>&#39;</code> 将<strong>变为字符串的一部分，而不再解释为控制字符</strong>。因此该例中字符串是不完整的，因为没有 <code>&#39;</code> 来结束字符串。</p>
+<p>不能被执行。<code>\u0027</code> 被编码为 <code>'</code> ，该符号属于控制字符，所以这里控制字符被编码了，解码后的 <code>'</code> 将<strong>变为字符串的一部分，而不再解释为控制字符</strong>。因此该例中字符串是不完整的，因为没有 <code>'</code> 来结束字符串。</p>
 </blockquote>
 <p><code>0x0E</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">alert(<span class="string">'14\u000a'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>能被成功执行。和 <code>0x0D</code> 进行对比可知，这里有 <code>&#39;</code> 符号作为控制字符来结束字符串，所以能够被执行。</p>
+<p>能被成功执行。和 <code>0x0D</code> 进行对比可知，这里有 <code>'</code> 符号作为控制字符来结束字符串，所以能够被执行。</p>
 </blockquote>
 <p><code>0x0F</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>能被执行。分析过程如下：</p>
-<p><code>步骤 ①</code> ：首先是HTML 解析，将 <code>&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;</code>  解码为 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> </p>
-<p><code>步骤 ②</code> ：因为 <code>href</code> 属性，因为存在着 <code>javascript:</code> 伪协议，所以紧接着进行 <code>URL 解析</code>，将 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> 解析为 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code> </p>
+<p><code>步骤 ①</code> ：首先是HTML 解析，将 <code>&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;</code>  解码为 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code></p>
+<p><code>步骤 ②</code> ：因为 <code>href</code> 属性，因为存在着 <code>javascript:</code> 伪协议，所以紧接着进行 <code>URL 解析</code>，将 <code>javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</code> 解析为 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code></p>
 <p><code>步骤 ③</code>：最后通过 <code>javascript 解析器</code> 将 <code>javascript:\u0061\u006c\u0065\u0072\u0074(15)</code>  解码为 <code>javascript:alert(15)</code> ，所以最终得到的结果是 <code>&lt;a href=javascript:alert(15)&gt;&lt;/a&gt;</code>，在<code>Unicode</code> 解码过程中，并没有控制字符被编码，所以 <code>javascript:alert(15)</code> 能成功地被执行。</p>
 </blockquote>
-<h3 id="四、参考文献"><a href="#四、参考文献" class="headerlink" title="四、参考文献"></a><font color="navy">四、参考文献</font></h3><p><strong>0x01</strong> 深入理解浏览器解析机制和XSS向量编码：<a href="http://bobao.360.cn/learning/detail/292.html" target="_blank" rel="noopener">http://bobao.360.cn/learning/detail/292.html</a></p>
-<p><strong>0x02</strong> 浏览器渲染原理与编码解码：<a href="https://lalajun.github.io/2018/08/25/浏览器渲染原理与编码解码/#unicode编码-javascript解析器" target="_blank" rel="noopener">https://lalajun.github.io/2018/08/25/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/#unicode%E7%BC%96%E7%A0%81-javascript%E8%A7%A3%E6%9E%90%E5%99%A8</a></p>
+<h3 id="font-color-navy四-参考文献font"><a class="markdownIt-Anchor" href="#font-color-navy四-参考文献font"></a> <font color="navy">四、参考文献</font></h3>
+<p><strong>0x01</strong> 深入理解浏览器解析机制和XSS向量编码：<a href="http://bobao.360.cn/learning/detail/292.html" target="_blank" rel="noopener">http://bobao.360.cn/learning/detail/292.html</a></p>
+<p><strong>0x02</strong> 浏览器渲染原理与编码解码：<a href="https://lalajun.github.io/2018/08/25/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/#unicode%E7%BC%96%E7%A0%81-javascript%E8%A7%A3%E6%9E%90%E5%99%A8" target="_blank" rel="noopener">https://lalajun.github.io/2018/08/25/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/#unicode%E7%BC%96%E7%A0%81-javascript%E8%A7%A3%E6%9E%90%E5%99%A8</a></p>
 <p><strong>0x03</strong> 浏览器编码题目：<a href="http://test.attacker-domain.com/browserparsing/answers.txt" target="_blank" rel="noopener">http://test.attacker-domain.com/browserparsing/answers.txt</a></p>
 <p><strong>0x04</strong> 一次对浏览器解析和XSS的深度探究：<a href="https://www.freebuf.com/articles/web/222849.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/222849.html</a></p>
 <p><strong>0x05</strong> 深入探究浏览器编码及XSS Bypass：<a href="https://mp.weixin.qq.com/s/liODgY4NjYqdWg3JgPXMdA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/liODgY4NjYqdWg3JgPXMdA</a></p>
 <p><strong>0x06</strong> XSS与字符编码及浏览器解析原理：<a href="http://www.lin2zhen.top/index.php/archives/16/" target="_blank" rel="noopener">http://www.lin2zhen.top/index.php/archives/16/</a></p>
 <p><strong>0x07</strong> HTML5/syntax：<a href="https://www.w3.org/html/ig/zh/wiki/HTML5/syntax" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/HTML5/syntax</a></p>
 <p><strong>0x08</strong> SVG XSS的一个黑魔法：<a href="https://www.hackersb.cn/hacker/85.html" target="_blank" rel="noopener">https://www.hackersb.cn/hacker/85.html</a></p>
-<p><strong>0x09</strong> 图片XSS小结：<a href="https://www.mi1k7ea.com/2019/03/22/图片XSS小结/" target="_blank" rel="noopener">https://www.mi1k7ea.com/2019/03/22/%E5%9B%BE%E7%89%87XSS%E5%B0%8F%E7%BB%93/</a></p>
+<p><strong>0x09</strong> 图片XSS小结：<a href="https://www.mi1k7ea.com/2019/03/22/%E5%9B%BE%E7%89%87XSS%E5%B0%8F%E7%BB%93/" target="_blank" rel="noopener">https://www.mi1k7ea.com/2019/03/22/%E5%9B%BE%E7%89%87XSS%E5%B0%8F%E7%BB%93/</a></p>
 
     </article>
     <!-- license  -->
@@ -819,7 +828,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、判断下列语句能否成功执行"><span class="toc-number">1.</span> <span class="toc-text">一、判断下列语句能否成功执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、相关知识"><span class="toc-number">2.</span> <span class="toc-text">二、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-HTML-解析"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 HTML 解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-JavaScript-解析"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 JavaScript 解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-URL-解码"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 URL 解码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-相关实践"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 相关实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、详解每条原因"><span class="toc-number">3.</span> <span class="toc-text">三、详解每条原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考文献"><span class="toc-number">4.</span> <span class="toc-text">四、参考文献</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy一-判断下列语句能否成功执行font"><span class="toc-number">1.</span> <span class="toc-text"> 一、判断下列语句能否成功执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy二-相关知识font"><span class="toc-number">2.</span> <span class="toc-text"> 二、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-html-解析"><span class="toc-number">2.1.</span> <span class="toc-text"> 0x01 HTML 解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-javascript-解析"><span class="toc-number">2.2.</span> <span class="toc-text"> 0x02 JavaScript 解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-url-解码"><span class="toc-number">2.3.</span> <span class="toc-text"> 0x03 URL 解码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-相关实践"><span class="toc-number">2.4.</span> <span class="toc-text"> 0x04 相关实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy三-详解每条原因font"><span class="toc-number">3.</span> <span class="toc-text"> 三、详解每条原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy四-参考文献font"><span class="toc-number">4.</span> <span class="toc-text"> 四、参考文献</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -832,58 +841,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2592,12 +2549,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3100,9 +3057,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
@@ -3110,11 +3067,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
@@ -3122,31 +3081,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
-    
-        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
         <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
@@ -3156,9 +3113,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
     
-        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
-    
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
