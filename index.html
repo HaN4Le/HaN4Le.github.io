@@ -379,24 +379,21 @@ height:50vh;
                 <span>xss_payload_构造总结及深度剖析(持续更新中……)</span>
         </a>
         <div class="abstract-content">
-             一、绕过 XSS Filter 的方法
- 1.逃离 &quot;&quot; 的束缚
-※ 普通的闭合
+            一、绕过 XSS Filter 的方法1.逃离 &quot;&quot; 的束缚※ 普通的闭合
 
 有的并没有进行过滤，只需要简单的闭合即可逃离；
 
 ※ 利用反引号代替
 
-条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 &quot; &quot;，以到达闭合的作用；
+条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 \” \”，以到达闭合的作用；
 
 ※ 利用换行的特性
 
 详情见 prompt.ml 0x08 题目
 
- 2.&lt; 和 /&gt; 过滤类型的题目
-※ 利用事件触发 payload
+2.&lt; 和 /&gt; 过滤类型的题目※ 利用事件触发 payload
 
-虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror...
+虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror、onload、onmous...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
