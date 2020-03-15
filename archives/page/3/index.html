@@ -361,6 +361,49 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/10/2019.09.10（81）/">
+            
+                <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
+        </a>
+        <div class="abstract-content">
+             一、前言
+
+pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 GOT 表的一种题型吧。
+
+ 二、基础知识
+ 1.GOT 表
+
+① 什么是 GOT 表？
+    每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
+② GOT 表的作用是什么？
+    把位置无关的地址计算重定位到一个绝对地址。程...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/07/2019.09.07（80）/">
             
                 <span>AFL 的代码插桩问题</span>
@@ -731,52 +774,10 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/13/2019.07.13（71）/">
-            
-                <span>《软件安全分析与应用》第 2 章：基础知识学习笔记(1)</span>
-        </a>
-        <div class="abstract-content">
-            1、CPU 的结构包括寄存器、算术逻辑单元（ALU）、控制器和内部总线
-
-
-寄存器：提供CPU的内部存储，用来暂时存方参与运算的数据及运算结果，不同的寄存器代表了不同的物理含义，应用到不同的功能场景
-算术逻辑单元：执行计算机的运算功能，包括：+、-、*、÷，左右移位运算，与、或、非、异或逻辑运算
-控制器：控制计算机各部件工作，包括取指、译码、执行
-内部总线：将寄存器、ALU 以及控制器进行互连，提供通信机制
-
-
-2、冯·诺伊曼CPU的运作原理可分为四个阶段：提取、解码、执行和写回
-
-
-提取：从程序内存中检索指令，指令的提取往往必须从相对较慢的存储器查找
-解码：CPU 将提取到的指令被拆解...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《软件安全分析与应用》">《软件安全分析与应用》</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/2/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/4/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/page/2/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/11/">11</a><a class="extend next" rel="next" href="/archives/page/4/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2550,9 +2551,76 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 100
+        Total : 101
         </div>
         <!-- search  -->
         
@@ -2569,6 +2637,11 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href="/2020/03/15/2020.3.15（101）/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
