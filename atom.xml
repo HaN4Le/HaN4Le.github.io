@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muzibing.github.io/"/>
-  <updated>2020-03-20T10:24:19.693Z</updated>
+  <updated>2020-03-20T10:32:47.247Z</updated>
   <id>https://muzibing.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux-根目录详解（二进制）</title>
+    <link href="https://muzibing.github.io/2020/03/21/2020.03.21%EF%BC%88105%EF%BC%89/"/>
+    <id>https://muzibing.github.io/2020/03/21/2020.03.21（105）/</id>
+    <published>2020-03-20T16:00:00.000Z</published>
+    <updated>2020-03-20T10:32:47.247Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准<strong>建议</strong>： <strong>根目录(/)所在分区应该越小越好</strong>，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p><p>说白了，就是根目录和Windows的C盘一个样</p></blockquote><h3 id="1-根目录下各个目录的功能"><a href="#1-根目录下各个目录的功能" class="headerlink" title="1.根目录下各个目录的功能"></a><font color="navy">1.根目录下各个目录的功能</font></h3><h4 id="详细列表"><a href="#详细列表" class="headerlink" title="详细列表"></a><code>详细列表</code></h4><div class="table-container"><table><thead><tr><th>目录</th><th>应放置档案内容</th><th>说明</th><th><strong>备注</strong></th></tr></thead><tbody><tr><td>/bin</td><td>系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bin底下的指令可以被root与一般帐号所使用，主要有：cat, <a href="http://hi.baidu.com/haifengjava/blog/item/e540a894c0f36a1bd21b70d1.html" target="_blank" rel="noopener">chmod(修改权限)</a>, chown, date, mv, mkdir, cp, bash等等常用的指令。</td><td>存放普通用户可执行的指令</td><td>即使在单用户模式下也能够执行处理</td></tr><tr><td>/boot</td><td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。 Linux kernel常用的档名为：<strong>vmlinuz</strong> ，如果使用的是grub这个开机管理程式，则还会存在<strong>/boot/grub/</strong>这个目录！</td><td>开机引导目录</td><td>包括Linux内核文件与开机所需要的文件</td></tr><tr><td>/dev</td><td>在Linux系统上，任何装置与周边设备都是以档案的型态存在于这个目录当中。 只要通过存取这个目录下的某个档案，就等于存取某个装置。比要重要的档案有/dev/null, /dev/zero, /dev/tty , /dev/lp*, / dev/hd*, /dev/sd*等等</td><td>设备目录</td><td>所有的硬件设备及周边均放置在这个设备目录中</td></tr><tr><td>/etc</td><td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，<strong>但</strong>是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有： /etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/等等。 另外，其下重要的目录有：<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/init.d/</strong> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：『 /etc/init.d/iptables start』、『/etc/init.d/ iptables stop』<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/xinetd.d/</strong> ：这就是所谓的super daemon管理的各项服务的设定档目录。<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/X11/</strong> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td><td>各种配置文件目录</td><td>大部分配置属性均存放在这里</td></tr><tr><td>/home</td><td>这是系统预设的使用者家目录(home directory)。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录！</td><td></td><td></td></tr><tr><td>/lib</td><td>系统的函式库非常的多，而/lib放置的则是在开机时会用到的函式库，以及在/bin或/sbin底下的指令会呼叫的函式库而已 。 什么是函式库呢？你可以将他想成是『外挂』，某些指令必须要有这些『外挂』才能够顺利完成程式的执行之意。 <strong>尤其重要</strong>的是/lib/modules/这个目录，因为该目录会放置核心相关的模组(驱动程式)喔！</td><td>开机时常用的动态链接库</td><td>bin及sbin指令也会调用对应的lib库</td></tr><tr><td>/media</td><td>media是『媒体』的英文，顾名思义，这个/media底下放置的就是可移除的装置啦！ 包括软碟、光碟、DVD等等装置都暂时挂载于此。 常见的档名有：/media/floppy, /media/cdrom等等。</td><td>可移除设备挂载目录</td><td>类似软盘 U盘 光盘等临时挂放目录</td></tr><tr><td>/mnt</td><td>如果妳想要暂时挂载某些额外的装置，一般建议妳可以放置到这个目录中。在古早时候，这个目录的用途与/media相同啦！ 只是有了/media之后，这个目录就用来暂时挂载用了</td><td>用户临时挂载其他的文件系统</td><td>额外的设备可挂载在这里,相对临时而言</td></tr><tr><td>/opt</td><td>这个是给第三方协力软体放置的目录 。 什么是第三方协力软体啊？举例来说，KDE这个桌面管理系统是一个独立的计画，不过他可以安装到Linux系统中，因此KDE的软体就建议放置到此目录下了。 另外，如果妳想要自行安装额外的软体(非原本的distribution提供的)，那么也能够将你的软体安装到这里来。 不过，<strong>以前的Linux系统中，我们还是习惯放置在/usr/local目录下</strong>！</td><td>第三方软件安装目录</td><td>现在习惯性的放置在/usr/local中</td></tr><tr><td>/root</td><td>系统管理员(root)的家目录。 之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时，该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</td><td>系统管理员主目录</td><td>除root之外,其他用户均放置在/home目录下</td></tr><tr><td>/sbin</td><td>Linux有非常多指令是用来设定系统环境的，这些指令<strong>只有</strong>root才能够利用来『设定』系统，<strong><em>\</em>其他**</strong>使用者最多只能用来『查询』而已。放在/sbin底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软体程式，一般则放置到/usr/sbin/当中。至于本机自行安装的软体所产生的系统执行档(system binary)，则放置到/usr/local/sbin/当中了。常见的指令包括：fdisk, fsck, ifconfig, init, mkfs等等。</td><td>只有root才能运行的管理指令</td><td>跟bin类似,但只属于root管理员</td></tr><tr><td>/srv</td><td>srv可以视为『service』的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在/srv/www/里面。呵呵，看来平时我们编写的代码应该放到这里了。</td><td>服务启动后需要访问的数据目录</td><td></td></tr><tr><td>/tmp</td><td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊！ 因为FHS甚至建议在开机时，应该要将/tmp下的资料都删除！</td><td>存放临时文件目录</td><td>所有用户对该目录均可读写</td></tr></tbody></table></div><h3 id="2-根目录下的结构"><a href="#2-根目录下的结构" class="headerlink" title="2.根目录下的结构"></a><font color="brown">2.根目录下的结构</font></h3><h4 id="tree-命令"><a href="#tree-命令" class="headerlink" title="tree 命令"></a><code>tree 命令</code></h4><blockquote><p>使用tree 可以查看详细的目录树</p></blockquote><h4 id="根目录下的结构图"><a href="#根目录下的结构图" class="headerlink" title="根目录下的结构图"></a><code>根目录下的结构图</code></h4><p><img src="/images/105-1.png" alt></p><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a><code>注意</code></h4><blockquote><ul><li>/etc：设定档</li><li>/bin：重要执行档</li><li>/dev：所需要的装置档案</li><li>/lib：执行档所需的函式库与核心所需的模组</li><li>/sbin：重要的系统执行档</li></ul></blockquote><p>这五个目录<strong>千万不可</strong>与根目录分开在不同的分区！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准&lt;strong&gt;建议&lt;/strong&gt;： &lt;strong&gt;根目录(/)所在分区应该越小越好&lt;/strong&gt;，且
+      
+    
+    </summary>
+    
+    
+      <category term="基础知识" scheme="https://muzibing.github.io/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="Linux" scheme="https://muzibing.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux常用命令总结（二进制）</title>
@@ -30,32 +56,6 @@
       
       
         &lt;h3 id=&quot;0x00-目录操作命令&quot;&gt;&lt;a href=&quot;#0x00-目录操作命令&quot; class=&quot;headerlink&quot; title=&quot;0x00 目录操作命令&quot;&gt;&lt;/a&gt;&lt;font color=&quot;brown&quot;&gt;&lt;code&gt;0x00 目录操作命令&lt;/code&gt;&lt;/font&gt;&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="基础知识" scheme="https://muzibing.github.io/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="Linux" scheme="https://muzibing.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux-根目录详解（二进制）</title>
-    <link href="https://muzibing.github.io/2020/03/20/2020.03.21%EF%BC%88105%EF%BC%89/"/>
-    <id>https://muzibing.github.io/2020/03/20/2020.03.21（105）/</id>
-    <published>2020-03-19T16:00:00.000Z</published>
-    <updated>2020-03-20T10:24:21.491Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准<strong>建议</strong>： <strong>根目录(/)所在分区应该越小越好</strong>，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p><p>说白了，就是根目录和Windows的C盘一个样</p></blockquote><h3 id="1-根目录下各个目录的功能"><a href="#1-根目录下各个目录的功能" class="headerlink" title="1.根目录下各个目录的功能"></a><font color="navy">1.根目录下各个目录的功能</font></h3><h4 id="详细列表"><a href="#详细列表" class="headerlink" title="详细列表"></a><code>详细列表</code></h4><div class="table-container"><table><thead><tr><th>目录</th><th>应放置档案内容</th><th>说明</th><th><strong>备注</strong></th></tr></thead><tbody><tr><td>/bin</td><td>系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bin底下的指令可以被root与一般帐号所使用，主要有：cat, <a href="http://hi.baidu.com/haifengjava/blog/item/e540a894c0f36a1bd21b70d1.html" target="_blank" rel="noopener">chmod(修改权限)</a>, chown, date, mv, mkdir, cp, bash等等常用的指令。</td><td>存放普通用户可执行的指令</td><td>即使在单用户模式下也能够执行处理</td></tr><tr><td>/boot</td><td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。 Linux kernel常用的档名为：<strong>vmlinuz</strong> ，如果使用的是grub这个开机管理程式，则还会存在<strong>/boot/grub/</strong>这个目录！</td><td>开机引导目录</td><td>包括Linux内核文件与开机所需要的文件</td></tr><tr><td>/dev</td><td>在Linux系统上，任何装置与周边设备都是以档案的型态存在于这个目录当中。 只要通过存取这个目录下的某个档案，就等于存取某个装置。比要重要的档案有/dev/null, /dev/zero, /dev/tty , /dev/lp*, / dev/hd*, /dev/sd*等等</td><td>设备目录</td><td>所有的硬件设备及周边均放置在这个设备目录中</td></tr><tr><td>/etc</td><td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，<strong>但</strong>是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有： /etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/等等。 另外，其下重要的目录有：<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/init.d/</strong> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：『 /etc/init.d/iptables start』、『/etc/init.d/ iptables stop』<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/xinetd.d/</strong> ：这就是所谓的super daemon管理的各项服务的设定档目录。<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/X11/</strong> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td><td>各种配置文件目录</td><td>大部分配置属性均存放在这里</td></tr><tr><td>/home</td><td>这是系统预设的使用者家目录(home directory)。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录！</td><td></td><td></td></tr><tr><td>/lib</td><td>系统的函式库非常的多，而/lib放置的则是在开机时会用到的函式库，以及在/bin或/sbin底下的指令会呼叫的函式库而已 。 什么是函式库呢？你可以将他想成是『外挂』，某些指令必须要有这些『外挂』才能够顺利完成程式的执行之意。 <strong>尤其重要</strong>的是/lib/modules/这个目录，因为该目录会放置核心相关的模组(驱动程式)喔！</td><td>开机时常用的动态链接库</td><td>bin及sbin指令也会调用对应的lib库</td></tr><tr><td>/media</td><td>media是『媒体』的英文，顾名思义，这个/media底下放置的就是可移除的装置啦！ 包括软碟、光碟、DVD等等装置都暂时挂载于此。 常见的档名有：/media/floppy, /media/cdrom等等。</td><td>可移除设备挂载目录</td><td>类似软盘 U盘 光盘等临时挂放目录</td></tr><tr><td>/mnt</td><td>如果妳想要暂时挂载某些额外的装置，一般建议妳可以放置到这个目录中。在古早时候，这个目录的用途与/media相同啦！ 只是有了/media之后，这个目录就用来暂时挂载用了</td><td>用户临时挂载其他的文件系统</td><td>额外的设备可挂载在这里,相对临时而言</td></tr><tr><td>/opt</td><td>这个是给第三方协力软体放置的目录 。 什么是第三方协力软体啊？举例来说，KDE这个桌面管理系统是一个独立的计画，不过他可以安装到Linux系统中，因此KDE的软体就建议放置到此目录下了。 另外，如果妳想要自行安装额外的软体(非原本的distribution提供的)，那么也能够将你的软体安装到这里来。 不过，<strong>以前的Linux系统中，我们还是习惯放置在/usr/local目录下</strong>！</td><td>第三方软件安装目录</td><td>现在习惯性的放置在/usr/local中</td></tr><tr><td>/root</td><td>系统管理员(root)的家目录。 之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时，该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</td><td>系统管理员主目录</td><td>除root之外,其他用户均放置在/home目录下</td></tr><tr><td>/sbin</td><td>Linux有非常多指令是用来设定系统环境的，这些指令<strong>只有</strong>root才能够利用来『设定』系统，<strong><em>\</em>其他**</strong>使用者最多只能用来『查询』而已。放在/sbin底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软体程式，一般则放置到/usr/sbin/当中。至于本机自行安装的软体所产生的系统执行档(system binary)，则放置到/usr/local/sbin/当中了。常见的指令包括：fdisk, fsck, ifconfig, init, mkfs等等。</td><td>只有root才能运行的管理指令</td><td>跟bin类似,但只属于root管理员</td></tr><tr><td>/srv</td><td>srv可以视为『service』的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在/srv/www/里面。呵呵，看来平时我们编写的代码应该放到这里了。</td><td>服务启动后需要访问的数据目录</td><td></td></tr><tr><td>/tmp</td><td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊！ 因为FHS甚至建议在开机时，应该要将/tmp下的资料都删除！</td><td>存放临时文件目录</td><td>所有用户对该目录均可读写</td></tr></tbody></table></div><h3 id="2-根目录下的结构"><a href="#2-根目录下的结构" class="headerlink" title="2.根目录下的结构"></a><font color="brown">2.根目录下的结构</font></h3><h4 id="tree-命令"><a href="#tree-命令" class="headerlink" title="tree 命令"></a><code>tree 命令</code></h4><blockquote><p>使用tree 可以查看详细的目录树</p></blockquote><h4 id="根目录下的结构图"><a href="#根目录下的结构图" class="headerlink" title="根目录下的结构图"></a><code>根目录下的结构图</code></h4><p><img src="/images/105-1.png" alt></p><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a><code>注意</code></h4><blockquote><ul><li>/etc：设定档</li><li>/bin：重要执行档</li><li>/dev：所需要的装置档案</li><li>/lib：执行档所需的函式库与核心所需的模组</li><li>/sbin：重要的系统执行档</li></ul></blockquote><p>这五个目录<strong>千万不可</strong>与根目录分开在不同的分区！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准&lt;strong&gt;建议&lt;/strong&gt;： &lt;strong&gt;根目录(/)所在分区应该越小越好&lt;/strong&gt;，且
       
     
     </summary>
