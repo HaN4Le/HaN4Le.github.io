@@ -361,6 +361,85 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/23/2019.04.23（45）/">
+            
+                <span>二进制炸弹：Phase_5解题总结</span>
+        </a>
+        <div class="abstract-content">
+            
+
+前言：
+在 3 个小时的“奋战”中，中间也经历了很多波折，终于在15：30的时候，找到了Phase_5的通关口令。下面我就重点来总结一下关于Phase_5的解题过程。
+
+
+ 一、相关汇编代码
+ 1.Phase_5的汇编代码
+1234567891011121314151617181920212223242526272829303132333435363708048d5c &lt;phase_5&gt;: 8048d5c:	53                   	push   %ebx 8048d5d:	83 ec 18             	sub    $0x18,%esp ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/22/2019.04.22（44）/">
+            
+                <span>sscanf()函数的详细总结 + 实例</span>
+        </a>
+        <div class="abstract-content">
+            
+
+前言：
+今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
+
+
+ 一、有关描述[1]
+
+sscanf() 是从一个字符串中读进与指定格式相符的数据.
+
+ 1.sscanf()格式：
+
+int sscanf(const char *str, const char *format, ...)
+- str：...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/21/2019.04.21（43）/">
             
                 <span>二进制炸弹：Phase_4解题总结</span>
@@ -687,88 +766,6 @@ x86-64下的通用寄存器与汇编指令
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/13/2019.04.13（35）/">
-            
-                <span>Crypto：RSA详细总结</span>
-        </a>
-        <div class="abstract-content">
-             一、基础知识
- 1.互质关系的结论
-
-① 任意两个质数构成互质关系，比如13和61
-② 一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系，比如3和10
-③ 如果两个数之中，较大的那个数是质数，则两者构成互质关系，比如97和57
-④ 1和任意一个自然数是都是互质关系，比如1和99
-⑤ p是大于1的整数，则p和p-1构成互质关系，比如57和56
-⑥ p是大于1的奇数，则p和p-2构成互质关系，比如17和15
-
- 2.欧拉函数
-
-在数论，对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目（φ(1)=1）。此函数以其首名研究者欧拉命名(Euler’s totient func...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/12/2019.04.12（34）/">
-            
-                <span>《汇编语言程序设计》学习笔记（八）</span>
-        </a>
-        <div class="abstract-content">
-                  今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
-
-寻址模式
-地址计算指令与其他
-
- #知识储备
-
-① $立即数，则取得的操作数就是立即数
-② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数
-③ 寄存器，则取得的操作数就是以寄存器的值
-④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数
-⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即数2)，表示为：
-(立即数1值+寄存器1值+寄存...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
             </div>
             <!-- tags  -->
             
@@ -2671,15 +2668,9 @@ x86-64下的通用寄存器与汇编指令
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 103
+        Total : 105
         </div>
         <!-- search  -->
         
@@ -2696,6 +2687,16 @@ x86-64下的通用寄存器与汇编指令
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2020/03/20/2020.03.21（105）/">Linux-根目录详解（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2020/03/20/2020.03.20（104）/">Linux常用命令总结（二进制）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2724,12 +2725,12 @@ x86-64下的通用寄存器与汇编指令
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -2744,12 +2745,12 @@ x86-64下的通用寄存器与汇编指令
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3293,6 +3294,8 @@ x86-64下的通用寄存器与汇编指令
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
         <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
