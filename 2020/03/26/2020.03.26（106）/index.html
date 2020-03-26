@@ -1,0 +1,3302 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="MUZIBing">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="MUZIBing">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Windows常用的网络命令 · MUZIBing&#39;s BLOG</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.jpg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'BN8DBA0DBN',
+                apiKey: '743de843b152b923f8db5d51eac38a27',
+                indexName: 'search',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Windows常用的网络命令</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">MUZIBing's BLOG</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/106.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Windows常用的网络命令
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">6.1k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/26</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="font-color-brown0x00-ipconfigfont"><a class="markdownIt-Anchor" href="#font-color-brown0x00-ipconfigfont"></a> <font color="brown">0x00 ipconfig</font></h3>
+<div style="background-color:gray">sss</div>
+<p><code>作用</code>：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关</p>
+<p>IPConfig实用程序和它的等价图形用户界面----Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。</p>
+<p><code>IPConfig最常用的选项：</code></p>
+<p>▧  <code>ipconfig</code>：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网关值。</p>
+<p>▧  <code>ipconfig /all</code>：当使用all选项时，IPConfig能为DNS和WINS服务器显示它已配置且所要使用的附加信息（如IP地址等），并且显示内置于本地网卡中的物理地址（MAC）。如果IP地址是从DHCP服务器租用的，IPConfig将显示DHCP服务器的IP地址和租用地址预计失效的日期。</p>
+<p>▧  <code>ipconfig /release</code>和<code>ipconfig /renew</code>：这是两个附加选项，只能在向DHCP服务器租用其IP地址的计算机上起作用。如果我们输入ipconfig /release，那么所有接口的租用IP地址便重新交付给DHCP服务器（归还IP地址）。如果我们输入ipconfig /renew，那么本地计算机便设法与DHCP服务器取得联系，并租用一个IP地址。请注意，大多数情况下网卡将被重新赋予和以前所赋予的相同的IP地址。</p>
+<h3 id="font-color-brown0x01-pingfont"><a class="markdownIt-Anchor" href="#font-color-brown0x01-pingfont"></a> <font color="brown">0x01 ping</font></h3>
+<p>Ping是个使用频率极高的实用程序，<code>用于确定本地主机是否能与另一台主机交换（发送与接收）数据报</code>。根据返回的信息，我们就可以推断TCP/IP参数是否设置得正确以及运行是否正常。需要注意的是：成功地与另一台主机进行一次或两次数据报交换并不表示TCP/IP配置就是正确的，我们必须执行大量的本地主机与远程主机的数据报交换，才能确信TCP/IP的正确性。</p>
+<p>如果Ping运行正确，我们大体上就可以排除网络访问层、网卡、MODEM的输入输出线路、电缆和路由器等存在的故障，从而减小了问题的范围。但由于可以自定义所发数据报的大小及无休止的高速发送，Ping也被某些别有用心的人作为DDOS（拒绝服务攻击）的工具，例如许多大型的网站就是被黑客利用数百台可以高速接入互联网的电脑连续发送大量Ping数据报而瘫痪的。</p>
+<p>按照缺省设置，Windows上运行的Ping命令发送4个ICMP回送请求，每个32字节数据，如果一切正常，我们应能得到4个回送应答。 Ping能够以毫秒为单位显示发送回送请求到返回回送应答之间的时间量。如果应答时间短，表示数据报不必通过太多的路由器或网络连接速度比较快。Ping还能显示TTL（Time To Live存在时间）值，我们可以通过TTL值推算一下数据包已经通过了多少个路由器：源地点TTL起始值（就是比返回TTL略大的一个2的乘方数）-返回时TTL值。例如，返回TTL值为119，那么可以推算数据报离开源地址的TTL起始值为128，而源地点到目标地点要通过9个路由器网段（128-119）；如果返回TTL值为246，TTL起始值就是256，源地点到目标地点要通过9个路由器网段。</p>
+<p><font color="navy"><strong>1、通过Ping检测网络故障的典型次序</strong></font></p>
+<p>正常情况下，当我们使用Ping命令来查找问题所在或检验网络运行情况时，我们需要使用许多Ping命令，如果所有都运行正确，我们就可以相信基本的连通性和配置参数没有问题；如果某些Ping命令出现运行故障，它也可以指明到何处去查找问题。下面就给出一个典型的检测次序及对应的可能故障：</p>
+<p>▧ <code>ping 127.0.0.1</code></p>
+<blockquote>
+<p>这个Ping命令被送到本地计算机的IP软件，该命令永不退出该计算机。如果没有做到这一点，就表示TCP/IP的安装或运行存在某些最基本的问题。</p>
+</blockquote>
+<p>▧ <code>ping 本机IP</code></p>
+<blockquote>
+<p>这个命令被送到我们计算机所配置的IP地址，我们的计算机始终都应该对该Ping命令作出应答，如果没有，则表示本地配置或安装存在问题。出现此问题时，局域网用户请断开网络电缆，然后重新发送该命令。如果网线断开后本命令正确，则表示另一台计算机可能配置了相同的IP地址。</p>
+</blockquote>
+<p>▧ <code>ping 局域网内其他IP</code></p>
+<blockquote>
+<p>这个命令应该离开我们的计算机，经过网卡及网络电缆到达其他计算机，再返回。收到回送应答表明本地网络中的网卡和载体运行正确。但如果收到0个回送应答，那么表示子网掩码（进行子网分割时，将IP地址的网络部分与主机部分分开的代码）不正确或网卡配置错误或电缆系统有问题。</p>
+</blockquote>
+<p>▧ <code>ping 网关IP</code></p>
+<blockquote>
+<p>这个命令如果应答正确，表示局域网中的网关路由器正在运行并能够作出应答。</p>
+</blockquote>
+<p>▧ <code>ping 远程IP</code></p>
+<blockquote>
+<p>如果收到4个应答，表示成功的使用了缺省网关。对于拨号上网用户则表示能够成功的访问Internet（但不排除ISP的DNS会有问题）</p>
+</blockquote>
+<p>▧ <code>ping localhost</code></p>
+<blockquote>
+<p>localhost是个作系统的网络保留名，它是127.0.0.1的别名，每台计算机都应该能够将该名字转换成该地址。如果没有做到这一带内，则表示主机文件（/Windows/host）中存在问题。</p>
+</blockquote>
+<p>▧ <code>ping www.xxx.com（如www.yesky.com 天极网）</code></p>
+<blockquote>
+<p>对这个域名执行Ping <a href="http://www.xxx.com" target="_blank" rel="noopener">www.xxx.com</a> 地址，通常是通过DNS 服务器 如果这里出现故障，则表示DNS服务器的IP地址配置不正确或DNS服务器有故障（对于拨号上网用户，某些ISP已经不需要设置DNS服务器了）。顺便说一句：我们也可以利用该命令实现域名对IP地址的转换功能。</p>
+<p>如果上面所列出的所有Ping命令都能正常运行，那么我们对自己的计算机进行本地和远程通信的功能基本上就可以放心了。但是，这些命令的成功并不表示我们所有的网络配置都没有问题，例如，某些子网掩码错误就可能无法用这些方法检测到。</p>
+</blockquote>
+<p><font color="navy"><strong>2、Ping命令的常用参数选项</strong></font></p>
+<p>(您可以使用 Ping 命令的不同选项来指定要使用的数据包大小、要发送多少数据包、是否记录用过的路由、要使用的生存时间 (TTL) 值以及是否设置“不分段”标志。可以键入 ping -? 查看这些选项。)</p>
+<p>▧ <code>ping IP –t</code></p>
+<blockquote>
+<p>连续对IP地址执行Ping命令，直到被用户以Ctrl+C中断。</p>
+</blockquote>
+<p>▧ <code>ping IP -l 300</code></p>
+<blockquote>
+<p>指定Ping命令中的数据长度为300字节，而不是缺省的32字节。</p>
+</blockquote>
+<p>▧ <code>ping IP –n</code></p>
+<blockquote>
+<p>执行特定次数的Ping命令。</p>
+</blockquote>
+<p>下例说明如何向 IP 地址 172.16.48.10 发送两个 Ping，每个都是 1,450 字节：<code>C:\&gt;ping -n 2 -l 1450 172.16.48.10</code></p>
+<p>默认情况下，在显示“请求超时”之前，Ping 等待 1,000 毫秒（1 秒）的时间让每个响应返回。如果通过 Ping 探测的远程系统经过长时间延迟的链路，如卫星链路，则响应可能会花更长的时间才能返回。可以使用 -w （等待）选项指定更长时间的超时。</p>
+<h3 id="font-color-brown0x02-arpfont"><a class="markdownIt-Anchor" href="#font-color-brown0x02-arpfont"></a> <font color="brown">0x02 arp</font></h3>
+<p><code>使用 Arp 解决硬件地址问题</code></p>
+<p>ARP是一个重要的TCP/IP协议，并且用于确定对应IP地址的网卡物理地址。实用arp命令，我们能够查看本地计算机或另一台计算机的ARP高速缓存中的当前内容。此外，使用arp命令，也可以用人工方式输入静态的网卡物理/IP地址对，我们可能会使用这种方式为缺省网关和本地服务器等常用主机进行这项作，有助于减少网络上的信息量。</p>
+<p>按照缺省设置，ARP高速缓存中的项目是动态的，每当发送一个指定地点的数据报且高速缓存中不存在当前项目时，ARP便会自动添加该项目。一旦高速缓存的项目被输入，它们就已经开始走向失效状态。例如，在Windows NT/2000网络中，如果输入项目后不进一步使用，物理/IP地址对就会在2至10分钟内失效。因此，如果ARP高速缓存中项目很少或根本没有时，请不要奇怪，通过另一台计算机或路由器的ping命令即可添加。所以，需要通过arp命令查看高速缓存中的内容时，请最好先ping 此台计算机（不能是本机发送ping命令）。</p>
+<p><font color="navy"><strong>ARP常用命令选项：</strong></font></p>
+<p>▧ <code>arp -a或arp –g</code>：用于查看高速缓存中的所有项目。-a和-g参数的结果是一样的，多年来-g一直是UNIX平台上用来显示ARP高速缓存中所有项目的选项，而Windows用的是arp -a（-a可被视为all，即全部的意思），但它也可以接受比较传统的-g选项。</p>
+<p>▧ <code>arp -a IP</code>：如果我们有多个网卡，那么使用arp -a加上接口的IP地址，就可以只显示与该接口相关的ARP缓存项目。</p>
+<p>▧ <code>arp -s IP 物理地址</code>：我们可以向ARP高速缓存中人工输入一个静态项目。该项目在计算机引导过程中将保持有效状态，或者在出现错误时，人工配置的物理地址将自动更新该项目。</p>
+<p>▧ <code>arp -d IP</code>：使用本命令能够人工删除一个静态项目。</p>
+<p>例如我们在命令提示符下，键入 Arp –a；如果我们使用过 Ping 命令测试并验证从这台计算机到 IP 地址为 10.0.0.99 的主机的连通性，则 ARP 缓存显示以下项：</p>
+<p><code>Interface:10.0.0.1 on interface 0x1</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Internet Address</th>
+<th style="text-align:center">Physical Address</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">10.0.0.99</td>
+<td style="text-align:center">00-e0-98-00-7c-dc</td>
+<td style="text-align:center">dynamic</td>
+</tr>
+</tbody>
+</table>
+<p>在此例中，缓存项指出位于 <code>10.0.0.99</code>的远程主机解析成 <code>00-e0-98-00-7c-dc</code>的媒体访问控制地址，它是在远程计算机的网卡硬件中分配的。媒体访问控制地址是计算机用于与网络上远程 TCP/IP 主机物理通讯的地址。</p>
+<p>至此我们可以用ipconfig和ping命令来查看自己的网络配置并判断是否正确、可以用netstat查看别人与我们所建立的连接并找出ICQ使用者所隐藏的IP信息、可以用arp查看网卡的MAC地址。</p>
+<h3 id="font-color-brown0x03-netstatfont"><a class="markdownIt-Anchor" href="#font-color-brown0x03-netstatfont"></a> <font color="brown">0x03 netstat</font></h3>
+<blockquote>
+<p>使用 netstat 显示连接统计，用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。</p>
+</blockquote>
+<p>如果我们的计算机有时候接受到的数据报会导致出错数据删除或故障，TCP/IP可以容许这些类型的错误，并能够自动重发数据报。但如果累计的出错情况数目占到所接收的IP数据报相当大的百分比，或者它的数目正迅速增加，那么我们就应该使用Netstat查一查为什么会出现这些情况了。</p>
+<p><font color="navy"><strong>1.netstat 的一些常用选项</strong></font></p>
+<p>▧ <code>netstat –s</code>：本选项能够按照各个协议分别显示其统计数据。如果我们的应用程序（如Web浏览器）运行速度比较慢，或者不能显示Web页之类的数据，那么我们就可以用本选项来查看一下所显示的信息。我们需要仔细查看统计数据的各行，找到出错的关键字，进而确定问题所在。</p>
+<p>▧ <code>netstat –e</code>：本选项用于显示关于以太网的统计数据。它列出的项目包括传送的数据报的总字节数、错误数、删除数、数据报的数量和广播的数量。这些统计数据既有发送的数据报数量，也有接收的数据报数量。这个选项可以用来统计一些基本的网络流量）。</p>
+<p>▧ <code>netstat –r</code>：本选项可以显示关于路由表的信息，类似于后面所讲使用route print命令时看到的信息。除了显示有效路由外，还显示当前有效的连接。</p>
+<p>▧ <code>netstat –a</code>：本选项显示一个所有的有效连接信息列表，包括已建立的连接（ESTABLISHED），也包括监听连接请求（LISTENING）的那些连接。</p>
+<p>▧ <code>netstat –n</code>：显示所有已建立的有效连接。</p>
+<p><font color="navy"><strong>2.Netstat的妙用</strong></font></p>
+<p>经常上网的人一般都使用QQ的，不会遇到被一些讨厌的人骚扰，想投诉却又不知从何下手的情况。其实，我们只要知道对方的IP，就可以向他所属的ISP投诉了。但如果对方在设置QQ时选择了不显示IP地址，那我们是无法在信息栏中看到的。我们只需要通过Netstat就可以很方便的做到这一点：当他通过QQ或其他的工具与我们相连时（例如我们给他发一条QQ信息或他给我们发一条信息），我们立刻在DOS命令提示符下输入netstat -n或netstat -a就可以看到对方上网时所用的IP或ISP域名了，甚至连所用Port都完全暴露了。</p>
+<h3 id="font-color-brown0x04-tracertfont"><a class="markdownIt-Anchor" href="#font-color-brown0x04-tracertfont"></a> <font color="brown">0x04 tracert</font></h3>
+<blockquote>
+<p>使用tracert跟踪网络连接。如果有网络连通性问题，可以使用 tracert 命令来检查到达的目标IP地址的路径并记录结果。tracert命令显示用于将数据包从计算机传递到目标位置的一组 IP 路由器，以及每个跃点所需的时间。如果数据包不能传递到目标，tracert命令将显示成功转发数据包的最后一个路由器。当数据报从我们的计算机经过多个网关传送到目的地时，Tracert命令可以用来跟踪数据报使用的路由（路径）。该实用程序跟踪的路径是源计算机到目的地的一条路径，不能保证或认为数据报总遵循这个路径。如果我们的配置使用DNS，那么我们常常会从所产生的应答中得到城市、地址和常见通信公司的名字。Tracert是一个运行得比较慢的命令（如果我们指定的目标地址比较远），每个路由器我们大约需要给它15秒钟。</p>
+</blockquote>
+<p>Tracert的使用很简单，只需要在tracert后面跟一个IP地址或URL，Tracert会进行相应的域名转换的。Tracert 实用程序对于解决大网络问题非常有用，此时可以采取几条路径到达同一个点。</p>
+<p><font color="navy"><strong>tracert 最常见的用法</strong>：</font></p>
+<p>▧ <code>tracert IP address [-d]</code>该命令返回到达 IP 地址所经过的路由器列表。通过使用 -d 选项，将更快地显示路由器路径，因为 tracert 不会尝试解析路径中路由器的名称。</p>
+<blockquote>
+<p>说明：通过向目标发送不同 IP 生存时间 (TTL) 值的“Internet 控制消息协议 (ICMP)”回应数据包，Tracert 诊断程序确定到目标所采取的路由。要求路径上的每个路由器在转发数据包之前至少将数据包上的 TTL 递减 1。数据包上的 TTL 减为 0 时，路由器应该将“ICMP 已超时”的消息发回源系统。Tracert 先发送 TTL 为 1 的回应数据包，并在随后的每次发送过程将 TTL 递增 1，直到目标响应或 TTL 达到最大值，从而确定路由。通过检查中间路由器发回的“ICMP 已超时”的消息确定路由。某些路由器不经询问直接丢弃 TTL 过期的数据包，这在Tracert 实用程序中看不到。 Tracert 命令按顺序打印出返回“ICMP 已超时”消息的路径中的近端路由器接口列表。如果使用 <code>-d</code> 选项，则 Tracert 实用程序不在每个 IP 地址上查询 DNS。</p>
+</blockquote>
+<p>Tracert 命令行选项：Tracert 命令支持多种选项，如下表所示：</p>
+<p><code>tracert [-d] [-h maximum_hops] [-j host-list] [-w timeout] target_name</code></p>
+<p><font color="navy"><strong>选项描述：</strong></font></p>
+<ul>
+<li>
+<p>-d 指定不将 IP 地址解析到主机名称。</p>
+</li>
+<li>
+<p>-h maximum_hops 指定跃点数以跟踪到称为 target_name 的主机的路由。</p>
+</li>
+<li>
+<p>-j host-list 指定 Tracert 实用程序数据包所采用路径中的路由器接口列表。</p>
+</li>
+<li>
+<p>-w timeout 等待 timeout 为每次回复所指定的毫秒数。</p>
+</li>
+<li>
+<p>target_name 目标主机的名称或 IP地址。</p>
+</li>
+</ul>
+<h3 id="font-color-brown0x05-routefont"><a class="markdownIt-Anchor" href="#font-color-brown0x05-routefont"></a> <font color="brown">0x05 route</font></h3>
+<blockquote>
+<p>大多数主机一般都是驻留在只连接一台路由器的网段上。由于只有一台路由器，因此不存在使用哪一台路由器将数据报发表到远程计算机上去的问题，该路由器的IP地址可作为该网段上所有计算机的缺省网关来输入。但是，当网络上拥有两个或多个路由器时，我们就不一定想只依赖缺省网关了。实际上我们可能想让我们的某些远程IP地址通过某个特定的路由器来传递，而其他的远程IP则通过另一个路由器来传递。在这种情况下，我们需要相应的路由信息，这些信息储存在路由表中，每个主机和每个路由器都配有自己独一无二的路由表。大多数路由器使用专门的路由协议来交换和动态更新路由器之间的路由表。但在有些情况下，必须人工将项目添加到路由器和主机上的路由表中。Route就是用来显示、人工添加和修改路由表项目的。</p>
+</blockquote>
+<p>一般使用选项：</p>
+<p>▧ <code>route print</code>：本命令用于显示路由表中的当前项目，在单路由器网段上的输出；由于用IP地址配置了网卡，因此所有的这些项目都是自动添加的。</p>
+<p>▧ <code>route add</code>：使用本命令，可以将信路由项目添加给路由表。例如，如果要设定一个到目的网络<code>209.98.32.33</code>的路由，其间要经过5个路由器网段，首先要经过本地网络上的一个路由器，器IP为<code>202.96.123.5</code>，子网掩码为<code>255.255.255.224</code>，那么我们应该输入以下命令：<code>route add 209.98.32.33 mask 255.255.255.224 202.96.123.5 metric 5</code></p>
+<p>▧ <code>route change</code>：我们可以使用本命令来修改数据的传输路由，不过，我们不能使用本命令来改变数据的目的地。下面这个例子可以将数据的路由改到另一个路由器，它采用一条包含3个网段的更直的路径：<code>route add 209.98.32.33 mask 255.255.255.224 202.96.123.250 metric 3</code></p>
+<p>▧ <code>route delete</code>：使用本命令可以从路由表中删除路由。例如：<code>route delete 209.98.32.33</code>。</p>
+<h3 id="font-color-brown0x06-pathpingfont"><a class="markdownIt-Anchor" href="#font-color-brown0x06-pathpingfont"></a> <font color="brown">0x06 pathping</font></h3>
+<p>使用 pathping 测试路由器。pathping 命令是一个路由跟踪工具，它将 ping 和 tracert 命令的功能和这两个工具所不提供的其他信息结合起来。pathping 命令在一段时间内将数据包发送到到达最终目标的路径上的每个路由器，然后基于数据包的计算机结果从每个跃点返回。由于命令显示数据包在任何给定路由器或链接上丢失的程度，因此可以很容易地确定可能导致网络问题的路由器或链接。某些选项是可用的，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-n</td>
+<td style="text-align:center">Hostnames</td>
+<td style="text-align:center">不将地址解析成主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">-h</td>
+<td style="text-align:center">Maximum hops</td>
+<td style="text-align:center">搜索目标的最大跃点数</td>
+</tr>
+<tr>
+<td style="text-align:center">-g</td>
+<td style="text-align:center">Host-list</td>
+<td style="text-align:center">沿着路由列表释放源路由</td>
+</tr>
+<tr>
+<td style="text-align:center">-p</td>
+<td style="text-align:center">Period</td>
+<td style="text-align:center">在 ping 之间等待的毫秒数</td>
+</tr>
+<tr>
+<td style="text-align:center">-q</td>
+<td style="text-align:center">Num_queries</td>
+<td style="text-align:center">每个跃点的查询数</td>
+</tr>
+<tr>
+<td style="text-align:center">-w</td>
+<td style="text-align:center">Time-out</td>
+<td style="text-align:center">为每次回复所等待的毫秒数</td>
+</tr>
+<tr>
+<td style="text-align:center">-T</td>
+<td style="text-align:center">Layer 2 tag</td>
+<td style="text-align:center">将第 2 层优先级标记</td>
+</tr>
+<tr>
+<td style="text-align:center">-R</td>
+<td style="text-align:center">RSVP isbase Che</td>
+<td style="text-align:center">检查路径中的路由器是否支持“资源保留协议”,允许主机为数据流保留一定量带宽</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>对于<code>-T</code>:（例如，对于 IEEE 802.1p）连接到数据包并将它发送到路径中的每个网络设备。这有助于标识没有正确配置第 2 层优先级的网络设备。-T 开关用于测试服务质量 (QoS) 连通性。</p>
+<p>对于<code>-R</code>： 开关用于测试服务质量 (QoS) 连通性。</p>
+</blockquote>
+<p><mark>默认的跃点数是 30，并且超时前的默认等待时间是 3 秒。默认时间是 250 毫秒，并且沿着路径对每个路由器进行查询的次数是 100。</mark></p>
+<p><strong>当运行 pathping 时，在测试问题时首先查看路由的结果</strong>。此路径与 tracert 命令所显示的路径相同。然后 pathping 命令对下一个 125 毫秒显示忙消息（此时间根据跃点计数变化）。在此期间，pathping 从以前列出的所有路由器和它们之间的链接之间收集信息。在此期间结束时，它显示测试结果。</p>
+<p>最右边的两栏 This Node/Link Lost/Sent=Pct 和 Address 包含的信息最有用。172.16.87.218（跃点 1）和 192.68.52.1（跃点 2）丢失 13% 的数据包。 所有其他链接工作正常。在跃点 2 和 4 中的路由器也丢失寻址到它们的数据包（如 This Node /Link 栏中所示），但是该丢失不会影响转发的路径。</p>
+<p>对链接显示的丢失率（在最右边的栏中标记为 |）表明沿路径转发丢失的数据包。该丢失表明链接阻塞。对路由器显示的丢失率（通过最右边栏中的 IP 地址显示）表明这些路由器的 CPU 可能超负荷运行。这些阻塞的路由器可能也是端对端问题的一个因素，尤其是在软件路由器转发数据包时。</p>
+<h3 id="font-color-brown0x07-nbtstatfont"><a class="markdownIt-Anchor" href="#font-color-brown0x07-nbtstatfont"></a> <font color="brown">0x07 NBTStat</font></h3>
+<p>使用 nbtstat 命令释放和刷新 NetBIOS 名称。NBTStat（TCP/IP上的NetBIOS统计数据）实用程序用于提供关于NetBIOS的统计数据。运用NetBIOS，我们可以查看本地计算机或远程计算机上的NetBIOS名字表格。</p>
+<p><font color="navy"><strong>常用选项</strong>：</font></p>
+<ul>
+<li>
+<p><code>nbtstat –n</code>：显示寄存在本地的名字和服务程序。</p>
+</li>
+<li>
+<p><code>nbtstat –c</code>：本命令用于显示NetBIOS名字高速缓存的内容。NetBIOS名字高速缓存用于存放与本计算机最近进行通信的其他计算机的NetBIOS名字和IP地址对。</p>
+</li>
+<li>
+<p><code>nbtstat –r</code>：本命令用于清除和重新加载NetBIOS名字高速缓存。</p>
+</li>
+<li>
+<p><code>nbtstat -a IP</code>：通过IP显示另一台计算机的物理地址和名字列表，我们所显示的内容就像对方计算机自己运行nbtstat -n一样。</p>
+</li>
+<li>
+<p><code>nbtstat -s IP</code>：显示实用其IP地址的另一台计算机的NetBIOS连接表。</p>
+</li>
+</ul>
+<p>例如我们在命令提示符下，键入：nbtstat –RR 释放和刷新过程的进度以命令行输出的形式显示。该信息表明当前注册在该计算机的 WINS 中的所有本地 NetBIOS 名称是否已经使用 WINS 服务器释放和续订了注册。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/03/26/2020.03.26（106）/">https://muzibing.github.io/2020/03/26/2020.03.26（106）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/03/26/2020.03.26（106）/">March 26th 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/03/26/2020.03.26（106）/">March 26th 2020, 11:12:02 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/03/21/2020.03.21（105）/" title="Linux-根目录详解（二进制）">
+                    <div class="prevTitle">Linux-根目录详解（二进制）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x00-ipconfigfont"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 ipconfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x01-pingfont"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x02-arpfont"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 arp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x03-netstatfont"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 netstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x04-tracertfont"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 tracert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x05-routefont"><span class="toc-number">6.</span> <span class="toc-text"> 0x05 route</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x06-pathpingfont"><span class="toc-number">7.</span> <span class="toc-text"> 0x06 pathping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x07-nbtstatfont"><span class="toc-number">8.</span> <span class="toc-text"> 0x07 NBTStat</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 106
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href="/2020/03/26/2020.03.26（106）/">Windows常用的网络命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href="/2020/03/21/2020.03.21（105）/">Linux-根目录详解（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2020/03/20/2020.03.20（104）/">Linux常用命令总结（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2020/03/18/2020.03.17（103）/">编程语言的发展历史 from1954to2019</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2020/03/16/2020.03.16（102）/">知识库构建初想</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href="/2020/03/15/2020.03.15（101）/">Python基本第三方库总结（0x00）：requests库（Python中唯一的非转基因库）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/2020.03.08（100）/">xss_payload_构造总结及深度剖析(持续更新中……)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2020/02/27/2020.02.27（96）/">This_1s_pr0mpt.ml_writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2020/02/24/2020.02.24（95）/">【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href="/2020/02/09/2020.02.09（92）/">各种文件的文件头和文件尾总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">【WP】XCFT misc新手阶段</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/19</span><a class="archive-post-title" href="/2019/11/19/2019.11.19（89）/">XSS Challenge（Stage1-4）writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href="/2019/11/07/2019.11.07（88）/">Cookie、Session、Token那点事儿（转载）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/2019.11.05（87）/">有关内核调用问题和预编译指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/2019.10.16（86）/">PWN 实战 - shellcode 题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span><a class="archive-post-title" href="/2019/10/12/2019.10.12（85）/">变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href="/2019/10/08/2019.09.28（84）/">pwn-ROP(GOT表泄露)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/2019/09/24/2019.09.24（83）/">pwn-bof（基础类型题目）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2019/09/17/2019.09.17（82）/">bash 漏洞（pwnable-shellshock）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href="/2019/09/10/2019.09.10（81）/">GOT 表攻击实例（pwnbable.kr_passcode）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2019/09/07/2019.09.07（80）/">AFL 的代码插桩问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/2019.09.02（79）/">XCTF 新人阶段 — web</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/2019.08.01（78）/">BabyPHP 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/2019.07.31（77）/">JavaScript 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href="/2019/07/27/2019.07.27（76）/">BaByXSS 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href="/2019/07/26/2019.07.26（75）/">XSS 基础知识（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/2019/07/20/2019.07.20（74）/">乘法链算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/2019.07.18（73）/">最小公倍数的加法算法实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2019/07/15/2019.07.15（72）/">欧几里得算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2019/07/13/2019.07.13（71）/">《软件安全分析与应用》第 2 章：基础知识学习笔记(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/2019.07.12（70）/">《软件安全分析与应用》第 1 章：绪论学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/16</span><a class="archive-post-title" href="/2019/06/16/2019.06.16（69）/">《图解密码技术》第三章（对称密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/2019.06.15（68）/">《图解密码技术》第二章（历史上的密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2019/06/14/2019.06.14（67）/">《图解密码技术》第一章（环游密码世界）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/2019.06.03（66）/">《图解密码技术》第十五章（密码技术和现实生活）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href="/2019/05/07/2019.05.07（52）/">Wiener Trick解题准备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2019/05/05/2019.05.05（51）/">MySQL学习笔记（一）查询(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2019/04/29/2019.04.29（50）/">Misc：RealWiFi解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/2019.04.28（49）/">Another 01game解题详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2019/04/27/2019.04.27（48）/">Python 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href="/2019/04/26/2019.04.26（47）/">初识 Caesar 密码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/2019.04.25（46）/">二进制炸弹：Phase_6解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2019/04/23/2019.04.23（45）/">二进制炸弹：Phase_5解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/2019.04.21（43）/">二进制炸弹：Phase_4解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href="/2019/04/15/2019.04.15（37）/">reverse：Reverse sign in解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/2019.04.14（36）/">《汇编语言程序设计》学习笔记（九）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/13</span><a class="archive-post-title" href="/2019/04/13/2019.04.13（35）/">Crypto：RSA详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href="/2019/04/12/2019.04.12（34）/">《汇编语言程序设计》学习笔记（八）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/2019.04.10（33）/">Crypto：RSA2解题总结（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结（2）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="解题总结"><span class="iconfont-archer">&#xe606;</span>解题总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="RSA"><span class="iconfont-archer">&#xe606;</span>RSA</span>
+    
+        <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
+    
+        <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
+    
+        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "MUZIBing"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+
