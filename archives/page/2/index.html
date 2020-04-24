@@ -361,6 +361,48 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
+            
+                <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
+        </a>
+        <div class="abstract-content">
+             0x05 Length limited text
+ Hint
+
+length limited text box
+
+ 题目分析
+
+① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
+
+1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
+
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/04/2020.03.04（98）/">
             
                 <span>【转载】Data URI 知识点详解</span>
@@ -738,59 +780,6 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
         <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="智能合约漏洞">智能合约漏洞</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/19/2019.11.19（89）/">
-            
-                <span>XSS Challenge（Stage1-4）writeup</span>
-        </a>
-        <div class="abstract-content">
-            
-题目链接：XSS Challenges（共19关）
-
- Stage #1
- ① 题目
-
- ② 相关知识点
-
-
-XSS 的类型
-
-
- ③ 解题步骤
-
-▣ 首先看一下是否存在 XSS 攻击
-
-⚁ 首次尝试填入信息：
-
-▣ 可以从上图中看出，我们写入的 Hello World 被放在了 &lt;b&gt; &lt;/b&gt; 标签中，我们可以在这个标签中进行 xss 攻击，脚本如下：
-
-1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
-
-▣ 点击 se...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
             
@@ -2666,9 +2655,46 @@ XSS 的类型
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 108
+        Total : 109
         </div>
         <!-- search  -->
         
@@ -2689,6 +2715,11 @@ XSS 的类型
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -2738,12 +2769,12 @@ XSS 的类型
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     

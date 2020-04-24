@@ -374,6 +374,58 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
+            
+                <span>二进制炸弹解题知识储备</span>
+        </a>
+        <div class="abstract-content">
+            今天开始了第二阶段的测试，针对题目中频繁出现的汇编指令、gdb编译器以及objdump工具，做了详细的学习，下面就总结一下该题中可能用到的一些知识点，主要内容为：
+
+
+常用的汇编指令
+objdump工具
+gdb编译器的用法
+
+
+ 一、题目中出现的汇编指令
+
+
+push、pop、call、cmp、jmp、je、jne、lea
+
+
+1.push 和 pop 指令：堆栈操作指令
+
+**① 说明：**无论是push 还是pop ，都是对堆栈段ss的处理：
+
+ss中存放堆栈段地址
+sp指针中存放偏移地址，
+栈操作都是以字（2字节）为单位。
+
+② 例子：
+☛ 例一：将通用寄存器ax中的数据入栈，pu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/16/2019.04.16（38）/">
             
                 <span>《汇编语言程序设计》学习笔记（十）</span>
@@ -752,51 +804,6 @@ ca    crl     dgst[1]    dh    dhparam     enc[2]    g
         <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/05/2019.04.05（29）/">
-            
-                <span>Crypto：What&#39;s RSA？解题总结（2）</span>
-        </a>
-        <div class="abstract-content">
-                  今天开始做密码方面的题目，在2月28日的时候，我曾尝试过RSA的题目，但是因为没有深度去思考，就是总结了一下有关原理，当时并没有把这一道题做出来。今天我认真的分析了一下有关这道题的内容，并对上次的博客的内容做了修改和完善，也解出了这道题有了新的收获。
- 一、前期准备
-
-
-openssl 命令
-非对称加密体制
-RSA加解密原理
-
-
- 二、思考过程
-
-      我从题目中得到两个文件：flag.encrypt 和 rsa_private_key.pem，这两个文件分别是加密后的密文和密钥。
-
-在这里首先要说的是加密体制分为：对称加密体制和非对称加密体制。两者的区别是什么呢？
-还...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
     
 </div>
             
@@ -2769,9 +2776,46 @@ RSA加解密原理
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 108
+        Total : 109
         </div>
         <!-- search  -->
         
@@ -2792,6 +2836,11 @@ RSA加解密原理
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -2841,12 +2890,12 @@ RSA加解密原理
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     

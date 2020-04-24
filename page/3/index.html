@@ -374,6 +374,59 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/19/2019.11.19（89）/">
+            
+                <span>XSS Challenge（Stage1-4）writeup</span>
+        </a>
+        <div class="abstract-content">
+            
+题目链接：XSS Challenges（共19关）
+
+ Stage #1
+ ① 题目
+
+ ② 相关知识点
+
+
+XSS 的类型
+
+
+ ③ 解题步骤
+
+▣ 首先看一下是否存在 XSS 攻击
+
+⚁ 首次尝试填入信息：
+
+▣ 可以从上图中看出，我们写入的 Hello World 被放在了 &lt;b&gt; &lt;/b&gt; 标签中，我们可以在这个标签中进行 xss 攻击，脚本如下：
+
+1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
+
+▣ 点击 se...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/07/2019.11.07（88）/">
             
                 <span>Cookie、Session、Token那点事儿（转载）</span>
@@ -755,57 +808,6 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
         <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="fuzz">fuzz</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/02/2019.09.02（79）/">
-            
-                <span>XCTF 新人阶段 — web</span>
-        </a>
-        <div class="abstract-content">
-            
-Today I mainly write some notes about the web topic of the XCTF newcomer stage.The following is a list of topics.
-
-view source
-get post
-robots
-backup
-cookie
-disabled button
-simple js
-xff referer
-weak auth
-webshell
-command execution
-simple php
-
-
-
-In order to make the knowledge points involved in ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
 </div>
             
@@ -2778,9 +2780,46 @@ In order to make the knowledge points involved in ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 108
+        Total : 109
         </div>
         <!-- search  -->
         
@@ -2801,6 +2840,11 @@ In order to make the knowledge points involved in ...
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -2850,12 +2894,12 @@ In order to make the knowledge points involved in ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
