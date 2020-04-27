@@ -366,12 +366,14 @@
                 <span>GDB常用命令-内存查看（x）</span>
         </a>
         <div class="abstract-content">
-            一、功能说明1它是按一定格式显示内存地址或变量的值
-二、格式
-x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
+             一、功能说明
+1它是按一定格式显示内存地址或变量的值
+ 二、格式
+
+x    /(length)(format)(size)    addr
 
 例如
-1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789AB...
+1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789ABCDEF";    return 0;&#125;$ gdb test(...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
