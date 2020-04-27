@@ -361,28 +361,57 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/28/2020.04.27（110）/">
+            
+                <span>GDB常用命令-内存查看（x）</span>
+        </a>
+        <div class="abstract-content">
+            一、功能说明1它是按一定格式显示内存地址或变量的值
+二、格式
+x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
+
+例如
+1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789AB...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="GDB">GDB</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
             
                 <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
         </a>
         <div class="abstract-content">
-             0x00 相关知识
- 1.PwnTools工具的使用
-
+            0x00 相关知识1.PwnTools工具的使用
 这个知识点再单独进行总结
 
- 2.字符串强制转换为数字
-
+2.字符串强制转换为数字
 可以从下面题目中的例子发现
 
- 3.python -c的功能
-
+3.python -c的功能
 Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
 指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
 
- 4.shell命令中``和$的作用
-
-反引号在Linux shell命令行中有特殊的含义：反...
+4.shell命令中``和$的作用
+反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2343,9 +2372,74 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 109
+        Total : 110
         </div>
         <!-- search  -->
         
@@ -2365,12 +2459,17 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/2020.04.27（110）/">GDB常用命令-内存查看（x）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
@@ -2440,12 +2539,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -2992,6 +3091,8 @@ Specify the command to execute. This terminates the option list (following optio
     
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
+        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -3026,6 +3127,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="Binary"><span class="iconfont-archer">&#xe60a;</span>Binary</span>
+    
+        <span class="sidebar-category-name" data-categories="Tools"><span class="iconfont-archer">&#xe60a;</span>Tools</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

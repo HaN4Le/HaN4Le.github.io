@@ -361,6 +361,51 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/09/2020.03.08（100）/">
+            
+                <span>xss_payload_构造总结及深度剖析(持续更新中……)</span>
+        </a>
+        <div class="abstract-content">
+            一、绕过 XSS Filter 的方法1.逃离 &quot;&quot; 的束缚※ 普通的闭合
+
+有的并没有进行过滤，只需要简单的闭合即可逃离；
+
+※ 利用反引号代替
+
+条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 \” \”，以到达闭合的作用；
+
+※ 利用换行的特性
+
+详情见 prompt.ml 0x08 题目
+
+2.&lt; 和 /&gt; 过滤类型的题目※ 利用事件触发 payload
+
+虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror、onload、onmous...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
             
                 <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
@@ -403,42 +448,6 @@ length limited text box
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/03/04/2020.03.04（98）/">
-            
-                <span>【转载】Data URI 知识点详解</span>
-        </a>
-        <div class="abstract-content">
-             Data URI
-Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。格式如下：
-1data:[&lt;MIME type&gt;][;charset=&lt;charset&gt;][;base64],&lt;encoded data&gt;
-其实整体可以视为三部分，即声明：参数+数据，逗号左边的是各种参数，右边的是数据。
-声明：data:是URI的协议头，表明其资源是一个data URI；
-参数：MIME type，表示数据呈现的格式，即指定嵌入数据的MIME。对于PNG的图片，其格式是：image/png，如果没有指定，默认是：text/plain；char...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2020/03/04/2020.03.04（97）/">
             
                 <span>【转载】JavaScript 的隐式转换</span>
@@ -465,6 +474,42 @@ Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。�
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/03/04/2020.03.04（98）/">
+            
+                <span>【转载】Data URI 知识点详解</span>
+        </a>
+        <div class="abstract-content">
+             Data URI
+Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。格式如下：
+1data:[&lt;MIME type&gt;][;charset=&lt;charset&gt;][;base64],&lt;encoded data&gt;
+其实整体可以视为三部分，即声明：参数+数据，逗号左边的是各种参数，右边的是数据。
+声明：data:是URI的协议头，表明其资源是一个data URI；
+参数：MIME type，表示数据呈现的格式，即指定嵌入数据的MIME。对于PNG的图片，其格式是：image/png，如果没有指定，默认是：text/plain；char...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
 </div>
             
@@ -2657,9 +2702,74 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 109
+        Total : 110
         </div>
         <!-- search  -->
         
@@ -2679,12 +2789,17 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/2020.04.27（110）/">GDB常用命令-内存查看（x）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
@@ -2754,12 +2869,12 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3306,6 +3421,8 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
+        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -3340,6 +3457,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="Binary"><span class="iconfont-archer">&#xe60a;</span>Binary</span>
+    
+        <span class="sidebar-category-name" data-categories="Tools"><span class="iconfont-archer">&#xe60a;</span>Tools</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
