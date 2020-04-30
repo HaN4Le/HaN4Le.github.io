@@ -361,6 +361,92 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
+            
+                <span class="stick-top iconfont-archer">&#xe63d;</span>
+                
+                <span>pwntools的简单总结（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+            Here's something encrypted, password is required to continue reading.
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/29/2020.04.28（111）/">
+            
+                <span>Pwnable.kr的奇幻之旅（三）[bof]</span>
+        </a>
+        <div class="abstract-content">
+             一、相关知识
+ 1.pwntools工具
+
+最近将会认真的总结一下相关的知识点
+
+ 2.函数调用在栈中的表现形式
+
+可以参考这里
+
+ 3.栈保护机制相关知识点
+
+将会和其他知识进行总结
+
+ 二、题目分析
+
+① 首先检查bof文件的类型，发现它是一个32位的ELF文件
+
+
+
+② 然后查看bof文件开了什么保护，可以得出相关的保护基本能开的都开了，这让我一个小白如何是好？接下来先看看源码。
+
+
+1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/28/2020.04.27（110）/">
             
                 <span>GDB常用命令-内存查看（x）</span>
@@ -402,18 +488,23 @@ x    /(length)(format)(size)    addr
                 <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
         </a>
         <div class="abstract-content">
-            0x00 相关知识1.PwnTools工具的使用
+             0x00 相关知识
+ 1.PwnTools工具的使用
+
 这个知识点再单独进行总结
 
-2.字符串强制转换为数字
+ 2.字符串强制转换为数字
+
 可以从下面题目中的例子发现
 
-3.python -c的功能
+ 3.python -c的功能
+
 Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
 指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
 
-4.shell命令中``和$的作用
-反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
+ 4.shell命令中``和$的作用
+
+反引号在Linux shell命令行中有特殊的含义：反...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -484,8 +575,8 @@ Specify the command to execute. This terminates the option list (following optio
         </a>
         <div class="abstract-content">
             
-&nbsp;&nbsp;&nbsp;&nbsp;今天要好好的解析以下C/C++中的“*”和“&amp;”的区别，示例代码如下：
-12345678910111213#include&lt;stdio.h&gt;void main()&#123;	int b = 2;	int* a = &amp;b;	printf("a:%d\n",a);	printf("*a:%d\n",*a);	printf("&amp;a:%d\n",&amp;a);	printf("*&amp;a:%d\n",*&amp;a);	printf("**&amp;a:%d\n",**&amp;a);	printf("...
+    今天要好好的解析以下C/C++中的“*”和“&amp;”的区别，示例代码如下：
+12345678910111213#include&lt;stdio.h&gt;void main()&#123;	int b = 2;	int* a = &amp;b;	printf("a:%d\n",a);	printf("*a:%d\n",*a);	printf("&amp;a:%d\n",&amp;a);	printf("*&amp;a:%d\n",*&amp;a);	printf("**&amp;a:%d\n",**&amp;a);	printf("&amp;b:%d\n",&amp;b)...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -514,12 +605,12 @@ Specify the command to execute. This terminates the option list (following optio
                 <span>Windows常用的网络命令（web）</span>
         </a>
         <div class="abstract-content">
-            0x00 ipconfigsss
-
+             0x00 ipconfig
+sss
 作用：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关
-IPConfig实用程序和它的等价图形用户界面——Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
+IPConfig实用程序和它的等价图形用户界面----Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
 IPConfig最常用的选项：
-▧  ipconfig：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网关值。...
+▧  ipconfig：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -554,7 +645,8 @@ IPConfig最常用的选项：
 根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准建议： 根目录(/)所在分区应该越小越好，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。
 说白了，就是根目录和Windows的C盘一个样
 
-1.根目录下各个目录的功能详细列表
+ 1.根目录下各个目录的功能
+ 详细列表
 
 
 
@@ -567,7 +659,7 @@ IPConfig最常用的选项：
 
 
 /bin
-系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bi...
+系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -600,12 +692,14 @@ IPConfig最常用的选项：
                 <span>Linux常用命令总结（二进制）</span>
         </a>
         <div class="abstract-content">
-            0x00 目录操作命令0x00 ls（list）功能：列举出当前工作目录的内容，包括文件和文件夹
+             0x00 目录操作命令
+ 0x00 ls（list）
+功能：列举出当前工作目录的内容，包括文件和文件夹
 相关选项：
 
-ls -l： 文件/文件夹：长格式显示指定/目录中的文件
+ls -l： 文件/文件夹：长格式显示指定/目录中的文件
 
-123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png-r...
+123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.p...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -660,110 +754,10 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/16/2020.03.16（102）/">
-            
-                <span>知识库构建初想</span>
-        </a>
-        <div class="abstract-content">
-            
-随着安全学习的不断深入，发现做笔记以及积累的重要性，这段时间在我脑海里一直有个想法出现，那就是做专题知识点总结，包括web、二进制、密码学
-
-WEB
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/15/2020.03.15（101）/">
-            
-                <span>Python基本第三方库总结（0x00）：requests库（Python中唯一的非转基因库）</span>
-        </a>
-        <div class="abstract-content">
-            
-首先来看一下基本第三方库有什么？
-
-
-
-
-库名
-作用
-
-
-
-
-Requests
-Kenneth Reitz写的最富盛名的http库。每个Python程序员都应该有它
-
-
-Scrapy
-爬虫相关的工作
-
-
-Re
-Python 中的正则表达式，与Requests库结合用
-
-
-wxPython
-Python的一个GUI（图形用户界面）工具，替代tkinter
-
-
-Pillow
-是PIL（Python图形库）的一个友好分支。对于用户比PIL更加友好，对于任何在图形领域工作的人是必备的库
-
-
-SQLAlchemy
-一个数据库的库
-
-
-BeautifulSoup
-这个xml和html的解析库对于新...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/11/">11</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/12/">12</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2725,15 +2719,9 @@ BeautifulSoup
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 110
+        Total : 112
         </div>
         <!-- search  -->
         
@@ -2753,17 +2741,27 @@ BeautifulSoup
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2020/04/29/2020.04.28（111）/">Pwnable.kr的奇幻之旅（三）[bof]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/2020.04.27（110）/">GDB常用命令-内存查看（x）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3321,9 +3319,9 @@ BeautifulSoup
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
-    
         <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
@@ -3347,45 +3345,47 @@ BeautifulSoup
     
         <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
-        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
         <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
-        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+        <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
     
-        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
+    
+        <span class="sidebar-tag-name" data-tags="Tools"><span class="iconfont-archer">&#xe606;</span>Tools</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
-        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
-    
         <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
     
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
-    
-        <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
-    
-        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
-    
-        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
