@@ -361,6 +361,59 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/24/2019.09.24（83）/">
+            
+                <span>pwn-bof（基础类型题目）</span>
+        </a>
+        <div class="abstract-content">
+             一、基础知识
+ 1.内存中栈的结构
+
+
+正如上图所示，栈是由“由高地址向低地址”方向生长。
+
+ 2.常见的漏洞类型
+
+常见的漏洞类型有如下几种：
+① 逻辑错误
+② 内存破坏
+    ✦ 栈溢出
+    ✦ 整数溢出
+    ✦ 格式化字符串
+    ✦ 堆溢出
+    ✦ 释放后使用
+
+ 二、解题思路
+ 1.寻找漏洞
+
+通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 sub_8048573 中，有一个明显的漏洞——read（）函数。我们是如何知道该处是一个漏洞呢？
+
+123456789ssize_t sub_8048573()&#123;  char bu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/17/2019.09.17（82）/">
             
                 <span>bash 漏洞（pwnable-shellshock）</span>
@@ -715,59 +768,13 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
             
 ☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“乘法链算”实现的过程吧。
 
- 一、基础知识
-
-1.模运算
-      ① 概念：模运算，即为求余数的运算
-      ② 运算符：模运算的运算符记为 mod
-            例如：a mod b = n
-            表示的意思是a 除以 b 所得的余数为 r，而上式中的 N 通常称为模数
-            例子：17 mod 11 = 6
-                   ...
+一、基础知识
+1.模运算&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 概念：模运算，即为求余数的运算&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 运算符：模运算的运算符记为 mod&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="密码算法">密码算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/18/2019.07.18（73）/">
-            
-                <span>最小公倍数的加法算法实现</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“最小公倍数的加法算法”实现的过程吧。
-
- 一、基础知识
-
-1.公倍数的概念
-      如果 a₁| b,……，an | b，则称 b 是 a1，……，an 的公倍数。而最小公倍数就是所有公倍数里最小的。
-2.最小公倍数的表示形式
-      最小公倍数的表示形式为
-**lcm (a,b) = a 和 b 的最小公倍数**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
             </div>
             <!-- tags  -->
             
@@ -2745,9 +2752,98 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 112
+        Total : 113
         </div>
         <!-- search  -->
         
@@ -2772,6 +2868,11 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2020/04/29/2020.04.28（111）/">Pwnable.kr的奇幻之旅（三）[bof]</a>
         </li>
     
@@ -2782,12 +2883,12 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
@@ -2837,12 +2938,12 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -2857,12 +2958,12 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
