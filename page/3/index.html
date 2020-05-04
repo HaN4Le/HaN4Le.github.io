@@ -374,24 +374,30 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/02/24/2020.02.24（95）/">
+        <a class="abstract-title" href="/2020/02/27/2020.02.27（96）/">
             
-                <span>【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</span>
+                <span>This_1s_pr0mpt.ml_writeup</span>
         </a>
         <div class="abstract-content">
-             一、判断下列语句能否成功执行
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091Basics0x01. &lt;a href="%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"&gt;&lt;/a&gt;// URL encoded...
+            
+这是我在无意中遇到的一个xss 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于浏览器编码问题，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 xss 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 xss 知识点，当然这并不意味着结束了 xss 的学习，这只不过是一个开头，好了！步入正题。
+
+ 0x00 简单闭合问题
+ ① JS 代码
+12345function escape(input) &#123;    // warm ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/27</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
     
 </div>
             
@@ -404,20 +410,18 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/02/23/2020.02.23（93）/">
+        <a class="abstract-title" href="/2020/02/24/2020.02.24（95）/">
             
-                <span>【转载】文件 HOSTS 的简介和修改方法</span>
+                <span>【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</span>
         </a>
         <div class="abstract-content">
-             一、什么是 hosts
-hosts —— the static table lookup for host name（主机名查询静态表）。
-hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开...
+             一、判断下列语句能否成功执行
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091Basics0x01. &lt;a href="%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"&gt;&lt;/a&gt;// URL encoded...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
             </div>
             <!-- tags  -->
             
@@ -458,6 +462,38 @@ XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧�
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/2020.02.23（93）/">
+            
+                <span>【转载】文件 HOSTS 的简介和修改方法</span>
+        </a>
+        <div class="abstract-content">
+             一、什么是 hosts
+hosts —— the static table lookup for host name（主机名查询静态表）。
+hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
+Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -772,61 +808,6 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="内核">内核</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/16/2019.10.16（86）/">
-            
-                <span>PWN 实战 - shellcode 题解</span>
-        </a>
-        <div class="abstract-content">
-             一、基础知识
- 1.shellcode
-
-有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
-
-
-shellcode原理是啥？
- 一步一步学ROP之linux_x86篇 
-PWN-shellcode获取与编写
-渗透中PoC、Exp、Payload与Shellcode的区别
-
-
-
- 二、解题步骤
- 1,查看文件类型
-1file pwn3
-6
-
-从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
-
- 2.查看 pwn3 开启的保护
-1checksec pwn3
-
-
-从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3016,9 +2997,78 @@ PWN-shellcode获取与编写
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 115
+        Total : 116
         </div>
         <!-- search  -->
         
@@ -3038,12 +3088,12 @@ PWN-shellcode获取与编写
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2020/05/02/2020.05.02（115）/">Pwnable.kr的奇幻之旅（三）[flag]</a>
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href="/2020/05/04/2020.05.04（116）/">《梦炬手册》五周年纪念版下载页</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">【密码学】Dan Boneh视频学习总结（持续更新）</a>
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2020/05/02/2020.05.02（115）/">Pwnable.kr的奇幻之旅（三）[flag]</a>
         </li>
     
     
@@ -3058,6 +3108,11 @@ PWN-shellcode获取与编写
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">【密码学】Dan Boneh视频学习总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2020/04/29/2020.04.28（111）/">Pwnable.kr的奇幻之旅（三）[bof]</a>
         </li>
     
@@ -3068,12 +3123,12 @@ PWN-shellcode获取与编写
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
