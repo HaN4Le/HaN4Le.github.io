@@ -374,6 +374,48 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/05/2019.11.05（87）/">
+            
+                <span>有关内核调用问题和预编译指令</span>
+        </a>
+        <div class="abstract-content">
+             一、知识点摘要
+
+
+系统调用 int 80h 中断
+#ifdef ……# endif 的含义和用法
+
+
+ 二、知识点介绍
+ 1.int 80h 中断
+
+1) 什么是 system call?
+        system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI)
+2) 什么是 int 80h 中断？
+        Linux 的 system call 就是通过int 80h来实现的，int 80...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="内核">内核</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/16/2019.10.16（86）/">
             
                 <span>PWN 实战 - shellcode 题解</span>
@@ -774,51 +816,6 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/2019.07.31（77）/">
-            
-                <span>JavaScript 学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-             一、JS 简介
-
-getElementById() 是多个 JavaScript HTML 方法之一
-
-
-JavaScript 能够改变 HTML 的内容：
-document.getElementById(“demo”).innerHTML = “Hello JavaScript”;
-
-
-JavaScript 能够改变 HTML 属性：
-document.getElementById(“demo”).src =
-
-
-JavaScript 能够改变 HTML 样式 (CSS):
-document.getElementById(“demo”).style.fontSize=&quot;&q...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScritpt">JavaScritpt</a>
     
 </div>
             
@@ -3052,34 +3049,9 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 116
+        Total : 117
         </div>
         <!-- search  -->
         
@@ -3099,6 +3071,11 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2020/05/06/2020.05.05（117）/">Pwnable.kr的奇幻之旅（四）[passcode]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/04</span><a class="archive-post-title" href="/2020/05/04/2020.05.04（116）/">《梦炬手册》五周年纪念版下载页</a>
         </li>
     
@@ -3109,12 +3086,12 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3134,12 +3111,12 @@ document.getElementById(“demo”).style.fontSize=&quot;&q...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
