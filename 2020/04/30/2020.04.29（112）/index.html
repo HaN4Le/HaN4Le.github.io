@@ -418,7 +418,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一、基本模块"><a href="#一、基本模块" class="headerlink" title="一、基本模块"></a><font color="navy">一、基本模块</font></h3><h4 id="1-asm-disasm"><a href="#1-asm-disasm" class="headerlink" title="1.asm/disasm"></a><font color="blue"><code>1.asm/disasm</code></font></h4><p><code>功能</code>：用来进行汇编/反汇编。</p>
+        <h3 id="font-color-navy一-基本模块font"><a class="markdownIt-Anchor" href="#font-color-navy一-基本模块font"></a> <font color="navy">一、基本模块</font></h3>
+<h4 id="font-color-blue1asmdisasmfont"><a class="markdownIt-Anchor" href="#font-color-blue1asmdisasmfont"></a> <font color="blue"><code>1.asm/disasm</code></font></h4>
+<p><code>功能</code>：用来进行汇编/反汇编。</p>
 <p><code>例子</code>：</p>
 <p>asm</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>enhex(asm(<span class="string">'mov eax, 0'</span>))</span><br><span class="line"><span class="string">'b800000000'</span></span><br></pre></td></tr></table></figure>
@@ -426,8 +428,9 @@ height:50vh;
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(disasm(unhex(<span class="string">'6a0258cd80ebf9'</span>)))</span><br><span class="line">   <span class="number">0</span>:   <span class="number">6</span>a <span class="number">02</span>                   push   <span class="number">0x2</span></span><br><span class="line">   <span class="number">2</span>:   <span class="number">58</span>                      pop    eax</span><br><span class="line">   <span class="number">3</span>:   cd <span class="number">80</span>                   int    <span class="number">0x80</span></span><br><span class="line">   <span class="number">5</span>:   eb f9                   jmp    <span class="number">0x0</span></span><br></pre></td></tr></table></figure>
 <p>但是，大多数时候不需要编写自己的shellcode！ pwntools带有pwnlib.shellcraft模块，该模块中装有有用的省时的shellcode。 假设我们要先设置setreuid（getuid()，getuid()），然后将文件描述符4复制到stdin，stdout和stderr，然后弹出一个shell！如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>enhex(asm(shellcraft.setreuid() + shellcraft.dupsh(<span class="number">4</span>))) <span class="comment"># doctest: +ELLIPSIS</span></span><br><span class="line"><span class="string">'6a3158cd80...'</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-dynelf"><a href="#2-dynelf" class="headerlink" title="2.dynelf"></a><font color="blue"><code>2.dynelf</code></font></h4><blockquote>
-<p> <a href="https://docs.pwntools.com/en/stable/dynelf.html" target="_blank" rel="noopener">dynelf 官方文档</a></p>
+<h4 id="font-color-blue2dynelffont"><a class="markdownIt-Anchor" href="#font-color-blue2dynelffont"></a> <font color="blue"><code>2.dynelf</code></font></h4>
+<blockquote>
+<p><a href="https://docs.pwntools.com/en/stable/dynelf.html" target="_blank" rel="noopener">dynelf 官方文档</a></p>
 </blockquote>
 <p><code>功能</code>：动态解析函数，仅提供指向任何已加载模块的指针，以及一个可以在任何地址泄漏数据的函数。用于远程符号泄露，需要提供leak方法</p>
 
@@ -447,16 +450,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2020/04/30/2020.04.30（114）/" title="Dan-Boneh密码学课程之学习笔记（持续更新）">
-                    <div class="nextTitle">Dan-Boneh密码学课程之学习笔记（持续更新）</div>
+                <a href="/2020/04/30/2020.04.30（113）/" title="Hexo博客完善（持续更新）">
+                    <div class="nextTitle">Hexo博客完善（持续更新）</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/04/30/2020.04.30（113）/" title="Hexo博客完善（持续更新）">
-                    <div class="prevTitle">Hexo博客完善（持续更新）</div>
+                <a href="/2020/04/29/2020.04.28（111）/" title="Pwnable.kr的奇幻之旅（三）[bof]">
+                    <div class="prevTitle">Pwnable.kr的奇幻之旅（三）[bof]</div>
                 </a>
             
         </li>
@@ -590,7 +593,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基本模块"><span class="toc-number">1.</span> <span class="toc-text">一、基本模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-asm-disasm"><span class="toc-number">1.1.</span> <span class="toc-text">1.asm/disasm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-dynelf"><span class="toc-number">1.2.</span> <span class="toc-text">2.dynelf</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy一-基本模块font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基本模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1asmdisasmfont"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.asm/disasm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2dynelffont"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.dynelf</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -2657,9 +2660,36 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 118
+        Total : 119
         </div>
         <!-- search  -->
         
@@ -2676,6 +2706,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2699,17 +2734,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2799,12 +2834,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3299,27 +3334,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -3329,27 +3366,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
         <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
     
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
         <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
     
         <span class="sidebar-tag-name" data-tags="Tools"><span class="iconfont-archer">&#xe606;</span>Tools</span>
-    
-        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
-        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
     
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
     
@@ -3450,9 +3485,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
     
-        <script src="/scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+        <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
 
 

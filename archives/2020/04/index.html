@@ -392,42 +392,6 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
-            
-                <span>pwntools的简单总结（持续更新）</span>
-        </a>
-        <div class="abstract-content">
-            一、基本模块1.asm/disasm功能：用来进行汇编/反汇编。
-例子：
-asm
-12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
-disasm
-12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb f9 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
             
                 <span>Hexo博客完善（持续更新）</span>
@@ -462,21 +426,64 @@ generator.js最终的内容：
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
+            
+                <span>pwntools的简单总结（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+             一、基本模块
+ 1.asm/disasm
+功能：用来进行汇编/反汇编。
+例子：
+asm
+12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
+disasm
+12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/29/2020.04.28（111）/">
             
                 <span>Pwnable.kr的奇幻之旅（三）[bof]</span>
         </a>
         <div class="abstract-content">
-            一、相关知识1.pwntools工具
+             一、相关知识
+ 1.pwntools工具
+
 最近将会认真的总结一下相关的知识点
 
-2.函数调用在栈中的表现形式
-可以参考这里)
+ 2.函数调用在栈中的表现形式
 
-3.栈保护机制相关知识点
+可以参考这里
+
+ 3.栈保护机制相关知识点
+
 将会和其他知识进行总结
 
-二、题目分析
+ 二、题目分析
+
 ① 首先检查bof文件的类型，发现它是一个32位的ELF文件
 
 
@@ -484,7 +491,7 @@ generator.js最终的内容：
 ② 然后查看bof文件开了什么保护，可以得出相关的保护基本能开的都开了，这让我一个小白如何是好？接下来先看看源码。
 
 
-1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX:       N...
+1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -546,20 +553,28 @@ x    /(length)(format)(size)    addr
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
+        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
             
-                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
+                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
         </a>
         <div class="abstract-content">
              0x00 相关知识
- 1.atoi()函数
+ 1.PwnTools工具的使用
 
-① atoi函数是包含在stdlib.h标准库中
-② 函数的声明：int atoi(const char* str)
-③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
-④ 实例如下：
+这个知识点再单独进行总结
 
-12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";  ...
+ 2.字符串强制转换为数字
+
+可以从下面题目中的例子发现
+
+ 3.python -c的功能
+
+Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
+指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
+
+ 4.shell命令中``和$的作用
+
+反引号在Linux shell命令行中有特殊的含义：反...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -585,28 +600,20 @@ x    /(length)(format)(size)    addr
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
+        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
             
-                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
+                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
         </a>
         <div class="abstract-content">
              0x00 相关知识
- 1.PwnTools工具的使用
+ 1.atoi()函数
 
-这个知识点再单独进行总结
+① atoi函数是包含在stdlib.h标准库中
+② 函数的声明：int atoi(const char* str)
+③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
+④ 实例如下：
 
- 2.字符串强制转换为数字
-
-可以从下面题目中的例子发现
-
- 3.python -c的功能
-
-Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
-指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
-
- 4.shell命令中``和$的作用
-
-反引号在Linux shell命令行中有特殊的含义：反...
+12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";  ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2777,9 +2784,36 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 118
+        Total : 119
         </div>
         <!-- search  -->
         
@@ -2796,6 +2830,11 @@ Specify the command to execute. This terminates the option list (following optio
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2819,17 +2858,17 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2919,12 +2958,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3419,27 +3458,29 @@ Specify the command to execute. This terminates the option list (following optio
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
-    
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
-    
-        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
         <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -3449,27 +3490,25 @@ Specify the command to execute. This terminates the option list (following optio
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
     
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
-    
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
         <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
     
         <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
     
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
         <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
     
         <span class="sidebar-tag-name" data-tags="Tools"><span class="iconfont-archer">&#xe606;</span>Tools</span>
-    
-        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
     
         <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
     
-        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
-    
         <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
     
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
     
@@ -3570,7 +3609,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
