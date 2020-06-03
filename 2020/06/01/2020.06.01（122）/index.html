@@ -460,15 +460,15 @@ height:50vh;
 <blockquote>
 <p>就开启了一个栈不可知性</p>
 </blockquote>
-<p><img src="/122-3.png" alt></p>
+<p><img src="images/122-3.png" alt></p>
 <blockquote>
 <p>从上图中可以看到一个read函数和一个<code>sub_400686()</code>函数，而<code>sub_400686()</code>函数是打印出flag，所以只要满足<code>dword_60106C == 1853186401</code>即可，那么在这里<code>dword_60106C</code>表示的是什么意思呢？不知道没关系，下面我用gdb进行调试：</p>
 </blockquote>
-<p><img src="/122-4.png" alt></p>
+<p><img src="images/122-4.png" alt></p>
 <blockquote>
 <p>从上图中可以看出，如果要想执行<code>sub_400686()</code>函数，要使得<code>eax</code>中所指向的值和<code>0x6e756161</code>相等，而<code>eax</code>中存放的是<code>0x60106c</code>地址，那么到这里我们就应该清楚了<code>dword_60106C</code>和<code>unk_601068</code>分别表示的是<code>0x60106c</code>和<code>0x601068</code>地址中的值，两者相差4个字节，为了验证一下，在运行程序时，输入点的地方输入的是“<code>AAAA1234567890</code>”，分别看一下这两处地址的值为多少，结果如下图：</p>
 </blockquote>
-<p><img src="/122-5.png" alt></p>
+<p><img src="images/122-5.png" alt></p>
 <blockquote>
 <p>从上图可以看出<code>0x601068</code>地址的值为<code>AAAA1234567890</code>，而<code>0x601068c</code>地址处的值为<code>1234567890</code>，所以说我们可以利用这个来满足条件语句。</p>
 </blockquote>
@@ -540,7 +540,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/06/01/2020.06.01（122）/">https://muzibing.github.io/2020/06/01/2020.06.01（122）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/06/01/2020.06.01（122）/">June 1st 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/01/2020.06.01（122）/">June 3rd 2020, 11:02:31 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/01/2020.06.01（122）/">June 3rd 2020, 11:16:12 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
