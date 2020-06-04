@@ -424,8 +424,7 @@ height:50vh;
 <p>根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准<strong>建议</strong>： <strong>根目录(/)所在分区应该越小越好</strong>，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
 <p>说白了，就是根目录和Windows的C盘一个样</p>
 </blockquote>
-<h3 id="font-color-navy1根目录下各个目录的功能font"><a class="markdownIt-Anchor" href="#font-color-navy1根目录下各个目录的功能font"></a> <font color="navy">1.根目录下各个目录的功能</font></h3>
-<h4 id="详细列表"><a class="markdownIt-Anchor" href="#详细列表"></a> <code>详细列表</code></h4>
+<h3 id="1-根目录下各个目录的功能"><a href="#1-根目录下各个目录的功能" class="headerlink" title="1.根目录下各个目录的功能"></a><font color="navy">1.根目录下各个目录的功能</font></h3><h4 id="详细列表"><a href="#详细列表" class="headerlink" title="详细列表"></a><code>详细列表</code></h4><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -444,7 +443,7 @@ height:50vh;
 </tr>
 <tr>
 <td>/boot</td>
-<td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。 Linux kernel常用的档名为：<strong>vmlinuz</strong> ，如果使用的是grub这个开机管理程式，则还会存在**/boot/grub/**这个目录！</td>
+<td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。 Linux kernel常用的档名为：<strong>vmlinuz</strong> ，如果使用的是grub这个开机管理程式，则还会存在<strong>/boot/grub/</strong>这个目录！</td>
 <td>开机引导目录</td>
 <td>包括Linux内核文件与开机所需要的文件</td>
 </tr>
@@ -456,7 +455,7 @@ height:50vh;
 </tr>
 <tr>
 <td>/etc</td>
-<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，<strong>但</strong>是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有： /etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/等等。 另外，其下重要的目录有：<br>    <strong>/etc/init.d/</strong> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：『 /etc/init.d/iptables start』、『/etc/init.d/ iptables stop』<br>    <strong>/etc/xinetd.d/</strong> ：这就是所谓的super daemon管理的各项服务的设定档目录。<br>    <strong>/etc/X11/</strong> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
+<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，<strong>但</strong>是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有： /etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/等等。 另外，其下重要的目录有：<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/init.d/</strong> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：『 /etc/init.d/iptables start』、『/etc/init.d/ iptables stop』<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/xinetd.d/</strong> ：这就是所谓的super daemon管理的各项服务的设定档目录。<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>/etc/X11/</strong> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
 <td>各种配置文件目录</td>
 <td>大部分配置属性均存放在这里</td>
 </tr>
@@ -498,7 +497,7 @@ height:50vh;
 </tr>
 <tr>
 <td>/sbin</td>
-<td>Linux有非常多指令是用来设定系统环境的，这些指令<strong>只有</strong>root才能够利用来『设定』系统，****其他****使用者最多只能用来『查询』而已。放在/sbin底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软体程式，一般则放置到/usr/sbin/当中。至于本机自行安装的软体所产生的系统执行档(system binary)，则放置到/usr/local/sbin/当中了。常见的指令包括：fdisk, fsck, ifconfig, init, mkfs等等。</td>
+<td>Linux有非常多指令是用来设定系统环境的，这些指令<strong>只有</strong>root才能够利用来『设定』系统，<strong><em>\</em>其他**</strong>使用者最多只能用来『查询』而已。放在/sbin底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软体程式，一般则放置到/usr/sbin/当中。至于本机自行安装的软体所产生的系统执行档(system binary)，则放置到/usr/local/sbin/当中了。常见的指令包括：fdisk, fsck, ifconfig, init, mkfs等等。</td>
 <td>只有root才能运行的管理指令</td>
 <td>跟bin类似,但只属于root管理员</td>
 </tr>
@@ -516,15 +515,12 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h3 id="font-color-brown2根目录下的结构font"><a class="markdownIt-Anchor" href="#font-color-brown2根目录下的结构font"></a> <font color="brown">2.根目录下的结构</font></h3>
-<h4 id="tree-命令"><a class="markdownIt-Anchor" href="#tree-命令"></a> <code>tree 命令</code></h4>
-<blockquote>
+</div>
+<h3 id="2-根目录下的结构"><a href="#2-根目录下的结构" class="headerlink" title="2.根目录下的结构"></a><font color="brown">2.根目录下的结构</font></h3><h4 id="tree-命令"><a href="#tree-命令" class="headerlink" title="tree 命令"></a><code>tree 命令</code></h4><blockquote>
 <p>使用tree 可以查看详细的目录树</p>
 </blockquote>
-<h4 id="根目录下的结构图"><a class="markdownIt-Anchor" href="#根目录下的结构图"></a> <code>根目录下的结构图</code></h4>
-<p><img src="/images/105-1.png" alt></p>
-<h4 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> <code>注意</code></h4>
-<blockquote>
+<h4 id="根目录下的结构图"><a href="#根目录下的结构图" class="headerlink" title="根目录下的结构图"></a><code>根目录下的结构图</code></h4><p><img src="/images/105-1.png" alt></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a><code>注意</code></h4><blockquote>
 <ul>
 <li>/etc：设定档</li>
 <li>/bin：重要执行档</li>
@@ -694,7 +690,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy1根目录下各个目录的功能font"><span class="toc-number">1.</span> <span class="toc-text"> 1.根目录下各个目录的功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#详细列表"><span class="toc-number">1.1.</span> <span class="toc-text"> 详细列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown2根目录下的结构font"><span class="toc-number">2.</span> <span class="toc-text"> 2.根目录下的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tree-命令"><span class="toc-number">2.1.</span> <span class="toc-text"> tree 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根目录下的结构图"><span class="toc-number">2.2.</span> <span class="toc-text"> 根目录下的结构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-number">2.3.</span> <span class="toc-text"> 注意</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-根目录下各个目录的功能"><span class="toc-number">1.</span> <span class="toc-text">1.根目录下各个目录的功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#详细列表"><span class="toc-number">1.1.</span> <span class="toc-text">详细列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-根目录下的结构"><span class="toc-number">2.</span> <span class="toc-text">2.根目录下的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tree-命令"><span class="toc-number">2.1.</span> <span class="toc-text">tree 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根目录下的结构图"><span class="toc-number">2.2.</span> <span class="toc-text">根目录下的结构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-number">2.3.</span> <span class="toc-text">注意</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -707,234 +703,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3040,12 +2808,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3060,12 +2828,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3115,12 +2883,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3623,21 +3391,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3645,27 +3415,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

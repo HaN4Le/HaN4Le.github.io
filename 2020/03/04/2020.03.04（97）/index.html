@@ -419,22 +419,18 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>作者：keenjaan<br>
-链接：<a href="https://juejin.im/post/5a7172d9f265da3e3245cbca" target="_blank" rel="noopener">https://juejin.im/post/5a7172d9f265da3e3245cbca</a><br>
-来源：掘金</p>
+<p>作者：keenjaan<br>链接：<a href="https://juejin.im/post/5a7172d9f265da3e3245cbca" target="_blank" rel="noopener">https://juejin.im/post/5a7172d9f265da3e3245cbca</a><br>来源：掘金</p>
 </blockquote>
 <p>你有没有在面试中遇到特别奇葩的js隐形转换的面试题，第一反应是怎么会是这样呢？难以自信，js到底是怎么去计算得到结果，你是否有深入去了解其原理呢？下面将深入讲解其实现原理。</p>
 <p>其实这篇文章初稿三个月前就写好了，在我读一些源码库时，遇到了这些基础知识，想归档整理下，就有了这篇文章。由于一直忙没时间整理，最近看到了这个比较热的题，决定把这篇文章整理下。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  i: <span class="number">1</span>,</span><br><span class="line">  toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.i++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello world!'</span>);</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 <p>网上给出了很多不错的解析过程，读了下面内容，你将更深入的了解其执行过程。</p>
-<h3 id="1-js数据类型"><a class="markdownIt-Anchor" href="#1-js数据类型"></a> 1、js数据类型</h3>
-<p>js中有7种数据类型，可以分为两类：原始类型、对象类型：</p>
+<h3 id="1、js数据类型"><a href="#1、js数据类型" class="headerlink" title="1、js数据类型"></a>1、js数据类型</h3><p>js中有7种数据类型，可以分为两类：原始类型、对象类型：</p>
 <p>基础类型(原始值)：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined、 Null、 <span class="built_in">String</span>、 <span class="built_in">Number</span>、 <span class="built_in">Boolean</span>、 <span class="built_in">Symbol</span> (es6新出的，本文不讨论这种类型)</span><br></pre></td></tr></table></figure>
 <p>复杂类型(对象值)：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object</span><br></pre></td></tr></table></figure>
-<h3 id="2-三种隐式转换类型"><a class="markdownIt-Anchor" href="#2-三种隐式转换类型"></a> 2、三种隐式转换类型</h3>
-<p>js中一个难点就是js隐形转换，因为js在一些操作符下其类型会做一些变化，所以js灵活，同时造成易出错，并且难以理解。</p>
+<h3 id="2、三种隐式转换类型"><a href="#2、三种隐式转换类型" class="headerlink" title="2、三种隐式转换类型"></a>2、三种隐式转换类型</h3><p>js中一个难点就是js隐形转换，因为js在一些操作符下其类型会做一些变化，所以js灵活，同时造成易出错，并且难以理解。</p>
 <p>涉及隐式转换最多的两个运算符 + 和 ==。</p>
 <p>+运算符即可数字相加，也可以字符串相加。所以转换时很麻烦。== 不同于===，故也存在隐式转换。- * / 这些运算符只会针对number类型，故转换的结果只能是转换成number类型。</p>
 <p>既然要隐式转换，那到底怎么转换呢，应该有一套转换规则，才能追踪最终转换成什么了。</p>
@@ -444,33 +440,20 @@ height:50vh;
 <p>2、将值转为数字，ToNumber()</p>
 <p>3、将值转为字符串，ToString()。</p>
 </blockquote>
-<h4 id="21-通过toprimitive将值转换为原始值"><a class="markdownIt-Anchor" href="#21-通过toprimitive将值转换为原始值"></a> 2.1、通过ToPrimitive将值转换为原始值</h4>
-<p>js引擎内部的抽象操作ToPrimitive有着这样的签名：</p>
+<h4 id="2-1、通过ToPrimitive将值转换为原始值"><a href="#2-1、通过ToPrimitive将值转换为原始值" class="headerlink" title="2.1、通过ToPrimitive将值转换为原始值"></a>2.1、通过ToPrimitive将值转换为原始值</h4><p>js引擎内部的抽象操作ToPrimitive有着这样的签名：</p>
 <p>ToPrimitive(input, PreferredType?)</p>
 <p>input是要转换的值，PreferredType是可选参数，可以是Number或String类型。他只是一个转换标志，转化后的结果并不一定是这个参数所值的类型，但是转换结果一定是一个原始值（或者报错）。</p>
-<h5 id="211-如果preferredtype被标记为number则会进行下面的操作流程来转换输入的值"><a class="markdownIt-Anchor" href="#211-如果preferredtype被标记为number则会进行下面的操作流程来转换输入的值"></a> 2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。</h5>
-<blockquote>
-<p>1、如果输入的值已经是一个原始值，则直接返回它<br>
-2、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，<br>
-如果valueOf()方法的返回值是一个原始值，则返回这个原始值。<br>
-3、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。<br>
-4、否则，抛出TypeError异常。</p>
+<h5 id="2-1-1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。"><a href="#2-1-1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。" class="headerlink" title="2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。"></a>2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。</h5><blockquote>
+<p>1、如果输入的值已经是一个原始值，则直接返回它<br>2、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，<br>如果valueOf()方法的返回值是一个原始值，则返回这个原始值。<br>   3、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。<br>4、否则，抛出TypeError异常。</p>
 </blockquote>
-<h5 id="212-如果preferredtype被标记为string则会进行下面的操作流程来转换输入的值"><a class="markdownIt-Anchor" href="#212-如果preferredtype被标记为string则会进行下面的操作流程来转换输入的值"></a> 2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。</h5>
-<blockquote>
-<p>1、如果输入的值已经是一个原始值，则直接返回它<br>
-2、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。<br>
-3、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，<br>
-如果valueOf()方法的返回值是一个原始值，则返回这个原始值。<br>
-4、否则，抛出TypeError异常。</p>
+<h5 id="2-1-2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。"><a href="#2-1-2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。" class="headerlink" title="2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。"></a>2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。</h5><blockquote>
+<p>1、如果输入的值已经是一个原始值，则直接返回它<br>2、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。<br>3、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，<br>   如果valueOf()方法的返回值是一个原始值，则返回这个原始值。<br>   4、否则，抛出TypeError异常。</p>
 </blockquote>
 <p>既然PreferredType是可选参数，那么如果没有这个参数时，怎么转换呢？PreferredType的值会按照这样的规则来自动设置：</p>
 <blockquote>
-<p>1、该对象为Date类型，则PreferredType被设置为String<br>
-2、否则，PreferredType被设置为Number</p>
+<p>1、该对象为Date类型，则PreferredType被设置为String<br>2、否则，PreferredType被设置为Number</p>
 </blockquote>
-<h5 id="213-valueof方法和tostring方法解析"><a class="markdownIt-Anchor" href="#213-valueof方法和tostring方法解析"></a> 2.1.3、valueOf方法和toString方法解析</h5>
-<p>上面主要提及到了valueOf方法和toString方法，那这两个方法在对象里是否一定存在呢？答案是肯定的。在控制台输出Object.prototype，你会发现其中就有valueOf和toString方法，而Object.prototype是所有对象原型链顶层原型，所有对象都会继承该原型的方法，故任何对象都会有valueOf和toString方法。</p>
+<h5 id="2-1-3、valueOf方法和toString方法解析"><a href="#2-1-3、valueOf方法和toString方法解析" class="headerlink" title="2.1.3、valueOf方法和toString方法解析"></a>2.1.3、valueOf方法和toString方法解析</h5><p>上面主要提及到了valueOf方法和toString方法，那这两个方法在对象里是否一定存在呢？答案是肯定的。在控制台输出Object.prototype，你会发现其中就有valueOf和toString方法，而Object.prototype是所有对象原型链顶层原型，所有对象都会继承该原型的方法，故任何对象都会有valueOf和toString方法。</p>
 <p>先看看对象的valueOf函数，其转换结果是什么？对于js的常见内置对象：<code>Date, Array, Math, Number, Boolean, String, Array, RegExp, Function</code>。</p>
 <p>1、Number、Boolean、String这三种构造函数生成的基础值的对象形式，通过valueOf转换后会变成相应的原始值。如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">'123'</span>);</span><br><span class="line">num.valueOf(); <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'12df'</span>);</span><br><span class="line">str.valueOf(); <span class="comment">// '12df'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bool = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="string">'fd'</span>);</span><br><span class="line">bool.valueOf(); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
@@ -488,8 +471,8 @@ height:50vh;
 <p>所以对于没有指定PreferredType类型时，先进行valueOf方法转换更好，故将PreferredType设置为Number类型。</p>
 <p>而对于Date类型，其进行valueOf转换为毫秒数的number类型。在进行隐式转换时，没有指定将其转换为number类型时，将其转换为那么大的number类型的值显然没有多大意义。（不管是在+运算符还是==运算符）还不如转换为字符串格式的日期，所以默认Date类型会优先进行toString转换。故有以上的规则：</p>
 <p>PreferredType没有设置时，Date类型的对象，PreferredType默认设置为String，其他类型对象PreferredType默认设置为Number。</p>
-<h4 id="22-通过tonumber将值转换为数字"><a class="markdownIt-Anchor" href="#22-通过tonumber将值转换为数字"></a> 2.2、通过ToNumber将值转换为数字</h4>
-<p>根据参数类型进行下面转换：</p>
+<h4 id="2-2、通过ToNumber将值转换为数字"><a href="#2-2、通过ToNumber将值转换为数字" class="headerlink" title="2.2、通过ToNumber将值转换为数字"></a>2.2、通过ToNumber将值转换为数字</h4><p>根据参数类型进行下面转换：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -524,8 +507,9 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h4 id="23-通过tostring将值转换为字符串"><a class="markdownIt-Anchor" href="#23-通过tostring将值转换为字符串"></a> 2.3、通过ToString将值转换为字符串</h4>
-<p>根据参数类型进行下面转换：</p>
+</div>
+<h4 id="2-3、通过ToString将值转换为字符串"><a href="#2-3、通过ToString将值转换为字符串" class="headerlink" title="2.3、通过ToString将值转换为字符串"></a>2.3、通过ToString将值转换为字符串</h4><p>根据参数类型进行下面转换：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -560,52 +544,30 @@ height:50vh;
 </tr>
 </tbody>
 </table>
+</div>
 <p>讲了这么多，是不是还不是很清晰，先来看看一个例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&#123;&#125; + &#123;&#125;) = ?</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>两个对象的值进行+运算符，肯定要先进行隐式转换为原始类型才能进行计算。<br>
-1、进行ToPrimitive转换，由于没有指定PreferredType类型，{}会使默认值为Number，进行ToPrimitive(input, Number)运算。<br>
-2、所以会执行valueOf方法，({}).valueOf(),返回的还是{}对象，不是原始值。<br>
-3、继续执行toString方法，({}).toString(),返回&quot;[object Object]&quot;，是原始值。<br>
-故得到最终的结果，&quot;[object Object]&quot; + “[object Object]” = “[object Object][object Object]”</p>
+<p>两个对象的值进行+运算符，肯定要先进行隐式转换为原始类型才能进行计算。<br>1、进行ToPrimitive转换，由于没有指定PreferredType类型，{}会使默认值为Number，进行ToPrimitive(input, Number)运算。<br>2、所以会执行valueOf方法，({}).valueOf(),返回的还是{}对象，不是原始值。<br>3、继续执行toString方法，({}).toString(),返回”[object Object]”，是原始值。<br>故得到最终的结果，”[object Object]” + “[object Object]” = “[object Object][object Object]”</p>
 </blockquote>
 <p>再来一个指定类型的例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 * &#123;&#125; = ?</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>1、首先*运算符只能对number类型进行运算，故第一步就是对{}进行ToNumber类型转换。<br>
-2、由于{}是对象类型，故先进行原始类型转换，ToPrimitive(input, Number)运算。<br>
-3、所以会执行valueOf方法，({}).valueOf(),返回的还是{}对象，不是原始值。<br>
-4、继续执行toString方法，({}).toString(),返回&quot;[object Object]&quot;，是原始值。<br>
-5、转换为原始值后再进行ToNumber运算，&quot;[object Object]&quot;就转换为NaN。<br>
-故最终的结果为 2 * NaN = NaN</p>
+<p>1、首先*运算符只能对number类型进行运算，故第一步就是对{}进行ToNumber类型转换。<br>2、由于{}是对象类型，故先进行原始类型转换，ToPrimitive(input, Number)运算。<br>3、所以会执行valueOf方法，({}).valueOf(),返回的还是{}对象，不是原始值。<br>4、继续执行toString方法，({}).toString(),返回”[object Object]”，是原始值。<br>5、转换为原始值后再进行ToNumber运算，”[object Object]”就转换为NaN。<br>故最终的结果为 2 * NaN = NaN</p>
 </blockquote>
-<h3 id="3-运算符隐式转换"><a class="markdownIt-Anchor" href="#3-运算符隐式转换"></a> 3、== 运算符隐式转换</h3>
-<p><strong>== 运算符的规则规律性不是那么强，按照下面流程来执行,es5文档</strong></p>
+<h3 id="3、-运算符隐式转换"><a href="#3、-运算符隐式转换" class="headerlink" title="3、== 运算符隐式转换"></a>3、== 运算符隐式转换</h3><p><strong>== 运算符的规则规律性不是那么强，按照下面流程来执行,es5文档</strong></p>
 <blockquote>
 <p>比较运算 x==y, 其中 x 和 y 是值，返回 true 或者 false。这样的比较按如下方式进行：</p>
 <p>1、若 Type(x) 与 Type(y) 相同， 则</p>
-<p>        1* 若 Type(x) 为 Undefined， 返回 true。<br>
-        2* 若 Type(x) 为 Null， 返回 true。<br>
-        3* 若 Type(x) 为 Number， 则</p>
+<p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1* 若 Type(x) 为 Undefined， 返回 true。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2* 若 Type(x) 为 Null， 返回 true。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3* 若 Type(x) 为 Number， 则</p>
 <pre><code>   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(1)、若 x 为 NaN， 返回 false。
   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (2)、若 y 为 NaN， 返回 false。
   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (3)、若 x 与 y 为相等数值， 返回 true。
   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (4)、若 x 为 +0 且 y 为 −0， 返回 true。
   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (5)、若 x 为 −0 且 y 为 +0， 返回 true。
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;   (6)、返回 false。
-</code></pre>
-<p>        4* 若 Type(x) 为 String, 则当 x 和 y 为完全相同的字符序列（长度相等且相同字符在相同位置）时返回 true。 否则， 返回 false。<br>
-        5* 若 Type(x) 为 Boolean, 当 x 和 y 为同为 true 或者同为 false 时返回 true。 否则， 返回 false。<br>
-        6*  当 x 和 y 为引用同一对象时返回 true。否则，返回 false。</p>
-<p>2、若 x 为 null 且 y 为 undefined， 返回 true。<br>
-3、若 x 为 undefined 且 y 为 null， 返回 true。<br>
-4、若 Type(x) 为 Number 且 Type(y) 为 String，返回比较 x == ToNumber(y) 的结果。<br>
-5、若 Type(x) 为 String 且 Type(y) 为 Number，返回比较 ToNumber(x) == y 的结果。<br>
-6、若 Type(x) 为 Boolean， 返回比较 ToNumber(x) == y 的结果。<br>
-7、若 Type(y) 为 Boolean， 返回比较 x == ToNumber(y) 的结果。<br>
-8、若 Type(x) 为 String 或 Number，且 Type(y) 为 Object，返回比较 x == ToPrimitive(y) 的结果。<br>
-9、若 Type(x) 为 Object 且 Type(y) 为 String 或 Number， 返回比较 ToPrimitive(x) == y 的结果。<br>
-10、返回 false。</p>
+</code></pre><p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4* 若 Type(x) 为 String, 则当 x 和 y 为完全相同的字符序列（长度相等且相同字符在相同位置）时返回 true。 否则， 返回 false。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5* 若 Type(x) 为 Boolean, 当 x 和 y 为同为 true 或者同为 false 时返回 true。 否则， 返回 false。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6*  当 x 和 y 为引用同一对象时返回 true。否则，返回 false。</p>
+<p>2、若 x 为 null 且 y 为 undefined， 返回 true。<br>3、若 x 为 undefined 且 y 为 null， 返回 true。<br>4、若 Type(x) 为 Number 且 Type(y) 为 String，返回比较 x == ToNumber(y) 的结果。<br>5、若 Type(x) 为 String 且 Type(y) 为 Number，返回比较 ToNumber(x) == y 的结果。<br>6、若 Type(x) 为 Boolean， 返回比较 ToNumber(x) == y 的结果。<br>7、若 Type(y) 为 Boolean， 返回比较 x == ToNumber(y) 的结果。<br>8、若 Type(x) 为 String 或 Number，且 Type(y) 为 Object，返回比较 x == ToPrimitive(y) 的结果。<br>9、若 Type(x) 为 Object 且 Type(y) 为 String 或 Number， 返回比较 ToPrimitive(x) == y 的结果。<br>10、返回 false。</p>
 </blockquote>
 <p>上面主要分为两类，x、y类型相同时，和类型不相同时。</p>
 <p>类型相同时，没有类型转换，主要注意NaN不与任何值相等，包括它自己，即NaN !== NaN。</p>
@@ -616,27 +578,16 @@ height:50vh;
 <p>3、有Boolean类型时，Boolean转化为Number类型比较。</p>
 <p>4、一个Object类型，一个String或Number类型，将Object类型进行原始转换后，按上面流程进行原始值比较。</p>
 </blockquote>
-<h4 id="31-例子解析"><a class="markdownIt-Anchor" href="#31-例子解析"></a> 3.1、== 例子解析</h4>
-<p>所以类型不相同时，可以会进行上面几条的比较，比如：</p>
+<h4 id="3-1、-例子解析"><a href="#3-1、-例子解析" class="headerlink" title="3.1、== 例子解析"></a>3.1、== 例子解析</h4><p>所以类型不相同时，可以会进行上面几条的比较，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">'123'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="literal">true</span> == a <span class="comment">// true;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>首先，x与y类型不同，x为boolean类型，则进行ToNumber转换为1,为number类型。<br>
-接着，x为number，y为object类型，对y进行原始转换，ToPrimitive(a, ?),没有指定转换类型，默认number类型。<br>
-而后，ToPrimitive(a, Number)首先调用valueOf方法，返回1，得到原始类型1。<br>
-最后 1 == 1， 返回true。</p>
+<p>首先，x与y类型不同，x为boolean类型，则进行ToNumber转换为1,为number类型。<br>接着，x为number，y为object类型，对y进行原始转换，ToPrimitive(a, ?),没有指定转换类型，默认number类型。<br>而后，ToPrimitive(a, Number)首先调用valueOf方法，返回1，得到原始类型1。<br>最后 1 == 1， 返回true。</p>
 </blockquote>
 <p>我们再看一段很复杂的比较，如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[] == !&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>&gt;</p>
 <blockquote>
-<p>1、! 运算符优先级高于==，故先进行！运算。<br>
-2、!{}运算结果为false，结果变成 [] == false比较。<br>
-3、根据上面第7条，等式右边y = ToNumber(false) = 0。结果变成 [] == 0。<br>
-4、按照上面第9条，比较变成ToPrimitive([]) == 0。<br>
-按照上面规则进行原始值转换，[]会先调用valueOf函数，返回this。<br>
-不是原始值，继续调用toString方法，x = [].toString() = ‘’。<br>
-故结果为 ‘’ == 0比较。<br>
-5、根据上面第5条，等式左边x = ToNumber(’’) = 0。<br>
-所以结果变为： 0 == 0，返回true，比较结束。</p>
+<p>1、! 运算符优先级高于==，故先进行！运算。<br>2、!{}运算结果为false，结果变成 [] == false比较。<br>3、根据上面第7条，等式右边y = ToNumber(false) = 0。结果变成 [] == 0。<br>4、按照上面第9条，比较变成ToPrimitive([]) == 0。<br>   按照上面规则进行原始值转换，[]会先调用valueOf函数，返回this。<br>   不是原始值，继续调用toString方法，x = [].toString() = ‘’。<br>   故结果为 ‘’ == 0比较。<br>5、根据上面第5条，等式左边x = ToNumber(‘’) = 0。<br>  所以结果变为： 0 == 0，返回true，比较结束。</p>
 </blockquote>
 <p>最后我们看看文章开头说的那道题目：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  i: <span class="number">1</span>,</span><br><span class="line">  toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.i++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello world!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -646,8 +597,7 @@ height:50vh;
 <p>4、执行完a == 1返回true，会执行a == 2，同理，会调用ToPrimitive(a, Number)，同上先调用valueOf方法，在调用toString方法，由于第一步，i = 2此时，ToPrimitive(a, Number) = 2， 也就是2 == 2, 此时i = 2 + 1。</p>
 <p>5、同上可以推导 a == 3也返回true。故最终结果 a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3返回true</p>
 <p>其实了解了以上隐形转换的原理，你有没有发现这些隐式转换并没有想象中那么难。</p>
-<h4 id="参考文章es5文档"><a class="markdownIt-Anchor" href="#参考文章es5文档"></a> 参考文章：<a href="http://yanhaijing.com/es5/#103" target="_blank" rel="noopener">es5文档</a></h4>
-
+<h4 id="参考文章：es5文档"><a href="#参考文章：es5文档" class="headerlink" title="参考文章：es5文档"></a>参考文章：<a href="http://yanhaijing.com/es5/#103" target="_blank" rel="noopener">es5文档</a></h4>
     </article>
     <!-- license  -->
     
@@ -664,16 +614,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2020/03/08/2020.03.08（99）/" title="Th1s_i3_XSS_challenges&from:stage#5&to:stage#12">
-                    <div class="nextTitle">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</div>
+                <a href="/2020/03/04/2020.03.04（98）/" title="【转载】Data URI 知识点详解">
+                    <div class="nextTitle">【转载】Data URI 知识点详解</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/03/04/2020.03.04（98）/" title="【转载】Data URI 知识点详解">
-                    <div class="prevTitle">【转载】Data URI 知识点详解</div>
+                <a href="/2020/02/27/2020.02.27（96）/" title="This_1s_pr0mpt.ml_writeup">
+                    <div class="prevTitle">This_1s_pr0mpt.ml_writeup</div>
                 </a>
             
         </li>
@@ -807,7 +757,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-js数据类型"><span class="toc-number">1.</span> <span class="toc-text"> 1、js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-三种隐式转换类型"><span class="toc-number">2.</span> <span class="toc-text"> 2、三种隐式转换类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-通过toprimitive将值转换为原始值"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1、通过ToPrimitive将值转换为原始值</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#211-如果preferredtype被标记为number则会进行下面的操作流程来转换输入的值"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#212-如果preferredtype被标记为string则会进行下面的操作流程来转换输入的值"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#213-valueof方法和tostring方法解析"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 2.1.3、valueOf方法和toString方法解析</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-通过tonumber将值转换为数字"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2、通过ToNumber将值转换为数字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-通过tostring将值转换为字符串"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3、通过ToString将值转换为字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-运算符隐式转换"><span class="toc-number">3.</span> <span class="toc-text"> 3、== 运算符隐式转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#31-例子解析"><span class="toc-number">3.1.</span> <span class="toc-text"> 3.1、== 例子解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考文章es5文档"><span class="toc-number">3.2.</span> <span class="toc-text"> 参考文章：es5文档</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、js数据类型"><span class="toc-number">1.</span> <span class="toc-text">1、js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、三种隐式转换类型"><span class="toc-number">2.</span> <span class="toc-text">2、三种隐式转换类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、通过ToPrimitive将值转换为原始值"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、通过ToPrimitive将值转换为原始值</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-3、valueOf方法和toString方法解析"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3、valueOf方法和toString方法解析</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、通过ToNumber将值转换为数字"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、通过ToNumber将值转换为数字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、通过ToString将值转换为字符串"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、通过ToString将值转换为字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、-运算符隐式转换"><span class="toc-number">3.</span> <span class="toc-text">3、== 运算符隐式转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、-例子解析"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、== 例子解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考文章：es5文档"><span class="toc-number">3.2.</span> <span class="toc-text">参考文章：es5文档</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -820,234 +770,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3153,12 +2875,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3173,12 +2895,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3228,12 +2950,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3736,21 +3458,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3758,27 +3482,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

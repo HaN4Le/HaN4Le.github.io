@@ -435,17 +435,14 @@ height:50vh;
                 <span>[Untitled Post]</span>
         </a>
         <div class="abstract-content">
-             0x00 when_did_you_born
- 1.相关知识点
-
+            0x00 when_did_you_born1.相关知识点
 
 64位下的栈溢出原理
 
 
- 2.解题思路
-12# file pwnpwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=718185b5ec9c26eb9aeccfa0ab53678e34fee00a, stripped
+2.解题思路12# file pwnpwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=718185b5ec9c26eb9aeccfa0ab53678e34fee00a, stripped
 
-pwn文件是一个64位的ELF可执行文件，也...
+pwn文件是一个64位的ELF可执行文件，也就是说在以后...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -476,10 +473,8 @@ pwn文件是一个64位的ELF可执行文件，也...
                 <span>【转载】常见调用约定总结</span>
         </a>
         <div class="abstract-content">
-             0x00 常见的调用约定
- 一、cdecl调用约定
-
-又称C调用约定，是C/C编译器默认的函数调用约定。所有非C成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
+            0x00 常见的调用约定一、cdecl调用约定
+又称C调用约定，是C/C++编译器默认的函数调用约定。所有非C++成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -508,8 +503,7 @@ pwn文件是一个64位的ELF可执行文件，也...
                 <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
         </a>
         <div class="abstract-content">
-             0x00 前言
-      在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“详解格式化字符串漏洞”...
+            0x00 前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -540,12 +534,9 @@ pwn文件是一个64位的ELF可执行文件，也...
                 <span>详解格式化字符串漏洞</span>
         </a>
         <div class="abstract-content">
-             0x00 前言
-      格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
- 0x01 格式化字符串
- Q1：什么是格式化字符串 
-
-格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C...
+            0x00 前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
+0x01 格式化字符串Q1：什么是格式化字符串 
+格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -574,14 +565,11 @@ pwn文件是一个64位的ELF可执行文件，也...
                 <span>Pwnable.kr的奇幻之旅（五）[passcode]</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.mov eax,gs:0x14指令的作用
-
+            一、基础知识1.mov    eax,gs:0x14指令的作用
 gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方法是gcc首先在缓冲区被写入之前在buf的结束地址之后返回地址之前放入随机的gs验证码，并在缓冲区写入操作结束时检验该值。通常缓冲区溢出会从低地址到高地址覆写内存，所以如果要覆写返回地址，则需要覆写该gs验证码。这样就可以通过比较写入前和写入后gs验证码的数据，判断是否产生溢出。
 
-简单来说就是，从gs:0x14的地方取出来，然后在函数返回之前对比栈中的这个随机值和gs:0x14来断定是否发生栈溢出。
- 2.lea和mov指令的区别
-◫ lea：将源操作数的地址传到目...
+简单来说就是，从gs:0x14的地方取出来，然后在函数返回之前对比栈中的这个随机值和gs:0x14来断定是否发生栈溢出。    
+2.lea和mov指令的区别◫ lea：将源操作数的地址传到...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -615,6 +603,8 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
             点击下载文件
 
 
+
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -639,23 +629,20 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
         <div class="abstract-content">
              
 
- 0x00 相关知识
- 1.UPX 加壳
 
+0x00 相关知识1.UPX 加壳
 这里就简单介绍一下UPX加壳的原理，详细内容以后会进行专题研究。
 
 
 通过上图可以看出最重要的部分应该为Compressed data和Stub，下面简单的讲一下UPX加壳的原理以及加壳后如何执行程序。
-UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方面：
-
+UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方面：  
 
 一方面在程序的开头或者其他合适的地方插入一段代码
-
 
 另一方面是将程序的其他地方做压缩（也就是上面讲到的压缩），压缩也可以叫做加密，因为压缩后的程序比较难看懂，原来的代码有很大的不同；
 
 
-当程序执行时：实时的对程序解压缩。解压缩功能是在Stub节区插入的代码完成的功能，...
+当程序执行时：实时的对程序解压缩。解压缩功能是在Stub节区插入的代码完成的功能，联起来...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -681,19 +668,20 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
+        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
             
-                <span>pwntools的简单总结（持续更新）</span>
+                <span>Hexo博客完善（持续更新）</span>
         </a>
         <div class="abstract-content">
-             一、基本模块
- 1.asm/disasm
-功能：用来进行汇编/反汇编。
-例子：
-asm
-12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
-disasm
-12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb...
+            
+0x00 添加置顶功能
+解决Hexo博客文章置顶问题
+
+
+修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
+
+generator.js最终的内容：
+12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -701,14 +689,6 @@ disasm
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
             </div>
             <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
-    
-</div>
             
         </div>
     </article>
@@ -2949,234 +2929,6 @@ disasm
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 122
@@ -3244,12 +2996,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3264,12 +3016,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3319,12 +3071,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3827,21 +3579,23 @@ disasm
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3849,27 +3603,25 @@ disasm
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

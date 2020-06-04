@@ -361,19 +361,14 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
+        <a class="abstract-title" href="/2020/04/30/2020.04.30（114）/">
             
-                <span>pwntools的简单总结（持续更新）</span>
+                <span class="stick-top iconfont-archer">&#xe63d;</span>
+                
+                <span>Dan-Boneh密码学课程之学习笔记（持续更新）</span>
         </a>
         <div class="abstract-content">
-             一、基本模块
- 1.asm/disasm
-功能：用来进行汇编/反汇编。
-例子：
-asm
-12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
-disasm
-12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb...
+            Here's something encrypted, password is required to continue reading.
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -384,9 +379,7 @@ disasm
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
     
 </div>
             
@@ -404,21 +397,16 @@ disasm
                 <span>Pwnable.kr的奇幻之旅（三）[bof]</span>
         </a>
         <div class="abstract-content">
-             一、相关知识
- 1.pwntools工具
-
+            一、相关知识1.pwntools工具
 最近将会认真的总结一下相关的知识点
 
- 2.函数调用在栈中的表现形式
+2.函数调用在栈中的表现形式
+可以参考这里)
 
-可以参考这里
-
- 3.栈保护机制相关知识点
-
+3.栈保护机制相关知识点
 将会和其他知识进行总结
 
- 二、题目分析
-
+二、题目分析
 ① 首先检查bof文件的类型，发现它是一个32位的ELF文件
 
 
@@ -426,7 +414,7 @@ disasm
 ② 然后查看bof文件开了什么保护，可以得出相关的保护基本能开的都开了，这让我一个小白如何是好？接下来先看看源码。
 
 
-1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX...
+1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX:       N...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -457,14 +445,12 @@ disasm
                 <span>GDB常用命令-内存查看（x）</span>
         </a>
         <div class="abstract-content">
-             一、功能说明
-1它是按一定格式显示内存地址或变量的值
- 二、格式
-
-x    /(length)(format)(size)    addr
+            一、功能说明1它是按一定格式显示内存地址或变量的值
+二、格式
+x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
 
 例如
-1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789ABCDEF";    return 0;&#125;$ gdb test(...
+1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789AB...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -493,23 +479,18 @@ x    /(length)(format)(size)    addr
                 <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
         </a>
         <div class="abstract-content">
-             0x00 相关知识
- 1.PwnTools工具的使用
-
+            0x00 相关知识1.PwnTools工具的使用
 这个知识点再单独进行总结
 
- 2.字符串强制转换为数字
-
+2.字符串强制转换为数字
 可以从下面题目中的例子发现
 
- 3.python -c的功能
-
+3.python -c的功能
 Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
 指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
 
- 4.shell命令中``和$的作用
-
-反引号在Linux shell命令行中有特殊的含义：反...
+4.shell命令中``和$的作用
+反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -540,15 +521,13 @@ Specify the command to execute. This terminates the option list (following optio
                 <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
         </a>
         <div class="abstract-content">
-             0x00 相关知识
- 1.atoi()函数
-
-① atoi函数是包含在stdlib.h标准库中
+            0x00 相关知识1.atoi()函数
+① atoi函数是包含在stdlib.h标准库中 
 ② 函数的声明：int atoi(const char* str)
 ③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
 ④ 实例如下：
 
-12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";  ...
+12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -580,8 +559,8 @@ Specify the command to execute. This terminates the option list (following optio
         </a>
         <div class="abstract-content">
             
-    今天要好好的解析以下C/C++中的“*”和“&amp;”的区别，示例代码如下：
-12345678910111213#include&lt;stdio.h&gt;void main()&#123;	int b = 2;	int* a = &amp;b;	printf("a:%d\n",a);	printf("*a:%d\n",*a);	printf("&amp;a:%d\n",&amp;a);	printf("*&amp;a:%d\n",*&amp;a);	printf("**&amp;a:%d\n",**&amp;a);	printf("&amp;b:%d\n",&amp;b)...
+&nbsp;&nbsp;&nbsp;&nbsp;今天要好好的解析以下C/C++中的“*”和“&amp;”的区别，示例代码如下：
+12345678910111213#include&lt;stdio.h&gt;void main()&#123;	int b = 2;	int* a = &amp;b;	printf("a:%d\n",a);	printf("*a:%d\n",*a);	printf("&amp;a:%d\n",&amp;a);	printf("*&amp;a:%d\n",*&amp;a);	printf("**&amp;a:%d\n",**&amp;a);	printf("...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -610,12 +589,11 @@ Specify the command to execute. This terminates the option list (following optio
                 <span>Windows常用的网络命令（web）</span>
         </a>
         <div class="abstract-content">
-             0x00 ipconfig
-作用：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关
-IPConfig实用程序和它的等价图形用户界面----Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
+            0x00 ipconfig作用：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关
+IPConfig实用程序和它的等价图形用户界面——Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
 IPConfig最常用的选项：
 ▧  ipconfig：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网关值。
-...
+▧  i...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -650,8 +628,7 @@ IPConfig最常用的选项：
 根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准建议： 根目录(/)所在分区应该越小越好，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。
 说白了，就是根目录和Windows的C盘一个样
 
- 1.根目录下各个目录的功能
- 详细列表
+1.根目录下各个目录的功能详细列表
 
 
 
@@ -664,7 +641,7 @@ IPConfig最常用的选项：
 
 
 /bin
-系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在...
+系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bi...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -697,14 +674,12 @@ IPConfig最常用的选项：
                 <span>Linux常用命令总结（二进制）</span>
         </a>
         <div class="abstract-content">
-             0x00 目录操作命令
- 0x00 ls（list）
-功能：列举出当前工作目录的内容，包括文件和文件夹
+            0x00 目录操作命令0x00 ls（list）功能：列举出当前工作目录的内容，包括文件和文件夹
 相关选项：
 
-ls -l： 文件/文件夹：长格式显示指定/目录中的文件
+ls -l： 文件/文件夹：长格式显示指定/目录中的文件
 
-123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.p...
+123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png-r...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2898,234 +2873,6 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 122
@@ -3193,12 +2940,12 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3213,12 +2960,12 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3268,12 +3015,12 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3776,21 +3523,23 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3798,27 +3547,25 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

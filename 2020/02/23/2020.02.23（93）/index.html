@@ -416,13 +416,11 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="一-什么是-hosts"><a class="markdownIt-Anchor" href="#一-什么是-hosts"></a> 一、什么是 hosts</h2>
-<p>hosts —— the static table lookup for host name（主机名查询静态表）。</p>
+        <h2 id="一、什么是-hosts"><a href="#一、什么是-hosts" class="headerlink" title="一、什么是 hosts"></a>一、什么是 hosts</h2><p>hosts —— the static table lookup for host name（主机名查询静态表）。</p>
 <p>hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。</p>
-<p>Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D/86062" target="_blank" rel="noopener">域名</a>与其对应的<a href="https://baike.baidu.com/item/IP%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">IP地址</a>建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从<a href="https://baike.baidu.com/item/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">Hosts文件</a>中寻找对应的<a href="https://baike.baidu.com/item/IP%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">IP地址</a>，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener">域名解析</a>服务器进行IP地址的解析。</p>
+<p>Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址<a href="https://baike.baidu.com/item/域名/86062" target="_blank" rel="noopener">域名</a>与其对应的<a href="https://baike.baidu.com/item/IP地址" target="_blank" rel="noopener">IP地址</a>建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从<a href="https://baike.baidu.com/item/Hosts文件" target="_blank" rel="noopener">Hosts文件</a>中寻找对应的<a href="https://baike.baidu.com/item/IP地址" target="_blank" rel="noopener">IP地址</a>，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS<a href="https://baike.baidu.com/item/域名解析" target="_blank" rel="noopener">域名解析</a>服务器进行IP地址的解析。</p>
 <p>优先级 ： dns缓存 &gt; hosts &gt; dns服务</p>
-<h2 id="二-hosts的位置"><a class="markdownIt-Anchor" href="#二-hosts的位置"></a> 二、hosts的位置</h2>
-<p><a href="https://laod.cn/tag/hosts" target="_blank" rel="noopener">hosts</a>在各个系统中所在的文件夹：</p>
+<h2 id="二、hosts的位置"><a href="#二、hosts的位置" class="headerlink" title="二、hosts的位置"></a>二、hosts的位置</h2><p><a href="https://laod.cn/tag/hosts" target="_blank" rel="noopener">hosts</a>在各个系统中所在的文件夹：</p>
 <ul>
 <li>Windows 系统<a href="https://laod.cn/tag/host" target="_blank" rel="noopener">host</a>s位于 C:\Windows\System32\drivers\etc\hosts</li>
 <li>Android（安卓）系统hosts位于 /etc/hosts</li>
@@ -431,14 +429,13 @@ height:50vh;
 <li>Linux系统hosts位于 /etc/hosts</li>
 <li>绝大多数Unix系统都是在 /etc/hosts</li>
 </ul>
-<h2 id="三-hosts的内容"><a class="markdownIt-Anchor" href="#三-hosts的内容"></a> 三、hosts的内容</h2>
-<p>Windows版本的hosts文件内容如下：</p>
+<h2 id="三、hosts的内容"><a href="#三、hosts的内容" class="headerlink" title="三、hosts的内容"></a>三、hosts的内容</h2><p>Windows版本的hosts文件内容如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line"># # This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line">#</span><br><span class="line"># This file contains the mappings of IP addresses to host names. Each </span><br><span class="line"># entry should be kept on an individual line. The IP address should</span><br><span class="line"># be placed in the first column followed by the corresponding host name. </span><br><span class="line"># The IP address and the host name should be separated by at least one </span><br><span class="line"># space.</span><br><span class="line"># </span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"># lines or following the machine name denoted by a &apos;#&apos; symbol.</span><br><span class="line"># </span><br><span class="line"># For example:</span><br><span class="line">#</span><br><span class="line"># 102.54.94.97 rhino.acme.com # source server</span><br><span class="line"># 38.25.63.10 x.acme.com # x client host</span><br><span class="line"># localhost name resolution is handled within DNS itself.</span><br><span class="line"># 127.0.0.1 localhost</span><br><span class="line"># ::1 localhost</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 <p>#后都是注释，所以清空hosts文件对系统正常运行并没有什么影响。</p>
 <p>在一个局域网中，每台机器都有一个主机名，用于区分主机，便于相互访问。</p>
 <p>一般/etc/hosts的内容一般有如下类似内容：</p>
 <p>127.0.0.1  localhost.localdomain   localhost</p>
-<p>192.168.1.100   <a href="http://linumu100.com" target="_blank" rel="noopener">linumu100.com</a>   linumu100</p>
+<p>192.168.1.100   linumu100.com   linumu100</p>
 <p>192.168.1.120  ftpserver   ftp120</p>
 <p>一般情况下hosts文件的每行尾一个主机，每行由三部分组成，每个部分由空格隔开。</p>
 <p>第一部分：网络IP地址；</p>
@@ -448,49 +445,43 @@ height:50vh;
 <p>主机名（hostname)和域名（domain)的区别：</p>
 <p>主机名通常在局域网内使用，通过hosts文件，主机名就被解析到对应IP;</p>
 <p>域名通常在INTERNET上使用，但如果本机不想使用internet上的域名解析，这时就可以更改hosts文件，加入自己的域名解析。</p>
-<h2 id="四-hosts的作用"><a class="markdownIt-Anchor" href="#四-hosts的作用"></a> 四、hosts的作用</h2>
-<p>1、加快<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener">域名解析</a></p>
-<p>对于要经常访问的网站，我们可以通过在Hosts中配置<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>和IP的映射关系，提高域名解析速度。由于有了映射关系，当我们输入域名计算机就能很快解析出IP，而不用请求网络上的DNS服务器。</p>
+<h2 id="四、hosts的作用"><a href="#四、hosts的作用" class="headerlink" title="四、hosts的作用"></a>四、hosts的作用</h2><p>1、加快<a href="https://baike.baidu.com/item/域名解析" target="_blank" rel="noopener">域名解析</a></p>
+<p>对于要经常访问的网站，我们可以通过在Hosts中配置<a href="https://baike.baidu.com/item/域名" target="_blank" rel="noopener">域名</a>和IP的映射关系，提高域名解析速度。由于有了映射关系，当我们输入域名计算机就能很快解析出IP，而不用请求网络上的DNS服务器。</p>
 <p>2、方便局域网用户</p>
 <p>在很多单位的局域网中，会有服务器提供给用户使用。但由于局域网中一般很少架设DNS服务器，访问这些服务器时，要输入难记的IP地址。这对不少人来说相当麻烦。可以分别给这些服务器取个容易记住的名字，然后在Hosts中建立IP映射，这样以后访问的时候，只要输入这个服务器的名字就行了。</p>
-<p>3、屏蔽网站（<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E9%87%8D%E5%AE%9A%E5%90%91" target="_blank" rel="noopener">域名重定向</a>）</p>
-<p>有很多网站不经过用户同意就将各种各样的<a href="https://baike.baidu.com/item/%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">插件</a>安装到你的计算机中，其中有些说不定就是木马或病毒。对于这些网站我们可以利用Hosts把该网站的<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>映射到错误的IP或本地计算机的IP，这样就不用访问了。</p>
+<p>3、屏蔽网站（<a href="https://baike.baidu.com/item/域名重定向" target="_blank" rel="noopener">域名重定向</a>）</p>
+<p>有很多网站不经过用户同意就将各种各样的<a href="https://baike.baidu.com/item/插件" target="_blank" rel="noopener">插件</a>安装到你的计算机中，其中有些说不定就是木马或病毒。对于这些网站我们可以利用Hosts把该网站的<a href="https://baike.baidu.com/item/域名" target="_blank" rel="noopener">域名</a>映射到错误的IP或本地计算机的IP，这样就不用访问了。</p>
 <p>4、顺利连接系统</p>
-<p>对于Lotus的服务器和一些<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">数据库服务器</a>，在访问时如果直接输入IP地址那是不能访问的，只能输入服务器名才能访问。那么我们配置好Hosts文件，这样输入服务器名就能顺利连接了。</p>
+<p>对于Lotus的服务器和一些<a href="https://baike.baidu.com/item/数据库服务器" target="_blank" rel="noopener">数据库服务器</a>，在访问时如果直接输入IP地址那是不能访问的，只能输入服务器名才能访问。那么我们配置好Hosts文件，这样输入服务器名就能顺利连接了。</p>
 <p>5.虚拟域名</p>
 <p>很多时候，网站建设者需要把”软环境“搭建好，再进行上传调试。但类似于邮件服务，则需要使用域名来辅助调试，这时就可以将本地 IP 地址与一个”虚拟域名“做地址指向，就可以达到要求的效果，且无需花费。如：</p>
 <ul>
 <li>127.0.0.1 网站域名</li>
 <li>之后在浏览器地址栏中输入对应的网站域名即可。</li>
 </ul>
-<h2 id="五-如何修改hosts"><a class="markdownIt-Anchor" href="#五-如何修改hosts"></a> 五、如何修改hosts</h2>
-<h3 id="1-屏蔽网站域名重定向"><a class="markdownIt-Anchor" href="#1-屏蔽网站域名重定向"></a> 1、屏蔽网站（域名重定向）</h3>
-<p>在WINDOWS系统中，约定 127.0.0.1 为本地计算机的IP地址, 0.0.0.0是错误的IP地址。</p>
+<h2 id="五、如何修改hosts"><a href="#五、如何修改hosts" class="headerlink" title="五、如何修改hosts"></a>五、如何修改hosts</h2><h3 id="1、屏蔽网站（域名重定向）"><a href="#1、屏蔽网站（域名重定向）" class="headerlink" title="1、屏蔽网站（域名重定向）"></a>1、屏蔽网站（域名重定向）</h3><p>在WINDOWS系统中，约定 127.0.0.1 为本地计算机的IP地址, 0.0.0.0是错误的IP地址。</p>
 <p>如果，我们在hosts中，写入以下内容：</p>
 <p>127.0.0.1 要屏蔽的网站A的域名</p>
 <p>0.0.0.0 要屏蔽的网站B的域名</p>
-<p>这样，计算机<a href="https://baike.baidu.com/item/%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">解析域名</a>A和 B时，就解析到本机IP或错误的IP，达到了屏蔽网站A 和B的目的。</p>
-<p>在修改hosts文件时候，还常常遇到修改保存后无效的情况，这里要提醒大家注意的一点：很多人是写在最后行，写完最后一行后在没有回车的情况下，这一行是不生效的。一定要记得回车。建议大家遵循这样的习惯：“ip地址+Tab+<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>+换行” 添加记录。</p>
-<h3 id="2-局域网用户访问"><a class="markdownIt-Anchor" href="#2-局域网用户访问"></a> 2、局域网用户访问</h3>
-<p>如果，我们在A主机的hosts中，写入以下内容：</p>
+<p>这样，计算机<a href="https://baike.baidu.com/item/解析域名" target="_blank" rel="noopener">解析域名</a>A和 B时，就解析到本机IP或错误的IP，达到了屏蔽网站A 和B的目的。</p>
+<p>在修改hosts文件时候，还常常遇到修改保存后无效的情况，这里要提醒大家注意的一点：很多人是写在最后行，写完最后一行后在没有回车的情况下，这一行是不生效的。一定要记得回车。建议大家遵循这样的习惯：“ip地址+Tab+<a href="https://baike.baidu.com/item/域名" target="_blank" rel="noopener">域名</a>+换行” 添加记录。</p>
+<h3 id="2、局域网用户访问"><a href="#2、局域网用户访问" class="headerlink" title="2、局域网用户访问"></a>2、局域网用户访问</h3><p>如果，我们在A主机的hosts中，写入以下内容：</p>
 <p>B主机的ip B主机名</p>
 <p>这样我们就可以通过B主机名找到B主机及其服务。</p>
-<h3 id="3-android系统的hosts修改"><a class="markdownIt-Anchor" href="#3-android系统的hosts修改"></a> 3、android系统的hosts修改</h3>
-<p>在 Android 下，/etc 是 link 到 /system/etc 的，我们需要修改 /system/etc/hosts 来实现。但是这个文件是只读，不能通过 shell 直接修改。可以通过连接到 PC 上使用 adb 来修改。步骤如下：</p>
-<p>（1）获得<a href="https://baike.baidu.com/item/root%E6%9D%83%E9%99%90" target="_blank" rel="noopener">root权限</a>：adb root</p>
+<h3 id="3、android系统的hosts修改"><a href="#3、android系统的hosts修改" class="headerlink" title="3、android系统的hosts修改"></a>3、android系统的hosts修改</h3><p>在 Android 下，/etc 是 link 到 /system/etc 的，我们需要修改 /system/etc/hosts 来实现。但是这个文件是只读，不能通过 shell 直接修改。可以通过连接到 PC 上使用 adb 来修改。步骤如下：</p>
+<p>（1）获得<a href="https://baike.baidu.com/item/root权限" target="_blank" rel="noopener">root权限</a>：adb root</p>
 <p>（2）设置/system为可读写：adb remount</p>
-<p>（3）将<a href="https://baike.baidu.com/item/hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">hosts文件</a>复制到PC：adb pull /system/etc/hosts</p>
+<p>（3）将<a href="https://baike.baidu.com/item/hosts文件" target="_blank" rel="noopener">hosts文件</a>复制到PC：adb pull /system/etc/hosts</p>
 <p>（4）修改PC机上文件</p>
 <p>（5）将PC机上文件复制到手机：adb push /system/etc/hosts</p>
 <p>如果要查看是否修改成功，可以在PC上执行adb shell，运行cat /system/etc/hosts;或者在手机上运行cat /system/etc/hosts。</p>
-<p>在Android系统中，hosts文件格式有一点与PC机Linux不同：不能在一行中一个IP对应多个<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">域名</a>，比如：</p>
-<p>127.0.0.1 <a href="http://host1.example.com" target="_blank" rel="noopener">host1.example.com</a> <a href="http://host2.example.com" target="_blank" rel="noopener">host2.example.com</a> <a href="http://host3.example.com" target="_blank" rel="noopener">host3.example.com</a></p>
+<p>在Android系统中，hosts文件格式有一点与PC机Linux不同：不能在一行中一个IP对应多个<a href="https://baike.baidu.com/item/域名" target="_blank" rel="noopener">域名</a>，比如：</p>
+<p>127.0.0.1 host1.example.com host2.example.com host3.example.com</p>
 <p>在大多PC机Linux系统是合法的，但不能在Android上起作用，需要拆成每个域名一行才能使用：</p>
-<p>x.x.x.x <a href="http://host1.example.com" target="_blank" rel="noopener">host1.example.com</a></p>
-<p>x.x.x.x <a href="http://host2.example.com" target="_blank" rel="noopener">host2.example.com</a></p>
-<p>x.x.x.x <a href="http://host3.example.com" target="_blank" rel="noopener">host3.example.com</a></p>
-<h3 id="4-通过修改hosts上google"><a class="markdownIt-Anchor" href="#4-通过修改hosts上google"></a> 4、通过修改hosts上google</h3>
-<p>第一步：下载可以正常使用的hosts文件</p>
+<p>x.x.x.x host1.example.com</p>
+<p>x.x.x.x host2.example.com</p>
+<p>x.x.x.x host3.example.com</p>
+<h3 id="4、通过修改hosts上google"><a href="#4、通过修改hosts上google" class="headerlink" title="4、通过修改hosts上google"></a>4、通过修改hosts上google</h3><p>第一步：下载可以正常使用的hosts文件</p>
 <p>可以在百度搜索类似“Google hosts”等相关关键词或者老D，找到最新可用的host文件。</p>
 <p>第二步：修改本地hosts文件</p>
 <p>在电脑系统中找到hosts，路径基本上是C:\Windows\System32\drivers\etc，然后将下载的hosts文件将本地hosts文件替换，或者在本地hosts文件中直接在地址栏修改即可！</p>
@@ -499,13 +490,10 @@ height:50vh;
 <p>（1）使用WIN+R键，启动运行，键入cmd</p>
 <p>（2）在dos界面输入“ipcong /flushdns”</p>
 <p>（3）dos命令窗提示“已成功刷新DNS解析缓存”，就完成了。</p>
-<h2 id="六-其他"><a class="markdownIt-Anchor" href="#六-其他"></a> 六、其他</h2>
-<h3 id="1-怎么获取域名所对应的ip地址"><a class="markdownIt-Anchor" href="#1-怎么获取域名所对应的ip地址"></a> 1、怎么获取域名所对应的IP地址</h3>
-<p>打开“开始――运行”，输入“cmd”，在命令行界面输入“ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>”，回车。</p>
+<h2 id="六、其他"><a href="#六、其他" class="headerlink" title="六、其他"></a>六、其他</h2><h3 id="1、怎么获取域名所对应的IP地址"><a href="#1、怎么获取域名所对应的IP地址" class="headerlink" title="1、怎么获取域名所对应的IP地址"></a>1、怎么获取域名所对应的IP地址</h3><p>打开“开始――运行”，输入“cmd”，在命令行界面输入“ping www.baidu.com”，回车。</p>
 <p>显示结果类似：Reply from 220.181.6.18:bytes=32 time=24msTTL=55。</p>
 <p>其中的220.181.6.18就是域名所对应IP地址（百度的）。呵呵！</p>
-<h3 id="2-修改hosts后生效方法"><a class="markdownIt-Anchor" href="#2-修改hosts后生效方法"></a> 2、修改hosts后生效方法</h3>
-<p>（1）Windows</p>
+<h3 id="2、修改hosts后生效方法"><a href="#2、修改hosts后生效方法" class="headerlink" title="2、修改hosts后生效方法"></a>2、修改hosts后生效方法</h3><p>（1）Windows</p>
 <p>开始 -&gt; 运行 -&gt; 输入cmd -&gt; 在CMD窗口输入</p>
 <p>ipconfig /flushdns</p>
 <p>（2）Linux</p>
@@ -514,11 +502,11 @@ height:50vh;
 <p>sudo /etc/init.d/networking restart</p>
 <p>desktop版可以这样重启：</p>
 <p>sudo service network-manager restart</p>
-<p>如果只是修改了某个网卡(例如eth0)的信息，也可以通过重启网卡的方式使其修改生效。</p>
+<p> 如果只是修改了某个网卡(例如eth0)的信息，也可以通过重启网卡的方式使其修改生效。</p>
 <p>sudo ifdown eth0 sudo ifup eth0</p>
 <p>如果不懂请都尝试下</p>
 <p>（3）Mac OS X终端输入</p>
-<p>sudo killall -HUP mDNSResponder</p>
+<p> sudo killall -HUP mDNSResponder</p>
 <p>（4）Android</p>
 <p>开启飞行模式 -&gt; 关闭飞行模式</p>
 <p>（5）通用方法</p>
@@ -684,7 +672,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-什么是-hosts"><span class="toc-number">1.</span> <span class="toc-text"> 一、什么是 hosts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-hosts的位置"><span class="toc-number">2.</span> <span class="toc-text"> 二、hosts的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-hosts的内容"><span class="toc-number">3.</span> <span class="toc-text"> 三、hosts的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-hosts的作用"><span class="toc-number">4.</span> <span class="toc-text"> 四、hosts的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-如何修改hosts"><span class="toc-number">5.</span> <span class="toc-text"> 五、如何修改hosts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-屏蔽网站域名重定向"><span class="toc-number">5.1.</span> <span class="toc-text"> 1、屏蔽网站（域名重定向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-局域网用户访问"><span class="toc-number">5.2.</span> <span class="toc-text"> 2、局域网用户访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-android系统的hosts修改"><span class="toc-number">5.3.</span> <span class="toc-text"> 3、android系统的hosts修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-通过修改hosts上google"><span class="toc-number">5.4.</span> <span class="toc-text"> 4、通过修改hosts上google</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-其他"><span class="toc-number">6.</span> <span class="toc-text"> 六、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-怎么获取域名所对应的ip地址"><span class="toc-number">6.1.</span> <span class="toc-text"> 1、怎么获取域名所对应的IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改hosts后生效方法"><span class="toc-number">6.2.</span> <span class="toc-text"> 2、修改hosts后生效方法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是-hosts"><span class="toc-number">1.</span> <span class="toc-text">一、什么是 hosts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、hosts的位置"><span class="toc-number">2.</span> <span class="toc-text">二、hosts的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、hosts的内容"><span class="toc-number">3.</span> <span class="toc-text">三、hosts的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、hosts的作用"><span class="toc-number">4.</span> <span class="toc-text">四、hosts的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、如何修改hosts"><span class="toc-number">5.</span> <span class="toc-text">五、如何修改hosts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、屏蔽网站（域名重定向）"><span class="toc-number">5.1.</span> <span class="toc-text">1、屏蔽网站（域名重定向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、局域网用户访问"><span class="toc-number">5.2.</span> <span class="toc-text">2、局域网用户访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、android系统的hosts修改"><span class="toc-number">5.3.</span> <span class="toc-text">3、android系统的hosts修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、通过修改hosts上google"><span class="toc-number">5.4.</span> <span class="toc-text">4、通过修改hosts上google</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、其他"><span class="toc-number">6.</span> <span class="toc-text">六、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、怎么获取域名所对应的IP地址"><span class="toc-number">6.1.</span> <span class="toc-text">1、怎么获取域名所对应的IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、修改hosts后生效方法"><span class="toc-number">6.2.</span> <span class="toc-text">2、修改hosts后生效方法</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -697,234 +685,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3030,12 +2790,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3050,12 +2810,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3105,12 +2865,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3613,21 +3373,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3635,27 +3397,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

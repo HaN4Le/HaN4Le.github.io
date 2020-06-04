@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">975</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,7 +416,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>      博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客已经停更好多天了，前几天因为身体也没有学太多东西，今天刚到学校学习了一下有关浮点数的部分知识：</p>
 <ul>
 <li><font color="brwon">浮点数的机器表示</font></li>
 <li><font color="brwon">浮点数的规格化和非规格化表示</font></li>
@@ -426,107 +426,84 @@ height:50vh;
 </ul>
 <hr>
 <blockquote>
-<p>**前言：**浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部分。浮点数是指小数点位置可以浮动的数据类型。<br>
-简单说浮点数是指能够精确到小数点以后的数值类型</p>
-</blockquote>
-<h4 id="一-浮点数的机器表示"><a class="markdownIt-Anchor" href="#一-浮点数的机器表示"></a> 一、 浮点数的机器表示</h4>
-<p>1.IEEE的浮点数标准</p>
-<blockquote>
-<p>① IEEE的754标准<br>
-② 二进制表示方式<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/IKCMmlvVYWpKsKl0RGsbgd2.g*gqSPZWJNUQnWisFec!/r/dL8AAAAAAAAA" alt></p>
+<p><strong>前言：</strong>浮点数是表示小数的一种方法。所谓浮点就是小数点的位置不固定，与此相反有定点数，即小数点的位置固定。整数可以看做是一种特殊的定点数，即小数点在末尾。8086/8088中没有浮点数处理指令，不过从486起，CPU内置了浮点数处理器，可以执行浮点运算。一般的浮点数有点象科学计数法，包括符号位、指数部分和尾数部分。浮点数是指小数点位置可以浮动的数据类型。<br>简单说浮点数是指能够精确到小数点以后的数值类型</p>
+<h4 id="一、-浮点数的机器表示"><a href="#一、-浮点数的机器表示" class="headerlink" title="一、 浮点数的机器表示"></a>一、 浮点数的机器表示</h4><p>1.IEEE的浮点数标准<br>① IEEE的754标准<br>② 二进制表示方式<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/IKCMmlvVYWpKsKl0RGsbgd2.g*gqSPZWJNUQnWisFec!/r/dL8AAAAAAAAA" alt></p>
 </blockquote>
 <p>2.浮点数示例</p>
 <blockquote>
 <ul>
-<li>值                        二进制表示<br>
-5.3/4                     101.11<sub>2</sub><br>
-2.7/8                       10.111<sub>2</sub><br>
-63.64                        0.111111<sub>2</sub></li>
+<li>值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二进制表示<br>5.3/4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;101.11<sub>2</sub><br>2.7/8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.111<sub>2</sub><br>63.64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.111111<sub>2</sub></li>
 <li>局限性：只能精确的表达X/2<sup>k</sup>这类形式的数据</li>
-<li>值                        二进制表示<br>
-1/3                        0.0101010101[01]…<sub>2</sub><br>
-1/5                        0.001100110011[0011]…<sub>2</sub><br>
-1/10                      0.0001100110011[0011]…<sub>2</sub></li>
+<li>值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二进制表示<br>1/3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0101010101[01]…<sub>2</sub><br>1/5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.001100110011[0011]…<sub>2</sub><br>1/10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0001100110011[0011]…<sub>2</sub></li>
 </ul>
 </blockquote>
 <p>3.计算机当中的浮点数二进制表示</p>
 <blockquote>
 <ul>
-<li>数字形式<br>
-(-1)<sup>s</sup> M 2<sup>E<sup></sup></sup></li>
+<li>数字形式<br>(-1)<sup>s</sup> M 2<sup>E<sup><ul>
 <li>s：表示符号（0 表示正数，1表示负数）</li>
 <li>M：表示尾数，是一个位于区间[1.0,2.0)内的小数</li>
 <li>E：表示阶码</li>
-<li>编码<br>
-| s | exp            | frac            |</li>
-<li>exp域代表的是 E</li>
-<li>frac域代表的是 M<br>
-<strong><font color="red">注意这里代表不是说exp域 = E，frac域 = M，这两者是有个转化的。</font></strong></li>
-<li>**单精度浮点数：**s宽度为 1 bit，exp域宽度为 8 bits，frac域宽度为 23 bits，总共为 31 bits；</li>
-<li>**双精度浮点数：**s宽度为 1 bit，exp域宽度为 11 bits，frac域宽度为 52 bits，总共为 64 bits；</li>
 </ul>
-</blockquote>
-<h4 id="二-浮点数的类型浮点数的规格化和非规格化表示"><a class="markdownIt-Anchor" href="#二-浮点数的类型浮点数的规格化和非规格化表示"></a> 二、浮点数的类型——浮点数的规格化和非规格化表示</h4>
-<p><strong>1.规格化的浮点数</strong></p>
-<blockquote>
-<ul>
-<li><strong>满足条件</strong><br>
-     exp ≠ 000…0 且 exp ≠ 111…1</li>
-<li><strong>真实的阶码值需要减一个偏值量</strong><br>
-     E = Exp - Bias</li>
+</sup></sup></li>
+<li>编码<br>| s | exp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| frac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<ul>
+<li>exp域代表的是 E</li>
+<li>frac域代表的是 M<br><strong><font color="red">注意这里代表不是说exp域 = E，frac域 = M，这两者是有个转化的。</font></strong></li>
+<li><strong>单精度浮点数：</strong>s宽度为 1 bit，exp域宽度为 8 bits，frac域宽度为 23 bits，总共为 31 bits；</li>
+<li><strong>双精度浮点数：</strong>s宽度为 1 bit，exp域宽度为 11 bits，frac域宽度为 52 bits，总共为 64 bits；<h4 id="二、浮点数的类型——浮点数的规格化和非规格化表示"><a href="#二、浮点数的类型——浮点数的规格化和非规格化表示" class="headerlink" title="二、浮点数的类型——浮点数的规格化和非规格化表示"></a>二、浮点数的类型——浮点数的规格化和非规格化表示</h4><strong>1.规格化的浮点数</strong></li>
+</ul>
+</li>
+<li><strong>满足条件</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp ≠ 000…0 且 exp ≠ 111…1</li>
+<li><strong>真实的阶码值需要减一个偏值量</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E = Exp - Bias<ul>
 <li>Exp：exp 域所表示的无符号数值</li>
-<li><font color="red">Bias的取值：bias = 2<sup>e-1</sup>-1，e = exp域的位数<br>
-▷单精度数：127（Exp：1…254，E：-126…127）<br>
-▷双精度数：1023（Exp：1…2064，E：-1022…1023）</font></li>
-<li>frac 域的第一位隐含为 1<br>
-M = <a href="http://1.xxx" target="_blank" rel="noopener">1.xxx</a>…x<sub>2</sub></li>
+<li><font color="red">Bias的取值：bias = 2<sup>e-1</sup>-1，e = exp域的位数
+▷单精度数：127（Exp：1...254，E：-126...127）
+▷双精度数：1023（Exp：1...2064，E：-1022...1023）</font></li>
+</ul>
+</li>
+<li>frac 域的第一位隐含为 1<br>M = 1.xxx…x<sub>2</sub><ul>
 <li>因此 frac域的第一位的 1 可以省去，为：xxx…x<sub>2</sub></li>
 <li>Min 000…0（M = 1.000…00）</li>
 <li>Max 111…11（M = 2.0 - ε）<font size="2px" color="gray">(说明：因为是开区间，所以最大的数是2小一点点)</font></li>
-<li>规格化的浮点数示例<br>
-▷ Float F = 15213.0</li>
+</ul>
+</li>
+<li>规格化的浮点数示例<br>▷ Float F = 15213.0<ul>
 <li>15213<sub>10</sub> = 11101101101101<sub>2</sub> = 1.1101101101101<sub>2</sub> ×2<sup>13</sup></li>
-<li><strong>尾数</strong><br>
-M =     1.<em>1101101101101</em><sub>2</sub><br>
-frac =     <em>1101101101101</em><font color="brwon">0000000000</font><sub>2</sub><font size="2px" color="gray">（说明：因为是 float 单精度浮点数，所以frac域的宽度为23bits，所以后面补0）</font></li>
-<li><strong>阶码</strong><br>
-E = 13<br>
-Bias = 2<sup>8-1</sup>-1 = 127（F 的 exp域的位数为 8）<br>
-Exp = E + Bias = 13 + 127 = 140 = 10001100<sub>2</sub></li>
+<li><strong>尾数</strong><br>M = &nbsp;&nbsp;&nbsp;&nbsp;1.<em>1101101101101</em><sub>2</sub><br>frac = &nbsp;&nbsp;&nbsp;&nbsp;<em>1101101101101</em><font color="brwon">0000000000</font><sub>2</sub><font size="2px" color="gray">（说明：因为是 float 单精度浮点数，所以frac域的宽度为23bits，所以后面补0）</font></li>
+<li><strong>阶码</strong><br>E = 13<br>Bias = 2<sup>8-1</sup>-1 = 127（F 的 exp域的位数为 8）<br>Exp = E + Bias = 13 + 127 = 140 = 10001100<sub>2</sub></li>
+</ul>
+</li>
 </ul>
 </blockquote>
 <p><strong>2.非规格化浮点数</strong></p>
 <blockquote>
 <ul>
-<li>满足条件<br>
-exp = 000…00</li>
-<li>其他域的取值</li>
-<li>E = -Bias + 1     Bias = 2<sup>e-1</sup> - 1，e = exp域的位数</li>
-<li>M = <a href="http://0.xxx" target="_blank" rel="noopener">0.xxx</a>…x<sub>2</sub>，frac域的位为：xxx…x</li>
-<li>非规格化浮点数具体示例</li>
+<li>满足条件<br>exp = 000…00</li>
+<li>其他域的取值<ul>
+<li>E = -Bias + 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bias = 2<sup>e-1</sup> - 1，e = exp域的位数</li>
+<li>M = 0.xxx…x<sub>2</sub>，frac域的位为：xxx…x</li>
+</ul>
+</li>
+<li>非规格化浮点数具体示例<ul>
 <li>exp = 000…0，frac = 000…0：表示 0（注意有 +0 和 -0）</li>
 <li>exp = 000…0，frac ≠ 000…0：表示“非常接近”于0的浮点数（会逐步丧失精度，不会突然产生溢出）</li>
+</ul>
+</li>
 </ul>
 </blockquote>
 <p><strong>3.一些特殊值</strong></p>
 <blockquote>
 <ul>
-<li>满足条件<br>
-exp = 111…1</li>
-<li>具体示例</li>
-<li>exp = 111…1，frac = 000…0<br>
-▷ 表示无穷：可用表示数值的溢出<br>
-▷ 有正无穷和负无穷之分<br>
-▷ 1.0/0.0 = + ∞，-1.0/0.0 = - ∞</li>
-<li>exp = 111…1，frac ≠ 000…0<br>
-▷ NOT-a-Number（NaN）<br>
-▷ sqrt(-1)，∞，-∞</li>
+<li>满足条件<br>exp = 111…1</li>
+<li>具体示例<ul>
+<li>exp = 111…1，frac = 000…0<br>▷ 表示无穷：可用表示数值的溢出<br>▷ 有正无穷和负无穷之分<br>▷ 1.0/0.0 = + ∞，-1.0/0.0 = - ∞</li>
+<li>exp = 111…1，frac ≠ 000…0<br>▷ NOT-a-Number（NaN）<br>▷ sqrt(-1)，∞，-∞</li>
+</ul>
+</li>
 </ul>
 </blockquote>
 <hr>
-<h4 id="每日一句"><a class="markdownIt-Anchor" href="#每日一句"></a> 每日一句：</h4>
-<blockquote>
+<h4 id="每日一句："><a href="#每日一句：" class="headerlink" title="每日一句："></a>每日一句：</h4><blockquote>
 <p>多坚持一下、多努力一下、多思考一会，自然而然就会成功。</p>
 </blockquote>
 
@@ -689,7 +666,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-浮点数的机器表示"><span class="toc-number">1.</span> <span class="toc-text"> 一、 浮点数的机器表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-浮点数的类型浮点数的规格化和非规格化表示"><span class="toc-number">2.</span> <span class="toc-text"> 二、浮点数的类型——浮点数的规格化和非规格化表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每日一句"><span class="toc-number">3.</span> <span class="toc-text"> 每日一句：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-浮点数的机器表示"><span class="toc-number">1.</span> <span class="toc-text">一、 浮点数的机器表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、浮点数的类型——浮点数的规格化和非规格化表示"><span class="toc-number">2.</span> <span class="toc-text">二、浮点数的类型——浮点数的规格化和非规格化表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每日一句："><span class="toc-number">3.</span> <span class="toc-text">每日一句：</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -702,234 +679,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3035,12 +2784,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3055,12 +2804,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3110,12 +2859,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3618,21 +3367,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3640,27 +3391,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

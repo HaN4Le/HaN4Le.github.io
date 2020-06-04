@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">967</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">979</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,28 +416,22 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>        昨天详细的介绍了有关HTTP协议的流量分析，那么今天就来说一下Misc：Exif这道题目的详细内容吧。</p>
-<h3 id="1-前期准备"><a class="markdownIt-Anchor" href="#1-前期准备"></a> 1. 前期准备</h3>
-<blockquote>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天详细的介绍了有关HTTP协议的流量分析，那么今天就来说一下Misc：Exif这道题目的详细内容吧。</p>
+<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
 <ul>
 <li>知识点：exif、编码类型</li>
-<li>工具：ExifTool</li>
+<li>工具：ExifTool<h3 id="2-相关知识"><a href="#2-相关知识" class="headerlink" title="2.相关知识"></a>2.相关知识</h3></li>
 </ul>
-</blockquote>
-<h3 id="2相关知识"><a class="markdownIt-Anchor" href="#2相关知识"></a> 2.相关知识</h3>
-<blockquote>
 <ol>
-<li>Exif介绍<br>
-可交换图像文件格式（英语：Exchangeable image file format，官方简称Exif），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。（以上来源百度百科）这些属性信息主要包括：光圈大小、快门速度、白平衡、ISO速度、焦距大小、日期时间等各种和拍摄条件以及相机品牌、型号、色彩编码等信息。</li>
+<li>Exif介绍<br>可交换图像文件格式（英语：Exchangeable image file format，官方简称Exif），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。（以上来源百度百科）这些属性信息主要包括：光圈大小、快门速度、白平衡、ISO速度、焦距大小、日期时间等各种和拍摄条件以及相机品牌、型号、色彩编码等信息。</li>
 <li>如何查看Exif信息</li>
 </ol>
 <ul>
 <li>本地查看：在Windows环境下右击图片—&gt;属性—&gt;详细信息；</li>
 <li>在线查看：打开<a href="https://exif.tuchong.com/" target="_blank" rel="noopener">exif查看网站</a>，将图片进行上传即可得到图片的exif；</li>
-<li>软件查看：下载<a href="https://sno.phy.queensu.ca/~phil/exiftool/" target="_blank" rel="noopener">exif查看工具</a>，将图片用ExifTool打开；<br>
-注：要想获得详细准确的参数信息，需要专业软件打开图片</li>
+<li>软件查看：下载<a href="https://sno.phy.queensu.ca/~phil/exiftool/" target="_blank" rel="noopener">exif查看工具</a>，将图片用ExifTool打开；<br>注：要想获得详细准确的参数信息，需要专业软件打开图片</li>
 </ul>
-<ol start="3">
+<ol>
 <li>常见编码方式</li>
 </ol>
 <ul>
@@ -446,29 +440,13 @@ height:50vh;
 <li>UUencode编码</li>
 <li>URL编码</li>
 <li>Unicode编码</li>
-<li>Base64/32/16编码</li>
+<li>Base64/32/16编码<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3></li>
 </ul>
-</blockquote>
-<h3 id="3-解题过程"><a class="markdownIt-Anchor" href="#3-解题过程"></a> 3. 解题过程</h3>
-<blockquote>
 <ol>
-<li>一开始我选择的exif查看工具是在线查看器，在IPTC下发现了<font color="red">“Source：Blue-Whale”</font>可疑之处，于是我详细的又看了一下是否有可疑数据，发现“Credit：102,108,97,103,123,101,120,105,1”与ASCII编码后的结果一样；<br>
-<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0okyf8htdj20i604bmx7.jpg" alt></li>
-<li>在与ASCII表对照后，得出下面的结果：</li>
-</ol>
-<center><font color="red">"flag{exiSOH"</font></center>看到这个结果有“flag”，立刻感觉与答案更近了一步，但是这个形式有问题，这个时候我想到题目中给的提示<font color="brown">“Note：有的小伙伴用的工具显示不全。搞不出来的可以试试我用的命令行工具exiftool。”</font>于是我又尝试了通过专业软件进行查看exif；
-3. 下载“ExifTool”软件，并用该软件打开图片，得到图片详细并完整的信息，于是我查找“credit”的参数（看到数据后，发现在线看到的数据是不完整的）：
-<center>![](https://wx2.sinaimg.cn/mw690/9b08638bly1g0okpzbc1yj20hv04jwej.jpg)</center>
-4. 对照ASCII表写出相应的字符：
-<center><font color="red">"flag{exif_hidden_fl4g}"</font></center>
-</blockquote>
-<h3 id="4-解题感悟"><a class="markdownIt-Anchor" href="#4-解题感悟"></a> 4. 解题感悟</h3>
-<blockquote>
-<p>        我个人认为这道题的难度不算大，因为题目中给的提示已经很明确了，并且只需要用工具打开图片，并且找到隐藏的信息。但是在解题过程中，有一个问题也是花了不少时间： 在那么多的信息中，找到被编码后的信息：因为我对各种编码的原理并不是很了解。如果不是题目中有“Blue-Whale”提示词，我估计也将会花费很大的时间，以后还得要了解一下有关各种编码的原理。</p>
-</blockquote>
-<h3 id="5-学习总结"><a class="markdownIt-Anchor" href="#5-学习总结"></a> 5. 学习总结</h3>
-<blockquote>
-<ol>
+<li>一开始我选择的exif查看工具是在线查看器，在IPTC下发现了<font color="red">“Source：Blue-Whale”</font>可疑之处，于是我详细的又看了一下是否有可疑数据，发现“Credit：102,108,97,103,123,101,120,105,1”与ASCII编码后的结果一样；<br><img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0okyf8htdj20i604bmx7.jpg" alt></li>
+<li>在与ASCII表对照后，得出下面的结果：<br><center><font color="red">"flag{exiSOH"</font></center>看到这个结果有“flag”，立刻感觉与答案更近了一步，但是这个形式有问题，这个时候我想到题目中给的提示<font color="brown">“Note：有的小伙伴用的工具显示不全。搞不出来的可以试试我用的命令行工具exiftool。”</font>于是我又尝试了通过专业软件进行查看exif；</li>
+<li>下载“ExifTool”软件，并用该软件打开图片，得到图片详细并完整的信息，于是我查找“credit”的参数（看到数据后，发现在线看到的数据是不完整的）：<center>![](https://wx2.sinaimg.cn/mw690/9b08638bly1g0okpzbc1yj20hv04jwej.jpg)</center></li>
+<li>对照ASCII表写出相应的字符：<br><center><font color="red">"flag{exif_hidden_fl4g}"</font></center><h3 id="4-解题感悟"><a href="#4-解题感悟" class="headerlink" title="4. 解题感悟"></a>4. 解题感悟</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我个人认为这道题的难度不算大，因为题目中给的提示已经很明确了，并且只需要用工具打开图片，并且找到隐藏的信息。但是在解题过程中，有一个问题也是花了不少时间： 在那么多的信息中，找到被编码后的信息：因为我对各种编码的原理并不是很了解。如果不是题目中有“Blue-Whale”提示词，我估计也将会花费很大的时间，以后还得要了解一下有关各种编码的原理。<h3 id="5-学习总结"><a href="#5-学习总结" class="headerlink" title="5. 学习总结"></a>5. 学习总结</h3></li>
 <li>学习内容</li>
 </ol>
 <ul>
@@ -476,13 +454,10 @@ height:50vh;
 <li>解出Misc部分的Invisible flag和Shell题目</li>
 <li>英语口语的自我介绍</li>
 </ul>
-<ol start="2">
-<li>学习感悟<br>
-我写博客已经有7天了，一开始还为自己的专业基础问题和复试备考时间担心，害怕自己不能完成任务，也担心自己的复习时间。然而经过这7天的努力，我合理的安排了复习时间和测试时间，复试备考和测试有序的进行着。<br>
-<br>虽然在分数上我和别人有一些差距，但是我努力的去理解每道题的知识，并通过自己的理解写出来，让我加深了对知识点的理解和感悟，这种学习对我无疑是有益的。今后我会不断对学过的知识进行总结，形成我自己的知识体系。</li>
+<ol>
+<li>学习感悟<br>我写博客已经有7天了，一开始还为自己的专业基础问题和复试备考时间担心，害怕自己不能完成任务，也担心自己的复习时间。然而经过这7天的努力，我合理的安排了复习时间和测试时间，复试备考和测试有序的进行着。<br><br>虽然在分数上我和别人有一些差距，但是我努力的去理解每道题的知识，并通过自己的理解写出来，让我加深了对知识点的理解和感悟，这种学习对我无疑是有益的。今后我会不断对学过的知识进行总结，形成我自己的知识体系。<h4 id="每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！"><a href="#每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！" class="headerlink" title="#每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！"></a><font color="red">#每日一句：</font>比你优秀的人还要努力，你自己有什么理由选择安逸！</h4></li>
 </ol>
 </blockquote>
-<h4 id="font-colorred每日一句font比你优秀的人还要努力你自己有什么理由选择安逸"><a class="markdownIt-Anchor" href="#font-colorred每日一句font比你优秀的人还要努力你自己有什么理由选择安逸"></a> <font color="red">#每日一句：</font>比你优秀的人还要努力，你自己有什么理由选择安逸！</h4>
 
     </article>
     <!-- license  -->
@@ -643,7 +618,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2相关知识"><span class="toc-number">2.</span> <span class="toc-text"> 2.相关知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text"> 3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4. 解题感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-学习总结"><span class="toc-number">5.</span> <span class="toc-text"> 5. 学习总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorred每日一句font比你优秀的人还要努力你自己有什么理由选择安逸"><span class="toc-number">5.1.</span> <span class="toc-text"> #每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-相关知识"><span class="toc-number">2.</span> <span class="toc-text">2.相关知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text">3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-解题感悟"><span class="toc-number">4.</span> <span class="toc-text">4. 解题感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-学习总结"><span class="toc-number">5.</span> <span class="toc-text">5. 学习总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！"><span class="toc-number">5.1.</span> <span class="toc-text">#每日一句：比你优秀的人还要努力，你自己有什么理由选择安逸！</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -656,234 +631,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2989,12 +2736,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3009,12 +2756,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3064,12 +2811,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3572,21 +3319,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3594,27 +3343,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

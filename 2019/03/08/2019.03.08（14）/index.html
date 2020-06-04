@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.3k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,99 +416,54 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>     这几天做出来的题目，难度最大且花费时间最长的莫不过Web：Calculator和Web：RapidTyping，今天又对Web：Calculator这道题目的脚本做了一下改善，并分析了一下GET和POST的区别。</p>
-<h3 id="1-前期准备"><a class="markdownIt-Anchor" href="#1-前期准备"></a> 1. 前期准备</h3>
-<blockquote>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这几天做出来的题目，难度最大且花费时间最长的莫不过Web：Calculator和Web：RapidTyping，今天又对Web：Calculator这道题目的脚本做了一下改善，并分析了一下GET和POST的区别。</p>
+<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><blockquote>
 <ul>
 <li>工具：谷歌浏览器</li>
-<li>知识：python Requests模块（POST | GET | Session()）、Re模块（findall() | compile()）、正则表达式、eval()</li>
+<li>知识：python Requests模块（POST | GET | Session()）、Re模块（findall() | compile()）、正则表达式、eval()<h3 id="2-思考过程"><a href="#2-思考过程" class="headerlink" title="2. 思考过程"></a>2. 思考过程</h3>1.如何计算网页上的算数公式，并提交成功，服务器响应请求呢？<br>这是在做这道题首先要弄明白的问题，只有将整个流程搞懂、弄清，才能分布的去解题：<br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="brwon">①首先要获取网页地址，得到网页上的文本；<br>&nbsp;&nbsp;&nbsp;&nbsp;②把相应的算术公式“拿出来”单独计算，得到结果（answer）；<br>&nbsp;&nbsp;&nbsp;&nbsp;③把所得结果如何提交给请求服务器，返回相应的内容；<br>&nbsp;&nbsp;&nbsp;&nbsp;④如何让服务器知道获得算式的和提交答案的是一个人；</font><br>在正式做题前，我将这个问题拆分为这四步，但是每一步是如何实现的呢？这就有了以下的分析。</li>
 </ul>
-</blockquote>
-<h3 id="2-思考过程"><a class="markdownIt-Anchor" href="#2-思考过程"></a> 2. 思考过程</h3>
-<p>1.如何计算网页上的算数公式，并提交成功，服务器响应请求呢？</p>
-<blockquote>
-<p>这是在做这道题首先要弄明白的问题，只有将整个流程搞懂、弄清，才能分布的去解题：<br>
-    <font color="brwon">①首先要获取网页地址，得到网页上的文本；<br>
-    ②把相应的算术公式“拿出来”单独计算，得到结果（answer）；<br>
-    ③把所得结果如何提交给请求服务器，返回相应的内容；<br>
-    ④如何让服务器知道获得算式的和提交答案的是一个人；</font><br>
-在正式做题前，我将这个问题拆分为这四步，但是每一步是如何实现的呢？这就有了以下的分析。</p>
 </blockquote>
 <p>2.如何请求获取网页上的内容？</p>
 <blockquote>
-<p>对于获取网页所用的协议为HTTP的原理，其实这个知识点在前面的流量分析中有所提及（<a href="https://muzibing.github.io/2019/03/01/2019.03.01%EF%BC%887%EF%BC%89/">GET和POST的区别</a>），今天就不过多的谈及，那么今天主要讲一下python Requests库中关于两者使用的语法：<br>
-    ①首先要<strong>导入requests模块</strong>（它是一个python HTTP库），因为post和get请求都被包含在这个模块中；<br>
-    ②GET：如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个?的后面。例如，<a href="http://httpbin.org/get?key=val%E3%80%82" target="_blank" rel="noopener">httpbin.org/get?key=val。</a> Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。<br>
-        <font color="blue">r = requests.get(“url”, <strong>params</strong>={‘key’:value})</font><br>
-    ②POST：通常，想要发送一些编码为表单形式的数据——非常像一个 HTML 表单。要实现这个，只需简单地传递一个字典给 data 参数。数据字典在发出请求时会自动编码为表单形式：<br>
-        <font color="blue">payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>
-        r = requests.post(“url”, <strong>data</strong>=payload)<br>
-        print(r.text)</font><br>
-那么对于第①个问题就有了相应的解决办法，那么怎么解决获取算术公式，并加以计算这个问题呢？</p>
+<p>对于获取网页所用的协议为HTTP的原理，其实这个知识点在前面的流量分析中有所提及（<a href="https://muzibing.github.io/2019/03/01/2019.03.01%EF%BC%887%EF%BC%89/">GET和POST的区别</a>），今天就不过多的谈及，那么今天主要讲一下python Requests库中关于两者使用的语法：<br>&nbsp;&nbsp;&nbsp;&nbsp;①首先要<strong>导入requests模块</strong>（它是一个python HTTP库），因为post和get请求都被包含在这个模块中；<br>&nbsp;&nbsp;&nbsp;&nbsp;②GET：如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个?的后面。例如，httpbin.org/get?key=val。 Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">r = requests.get(“url”, <strong>params</strong>={‘key’:value})</font><br>&nbsp;&nbsp;&nbsp;&nbsp;②POST：通常，想要发送一些编码为表单形式的数据——非常像一个 HTML 表单。要实现这个，只需简单地传递一个字典给 data 参数。数据字典在发出请求时会自动编码为表单形式：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = requests.post(“url”, <strong>data</strong>=payload)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(r.text)</font><br>那么对于第①个问题就有了相应的解决办法，那么怎么解决获取算术公式，并加以计算这个问题呢？</p>
 </blockquote>
 <p>3.如何得到要求计算式子的结果呢？</p>
 <blockquote>
-<p>这里也应该相应的进行拆分分析：<br>
-<font color="red">1. 我如何才能获取那些数字和计算符号呢？</font><br>
-通过查阅有关资料，得到了re模块的两个函数**“re.findall()”<strong>和</strong>“re.compile()”**以及有关正则表达式的应用:<br>
-<br>        ▶ <strong>re.findall()</strong>：Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match.（返回字符串中pattern的所有非重叠匹配，作为字符串列表。从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。结果中包含空匹配，除非它们触及另一个匹配的开头）<br>
-        以上是官方对re.findall()定义</p>
-<center><font color="red">findall(patern, string, flags=0)</font></center>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**pattern**: 正则中的模式字符串。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**string**: 要被查找替换的原始字符串。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**flags**: 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ **re.compile()**：Compile a regular expression pattern, returning a pattern object.（编译正则表达式模式，返回模式对象）这是官方对compile()的定义，可以看出返回的是一个匹配对象，它单独使用就没有任何意义，需要和findall(), search(), match(）搭配使用。
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了上面两个重要函数的功能后，就对要获取方法有了目标：①先通过re.compile()将正则表达式的字符串形式编译为Pattern实例，②然后通过re.findall() 从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ **正则表达式**：如何使用正则表达式呢？这里就不过多叙述，在下面的解题的时候有所涉及。
-<br><font color="red">2. 如何将提取的算术公式进行运算呢？</font>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面我们通过re.compile()he re.findall()函数，得到了网页上的算数公示（一个字符串），那么如何将这个字符串进行运算呢？下面再引进一个函数：
-<br><center>**eval(expression, globals=None, locals=None)**</center>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方文档中的解释是，eval()可以将字符串str当成有效的表达式来求值并返回计算结果。globals和locals参数是可选的，如果提供了globals参数，那么它必须是dictionary类型；如果提供了locals参数，那么它可以是任意的map对象。
+<p>这里也应该相应的进行拆分分析：</p>
+<p><font color="red">1. 我如何才能获取那些数字和计算符号呢？</font><br>通过查阅有关资料，得到了re模块的两个函数<strong>“re.findall()”</strong>和<strong>“re.compile()”</strong>以及有关正则表达式的应用:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>re.findall()</strong>：Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match.（返回字符串中pattern的所有非重叠匹配，作为字符串列表。从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。结果中包含空匹配，除非它们触及另一个匹配的开头）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是官方对re.findall()定义</p>
+<p><center><font color="red">findall(patern, string, flags=0)</font></center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>pattern</strong>: 正则中的模式字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>string</strong>: 要被查找替换的原始字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>flags</strong>: 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>re.compile()</strong>：Compile a regular expression pattern, returning a pattern object.（编译正则表达式模式，返回模式对象）这是官方对compile()的定义，可以看出返回的是一个匹配对象，它单独使用就没有任何意义，需要和findall(), search(), match(）搭配使用。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在了解了上面两个重要函数的功能后，就对要获取方法有了目标：①先通过re.compile()将正则表达式的字符串形式编译为Pattern实例，②然后通过re.findall() 从左到右扫描字符串，并按找到的顺序返回匹配项。 如果模式中存在一个或多个组，则返回组列表; 如果模式有多个组，这将是一个元组列表。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶ <strong>正则表达式</strong>：如何使用正则表达式呢？这里就不过多叙述，在下面的解题的时候有所涉及。<br><br><font color="red">2. 如何将提取的算术公式进行运算呢？</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面我们通过re.compile()he re.findall()函数，得到了网页上的算数公示（一个字符串），那么如何将这个字符串进行运算呢？下面再引进一个函数：<br><br><center>**eval(expression, globals=None, locals=None)**</center><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方文档中的解释是，eval()可以将字符串str当成有效的表达式来求值并返回计算结果。globals和locals参数是可选的，如果提供了globals参数，那么它必须是dictionary类型；如果提供了locals参数，那么它可以是任意的map对象。</p>
 </blockquote>
 <p>4.在向服务器提交结果时，如何让服务器知道获得算式的和提交答案的是一个人？</p>
 <blockquote>
-<p>        一开始向服务器发送了请求，并获得了结果，但是在提交答案的时候，服务器怎么知道你是谁？通过查阅资料，引入了<strong>Requests库的Session对象</strong>：session对象能够帮我们跨请求保持某些参数，也会在同一个session实例发出的所有请求之间保持同一个cookies，那么就可以通过相同的cookies让服务器知道获得算式的和提交答案的是一个人。</p>
-</blockquote>
-<h3 id="3-解题过程"><a class="markdownIt-Anchor" href="#3-解题过程"></a> 3. 解题过程</h3>
-<p>有了上述的分析和知识后，现在可以进行编写python脚本解题了。下面直接给出代码：</p>
-<pre class="highlight"><code class="python"><span class="number">1</span>  <span class="keyword">import</span> re 
-<span class="number">2</span>  <span class="keyword">import</span> requests
-<span class="number">3</span>  t = requests.Session()  
-<span class="number">4</span>  url = <span class="string">'http://web1.blue-whale.me:23331/calculator/'</span>
-<span class="number">5</span>  r = t.get(url)
-<span class="number">6</span>  r.encoding = <span class="string">'utf-8'</span>  
-<span class="number">7</span>  print(r.text)
-<span class="number">8</span>  num = re.findall(re.compile(<span class="string">r'&lt;form action="" method="GET"&gt;&lt;span id="exp"&gt;(.*?)\s+=\s+&lt;/span&gt;'</span>), r.text)[<span class="number">0</span>]  
-<span class="number">9</span>  <span class="keyword">print</span> (<span class="string">'result:\n\n%s=%d\n'</span> % (num, eval(num))) 
-<span class="number">10</span> ans=eval(num)
-<span class="number">11</span> flag = t.get(url, params={<span class="string">'answer'</span>:ans})  
-<span class="number">12</span> print(flag.text)  
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一开始向服务器发送了请求，并获得了结果，但是在提交答案的时候，服务器怎么知道你是谁？通过查阅资料，引入了<strong>Requests库的Session对象</strong>：session对象能够帮我们跨请求保持某些参数，也会在同一个session实例发出的所有请求之间保持同一个cookies，那么就可以通过相同的cookies让服务器知道获得算式的和提交答案的是一个人。</p>
+<h3 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3. 解题过程"></a>3. 解题过程</h3><p>有了上述的分析和知识后，现在可以进行编写python脚本解题了。下面直接给出代码：</p>
+<pre><code class="lang-python">1  import re 
+2  import requests
+3  t = requests.Session()  
+4  url = &#39;http://web1.blue-whale.me:23331/calculator/&#39;
+5  r = t.get(url)
+6  r.encoding = &#39;utf-8&#39;  
+7  print(r.text)
+8  num = re.findall(re.compile(r&#39;&lt;form action=&quot;&quot; method=&quot;GET&quot;&gt;&lt;span id=&quot;exp&quot;&gt;(.*?)\s+=\s+&lt;/span&gt;&#39;), r.text)[0]  
+9  print (&#39;result:\n\n%s=%d\n&#39; % (num, eval(num))) 
+10 ans=eval(num)
+11 flag = t.get(url, params={&#39;answer&#39;:ans})  
+12 print(flag.text)
 </code></pre>
-<blockquote>
-<p><font color="red">1.import re</font>  ##这里是导入python的re模块，因为后面用到了re模块的findall()和compile()；<br>
-<font color="red">2.import requests</font>  ##这里是导入python的requests模块，因为后面用到了requests模块的session()、get()和post()；<br>
-<font color="red">3.t = requests.Session()  </font>  ##生成cookies，为了让服务器知道获得算式的和提交答案的是一个人；<br>
-<font color="red">4.url = ‘<a href="http://web1.blue-whale.me:23331/calculator/" target="_blank" rel="noopener">http://web1.blue-whale.me:23331/calculator/</a>’</font>   ##实验网址，为了以后输入简便直接复制给url对象；<br>
-<font color="red">5.r = t.get(url)</font>   ##通过get获取目的网址，生成一个名为 r 的 Response 对象，我们就可以在这个对象中获取我们想要的信息；<br>
-<font color="red">6.r.encoding = ‘utf-8’ </font>  ##修改编码 ，因为后期要读取 r 响应对象的信息，而我们在目标地址中看到的ContentType：text/html charset=‘UTF-8’，所以编码为“utf-8”<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0vsw2nmukj20lt06b0t5.jpg" alt><br>
-<font color="red">7.print(r.text)</font>  ##打印 r 响应对象的文本内容，如下图；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsw9bdd0j20hu0d30t1.jpg" alt><br>
-<font color="red">8.num = re.findall(re.compile(r’&lt; form action=&quot;&quot; method=“GET”&gt;&lt; span id=“exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’), r.text)[0] </font><br>
-    ▶ compile括号中的内容：r为转义字符；<br>
-    ▶ ‘ ’中的是提取算术表达式的正则表达式；<br>
-    ▶ (.*?)表示要返回的列表；<br>
-    ▶  \s+表示一个空格；<br>
-<font color="red">9. print (‘result:\n\n%s=%d\n’ % (num, eval(num)))</font>  ##打印结果<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vswmdb53j20bt022gle.jpg" alt><br>
-<font color="red">10.ans=eval(num)</font>  ##将提取的算术公式进行计算的结果赋值给ans变量；<br>
-<font color="red">11. flag = t.get(url, params={‘answer’:ans})</font>  ##因为method被设置为get，所以在这里只能用get的方法进行提交；因为我尝试提交了一下，返回的网页后面的params为answer，所以这里的key值为answer，就被自动被设置为?anwers=ans；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsweeegjj20nv06qjrs.jpg" alt><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswhrom7j20oi06saaq.jpg" alt><br>
-<font color="red">12. print(flag.text)</font> ## 打印返回的网页；<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswp0xq8j20hh059wef.jpg" alt></p>
-</blockquote>
-<h3 id="4学习感悟"><a class="markdownIt-Anchor" href="#4学习感悟"></a> 4.学习感悟</h3>
-<blockquote>
-<p>     今天的总结，我感觉比我当时做题还难，这也许就是落实的难度大的原因吧！今天又写总结的地方，我感觉缺漏和不足还有很多，以后学习的过程中还得回来不断的更新，慢慢的积累吧！</p>
-</blockquote>
-<h3 id="5每日一句"><a class="markdownIt-Anchor" href="#5每日一句"></a> 5.每日一句</h3>
-<blockquote>
-<p>     只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。</p>
+<p><font color="red">1.import re</font>  ##这里是导入python的re模块，因为后面用到了re模块的findall()和compile()；</p>
+<p><font color="red">2.import requests</font>  ##这里是导入python的requests模块，因为后面用到了requests模块的session()、get()和post()；</p>
+<p><font color="red">3.t = requests.Session()  </font>  ##生成cookies，为了让服务器知道获得算式的和提交答案的是一个人；</p>
+<p><font color="red">4.url = ‘<a href="http://web1.blue-whale.me:23331/calculator/" target="_blank" rel="noopener">http://web1.blue-whale.me:23331/calculator/</a>‘</font>   ##实验网址，为了以后输入简便直接复制给url对象；</p>
+<p><font color="red">5.r = t.get(url)</font>   ##通过get获取目的网址，生成一个名为 r 的 Response 对象，我们就可以在这个对象中获取我们想要的信息；</p>
+<p><font color="red">6.r.encoding = ‘utf-8’ </font>  ##修改编码 ，因为后期要读取 r 响应对象的信息，而我们在目标地址中看到的ContentType：text/html charset=‘UTF-8’，所以编码为“utf-8”<img src="https://wx3.sinaimg.cn/mw690/9b08638bly1g0vsw2nmukj20lt06b0t5.jpg" alt></p>
+<p><font color="red">7.print(r.text)</font>  ##打印 r 响应对象的文本内容，如下图；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsw9bdd0j20hu0d30t1.jpg" alt></p>
+<p><font color="red">8.num = re.findall(re.compile(r’&lt; form action=”” method=”GET”&gt;&lt; span id=”exp”&gt;(.*?)\s+=\s+&lt; /span&gt;’), r.text)[0] </font><br>&nbsp;&nbsp;&nbsp;&nbsp;▶ compile括号中的内容：r为转义字符；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶ ‘ ’中的是提取算术表达式的正则表达式；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶ (.*?)表示要返回的列表；<br>&nbsp;&nbsp;&nbsp;&nbsp;▶  \s+表示一个空格；</p>
+<p><font color="red">9. print (‘result:\n\n%s=%d\n’ % (num, eval(num)))</font>  ##打印结果<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vswmdb53j20bt022gle.jpg" alt></p>
+<p><font color="red">10.ans=eval(num)</font>  ##将提取的算术公式进行计算的结果赋值给ans变量；</p>
+<p><font color="red">11. flag = t.get(url, params={‘answer’:ans})</font>  ##因为method被设置为get，所以在这里只能用get的方法进行提交；因为我尝试提交了一下，返回的网页后面的params为answer，所以这里的key值为answer，就被自动被设置为?anwers=ans；<img src="https://wx2.sinaimg.cn/mw690/9b08638bly1g0vsweeegjj20nv06qjrs.jpg" alt><img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswhrom7j20oi06saaq.jpg" alt></p>
+<p><font color="red">12. print(flag.text)</font> ## 打印返回的网页；<img src="https://wx4.sinaimg.cn/mw690/9b08638bly1g0vswp0xq8j20hh059wef.jpg" alt></p>
+<h3 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4.学习感悟"></a>4.学习感悟</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的总结，我感觉比我当时做题还难，这也许就是落实的难度大的原因吧！今天又写总结的地方，我感觉缺漏和不足还有很多，以后学习的过程中还得回来不断的更新，慢慢的积累吧！</p>
+<h3 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只要下定决心，过去的失败，正好是未来行动的借鉴；只要不屈不挠，一时的障碍，正好是推动成功的力量。 </p>
 </blockquote>
 
     </article>
@@ -670,7 +625,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text"> 1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text"> 2. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text"> 3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4.学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 5.每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1. 前期准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思考过程"><span class="toc-number">2.</span> <span class="toc-text">2. 思考过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解题过程"><span class="toc-number">3.</span> <span class="toc-text">3. 解题过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text">4.学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-每日一句"><span class="toc-number">5.</span> <span class="toc-text">5.每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -683,234 +638,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3016,12 +2743,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3036,12 +2763,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3091,12 +2818,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3599,21 +3326,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3621,27 +3350,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

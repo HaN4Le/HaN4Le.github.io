@@ -418,8 +418,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="data-uri"><a class="markdownIt-Anchor" href="#data-uri"></a> Data URI</h3>
-<p>Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。格式如下：</p>
+        <h3 id="Data-URI"><a href="#Data-URI" class="headerlink" title="Data URI"></a>Data URI</h3><p>Data URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。格式如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:[&lt;MIME type&gt;][;charset=&lt;charset&gt;][;base64],&lt;encoded data&gt;</span><br></pre></td></tr></table></figure>
 <p>其实整体可以视为三部分，即<code>声明：参数+数据，逗号左边的是各种参数，右边的是数据</code>。</p>
 <p>声明：data:是URI的协议头，表明其资源是一个data URI；</p>
@@ -429,13 +428,7 @@ height:50vh;
 <p>这两点相信大家都看眼烦了，那就把我认为重要的say下喽。</p>
 <p>优点：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">减少HTTP请求数</span><br><span class="line">避免了图片重新上传，清理缓存的问题</span><br><span class="line">运用在模版环境中时，省去了拷贝图片的步骤</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<p>缺点：<br>
-1.无法重复利用。img虽然是一个请求数，但是加载完后，如果还有N次引用，那还1，而DataURI却必须是N次了；<br>
-2.图片等资源转换为DataURI所用的Base64编码之后，文件大小增加了好多（通常50%-300%），想想下，如果服务器端不做Gzip压缩的话，那不是要……，压缩后倒是跟原本的差不多大小；<br>
-3.加载、解码后渲染，消耗内存和CPU，手机上还得耗电池呢啊；<br>
-4.浏览器限制；<br>
-5.这个也是最可气的，那么一大长串编码无疑是对自己优雅代码的一个摧残啊，有代码洁癖的你能忍么？<br>
-6.……</p>
+<p>缺点：<br>1.无法重复利用。img虽然是一个请求数，但是加载完后，如果还有N次引用，那还1，而DataURI却必须是N次了；<br>2.图片等资源转换为DataURI所用的Base64编码之后，文件大小增加了好多（通常50%-300%），想想下，如果服务器端不做Gzip压缩的话，那不是要……，压缩后倒是跟原本的差不多大小；<br>3.加载、解码后渲染，消耗内存和CPU，手机上还得耗电池呢啊；<br>4.浏览器限制；<br>5.这个也是最可气的，那么一大长串编码无疑是对自己优雅代码的一个摧残啊，有代码洁癖的你能忍么？<br>6.……</p>
 <p><strong>如何获得图片的base64编码</strong></p>
 <p>在网上搜了几个在线的图片转义为base64的，缺发现没几个好用的，而且记不住网址，下面推荐一个，<a href="http://www.pjhome.net/web/html5/encodeDataUrl.htm" target="_blank" rel="noopener">http://www.pjhome.net/web/htm…</a>（原版的），最初见到的是在飘飘那里：<a href="http://labs.pufen.net/my_collection/datauri.htm" target="_blank" rel="noopener">http://labs.pufen.net/my_coll…</a>。</p>
 <p>当然，这么好的东西自己也必须要收藏一份儿了啊，格桑的博客的地址<a href="http://aiyouu.net/tools/datauri.html" target="_blank" rel="noopener">http://aiyouu.net/tools/datau…</a>，用的时候方便啊，有空了再改造下。</p>
@@ -452,14 +445,7 @@ height:50vh;
 <p>URL是uniform resource locator的缩写，在web中的每一个可访问资源都有一个URL地址，例如图片，HTML文件，js文件以及style sheet文件，我们可以通过这个地址去download这个资源。</p>
 <p>其实URL是URI的子集，URI是uniform resource identifier的缩写。URI是用于获取资源，包括其附加的信息的一种协议。附加信息可能是地址，也可能不是地址，如果是地址，那么这时URI就变成URL了。注意的是data URI不是URL，因为它并不包含资源的公共地址。</p>
 <p>文章转载于<a href="http://aiyouu.net/data-uris-explained/" target="_blank" rel="noopener">http://aiyouu.net/data-uris-e…</a></p>
-<p><strong>参考扩展阅读：</strong><br>
-1.<a href="http://www.cnblogs.com/hongru/archive/2012/01/14/2321397.html" target="_blank" rel="noopener">关于base64编码的原理及实现</a>（表示迷糊）<br>
-2.<a href="http://css-tricks.com/data-uris/" target="_blank" rel="noopener">Data URIs</a><br>
-3.<a href="http://www.99css.com/archives/492" target="_blank" rel="noopener">Data URI&amp;MHTML: 用还是不用？</a><br>
-4.<a href="http://www.cssforest.org/blog/index.php?id=152" target="_blank" rel="noopener">Data URI的利弊</a><br>
-5.<a href="http://www.qianduan.net/data-uris-are-slow-on-mobile.html" target="_blank" rel="noopener">手机端DataURI比外链资源慢6倍</a><br>
-6.译文：<a href="http://www.douban.com/group/topic/36419540/" target="_blank" rel="noopener">data URI，不是URL啊</a><br>
-7.原文：<a href="http://www.nczonline.net/blog/2009/10/27/data-uris-explained/" target="_blank" rel="noopener">Data URIs explained</a></p>
+<p><strong>参考扩展阅读：</strong><br>1.<a href="http://www.cnblogs.com/hongru/archive/2012/01/14/2321397.html" target="_blank" rel="noopener">关于base64编码的原理及实现</a>（表示迷糊）<br>2.<a href="http://css-tricks.com/data-uris/" target="_blank" rel="noopener">Data URIs</a><br>3.<a href="http://www.99css.com/archives/492" target="_blank" rel="noopener">Data URI&amp;MHTML: 用还是不用？</a><br>4.<a href="http://www.cssforest.org/blog/index.php?id=152" target="_blank" rel="noopener">Data URI的利弊</a><br>5.<a href="http://www.qianduan.net/data-uris-are-slow-on-mobile.html" target="_blank" rel="noopener">手机端DataURI比外链资源慢6倍</a><br>6.译文：<a href="http://www.douban.com/group/topic/36419540/" target="_blank" rel="noopener">data URI，不是URL啊</a><br>7.原文：<a href="http://www.nczonline.net/blog/2009/10/27/data-uris-explained/" target="_blank" rel="noopener">Data URIs explained</a></p>
 
     </article>
     <!-- license  -->
@@ -477,16 +463,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2020/03/04/2020.03.04（97）/" title="【转载】JavaScript 的隐式转换">
-                    <div class="nextTitle">【转载】JavaScript 的隐式转换</div>
+                <a href="/2020/03/08/2020.03.08（99）/" title="Th1s_i3_XSS_challenges&from:stage#5&to:stage#12">
+                    <div class="nextTitle">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/02/27/2020.02.27（96）/" title="This_1s_pr0mpt.ml_writeup">
-                    <div class="prevTitle">This_1s_pr0mpt.ml_writeup</div>
+                <a href="/2020/03/04/2020.03.04（97）/" title="【转载】JavaScript 的隐式转换">
+                    <div class="prevTitle">【转载】JavaScript 的隐式转换</div>
                 </a>
             
         </li>
@@ -620,7 +606,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#data-uri"><span class="toc-number">1.</span> <span class="toc-text"> Data URI</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-URI"><span class="toc-number">1.</span> <span class="toc-text">Data URI</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -633,234 +619,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2966,12 +2724,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2986,12 +2744,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3041,12 +2799,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3549,21 +3307,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3571,27 +3331,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

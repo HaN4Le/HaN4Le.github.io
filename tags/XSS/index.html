@@ -366,24 +366,21 @@
                 <span>xss_payload_构造总结及深度剖析(持续更新中……)</span>
         </a>
         <div class="abstract-content">
-             一、绕过 XSS Filter 的方法
- 1.逃离 &quot;&quot; 的束缚
-※ 普通的闭合
+            一、绕过 XSS Filter 的方法1.逃离 &quot;&quot; 的束缚※ 普通的闭合
 
 有的并没有进行过滤，只需要简单的闭合即可逃离；
 
 ※ 利用反引号代替
 
-条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 &quot; &quot;，以到达闭合的作用；
+条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 \” \”，以到达闭合的作用；
 
 ※ 利用换行的特性
 
 详情见 prompt.ml 0x08 题目
 
- 2.&lt; 和 /&gt; 过滤类型的题目
-※ 利用事件触发 payload
+2.&lt; 和 /&gt; 过滤类型的题目※ 利用事件触发 payload
 
-虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror...
+虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror、onload、onmous...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -414,18 +411,16 @@
                 <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
         </a>
         <div class="abstract-content">
-             0x05 Length limited text
- Hint
-
+            0x05 Length limited textHint
 length limited text box
 
- 题目分析
 
+题目分析
 ① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
 
 1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
 
-不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串...
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -459,9 +454,7 @@ length limited text box
             
 这是我在无意中遇到的一个xss 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于浏览器编码问题，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 xss 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 xss 知识点，当然这并不意味着结束了 xss 的学习，这只不过是一个开头，好了！步入正题。
 
- 0x00 简单闭合问题
- ① JS 代码
-12345function escape(input) &#123;    // warm ...
+0x00 简单闭合问题① JS 代码12345function escape(input) &#123;    // warm up  ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2616,234 +2609,6 @@ length limited text box
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 122
@@ -2911,12 +2676,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2931,12 +2696,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -2986,12 +2751,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3494,21 +3259,23 @@ length limited text box
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3516,27 +3283,25 @@ length limited text box
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
@@ -3676,11 +3441,7 @@ jsonContent:
 </html>
 
 
-min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
+-- algolia -->
     
         <div class="site-search">
   <div class="algolia-popup popup">

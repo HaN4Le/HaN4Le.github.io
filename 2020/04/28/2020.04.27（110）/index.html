@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">334</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">342</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,15 +416,13 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-brown一-功能说明font"><a class="markdownIt-Anchor" href="#font-color-brown一-功能说明font"></a> <font color="brown">一、功能说明</font></h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它是按一定格式显示内存地址或变量的值</span><br></pre></td></tr></table></figure>
-<h3 id="font-color-brown二-格式font"><a class="markdownIt-Anchor" href="#font-color-brown二-格式font"></a> <font color="brown">二、格式</font></h3>
-<blockquote>
-<p>x    /(length)(format)(size)    addr</p>
+        <h3 id="一、功能说明"><a href="#一、功能说明" class="headerlink" title="一、功能说明"></a><font color="brown">一、功能说明</font></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它是按一定格式显示内存地址或变量的值</span><br></pre></td></tr></table></figure>
+<h3 id="二、格式"><a href="#二、格式" class="headerlink" title="二、格式"></a><font color="brown">二、格式</font></h3><blockquote>
+<p>x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr</p>
 </blockquote>
 <p><code>例如</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* file : test.c */</span></span><br><span class="line"><span class="comment">/* gcc -o test test.c -g */</span></span><br><span class="line"><span class="comment">/* gdb ./test */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> arr[] = <span class="string">"123456789ABCDEF"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ gdb test</span><br><span class="line">(gdb) <span class="keyword">break</span> main</span><br><span class="line">(gdb) run</span><br><span class="line">Breakpoint <span class="number">1</span>, main (argc=<span class="number">1</span>, argv=<span class="number">0x7fffffffe4f8</span>) at test.c:<span class="number">2</span></span><br><span class="line"><span class="number">2</span>           <span class="keyword">char</span> arr[] = <span class="string">"123456789ABCDEF"</span>;</span><br><span class="line">(gdb) next</span><br><span class="line"><span class="number">3</span>           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">(gdb) x arr</span><br><span class="line"><span class="number">0x7fffffffe400</span>: <span class="number">0x34333231</span></span><br><span class="line">(gdb) x /c arr</span><br><span class="line"><span class="number">0x7fffffffe400</span>: <span class="number">49</span> <span class="string">'1'</span></span><br><span class="line">(gdb) x /<span class="number">5</span>c arr</span><br><span class="line"><span class="number">0x7fffffffe400</span>: <span class="number">49</span> <span class="string">'1'</span>  <span class="number">50</span> <span class="string">'2'</span>  <span class="number">51</span> <span class="string">'3'</span>  <span class="number">52</span> <span class="string">'4'</span>  <span class="number">53</span> <span class="string">'5'</span></span><br><span class="line">(gdb) x /<span class="number">5</span>xb arr</span><br><span class="line"><span class="number">0x7fffffffe400</span>: <span class="number">0x31</span>    <span class="number">0x32</span>    <span class="number">0x33</span>    <span class="number">0x34</span>    <span class="number">0x35</span></span><br><span class="line">(gdb) x /gx arr</span><br><span class="line"><span class="number">0x7fffffffe400</span>: <span class="number">0x3837363534333231</span></span><br><span class="line">(gdb) x /<span class="number">5</span>i $pc</span><br><span class="line">=&gt; <span class="number">0x4004c9</span> &lt;main+<span class="number">39</span>&gt;:  mov    $<span class="number">0x0</span>,%eax</span><br><span class="line">   <span class="number">0x4004ce</span> &lt;main+<span class="number">44</span>&gt;:  pop    %rbp</span><br><span class="line">   <span class="number">0x4004cf</span> &lt;main+<span class="number">45</span>&gt;:  retq   </span><br><span class="line">   <span class="number">0x4004d0</span> &lt;__libc_csu_init&gt;:  push   %r15</span><br><span class="line">   <span class="number">0x4004d2</span> &lt;__libc_csu_init+<span class="number">2</span>&gt;:        mov    %edi,%r15d</span><br></pre></td></tr></table></figure>
-<h3 id="font-color-brown三-参数说明font"><a class="markdownIt-Anchor" href="#font-color-brown三-参数说明font"></a> <font color="brown">三、参数说明</font></h3>
+<h3 id="三、参数说明"><a href="#三、参数说明" class="headerlink" title="三、参数说明"></a><font color="brown">三、参数说明</font></h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -441,14 +439,16 @@ height:50vh;
 </tr>
 </tbody>
 </table>
+</div>
 <p><code>地址参数相关说明</code>：</p>
 <blockquote>
 <p>地址可为表达式/直接地址，其结果为内存地址。例如可用寄存器（<code>$eip</code>）或伪寄存器（<code>$pc</code>）。若<code>x</code>指令后没有地址表达式，则显示结果为上一次地址。</p>
 </blockquote>
-<h3 id="font-color-brown四-参考文章font"><a class="markdownIt-Anchor" href="#font-color-brown四-参考文章font"></a> <font color="brown">四、参考文章</font></h3>
-<p><a href="http://www.hh-yzm.com/index.php/archives/33/#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B" target="_blank" rel="noopener">GDB常用命令 - 内存查看</a></p>
-<h3 id="font-color-brown五-gdb其他命令font"><a class="markdownIt-Anchor" href="#font-color-brown五-gdb其他命令font"></a> <font color="brown">五、GDB其他命令</font></h3>
-<p><object data="/pdf/GDB命令参考手册.pdf" type="application/pdf" width="100%" height="800"></object></p>
+<h3 id="四、参考文章"><a href="#四、参考文章" class="headerlink" title="四、参考文章"></a><font color="brown">四、参考文章</font></h3><p><a href="http://www.hh-yzm.com/index.php/archives/33/#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B" target="_blank" rel="noopener">GDB常用命令 - 内存查看</a></p>
+<h3 id="五、GDB其他命令"><a href="#五、GDB其他命令" class="headerlink" title="五、GDB其他命令"></a><font color="brown">五、GDB其他命令</font></h3><object data="/pdf/GDB命令参考手册.pdf" type="application/pdf" width="100%" height="800"></object>
+
+
+
 
     </article>
     <!-- license  -->
@@ -609,7 +609,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-功能说明font"><span class="toc-number">1.</span> <span class="toc-text"> 一、功能说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown二-格式font"><span class="toc-number">2.</span> <span class="toc-text"> 二、格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown三-参数说明font"><span class="toc-number">3.</span> <span class="toc-text"> 三、参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown四-参考文章font"><span class="toc-number">4.</span> <span class="toc-text"> 四、参考文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown五-gdb其他命令font"><span class="toc-number">5.</span> <span class="toc-text"> 五、GDB其他命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、功能说明"><span class="toc-number">1.</span> <span class="toc-text">一、功能说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、格式"><span class="toc-number">2.</span> <span class="toc-text">二、格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、参数说明"><span class="toc-number">3.</span> <span class="toc-text">三、参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、参考文章"><span class="toc-number">4.</span> <span class="toc-text">四、参考文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、GDB其他命令"><span class="toc-number">5.</span> <span class="toc-text">五、GDB其他命令</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -622,234 +622,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2955,12 +2727,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2975,12 +2747,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3030,12 +2802,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3538,21 +3310,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3560,27 +3334,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">822</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">830</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,23 +418,25 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-brown一-基础知识font"><a class="markdownIt-Anchor" href="#font-color-brown一-基础知识font"></a> <font color="brown">一、基础知识</font></h3>
-<p><font color="navy"><strong>① 什么是 XSS？</strong></font></p>
+        <h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a><font color="brown">一、基础知识</font></h3><font color="navy">**① 什么是 XSS？**</font>
+
 <blockquote>
-<p>        XSS ，跨站脚本攻击，英文全称为：Cross Site Script，但是为了与层叠样式表的缩写（CSS）相区分，所以在安全领域叫做 “XSS”。</p>
-<p>​		XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧妙的方法注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是<strong>JavaScript</strong>，但实际上也可以包括 <strong>Java、 VBScript、ActiveX、 Flash</strong> 或者甚至是普通的<strong>HTML</strong>。攻击成功后，攻击者可能得到包括但不限于更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XSS ，跨站脚本攻击，英文全称为：Cross Site Script，但是为了与层叠样式表的缩写（CSS）相区分，所以在安全领域叫做 “XSS”。</p>
+<p>​        XSS攻击通常指的是通过利用网页开发时留下的漏洞，通过巧妙的方法注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是<strong>JavaScript</strong>，但实际上也可以包括 <strong>Java、 VBScript、ActiveX、 Flash</strong> 或者甚至是普通的<strong>HTML</strong>。攻击成功后，攻击者可能得到包括但不限于更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
 </blockquote>
-<p><font color="navy"><strong>② JavaScript 详细内容</strong></font></p>
+<font color="navy">**② JavaScript 详细内容**</font>
+
 <blockquote>
-<p>​		将会在后期的学习中陆续更新。</p>
+<p>​        将会在后期的学习中陆续更新。</p>
 </blockquote>
-<h3 id="font-colorbrown二-xss-攻击font"><a class="markdownIt-Anchor" href="#font-colorbrown二-xss-攻击font"></a> <font color="brown">二、XSS 攻击</font></h3>
-<p><font color="navy"><strong>① XSS 攻击的原理是什么？</strong></font></p>
+<h3 id="二、XSS-攻击"><a href="#二、XSS-攻击" class="headerlink" title="二、XSS 攻击"></a><font color="brown">二、XSS 攻击</font></h3><font color="navy">**① XSS 攻击的原理是什么？**</font>
+
 <blockquote>
 <p><img src="https://img-blog.csdn.net/20180517143130413?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lqY2xzeA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>​		HTML是一种<strong>超文本标记语言</strong>，通过将一些字符特殊地对待来区别文本和标记，例如，小于符号（&lt;）被看作是HTML标签的开始，<title> 与 </title>之间的字符是页面的标题等等。当动态页面中插入的内容含有这些特殊字符（如&lt;）时，用户浏览器会将其误认为是插入了HTML标签，当这些HTML标签引入了一段JavaScript脚本时，这些脚本程序就将会在用户浏览器中执行。所以，当这些特殊字符不能被动态页面检查或检查出现失误时，就将会产生XSS漏洞。</p>
+<p>​        HTML是一种<strong>超文本标记语言</strong>，通过将一些字符特殊地对待来区别文本和标记，例如，小于符号（&lt;）被看作是HTML标签的开始，<title> 与 </title>之间的字符是页面的标题等等。当动态页面中插入的内容含有这些特殊字符（如&lt;）时，用户浏览器会将其误认为是插入了HTML标签，当这些HTML标签引入了一段JavaScript脚本时，这些脚本程序就将会在用户浏览器中执行。所以，当这些特殊字符不能被动态页面检查或检查出现失误时，就将会产生XSS漏洞。</p>
 </blockquote>
-<p><font color="navy"><strong>② XSS 攻击的类型</strong></font></p>
+<font color="navy">**② XSS 攻击的类型**</font>
+
 <blockquote>
 <ol>
 <li><font color="red">持久型跨站</font>：最直接的危害类型，跨站代码存储在服务器（数据库）</li>
@@ -442,22 +444,23 @@ height:50vh;
 <li><font color="red">DOM跨站（DOM XSS）</font>:DOM（document object model 文档对象模型），客户端脚本处理逻辑导致的安全问题</li>
 </ol>
 </blockquote>
-<p><font color="navy"><strong>③ XSS 常见的攻击手段和目的</strong></font></p>
+<font color="navy">**③ XSS 常见的攻击手段和目的**</font>
+
 <blockquote>
 <ol>
 <li><font color="red"><strong>盗用cookie</strong></font>，获取敏感信息。</li>
-<li><font color="red"><strong>破坏正常的页面结构,插入一些恶意内容</strong></font></li>
+<li><font color="red">**破坏正常的页面结构,插入一些恶意内容**</font></li>
 <li><font color="red"><strong>利用植入Flash，通过crossdomain权限设置进一步获取更高权限</strong></font>（不常用了）；或者利用Java等得到类似的操作;</li>
 <li><font color="red"><strong>利用iframe、frame、XMLHttpRequest或上述Flash等方式</strong></font>，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的如发微博、加好友、发私信等操作;</li>
 <li>利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动;</li>
 <li>在访问量极大的一些页面上的XSS可以攻击一些小型网站，实现DDoS击的效果。</li>
 </ol>
 </blockquote>
-<p><font color="navy"><strong>④ 代码案例</strong></font></p>
+<font color="navy">**④ 代码案例**</font>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">植入代码自动触发</span><br><span class="line">  /?xss=<span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"null"</span> <span class="attr">onerror</span>=<span class="string">"alert(1)"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">  植入代码引诱触发</span></span><br><span class="line"><span class="xml">  /?xss=<span class="tag">&lt;<span class="name">p</span> <span class="attr">onclick</span>=<span class="string">"alert('点我')"</span> /&gt;</span>点我<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  植入代码嵌入页面</span></span><br><span class="line"><span class="xml">  /?xss=<span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"//www.baidu.com/t.html"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="font-colorbrown三-相关知识点font"><a class="markdownIt-Anchor" href="#font-colorbrown三-相关知识点font"></a> <font color="brown">三、相关知识点</font></h3>
-<blockquote>
-<p>​		在 XSS 攻击中涉及到许多得知识点，我仍然有很多不会的甚至不了解的，再次列举一下相关的知识点，为以后的学习指明方向。</p>
+<h3 id="三、相关知识点"><a href="#三、相关知识点" class="headerlink" title="三、相关知识点"></a><font color="brown">三、相关知识点</font></h3><blockquote>
+<p>​        在 XSS 攻击中涉及到许多得知识点，我仍然有很多不会的甚至不了解的，再次列举一下相关的知识点，为以后的学习指明方向。</p>
 <ol>
 <li>JavaScript</li>
 <li>HTTP 原理</li>
@@ -624,7 +627,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown一-基础知识font"><span class="toc-number">1.</span> <span class="toc-text"> 一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown二-xss-攻击font"><span class="toc-number">2.</span> <span class="toc-text"> 二、XSS 攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colorbrown三-相关知识点font"><span class="toc-number">3.</span> <span class="toc-text"> 三、相关知识点</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基础知识"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、XSS-攻击"><span class="toc-number">2.</span> <span class="toc-text">二、XSS 攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、相关知识点"><span class="toc-number">3.</span> <span class="toc-text">三、相关知识点</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -637,234 +640,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2970,12 +2745,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2990,12 +2765,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3045,12 +2820,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3553,21 +3328,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3575,27 +3352,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

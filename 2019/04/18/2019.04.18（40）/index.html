@@ -418,53 +418,21 @@ height:50vh;
     <article class="article-entry">
         <p>经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：</p>
 <blockquote>
-<p>☛ Phase_1、Phase_2、Phase_3、Phase_4<br>
-今天主要总结一下Phase_1的解题过程</p>
+<p>☛ Phase_1、Phase_2、Phase_3、Phase_4<br>今天主要总结一下Phase_1的解题过程</p>
 </blockquote>
-<h3 id="一-前期工作"><a class="markdownIt-Anchor" href="#一-前期工作"></a> 一、前期工作</h3>
-<blockquote>
+<h3 id="一、前期工作"><a href="#一、前期工作" class="headerlink" title="一、前期工作"></a>一、前期工作</h3><blockquote>
 <ol>
-<li>所用工具<br>
-IDA、Linux系统、gdb、objdump、python</li>
-<li>解题思路<br>
-通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。</li>
+<li>所用工具<br>IDA、Linux系统、gdb、objdump、python</li>
+<li>解题思路<br>通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。<h3 id="二、Phase-1解题过程"><a href="#二、Phase-1解题过程" class="headerlink" title="二、Phase_1解题过程"></a>二、Phase_1解题过程</h3><h4 id="1-对bomb文件进行反汇编"><a href="#1-对bomb文件进行反汇编" class="headerlink" title="1.对bomb文件进行反汇编"></a>1.对bomb文件进行反汇编</h4><code>objdump -d bomb &gt; bomo.txt</code><br>将bomb的汇编代码写入 bomb.txt 中去，并找到Phase_x的相关位置。<h4 id="2-Phase-1的相关汇编代码"><a href="#2-Phase-1的相关汇编代码" class="headerlink" title="2.Phase_1的相关汇编代码"></a>2.Phase_1的相关汇编代码</h4>① Phase_1主体汇编代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">08048b90 &lt;phase_1&gt;:</span><br><span class="line"> 8048b90:	83 ec 1c             	sub    $0x1c,%esp</span><br><span class="line"> 8048b93:	c7 44 24 04 24 a1 04 	movl   $0x804a124,0x4(%esp)</span><br><span class="line"> 8048b9a:	08 </span><br><span class="line"> 8048b9b:	8b 44 24 20          	mov    0x20(%esp),%eax</span><br><span class="line"> 8048b9f:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"> 8048ba2:	e8 53 04 00 00       	call   8048ffa &lt;strings_not_equal&gt;</span><br><span class="line"> 8048ba7:	85 c0                	test   %eax,%eax</span><br><span class="line"> 8048ba9:	74 05                	je     8048bb0 &lt;phase_1+0x20&gt;</span><br><span class="line"> 8048bab:	e8 55 05 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> 8048bb0:	83 c4 1c             	add    $0x1c,%esp</span><br><span class="line"> 8048bb3:	c3                   	ret</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 </blockquote>
-<h3 id="二-phase_1解题过程"><a class="markdownIt-Anchor" href="#二-phase_1解题过程"></a> 二、Phase_1解题过程</h3>
-<h4 id="1对bomb文件进行反汇编"><a class="markdownIt-Anchor" href="#1对bomb文件进行反汇编"></a> 1.对bomb文件进行反汇编</h4>
-<blockquote>
-<p><code>objdump -d bomb &gt; bomo.txt</code><br>
-将bomb的汇编代码写入 bomb.txt 中去，并找到Phase_x的相关位置。</p>
-</blockquote>
-<h4 id="2phase_1的相关汇编代码"><a class="markdownIt-Anchor" href="#2phase_1的相关汇编代码"></a> 2.Phase_1的相关汇编代码</h4>
-<p>① Phase_1主体汇编代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">08048b90 &lt;phase_1&gt;:</span><br><span class="line"> 8048b90:	83 ec 1c             	sub    $0x1c,%esp</span><br><span class="line"> 8048b93:	c7 44 24 04 24 a1 04 	movl   $0x804a124,0x4(%esp)</span><br><span class="line"> 8048b9a:	08 </span><br><span class="line"> 8048b9b:	8b 44 24 20          	mov    0x20(%esp),%eax</span><br><span class="line"> 8048b9f:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line"> 8048ba2:	e8 53 04 00 00       	call   8048ffa &lt;strings_not_equal&gt;</span><br><span class="line"> 8048ba7:	85 c0                	test   %eax,%eax</span><br><span class="line"> 8048ba9:	74 05                	je     8048bb0 &lt;phase_1+0x20&gt;</span><br><span class="line"> 8048bab:	e8 55 05 00 00       	call   8049105 &lt;explode_bomb&gt;</span><br><span class="line"> </span><br><span class="line"> 8048bb0:	83 c4 1c             	add    $0x1c,%esp</span><br><span class="line"> 8048bb3:	c3                   	ret</span><br></pre></td></tr></table></figure>
-<p>② 8048ffa地址&lt; string_not_equal &gt;的汇编代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">08048ffa &lt;strings_not_equal&gt;:</span><br><span class="line"> 8048ffa:	57                   	push   %edi</span><br><span class="line"> 8048ffb:	56                   	push   %esi</span><br><span class="line"> 8048ffc:	53                   	push   %ebx</span><br><span class="line"> 8048ffd:	83 ec 04             	sub    $0x4,%esp</span><br><span class="line"> 8049000:	8b 5c 24 14          	mov    0x14(%esp),%ebx</span><br><span class="line"> 8049004:	8b 74 24 18          	mov    0x18(%esp),%esi</span><br><span class="line"> 8049008:	89 1c 24             	mov    %ebx,(%esp)</span><br><span class="line"> 804900b:	e8 cb ff ff ff       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 8049010:	89 c7                	mov    %eax,%edi</span><br><span class="line"> 8049012:	89 34 24             	mov    %esi,(%esp)</span><br><span class="line"> 8049015:	e8 c1 ff ff ff       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 804901a:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 804901f:	39 c7                	cmp    %eax,%edi</span><br><span class="line"> 8049021:	75 3a                	jne    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049023:	0f b6 03             	movzbl (%ebx),%eax</span><br><span class="line"> 8049026:	84 c0                	test   %al,%al</span><br><span class="line"> 8049028:	74 20                	je     804904a &lt;strings_not_equal+0x50&gt;</span><br><span class="line"> 804902a:	3a 06                	cmp    (%esi),%al</span><br><span class="line"> 804902c:	74 08                	je     8049036 &lt;strings_not_equal+0x3c&gt;</span><br><span class="line"> 804902e:	66 90                	xchg   %ax,%ax</span><br><span class="line"> 8049030:	eb 1f                	jmp    8049051 &lt;strings_not_equal+0x57&gt;</span><br><span class="line"> 8049032:	3a 06                	cmp    (%esi),%al</span><br><span class="line"> 8049034:	75 22                	jne    8049058 &lt;strings_not_equal+0x5e&gt;</span><br><span class="line"> 8049036:	83 c3 01             	add    $0x1,%ebx</span><br><span class="line"> 8049039:	83 c6 01             	add    $0x1,%esi</span><br><span class="line"> 804903c:	0f b6 03             	movzbl (%ebx),%eax</span><br><span class="line"> 804903f:	84 c0                	test   %al,%al</span><br><span class="line"> 8049041:	75 ef                	jne    8049032 &lt;strings_not_equal+0x38&gt;</span><br><span class="line"> 8049043:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line"> 8049048:	eb 13                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 804904a:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line"> 804904f:	eb 0c                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049051:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 8049056:	eb 05                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049058:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 804905d:	89 d0                	mov    %edx,%eax</span><br><span class="line"> 804905f:	83 c4 04             	add    $0x4,%esp</span><br><span class="line"> 8049062:	5b                   	pop    %ebx</span><br><span class="line"> 8049063:	5e                   	pop    %esi</span><br><span class="line"> 8049064:	5f                   	pop    %edi</span><br><span class="line"> 8049065:	c3                   	ret</span><br></pre></td></tr></table></figure>
-<h4 id="3解题过程"><a class="markdownIt-Anchor" href="#3解题过程"></a> 3.解题过程</h4>
-<blockquote>
-<p><strong>① 代码分析</strong><br>
-     由Phase_1主体的汇编 代码可以得出，将0x804a124地址出的内容放到%esp + 0x4中，然后将读入32（0x20）位长的字符串放入到%eax中，再调用8048ffa处的函数（比较字符串），比较输入的字符串和0x804a124地址的字符串(<font color="red">test指令</font>)，如果相等则跳转到8048bb0（<font color="red">je指令</font>），不相等的话则调用“爆炸”函数。<br>
-<br><strong>② 验证分析</strong><br>
-     对bomb文件进行反编译，得到Phase_1的伪代码：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_1(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@1</span><br><span class="line"></span><br><span class="line">  result = strings_not_equal(a1, &quot;When I get angry, Mr. Bigglesworth gets upset.&quot;);</span><br><span class="line">  if ( result )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>③ 获取解除“解除炸弹”的字符串</strong><br>
-     通过伪代码可以看出，程序Phase_1是将输入的字符串a1与字符串“<code>When I get angry, Mr. Bigglesworth gets upset.</code>”进行比较，那么就可以得出0x804a124地址的字符串位上述字符串。<br>
-     我们也可以通过 <code>x/2s 0x804a124</code>来查看内存地址中的值，将该处的内容输出，如下图：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/bi4Iv87EyWR8k5A0xzlKEPxk1ZBGSxWCNyyUkY9Ej*0!/r/dL8AAAAAAAAA" alt><br>
-<strong>④ 输入字符串，验证结果</strong><br>
-将得到的字符串输入，得到如下的提示：<code>Phase 1 defused. How about the next one?</code>，代表Phase_1通过:<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/BLq5Qh8XlBjkqO9.0yXlshMGiH6bIqL8oviBx5o7Juk!/r/dLgAAAAAAAAA" alt></p>
-</blockquote>
-<h3 id="三-学习感悟"><a class="markdownIt-Anchor" href="#三-学习感悟"></a> 三、学习感悟</h3>
-<blockquote>
-<p>今天做完了Phase_1 to Phase_4 的题目，但是我想认真的再好好过一遍每一个知识点，就比如今天所提到的断点和跳转指令，就和我昨天总结的不一样（可能昨天总结的不够全面），所以我想认真的总结每个Phase，然后完善以前的博文，这样才会慢慢的充实。</p>
-</blockquote>
-<h3 id="四-每日一句"><a class="markdownIt-Anchor" href="#四-每日一句"></a> 四、每日一句</h3>
-<blockquote>
-<p>每一个人的成功之路或许都不尽相同，但我相信，成功都需要每一位想成功的人去努力、去奋斗，而每一条成功之路，都是充满坎坷的，只有那些坚信自己目标，不断努力、不断奋斗的人，才能取得最终的成功。但有一点我始终坚信，那就是，当你能把自己感动得哭了的时候，你就成功了！</p>
+<p>② 8048ffa地址&lt; string_not_equal &gt;的汇编代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">08048ffa &lt;strings_not_equal&gt;:</span><br><span class="line"> 8048ffa:	57                   	push   %edi</span><br><span class="line"> 8048ffb:	56                   	push   %esi</span><br><span class="line"> 8048ffc:	53                   	push   %ebx</span><br><span class="line"> 8048ffd:	83 ec 04             	sub    $0x4,%esp</span><br><span class="line"> 8049000:	8b 5c 24 14          	mov    0x14(%esp),%ebx</span><br><span class="line"> 8049004:	8b 74 24 18          	mov    0x18(%esp),%esi</span><br><span class="line"> 8049008:	89 1c 24             	mov    %ebx,(%esp)</span><br><span class="line"> 804900b:	e8 cb ff ff ff       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 8049010:	89 c7                	mov    %eax,%edi</span><br><span class="line"> 8049012:	89 34 24             	mov    %esi,(%esp)</span><br><span class="line"> 8049015:	e8 c1 ff ff ff       	call   8048fdb &lt;string_length&gt;</span><br><span class="line"> 804901a:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 804901f:	39 c7                	cmp    %eax,%edi</span><br><span class="line"> 8049021:	75 3a                	jne    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049023:	0f b6 03             	movzbl (%ebx),%eax</span><br><span class="line"> 8049026:	84 c0                	test   %al,%al</span><br><span class="line"> 8049028:	74 20                	je     804904a &lt;strings_not_equal+0x50&gt;</span><br><span class="line"> 804902a:	3a 06                	cmp    (%esi),%al</span><br><span class="line"> 804902c:	74 08                	je     8049036 &lt;strings_not_equal+0x3c&gt;</span><br><span class="line"> 804902e:	66 90                	xchg   %ax,%ax</span><br><span class="line"> 8049030:	eb 1f                	jmp    8049051 &lt;strings_not_equal+0x57&gt;</span><br><span class="line"> 8049032:	3a 06                	cmp    (%esi),%al</span><br><span class="line"> 8049034:	75 22                	jne    8049058 &lt;strings_not_equal+0x5e&gt;</span><br><span class="line"> 8049036:	83 c3 01             	add    $0x1,%ebx</span><br><span class="line"> 8049039:	83 c6 01             	add    $0x1,%esi</span><br><span class="line"> 804903c:	0f b6 03             	movzbl (%ebx),%eax</span><br><span class="line"> 804903f:	84 c0                	test   %al,%al</span><br><span class="line"> 8049041:	75 ef                	jne    8049032 &lt;strings_not_equal+0x38&gt;</span><br><span class="line"> 8049043:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line"> 8049048:	eb 13                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 804904a:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line"> 804904f:	eb 0c                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049051:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 8049056:	eb 05                	jmp    804905d &lt;strings_not_equal+0x63&gt;</span><br><span class="line"> 8049058:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line"> 804905d:	89 d0                	mov    %edx,%eax</span><br><span class="line"> 804905f:	83 c4 04             	add    $0x4,%esp</span><br><span class="line"> 8049062:	5b                   	pop    %ebx</span><br><span class="line"> 8049063:	5e                   	pop    %esi</span><br><span class="line"> 8049064:	5f                   	pop    %edi</span><br><span class="line"> 8049065:	c3                   	ret</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-解题过程"><a href="#3-解题过程" class="headerlink" title="3.解题过程"></a>3.解题过程</h4><blockquote>
+<p><strong>① 代码分析</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由Phase_1主体的汇编 代码可以得出，将0x804a124地址出的内容放到%esp + 0x4中，然后将读入32（0x20）位长的字符串放入到%eax中，再调用8048ffa处的函数（比较字符串），比较输入的字符串和0x804a124地址的字符串(<font color="red">test指令</font>)，如果相等则跳转到8048bb0（<font color="red">je指令</font>），不相等的话则调用“爆炸”函数。<br><br><strong>② 验证分析</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对bomb文件进行反编译，得到Phase_1的伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl phase_1(int a1)</span><br><span class="line">&#123;</span><br><span class="line">  int result; // eax@1</span><br><span class="line"></span><br><span class="line">  result = strings_not_equal(a1, &quot;When I get angry, Mr. Bigglesworth gets upset.&quot;);</span><br><span class="line">  if ( result )</span><br><span class="line">    explode_bomb();</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>③ 获取解除“解除炸弹”的字符串</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过伪代码可以看出，程序Phase_1是将输入的字符串a1与字符串“<code>When I get angry, Mr. Bigglesworth gets upset.</code>”进行比较，那么就可以得出0x804a124地址的字符串位上述字符串。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们也可以通过 <code>x/2s 0x804a124</code>来查看内存地址中的值，将该处的内容输出，如下图：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/bi4Iv87EyWR8k5A0xzlKEPxk1ZBGSxWCNyyUkY9Ej*0!/r/dL8AAAAAAAAA" alt><br><strong>④ 输入字符串，验证结果</strong><br>将得到的字符串输入，得到如下的提示：<code>Phase 1 defused. How about the next one?</code>，代表Phase_1通过:<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/BLq5Qh8XlBjkqO9.0yXlshMGiH6bIqL8oviBx5o7Juk!/r/dLgAAAAAAAAA" alt></p>
+<h3 id="三、学习感悟"><a href="#三、学习感悟" class="headerlink" title="三、学习感悟"></a>三、学习感悟</h3><p>今天做完了Phase_1 to Phase_4 的题目，但是我想认真的再好好过一遍每一个知识点，就比如今天所提到的断点和跳转指令，就和我昨天总结的不一样（可能昨天总结的不够全面），所以我想认真的总结每个Phase，然后完善以前的博文，这样才会慢慢的充实。</p>
+<h3 id="四、每日一句"><a href="#四、每日一句" class="headerlink" title="四、每日一句"></a>四、每日一句</h3><p>每一个人的成功之路或许都不尽相同，但我相信，成功都需要每一位想成功的人去努力、去奋斗，而每一条成功之路，都是充满坎坷的，只有那些坚信自己目标，不断努力、不断奋斗的人，才能取得最终的成功。但有一点我始终坚信，那就是，当你能把自己感动得哭了的时候，你就成功了！ </p>
 </blockquote>
 
     </article>
@@ -626,7 +594,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-前期工作"><span class="toc-number">1.</span> <span class="toc-text"> 一、前期工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-phase_1解题过程"><span class="toc-number">2.</span> <span class="toc-text"> 二、Phase_1解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1对bomb文件进行反汇编"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.对bomb文件进行反汇编</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2phase_1的相关汇编代码"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.Phase_1的相关汇编代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3解题过程"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.解题过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-学习感悟"><span class="toc-number">3.</span> <span class="toc-text"> 三、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-每日一句"><span class="toc-number">4.</span> <span class="toc-text"> 四、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、前期工作"><span class="toc-number">1.</span> <span class="toc-text">一、前期工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Phase-1解题过程"><span class="toc-number">2.</span> <span class="toc-text">二、Phase_1解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对bomb文件进行反汇编"><span class="toc-number">2.1.</span> <span class="toc-text">1.对bomb文件进行反汇编</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Phase-1的相关汇编代码"><span class="toc-number">2.2.</span> <span class="toc-text">2.Phase_1的相关汇编代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-解题过程"><span class="toc-number">2.3.</span> <span class="toc-text">3.解题过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、学习感悟"><span class="toc-number">3.</span> <span class="toc-text">三、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、每日一句"><span class="toc-number">4.</span> <span class="toc-text">四、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -639,234 +607,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2972,12 +2712,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2992,12 +2732,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3047,12 +2787,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3555,21 +3295,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3577,27 +3319,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,27 +416,15 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>      昨天晚上拿到了第二阶段的测试，是关于逻辑炸弹的题目，涉及的知识点有：<font color="red">汇编语言、机器语言、调试器和逆向工程</font>，自己根据文档的提示尝试了一下，但是对汇编语言的指令读不懂，今天的主要任务就是对汇编语言进行了学习，就先简单的总结一下今天所学的只是吧！</p>
-<h4 id="1-什么是汇编语言"><a class="markdownIt-Anchor" href="#1-什么是汇编语言"></a> 1. 什么是汇编语言？</h4>
-<blockquote>
-<p>汇编语言（assembly language）是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。其特点主要有以下：<br>
-      ①它是在直接面向处理器的语言；<br>
-      ②它所操作的对象为<font color="red">寄存器</font>或<font color="red">内存器</font>，而得具体的数据；<br>
-      ③因为汇编语言与机器有着密切的关系，所以他的通用性和可移植性要比高级语言低；<br>
-      <font color="red">④相比各种编程语言，它与硬件关系最为密切、最直接；</font><br>
-      ⑤再进行处理数据时，需要自己将数据熊相应的寄存器或者内存器取出；<br>
-<br>也可以简单的这样叙述：（参考：《深入理解计算机系统》）</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天晚上拿到了第二阶段的测试，是关于逻辑炸弹的题目，涉及的知识点有：<font color="red">汇编语言、机器语言、调试器和逆向工程</font>，自己根据文档的提示尝试了一下，但是对汇编语言的指令读不懂，今天的主要任务就是对汇编语言进行了学习，就先简单的总结一下今天所学的只是吧！</p>
+<h4 id="1-什么是汇编语言？"><a href="#1-什么是汇编语言？" class="headerlink" title="1. 什么是汇编语言？"></a>1. 什么是汇编语言？</h4><blockquote>
+<p>汇编语言（assembly language）是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。其特点主要有以下：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①它是在直接面向处理器的语言；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②它所操作的对象为<font color="red">寄存器</font>或<font color="red">内存器</font>，而得具体的数据；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③因为汇编语言与机器有着密切的关系，所以他的通用性和可移植性要比高级语言低；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">④相比各种编程语言，它与硬件关系最为密切、最直接；</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤再进行处理数据时，需要自己将数据熊相应的寄存器或者内存器取出；<br><br>也可以简单的这样叙述：（参考：《深入理解计算机系统》）</p>
 <ol>
 <li>预处理阶段：预处理器（cpp）根据以字符#开头的命令，修改原始的 C 程序，得到以 .i 为文件扩展名的另外一个 C 程序；</li>
 <li>编译阶段：编译器（ccl）将文本文件  .i 翻译成  .s 的文本文件，它包含一个汇编语言程序；</li>
 <li>汇编阶段：汇编器（as） 将 .s 的文本文件翻译成机器语言指令，把这些指令打包成一种可重定位目标程序的格式，并将结果保存在目标文件 .o 中，该文件为二进制文件。</li>
-<li>链接阶段：如果源程序调用了“printf函数”，因为 printf 函数存在一个名为 printf.o 的单独预编译好的目标文件中，就需要链接（Id）负责将该文件以某种方式合并到  .o 文件中，就得到了可执行文件，被加载到内存中，由系统执行。</li>
+<li>链接阶段：如果源程序调用了“printf函数”，因为 printf 函数存在一个名为 printf.o 的单独预编译好的目标文件中，就需要链接（Id）负责将该文件以某种方式合并到  .o 文件中，就得到了可执行文件，被加载到内存中，由系统执行。<h4 id="2-汇编语言的部分指令"><a href="#2-汇编语言的部分指令" class="headerlink" title="2. 汇编语言的部分指令"></a>2. 汇编语言的部分指令</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;汇编语言指令是机器指令的一种符号表示，而不同类型的CPU 有不同的机器指令系统，也就有不同的汇编语言,所以，汇编语言程序与机器有着密切的关系。所以，除了同系列、不同型号CPU 之间的汇编语言程序有一定程度的可移植性之外，其它不同类型CPU 之间的汇编语言程序是无法移植的，这里讲的主要是Inter公司CPU使用汇编语言，也是我们经常使用到的——<font color="red">x86</font>汇编语言的指令。<br>一、数据传送指令</li>
 </ol>
-</blockquote>
-<h4 id="2-汇编语言的部分指令"><a class="markdownIt-Anchor" href="#2-汇编语言的部分指令"></a> 2. 汇编语言的部分指令</h4>
-<p>      汇编语言指令是机器指令的一种符号表示，而不同类型的CPU 有不同的机器指令系统，也就有不同的汇编语言,所以，汇编语言程序与机器有着密切的关系。所以，除了同系列、不同型号CPU 之间的汇编语言程序有一定程度的可移植性之外，其它不同类型CPU 之间的汇编语言程序是无法移植的，这里讲的主要是Inter公司CPU使用汇编语言，也是我们经常使用到的——<font color="red">x86</font>汇编语言的指令。</p>
-<blockquote>
-<p>一、数据传送指令</p>
 <ul>
 <li><font color="red">通用数据传送指令：MOV（movb、movw、movl、movq、movabsq）</font></li>
 <li>条件传送指令：CMOVcc</li>
@@ -487,24 +475,13 @@ height:50vh;
 <p>六、输入输出指令</p>
 <ul>
 <li>端口输入指令：IN/INS</li>
-<li>端口输出指令：OUT/OUTS</li>
+<li>端口输出指令：OUT/OUTS<h4 id="3-待解决的问题"><a href="#3-待解决的问题" class="headerlink" title="3. 待解决的问题"></a>3. 待解决的问题</h4></li>
 </ul>
-</blockquote>
-<h4 id="3-待解决的问题"><a class="markdownIt-Anchor" href="#3-待解决的问题"></a> 3. 待解决的问题</h4>
-<blockquote>
 <ol>
 <li>对寄存器和内存器的理解；</li>
 <li>看懂汇编语言指令；</li>
-<li>gdb指令的使用</li>
+<li>gdb指令的使用<h4 id="4-学习感悟"><a href="#4-学习感悟" class="headerlink" title="4. 学习感悟"></a>4. 学习感悟</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天了解了计算机系统底层的一些东西，虽然我没有太过于了解，但是我隐约的有一种感觉：如果要了解了这些细节的实现，在后面的学习中一定会学的更加透彻。但是今天接触到这些知识点，实着感觉到了难度和压力！这也是我以后要学好这门课的巨大动力！加油吧！明天继续学习。<h4 id="5-每日一句"><a href="#5-每日一句" class="headerlink" title="5.每日一句"></a>5.每日一句</h4>把每件小事都做好，那么离成功就不远了。</li>
 </ol>
-</blockquote>
-<h4 id="4-学习感悟"><a class="markdownIt-Anchor" href="#4-学习感悟"></a> 4. 学习感悟</h4>
-<blockquote>
-<p>      今天了解了计算机系统底层的一些东西，虽然我没有太过于了解，但是我隐约的有一种感觉：如果要了解了这些细节的实现，在后面的学习中一定会学的更加透彻。但是今天接触到这些知识点，实着感觉到了难度和压力！这也是我以后要学好这门课的巨大动力！加油吧！明天继续学习。</p>
-</blockquote>
-<h4 id="5每日一句"><a class="markdownIt-Anchor" href="#5每日一句"></a> 5.每日一句</h4>
-<blockquote>
-<p>把每件小事都做好，那么离成功就不远了。</p>
 </blockquote>
 
     </article>
@@ -666,7 +643,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是汇编语言"><span class="toc-number">1.</span> <span class="toc-text"> 1. 什么是汇编语言？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-汇编语言的部分指令"><span class="toc-number">2.</span> <span class="toc-text"> 2. 汇编语言的部分指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-待解决的问题"><span class="toc-number">3.</span> <span class="toc-text"> 3. 待解决的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 4. 学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 5.每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是汇编语言？"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是汇编语言？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-汇编语言的部分指令"><span class="toc-number">2.</span> <span class="toc-text">2. 汇编语言的部分指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-待解决的问题"><span class="toc-number">3.</span> <span class="toc-text">3. 待解决的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-学习感悟"><span class="toc-number">4.</span> <span class="toc-text">4. 学习感悟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-每日一句"><span class="toc-number">5.</span> <span class="toc-text">5.每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -679,234 +656,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3012,12 +2761,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3032,12 +2781,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3087,12 +2836,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3595,21 +3344,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3617,27 +3368,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

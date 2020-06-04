@@ -366,11 +366,10 @@
                 <span>以太坊智能合约漏洞 | Fallback函数</span>
         </a>
         <div class="abstract-content">
-             一、Fallback 函数介绍
-
+            一、Fallback 函数介绍
 合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
 除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
-在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量...
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量廉价...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -404,17 +403,13 @@
             
 题目链接：XSS Challenges（共19关）
 
- Stage #1
- ① 题目
-
- ② 相关知识点
-
+Stage #1① 题目
+② 相关知识点
 
 XSS 的类型
 
 
- ③ 解题步骤
-
+③ 解题步骤
 ▣ 首先看一下是否存在 XSS 攻击
 
 ⚁ 首次尝试填入信息：
@@ -423,7 +418,7 @@ XSS 的类型
 
 1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
 
-▣ 点击 se...
+▣ 点击 search 之后，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -458,10 +453,9 @@ XSS 的类型
 来自：简书，作者：骑小猪看流星
 链接：https://www.jianshu.com/p/bd1be47a16c1
 
- 一、什么是Cookie？
-
+一、什么是Cookie？
 Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互联网时代的策马奔腾，带宽等限制不存在了，人们需要更复杂的互联网交互活动，就必须同服务器保持活动状态（简称：保活）。
-于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Se...
+于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Sess...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -490,20 +484,18 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
                 <span>有关内核调用问题和预编译指令</span>
         </a>
         <div class="abstract-content">
-             一、知识点摘要
-
+            一、知识点摘要
 
 系统调用 int 80h 中断
 #ifdef ……# endif 的含义和用法
 
 
- 二、知识点介绍
- 1.int 80h 中断
-
+二、知识点介绍1.int 80h 中断
 1) 什么是 system call?
-        system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI ))
 2) 什么是 int 80h 中断？
-        Linux 的 system call 就是通过int 80h来实现的，int 80...
+&nbsp;&nbsp;&...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -532,9 +524,7 @@ Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互�
                 <span>PWN 实战 - shellcode 题解</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.shellcode
-
+            一、基础知识1.shellcode
 有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
 
 
@@ -545,18 +535,15 @@ PWN-shellcode获取与编写
 
 
 
- 二、解题步骤
- 1,查看文件类型
-1file pwn3
+二、解题步骤1,查看文件类型1file pwn3
 6
 
 从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
 
- 2.查看 pwn3 开启的保护
-1checksec pwn3
+2.查看 pwn3 开启的保护1checksec pwn3
 
 
-从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，...
+从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开启了栈上数据可执行...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -587,14 +574,12 @@ PWN-shellcode获取与编写
                 <span>变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</span>
         </a>
         <div class="abstract-content">
-             一、变色龙哈希（Chameleon Hash）
- 1.哈希函数？
+            一、变色龙哈希（Chameleon Hash）1.哈希函数？
+**① 什么是哈希函数？**
 
-① 什么是哈希函数？
-     哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;哈希函数又叫 Hash、one-way function、单向散列函数等，它是一种可以将任意长度输入的字串可转换成一个固定长度的字串，通过原始字串可以很容易地算出转换后的字串，通过转换后的字串很难还原出原始字串。
 ② 哈希函数的特征
-     1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = Hash(m’)。这一性质成为广义碰撞抵抗性。
-     2. 进一步，很难找到任意两个m和m’，使得H...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.对于任意m作为输入，得到输出的结果，很难找到另一个输入m’  （m’不等于m），使得m’的Hash结果也为同样的输出，即Hash(m) = H...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -623,19 +608,20 @@ PWN-shellcode获取与编写
                 <span>pwn-ROP(GOT表泄露)</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.GOT 表、PLT 表和 libc 库的相关知识
-① 什么是 GOT 表？
+            一、基础知识1.GOT 表、PLT 表和 libc 库的相关知识① 什么是 GOT 表？
+
 
 GOT(Global Offset Table) 表，即全局偏移量表，里面是函数在 libc 库中的绝对地址。
 
 ② 什么是 PLT 表？
 
+
 PLT(Procedure Link Table) 表，即程序链接表，里面是函数在 GOT 表中的地址。
 
 ③ 什么是 libc 库？
 
-libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常...
+
+libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包含了C语言最基本的库函数。这个库可以根据 头文件划分为 15 个部分，其中包括：字符类型 ()、错误码()、 浮点常数 ()、数学常数...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -666,29 +652,23 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
                 <span>pwn-bof（基础类型题目）</span>
         </a>
         <div class="abstract-content">
-             一、基础知识
- 1.内存中栈的结构
-
+            一、基础知识1.内存中栈的结构
 
 正如上图所示，栈是由“由高地址向低地址”方向生长。
 
- 2.常见的漏洞类型
-
+2.常见的漏洞类型
 常见的漏洞类型有如下几种：
-① 逻辑错误
+**① 逻辑错误**
+
 ② 内存破坏
-    ✦ 栈溢出
-    ✦ 整数溢出
-    ✦ 格式化字符串
-    ✦ 堆溢出
-    ✦ 释放后使用
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 栈溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 整数溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 格式化字符串
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 堆溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 释放后使用
 
- 二、解题思路
- 1.寻找漏洞
-
-通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 sub_8048573 中，有一个明显的漏洞——read（）函数。我们是如何知道该处是一个漏洞呢？
-
-123456789ssize_t sub_8048573()&#123;  char bu...
+二、解题思路1.寻找漏洞
+通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -719,16 +699,13 @@ libc是Linux下的ANSI C的函数库。ANSI C是基本的C语言函数库，包�
                 <span>bash 漏洞（pwnable-shellshock）</span>
         </a>
         <div class="abstract-content">
-             一、前言
-
+            一、前言
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 bash 的一种题型吧。
 
- 二、基础知识
- 1.setresuid
-
+二、基础知识1.setresuid
 setresuid() 被执行的条件有：
-    ① 当前进程的 euid 是 root
-    ② 三个参数，每个等于原来某个 id 中的一个
+&nbsp;&nbsp;&nbsp;&nbsp;① 当前进程的 euid 是 root
+&nbsp;&nbsp;&nbsp;&nbsp;② 三个参数，每个等于原来某个 id 中的一个
 
 
         </div>
@@ -763,18 +740,13 @@ setresuid() 被执行的条件有：
                 <span>GOT 表攻击实例（pwnbable.kr_passcode）</span>
         </a>
         <div class="abstract-content">
-             一、前言
-
+            一、前言
 pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这样形容：入门难、精通更难、入神超难，是因为 pwn 中所涉及的题型太多、太深，所以对于没有接触过 pwn 的人来说，刚开始的学习尤为困难，比如像我这种菜鸡。今天我就来介绍一下 pwn 中的涉及 GOT 表的一种题型吧。
 
- 二、基础知识
- 1.GOT 表
-
+二、基础知识1.GOT 表
 ① 什么是 GOT 表？
-    每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
-    GOT 表在 ELF 文件中分为两个部分：
-② GOT 表的作用是什么？
-...
+&nbsp;&nbsp;&nbsp;&nbsp;每一个外部定义的符号在全局偏移表（Global offset Table）中有相应的条目，GOT位于ELF的数据段中，叫做GOT段。
+&nbsp;&nbsp;&nbsp;&nbsp;GOT...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -2935,234 +2907,6 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 122
@@ -3230,12 +2974,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3250,12 +2994,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3305,12 +3049,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3813,21 +3557,23 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3835,27 +3581,25 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">585</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">586</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,31 +418,17 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="一-消息认证码"><a class="markdownIt-Anchor" href="#一-消息认证码"></a> 一、消息认证码</h3>
-<blockquote>
-<p>1、消息认证码是一种确认完整性并进行认证的技术，MAC（Message Authentication Code）<br>
-2、消息认证码的输入包括：任意长度的消息和一个共享的密钥（在接收者和发送者之间）<br>
-3、消息认证码的输出是一个固定长度的值，这个数据就是MAC<br>
-4、它与单向散列函数的区别（密钥）：它是一种与密钥相关的单行散列函数<br>
-5、消息认证码的步骤：	<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uFhySAULH8U4y2oFl7NqubXQc9662CO1ahBgZcr24ts!/r/dMAAAAAAAAAA" alt></p>
+        <h3 id="一、消息认证码"><a href="#一、消息认证码" class="headerlink" title="一、消息认证码"></a>一、消息认证码</h3><blockquote>
+<p>1、消息认证码是一种确认完整性并进行认证的技术，MAC（Message Authentication Code）<br>2、消息认证码的输入包括：任意长度的消息和一个共享的密钥（在接收者和发送者之间）<br>3、消息认证码的输出是一个固定长度的值，这个数据就是MAC<br>4、它与单向散列函数的区别（密钥）：它是一种与密钥相关的单行散列函数<br>5、消息认证码的步骤：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/uFhySAULH8U4y2oFl7NqubXQc9662CO1ahBgZcr24ts!/r/dMAAAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="二-消息验证码的应用实例"><a class="markdownIt-Anchor" href="#二-消息验证码的应用实例"></a> 二、消息验证码的应用实例</h3>
-<blockquote>
-<p>1、SWIFT：Society for Worldwide Interbank Financial Telecommunications<br>
-2、IPsec：对IP协议增加安全性的一种方式<br>
-3、SSL/TLS</p>
+<h3 id="二、消息验证码的应用实例"><a href="#二、消息验证码的应用实例" class="headerlink" title="二、消息验证码的应用实例"></a>二、消息验证码的应用实例</h3><blockquote>
+<p>1、SWIFT：Society for Worldwide Interbank Financial Telecommunications<br>2、IPsec：对IP协议增加安全性的一种方式<br>3、SSL/TLS</p>
 </blockquote>
-<h3 id="三-消息认证码的实现方法"><a class="markdownIt-Anchor" href="#三-消息认证码的实现方法"></a> 三、消息认证码的实现方法</h3>
-<blockquote>
-<p>1、使用单向散列函数实现——HMAC<br>
-2、使用密码分组实现：例如AES-CMAC就是一种基于 AES 来实现的消息验证码<br>
-3、其他方法：流密码和公钥密码等</p>
+<h3 id="三、消息认证码的实现方法"><a href="#三、消息认证码的实现方法" class="headerlink" title="三、消息认证码的实现方法"></a>三、消息认证码的实现方法</h3><blockquote>
+<p>1、使用单向散列函数实现——HMAC<br>2、使用密码分组实现：例如AES-CMAC就是一种基于 AES 来实现的消息验证码<br>3、其他方法：流密码和公钥密码等</p>
 </blockquote>
-<h3 id="四-认证加密"><a class="markdownIt-Anchor" href="#四-认证加密"></a> 四、认证加密</h3>
-<blockquote>
-<p>1、认证加密是一种将对称密码和消息认证码相结合的技术，同时满足三个功能“机密性”、“完整性”、“认证”<br>
-2、认证加密的方式：</p>
+<h3 id="四、认证加密"><a href="#四、认证加密" class="headerlink" title="四、认证加密"></a>四、认证加密</h3><blockquote>
+<p>1、认证加密是一种将对称密码和消息认证码相结合的技术，同时满足三个功能“机密性”、“完整性”、“认证”<br>2、认证加密的方式：</p>
 <ul>
 <li>Encrypt-then-MAC</li>
 <li>Encrypt-and-MAC</li>
@@ -451,23 +437,14 @@ height:50vh;
 </ul>
 <p><strong>说 明</strong>：由于CTR模式加密与MAC值的计算使用的是相同的密钥，因此在密钥管理方面也更加容易，专门用于消息认证码的GCM成为CMAC</p>
 </blockquote>
-<h3 id="五-hmac的详细介绍"><a class="markdownIt-Anchor" href="#五-hmac的详细介绍"></a> 五、HMAC的详细介绍</h3>
-<blockquote>
-<p>1、HMAC是一种使用单向散列函数来构造消息认证码的方法。（H代表的意思就是Hash）<br>
-2、任何高强度的单向散列函数都可以被用于HMAC：HMAC-SHA1、HMAC-SHA-224、HMAC-SHA-256、HMAC-SHA-384、HMAC-SHA-512<br>
-3、HMAC的具体步骤：<br>
-<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Kl4nCo9aUNYhPkwppWyXklAXs.gmE2A*Rm.UekD5Be0!/r/dLYAAAAAAAAA" alt></p>
+<h3 id="五、HMAC的详细介绍"><a href="#五、HMAC的详细介绍" class="headerlink" title="五、HMAC的详细介绍"></a>五、HMAC的详细介绍</h3><blockquote>
+<p>1、HMAC是一种使用单向散列函数来构造消息认证码的方法。（H代表的意思就是Hash）<br>2、任何高强度的单向散列函数都可以被用于HMAC：HMAC-SHA1、HMAC-SHA-224、HMAC-SHA-256、HMAC-SHA-384、HMAC-SHA-512<br>3、HMAC的具体步骤：<br><img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/Kl4nCo9aUNYhPkwppWyXklAXs.gmE2A*Rm.UekD5Be0!/r/dLYAAAAAAAAA" alt></p>
 </blockquote>
-<h3 id="六-对消息认证码的攻击"><a class="markdownIt-Anchor" href="#六-对消息认证码的攻击"></a> 六、对消息认证码的攻击</h3>
-<blockquote>
-<p>1、<strong>重放攻击</strong>：并不会破解消息认证码MAC，而是将它保存下来并加以利用；<br>
-      防止重放攻击的策略：① 序号  ② 时间戳  ③ nonce（一次性的随机数）<br>
-2、密钥推测攻击：暴力破解、生日攻击</p>
+<h3 id="六、对消息认证码的攻击"><a href="#六、对消息认证码的攻击" class="headerlink" title="六、对消息认证码的攻击"></a>六、对消息认证码的攻击</h3><blockquote>
+<p>1、<strong>重放攻击</strong>：并不会破解消息认证码MAC，而是将它保存下来并加以利用；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;防止重放攻击的策略：① 序号  ② 时间戳  ③ nonce（一次性的随机数）<br>2、密钥推测攻击：暴力破解、生日攻击</p>
 </blockquote>
-<h3 id="七-消息认证码无法解决的问题"><a class="markdownIt-Anchor" href="#七-消息认证码无法解决的问题"></a> 七、消息认证码无法解决的问题</h3>
-<blockquote>
-<p>1、对第三方的证明（数字签名来解决）<br>
-2、防止否认（也是用数字签名来解决）</p>
+<h3 id="七、消息认证码无法解决的问题"><a href="#七、消息认证码无法解决的问题" class="headerlink" title="七、消息认证码无法解决的问题"></a>七、消息认证码无法解决的问题</h3><blockquote>
+<p>1、对第三方的证明（数字签名来解决）<br>2、防止否认（也是用数字签名来解决）</p>
 </blockquote>
 
     </article>
@@ -629,7 +606,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-消息认证码"><span class="toc-number">1.</span> <span class="toc-text"> 一、消息认证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-消息验证码的应用实例"><span class="toc-number">2.</span> <span class="toc-text"> 二、消息验证码的应用实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-消息认证码的实现方法"><span class="toc-number">3.</span> <span class="toc-text"> 三、消息认证码的实现方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-认证加密"><span class="toc-number">4.</span> <span class="toc-text"> 四、认证加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-hmac的详细介绍"><span class="toc-number">5.</span> <span class="toc-text"> 五、HMAC的详细介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-对消息认证码的攻击"><span class="toc-number">6.</span> <span class="toc-text"> 六、对消息认证码的攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七-消息认证码无法解决的问题"><span class="toc-number">7.</span> <span class="toc-text"> 七、消息认证码无法解决的问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、消息认证码"><span class="toc-number">1.</span> <span class="toc-text">一、消息认证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、消息验证码的应用实例"><span class="toc-number">2.</span> <span class="toc-text">二、消息验证码的应用实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、消息认证码的实现方法"><span class="toc-number">3.</span> <span class="toc-text">三、消息认证码的实现方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、认证加密"><span class="toc-number">4.</span> <span class="toc-text">四、认证加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、HMAC的详细介绍"><span class="toc-number">5.</span> <span class="toc-text">五、HMAC的详细介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、对消息认证码的攻击"><span class="toc-number">6.</span> <span class="toc-text">六、对消息认证码的攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、消息认证码无法解决的问题"><span class="toc-number">7.</span> <span class="toc-text">七、消息认证码无法解决的问题</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -642,234 +619,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2975,12 +2724,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -2995,12 +2744,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3050,12 +2799,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3558,21 +3307,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3580,27 +3331,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     

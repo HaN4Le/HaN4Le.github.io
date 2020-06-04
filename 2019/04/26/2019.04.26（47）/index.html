@@ -417,17 +417,9 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p><strong>☛ 前言：</strong><br>
-今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。</p>
-</blockquote>
-<h3 id="一-认识caesar密码"><a class="markdownIt-Anchor" href="#一-认识caesar密码"></a> 一、认识Caesar密码</h3>
-<blockquote>
-<p>在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种<strong>替换加密</strong>的技术，明文中的所有字母都在字母表上向后（或向前）<strong>按照一个固定数目进行偏移后被替换成密文</strong>。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/AKMYHBqnkVvRuVkXOzZO4ji*FlIOYlfhrqsnlkYXzTE!/r/dL8AAAAAAAAA" alt></p>
-</blockquote>
-<h3 id="二-caesar密码的加密"><a class="markdownIt-Anchor" href="#二-caesar密码的加密"></a> 二、Caesar密码的加密</h3>
-<blockquote>
-<p>Caesar密码加密是根据“密钥”（偏移量），将26个字母的对应顺序依次后移，例如上图所示（偏移量为 3 ）。偏移量的取值有25中可能，所以有25中对应关系，也就有25个密钥；它的加密情况属于“替换加密”的简单的一种。<br>
-例如：以上图为例，我们要对“wearefamily”用Caesar进行加密：</p>
+<p><strong>☛ 前言：</strong><br>今天看《图解密码技术》中，学习了有关Caesar密码的知识，今天就主要说一下有关Caesar密码的知识点。</p>
+<h3 id="一、认识Caesar密码"><a href="#一、认识Caesar密码" class="headerlink" title="一、认识Caesar密码"></a>一、认识Caesar密码</h3><p>在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术，是以罗马共和时期恺撒的名字命名的。它是一种<strong>替换加密</strong>的技术，明文中的所有字母都在字母表上向后（或向前）<strong>按照一个固定数目进行偏移后被替换成密文</strong>。例如，当偏移量是3的时候，所有的字母a（小写代表明文）将被替换成D（大写代表密文），B变成E，以此类推吗，如下图：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/AKMYHBqnkVvRuVkXOzZO4ji*FlIOYlfhrqsnlkYXzTE!/r/dL8AAAAAAAAA" alt></p>
+<h3 id="二、Caesar密码的加密"><a href="#二、Caesar密码的加密" class="headerlink" title="二、Caesar密码的加密"></a>二、Caesar密码的加密</h3><p>Caesar密码加密是根据“密钥”（偏移量），将26个字母的对应顺序依次后移，例如上图所示（偏移量为 3 ）。偏移量的取值有25中可能，所以有25中对应关系，也就有25个密钥；它的加密情况属于“替换加密”的简单的一种。<br>例如：以上图为例，我们要对“wearefamily”用Caesar进行加密：</p>
 <ul>
 <li>w —&gt; Z</li>
 <li>e —&gt; H</li>
@@ -442,42 +434,14 @@ height:50vh;
 <li>y —&gt; B</li>
 </ul>
 <p>那么加密后的密文为：ZHDUHIDPLOB。在不知怎么样加密的情况下，我们完全读不懂该字符串的意思。</p>
-</blockquote>
-<h3 id="三-caesar密码解密"><a class="markdownIt-Anchor" href="#三-caesar密码解密"></a> 三、Caesar密码解密</h3>
-<blockquote>
-<p>Caesar密码的解密，关键在于找到“密钥”，也就是上文所说的偏移量。在不能得到偏移量的情况下，我们可以使用暴力破解的方法进行破解，也就是将25种情况全部尝试，然后再观察结果。<br>
-<br>说明：在所有的实例中，将小写字母代表明文，大写字母代表密文；</p>
-</blockquote>
-<h4 id="1caesar-25-种密钥"><a class="markdownIt-Anchor" href="#1caesar-25-种密钥"></a> 1.Caesar 25 种密钥</h4>
-<blockquote>
-<p>求25种密钥的算法如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">############## 构造的函数 ##############</span><br><span class="line">def Caesar(crypto):</span><br><span class="line">    Lowercase_ciphertext = chr(crypto)                  # 将十进制转换为小写的字符</span><br><span class="line">    Uppercase_ciphertext = Lowercase_ciphertext.upper() # 将小写字母的转换为大写字母  </span><br><span class="line">    string.append(Uppercase_ciphertext)                 # 将大写字母所对应的小写字母写入string列表中</span><br><span class="line">    return string </span><br><span class="line"></span><br><span class="line">############## 双层循环 ##############</span><br><span class="line">string = []</span><br><span class="line">for num in range(0,26):                                 # 这是偏移量，也是凯撒密码的密钥，从0 - 25；</span><br><span class="line">    for word in range(97,123):                          # a - z 所对应的ASCCII码</span><br><span class="line">        crypto = word + num;                            # 小写字母的ASCII码 + 偏移量 = 新的小写字母的ASCII码</span><br><span class="line">        if crypto &gt; 122:                                # 小写字母的ASCII码的范围为[97,122]，所以新的ASCII码的大小不能超过122</span><br><span class="line">            crypto = 96 + crypto % 122                  # 对于大于122的ASCII码，对其取余，以96为基础 + 余数 = 新的小写字母的ASCII码</span><br><span class="line">            Caesar(crypto)                              # 调用Caesar函数，将新的小写字母转换为大写字母，将其所对应的明文（小写字母）放入到一个数组中</span><br><span class="line">        else:</span><br><span class="line">            Caesar(crypto)          </span><br><span class="line"></span><br><span class="line">########## 取每种加密后的结果 ###########</span><br><span class="line">for mul in range(0,26):  </span><br><span class="line">    print(&quot;The key is:&quot;,mul)</span><br><span class="line">    print(&apos;abcdefghijklmnopqrstuvwxyz&apos;) </span><br><span class="line">    for index in range(0,26):        </span><br><span class="line">        Serial_number = index + mul * 26</span><br><span class="line">        print(string[Serial_number],end=&apos;&apos;)</span><br><span class="line">    print(end=&apos;\n\n&apos;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>输出的结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">The key is: 0</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><br><span class="line"></span><br><span class="line">The key is: 1</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">BCDEFGHIJKLMNOPQRSTUVWXYZA</span><br><span class="line"></span><br><span class="line">The key is: 2</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">CDEFGHIJKLMNOPQRSTUVWXYZAB</span><br><span class="line"></span><br><span class="line">The key is: 3</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">DEFGHIJKLMNOPQRSTUVWXYZABC</span><br><span class="line"></span><br><span class="line">The key is: 4</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">EFGHIJKLMNOPQRSTUVWXYZABCD</span><br><span class="line"></span><br><span class="line">The key is: 5</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">FGHIJKLMNOPQRSTUVWXYZABCDE</span><br><span class="line"></span><br><span class="line">The key is: 6</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">GHIJKLMNOPQRSTUVWXYZABCDEF</span><br><span class="line"></span><br><span class="line">The key is: 7</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">HIJKLMNOPQRSTUVWXYZABCDEFG</span><br><span class="line"></span><br><span class="line">The key is: 8</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">IJKLMNOPQRSTUVWXYZABCDEFGH</span><br><span class="line"></span><br><span class="line">The key is: 9</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">JKLMNOPQRSTUVWXYZABCDEFGHI</span><br><span class="line"></span><br><span class="line">The key is: 10</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">KLMNOPQRSTUVWXYZABCDEFGHIJ</span><br><span class="line"></span><br><span class="line">The key is: 11</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">LMNOPQRSTUVWXYZABCDEFGHIJK</span><br><span class="line"></span><br><span class="line">The key is: 12</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">MNOPQRSTUVWXYZABCDEFGHIJKL</span><br><span class="line"></span><br><span class="line">The key is: 13</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">NOPQRSTUVWXYZABCDEFGHIJKLM</span><br><span class="line"></span><br><span class="line">The key is: 14</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">OPQRSTUVWXYZABCDEFGHIJKLMN</span><br><span class="line"></span><br><span class="line">The key is: 15</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">PQRSTUVWXYZABCDEFGHIJKLMNO</span><br><span class="line"></span><br><span class="line">The key is: 16</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">QRSTUVWXYZABCDEFGHIJKLMNOP</span><br><span class="line"></span><br><span class="line">The key is: 17</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">RSTUVWXYZABCDEFGHIJKLMNOPQ</span><br><span class="line"></span><br><span class="line">The key is: 18</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">STUVWXYZABCDEFGHIJKLMNOPQR</span><br><span class="line"></span><br><span class="line">The key is: 19</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">TUVWXYZABCDEFGHIJKLMNOPQRS</span><br><span class="line"></span><br><span class="line">The key is: 20</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">UVWXYZABCDEFGHIJKLMNOPQRST</span><br><span class="line"></span><br><span class="line">The key is: 21</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">VWXYZABCDEFGHIJKLMNOPQRSTU</span><br><span class="line"></span><br><span class="line">The key is: 22</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">WXYZABCDEFGHIJKLMNOPQRSTUV</span><br><span class="line"></span><br><span class="line">The key is: 23</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">XYZABCDEFGHIJKLMNOPQRSTUVW</span><br><span class="line"></span><br><span class="line">The key is: 24</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">YZABCDEFGHIJKLMNOPQRSTUVWX</span><br><span class="line"></span><br><span class="line">The key is: 25</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">ZABCDEFGHIJKLMNOPQRSTUVWXY</span><br></pre></td></tr></table></figure>
-<blockquote>
+<h3 id="三、Caesar密码解密"><a href="#三、Caesar密码解密" class="headerlink" title="三、Caesar密码解密"></a>三、Caesar密码解密</h3><p>Caesar密码的解密，关键在于找到“密钥”，也就是上文所说的偏移量。在不能得到偏移量的情况下，我们可以使用暴力破解的方法进行破解，也就是将25种情况全部尝试，然后再观察结果。<br><br>说明：在所有的实例中，将小写字母代表明文，大写字母代表密文；</p>
+<h4 id="1-Caesar-25-种密钥"><a href="#1-Caesar-25-种密钥" class="headerlink" title="1.Caesar 25 种密钥"></a>1.Caesar 25 种密钥</h4><p>求25种密钥的算法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">############## 构造的函数 ##############</span><br><span class="line">def Caesar(crypto):</span><br><span class="line">    Lowercase_ciphertext = chr(crypto)                  # 将十进制转换为小写的字符</span><br><span class="line">    Uppercase_ciphertext = Lowercase_ciphertext.upper() # 将小写字母的转换为大写字母  </span><br><span class="line">    string.append(Uppercase_ciphertext)                 # 将大写字母所对应的小写字母写入string列表中</span><br><span class="line">    return string </span><br><span class="line"></span><br><span class="line">############## 双层循环 ##############</span><br><span class="line">string = []</span><br><span class="line">for num in range(0,26):                                 # 这是偏移量，也是凯撒密码的密钥，从0 - 25；</span><br><span class="line">    for word in range(97,123):                          # a - z 所对应的ASCCII码</span><br><span class="line">        crypto = word + num;                            # 小写字母的ASCII码 + 偏移量 = 新的小写字母的ASCII码</span><br><span class="line">        if crypto &gt; 122:                                # 小写字母的ASCII码的范围为[97,122]，所以新的ASCII码的大小不能超过122</span><br><span class="line">            crypto = 96 + crypto % 122                  # 对于大于122的ASCII码，对其取余，以96为基础 + 余数 = 新的小写字母的ASCII码</span><br><span class="line">            Caesar(crypto)                              # 调用Caesar函数，将新的小写字母转换为大写字母，将其所对应的明文（小写字母）放入到一个数组中</span><br><span class="line">        else:</span><br><span class="line">            Caesar(crypto)          </span><br><span class="line"></span><br><span class="line">########## 取每种加密后的结果 ###########</span><br><span class="line">for mul in range(0,26):  </span><br><span class="line">    print(&quot;The key is:&quot;,mul)</span><br><span class="line">    print(&apos;abcdefghijklmnopqrstuvwxyz&apos;) </span><br><span class="line">    for index in range(0,26):        </span><br><span class="line">        Serial_number = index + mul * 26</span><br><span class="line">        print(string[Serial_number],end=&apos;&apos;)</span><br><span class="line">    print(end=&apos;\n\n&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>输出的结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">The key is: 0</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><br><span class="line"></span><br><span class="line">The key is: 1</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">BCDEFGHIJKLMNOPQRSTUVWXYZA</span><br><span class="line"></span><br><span class="line">The key is: 2</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">CDEFGHIJKLMNOPQRSTUVWXYZAB</span><br><span class="line"></span><br><span class="line">The key is: 3</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">DEFGHIJKLMNOPQRSTUVWXYZABC</span><br><span class="line"></span><br><span class="line">The key is: 4</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">EFGHIJKLMNOPQRSTUVWXYZABCD</span><br><span class="line"></span><br><span class="line">The key is: 5</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">FGHIJKLMNOPQRSTUVWXYZABCDE</span><br><span class="line"></span><br><span class="line">The key is: 6</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">GHIJKLMNOPQRSTUVWXYZABCDEF</span><br><span class="line"></span><br><span class="line">The key is: 7</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">HIJKLMNOPQRSTUVWXYZABCDEFG</span><br><span class="line"></span><br><span class="line">The key is: 8</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">IJKLMNOPQRSTUVWXYZABCDEFGH</span><br><span class="line"></span><br><span class="line">The key is: 9</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">JKLMNOPQRSTUVWXYZABCDEFGHI</span><br><span class="line"></span><br><span class="line">The key is: 10</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">KLMNOPQRSTUVWXYZABCDEFGHIJ</span><br><span class="line"></span><br><span class="line">The key is: 11</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">LMNOPQRSTUVWXYZABCDEFGHIJK</span><br><span class="line"></span><br><span class="line">The key is: 12</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">MNOPQRSTUVWXYZABCDEFGHIJKL</span><br><span class="line"></span><br><span class="line">The key is: 13</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">NOPQRSTUVWXYZABCDEFGHIJKLM</span><br><span class="line"></span><br><span class="line">The key is: 14</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">OPQRSTUVWXYZABCDEFGHIJKLMN</span><br><span class="line"></span><br><span class="line">The key is: 15</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">PQRSTUVWXYZABCDEFGHIJKLMNO</span><br><span class="line"></span><br><span class="line">The key is: 16</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">QRSTUVWXYZABCDEFGHIJKLMNOP</span><br><span class="line"></span><br><span class="line">The key is: 17</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">RSTUVWXYZABCDEFGHIJKLMNOPQ</span><br><span class="line"></span><br><span class="line">The key is: 18</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">STUVWXYZABCDEFGHIJKLMNOPQR</span><br><span class="line"></span><br><span class="line">The key is: 19</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">TUVWXYZABCDEFGHIJKLMNOPQRS</span><br><span class="line"></span><br><span class="line">The key is: 20</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">UVWXYZABCDEFGHIJKLMNOPQRST</span><br><span class="line"></span><br><span class="line">The key is: 21</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">VWXYZABCDEFGHIJKLMNOPQRSTU</span><br><span class="line"></span><br><span class="line">The key is: 22</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">WXYZABCDEFGHIJKLMNOPQRSTUV</span><br><span class="line"></span><br><span class="line">The key is: 23</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">XYZABCDEFGHIJKLMNOPQRSTUVW</span><br><span class="line"></span><br><span class="line">The key is: 24</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">YZABCDEFGHIJKLMNOPQRSTUVWX</span><br><span class="line"></span><br><span class="line">The key is: 25</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br><span class="line">ZABCDEFGHIJKLMNOPQRSTUVWXY</span><br></pre></td></tr></table></figure></p>
 <p>在得到上述的密钥后，对于Caesar加密后的密文，我们都应当能够解密，得到密文；</p>
-</blockquote>
-<h4 id="2解密实例"><a class="markdownIt-Anchor" href="#2解密实例"></a> 2.解密实例</h4>
-<blockquote>
-<p>往往在解密的过程中，得到的密文往往很长，那么能不能让计算机自己自动用25种密钥进行紧密呢？答案是可以的，那么下面我们据举个例子，就以上面的加密后的密文为例吧。<br>
-<br>密文：ZHDUHIDPLOB<br>
-<br>代码实现：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># Function:该脚本是用来解密凯撒密码的：可以输出凯撒密码的所有情况，也可以根据输入的密文，进行自动解密</span><br><span class="line"># Date：2019-4-26</span><br><span class="line"></span><br><span class="line">string = input(&quot;Please input encryption:&quot;)</span><br><span class="line">length = len(string)</span><br><span class="line"></span><br><span class="line">############## 构造的函数 ##############</span><br><span class="line">def Caesar(crypto,index,word):</span><br><span class="line">    Lowercase_ciphertext = chr(crypto)                      # 将十进制转换为小写的字符</span><br><span class="line">    Uppercase_ciphertext = Lowercase_ciphertext.upper()     # 将小写字母的转换为大写字母</span><br><span class="line">    if string[index] == Uppercase_ciphertext:               # 判断字符串中的每个字符是否与凯撒密文的字符是否相等</span><br><span class="line">        Crypto_string.append(chr(word))                     # 如果相等，就将大写字母所对应的小写字母写入Crypto_string列表中</span><br><span class="line">    return Crypto_string                                    # Caesar函数返回的值为一个列表</span><br><span class="line"></span><br><span class="line">############## 三个循环体 ##############</span><br><span class="line">Crypto_string = []</span><br><span class="line">for num in range(0,26):                                     # 这是偏移量，也是凯撒密码的密钥，从0 - 25；</span><br><span class="line">    for index in range(0,len(string)):                      # 为了遍历字符串中的每个字符</span><br><span class="line">        for word in range(97,123):                          # a - z 所对应的ASCCII码</span><br><span class="line">            crypto = word + num;                            # 小写字母的ASCII码 + 偏移量 = 新的小写字母的ASCII码</span><br><span class="line">            if crypto &gt; 122:                                # 小写字母的ASCII码的范围为[97,122]，所以新的ASCII码的大小不能超过122</span><br><span class="line">                crypto = 96 + crypto % 122                  # 对于大于122的ASCII码，对其取余，以96为基础 + 余数 = 新的小写字母的ASCII码</span><br><span class="line">                Caesar(crypto,index,word)                   # 调用Caesar函数，将新的小写字母转换为大写字母，然后对于符合string中的字符，将其所对应的明文（小写字母）放入到一个数组中</span><br><span class="line">            else:</span><br><span class="line">                Caesar(crypto,index,word)                   # 对加过偏移量的ASCCII码的值在[97,122]之间的，直接调用Caesar函数</span><br><span class="line">                </span><br><span class="line">########## 取每种加密后的结果 ###########                        </span><br><span class="line">for mul in range(0,26):</span><br><span class="line">    print(&quot;The key is:&quot;,mul,&apos;| The encrypto is：&apos;,end=&apos;&apos;)</span><br><span class="line">    for index_sec in range(0,length):</span><br><span class="line">        Serial_number = index_sec + mul * length</span><br><span class="line">        print(Crypto_string[Serial_number],end=&apos;&apos;)</span><br><span class="line">    print(end=&apos;\n&apos;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>输出结果为：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/.gOPdLtrefVUdP*4822Hg3Joh3XbckZryVjl*uKKUoA!/r/dEkBAAAAAAAA" alt><br>
-从上面的结果可以得出，密钥为 <code>3</code>，明文为：<code>wearefamily</code>。与上文的明文一致，至此可以推出该程序的正确性。</p>
-</blockquote>
-<h3 id="四-学习感悟"><a class="markdownIt-Anchor" href="#四-学习感悟"></a> 四、学习感悟</h3>
-<blockquote>
-<p>在做测试的时候，自己的思想也开始慢慢的发生变化：自己要动手写一下程序，锻炼自己的思维能力和编程能力。今后在遇到问题的时候，我将会自己写程序来解决，也是边学习python，边锻炼自己。</p>
-</blockquote>
-<h3 id="五-每日一句"><a class="markdownIt-Anchor" href="#五-每日一句"></a> 五、每日一句</h3>
-<blockquote>
-<p>不管有多苦，千万要记住：苦难是我们人生路上不可缺少的经历，只有活着，才有幸福的可能！</p>
+<h4 id="2-解密实例"><a href="#2-解密实例" class="headerlink" title="2.解密实例"></a>2.解密实例</h4><p>往往在解密的过程中，得到的密文往往很长，那么能不能让计算机自己自动用25种密钥进行紧密呢？答案是可以的，那么下面我们据举个例子，就以上面的加密后的密文为例吧。<br><br>密文：ZHDUHIDPLOB<br><br>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># Function:该脚本是用来解密凯撒密码的：可以输出凯撒密码的所有情况，也可以根据输入的密文，进行自动解密</span><br><span class="line"># Date：2019-4-26</span><br><span class="line"></span><br><span class="line">string = input(&quot;Please input encryption:&quot;)</span><br><span class="line">length = len(string)</span><br><span class="line"></span><br><span class="line">############## 构造的函数 ##############</span><br><span class="line">def Caesar(crypto,index,word):</span><br><span class="line">    Lowercase_ciphertext = chr(crypto)                      # 将十进制转换为小写的字符</span><br><span class="line">    Uppercase_ciphertext = Lowercase_ciphertext.upper()     # 将小写字母的转换为大写字母</span><br><span class="line">    if string[index] == Uppercase_ciphertext:               # 判断字符串中的每个字符是否与凯撒密文的字符是否相等</span><br><span class="line">        Crypto_string.append(chr(word))                     # 如果相等，就将大写字母所对应的小写字母写入Crypto_string列表中</span><br><span class="line">    return Crypto_string                                    # Caesar函数返回的值为一个列表</span><br><span class="line"></span><br><span class="line">############## 三个循环体 ##############</span><br><span class="line">Crypto_string = []</span><br><span class="line">for num in range(0,26):                                     # 这是偏移量，也是凯撒密码的密钥，从0 - 25；</span><br><span class="line">    for index in range(0,len(string)):                      # 为了遍历字符串中的每个字符</span><br><span class="line">        for word in range(97,123):                          # a - z 所对应的ASCCII码</span><br><span class="line">            crypto = word + num;                            # 小写字母的ASCII码 + 偏移量 = 新的小写字母的ASCII码</span><br><span class="line">            if crypto &gt; 122:                                # 小写字母的ASCII码的范围为[97,122]，所以新的ASCII码的大小不能超过122</span><br><span class="line">                crypto = 96 + crypto % 122                  # 对于大于122的ASCII码，对其取余，以96为基础 + 余数 = 新的小写字母的ASCII码</span><br><span class="line">                Caesar(crypto,index,word)                   # 调用Caesar函数，将新的小写字母转换为大写字母，然后对于符合string中的字符，将其所对应的明文（小写字母）放入到一个数组中</span><br><span class="line">            else:</span><br><span class="line">                Caesar(crypto,index,word)                   # 对加过偏移量的ASCCII码的值在[97,122]之间的，直接调用Caesar函数</span><br><span class="line">                </span><br><span class="line">########## 取每种加密后的结果 ###########                        </span><br><span class="line">for mul in range(0,26):</span><br><span class="line">    print(&quot;The key is:&quot;,mul,&apos;| The encrypto is：&apos;,end=&apos;&apos;)</span><br><span class="line">    for index_sec in range(0,length):</span><br><span class="line">        Serial_number = index_sec + mul * length</span><br><span class="line">        print(Crypto_string[Serial_number],end=&apos;&apos;)</span><br><span class="line">    print(end=&apos;\n&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为：<img src="http://r.photo.store.qq.com/psb?/V11UAV0k0TKwM6/.gOPdLtrefVUdP*4822Hg3Joh3XbckZryVjl*uKKUoA!/r/dEkBAAAAAAAA" alt><br>从上面的结果可以得出，密钥为 <code>3</code>，明文为：<code>wearefamily</code>。与上文的明文一致，至此可以推出该程序的正确性。</p>
+<h3 id="四、学习感悟"><a href="#四、学习感悟" class="headerlink" title="四、学习感悟"></a>四、学习感悟</h3><p>在做测试的时候，自己的思想也开始慢慢的发生变化：自己要动手写一下程序，锻炼自己的思维能力和编程能力。今后在遇到问题的时候，我将会自己写程序来解决，也是边学习python，边锻炼自己。</p>
+<h3 id="五、每日一句"><a href="#五、每日一句" class="headerlink" title="五、每日一句"></a>五、每日一句</h3><p>不管有多苦，千万要记住：苦难是我们人生路上不可缺少的经历，只有活着，才有幸福的可能！ </p>
 </blockquote>
 
     </article>
@@ -639,7 +603,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-认识caesar密码"><span class="toc-number">1.</span> <span class="toc-text"> 一、认识Caesar密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-caesar密码的加密"><span class="toc-number">2.</span> <span class="toc-text"> 二、Caesar密码的加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-caesar密码解密"><span class="toc-number">3.</span> <span class="toc-text"> 三、Caesar密码解密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1caesar-25-种密钥"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.Caesar 25 种密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2解密实例"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.解密实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-学习感悟"><span class="toc-number">4.</span> <span class="toc-text"> 四、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-每日一句"><span class="toc-number">5.</span> <span class="toc-text"> 五、每日一句</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、认识Caesar密码"><span class="toc-number">1.</span> <span class="toc-text">一、认识Caesar密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Caesar密码的加密"><span class="toc-number">2.</span> <span class="toc-text">二、Caesar密码的加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Caesar密码解密"><span class="toc-number">3.</span> <span class="toc-text">三、Caesar密码解密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Caesar-25-种密钥"><span class="toc-number">3.1.</span> <span class="toc-text">1.Caesar 25 种密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-解密实例"><span class="toc-number">3.2.</span> <span class="toc-text">2.解密实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、学习感悟"><span class="toc-number">4.</span> <span class="toc-text">四、学习感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、每日一句"><span class="toc-number">5.</span> <span class="toc-text">五、每日一句</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -652,234 +616,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -2985,12 +2721,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3005,12 +2741,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3060,12 +2796,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3568,21 +3304,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
     
-        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
-    
         <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
     
         <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
     
-        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
     
         <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
     
         <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
     
@@ -3590,27 +3328,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
     
-        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
     
         <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
     
-        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
-    
-        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
         <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
     
         <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
     
         <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
     
