@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.3k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -633,6 +633,13 @@ height:50vh;
 </ul>
 </blockquote>
 <h4 id="3解题步骤-6"><a class="markdownIt-Anchor" href="#3解题步骤-6"></a> <code>3.解题步骤</code></h4>
+<p>      首先先看一下怎么绕过<code>v3 &lt;= 3u || v3 &gt; 8u</code>，在这里v3是一个单字节变量，且是passwd的长度，而由于passwd最长可以输入<code>0x199</code>长度的字符串，所以我们先算好应该输入多长的passwd才能绕过if的判断语句：</p>
+<blockquote>
+<p>因为v3是单字节，也就是8个bit，正常来说v3为<code>0000 0100</code>到<code>0000 1000</code>区间都可以，也就是在[4,8]区间，如果v3的最高位产生了溢出，比如第9位为1，那么输入的长度应该在<code>1 0000 0100</code>到<code>1 0000 1000</code>，也就是[260,264]区间，在这里我们选择输入的长度为262</p>
+</blockquote>
+<p>      观察dest相对ebp的位置，从IDA中可以看出，dest位于<code>ebp-0x14</code>的位置，然后又因为存在一个<code>old ebp</code>，所以前面需要<code>0x14+4=0x18</code>字节的填充；</p>
+<p>      我们又从IDA中可以找出<code>what_is_this</code>函数，该函数可以打印<code>flag.txt</code>，因为前面已经输入<code>0x14+4+4=0x1c</code>长度的字节，所以现在还剩<code>262-0x1c=234</code>长度的填充，示意图如下：</p>
+<p><img src="/images/122-8.png" alt></p>
 
     </article>
     <!-- license  -->
