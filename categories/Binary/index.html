@@ -434,7 +434,7 @@ pwn文件是一个64位的ELF可执行文件，也...
     <article class="index-post">
         <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
             
-                <span>【XCTF-pwn】由浅入深的剖析 &#34;string&#34; 题目</span>
+                <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
         </a>
         <div class="abstract-content">
             0x00 前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想...
@@ -3680,7 +3680,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
