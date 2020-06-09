@@ -361,6 +361,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/22/2019.04.22（44）/">
+            
+                <span>sscanf()函数的详细总结 + 实例</span>
+        </a>
+        <div class="abstract-content">
+            
+
+前言：今天注重的解决了出现在Phase_3中的问题：当时对__isoc99_sscanf@plt分析的时候，因为自己水平有限，所以当时知识认为sscanf()函数与scanf()函数一样，都只是一个输入函数。今天重新分析Phase_3的时候，发现问题的所在：sscanf() ≠ scanf()。今天就详细的总结一下sscanf()函数的内容。
+
+
+一、有关描述[1]
+sscanf() 是从一个字符串中读进与指定格式相符的数据. 
+
+1.sscanf()格式：
+int sscanf(const char str, const char format, …)&lt;/font&gt;
+
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/21/2019.04.21（43）/">
             
                 <span>二进制炸弹：Phase_4解题总结</span>
@@ -679,41 +719,6 @@ x86-64下的通用寄存器与汇编指令
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/12/2019.04.12（34）/">
-            
-                <span>《汇编语言程序设计》学习笔记（八）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做Pwn和reverse的题目，在做题时只能用四个字“一头雾水”来形容我。在做这两类题目的时候，让我觉得“汇编语言”重要性，以及一些工具使用的重要性，于是我又接着以前的学习，今天又开始了“汇编语言”的学习：
-
-寻址模式
-地址计算指令与其他
-
-#知识储备
-① $立即数，则取得的操作数就是立即数② 立即数，则取得的操作数就是以立即数为地址，对应取出的操作数③ 寄存器，则取得的操作数就是以寄存器的值④ (存器)，则取得的操作数就是以寄存器的值为地址，对应取出的操作数⑤ 通用的公式：立即数1(寄存器1，寄存器2，立即...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
     
 </div>
             
@@ -2980,9 +2985,38 @@ x86-64下的通用寄存器与汇编指令
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 123
+        Total : 124
         </div>
         <!-- search  -->
         
@@ -2999,6 +3033,11 @@ x86-64下的通用寄存器与汇编指令
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2020/06/09/2020.06.09（124）/">Pwnable.kr的奇幻之旅（六）[random]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3047,17 +3086,17 @@ x86-64下的通用寄存器与汇编指令
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3127,12 +3166,12 @@ x86-64下的通用寄存器与汇编指令
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3147,12 +3186,12 @@ x86-64下的通用寄存器与汇编指令
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
