@@ -361,6 +361,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/12/2020.06.12（125）/">
+            
+                <span>【XCTF-pwn】welpwn是个什么？（RCTF-2015）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 相关知识点
+ 1.\x00截断符
+      下面给大家一个简单的C程序：
+12345678// Function：截断符测试# include&lt;stdio.h&gt;int main()&#123;    char a[20];    scanf("%s",a);    printf("%s",a);&#125;
+      我们现在正常运行一下该程序，输入为“Hello\x00World”，运行结果输出为Hello\x00World，有的人可能要有疑问了，这里的输入有\x00，为什么还会输出World？要注意我们这里输入的\x00被当作4个单独的字符\、x、0和0，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/09/2020.06.09（124）/">
             
                 <span>Pwnable.kr的奇幻之旅（六）[random]</span>
@@ -645,48 +680,6 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
-            
-                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
-        </a>
-        <div class="abstract-content">
-            0x00 相关知识1.PwnTools工具的使用
-这个知识点再单独进行总结
-
-2.字符串强制转换为数字
-可以从下面题目中的例子发现
-
-3.python -c的功能
-Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
-指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
-
-4.shell命令中``和$的作用
-反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
             </div>
             <!-- tags  -->
             
@@ -3027,9 +3020,44 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 124
+        Total : 125
         </div>
         <!-- search  -->
         
@@ -3046,6 +3074,11 @@ Specify the command to execute. This terminates the option list (following optio
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/12</span><a class="archive-post-title" href="/2020/06/12/2020.06.12（125）/">【XCTF-pwn】welpwn是个什么？（RCTF-2015）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3099,17 +3132,17 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3124,12 +3157,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
@@ -3179,12 +3212,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
