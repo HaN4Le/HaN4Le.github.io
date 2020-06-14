@@ -361,6 +361,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
+            
+                <span>实模式下的段寄存器</span>
+        </a>
+        <div class="abstract-content">
+             0x00 前言
+      首先想要说明的是这里介绍的原理都是CPU实模式下的情况，有关CPU工作模式的请点击这里，下面简单的介绍一下段寄存器的来源和故事：
+
+      段寄存器的产生源于Intel 8086 CPU体系结构中数据总线与地址总线的宽度不一致。数据总线的宽度，也即是ALU(算数逻辑单元)的宽度，平常说一个CPU是“16位”或者“32位”指的就是这个。8086CPU的数据总线是16位。
+      地址总线的宽度不一定要与ALU的宽度相同。因为ALU的宽度是固定的，它受限于当时的工艺水平，当时只能制造出16位的ALU；但地址总线不一样，它可以设计得更宽。地址总线的宽度如果...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/16/2019.04.16（38）/">
             
                 <span>《汇编语言程序设计》学习笔记（十）</span>
@@ -722,54 +755,11 @@ B2U...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/11/2019.03.11（17）/">
-            
-                <span>《汇编语言程序设计》学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天被通知测试停止，认真的准备复试，我想着在复习剩余的时间不能停止学习，这几天正好是第二阶段测试，我想趁这个时间段好好学习一下汇编语言，课程是清华大学的“汇编语言程序设计”网上课程，这几天我会在博客上更新每天学到的知识点。
-一、课程内容与目标
-
-基本知识这门课程主要讲述的是各类指令集的初步、数制与整数表示、浮点数表示
-x86汇编
-
-
-80x86计算机组织与保护模式
-x86指令系统与寻址方式
-C 与 x86 汇编
-x86 汇编语言程序格式与基本编程
-
-
-MIPS 汇编
-
-
-MIPS 计算机组织的初步
-指令系统介绍
-汇编...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/tags/汇编语言/page/2/">2</a><a class="extend next" rel="next" href="/tags/汇编语言/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -3089,9 +3079,18 @@ MIPS 计算机组织的初步
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 125
+        Total : 126
         </div>
         <!-- search  -->
         
@@ -3108,6 +3107,11 @@ MIPS 计算机组织的初步
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3166,17 +3170,17 @@ MIPS 计算机组织的初步
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3191,12 +3195,12 @@ MIPS 计算机组织的初步
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3246,12 +3250,12 @@ MIPS 计算机组织的初步
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3266,12 +3270,12 @@ MIPS 计算机组织的初步
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
@@ -3917,22 +3921,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    </body>
 </html>
 
 

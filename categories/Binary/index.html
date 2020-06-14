@@ -361,6 +361,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
+            
+                <span>实模式下的段寄存器</span>
+        </a>
+        <div class="abstract-content">
+             0x00 前言
+      首先想要说明的是这里介绍的原理都是CPU实模式下的情况，有关CPU工作模式的请点击这里，下面简单的介绍一下段寄存器的来源和故事：
+
+      段寄存器的产生源于Intel 8086 CPU体系结构中数据总线与地址总线的宽度不一致。数据总线的宽度，也即是ALU(算数逻辑单元)的宽度，平常说一个CPU是“16位”或者“32位”指的就是这个。8086CPU的数据总线是16位。
+      地址总线的宽度不一定要与ALU的宽度相同。因为ALU的宽度是固定的，它受限于当时的工艺水平，当时只能制造出16位的ALU；但地址总线不一样，它可以设计得更宽。地址总线的宽度如果...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/12/2020.06.12（125）/">
             
                 <span>【XCTF-pwn】welpwn是个什么东西？（RCTF-2015）</span>
@@ -433,15 +466,18 @@
                 <span>【XCTF-pwn】stack2 writeup</span>
         </a>
         <div class="abstract-content">
-            0x00.相关知识点1.retn 指令格式：retn
+             0x00.相关知识点
+ 1.retn 指令
+格式：retn
 功能：返回主程序。经常和call一起使用，当调用的过程结束后实现从过程返回至原调用程序的下一条指令，本指令不影响标志位
-说明：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作  
+说明：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作
 
 对段内调用：返回时，由堆栈弹出一个字的返回地址的段内偏移量至IP
 对段外调用：返回时，由堆栈弹出的第一个字为返回地址的段内偏移量，将其送入IP中，由堆栈弹出第二个字为返回地址的段基址，将其送入CS中
 
 举例
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面用一个简单的代码来说...
+     下面用一个简单的代码来说明一下retn的具体作用，代码如下：
+1234...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -540,10 +576,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     <article class="index-post">
         <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
             
-                <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
+                <span>【XCTF-pwn】由浅入深的剖析 &#34;string&#34; 题目</span>
         </a>
         <div class="abstract-content">
-            0x00 前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想...
+             0x00 前言
+      在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“详解格式化字符串漏洞”...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -672,42 +709,6 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
-            
-                <span>pwntools的简单总结（持续更新）</span>
-        </a>
-        <div class="abstract-content">
-            一、基本模块1.asm/disasm功能：用来进行汇编/反汇编。
-例子：
-asm
-12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
-disasm
-12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb f9 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
     
 </div>
             
@@ -3038,9 +3039,18 @@ disasm
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 125
+        Total : 126
         </div>
         <!-- search  -->
         
@@ -3057,6 +3067,11 @@ disasm
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3115,17 +3130,17 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3140,12 +3155,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3195,12 +3210,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3215,12 +3230,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
@@ -3866,22 +3881,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    </body>
 </html>
 
 

@@ -433,15 +433,18 @@
                 <span>【XCTF-pwn】stack2 writeup</span>
         </a>
         <div class="abstract-content">
-            0x00.相关知识点1.retn 指令格式：retn
+             0x00.相关知识点
+ 1.retn 指令
+格式：retn
 功能：返回主程序。经常和call一起使用，当调用的过程结束后实现从过程返回至原调用程序的下一条指令，本指令不影响标志位
-说明：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作  
+说明：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作
 
 对段内调用：返回时，由堆栈弹出一个字的返回地址的段内偏移量至IP
 对段外调用：返回时，由堆栈弹出的第一个字为返回地址的段内偏移量，将其送入IP中，由堆栈弹出第二个字为返回地址的段基址，将其送入CS中
 
 举例
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面用一个简单的代码来说...
+     下面用一个简单的代码来说明一下retn的具体作用，代码如下：
+1234...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -540,10 +543,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     <article class="index-post">
         <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
             
-                <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
+                <span>【XCTF-pwn】由浅入深的剖析 &#34;string&#34; 题目</span>
         </a>
         <div class="abstract-content">
-            0x00 前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想...
+             0x00 前言
+      在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“详解格式化字符串漏洞”...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3053,9 +3057,18 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 125
+        Total : 126
         </div>
         <!-- search  -->
         
@@ -3072,6 +3085,11 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3130,17 +3148,17 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3155,12 +3173,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3210,12 +3228,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -3230,12 +3248,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
@@ -3881,22 +3899,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    </body>
 </html>
 
 
