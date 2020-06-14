@@ -374,6 +374,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/29/2020.05.29（119）/">
+            
+                <span>详解格式化字符串漏洞</span>
+        </a>
+        <div class="abstract-content">
+             0x00 前言
+      格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
+ 0x01 格式化字符串
+ Q1：什么是格式化字符串 
+
+格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/15/2020.05.05（117）/">
             
                 <span>Pwnable.kr的奇幻之旅（五）[passcode]</span>
@@ -482,6 +516,37 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
+            
+                <span>Hexo博客完善（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+            
+0x00 添加置顶功能
+解决Hexo博客文章置顶问题
+
+
+修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
+
+generator.js最终的内容：
+12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
             
                 <span>pwntools的简单总结（持续更新）</span>
@@ -508,37 +573,6 @@ disasm
         <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
-            
-                <span>Hexo博客完善（持续更新）</span>
-        </a>
-        <div class="abstract-content">
-            
-0x00 添加置顶功能
-解决Hexo博客文章置顶问题
-
-
-修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
-
-generator.js最终的内容：
-12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -631,43 +665,6 @@ x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
-            
-                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
-        </a>
-        <div class="abstract-content">
-            0x00 相关知识1.atoi()函数
-① atoi函数是包含在stdlib.h标准库中 
-② 函数的声明：int atoi(const char* str)
-③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
-④ 实例如下：
-
-12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
             
                 <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
@@ -710,25 +707,31 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/03/30/2020.03.30（107）/">
+        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
             
-                <span>详解pointer（指针）中的“*”（取值）和“&amp;”（取地址）</span>
+                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
         </a>
         <div class="abstract-content">
-            
-&nbsp;&nbsp;&nbsp;&nbsp;今天要好好的解析以下C/C++中的“*”和“&amp;”的区别，示例代码如下：
-12345678910111213#include&lt;stdio.h&gt;void main()&#123;	int b = 2;	int* a = &amp;b;	printf("a:%d\n",a);	printf("*a:%d\n",*a);	printf("&amp;a:%d\n",&amp;a);	printf("*&amp;a:%d\n",*&amp;a);	printf("**&amp;a:%d\n",**&amp;a);	printf("...
+            0x00 相关知识1.atoi()函数
+① atoi函数是包含在stdlib.h标准库中 
+② 函数的声明：int atoi(const char* str)
+③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
+④ 实例如下：
+
+12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -3165,9 +3168,204 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 126
+        Total : 127
         </div>
         <!-- search  -->
         
@@ -3188,6 +3386,11 @@ Specify the command to execute. This terminates the option list (following optio
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3247,17 +3450,17 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3996,9 +4199,24 @@ jsonContent:
     <!-- CNZZ  -->
     
     </div>
-    <!-- async load share.js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
 
 
