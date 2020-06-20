@@ -430,6 +430,56 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
+            
+                <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
+        </a>
+        <div class="abstract-content">
+            
+ 0x00 相关知识
+ 1.mprotect()函数
+      mprotect()函数可以修改调用进程内存页的保护属性。如果调用进程尝试以违反保护属性的方式访问该内存，则内核会发出一个SIGSEGV信号给该进程。
+
+
+函数原型：int mprotect(const void *start, size_t len, int prot)
+
+
+参数解释：
+
+start：需改写属性的内存中开始地址
+len：需改写属性的内存长度
+prot：需要修改为的指定值
+
+
+
+功能： mprotect()函数可以用来修改一段指定内存区域的保护属性。 他把自start开始的、长度为len的内存区的保护属性...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
             
                 <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
@@ -665,36 +715,6 @@ pwn文件是一个64位的ELF可执行文件，也...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/31/2020.05.31（121）/">
-            
-                <span>【转载】常见调用约定总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 常见的调用约定一、cdecl调用约定
-又称C调用约定，是C/C++编译器默认的函数调用约定。所有非C++成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
@@ -3131,9 +3151,102 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 128
+        Total : 129
         </div>
         <!-- search  -->
         
@@ -3150,6 +3263,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/2020/06/20/2020.06.20（129）/">【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3878,6 +3996,10 @@ pwn文件是一个64位的ELF可执行文件，也...
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="Jarvis"><span class="iconfont-archer">&#xe606;</span>Jarvis</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈溢出"><span class="iconfont-archer">&#xe606;</span>栈溢出</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

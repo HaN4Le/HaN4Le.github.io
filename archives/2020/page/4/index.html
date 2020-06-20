@@ -361,6 +361,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
+            
+                <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
+        </a>
+        <div class="abstract-content">
+            0x05 Length limited textHint
+length limited text box
+
+
+题目分析
+① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
+
+1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
+
+不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/04/2020.03.04（98）/">
             
                 <span>【转载】Data URI 知识点详解</span>
@@ -3026,9 +3066,102 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 128
+        Total : 129
         </div>
         <!-- search  -->
         
@@ -3045,6 +3178,11 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/2020/06/20/2020.06.20（129）/">【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3773,6 +3911,10 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
         <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="Jarvis"><span class="iconfont-archer">&#xe606;</span>Jarvis</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈溢出"><span class="iconfont-archer">&#xe606;</span>栈溢出</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
