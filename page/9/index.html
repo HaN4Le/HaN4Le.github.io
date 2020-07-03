@@ -374,6 +374,92 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/09/2019.05.09（53）/">
+            
+                <span>Wiener Trick解题总结</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：前天对Wiener攻击相关的知识点进行了详细总结，但是因为Hexo中Mathjax的渲染问题，导致上一篇博文的数学公式出现了问题，昨天也对该问题进行了探索，但是截至目前位置该问题还没有得到解决，今天我先把昨天博文正确的格式放到上篇的末尾，以后我再对该问题进行解决，今天就先总结一下Wiener Ttick 这道题目的解题步骤吧！
+
+一、前期准备
+
+openssl 的用法
+Wiener 攻击原理（见上篇博文）
+连分数知识（见上篇博文）
+python 脚本（该脚本是github上的）
+
+
+二、思考过程1.该题的解题思路是什么样的？
+在上个月我曾做了一道这样的RSA题目：已知公钥，用...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/07/2019.05.07（52）/">
+            
+                <span>Wiener Trick解题准备</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：在做过了有关Crypto的两大题目（都是有关RSA）后，并在学习了《图解密码技术》中有关RSA的知识点后，我这里两天一直在尝试解Wiener Trick这道题目，在成功解出之后，并对其背后的原理又进行了学习和了解，那么今天我要认真的总结一下这道题背后的原理和知识点吧，明天再将解题的过程总结一下。
+
+一、前期准备
+
+Wiener 攻击的原理
+RSA加密的原理
+连分数的知识点
+
+
+二、思考问题1. 通过RSA2这道题目可以知道，我们可以从公钥推导出私钥（n和e较小），那么除了上道题目的方法外，还有别的攻击方法吗？
+答：当然有，这个方法就是我们在题目中所用的Wiener攻击方法。
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/05/2019.05.05（51）/">
             
                 <span>MySQL学习笔记（一）查询(1)</span>
@@ -653,68 +739,6 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/2019.04.21（43）/">
-            
-                <span>二进制炸弹：Phase_4解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天我将对Phase_4做详细的总结，并在总结过程中解决了在上道题（Phase_3）中遇到的问题，所以今天对我的收获是蛮大的，下面就详细的总结一下我在Phase_4的解题过程吧！
-一、相关汇编代码1.&lt; phase_4 &gt;的汇编代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464708048cf3 &lt;phase_4&gt;: 8048cf3:	83 ec 2c             	sub...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/2019.04.20（42）/">
-            
-                <span>二进制炸弹：Phase_3解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：&nbsp;&nbsp;&nbsp;&nbsp;今天又注重的对Phase_3进行了总结，顺利的通过Phase_3。那么今天就总结一下我的大体做题思路吧。
-一、相关汇编代码① &lt; phase_3 &gt;的汇编代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626308048c02 &lt;phase_3&gt;: 8048c02:	83 ec 2c             	sub    $...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
 </div>
             
@@ -3192,9 +3216,149 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 131
+        Total : 133
         </div>
         <!-- search  -->
         
@@ -3211,6 +3375,16 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/2020/07/03/2020.07.03（133）/">【科普】冯·诺依曼结构与具体实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2020/07/01/2020.07.01（132）/">【web安全】爆破用户登录弱口令</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3234,12 +3408,12 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3299,12 +3473,12 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3324,12 +3498,12 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     

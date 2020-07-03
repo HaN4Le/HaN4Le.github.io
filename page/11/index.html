@@ -374,6 +374,86 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/10/2019.04.10（33）/">
+            
+                <span>Crypto：RSA2解题总结（二）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为昨天没有做出来RSA2，今天又重点的做了一下这道题，花了整整一天时间。今天更新一下有关这道题目的内容。
+一、前期准备
+
+openssl 的功能
+RSA算法的原理
+大素数分解工具：yafu-x64.exe
+求模反元素工具：RSA-Tool
+
+
+二、思考过程
+昨天已经推导到要想求私钥，必须先要知道模数n，以及分解的两个质数 p、q思路：利用yafu工具把 n 分解成p、q => 用RSA-Tool得到 d => 合成私钥① 第一步分解质数比较容易，直接用yafu进行分解即可；② 第二布也是一样，不用求解φ(n)，直接...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/09/2019.04.09（32）/">
+            
+                <span>Crypto：RSA2解题总结（一）</span>
+        </a>
+        <div class="abstract-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在学习了有关openssl的内容后，今天开始了“RSA”的解题，但是今天没有解出来，主要说一下我的整个解题的思路和步骤。
+一、前期准备
+
+openssl 的功能
+RSA算法的原理
+Linux Kali系统的安装
+
+前两个知识点在前面都详细的介绍过了，这篇文章就不一一叙述了。
+二、思考过程1. 题目给了pubkey.pem和flag.encrypt文件，该加密文件是不是由私钥加密，公钥解密呢？&nbsp;&nbsp;&nbsp;&nbsp;在做“What‘s RSA？”这道题时，就分析过两种可能：公钥加密—&gt;私钥...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/08/2019.04.08（31）/">
             
                 <span>openssl学习笔记（二）</span>
@@ -680,97 +760,6 @@ C语言中的浮点数
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/18/2019.03.18（23）/">
-            
-                <span>复试复习总结</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天的学习内容主要有：回顾第7、8、9章的知识点；准备了英语自我介绍和面试的问题，就说一下今天的学习总结和感悟吧！
-1.《保密概论》第7、8、9章的薄弱点第七章 &nbsp; 薄弱点
-
-
-对特定场所的保密管理；
-业务工作中的保密管理；注：特别是新闻出版的保密管理
-保密工作的日常指导① 《保密法》第四十二条；② 保密培训的对象； 
-
-
-第八章 &nbsp; 薄弱点
-
-
-保密检查的内容：第8、9、10点；
-保密检查的实施：第5点；
-保密检查中的问题：第4、5点；
-整个第四节  泄密事件的查处工作；
-
-
-第九章 &nbsp; 薄弱点
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="研究生复试">研究生复试</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/17/2019.03.17（22）/">
-            
-                <span>《保密概论》总知识点提纲</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天背完了《保密概论的知识点》第8、9章的知识，终于把所有的知识都背完了，但是后面的几章还不是特别熟悉，前面的知识也有些遗忘，明天还要继续复习和背诵。今天就总结一下《保密概论》整本知识提纲，用做接下来的几天背诵抓手。
-第一章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保密基础知识1.保密工作概要
-
-
-“保密”、“保密工作”的概念 ；
-保密工作的特征；
-保密工作的指导思想、依据；
-保密工作的指导方针和基本原则；
-
-
-2.国家秘密及其确定
-
-
-国家秘密的概念和特征（三要素）；
-国家秘密的等级和...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《保密概论》">《保密概论》</a>
     
 </div>
             
@@ -3248,9 +3237,149 @@ C语言中的浮点数
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 131
+        Total : 133
         </div>
         <!-- search  -->
         
@@ -3267,6 +3396,16 @@ C语言中的浮点数
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/2020/07/03/2020.07.03（133）/">【科普】冯·诺依曼结构与具体实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2020/07/01/2020.07.01（132）/">【web安全】爆破用户登录弱口令</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3290,12 +3429,12 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3355,12 +3494,12 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3380,12 +3519,12 @@ C语言中的浮点数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     

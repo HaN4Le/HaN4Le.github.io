@@ -289,7 +289,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,8 +418,8 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="0x00-基本数据类型"><a href="#0x00-基本数据类型" class="headerlink" title="0x00 基本数据类型"></a><font color="navy"><code>0x00 基本数据类型</code></font></h3><p><img src="/images/131-1.png" alt></p>
-<div class="table-container">
+        <h3 id="font-color-navy0x00-基本数据类型font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-基本数据类型font"></a> <font color="navy"><code>0x00 基本数据类型</code></font></h3>
+<p><img src="/images/131-1.png" alt></p>
 <table>
 <thead>
 <tr>
@@ -462,24 +462,15 @@ height:50vh;
 <tr>
 <td style="text-align:center"><font size="2">float</font></td>
 <td style="text-align:center"><font size="2">4bytes</font></td>
-<td style="text-align:center"><font size="2">\</font></td>
-<td>3.4e-38\</td>
-<td>~\</td>
-<td>3.4e+38\</td>
-<td>&lt;/font&gt;</td>
+<td style="text-align:center"><font size="2">|3.4e-38|~|3.4e+38|</font></td>
 </tr>
 <tr>
 <td style="text-align:center"><font size="2">double</font></td>
 <td style="text-align:center"><font size="2">8bytes</font></td>
-<td style="text-align:center"><font size="2">\</font></td>
-<td>1.7e-308\</td>
-<td>~\</td>
-<td>1.7e+308\</td>
-<td>&lt;/font&gt;</td>
+<td style="text-align:center"><font size="2">|1.7e-308|~|1.7e+308|</font></td>
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
 <p>下面我们用一个示例代码打印一下这些基本的数据类型，代码如下：</p>
 </blockquote>
@@ -489,16 +480,16 @@ height:50vh;
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The size of char is 1 bytes</span><br><span class="line">The size of short is 2 bytes</span><br><span class="line">The size of int is 4 bytes</span><br><span class="line">The size of long int is 4 bytes</span><br><span class="line">The size of float is 4 bytes</span><br><span class="line">The size of double is 8 bytes</span><br></pre></td></tr></table></figure>
 <blockquote>
-<font size="2">需要说明的是上述程序的运行环境为32位，所以long的字节数是4bytes，而在64位环境下则为8bytes</font>
-
+<p><font size="2">需要说明的是上述程序的运行环境为32位，所以long的字节数是4bytes，而在64位环境下则为8bytes</font></p>
 </blockquote>
-<h4 id="1-有符号和无符号"><a href="#1-有符号和无符号" class="headerlink" title="1.有符号和无符号"></a><font color="blue"><code>1.有符号和无符号</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于有符号和无符号数据类型这块，我想首先用一个问题来引出这部分的重点内容——<code>计算机怎么知道数值是有符号的还是无符号的呢？</code>众所周知，数值在计算机内部的存储方式是以<code>0 1</code>方式进行存储的，比如数值<code>4</code>在16位环境下的存储形式为<code>0000 0000 0000 0100</code>，很简单就能知道这是一个正数4，那么如果存储的是<code>-4</code>呢？（<font color="green" size="2">大家思考一下负数在内存的存储方式</font>），要知道<code>-4</code>在内存是以它的补码形式进行存储的，首先来看<code>-4</code>从原码到补码的转变：<code>1</code> <code>000 0100</code> <font size="2">（原码）</font>⇥ <code>1</code> <code>111 1011</code><font size="2">（反码）</font>⇥ <code>1</code> <code>111 1100</code> <font size="2">（补码）</font>，那么<code>-4</code>在内存的存储形式为<code>0xfc</code>，下面我们可以看一下32位环境下的无符号和有符号定义下<code>-4</code>和<code>4</code>的存储形式，是否和我们推导的一致呢？如下图：</p>
+<h4 id="font-color-blue-1有符号和无符号font"><a class="markdownIt-Anchor" href="#font-color-blue-1有符号和无符号font"></a> <font color="blue"><code>1.有符号和无符号</code></font></h4>
+<p>      对于有符号和无符号数据类型这块，我想首先用一个问题来引出这部分的重点内容——<code>计算机怎么知道数值是有符号的还是无符号的呢？</code>众所周知，数值在计算机内部的存储方式是以<code>0 1</code>方式进行存储的，比如数值<code>4</code>在16位环境下的存储形式为<code>0000 0000 0000 0100</code>，很简单就能知道这是一个正数4，那么如果存储的是<code>-4</code>呢？（<font color="green" size="2">大家思考一下负数在内存的存储方式</font>），要知道<code>-4</code>在内存是以它的补码形式进行存储的，首先来看<code>-4</code>从原码到补码的转变：<code>1</code> <code>000 0100</code> <font size="2">（原码）</font>⇥ <code>1</code> <code>111 1011</code><font size="2">（反码）</font>⇥ <code>1</code> <code>111 1100</code> <font size="2">（补码）</font>，那么<code>-4</code>在内存的存储形式为<code>0xfc</code>，下面我们可以看一下32位环境下的无符号和有符号定义下<code>-4</code>和<code>4</code>的存储形式，是否和我们推导的一致呢？如下图：</p>
 <p><img src="/images/131-2.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图可以看出对于有符号数值是以数值的补码形式进行存储的，但是对于无符号下的负数是什么原因呢？这是因为你前面加上符号之后，相当于把变量提升为有符号类型，所以和正常的有符号下的存储是一样的。</p>
+<p>      从上图可以看出对于有符号数值是以数值的补码形式进行存储的，但是对于无符号下的负数是什么原因呢？这是因为你前面加上符号之后，相当于把变量提升为有符号类型，所以和正常的有符号下的存储是一样的。</p>
 <blockquote>
 <p><font color="red"><strong>知识点一</strong></font>：无论是整数和负数，在计算机内部都是以它们的补码的形式进行存储的。</p>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里通过一个简单的程序引出下面的问题，程序如下：</p>
+<p>     这里通过一个简单的程序引出下面的问题，程序如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">2147483649</span>, usum;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">1</span>, sum;</span><br><span class="line">        usum = i + j;</span><br><span class="line">    	sum = i + j;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"usum = 214783649 + 1 = %d (d)\n"</span>,usum);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"usum = 214783649 + 1 = %u (u)\n"</span>,usum);</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">"sum = 214783649 + 1 = %d (d)\n"</span>,sum);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"sum = 214783649 + 1 = %u (u)\n"</span>,sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在看下方结果之前，大家先思考一下应该是什么结果？</p>
@@ -513,7 +504,7 @@ height:50vh;
 </ul>
 <p>下面我们一步一步的来进行解析。</p>
 </blockquote>
-<p>&nbsp;     首先我们知道了数值在机器内存是以补码的形式进行存储的，那么对于两个数相加机器是怎么处理的呢？在汇编层次，一般通过<code>add eax,edx</code>进行的，其中将<code>eax</code>和<code>edx</code>中的二进制相加，然后把结果存储到寄存器<code>eax</code>中，所以说<code>214783649 + 1</code>对于机器来说只不过是将这两个的二进制形式相加而已，关于补码加减运算应该要注意的是：负数的求反码和补码过程符号位是不参与计算的，要取出来，只有在进行负数补码的加减法的时候<code>符号位</code>才参与计算<sup>[1]</sup></p>
+<p>      首先我们知道了数值在机器内存是以补码的形式进行存储的，那么对于两个数相加机器是怎么处理的呢？在汇编层次，一般通过<code>add eax,edx</code>进行的，其中将<code>eax</code>和<code>edx</code>中的二进制相加，然后把结果存储到寄存器<code>eax</code>中，所以说<code>214783649 + 1</code>对于机器来说只不过是将这两个的二进制形式相加而已，关于补码加减运算应该要注意的是：负数的求反码和补码过程符号位是不参与计算的，要取出来，只有在进行负数补码的加减法的时候<code>符号位</code>才参与计算<sup>[1]</sup></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   214783649     		1000 0000 0000 0000 0000 0000 0000 0001</span><br><span class="line">+          1		   +0000 0000 0000 0000 0000 0000 0000 0001</span><br><span class="line">-------------		   -----------------------------------------</span><br><span class="line">		   ?	&lt;=  	1000 0000 0000 0000 0000 0000 0000 0010</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>关键的要来了，机器会把<code>1000 0000 0000 0000 0000 0000 0000 0010</code>看做什么呢？</p>
@@ -528,18 +519,18 @@ height:50vh;
 </ul>
 </blockquote>
 <p><code>小节总结：</code></p>
-<p>&gt;</p>
 <blockquote>
 <ul>
 <li>数值在内存中都以补码的形式进行存储和计算；(为什么要以补码的形式呢，见参考文献[1])</li>
 <li>数值是有符号还是无符号，看用户怎么使用</li>
 </ul>
 </blockquote>
-<h4 id="2-浮点数在内存的存储形式"><a href="#2-浮点数在内存的存储形式" class="headerlink" title="2.浮点数在内存的存储形式"></a><font color="blue"><code>2.浮点数在内存的存储形式</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先要说明的是，这里我们不会对浮点数的具体知识点展开，比如精度问题。我们知道了整型数值在内存中是以其补码的形式进行存储的，那浮点数在内存中是以什么形式进行存储的呢？既然不太清楚，那我们就先用一个简单的例子来看一下浮点数的存储方式：</p>
+<h4 id="font-color-blue2浮点数在内存的存储形式font"><a class="markdownIt-Anchor" href="#font-color-blue2浮点数在内存的存储形式font"></a> <font color="blue"><code>2.浮点数在内存的存储形式</code></font></h4>
+<p>      首先要说明的是，这里我们不会对浮点数的具体知识点展开，比如精度问题。我们知道了整型数值在内存中是以其补码的形式进行存储的，那浮点数在内存中是以什么形式进行存储的呢？既然不太清楚，那我们就先用一个简单的例子来看一下浮点数的存储方式：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> a = <span class="number">4.5</span>;		<span class="comment">// 二进制形式为0000 0000 0000 0000 0000 0000 0000 0100.1</span></span><br><span class="line">    <span class="keyword">float</span> b = <span class="number">-4.5</span>;		<span class="comment">// 二进制形式为1000 0000 0000 0000 0000 0000 0000 0100.1</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] a:%f\n[*] b:%f\n"</span>,a,b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们将其程序编译为32位的ELF程序，用GDB看一下ａ和ｂ的存储形式，如下：</p>
+<p>      我们将其程序编译为32位的ELF程序，用GDB看一下ａ和ｂ的存储形式，如下：</p>
 <p><img src="/images/131-3.jpg" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们现在对比一下a和b的二进制形式和在计算机内存存放的形式：</p>
+<p>      我们现在对比一下a和b的二进制形式和在计算机内存存放的形式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">								a											b								</span><br><span class="line">数值自身形式：		00000000000000000000000000000100.1			10000000000000000000000000000100.1	</span><br><span class="line">内存中的存储：		01000000100100000000000000000000			11000000100100000000000000000000</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>可以看出数值本身的二进制形式和存放在内存中的形式完全不同，这是因为浮点数与整数的存储方式完全不同，根据<a href="https://en.wikipedia.org/wiki/IEEE_754" target="_blank" rel="noopener"><code>IEEE-754</code></a>标准，我们可以知道浮点数是以如下方式进行存储的：</p>
@@ -554,7 +545,7 @@ height:50vh;
 </blockquote>
 <p><code>fld指令</code></p>
 <blockquote>
-<p><code>指令格式</code>：FLD　STReg/MemReal&nbsp;&nbsp;&nbsp;&nbsp;（STReg是处理器堆栈寄存器ST(0)~ST(7)）</p>
+<p><code>指令格式</code>：FLD　STReg/MemReal    （STReg是处理器堆栈寄存器ST(0)~ST(7)）</p>
 <p><code>指令功能</code>：将<strong>浮点数据压入<a href="https://zh.wikipedia.org/zh-hans/%E8%BC%94%E5%8A%A9%E8%99%95%E7%90%86%E5%99%A8" target="_blank" rel="noopener">协处理器</a>的堆栈中</strong>。当进行内存单元内容压栈时，系统会自动决定传送数据的精度。比如：用DD或REAL4定义的内存单元数值是单精度数等，类似于指令push</p>
 </blockquote>
 <p><code>fst指令</code>：</p>
@@ -567,13 +558,16 @@ height:50vh;
 <p><code>指令格式</code>：FSTP STReg/MemReal</p>
 <p><code>指令功能</code>：与FST相类似，所不同的是：指令FST执行完后，<strong>不进行堆栈的弹出操作</strong>，即：<strong>堆栈不发生变化</strong>，而指令FSTP执行完后，则需要进行堆栈的弹出操作，堆栈将发生变化。</p>
 </blockquote>
-<h3 id="0x01-数据常量"><a href="#0x01-数据常量" class="headerlink" title="0x01 数据常量"></a><font color="navy"><code>0x01 数据常量</code></font></h3><h4 id="1-字符和字符字面值"><a href="#1-字符和字符字面值" class="headerlink" title="1.字符和字符字面值"></a><font color="blue"><code>1.字符和字符字面值</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从一个程序开始我们的学习：</p>
+<h3 id="font-color-navy0x01-数据常量font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-数据常量font"></a> <font color="navy"><code>0x01 数据常量</code></font></h3>
+<h4 id="font-color-blue1字符和字符字面值font"><a class="markdownIt-Anchor" href="#font-color-blue1字符和字符字面值font"></a> <font color="blue"><code>1.字符和字符字面值</code></font></h4>
+<p>      从一个程序开始我们的学习：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">char</span> b = <span class="string">'b'</span>;</span><br><span class="line">    <span class="keyword">char</span> c = <span class="number">0x63</span>;</span><br><span class="line">    <span class="keyword">int</span> d = <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] a = %d(d) = %c(c)\n"</span>,a,a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] b = %d(d) = %c(c)\n"</span>,b,b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] c = %d(d) = %c(c)\n"</span>,c,c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] d = %d(d) = %c(c)\n"</span>,d,d);</span><br><span class="line">    b--;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[*] b-1 = %d(d) = %c(c)\n"</span>,b,b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>结果如下</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[*] a = 97(d) = a(c)</span><br><span class="line">[*] b = 98(d) = b(c)</span><br><span class="line">[*] c = 99(d) = c(c)</span><br><span class="line">[*] d = 100(d) = d(c)</span><br><span class="line">[*] b-1 = 97(d) = a(c)</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字面值就是一种记号而已，比如3，100，a,c，3.14。因为我们不能修改它（你能说把3改成5吗？）所以有时候又叫它常量。比如 int a = 100；a是一个int型变量，100就是一个字面值。字面值100只能用来作右值，不能作左值。<br>C语言中字符字面值是由一对<code>单引号括起来的单个字符</code>，比如’a’、‘b’。实际上字符字面值和整型字面值是一样的。编译器把字符字面值都当做整型字面值处理。比如：</p>
+<p>      字面值就是一种记号而已，比如3，100，a,c，3.14。因为我们不能修改它（你能说把3改成5吗？）所以有时候又叫它常量。比如 int a = 100；a是一个int型变量，100就是一个字面值。字面值100只能用来作右值，不能作左值。<br>
+C语言中字符字面值是由一对<code>单引号括起来的单个字符</code>，比如’a’、‘b’。实际上字符字面值和整型字面值是一样的。编译器把字符字面值都当做整型字面值处理。比如：</p>
 <ul>
 <li>定义一个字符变量并用字符字面值来初始化：char ch = ‘a’；或者 char ch = 0x61；</li>
 <li>定义一个int型变量并用字符字面值来初始化：int a = ‘a’；也是可以的，<code>printf(&quot;%d&quot;,a);</code>输出结果为<code>97</code></li>
@@ -585,13 +579,15 @@ height:50vh;
 <li>字符字面值是由单引号括起来的单个字符；</li>
 </ul>
 </blockquote>
-<h3 id="0x02-数据类型转换"><a href="#0x02-数据类型转换" class="headerlink" title="0x02 数据类型转换"></a><font color="navy"><code>0x02 数据类型转换</code></font></h3><h4 id="1-类型提升"><a href="#1-类型提升" class="headerlink" title="1.类型提升"></a><font color="blue"><code>1.类型提升</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先举一个简单的例子：</p>
+<h3 id="font-color-navy0x02-数据类型转换font"><a class="markdownIt-Anchor" href="#font-color-navy0x02-数据类型转换font"></a> <font color="navy"><code>0x02 数据类型转换</code></font></h3>
+<h4 id="font-color-blue1类型提升font"><a class="markdownIt-Anchor" href="#font-color-blue1类型提升font"></a> <font color="blue"><code>1.类型提升</code></font></h4>
+<p>      首先举一个简单的例子：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">short</span> a= <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> b;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> c;</span><br><span class="line">	b = a;</span><br><span class="line">	c = a;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"[*]          short a = %d(d) = %u(u)\n"</span>,a,a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"[*] unsigned short b = %d(d) = %u(u)\n"</span>,b,b);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"[*] unsigned int c = %d(d) = %u(u)\n"</span>,c,b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>结果如下：</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[*]          short a = -1(d) = 4294967295(u)</span><br><span class="line">[*] unsigned short b = 65535(d) = 65535(u)</span><br><span class="line">[*] unsigned int c = -1(d) = 4294967295(u)</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析<code>printf的输出</code>，如下图：</p>
+<p>      分析<code>printf的输出</code>，如下图：</p>
 <p><img src="/images/131-5.png" alt></p>
 <p><code>总结</code></p>
 <blockquote>
@@ -600,15 +596,18 @@ height:50vh;
 <li><strong>整型提升都解释为int</strong></li>
 </ul>
 </blockquote>
-<h4 id="2-类型降格"><a href="#2-类型降格" class="headerlink" title="2.类型降格"></a><font color="blue"><code>2.类型降格</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于类型降格的相关知识点我只简单总结一下，大家可以自己写示例代码进行验证</p>
+<h4 id="font-color-blue2类型降格font"><a class="markdownIt-Anchor" href="#font-color-blue2类型降格font"></a> <font color="blue"><code>2.类型降格</code></font></h4>
+<p>      关于类型降格的相关知识点我只简单总结一下，大家可以自己写示例代码进行验证</p>
 <blockquote>
 <ul>
 <li>当实数（浮点数）转换为整数时，实数的小数部分被全被舍去，只保留整数部分</li>
 <li>当double类型转换为float类型，将去掉多余的数字，但按照四舍五入进行处理，这种会降低精度</li>
 </ul>
 </blockquote>
-<h4 id="3-显示转换"><a href="#3-显示转换" class="headerlink" title="3.显示转换"></a><font color="blue"><code>3.显示转换</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示转换的方法有：<code>强制类型转换</code></p>
-<h4 id="4-隐式转换"><a href="#4-隐式转换" class="headerlink" title="4.隐式转换"></a><font color="blue"><code>4.隐式转换</code></font></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐式转换的方法有：</p>
+<h4 id="font-color-blue3显示转换font"><a class="markdownIt-Anchor" href="#font-color-blue3显示转换font"></a> <font color="blue"><code>3.显示转换</code></font></h4>
+<p>      显示转换的方法有：<code>强制类型转换</code></p>
+<h4 id="font-color-blue4隐式转换font"><a class="markdownIt-Anchor" href="#font-color-blue4隐式转换font"></a> <font color="blue"><code>4.隐式转换</code></font></h4>
+<p>      隐式转换的方法有：</p>
 <p><code>赋值转换</code></p>
 <blockquote>
 <p>通过赋值语句使符号右边表达式的值的类型自动转换为其左边变量的类型，如我们在类型提升中程序里面有关赋值的语句，如</p>
@@ -626,7 +625,8 @@ height:50vh;
 <blockquote>
 <p>比如我们前面讲到的<code>printf()</code>的格式符<code>%d</code>，是将数据类型提升/降格为<code>signed int</code>类型</p>
 </blockquote>
-<h3 id="0x04-Reference"><a href="#0x04-Reference" class="headerlink" title="0x04 Reference"></a><font color="navy"><code>0x04 Reference</code></font></h3><p>[1] <a href="https://www.zhihu.com/question/30395946" target="_blank" rel="noopener">计算机补码运算背后的数学原理是什么？</a></p>
+<h3 id="font-colornavy0x04-referencefont"><a class="markdownIt-Anchor" href="#font-colornavy0x04-referencefont"></a> <font color="navy"><code>0x04 Reference</code></font></h3>
+<p>[1] <a href="https://www.zhihu.com/question/30395946" target="_blank" rel="noopener">计算机补码运算背后的数学原理是什么？</a></p>
 <p>[2] <a href="https://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html" target="_blank" rel="noopener">浮点数的二进制表示</a></p>
 
     </article>
@@ -636,13 +636,18 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/06/26/2020.06.24（131）/">https://muzibing.github.io/2020/06/26/2020.06.24（131）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/06/26/2020.06.24（131）/">June 26th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/26/2020.06.24（131）/">June 26th 2020, 6:59:10 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/06/26/2020.06.24（131）/">June 26th 2020, 7:00:38 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/07/01/2020.07.01（132）/" title="【web安全】爆破用户登录弱口令">
+                    <div class="nextTitle">【web安全】爆破用户登录弱口令</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -783,7 +788,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-基本数据类型"><span class="toc-number">1.</span> <span class="toc-text">0x00 基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-有符号和无符号"><span class="toc-number">1.1.</span> <span class="toc-text">1.有符号和无符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-浮点数在内存的存储形式"><span class="toc-number">1.2.</span> <span class="toc-text">2.浮点数在内存的存储形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-数据常量"><span class="toc-number">2.</span> <span class="toc-text">0x01 数据常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-字符和字符字面值"><span class="toc-number">2.1.</span> <span class="toc-text">1.字符和字符字面值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-数据类型转换"><span class="toc-number">3.</span> <span class="toc-text">0x02 数据类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-类型提升"><span class="toc-number">3.1.</span> <span class="toc-text">1.类型提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-类型降格"><span class="toc-number">3.2.</span> <span class="toc-text">2.类型降格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-显示转换"><span class="toc-number">3.3.</span> <span class="toc-text">3.显示转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-隐式转换"><span class="toc-number">3.4.</span> <span class="toc-text">4.隐式转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Reference"><span class="toc-number">4.</span> <span class="toc-text">0x04 Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-基本数据类型font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue-1有符号和无符号font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.有符号和无符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2浮点数在内存的存储形式font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.浮点数在内存的存储形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-数据常量font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 数据常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1字符和字符字面值font"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.字符和字符字面值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x02-数据类型转换font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 数据类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1类型提升font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.类型提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2类型降格font"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.类型降格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3显示转换font"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.显示转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue4隐式转换font"><span class="toc-number">3.4.</span> <span class="toc-text"> 4.隐式转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x04-referencefont"><span class="toc-number">4.</span> <span class="toc-text"> 0x04 Reference</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3069,9 +3074,149 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 131
+        Total : 133
         </div>
         <!-- search  -->
         
@@ -3088,6 +3233,16 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/2020/07/03/2020.07.03（133）/">【科普】冯·诺依曼结构与具体实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2020/07/01/2020.07.01（132）/">【web安全】爆破用户登录弱口令</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3111,12 +3266,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3176,12 +3331,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3201,12 +3356,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     

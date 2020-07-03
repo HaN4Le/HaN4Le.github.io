@@ -361,12 +361,99 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/03/2020.07.03（133）/">
+            
+                <span>【科普】冯·诺依曼结构与具体实现</span>
+        </a>
+        <div class="abstract-content">
+             1.冯·诺依曼计算的主要构成
+      冯·诺依曼计算机主要是由五大部分构成：
+
+运算器（CA）：Central Arithmetical
+控制器（CC）：Central Contral
+存储器（M）：Memory
+输入设备（I）：Input
+输出设备（O）：Output
+
+      除了上述五部分，还有一个外部记录介质 R(outside Recording medium)，示意图如下：
+
+
+下面我们就来看看和具体实现是如何对应的呢？
+
+ 2.冯·诺依曼结构原理与实现的对应
+
+      如上图，它们一一对应关系如下：
+
+
+CPU ⇢ 运算器 CA和控制器 CC
+主存 ⇢ 存储器...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/07/01/2020.07.01（132）/">
+            
+                <span>【web安全】爆破用户登录弱口令</span>
+        </a>
+        <div class="abstract-content">
+                 前一段时间一直在做pwn方向的题目，以后的要开始同时兼顾，为准备打各种CTF比赛做准备，同时也是提升自己的安全知识能力和技术。今天就用一道简单的web题目来引出该主题，大家一般在设置密码时，为了方便，有的人就随便设置密码比如123456789、88888888等，大家也许知道这样的密码是不安全的，但是并不清楚为什么不安全。今天我就带着大家的疑问，来和大家讲一下弱口令为什么不安全的。
+情景假设
+
+加入小明自己写了一个登陆系统，如下图，他在设置管理员密码时，随便输入一串字符串。这里我们并不知道这个密码是多少，下面看一下我们是否能登录该系统。
+
+
+ 1.创建字典
+     情境中给出...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/26/2020.06.24（131）/">
             
                 <span>【C语言学习系列二】 C语言中的基本数据类型</span>
         </a>
         <div class="abstract-content">
-            0x00 基本数据类型
+             0x00 基本数据类型
 
 
 
@@ -400,7 +487,7 @@ unsigned int
 
 long int
 8bytes
-正: 0~0x7fffffffffffffff负: 0x8000000000000000~0xfffff...
+正: 0~0x7fffffffffffffff负: 0x8000000000000000~0xffff...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -672,89 +759,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/08/2020.06.08（123）/">
-            
-                <span>【XCTF-pwn】stack2 writeup</span>
-        </a>
-        <div class="abstract-content">
-             0x00.相关知识点
- 1.retn 指令
-格式：retn
-功能：返回主程序。经常和call一起使用，当调用的过程结束后实现从过程返回至原调用程序的下一条指令，本指令不影响标志位
-说明：由于在过程定义时，已指明其近(NEAR)或远(FAR)的属性,所以RET指令根据段内调用与段间调用,执行不同的操作
-
-对段内调用：返回时，由堆栈弹出一个字的返回地址的段内偏移量至IP
-对段外调用：返回时，由堆栈弹出的第一个字为返回地址的段内偏移量，将其送入IP中，由堆栈弹出第二个字为返回地址的段基址，将其送入CS中
-
-举例
-     下面用一个简单的代码来说明一下retn的具体作用，代码如下：
-1234...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/01/2020.06.01（122）/">
-            
-                <span>【XCTF-pwn】新手区writeup（part1）</span>
-        </a>
-        <div class="abstract-content">
-             0x00 when_did_you_born
- 1.相关知识点
-
-
-64位下的栈溢出原理
-
-
- 2.解题思路
-12# file pwnpwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=718185b5ec9c26eb9aeccfa0ab53678e34fee00a, stripped
-
-pwn文件是一个64位的ELF可执行文件，也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3135,9 +3139,149 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 131
+        Total : 133
         </div>
         <!-- search  -->
         
@@ -3154,6 +3298,16 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/2020/07/03/2020.07.03（133）/">【科普】冯·诺依曼结构与具体实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2020/07/01/2020.07.01（132）/">【web安全】爆破用户登录弱口令</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3177,12 +3331,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3242,12 +3396,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3267,12 +3421,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
