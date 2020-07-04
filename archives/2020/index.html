@@ -361,6 +361,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/04/2020.07.04（134）/">
+            
+                <span>【看雪CTF-pwn】一鸣惊人的栈溢出</span>
+        </a>
+        <div class="abstract-content">
+                  这道题目真的太坑了，不过也给我提了一个醒，就是在做题时不能对IDA pro反编译的伪代码过于相信，在感觉有问题的地方，一定自己用GDB调试一下，否则就会陷入一个自我反省和懊恼的循环中，下面这道题目就是，下面我将用两种姿势来获取flag。
+ 0x00 准备工作
+123# file ymjr ymjr: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, BuildID[...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="看雪CTF">看雪CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/03/2020.07.03（133）/">
             
                 <span>【科普】冯·诺依曼结构与具体实现</span>
@@ -639,38 +672,6 @@ prot：需要修改为的指定值
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
-            
-                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
-        </a>
-        <div class="abstract-content">
-            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
- 0x00 实模式（Real Mode）
- 1.起源
-实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
             
                 <span>实模式下的段寄存器</span>
@@ -704,6 +705,38 @@ prot：需要修改为的指定值
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
+            
+                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
+        </a>
+        <div class="abstract-content">
+            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
+ 0x00 实模式（Real Mode）
+ 1.起源
+实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/12/2020.06.12（125）/">
             
                 <span>【XCTF-pwn】welpwn是个什么东西？（RCTF-2015）</span>
@@ -725,40 +758,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/09/2020.06.09（124）/">
-            
-                <span>Pwnable.kr的奇幻之旅（六）[random]</span>
-        </a>
-        <div class="abstract-content">
-             0x00 相关知识点
- 1.rand()函数的“伪随机”
-      首先我们根据一个程序来认识rand()函数：
-123456789101112#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;#include&lt;unistd.h&gt;int main(int argc,char* argv[])&#123;    int a,i;    for(i=0;i&lt;5;i++)&#123;        a = rand();        printf("a%d = %d\n",i,a);        sleep(1);    &...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -3279,9 +3278,58 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 133
+        Total : 134
         </div>
         <!-- search  -->
         
@@ -3298,6 +3346,11 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span><a class="archive-post-title" href="/2020/07/04/2020.07.04（134）/">【看雪CTF-pwn】一鸣惊人的栈溢出</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3396,7 +3449,7 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3406,7 +3459,7 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3421,12 +3474,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
@@ -3476,12 +3529,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
@@ -3496,12 +3549,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4057,6 +4110,8 @@ prot：需要修改为的指定值
         <span class="sidebar-tag-name" data-tags="栈溢出"><span class="iconfont-archer">&#xe606;</span>栈溢出</span>
     
         <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
+    
+        <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
