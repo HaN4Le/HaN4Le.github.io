@@ -361,20 +361,85 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
+        <a class="abstract-title" href="/2020/05/04/2020.05.04（116）/">
             
-                <span>Hexo博客完善（持续更新）</span>
+                <span>《梦炬手册》五周年纪念版下载页</span>
         </a>
         <div class="abstract-content">
+            点击下载文件
+
+
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/04</span>
+            </div>
+            <!-- tags  -->
             
-0x00 添加置顶功能
-解决Hexo博客文章置顶问题
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/02/2020.05.02（115）/">
+            
+                <span>Pwnable.kr的奇幻之旅（四）[flag]</span>
+        </a>
+        <div class="abstract-content">
+             
 
 
-修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
+0x00 相关知识1.UPX 加壳
+这里就简单介绍一下UPX加壳的原理，详细内容以后会进行专题研究。
 
-generator.js最终的内容：
-12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
+
+通过上图可以看出最重要的部分应该为Compressed data和Stub，下面简单的讲一下UPX加壳的原理以及加壳后如何执行程序。
+UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方面：  
+
+一方面在程序的开头或者其他合适的地方插入一段代码
+
+另一方面是将程序的其他地方做压缩（也就是上面讲到的压缩），压缩也可以叫做加密，因为压缩后的程序比较难看懂，原来的代码有很大的不同；
+
+
+当程序执行时：实时的对程序解压缩。解压缩功能是在Stub节区插入的代码完成的功能，联起来...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/30/2020.04.30（114）/">
+            
+                <span>Dan-Boneh密码学课程之学习笔记（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+            Here's something encrypted, password is required to continue reading.
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -382,6 +447,12 @@ generator.js最终的内容：
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+    
+</div>
             
         </div>
     </article>
@@ -428,12 +499,20 @@ disasm
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.30（114）/">
+        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
             
-                <span>Dan-Boneh密码学课程之学习笔记（持续更新）</span>
+                <span>Hexo博客完善（持续更新）</span>
         </a>
         <div class="abstract-content">
-            Here's something encrypted, password is required to continue reading.
+            
+0x00 添加置顶功能
+解决Hexo博客文章置顶问题
+
+
+修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
+
+generator.js最终的内容：
+12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -441,12 +520,6 @@ disasm
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
             </div>
             <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-</div>
             
         </div>
     </article>
@@ -539,18 +612,23 @@ x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
+        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
             
-                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
+                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
         </a>
         <div class="abstract-content">
-            0x00 相关知识1.atoi()函数
-① atoi函数是包含在stdlib.h标准库中 
-② 函数的声明：int atoi(const char* str)
-③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
-④ 实例如下：
+            0x00 相关知识1.PwnTools工具的使用
+这个知识点再单独进行总结
 
-12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
+2.字符串强制转换为数字
+可以从下面题目中的例子发现
+
+3.python -c的功能
+Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
+指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
+
+4.shell命令中``和$的作用
+反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -576,23 +654,18 @@ x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
+        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
             
-                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
+                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
         </a>
         <div class="abstract-content">
-            0x00 相关知识1.PwnTools工具的使用
-这个知识点再单独进行总结
+            0x00 相关知识1.atoi()函数
+① atoi函数是包含在stdlib.h标准库中 
+② 函数的声明：int atoi(const char* str)
+③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
+④ 实例如下：
 
-2.字符串强制转换为数字
-可以从下面题目中的例子发现
-
-3.python -c的功能
-Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
-指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
-
-4.shell命令中``和$的作用
-反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
+12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -637,91 +710,6 @@ Specify the command to execute. This terminates the option list (following optio
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/26/2020.03.26（106）/">
-            
-                <span>Windows常用的网络命令（web）</span>
-        </a>
-        <div class="abstract-content">
-            0x00 ipconfig作用：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关
-IPConfig实用程序和它的等价图形用户界面——Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
-IPConfig最常用的选项：
-▧  ipconfig：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网关值。
-▧  i...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/21/2020.03.21（105）/">
-            
-                <span>Linux-根目录详解（二进制）</span>
-        </a>
-        <div class="abstract-content">
-            
-根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准建议： 根目录(/)所在分区应该越小越好，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。
-说白了，就是根目录和Windows的C盘一个样
-
-1.根目录下各个目录的功能详细列表
-
-
-
-目录
-应放置档案内容
-说明
-备注
-
-
-
-
-/bin
-系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
     
 </div>
             
@@ -3291,9 +3279,131 @@ IPConfig最常用的选项：
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 134
+        Total : 136
         </div>
         <!-- search  -->
         
@@ -3310,6 +3420,16 @@ IPConfig最常用的选项：
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2020/07/13/2020.07.13（136）/">由浅入深的剖析堆</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3413,17 +3533,17 @@ IPConfig最常用的选项：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3438,12 +3558,12 @@ IPConfig最常用的选项：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3513,12 +3633,12 @@ IPConfig最常用的选项：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

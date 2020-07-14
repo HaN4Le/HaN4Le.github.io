@@ -361,6 +361,72 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
+            
+                <span>实模式下的段寄存器</span>
+        </a>
+        <div class="abstract-content">
+             0x00 前言
+      首先想要说明的是这里介绍的原理都是CPU实模式下的情况，有关CPU工作模式的请点击这里，下面简单的介绍一下段寄存器的来源和故事：
+
+     实模式出现于早期8088CPU时期。当时由于CPU的性能有限，一共只有20位地址线（所以地址空间只有1MB），以及8个16位的通用寄存器，以及4个16位的段寄存器。所以为了能够通过这些16位的寄存器去构成20位的主存地址，必须采取一种特殊的方式。当某个指令想要访问某个内存地址时，它通常需要用下面的这种格式来表示：段基址：段偏移量。[1]
+     但是随着CPU的发展，CPU的地址线的个数也从原来的20根变为现在的32...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/12/2020.06.12（125）/">
+            
+                <span>【XCTF-pwn】welpwn是个什么东西？（RCTF-2015）</span>
+        </a>
+        <div class="abstract-content">
+            0x00 相关知识点1.\x00截断符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面给大家一个简单的C程序：
+12345678// Function：截断符测试# include&lt;stdio.h&gt;int main()&#123;    char a[20];    scanf("%s",a);    printf("%s",a);&#125;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们现在正常运行一下该程序，输入为“Hello\x00World”，运行结果输出为Hello\x00World，有的人可能要有疑问了，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/09/2020.06.09（124）/">
             
                 <span>Pwnable.kr的奇幻之旅（六）[random]</span>
@@ -614,79 +680,6 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/04/2020.05.04（116）/">
-            
-                <span>《梦炬手册》五周年纪念版下载页</span>
-        </a>
-        <div class="abstract-content">
-            点击下载文件
-
-
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/04</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/02/2020.05.02（115）/">
-            
-                <span>Pwnable.kr的奇幻之旅（四）[flag]</span>
-        </a>
-        <div class="abstract-content">
-             
-
-
-0x00 相关知识1.UPX 加壳
-这里就简单介绍一下UPX加壳的原理，详细内容以后会进行专题研究。
-
-
-通过上图可以看出最重要的部分应该为Compressed data和Stub，下面简单的讲一下UPX加壳的原理以及加壳后如何执行程序。
-UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方面：  
-
-一方面在程序的开头或者其他合适的地方插入一段代码
-
-另一方面是将程序的其他地方做压缩（也就是上面讲到的压缩），压缩也可以叫做加密，因为压缩后的程序比较难看懂，原来的代码有很大的不同；
-
-
-当程序执行时：实时的对程序解压缩。解压缩功能是在Stub节区插入的代码完成的功能，联起来...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/02</span>
             </div>
             <!-- tags  -->
             
@@ -3264,9 +3257,131 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 134
+        Total : 136
         </div>
         <!-- search  -->
         
@@ -3283,6 +3398,16 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2020/07/13/2020.07.13（136）/">由浅入深的剖析堆</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3386,17 +3511,17 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3411,12 +3536,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3486,12 +3611,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

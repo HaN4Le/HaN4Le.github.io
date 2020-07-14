@@ -361,19 +361,102 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/26/2020.03.26（106）/">
+            
+                <span>Windows常用的网络命令（web）</span>
+        </a>
+        <div class="abstract-content">
+            0x00 ipconfig作用：可以使用 ipconfig 命令获得主机配置信息，包括 IP 地址、子网掩码和默认网关
+IPConfig实用程序和它的等价图形用户界面——Windows 95/98中的WinIPCfg可用于显示当前的TCP/IP配置的设置值。这些信息一般用来检验人工配置的TCP/IP设置是否正确。但是，如果我们的计算机和所在的局域网使用了动态主机配置协议（DHCP），这个程序所显示的信息也许更加实用。
+IPConfig最常用的选项：
+▧  ipconfig：当使用IPConfig时不带任何参数选项，那么它为每个已经配置了的接口显示IP地址、子网掩码和缺省网关值。
+▧  i...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/03/21/2020.03.21（105）/">
+            
+                <span>Linux-根目录详解（二进制）</span>
+        </a>
+        <div class="abstract-content">
+            
+根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准建议： 根目录(/)所在分区应该越小越好，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。
+说白了，就是根目录和Windows的C盘一个样
+
+1.根目录下各个目录的功能详细列表
+
+
+
+目录
+应放置档案内容
+说明
+备注
+
+
+
+
+/bin
+系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/03/20/2020.03.20（104）/">
             
                 <span>Linux常用命令总结（二进制）</span>
         </a>
         <div class="abstract-content">
-             0x00 目录操作命令
- 0x00 ls（list）
-功能：列举出当前工作目录的内容，包括文件和文件夹
+            0x00 目录操作命令0x00 ls（list）功能：列举出当前工作目录的内容，包括文件和文件夹
 相关选项：
 
-ls -l： 文件/文件夹：长格式显示指定/目录中的文件
+ls -l： 文件/文件夹：长格式显示指定/目录中的文件
 
-123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.p...
+123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png-r...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -679,69 +762,6 @@ length limited text box
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/02/27/2020.02.27（96）/">
-            
-                <span>This_1s_pr0mpt.ml_writeup</span>
-        </a>
-        <div class="abstract-content">
-            
-这是我在无意中遇到的一个xss 网站，花了将近一周的时间才做完，每道题的背后都会隐藏着许多知识点，其中关于浏览器编码问题，我将近用了三天的时间才搞清楚；当然还有很多知识点就不在这一一列举了，但是我会在下文中逐一进行详解。这些都不是重点，我想说的是，通过这个网站的学习，让我对 xss 的原理、攻击和防御都有了新的了解，这次我就借这次做题，详细系统的再总结一下 xss 知识点，当然这并不意味着结束了 xss 的学习，这只不过是一个开头，好了！步入正题。
-
-0x00 简单闭合问题① JS 代码12345function escape(input) &#123;    // warm up  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/02/24/2020.02.24（95）/">
-            
-                <span>【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</span>
-        </a>
-        <div class="abstract-content">
-            一、判断下列语句能否成功执行12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091Basics0x01. &lt;a href="%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"&gt;&lt;/a&gt;// URL encoded "...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3311,9 +3331,131 @@ length limited text box
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 134
+        Total : 136
         </div>
         <!-- search  -->
         
@@ -3330,6 +3472,16 @@ length limited text box
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2020/07/13/2020.07.13（136）/">由浅入深的剖析堆</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3433,17 +3585,17 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3458,12 +3610,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3533,12 +3685,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
