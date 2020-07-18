@@ -424,6 +424,43 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
+            
+                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.什么是shellcode
+
+shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
+
+ 2.shellcode的C语言形式
+12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
             
                 <span>由浅入深的剖析堆</span>
@@ -722,40 +759,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
-            
-                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.x86和x64的传参方式
-      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
-12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3425,128 +3428,9 @@ prot：需要修改为的指定值
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 136
+        Total : 137
         </div>
         <!-- search  -->
         
@@ -3563,6 +3447,11 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2020/07/18/2020.07.18（137）/">【XCTF-Pwn:Note-service2】在堆上执行shellcode</a>
+        </li>
     
     
         <li class="archive-post-item">

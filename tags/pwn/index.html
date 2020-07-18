@@ -361,6 +361,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
+            
+                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.什么是shellcode
+
+shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
+
+ 2.shellcode的C语言形式
+12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/04/2020.07.04（134）/">
             
                 <span>【看雪CTF-pwn】一鸣惊人的栈溢出</span>
@@ -678,41 +715,6 @@ pwn文件是一个64位的ELF可执行文件，也...
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/15/2020.05.05（117）/">
-            
-                <span>Pwnable.kr的奇幻之旅（五）[passcode]</span>
-        </a>
-        <div class="abstract-content">
-            一、基础知识1.mov    eax,gs:0x14指令的作用
-gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方法是gcc首先在缓冲区被写入之前在buf的结束地址之后返回地址之前放入随机的gs验证码，并在缓冲区写入操作结束时检验该值。通常缓冲区溢出会从低地址到高地址覆写内存，所以如果要覆写返回地址，则需要覆写该gs验证码。这样就可以通过比较写入前和写入后gs验证码的数据，判断是否产生溢出。
-
-简单来说就是，从gs:0x14的地方取出来，然后在函数返回之前对比栈中的这个随机值和gs:0x14来断定是否发生栈溢出。    
-2.lea和mov指令的区别◫ lea：将源操作数的地址传到...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -3285,128 +3287,9 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 136
+        Total : 137
         </div>
         <!-- search  -->
         
@@ -3423,6 +3306,11 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2020/07/18/2020.07.18（137）/">【XCTF-Pwn:Note-service2】在堆上执行shellcode</a>
+        </li>
     
     
         <li class="archive-post-item">

@@ -361,6 +361,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/05/2019.11.05（87）/">
+            
+                <span>有关内核调用问题和预编译指令</span>
+        </a>
+        <div class="abstract-content">
+            一、知识点摘要
+
+系统调用 int 80h 中断
+#ifdef ……# endif 的含义和用法
+
+
+二、知识点介绍1.int 80h 中断
+1) 什么是 system call?
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI ))
+2) 什么是 int 80h 中断？
+&nbsp;&nbsp;&...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="内核">内核</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/16/2019.10.16（86）/">
             
                 <span>PWN 实战 - shellcode 题解</span>
@@ -729,49 +769,6 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/2019.07.31（77）/">
-            
-                <span>JavaScript 学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            一、JS 简介
-getElementById() 是多个 JavaScript HTML 方法之一
-
-JavaScript 能够改变 HTML 的内容：
-document.getElementById("demo").innerHTML = "Hello JavaScript";
-
-JavaScript 能够改变 HTML 属性：
-document.getElementById("demo").src =
-
-JavaScript 能够改变 HTML 样式 (CSS):
-document.getElementById("demo").style.fontSize=""
-
-JavaScrip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScritpt">JavaScritpt</a>
     
 </div>
             
@@ -3344,128 +3341,9 @@ JavaScrip...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 136
+        Total : 137
         </div>
         <!-- search  -->
         
@@ -3482,6 +3360,11 @@ JavaScrip...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2020/07/18/2020.07.18（137）/">【XCTF-Pwn:Note-service2】在堆上执行shellcode</a>
+        </li>
     
     
         <li class="archive-post-item">
