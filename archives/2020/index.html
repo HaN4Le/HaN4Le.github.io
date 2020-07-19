@@ -361,6 +361,52 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
+            
+                <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 相关知识点
+
+
+格式化字符串的利用
+金丝雀的绕过
+栈的溢出
+
+
+ 0x01 分析题目
+
+既然题目说是个非常简单的热身的pwn，那我就简单的热一下身
+
+ 1.file mary
+12# file marymary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=b7971b84c2309bdb896e6e39073303fc13...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
             
                 <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
@@ -386,6 +432,8 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
     
 </div>
             
@@ -721,40 +769,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
-            
-                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.x86和x64的传参方式
-      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
-12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3327,9 +3341,92 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 137
+        Total : 138
         </div>
         <!-- search  -->
         
@@ -3346,6 +3443,11 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3469,12 +3571,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3564,12 +3666,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4127,6 +4229,10 @@ prot：需要修改为的指定值
         <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
     
         <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -361,6 +361,52 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
+            
+                <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 相关知识点
+
+
+格式化字符串的利用
+金丝雀的绕过
+栈的溢出
+
+
+ 0x01 分析题目
+
+既然题目说是个非常简单的热身的pwn，那我就简单的热一下身
+
+ 1.file mary
+12# file marymary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=b7971b84c2309bdb896e6e39073303fc13...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
             
                 <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
@@ -386,6 +432,8 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
     
 </div>
             
@@ -689,42 +737,10 @@ pwn文件是一个64位的ELF可执行文件，也...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
-            
-                <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“详解格式化字符串漏洞”...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/pwn/page/2/">2</a><a class="extend next" rel="next" href="/tags/pwn/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/tags/pwn/page/2/">2</a><a class="page-number" href="/tags/pwn/page/3/">3</a><a class="extend next" rel="next" href="/tags/pwn/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3287,9 +3303,92 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 137
+        Total : 138
         </div>
         <!-- search  -->
         
@@ -3306,6 +3405,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3429,12 +3533,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3524,12 +3628,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4087,6 +4191,10 @@ pwn文件是一个64位的ELF可执行文件，也...
         <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
     
         <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -374,6 +374,56 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
+            
+                <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
+        </a>
+        <div class="abstract-content">
+            
+ 0x00 相关知识
+ 1.mprotect()函数
+      mprotect()函数可以修改调用进程内存页的保护属性。如果调用进程尝试以违反保护属性的方式访问该内存，则内核会发出一个SIGSEGV信号给该进程。
+
+
+函数原型：int mprotect(const void *start, size_t len, int prot)
+
+
+参数解释：
+
+start：需改写属性的内存中开始地址
+len：需改写属性的内存长度
+prot：需要修改为的指定值
+
+
+
+功能： mprotect()函数可以用来修改一段指定内存区域的保护属性。 他把自start开始的、长度为len的内存区的保护属性...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
             
                 <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
@@ -673,40 +723,6 @@ pwn文件是一个64位的ELF可执行文件，也...
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/29/2020.05.29（119）/">
-            
-                <span>详解格式化字符串漏洞</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
- 0x01 格式化字符串
- Q1：什么是格式化字符串 
-
-格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
 </div>
             
@@ -3376,9 +3392,92 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 137
+        Total : 138
         </div>
         <!-- search  -->
         
@@ -3395,6 +3494,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3518,12 +3622,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3613,12 +3717,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4176,6 +4280,10 @@ pwn文件是一个64位的ELF可执行文件，也...
         <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
     
         <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

