@@ -361,6 +361,88 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/18/2019.04.18（40）/">
+            
+                <span>二进制炸弹：Phase_1解题总结</span>
+        </a>
+        <div class="abstract-content">
+            经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
+
+☛ Phase_1、Phase_2、Phase_3、Phase_4今天主要总结一下Phase_1的解题过程
+
+一、前期工作
+
+所用工具IDA、Linux系统、gdb、objdump、python
+解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
+            
+                <span>二进制炸弹解题知识储备</span>
+        </a>
+        <div class="abstract-content">
+            今天开始了第二阶段的测试，针对题目中频繁出现的汇编指令、gdb编译器以及objdump工具，做了详细的学习，下面就总结一下该题中可能用到的一些知识点，主要内容为：
+
+
+常用的汇编指令
+objdump工具
+gdb编译器的用法一、题目中出现的汇编指令
+push、pop、call、cmp、jmp、je、jne、lea
+
+
+1.push 和 pop 指令：堆栈操作指令
+
+① 说明：无论是push 还是pop ，都是对堆栈段ss的处理：
+
+ss中存放堆栈段地址
+sp指针中存放偏移地址，
+栈操作都是以字（2字节）为单位。
+
+② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/16/2019.04.16（38）/">
             
                 <span>《汇编语言程序设计》学习笔记（十）</span>
@@ -653,81 +735,6 @@ Linux Kali系统的安装
         <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/07/2019.04.07（30）/">
-            
-                <span>openssl学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在前天做了RSA的题目，发现openssl发挥着重要的作用，但是我只知道零星一点知识，今天我就系统的总结一下吧。
-1.openssl 命令
-openssl命令的格式：openssl command command-options argscommand部分有很多种命令，这些命令需要依赖于openssl命令才能执行，所以称为伪命令（pseudo-command）。
-
-支持的标准命令，即伪命令（经常使用的）ca&nbsp;&nbsp;&nbsp;&nbsp;crl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="kali">kali</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/05/2019.04.05（29）/">
-            
-                <span>Crypto：What&#39;s RSA？解题总结（2）</span>
-        </a>
-        <div class="abstract-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天开始做密码方面的题目，在2月28日的时候，我曾尝试过RSA的题目，但是因为没有深度去思考，就是总结了一下有关原理，当时并没有把这一道题做出来。今天我认真的分析了一下有关这道题的内容，并对上次的博客的内容做了修改和完善，也解出了这道题有了新的收获。
-一、前期准备
-
-openssl 命令
-非对称加密体制
-RSA加解密原理
-
-
-二、思考过程
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我从题目中得到两个文件：flag.encrypt 和 rsa_private_key.pem，这两个文件分别...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="RSA">RSA</a>
     
 </div>
             
@@ -3383,9 +3390,17 @@ RSA加解密原理
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3405,6 +3420,16 @@ RSA加解密原理
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3420,7 +3445,7 @@ RSA加解密原理
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3525,17 +3550,17 @@ RSA加解密原理
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3605,12 +3630,12 @@ RSA加解密原理
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

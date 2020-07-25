@@ -374,6 +374,113 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/26/2020.06.24（131）/">
+            
+                <span>【C语言学习系列二】 C语言中的基本数据类型</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基本数据类型
+
+
+
+
+基本类型
+字节
+范围
+
+
+
+
+char
+1byte
+—
+
+
+short
+2bytes
+0~32767(0~0x7fff)-32768~-1(0x8000~0xffff)
+
+
+int
+4bytes
+0~2147483647(0~0x7fffffff)-2147483648~-1(0x80000000~0xffffffff)
+
+
+unsigned int
+4bytes
+0~4294967295(0~0xffffffff)
+
+
+long int
+8bytes
+正: 0~0x7fffffffffffffff负: 0x8000000000000000~0xffff...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="C">C</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/22/2020.06.22（130）/">
+            
+                <span>【C语言学习系列一】 重新认识 C 语言</span>
+        </a>
+        <div class="abstract-content">
+             1.C语言的历史
+      贝尔实验室的Dennis Ritchie（1941－2011年）为了给在PDP-11电脑上运行的Unix系统设计出一个系统级的编程语言，他在B语言的基础上创造了C语言，这是一门高级编程语言。
+1969-1973年：早期的C语言
+
+
+1969年：基于 BCPL 创建 B ，以作为 Unix 的系统程序语言替代 PDP-7 汇编器
+1971年：于将 B 移植到PDP-11 时创建 NB （新“ B ”），也就是C语言的前身
+1972年：语言更名为 C
+1973年：Unix操作系统的核心正式用C语言改写，这是C语言第一次应用在操作系统的核心编写上
+
+
+     ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="C">C</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
             
                 <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
@@ -653,68 +760,6 @@ pwn文件是一个64位的ELF可执行文件，也...
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/31/2020.05.31（121）/">
-            
-                <span>【转载】常见调用约定总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 常见的调用约定一、cdecl调用约定
-又称C调用约定，是C/C++编译器默认的函数调用约定。所有非C++成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
-            
-                <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      在上一篇“详解格式化字符串漏洞”中已经很详细的阐述格式化字符串漏洞的原理以及如何构造payload，并且用例子进一步的说明了格式化字符串漏洞的危害，今天我们就以XCTF中的string题目为例，再次感受一下格式化字符串漏洞的实际危害。在写这篇文章之前，我已经在网上查了相关的writeup，虽然很多人将这道题目解了出来，并写了相关的writeup发在网上，但是我在看这些文章时，发现这些文章中存在着很多问题以及表述不正确的地方，今天我准备系统的写一下这道题目的writeup，具体的细节就不会一一赘述，如果想了解格式化字符串更多细节，请阅读“详解格式化字符串漏洞”...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/30</span>
             </div>
             <!-- tags  -->
             
@@ -3475,9 +3520,17 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3497,6 +3550,16 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3512,7 +3575,7 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3617,17 +3680,17 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3697,12 +3760,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

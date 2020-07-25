@@ -374,6 +374,82 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/28/2020.04.27（110）/">
+            
+                <span>GDB常用命令-内存查看（x）</span>
+        </a>
+        <div class="abstract-content">
+            一、功能说明1它是按一定格式显示内存地址或变量的值
+二、格式
+x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
+
+例如
+1234567891011121314151617181920212223242526272829303132/* file : test.c *//* gcc -o test test.c -g *//* gdb ./test */int main(int argc, char *argv[]) &#123;    char arr[] = "123456789AB...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="GDB">GDB</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
+            
+                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
+        </a>
+        <div class="abstract-content">
+            0x00 相关知识1.PwnTools工具的使用
+这个知识点再单独进行总结
+
+2.字符串强制转换为数字
+可以从下面题目中的例子发现
+
+3.python -c的功能
+Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
+指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
+
+4.shell命令中``和$的作用
+反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
             
                 <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
@@ -687,91 +763,6 @@ BeautifulSoup
         <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/09/2020.03.08（100）/">
-            
-                <span>xss_payload_构造总结及深度剖析(持续更新中……)</span>
-        </a>
-        <div class="abstract-content">
-            一、绕过 XSS Filter 的方法1.逃离 &quot;&quot; 的束缚※ 普通的闭合
-
-有的并没有进行过滤，只需要简单的闭合即可逃离；
-
-※ 利用反引号代替
-
-条件：过滤掉 “”。在 IE 浏览器下，用 `` 代替 \” \”，以到达闭合的作用；
-
-※ 利用换行的特性
-
-详情见 prompt.ml 0x08 题目
-
-2.&lt; 和 /&gt; 过滤类型的题目※ 利用事件触发 payload
-
-虽然不能产生新的标签，但是可以在已经存在的标签（如svg、input、img、script等）内部添加 on+event 事件（onclick、onerror、onload、onmous...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/08/2020.03.08（99）/">
-            
-                <span>Th1s_i3_XSS_challenges&amp;from:stage#5&amp;to:stage#12</span>
-        </a>
-        <div class="abstract-content">
-            0x05 Length limited textHint
-length limited text box
-
-
-题目分析
-① 首先在输入框中随便输入值 alert(/xss/)，点击search，打开源代码如下：
-
-1&lt;input type="text" name="p1" maxlength="15" size="30" value="alert(/xss/)"&gt;
-
-不难发现我们输的的字符串被赋值给了 value ，那么下一步进行闭合绕过：&quot; onclick=alert(document.domain)，但是在构造的时候却发现，输入框被允许输入最大的字符串长度为15...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="xss">xss</a>
     
 </div>
             
@@ -3524,9 +3515,17 @@ length limited text box
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3546,6 +3545,16 @@ length limited text box
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3561,7 +3570,7 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3666,17 +3675,17 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3746,12 +3755,12 @@ length limited text box
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

@@ -482,7 +482,6 @@ height:50vh;
 <p>上图中的buf可以输入的空间大小有<code>0x100</code>，而buf到ebp的距离却只有<code>0x90</code>，所以说这里存在着栈溢出的漏洞，但是有因为有canary，所以利用方式如下图：</p>
 </blockquote>
 <p><img src="/images/138-7.png" alt></p>
-<h4 id><a class="markdownIt-Anchor" href="#"></a> </h4>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># ROPgadget --binary mary --string &quot;system&quot;</span><br><span class="line">Strings information</span><br><span class="line">============================================================</span><br><span class="line">0x0000000000400464 : system</span><br><span class="line"></span><br><span class="line"># ROPgadget --binary mary --string &quot;flag&quot;</span><br><span class="line">Strings information</span><br><span class="line">============================================================</span><br><span class="line">0x0000000000400b36 : flag</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>从上面的搜索结果中可以看出，该程序中里面包含“system”和“flag”的，下面我们就在IDA中搜索一下位置，看一下是否有可以直接利用的shellcode，若然还真有，如下图：</p>
@@ -502,13 +501,18 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/07/19/2020.07.19（138）/">https://muzibing.github.io/2020/07/19/2020.07.19（138）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/07/19/2020.07.19（138）/">July 19th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/19/2020.07.19（138）/">July 19th 2020, 3:51:44 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/19/2020.07.19（138）/">July 25th 2020, 11:07:52 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/07/24/2020.07.24（139）/" title="CTF-web 类型题目总结">
+                    <div class="nextTitle">CTF-web 类型题目总结</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -649,7 +653,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-相关知识点font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 相关知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-分析题目font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 分析题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1file-maryfont"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.file mary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2checksec-maryfont"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.checksec mary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3试运行程序font"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.试运行程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue4获取程序的伪代码font"><span class="toc-number">2.4.</span> <span class="toc-text"> 4.获取程序的伪代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x02-解题思路font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1泄露canaryfont"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.泄露canary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2栈溢出font"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.栈溢出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.3.</span> <span class="toc-text"> </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-expfont"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 exp</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-相关知识点font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 相关知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-分析题目font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 分析题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1file-maryfont"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.file mary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2checksec-maryfont"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.checksec mary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3试运行程序font"><span class="toc-number">2.3.</span> <span class="toc-text"> 3.试运行程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue4获取程序的伪代码font"><span class="toc-number">2.4.</span> <span class="toc-text"> 4.获取程序的伪代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x02-解题思路font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1泄露canaryfont"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.泄露canary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue2栈溢出font"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.栈溢出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-expfont"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 exp</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3210,9 +3214,17 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3232,6 +3244,16 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3247,7 +3269,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3352,17 +3374,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3432,12 +3454,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

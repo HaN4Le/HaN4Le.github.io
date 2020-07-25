@@ -374,6 +374,91 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
+            
+                <span>Misc：RealWiFi解题总结</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
+一、前期准备
+crunch 生成字典
+aircrack-ng工具
+wireshark工具二、解题思路
+
+
+首先先观察题目给的流量包，看看都有什么协议；
+根据第一步，然后针对协议的特点做出相应的判断；
+从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
+根据题目提示写出字典；
+暴力破解得到密码；
+但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；三、解题步骤1.观察流量包用wireshark打开数...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/28/2019.04.28（49）/">
+            
+                <span>Another 01game解题详细总结</span>
+        </a>
+        <div class="abstract-content">
+            
+☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
+一、前期准备
+python语言
+二维码的知识（本题中不是重点）
+QQ “扫一扫”二、思考过程
+
+
+题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
+然后看一下这个数量值，是否是一个数的平方；
+如果是一个数的平方，那么就将这个字符串排成一个正方形；
+题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
+根据上一步的思考，我们可以有选择地进行替换图形；
+扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
+根据题目提示，可以将字符串当作ASCII码编程，解出...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/27/2019.04.27（48）/">
             
                 <span>Python 学习笔记（一）</span>
@@ -620,88 +705,6 @@ int sscanf(const char str, const char format, …)&lt;/font&gt;
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/18/2019.04.18（40）/">
-            
-                <span>二进制炸弹：Phase_1解题总结</span>
-        </a>
-        <div class="abstract-content">
-            经过这一段时间的学习，在掌握了汇编语言的大概内容，并对二进制炸弹中可能出现的知识点总结后，今天终于开始了二进制炸弹的解题，今天主要做的是以下的阶段：
-
-☛ Phase_1、Phase_2、Phase_3、Phase_4今天主要总结一下Phase_1的解题过程
-
-一、前期工作
-
-所用工具IDA、Linux系统、gdb、objdump、python
-解题思路通过对可执行文件的汇编语言和伪代码分析，再利用python语言写出一定的脚本，从而进行解题。二、Phase_1解题过程1.对bomb文件进行反汇编objdump -d bomb &gt; bomo.txt将bomb的汇编代码写入 bomb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
-            
-                <span>二进制炸弹解题知识储备</span>
-        </a>
-        <div class="abstract-content">
-            今天开始了第二阶段的测试，针对题目中频繁出现的汇编指令、gdb编译器以及objdump工具，做了详细的学习，下面就总结一下该题中可能用到的一些知识点，主要内容为：
-
-
-常用的汇编指令
-objdump工具
-gdb编译器的用法一、题目中出现的汇编指令
-push、pop、call、cmp、jmp、je、jne、lea
-
-
-1.push 和 pop 指令：堆栈操作指令
-
-① 说明：无论是push 还是pop ，都是对堆栈段ss的处理：
-
-ss中存放堆栈段地址
-sp指针中存放偏移地址，
-栈操作都是以字（2字节）为单位。
-
-② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/17</span>
             </div>
             <!-- tags  -->
             
@@ -3460,9 +3463,17 @@ sp指针中存放偏移地址，
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3482,6 +3493,16 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3497,7 +3518,7 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3602,17 +3623,17 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3682,12 +3703,12 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

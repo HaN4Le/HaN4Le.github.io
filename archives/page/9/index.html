@@ -361,6 +361,76 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/21/2019.05.21（60）/">
+            
+                <span>《图解密码技术》第十章学习笔记</span>
+        </a>
+        <div class="abstract-content">
+            一、证书（PKC）
+1.什么是证书？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公钥证书（PKC，Public Key Certificate）包含了个人的公钥、姓名、组织、邮箱、地址等个人信息，是由认证机构（CA，Certification Authority）施加数字签名。这里的认证机构就是能够认定“公钥确实属于此人”并能够生成数字签名的个人或者组织2.证书的应用场景在上图的过程中，我们需要注意一点：步骤（2）中Trent在收到Bob的公钥后，Trent会确认Bob公钥的真实性，也就是这个公钥是否为Bob本人所有，这个确认的过程就需要“身份确认...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/20/2019.05.20（59）/">
+            
+                <span>《图解密码技术》第九章学习笔记</span>
+        </a>
+        <div class="abstract-content">
+            一、数字签名
+1.数字签名是一种相当于现实世界中的盖章，它的功能在计算机世界中进行实现的技术；2.数字签名的功能：保证数据的完整性，还可以防止否认
+3.数字签名和消息验证码的区别：4.公钥密码和数字签名的联系：☛ 公钥密码是用公钥加密，私钥解密☛ 数字签名是用私钥加密，公钥解密。之所以将公钥签名的逆过程说成数字签名，是因为只有签名者拥有私钥，而其他人不可能拥有
+
+二、数字签名的方法
+数字签名的方法有两种：☛ 直接对消息签名的方法☛ 对消息的散列值签名的方法
+三、对数字签名的疑问
+密文为什么具备签名的意义？数字签名是利用了“没有私钥的人事实上无法生成使用该私钥所生成的密文”这一性质来实现的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/16/2019.05.16（58）/">
             
                 <span>《图解密码技术》第八章学习笔记</span>
@@ -658,91 +728,6 @@ select * fr...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/29/2019.04.29（50）/">
-            
-                <span>Misc：RealWiFi解题总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天把昨天做的题目“RealWiFi”总结一下。这道题目主要是一些工具的使用，但也涉及了相关连接wifi时的知识点，今天就主要的来总结一下有关内容。
-一、前期准备
-crunch 生成字典
-aircrack-ng工具
-wireshark工具二、解题思路
-
-
-首先先观察题目给的流量包，看看都有什么协议；
-根据第一步，然后针对协议的特点做出相应的判断；
-从第二步可知，这个过程是一个网络接入的过程，应该是让我们找到密码；
-根据题目提示写出字典；
-暴力破解得到密码；
-但是题目中说密码不是flag，可能要用这个密码解开数据包，得到明文；三、解题步骤1.观察流量包用wireshark打开数...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/28/2019.04.28（49）/">
-            
-                <span>Another 01game解题详细总结</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前言：今天认真的将昨天的题目整理了一下，下面我就总结一下有关的知识点吧。
-一、前期准备
-python语言
-二维码的知识（本题中不是重点）
-QQ “扫一扫”二、思考过程
-
-
-题目中提示统计0和1的数量，那么首先就要统计一下题目中0 1字符串的数量；
-然后看一下这个数量值，是否是一个数的平方；
-如果是一个数的平方，那么就将这个字符串排成一个正方形；
-题目中提示可以组成一个二维码，那么就要思考生成的正方形怎么像一个二维码；
-根据上一步的思考，我们可以有选择地进行替换图形；
-扫描生成的二维码，看得到什么消息；（还是一个 0 1 字符串）
-根据题目提示，可以将字符串当作ASCII码编程，解出...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Misc">Misc</a>
     
 </div>
             
@@ -3398,9 +3383,17 @@ QQ “扫一扫”二、思考过程
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 138
+        Total : 140
         </div>
         <!-- search  -->
         
@@ -3420,6 +3413,16 @@ QQ “扫一扫”二、思考过程
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
         </li>
     
@@ -3435,7 +3438,7 @@ QQ “扫一扫”二、思考过程
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF各类型题目总结</a>
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
         </li>
     
     
@@ -3540,17 +3543,17 @@ QQ “扫一扫”二、思考过程
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3620,12 +3623,12 @@ QQ “扫一扫”二、思考过程
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
