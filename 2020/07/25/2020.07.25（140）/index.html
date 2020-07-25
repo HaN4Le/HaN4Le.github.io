@@ -473,6 +473,8 @@ height:50vh;
 <p><strong>说明</strong>：<br>
 PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符，<br>
 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</p>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -503,45 +505,44 @@ PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入�
 </tr>
 </tbody>
 </table>
-</li>
+<ul>
 <li>
 <p><strong><code>php://filter</code>参数详解</strong></p>
 <p>该协议的参数会在该协议路径上进行传递，多个参数都可以在一个路径上传递。具体参考如下：</p>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
 <th>php://filter 参数</th>
 <th>描述</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>resource=&lt;要过滤的数据流&gt;</td>
 <td>必须项。它指定了你要筛选过滤的数据流。</td>
-<td></td>
 </tr>
 <tr>
 <td>read=&lt;读链的过滤器&gt;</td>
-<td>可选项。可以设定一个或多个过滤器名称，以管道符（*\</td>
-<td>*）分隔。</td>
+<td>可选项。可以设定一个或多个过滤器名称，以管道符（<em>|</em>）分隔。</td>
 </tr>
 <tr>
 <td>write=&lt;写链的过滤器&gt;</td>
-<td>可选项。可以设定一个或多个过滤器名称，以管道符（\</td>
-<td>）分隔。</td>
+<td>可选项。可以设定一个或多个过滤器名称，以管道符（<strong>|</strong>）分隔。</td>
 </tr>
 <tr>
 <td>&lt;; 两个链的过滤器&gt;</td>
-<td>任何没有以 <em>read=</em> 或 <em>write=</em> 作前缀的筛选器列表会视情况应用于读或写链。</td>
-<td></td>
+<td>任何没有以 <em>read=</em> 或 <em>write=</em> 作前缀的筛选器列表会视情况应用于读或写链</td>
 </tr>
 </tbody>
 </table>
-</li>
+<ul>
 <li>
 <p><strong>可用的过滤器列表（4类）</strong></p>
 <p>此处列举主要的过滤器类型，详细内容请参考：<a href="https://www.php.net/manual/zh/filters.php" target="_blank" rel="noopener">https://www.php.net/manual/zh/filters.php</a></p>
+</li>
+</ul>
 <p><code>字符串过滤器</code></p>
 <table>
 <thead>
@@ -574,17 +575,17 @@ PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入�
 <thead>
 <tr>
 <th>转换过滤器</th>
-<th>作用</th>
+<th style="text-align:left">作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>convert.base64-encode &amp; convert.base64-decode</td>
-<td>等同于<code>base64_encode()</code>和<code>base64_decode()</code>，base64编码解码</td>
+<td style="text-align:left">等同于<code>base64_encode()</code>和<code>base64_decode()</code>，base64编码解码</td>
 </tr>
 <tr>
 <td>convert.quoted-printable-encode &amp; convert.quoted-printable-decode</td>
-<td>quoted-printable 字符串与 8-bit 字符串编码解码</td>
+<td style="text-align:left">quoted-printable 字符串与 8-bit 字符串编码解码</td>
 </tr>
 </tbody>
 </table>
@@ -626,10 +627,8 @@ PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入�
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p><strong>示例</strong>：</p>
-</li>
+<ul>
+<li><strong>示例</strong>：</li>
 </ul>
 <p>      1. <code>php://filter/read=convert.base64-encode/resource=[文件名]</code>读取文件源码（针对php文件需要base64编码）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/include.php?file=php://filter/read=convert.base64-encode/resource=phpinfo.php</span><br></pre></td></tr></table></figure>
@@ -739,7 +738,7 @@ PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入�
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/07/25/2020.07.25（140）/">https://muzibing.github.io/2020/07/25/2020.07.25（140）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/07/25/2020.07.25（140）/">July 25th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/25/2020.07.25（140）/">July 25th 2020, 2:33:47 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/25/2020.07.25（140）/">July 25th 2020, 2:46:24 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
