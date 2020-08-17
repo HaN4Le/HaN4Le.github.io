@@ -395,16 +395,11 @@
                 <span>PHP相关题目writeup（持续更新）</span>
         </a>
         <div class="abstract-content">
-             0x00 函数漏洞问题
- 【Jarvois OJ-web】BabyPHP
- 1.题目描述
+            0x00 函数漏洞问题【Jarvois OJ-web】BabyPHP1.题目描述
+2.GIT 源码泄露通过上图的提示，我们猜测是不是可以通过git泄露源码，从而进行得到php代码，有关GIT源码泄露的可以点击这里，有关git的介绍可以点击这里，下面我们得到如下的文件及文件夹：
 
- 2.GIT 源码泄露
-通过上图的提示，我们猜测是不是可以通过git泄露源码，从而进行得到php代码，有关GIT源码泄露的可以点击这里，有关git的介绍可以点击这里，下面我们得到如下的文件及文件夹：
-
- 3.查看index.php源码
-打开index.php源码，可以得到其中最为关键的一段代码，如下：
-12345678910&lt;?phpif (isset($_GET['page'])) &#123;	$page = $_GET['page'];&#125; else &#123;	$page...
+3.查看index.php源码打开index.php源码，可以得到其中最为关键的一段代码，如下：
+12345678910&lt;?phpif (isset($_GET['page'])) &#123;	$page = $_GET['page'];&#125; else &#123;	$page = "home";...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
