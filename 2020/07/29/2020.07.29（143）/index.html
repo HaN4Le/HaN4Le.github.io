@@ -616,7 +616,7 @@ height:50vh;
 <blockquote>
 <p>⇡ 恢复后，stash内容并不删除，你需要用<code>git stash drop</code>来删除；</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash pop</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git stash pop</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>⇡ 恢复的同时把stash内容也删了</p>
 </blockquote>
@@ -668,7 +668,7 @@ height:50vh;
 <li>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</li>
 </ol>
 <p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
-<h3 id="三、命令总结"><a href="#三、命令总结" class="headerlink" title="三、命令总结"></a>三、命令总结</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">`配置用户名`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"Your Name"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email <span class="string">"email@example.com"</span></span></span><br><span class="line"></span><br><span class="line">`初始化`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br><span class="line"></span><br><span class="line">`将文件添加到仓库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git add fileName</span></span><br><span class="line"></span><br><span class="line">`将文件提交到仓库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">"&lt;本次提交的说明&gt;"</span></span></span><br><span class="line"></span><br><span class="line">`查看当前仓库的状态`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git status</span></span><br><span class="line"></span><br><span class="line">`查看修改的内容`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git diff fileName</span></span><br><span class="line"></span><br><span class="line">`查看历史记录`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span></span></span><br><span class="line"></span><br><span class="line">`版本回退`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard HEAD^/SHA1-ID</span></span><br><span class="line"></span><br><span class="line">`查看每一次命令的信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git reflog</span></span><br><span class="line"></span><br><span class="line">`丢弃工作区的修改`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -- fileName</span></span><br><span class="line"></span><br><span class="line">`删除文件`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git rm test.txt</span></span><br><span class="line"></span><br><span class="line">`将本地仓库和远程仓库关联起来`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin <span class="string">"Your Github repository name"</span></span></span><br><span class="line"></span><br><span class="line">`查看远程库信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote</span></span><br><span class="line"></span><br><span class="line">`查看远程库详细信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br><span class="line"></span><br><span class="line">`将本地仓库的内容推送到远程库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git push -u origin master</span></span><br><span class="line"></span><br><span class="line">`创建分支`								+-----------------+</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch dev										++	</span></span><br><span class="line">														+========== $ git checkout -b dev</span><br><span class="line">`切换分支` 												  ++</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout dev or $ git switch dev +-----------------+</span></span><br><span class="line"></span><br><span class="line">`查看当前分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch </span></span><br><span class="line"></span><br><span class="line">`将dev分支合并到当前分支（启用Fast forward）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge dev</span></span><br><span class="line"></span><br><span class="line">`将dev分支合并到当前分支（禁用Fast forward）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge --no-ff -m <span class="string">"merge with no-ff"</span> dev</span></span><br><span class="line"></span><br><span class="line">`查看分支合并的情况`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --graph</span></span><br><span class="line"></span><br><span class="line">`删除分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -d dev</span></span><br><span class="line"></span><br><span class="line">`强行删除分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -D dev</span></span><br><span class="line"></span><br><span class="line">`储存当前分支的工作现场`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash</span></span><br><span class="line"></span><br><span class="line">`从当前分支上切换到存在Bug的分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout [branchName]</span></span><br><span class="line"></span><br><span class="line">`创建Bug分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b issue-101</span></span><br><span class="line"></span><br><span class="line">`修复Bug（手动修复）`</span><br><span class="line"></span><br><span class="line">`从bug分支上切换到存在Bug的分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git switch [branchName]</span></span><br><span class="line"></span><br><span class="line">`合并分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge --no-ff -m <span class="string">"merged bug fix 101"</span> issue-101</span></span><br><span class="line"></span><br><span class="line">`切换到干活的分支`</span><br><span class="line"></span><br><span class="line">`查看当前分支的工作现场`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash list</span></span><br><span class="line"></span><br><span class="line">`恢复当前分支的工作现场（stash内容并不删除）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash apply</span></span><br><span class="line"></span><br><span class="line">`恢复当前分支的工作现场（stash内容删除）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash pop</span></span><br><span class="line"></span><br><span class="line">`在不同的分支上同步修改bug的操作`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick 4c805e2(master的sha1值)</span></span><br><span class="line"></span><br><span class="line">`推送分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin <span class="string">"branchName"</span></span></span><br><span class="line"></span><br><span class="line">`抓取分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br></pre></td></tr></table></figure>
+<h3 id="三、命令总结"><a href="#三、命令总结" class="headerlink" title="三、命令总结"></a>三、命令总结</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">`配置用户名`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"Your Name"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email <span class="string">"email@example.com"</span></span></span><br><span class="line"></span><br><span class="line">`初始化`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br><span class="line"></span><br><span class="line">`将文件添加到仓库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git add fileName</span></span><br><span class="line"></span><br><span class="line">`将文件提交到仓库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">"&lt;本次提交的说明&gt;"</span></span></span><br><span class="line"></span><br><span class="line">`查看当前仓库的状态`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git status</span></span><br><span class="line"></span><br><span class="line">`查看修改的内容`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git diff fileName</span></span><br><span class="line"></span><br><span class="line">`查看历史记录`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span></span></span><br><span class="line"></span><br><span class="line">`版本回退`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard HEAD^/SHA1-ID</span></span><br><span class="line"></span><br><span class="line">`查看每一次命令的信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git reflog</span></span><br><span class="line"></span><br><span class="line">`丢弃工作区的修改`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -- fileName</span></span><br><span class="line"></span><br><span class="line">`删除文件`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git rm test.txt</span></span><br><span class="line"></span><br><span class="line">`将本地仓库和远程仓库关联起来`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin <span class="string">"Your Github repository name"</span></span></span><br><span class="line"></span><br><span class="line">`查看远程库信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote</span></span><br><span class="line"></span><br><span class="line">`查看远程库详细信息`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br><span class="line"></span><br><span class="line">`将本地仓库的内容推送到远程库`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git push -u origin master</span></span><br><span class="line"></span><br><span class="line">`创建分支`								+-----------------+</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch dev										++	</span></span><br><span class="line">														+========== $ git checkout -b dev</span><br><span class="line">`切换分支` 												  ++</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout dev or $ git switch dev +-----------------+</span></span><br><span class="line"></span><br><span class="line">`查看当前分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch </span></span><br><span class="line"></span><br><span class="line">`将dev分支合并到当前分支（启用Fast forward）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge dev</span></span><br><span class="line"></span><br><span class="line">`将dev分支合并到当前分支（禁用Fast forward）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge --no-ff -m <span class="string">"merge with no-ff"</span> dev</span></span><br><span class="line"></span><br><span class="line">`查看分支合并的情况`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --graph</span></span><br><span class="line"></span><br><span class="line">`删除分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -d dev</span></span><br><span class="line"></span><br><span class="line">`强行删除分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -D dev</span></span><br><span class="line"></span><br><span class="line">`储存当前分支的工作现场`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash</span></span><br><span class="line"></span><br><span class="line">`从当前分支上切换到存在Bug的分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout [branchName]</span></span><br><span class="line"></span><br><span class="line">`创建Bug分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b issue-101</span></span><br><span class="line"></span><br><span class="line">`修复Bug（手动修复）`</span><br><span class="line"></span><br><span class="line">`从bug分支上切换到存在Bug的分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git switch [branchName]</span></span><br><span class="line"></span><br><span class="line">`合并分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge --no-ff -m <span class="string">"merged bug fix 101"</span> issue-101</span></span><br><span class="line"></span><br><span class="line">`切换到干活的分支`</span><br><span class="line"></span><br><span class="line">`查看当前分支的工作现场`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash list</span></span><br><span class="line"></span><br><span class="line">`恢复当前分支的工作现场（stash内容并不删除）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash apply</span></span><br><span class="line"></span><br><span class="line">`恢复当前分支的工作现场（stash内容删除）`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash pop</span></span><br><span class="line"></span><br><span class="line">`在不同的分支上同步修改bug的操作`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick 4c805e2(master的sha1值)</span></span><br><span class="line"></span><br><span class="line">`推送分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin <span class="string">"branchName"</span></span></span><br><span class="line"></span><br><span class="line">`抓取分支`</span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line">等价于：git fetch   git merge &lt;Branch Name&gt;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -677,13 +677,18 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/07/29/2020.07.29（143）/">https://muzibing.github.io/2020/07/29/2020.07.29（143）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/07/29/2020.07.29（143）/">July 29th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/29/2020.07.29（143）/">July 29th 2020, 3:53:27 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/29/2020.07.29（143）/">August 23rd 2020, 6:14:39 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/08/23/2020.0823/" title>
+                    <div class="nextTitle">[Untitled Post]</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3371,156 +3376,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 143
+        Total : 144
         </div>
         <!-- search  -->
         
@@ -3537,6 +3395,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.0823/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3685,17 +3548,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
