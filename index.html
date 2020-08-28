@@ -449,18 +449,69 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/08/23/2020.0823/">
+        <a class="abstract-title" href="/2020/08/25/2020.08.24（145）/">
             
-                <span>ss</span>
+                <span>AFL详细总结（持续更新）</span>
         </a>
         <div class="abstract-content">
-             课程资源 
+             0x00 AFL的流程
 
-网络信息安全
-课程介绍
+ 1.AFL整体框架
 
-社会信息化对信息的依赖性逐渐加强，也产生了严重的网络信息安全问题。面对严重的网络与信息安全威胁，加速培养网络与信息安全人员的防范意识已经刻不容缓。本课程的任务就是使学生能够比较全面、系统地掌握网络与信息安全的理论和实践知识，熟悉网络信息安全的现状、规律和发展，了解网络安全的模型与技术，掌握常见的信息安全技术，加密技术，防火墙技术，入侵检测与预警技术防病毒技术等安全方面的内容。
-本课程对网络与信息安全理论与应用做了介绍，通过学习，使得学生能全面掌握网络与信息安全中的基本概念、原理、技术以及应用环境。通过网络与信息安全实例的构建和分析，使得学生系统地...
+
+
+main函数先进行初始化和选项处理；
+
+
+执行input文件夹下的预先准备的所有testcase（perform_dry_run），生成初始化的queue和bitmap；
+
+
+通过cull_queue对queue进行精选，减小input的量；
+
+
+然后进行while(1)循环不断进行fuzz。
+
+
+每次在fuzz一个queue后，就会进入while(1),并重新调用cull_queue()对队列进行精选，而在while(1)具体实现以下过程：
+
+
+cull_queue()根据top_rated设置queue中的favored标志，对...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="AFL">AFL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/08/23/2020.08.23（144）/">
+            
+                <span>网路安全学习资源汇总</span>
+        </a>
+        <div class="abstract-content">
+            网络资源
+开放课平台
+https://ocw.mit.edu/: MIT开放课程资源
+https://www.coursera.org/：Coursera
+技术新闻与问答
+https://lwn.net/: reader-supported news site dedicated to producing the best coverage from within the Linux and free software development communities.
+https://stackoverflow.com/: For developers, by developers.
+h...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -468,6 +519,12 @@ height:50vh;
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/23</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
             
         </div>
     </article>
@@ -691,45 +748,6 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
-            
-                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.什么是shellcode
-
-shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
-
- 2.shellcode的C语言形式
-12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
     
 </div>
             
@@ -3468,9 +3486,78 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 144
+        Total : 145
         </div>
         <!-- search  -->
         
@@ -3490,7 +3577,12 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.0823/">ss</a>
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2020/08/25/2020.08.24（145）/">AFL详细总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
         </li>
     
     
@@ -3575,12 +3667,12 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3720,12 +3812,12 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -4307,6 +4399,8 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
         <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
     
         <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

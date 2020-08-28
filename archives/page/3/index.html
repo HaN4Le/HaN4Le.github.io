@@ -361,6 +361,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/12/2020.06.12（125）/">
+            
+                <span>【XCTF-pwn】welpwn是个什么东西？（RCTF-2015）</span>
+        </a>
+        <div class="abstract-content">
+            0x00 相关知识点1.\x00截断符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面给大家一个简单的C程序：
+12345678// Function：截断符测试# include&lt;stdio.h&gt;int main()&#123;    char a[20];    scanf("%s",a);    printf("%s",a);&#125;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们现在正常运行一下该程序，输入为“Hello\x00World”，运行结果输出为Hello\x00World，有的人可能要有疑问了，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/09/2020.06.09（124）/">
             
                 <span>Pwnable.kr的奇幻之旅（六）[random]</span>
@@ -651,52 +684,6 @@ gcc编译器专门为防止缓冲区溢出而采取的保护措施，具体方�
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/04</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/02/2020.05.02（115）/">
-            
-                <span>Pwnable.kr的奇幻之旅（四）[flag]</span>
-        </a>
-        <div class="abstract-content">
-             
-
-
-0x00 相关知识1.UPX 加壳
-这里就简单介绍一下UPX加壳的原理，详细内容以后会进行专题研究。
-
-
-通过上图可以看出最重要的部分应该为Compressed data和Stub，下面简单的讲一下UPX加壳的原理以及加壳后如何执行程序。
-UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方面：  
-
-一方面在程序的开头或者其他合适的地方插入一段代码
-
-另一方面是将程序的其他地方做压缩（也就是上面讲到的压缩），压缩也可以叫做加密，因为压缩后的程序比较难看懂，原来的代码有很大的不同；
-
-
-当程序执行时：实时的对程序解压缩。解压缩功能是在Stub节区插入的代码完成的功能，联起来...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
             
         </div>
     </article>
@@ -3336,9 +3323,78 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 144
+        Total : 145
         </div>
         <!-- search  -->
         
@@ -3358,7 +3414,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.0823/">ss</a>
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2020/08/25/2020.08.24（145）/">AFL详细总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
         </li>
     
     
@@ -3443,12 +3504,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
         </li>
     
     
@@ -3588,12 +3649,12 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
@@ -4175,6 +4236,8 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
         <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
     
         <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
