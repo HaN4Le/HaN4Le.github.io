@@ -291,7 +291,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">6.2k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">8.2k</span>阅读时长: <span class="post-count reading-time">34 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -420,74 +420,67 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-brown0x00-目录操作命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x00-目录操作命令font"></a> <font color="brown"><code>0x00 目录操作命令</code></font></h3>
-<h4 id="font-color-navy0x00-lslistfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-lslistfont"></a> <font color="navy"><code>0x00 ls（list）</code></font></h4>
-<p><code>功能</code>：列举出当前工作目录的内容，包括文件和文件夹</p>
+        <h3 id="0x00-目录操作命令"><a href="#0x00-目录操作命令" class="headerlink" title="0x00 目录操作命令"></a><font color="brown"><code>0x00 目录操作命令</code></font></h3><h4 id="0x00-ls（list）"><a href="#0x00-ls（list）" class="headerlink" title="0x00 ls（list）"></a><font color="navy"><code>0x00 ls（list）</code></font></h4><p><code>功能</code>：列举出当前工作目录的内容，包括文件和文件夹</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
-<p><code>ls -l</code>： 文件/文件夹：长格式显示指定/目录中的文件</p>
+<p><code>ls -l</code>： 文件/文件夹：长格式显示指定/目录中的文件</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@# ls -l 图片1.png</span><br><span class="line">-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png</span><br><span class="line">   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名</span><br><span class="line">   </span><br><span class="line">root@# ls -l 文件夹</span><br><span class="line">-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png</span><br><span class="line">-rwxrwxrwx 1 root root 1139867 Feb 23 12:09 IMG_1074.jpg</span><br><span class="line">-rwxrwxrwx 1 root root 2282681 Feb 14 15:54 IMG_1093-2.jpg</span><br><span class="line">    权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>ls -a</code>：显示所有文件，包含隐藏文件</p>
 </blockquote>
-<h4 id="font-colornavy0x01-cdchange-directoryfont"><a class="markdownIt-Anchor" href="#font-colornavy0x01-cdchange-directoryfont"></a> <font color="navy"><code>0x01 cd（Change Directory）</code></font></h4>
-<p><code>作用</code>：切换文件路径，cd 将给定的文件夹（或目录）设置成当前工作目录</p>
+<h4 id="0x01-cd（Change-Directory）"><a href="#0x01-cd（Change-Directory）" class="headerlink" title="0x01 cd（Change Directory）"></a><font color="navy"><code>0x01 cd（Change Directory）</code></font></h4><p><code>作用</code>：切换文件路径，cd 将给定的文件夹（或目录）设置成当前工作目录</p>
 <p><code>功能</code>：</p>
 <blockquote>
 <p><code>cd ~</code>：进入当前用户的home目录</p>
 <p><code>cd -</code>：进入上次目录</p>
 <p><code>cd ..</code> ：进入上一级目录</p>
 </blockquote>
-<h4 id="font-color-navy0x02-pwdprint-working-directoryfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-pwdprint-working-directoryfont"></a> <font color="navy"><code>0x02 pwd（print working directory）</code></font></h4>
-<p><code>功能</code>：显示当前工作目录</p>
+<h4 id="0x02-pwd（print-working-directory）"><a href="#0x02-pwd（print-working-directory）" class="headerlink" title="0x02 pwd（print working directory）"></a><font color="navy"><code>0x02 pwd（print working directory）</code></font></h4><p><code>功能</code>：显示当前工作目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@:/mnt/d/Program# pwd</span><br><span class="line">/mnt/d/Program</span><br></pre></td></tr></table></figure>
 <p><code>相关选项</code>：无</p>
 <p><code>附加知识点</code>：Linux 常见目录及作用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/ 		根目录</span><br><span class="line"></span><br><span class="line">/bin 	命令保存目录（普通用户就可以读取的命令）</span><br><span class="line"></span><br><span class="line">/boot 	启动目录，启动相关文件</span><br><span class="line"></span><br><span class="line">/dev 	设备文件保存目录</span><br><span class="line"></span><br><span class="line">/etc 	配置文件保存目录</span><br><span class="line"></span><br><span class="line">/home 	普通用户的家目录</span><br><span class="line"></span><br><span class="line">/lib 	系统库保存目录</span><br><span class="line"></span><br><span class="line">/mnt 	系统挂载目录</span><br><span class="line"></span><br><span class="line">/media 	挂载目录</span><br><span class="line"></span><br><span class="line">/root 	超级用户的家目录</span><br><span class="line"></span><br><span class="line">/tmp 	临时目录</span><br><span class="line"></span><br><span class="line">/sbin 	命令保存目录（超级用户才能使用的目录）</span><br><span class="line"></span><br><span class="line">/proc 	直接写入内存的</span><br><span class="line"></span><br><span class="line">/sys 	将内核的一些信息映射，可供应用程序所用</span><br><span class="line"></span><br><span class="line">/usr 	系统软件资源目录</span><br><span class="line"></span><br><span class="line">/usr/bin/ 	系统命令（普通用户）</span><br><span class="line"></span><br><span class="line">/usr/sbin/ 	系统命令（超级用户）</span><br><span class="line"></span><br><span class="line">/var 	系统相关文档内容</span><br><span class="line"></span><br><span class="line">/var/log/ 	系统日志位置</span><br><span class="line"></span><br><span class="line">/var/spool/mail/	系统默认邮箱位置</span><br><span class="line"></span><br><span class="line">/var/lib/ 	默认安装的库文件目录</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x03-mkdirmake-directoriesfont"><a class="markdownIt-Anchor" href="#font-color-navy0x03-mkdirmake-directoriesfont"></a> <font color="navy"><code>0x03 mkdir（make directories）</code></font></h4>
-<p><code>功能</code>：用于新建一个新目录</p>
+<h4 id="0x03-mkdir（make-directories）"><a href="#0x03-mkdir（make-directories）" class="headerlink" title="0x03 mkdir（make directories）"></a><font color="navy"><code>0x03 mkdir（make directories）</code></font></h4><p><code>功能</code>：用于新建一个新目录</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>mkdir test</code>：创建名为test的目录</p>
 <p><code>mkdir -p test1/test2/test3</code>：递归创建</p>
 </blockquote>
-<h4 id="font-color-navy0x04-rmdirremove-directoriesfont"><a class="markdownIt-Anchor" href="#font-color-navy0x04-rmdirremove-directoriesfont"></a> <font color="navy"><code>0x04 rmdir（remove directories）</code></font></h4>
-<p><code>功能</code>：删除给定的目录（只能删除空目录）</p>
+<h4 id="0x04-rmdir（remove-directories）"><a href="#0x04-rmdir（remove-directories）" class="headerlink" title="0x04 rmdir（remove directories）"></a><font color="navy"><code>0x04 rmdir（remove directories）</code></font></h4><p><code>功能</code>：删除给定的目录（只能删除空目录）</p>
 <p><code>相关选项</code>：</p>
-<h4 id="font-color-navy0x05-echofont"><a class="markdownIt-Anchor" href="#font-color-navy0x05-echofont"></a> <font color="navy"><code>0x05 echo</code></font></h4>
-<p><code>功能</code>：用于字符串的输出。</p>
+<h4 id="0x05-echo"><a href="#0x05-echo" class="headerlink" title="0x05 echo"></a><font color="navy"><code>0x05 echo</code></font></h4><p><code>功能</code>：用于字符串的输出。</p>
 <p><code>相关命令/选项</code>：</p>
 <blockquote>
 <ol>
-<li>
-<p>显示普通字符：<code>echo &quot;Hello World&quot;</code>(双引号可以省略)，输出<code>Hello World</code></p>
+<li><p>显示普通字符：<code>echo &quot;Hello World&quot;</code>(双引号可以省略)，输出<code>Hello World</code></p>
 </li>
-<li>
-<p>显示转义字符：<code>echo &quot;\&quot;Hello World\&quot;&quot;</code> 输出<code>&quot;Hello World&quot;</code></p>
+<li><p>显示转义字符：<code>echo &quot;\&quot;Hello World\&quot;&quot;</code> 输出<code>&quot;Hello World&quot;</code></p>
 </li>
-<li>
-<p>显示变量：</p>
+<li><p>显示变量：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;    read name`</span><br><span class="line">&gt;    echo &quot;$name It is my name&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
-<p>以上代码保存为 <a href="http://test.sh" target="_blank" rel="noopener">test.sh</a>，name 接收标准输入的变量，输入为Liming，结果将是:</p>
+<p>   以上代码保存为 test.sh，name 接收标准输入的变量，输入为Liming，结果将是:</p>
    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;    # sh test.sh </span><br><span class="line">&gt;    Liming </span><br><span class="line">&gt;    Liming HHH</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
-<ol start="4">
-<li>
-<p>显示换行：</p>
+<ol>
+<li><p>显示换行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;    echo -e &quot;OK! \n&quot; # -e 开启转义</span><br><span class="line">&gt;    echo &quot;It is a test&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
-<p>输出结果：</p>
+<p>   输出结果：</p>
    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;    OK!</span><br><span class="line">&gt;    </span><br><span class="line">&gt;    It is a test</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <ul>
 <li><code>\a</code> 发出警告声；</li>
@@ -501,24 +494,19 @@ height:50vh;
 <li><code>\\</code> 插入<code>\</code>字符；</li>
 <li><code>\nnn</code> 插入<code>nnn</code>（八进制）所代表的ASCII字符；</li>
 </ul>
-<ol start="5">
-<li>
-<p>显示结果定向至文件：<code>echo &quot;It is a test&quot; &gt; myfile</code><font size="2">（要注意<code>&gt;</code>和<code>&gt;&gt;</code>的区别，前者是覆盖，后者是在后面追加）</font></p>
+<ol>
+<li><p>显示结果定向至文件：<code>echo &quot;It is a test&quot; &gt; myfile</code><font size="2">（要注意<code>&gt;</code>和<code>&gt;&gt;</code>的区别，前者是覆盖，后者是在后面追加）</font></p>
 </li>
-<li>
-<p>显示命令执行结果：echo `data`</p>
+<li><p>显示命令执行结果：echo `data`</p>
 </li>
 </ol>
 </blockquote>
-<h3 id="font-color-brown0x01-文件操作命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x01-文件操作命令font"></a> <font color="brown"><code>0x01 文件操作命令</code></font></h3>
-<h4 id="font-color-navy0x00-touchtouchfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-touchtouchfont"></a> <font color="navy"><code>0x00 touch（touch）</code></font></h4>
-<p><code>功能</code>：创建空文件或修改文件时间</p>
+<h3 id="0x01-文件操作命令"><a href="#0x01-文件操作命令" class="headerlink" title="0x01 文件操作命令"></a><font color="brown"><code>0x01 文件操作命令</code></font></h3><h4 id="0x00-touch（touch）"><a href="#0x00-touch（touch）" class="headerlink" title="0x00 touch（touch）"></a><font color="navy"><code>0x00 touch（touch）</code></font></h4><p><code>功能</code>：创建空文件或修改文件时间</p>
 <p><code>例子</code></p>
 <blockquote>
 <p><code>touch test.py</code>：创建空文件，如果文件存在，则修改文件创建时间</p>
 </blockquote>
-<h4 id="font-color-navy0x01-rmremovefont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-rmremovefont"></a> <font color="navy"><code>0x01 rm（remove）</code></font></h4>
-<p><code>功能</code>：删除给定的文件</p>
+<h4 id="0x01-rm（remove）"><a href="#0x01-rm（remove）" class="headerlink" title="0x01 rm（remove）"></a><font color="navy"><code>0x01 rm（remove）</code></font></h4><p><code>功能</code>：删除给定的文件</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>rm -r 目录名</code>： 递归删除文件和目录</p>
@@ -526,24 +514,21 @@ height:50vh;
 <p><code>rm -f 文件名</code> ： 强制删除</p>
 <p><code>rm -rf 目录名</code>:  强制删除目录和文件</p>
 </blockquote>
-<h4 id="font-color-navy0x02-catconcatenate-and-print-filesfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-catconcatenate-and-print-filesfont"></a> <font color="navy"><code>0x02 cat（concatenate and print files）</code></font></h4>
-<p><code>功能</code>：用于在标准输出（监控器或屏幕）上查看文件内容</p>
+<h4 id="0x02-cat（concatenate-and-print-files）"><a href="#0x02-cat（concatenate-and-print-files）" class="headerlink" title="0x02 cat（concatenate and print files）"></a><font color="navy"><code>0x02 cat（concatenate and print files）</code></font></h4><p><code>功能</code>：用于在标准输出（监控器或屏幕）上查看文件内容</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>-n</code>：由 1 开始对所有输出的行数编号</p>
 <p><code>-b</code>：和 -n 相似，只不过对于空白行不编号</p>
 <p><code>-E</code>： 在每行结束处显示 $</p>
 </blockquote>
-<h4 id="font-color-navy0x03-morefont"><a class="markdownIt-Anchor" href="#font-color-navy0x03-morefont"></a> <font color="navy"><code>0x03 more</code></font></h4>
-<p><code>功能</code>：命令类似 cat ，不过会以一页一页的形式显示</p>
+<h4 id="0x03-more"><a href="#0x03-more" class="headerlink" title="0x03 more"></a><font color="navy"><code>0x03 more</code></font></h4><p><code>功能</code>：命令类似 cat ，不过会以一页一页的形式显示</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>空格键</code>：向上翻页</p>
 <p><code>b</code>：向下翻页</p>
 <p><code>p</code>：退出查看</p>
 </blockquote>
-<h4 id="font-color-navy0x04-cpcopyfont"><a class="markdownIt-Anchor" href="#font-color-navy0x04-cpcopyfont"></a> <font color="navy"><code>0x04 cp（copy）</code></font></h4>
-<p><code>功能</code>：对文件或目录进行复制</p>
+<h4 id="0x04-cp（copy）"><a href="#0x04-cp（copy）" class="headerlink" title="0x04 cp（copy）"></a><font color="navy"><code>0x04 cp（copy）</code></font></h4><p><code>功能</code>：对文件或目录进行复制</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p>cp 源文件 目标位置 (复制)</p>
@@ -553,8 +538,8 @@ height:50vh;
 <p><code>cp -d</code>：若源文件是链接文件，则复制链接属性</p>
 <p><code>cp -a</code>：相当于 <code>cp -pdr</code></p>
 </blockquote>
-<h4 id="font-color-navy0x05-mvmovefont"><a class="markdownIt-Anchor" href="#font-color-navy0x05-mvmovefont"></a> <font color="navy"><code>0x05 mv（move）</code></font></h4>
-<p><code>功能</code>：命令对文件或文件夹进行移动，如果文件或文件夹存在于当前工作目录，还可以对文件或文件夹进行重命名</p>
+<h4 id="0x05-mv（move）"><a href="#0x05-mv（move）" class="headerlink" title="0x05 mv（move）"></a><font color="navy"><code>0x05 mv（move）</code></font></h4><p><code>功能</code>：命令对文件或文件夹进行移动，如果文件或文件夹存在于当前工作目录，还可以对文件或文件夹进行重命名</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -581,6 +566,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
+</div>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>mv -i</code>：若指定目录已有同名文件，则先询问是否覆盖旧文件;</p>
@@ -593,15 +579,14 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv  /home/ffxhd/a.txt   /home/ffxhd/test/ </span><br><span class="line">或者</span><br><span class="line">mv  /home/ffxhd/a.txt   /home/ffxhd/test</span><br></pre></td></tr></table></figure>
 <p>目标目录与原目录不一致, 指定了新文件名，效果就是：移动 + 重命名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /home/ffxhd/a.txt   /home/ffxhd/test/c.txt</span><br></pre></td></tr></table></figure>
-<h4 id="font-colornavy0x06-catcatenate连锁font"><a class="markdownIt-Anchor" href="#font-colornavy0x06-catcatenate连锁font"></a> <font color="navy"><code>0x06 cat（Catenate，连锁）</code></font></h4>
-<p><code>功能</code>：用于连接文件并打印到标准输出设备上</p>
+<h4 id="0x06-cat（Catenate，连锁）"><a href="#0x06-cat（Catenate，连锁）" class="headerlink" title="0x06 cat（Catenate，连锁）"></a><font color="navy"><code>0x06 cat（Catenate，连锁）</code></font></h4><p><code>功能</code>：用于连接文件并打印到标准输出设备上</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <ul>
 <li><strong>-n</strong>：由 1 开始对所有输出的行数编号</li>
 <li><strong>-b</strong>：和 -n 相似，只不过对于空白行不编号</li>
 <li><strong>-s</strong>：当遇到有连续两行以上的空白行，就代换为一行的空白行</li>
-<li><strong>-E 或 --show-ends</strong> : 在每行结束处显示 $。</li>
+<li><strong>-E 或 —show-ends</strong> : 在每行结束处显示 $。</li>
 </ul>
 </blockquote>
 <p><code>相关实例</code></p>
@@ -617,8 +602,7 @@ height:50vh;
 <blockquote>
 <p>这篇可以看一下<a href="https://blog.csdn.net/XD_hebuters/article/details/79204812" target="_blank" rel="noopener">Linux cat命令使用</a></p>
 </blockquote>
-<h4 id="font-colornavy0x07-xxd命令font"><a class="markdownIt-Anchor" href="#font-colornavy0x07-xxd命令font"></a> <font color="navy"><code>0x07 xxd命令</code></font></h4>
-<p><code>功能</code>：将一个给定文件或标准输入转换为十六进制形式，也能将十六进制转换回二进制形式</p>
+<h4 id="0x07-xxd命令"><a href="#0x07-xxd命令" class="headerlink" title="0x07 xxd命令"></a><font color="navy"><code>0x07 xxd命令</code></font></h4><p><code>功能</code>：将一个给定文件或标准输入转换为十六进制形式，也能将十六进制转换回二进制形式</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <ul>
@@ -626,23 +610,20 @@ height:50vh;
 <li>c : 它的后面加上数字表示每行显示多少字节的十六进制数，默认是16字节</li>
 <li>g : 设定以几个字节为一块，默认为2字节</li>
 <li>l : 显示多少字节的内容</li>
-<li>s : 后面接【±】和address.加号表示从地址处开始的内容，减号表示距末尾address开始的内容</li>
+<li>s : 后面接【+-】和address.加号表示从地址处开始的内容，减号表示距末尾address开始的内容</li>
 </ul>
 </blockquote>
 <p><code>具体用法</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">xxd      -a           -c 12          -g 1           -l 512     -s +0x2600     [inputfile]</span><br><span class="line">   【自动跳过空白】【每行显示12字节】【一个字节一块】【显示512字节内容】【从0x2600开始】   【输入文件】</span><br><span class="line">   </span><br><span class="line">#root:~$xxd -a -c 12 -g 1 -l 512 -s +0x2600 ~/桌面/i/a.img</span><br><span class="line"></span><br><span class="line">0002600: 41 6c 00 6f 00 61 00 64 00 65 00 0f | Al.o.a.d.e</span><br><span class="line"></span><br><span class="line">000260c: 00 ab 72 00 2e 00 62 00 69 00 6e 00 | r…b.i.n.</span><br><span class="line"></span><br><span class="line">0002618: 00 00 00 00 ff ff ff ff 4c 4f 41 44 | ……LOAD</span><br><span class="line"></span><br><span class="line">0002624: 45 52 20 20 42 49 4e 20 00 64 94 8e | ER BIN .d</span><br><span class="line"></span><br><span class="line">0002630: 78 3a 78 3a 00 00 94 8e 78 3a 03 00 | x:x:…x:</span><br><span class="line"></span><br><span class="line">000263c: 51 16 00 00 41 6b 00 65 00 72 00 6e | Q…Ak.e.r.n</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x08-lnfont"><a class="markdownIt-Anchor" href="#font-color-navy0x08-lnfont"></a> <font color="navy"><code>0x08 ln</code></font></h4>
-<p><code>功能</code>：Linux ln命令是一个非常重要命令，它的功能是<strong>为某一个文件在另外一个位置建立一个同步的链接</strong>。当我们需要在不同的目录，用到相同的文件时，我们不需要在每一个需要的目录下都放一个必须相同的文件，我们只要在某个固定的目录，放上该文件，然后在 其它的目录下用ln命令链接（link）它就可以，不必重复的占用磁盘空间。链接分为硬链接和软链接，其中：</p>
+<h4 id="0x08-ln"><a href="#0x08-ln" class="headerlink" title="0x08 ln"></a><font color="navy"><code>0x08 ln</code></font></h4><p><code>功能</code>：Linux ln命令是一个非常重要命令，它的功能是<strong>为某一个文件在另外一个位置建立一个同步的链接</strong>。当我们需要在不同的目录，用到相同的文件时，我们不需要在每一个需要的目录下都放一个必须相同的文件，我们只要在某个固定的目录，放上该文件，然后在 其它的目录下用ln命令链接（link）它就可以，不必重复的占用磁盘空间。链接分为硬链接和软链接，其中：</p>
 <ul>
-<li>硬链接的意思是一个档案可以有多个名称，它是存在同一个文件系统中
-<ul>
+<li>硬链接的意思是一个档案可以有多个名称，它是存在同一个文件系统中<ul>
 <li>1.硬链接，以文件副本的形式存在。但不占用实际空间。</li>
 <li>2.<strong>不允许给目录创建硬链接</strong></li>
 <li>3.硬链接只有在同一个文件系统中才能创建</li>
 </ul>
 </li>
-<li>软链接的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置，而软链接却可以跨越不同的文件系统。
-<ul>
+<li>软链接的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置，而软链接却可以跨越不同的文件系统。<ul>
 <li>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式</li>
 <li>2.软链接可以跨文件系统 ，硬链接不可以</li>
 <li>3.软链接可以对一个不存在的文件名进行链接</li>
@@ -670,20 +651,14 @@ height:50vh;
 <p>给文件创建硬链接，为log2013.log创建硬链接ln2013，log2013.log与ln2013的各项属性相同</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln log2013.log ln2013</span><br></pre></td></tr></table></figure>
-<h3 id="font-color-brown0x02-权限管理font"><a class="markdownIt-Anchor" href="#font-color-brown0x02-权限管理font"></a> <font color="brown"><code>0x02 权限管理</code></font></h3>
-<p><a href>有关权限位请看我的另一篇博客：linux的权限位</a>，这里就再简单的介绍一下：</p>
+<h3 id="0x02-权限管理"><a href="#0x02-权限管理" class="headerlink" title="0x02 权限管理"></a><font color="brown"><code>0x02 权限管理</code></font></h3><p><a href>有关权限位请看我的另一篇博客：linux的权限位</a>，这里就再简单的介绍一下：</p>
 <p><code>权限位</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png</span><br><span class="line">   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名</span><br></pre></td></tr></table></figure>
 <p><code>权限位的个数</code>：<strong>权限位是十位</strong></p>
 <blockquote>
 <p>第一位：代表文件类型</p>
-<p>        ▧  -：普通文件<br>
-        ▧  d：目录文件<br>
-        ▧   l：链接文件</p>
-<p>其他九位：代表各用户的权限<br>
-        ▧  前三位：属主权限u<br>
-        ▧   中间三位：属组权限g<br>
-        ▧   后三位：其他人权限o</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-：普通文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;d：目录文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp; l：链接文件</p>
+<p>其他九位：代表各用户的权限<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;前三位：属主权限u<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp; 中间三位：属组权限g<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp; 后三位：其他人权限o</p>
 </blockquote>
 <p><code>r、w、x</code>：</p>
 <blockquote>
@@ -694,25 +669,19 @@ height:50vh;
 <p><code>权限意义</code>：</p>
 <blockquote>
 <p><strong>⇲ 权限对文件的含义：</strong></p>
-<p>        ▧  r：读取文件内容 如：cat、more、head、tail<br>
-        ▧  w：编辑、新增、修改文件内容 如：vi、echo 但是不包含删除文件<br>
-        ▧  x：可执行 /tmp/11/22/abc</p>
-<p><strong>⇲ 权限对目录的含义：</strong><br>
-        ▧  r：可以查询目录下文件名 如：ls<br>
-        ▧  w：具有修改目录结构的权限 如：touch、rm、mv、cp<br>
-        ▧  x：可以进入目录 如：cd</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;r：读取文件内容 如：cat、more、head、tail<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;w：编辑、新增、修改文件内容 如：vi、echo 但是不包含删除文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;x：可执行 /tmp/11/22/abc </p>
+<p><strong>⇲ 权限对目录的含义：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;r：可以查询目录下文件名 如：ls<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;w：具有修改目录结构的权限 如：touch、rm、mv、cp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;x：可以进入目录 如：cd</p>
 </blockquote>
-<h4 id="font-color-navy0x00-chmodchange-the-permissions-mode-of-a-filefont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-chmodchange-the-permissions-mode-of-a-filefont"></a> <font color="navy"><code>0x00 chmod（change the permissions mode of a file）</code></font></h4>
-<p><code>功能</code>：修改权限</p>
+<h4 id="0x00-chmod（change-the-permissions-mode-of-a-file）"><a href="#0x00-chmod（change-the-permissions-mode-of-a-file）" class="headerlink" title="0x00 chmod（change the permissions mode of a file）"></a><font color="navy"><code>0x00 chmod（change the permissions mode of a file）</code></font></h4><p><code>功能</code>：修改权限</p>
 <p><code>相关选项</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ugoa...][[+-=][rwxX]...][,...]</span><br></pre></td></tr></table></figure>
 <p>其中：</p>
-<p>        ▧  u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是</p>
-<p>        ▧  + 表示增加权限、- 表示取消权限、= 表示唯一设定权限</p>
-<p>        ▧  r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行</p>
 <p>其他参数说明：</p>
-<p>        ▧  -v : 显示权限变更的详细资料</p>
-<p>        ▧  -R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递回的方式逐个变更)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-v : 显示权限变更的详细资料</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递回的方式逐个变更)</p>
 <p><code>实例</code>：</p>
 <p>将文件 file1.txt 设为所有人皆可读取 ：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod ugo+r file1.txt</span><br></pre></td></tr></table></figure>
@@ -720,7 +689,7 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+r file1.txt</span><br></pre></td></tr></table></figure>
 <p>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod ug+w,o-w file1.txt file2.txt</span><br></pre></td></tr></table></figure>
-<p>将 <a href="http://ex1.py" target="_blank" rel="noopener">ex1.py</a> 设定为只有该文件拥有者可以执行 :</p>
+<p>将 ex1.py 设定为只有该文件拥有者可以执行 :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x ex1.py</span><br></pre></td></tr></table></figure>
 <p>将目前目录下的所有文件与子目录皆设为任何人可读取 :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R a+r *</span><br></pre></td></tr></table></figure>
@@ -742,8 +711,7 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod ug=rwx,o=x file</span><br></pre></td></tr></table></figure>
 <p>和</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 771 file</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x01-useraddfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-useraddfont"></a> <font color="navy"><code>0x01 useradd</code></font></h4>
-<p><code>功能</code>：建立用户帐号</p>
+<h4 id="0x01-useradd"><a href="#0x01-useradd" class="headerlink" title="0x01 useradd"></a><font color="navy"><code>0x01 useradd</code></font></h4><p><code>功能</code>：建立用户帐号</p>
 <p><code>命令格式</code>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -D [-b][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-s &lt;shell&gt;]</span><br></pre></td></tr></table></figure>
 <p><code>参数说明</code>：</p>
@@ -759,8 +727,8 @@ height:50vh;
 <li>-M：不要自动建立用户的登入目录。</li>
 <li>-n：取消建立以用户名称为名的群组．</li>
 <li>-r：建立系统帐号。</li>
-<li>-s&lt;shell&gt;：指定用户登入后所使用的shell。</li>
-<li>-u&lt;uid&gt;：指定用户ID。</li>
+<li>-s\<shell>：指定用户登入后所使用的shell。</shell></li>
+<li>-u\<uid>：指定用户ID。</uid></li>
 </ul>
 <p><code>实例</code></p>
 <blockquote>
@@ -783,54 +751,28 @@ height:50vh;
 <p>建立用户且制定ID</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> useradd caojh -u 544</span></span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x02-passwdfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-passwdfont"></a> <font color="navy"><code>0x02 passwd</code></font></h4>
-<p><code>功能</code>：用来更改使用者的密码</p>
+<h4 id="0x02-passwd"><a href="#0x02-passwd" class="headerlink" title="0x02 passwd"></a><font color="navy"><code>0x02 passwd</code></font></h4><p><code>功能</code>：用来更改使用者的密码</p>
 <p><code>语法</code>：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd [-k] [-l] [-u [-f]] [-d] [-S] [username]</span><br></pre></td></tr></table></figure>
 <p><code>参数</code></p>
 <ul>
-<li>
-<p>-d 删除密码</p>
+<li>-d 删除密码</li>
+<li>-f 强迫用户下次登录时必须修改口令</li>
+<li>-w 口令要到期提前警告的天数</li>
+<li>-k 更新只能发送在过期之后</li>
+<li>-l 停止账号使用</li>
+<li>-S 显示密码信息</li>
+<li>-u 启用已被停止的账户</li>
+<li>-x 指定口令最长存活期</li>
+<li>-g 修改群组密码</li>
+<li>指定口令最短存活期</li>
+<li><p>-i 口令过期后多少天停用账户</p>
 </li>
-<li>
-<p>-f 强迫用户下次登录时必须修改口令</p>
+<li><p>—help 显示帮助信息</p>
 </li>
-<li>
-<p>-w 口令要到期提前警告的天数</p>
-</li>
-<li>
-<p>-k 更新只能发送在过期之后</p>
-</li>
-<li>
-<p>-l 停止账号使用</p>
-</li>
-<li>
-<p>-S 显示密码信息</p>
-</li>
-<li>
-<p>-u 启用已被停止的账户</p>
-</li>
-<li>
-<p>-x 指定口令最长存活期</p>
-</li>
-<li>
-<p>-g 修改群组密码</p>
-</li>
-<li>
-<p>指定口令最短存活期</p>
-</li>
-<li>
-<p>-i 口令过期后多少天停用账户</p>
-</li>
-<li>
-<p>–help 显示帮助信息</p>
-</li>
-<li>
-<p>–version 显示版本信息</p>
-</li>
+<li>—version 显示版本信息</li>
 </ul>
-<h4 id="font-color-navy0x03-usermodfont"><a class="markdownIt-Anchor" href="#font-color-navy0x03-usermodfont"></a> <font color="navy"><code>0x03 usermod</code></font></h4>
-<p><code>功能</code>：用于修改用户帐号，可用来修改用户帐号的各项设定。</p>
+<h4 id="0x03-usermod"><a href="#0x03-usermod" class="headerlink" title="0x03 usermod"></a><font color="navy"><code>0x03 usermod</code></font></h4><p><code>功能</code>：用于修改用户帐号，可用来修改用户帐号的各项设定。</p>
 <p><code>语法</code>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod [-LU][-c &lt;备注&gt;][-d &lt;登入目录&gt;][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-l &lt;帐号名称&gt;][-s &lt;shell&gt;][-u &lt;uid&gt;][用户帐号]</span><br></pre></td></tr></table></figure>
 <p><code>参数说明</code>：</p>
@@ -856,29 +798,94 @@ height:50vh;
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> usermod -s /bin/bash username</span></span><br></pre></td></tr></table></figure>
 <p><code>综合</code></p>
 <p><a href="https://p3terx.com/archives/add-normal-users-with-adduser-and-useradd.html" target="_blank" rel="noopener">Linux 使用 adduser 与 useradd 添加普通用户的正确姿势</a></p>
-<h3 id="font-color-brown0x03-帮助命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x03-帮助命令font"></a> <font color="brown"><code>0x03 帮助命令</code></font></h3>
-<h4 id="font-color-navy0x00-manmanualfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-manmanualfont"></a> <font color="navy"><code>0x00 man（manual）</code></font></h4>
-<p><code>功能</code>：查看命令的帮助</p>
-<h4 id="font-color-navy0x01-helpfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-helpfont"></a> <font color="navy"><code>0x01 help</code></font></h4>
-<p><code>功能</code>：查看命令的帮助</p>
-<h3 id="font-color-brown0x04-查找命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x04-查找命令font"></a> <font color="brown"><code>0x04 查找命令</code></font></h3>
-<h4 id="font-color-navy0x00-whereiswhereisfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-whereiswhereisfont"></a> <font color="navy"><code>0x00 whereis（whereis）</code></font></h4>
-<p><code>功能</code>：查找命令的命令，同时看到帮助文档位置</p>
+<h4 id="0x04-su"><a href="#0x04-su" class="headerlink" title="0x04 su"></a><font color="navy"><code>0x04 su</code></font></h4><p><code>功能</code>：用于变更为其他使用者的身份，除 root 外，需要键入该使用者的密码。使用权限：所有使用者。</p>
+<p><code>语法</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su [-fmp] [-c command] [-s shell] [--help] [--version] [-] [USER [ARG]]</span><br></pre></td></tr></table></figure>
+<p><code>参数说明</code>：</p>
+<ul>
+<li>-f 或 —fast 不必读启动档（如 csh.cshrc 等），仅用于 csh 或 tcsh</li>
+<li>-m -p 或 —preserve-environment 执行 su 时不改变环境变数</li>
+<li>-c command 或 —command=command 变更为帐号为 USER 的使用者并执行指令（command）后再变回原来使用者</li>
+<li>-s shell 或 —shell=shell 指定要执行的 shell （bash csh tcsh 等），预设值为 /etc/passwd 内的该使用者（USER） shell</li>
+<li>—help 显示说明文件</li>
+<li>—version 显示版本资讯</li>
+<li>- -l 或 —login 这个参数加了之后，就好像是重新 login 为该使用者一样，大部份环境变数（HOME SHELL USER等等）都是以该使用者（USER）为主，并且工作目录也会改变，如果没有指定 USER ，内定是 root</li>
+<li>USER 欲变更的使用者帐号</li>
+<li>ARG 传入新的 shell 参数</li>
+</ul>
+<p><code>实例</code>：</p>
+<p>变更帐号为 root 并在执行 ls 指令后退出变回原使用者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -c ls root</span><br></pre></td></tr></table></figure>
+<p>变更帐号为 root 并传入 -f 参数给新执行的 shell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root -f</span><br></pre></td></tr></table></figure>
+<p>变更帐号为 clsung 并改变工作目录至 clsung 的家目录（home dir）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - clsung</span><br></pre></td></tr></table></figure>
+<p>切换用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hnlinux@runoob.com:~$ whoami //显示当前用户</span><br><span class="line">hnlinux</span><br><span class="line">hnlinux@runoob.com:~$ pwd //显示当前目录</span><br><span class="line">/home/hnlinux</span><br><span class="line">hnlinux@runoob.com:~$ su root //切换到root用户</span><br><span class="line">密码： </span><br><span class="line">root@runoob.com:/home/hnlinux# whoami </span><br><span class="line">root</span><br><span class="line">root@runoob.com:/home/hnlinux# pwd</span><br><span class="line">/home/hnlinux</span><br></pre></td></tr></table></figure>
+<p>切换用户，改变环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hnlinux@runoob.com:~$ whoami //显示当前用户</span><br><span class="line">hnlinux</span><br><span class="line">hnlinux@runoob.com:~$ pwd //显示当前目录</span><br><span class="line">/home/hnlinux</span><br><span class="line">hnlinux@runoob.com:~$ su - root //切换到root用户</span><br><span class="line">密码： </span><br><span class="line">root@runoob.com:/home/hnlinux# whoami </span><br><span class="line">root</span><br><span class="line">root@runoob.com:/home/hnlinux# pwd //显示当前目录</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
+<h4 id="0x05-sudo"><a href="#0x05-sudo" class="headerlink" title="0x05 sudo"></a><font color="navy"><code>0x05 sudo</code></font></h4><p><code>功能</code>：以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。</p>
+<p><code>使用权限</code>：在 /etc/sudoers 中有出现的使用者。</p>
+<p><code>语法</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -V</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>-V 显示版本编号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -h</span><br></pre></td></tr></table></figure></p>
+<p>-h 会显示版本编号及指令的使用方式说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure></p>
+<p>-l 显示出自己（执行 sudo 的使用者）的权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -v</span><br></pre></td></tr></table></figure></p>
+<p>-v 因为 sudo 在第一次执行时或是在 N 分钟内没有执行（N 预设为五）会问密码，这个参数是重新做一次确认，如果超过 N 分钟，也会问密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -k</span><br></pre></td></tr></table></figure></p>
+<p>-k 将会强迫使用者在下一次执行 sudo 时问密码（不论有没有超过 N 分钟）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -s</span><br></pre></td></tr></table></figure></p>
+<p>-s 执行环境变数中的 SHELL 所指定的 shell ，或是 /etc/passwd 里所指定的 shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H</span><br></pre></td></tr></table></figure></p>
+<p>-H 将环境变数中的 HOME （家目录）指定为要变更身份的使用者家目录（如不加 -u 参数就是系统管理者 root ）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo [ -b ] [ -p prompt ] [ -u username/#uid] -s</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>-b 将要执行的指令放在背景执行</p>
+</li>
+<li><p>-p prompt 可以更改问密码的提示语，其中 %u 会代换为使用者的帐号名称， %h 会显示主机名称</p>
+</li>
+<li>-u username/#uid 不加此参数，代表要以 root 的身份执行指令，而加了此参数，可以以 username 的身份执行指令（#uid 为该 username 的使用者号码）<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo command</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>command 要以系统管理者身份（或以 -u 更改为其他人）执行的指令</p>
+</blockquote>
+<p><code>实例</code></p>
+<p>sudo命令使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo ls</span></span><br><span class="line">[sudo] password for hnlinux: </span><br><span class="line">hnlinux is not in the sudoers file. This incident will be reported.</span><br></pre></td></tr></table></figure>
+<p>指定用户执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> sudo -u userb ls -l</span></span><br></pre></td></tr></table></figure>
+<p>显示sudo设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo -L //显示sudo设置</span></span><br><span class="line">Available options in a sudoers ``Defaults'' line:</span><br><span class="line"></span><br><span class="line">syslog: Syslog facility if syslog is being used for logging</span><br><span class="line">syslog_goodpri: Syslog priority to use when user authenticates successfully</span><br><span class="line">syslog_badpri: Syslog priority to use when user authenticates unsuccessfully</span><br><span class="line">long_otp_prompt: Put OTP prompt on its own line</span><br><span class="line">ignore_dot: Ignore '.' in $PATH</span><br><span class="line">mail_always: Always send mail when sudo is run</span><br><span class="line">mail_badpass: Send mail if user authentication fails</span><br><span class="line">mail_no_user: Send mail if the user is not in sudoers</span><br><span class="line">mail_no_host: Send mail if the user is not in sudoers for this host</span><br><span class="line">mail_no_perms: Send mail if the user is not allowed to run a command</span><br><span class="line">tty_tickets: Use a separate timestamp for each user/tty combo</span><br><span class="line">lecture: Lecture user the first time they run sudo</span><br><span class="line">lecture_file: File containing the sudo lecture</span><br><span class="line">authenticate: Require users to authenticate by default</span><br><span class="line">root_sudo: Root may run sudo</span><br><span class="line">log_host: Log the hostname in the (non-syslog) log file</span><br><span class="line">log_year: Log the year in the (non-syslog) log file</span><br><span class="line">shell_noargs: If sudo is invoked with no arguments, start a shell</span><br><span class="line">set_home: Set $HOME to the target user when starting a shell with -s</span><br><span class="line">always_set_home: Always set $HOME to the target user's home directory</span><br><span class="line">path_info: Allow some information gathering to give useful error messages</span><br><span class="line">fqdn: Require fully-qualified hostnames in the sudoers file</span><br><span class="line">insults: Insult the user when they enter an incorrect password</span><br><span class="line">requiretty: Only allow the user to run sudo if they have a tty</span><br><span class="line">env_editor: Visudo will honor the EDITOR environment variable</span><br><span class="line">rootpw: Prompt for root's password, not the users's</span><br><span class="line">runaspw: Prompt for the runas_default user's password, not the users's</span><br><span class="line">targetpw: Prompt for the target user's password, not the users's</span><br><span class="line">use_loginclass: Apply defaults in the target user's login class if there is one</span><br><span class="line">set_logname: Set the LOGNAME and USER environment variables</span><br><span class="line">stay_setuid: Only set the effective uid to the target user, not the real uid</span><br><span class="line">preserve_groups: Don't initialize the group vector to that of the target user</span><br><span class="line">loglinelen: Length at which to wrap log file lines (0 for no wrap)</span><br><span class="line">timestamp_timeout: Authentication timestamp timeout</span><br><span class="line">passwd_timeout: Password prompt timeout</span><br><span class="line">passwd_tries: Number of tries to enter a password</span><br><span class="line">umask: Umask to use or 0777 to use user's</span><br><span class="line">logfile: Path to log file</span><br><span class="line">mailerpath: Path to mail program</span><br><span class="line">mailerflags: Flags for mail program</span><br><span class="line">mailto: Address to send mail to</span><br><span class="line">mailfrom: Address to send mail from</span><br><span class="line">mailsub: Subject line for mail messages</span><br><span class="line">badpass_message: Incorrect password message</span><br><span class="line">timestampdir: Path to authentication timestamp dir</span><br><span class="line">timestampowner: Owner of the authentication timestamp dir</span><br><span class="line">exempt_group: Users in this group are exempt from password and PATH requirements</span><br><span class="line">passprompt: Default password prompt</span><br><span class="line">passprompt_override: If set, passprompt will override system prompt in all cases.</span><br><span class="line">runas_default: Default user to run commands as</span><br><span class="line">secure_path: Value to override user's $PATH with</span><br><span class="line">editor: Path to the editor for use by visudo</span><br><span class="line">listpw: When to require a password for 'list' pseudocommand</span><br><span class="line">verifypw: When to require a password for 'verify' pseudocommand</span><br><span class="line">noexec: Preload the dummy exec functions contained in 'noexec_file'</span><br><span class="line">noexec_file: File containing dummy exec functions</span><br><span class="line">ignore_local_sudoers: If LDAP directory is up, do we ignore local sudoers file</span><br><span class="line">closefrom: File descriptors &gt;= %d will be closed before executing a command</span><br><span class="line">closefrom_override: If set, users may override the value of `closefrom' with the -C option</span><br><span class="line">setenv: Allow users to set arbitrary environment variables</span><br><span class="line">env_reset: Reset the environment to a default set of variables</span><br><span class="line">env_check: Environment variables to check for sanity</span><br><span class="line">env_delete: Environment variables to remove</span><br><span class="line">env_keep: Environment variables to preserve</span><br><span class="line">role: SELinux role to use in the new security context</span><br><span class="line">type: SELinux type to use in the new security context</span><br><span class="line">askpass: Path to the askpass helper program</span><br><span class="line">env_file: Path to the sudo-specific environment file</span><br><span class="line">sudoers_locale: Locale to use while parsing sudoers</span><br><span class="line">visiblepw: Allow sudo to prompt for a password even if it would be visisble</span><br><span class="line">pwfeedback: Provide visual feedback at the password prompt when there is user input</span><br><span class="line">fast_glob: Use faster globbing that is less accurate but does not access the filesystem</span><br><span class="line">umask_override: The umask specified in sudoers will override the user's, even if it is more permissive</span><br></pre></td></tr></table></figure>
+<p>以root权限执行上一条命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo !!</span></span><br></pre></td></tr></table></figure>
+<p>以特定用户身份进行编辑文本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo -u uggc vi ~www/index.html</span></span><br><span class="line">//以 uggc 用户身份编辑  home 目录下www目录中的 index.html 文件</span><br></pre></td></tr></table></figure>
+<p>列出目前的权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
+<p>列出 sudo 的版本资讯</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -V</span><br></pre></td></tr></table></figure>
+<p><code>su</code>和<code>sudo</code>的区别：</p>
+<blockquote>
+<ul>
+<li><p>su用于用户之间的切换。 </p>
+</li>
+<li><p>sudo用于普通用户可以使用root权限来执行指定命令。</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="0x03-帮助命令"><a href="#0x03-帮助命令" class="headerlink" title="0x03 帮助命令"></a><font color="brown"><code>0x03 帮助命令</code></font></h3><h4 id="0x00-man（manual）"><a href="#0x00-man（manual）" class="headerlink" title="0x00 man（manual）"></a><font color="navy"><code>0x00 man（manual）</code></font></h4><p><code>功能</code>：查看命令的帮助</p>
+<h4 id="0x01-help"><a href="#0x01-help" class="headerlink" title="0x01 help"></a><font color="navy"><code>0x01 help</code></font></h4><p><code>功能</code>：查看命令的帮助</p>
+<h3 id="0x04-查找命令"><a href="#0x04-查找命令" class="headerlink" title="0x04 查找命令"></a><font color="brown"><code>0x04 查找命令</code></font></h3><h4 id="0x00-whereis（whereis）"><a href="#0x00-whereis（whereis）" class="headerlink" title="0x00 whereis（whereis）"></a><font color="navy"><code>0x00 whereis（whereis）</code></font></h4><p><code>功能</code>：查找命令的命令，同时看到帮助文档位置</p>
 <p><code>实例</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@:/mnt/d/谷歌下载文件# whereis ls</span><br><span class="line">ls: /bin/ls /usr/share/man/man1/ls.1.gz</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x01-findfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-findfont"></a> <font color="navy"><code>0x01 find</code></font></h4>
-<p><code>功能</code>：搜索命令，会在给定位置搜寻与条件匹配的文件</p>
+<h4 id="0x01-find"><a href="#0x01-find" class="headerlink" title="0x01 find"></a><font color="navy"><code>0x01 find</code></font></h4><p><code>功能</code>：搜索命令，会在给定位置搜寻与条件匹配的文件</p>
 <p><code>命令格式</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find 查找位置 -name 文件名</span><br></pre></td></tr></table></figure>
 <p><code>相关选项</code>：</p>
-<p>        ▧  -name 文件名：按照文件名查找（区分大小写二）</p>
-<p>        ▧  -iname 文件名：按照文件名查找，不区分大小写</p>
-<p>        ▧  -user 用户名：按照属主用户名查找文件</p>
-<p>        ▧  -group 组名 按照属组组名查找文件</p>
-<p>        ▧  -size 文件名：按照文件大小k M 如：find / -size +50k</p>
-<p>        ▧  -type：按照文件类型查找(f=普通 d=目录 l=链接)</p>
-<h4 id="font-color-navy0x02-grepfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-grepfont"></a> <font color="navy"><code>0x02 grep</code></font></h4>
-<p><code>功能</code>：查找符合条件的字串</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-name 文件名：按照文件名查找（区分大小写二）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-iname 文件名：按照文件名查找，不区分大小写</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-user 用户名：按照属主用户名查找文件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-group 组名 按照属组组名查找文件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-size 文件名：按照文件大小k M 如：find / -size +50k</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;&nbsp;-type：按照文件类型查找(f=普通 d=目录 l=链接)</p>
+<h4 id="0x02-grep"><a href="#0x02-grep" class="headerlink" title="0x02 grep"></a><font color="navy"><code>0x02 grep</code></font></h4><p><code>功能</code>：查找符合条件的字串</p>
 <p><code>命令格式</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep 选项 &apos;字串&apos; 查找路径</span><br></pre></td></tr></table></figure>
 <p>比如：在当前目录中，查找后缀有 file 字样的文件中包含 test 字符串的文件，并打印出该字符串的行。此时，可以使用如下命令：</p>
@@ -892,34 +899,31 @@ height:50vh;
 <p><code>相关知识：管道符 “|”</code></p>
 <blockquote>
 <p><code>命令1 | 命令2</code>：命令 1 的执行结果，作为命令 2 的执行条件</p>
-<p><code>cat 文件名 | grep '字串'</code>：提取含有字符串的行</p>
+<p><code>cat 文件名 | grep &#39;字串&#39;</code>：提取含有字符串的行</p>
 <p><code>ls -l /etc | more</code>：分屏显示 ls 内容</p>
 </blockquote>
-<h3 id="font-color-brown0x05-压缩和解压缩font"><a class="markdownIt-Anchor" href="#font-color-brown0x05-压缩和解压缩font"></a> <font color="brown"><code>0x05 压缩和解压缩</code></font></h3>
-<p><code>相关知识：</code></p>
+<h3 id="0x05-压缩和解压缩"><a href="#0x05-压缩和解压缩" class="headerlink" title="0x05 压缩和解压缩"></a><font color="brown"><code>0x05 压缩和解压缩</code></font></h3><p><code>相关知识：</code></p>
 <blockquote>
 <p><strong>➤ linux可以识别的常见压缩格式</strong>：.gz .bz2</p>
 <p><strong>➤ 常见的压缩和打包命令</strong>：.tar.gz .tar.bz2</p>
 </blockquote>
-<h4 id="font-color-navy0x00-tartape-archive磁带档案font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-tartape-archive磁带档案font"></a> <font color="navy"><code>0x00 tar（Tape archive，磁带档案）</code></font></h4>
-<p><code>功能</code>：能创建、查看和提取tar压缩文件</p>
+<h4 id="0x00-tar（Tape-archive，磁带档案）"><a href="#0x00-tar（Tape-archive，磁带档案）" class="headerlink" title="0x00 tar（Tape archive，磁带档案）"></a><font color="navy"><code>0x00 tar（Tape archive，磁带档案）</code></font></h4><p><code>功能</code>：能创建、查看和提取tar压缩文件</p>
 <p><code>命令格式</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf 压缩文件名 源文件  // 压缩文件</span><br></pre></td></tr></table></figure>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>创建压缩文件</code>：<code>tar -cvf 压缩文件名 源文件</code></p>
-<p>        ▧ -c：建立新的备份文件（压缩）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;-c：建立新的备份文件（压缩）</p>
 <p><code>查看压缩文件</code>：<code>tar -tvf 压缩文件名</code></p>
-<p>        ▧ -t：列出备份文件的内容</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;-t：列出备份文件的内容</p>
 <p><code>提取对应压缩文件</code>：<code>tar -xvf 压缩文件名</code></p>
-<p>        ▧ -x：从备份文件中还原文件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;-x：从备份文件中还原文件</p>
 <p><code>通用选项</code></p>
-<p>        ▧ -v：显示指令执行过程</p>
-<p>        ▧ -f：指定压缩包名</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;-v：显示指令执行过程</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▧&nbsp;-f：指定压缩包名</p>
 <p><code>多个文件/目录压缩</code>：<code>tar czvf my.tar.gz file1 file2,...（file*）</code></p>
 </blockquote>
-<h4 id="font-color-navy0x01-gzipfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-gzipfont"></a> <font color="navy"><code>0x01 gzip</code></font></h4>
-<p><code>功能</code>：命令创建和提取gzip压缩文件</p>
+<h4 id="0x01-gzip"><a href="#0x01-gzip" class="headerlink" title="0x01 gzip"></a><font color="navy"><code>0x01 gzip</code></font></h4><p><code>功能</code>：命令创建和提取gzip压缩文件</p>
 <p><code>相关选项</code>：</p>
 <p>压缩相关选项：</p>
 <blockquote>
@@ -956,9 +960,7 @@ height:50vh;
 <p>2.与-l选项一起使用时，gzip显示有关给定压缩文件的统计信息：</p>
 <p><code>gzip -l filename</code>：列出压缩文件的相关信息</p>
 </blockquote>
-<h3 id="font-color-brown0x05-关机和重启命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x05-关机和重启命令font"></a> <font color="brown"><code>0x05 关机和重启命令</code></font></h3>
-<h4 id="font-color-navy0x00-shutdownfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-shutdownfont"></a> <font color="navy"><code>0x00 shutdown</code></font></h4>
-<p><code>功能</code>：关机/重启</p>
+<h3 id="0x05-关机和重启命令"><a href="#0x05-关机和重启命令" class="headerlink" title="0x05 关机和重启命令"></a><font color="brown"><code>0x05 关机和重启命令</code></font></h3><h4 id="0x00-shutdown"><a href="#0x00-shutdown" class="headerlink" title="0x00 shutdown"></a><font color="navy"><code>0x00 shutdown</code></font></h4><p><code>功能</code>：关机/重启</p>
 <p><code>相关选项</code>：</p>
 <blockquote>
 <p><code>shutdown -h now</code>：立即关机</p>
@@ -966,41 +968,29 @@ height:50vh;
 <p><code>shutdown -t [seconds]</code>：设定在几秒钟之后进行关机程序</p>
 <p><code>shutdown +5 “System will shutdown after 5 minutes”</code>：5分钟够关机并显示警告信息</p>
 </blockquote>
-<h4 id="font-color-navy0x01-rebootfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-rebootfont"></a> <font color="navy"><code>0x01 reboot</code></font></h4>
-<p><code>功能</code>：关机/重启挂载（重新启动）</p>
-<h4 id="font-color-navy0x02-mountfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-mountfont"></a> <font color="navy"><code>0x02 mount</code></font></h4>
-<p><code>相关知识点：光盘挂载</code></p>
+<h4 id="0x01-reboot"><a href="#0x01-reboot" class="headerlink" title="0x01 reboot"></a><font color="navy"><code>0x01 reboot</code></font></h4><p><code>功能</code>：关机/重启挂载（重新启动）</p>
+<h4 id="0x02-mount"><a href="#0x02-mount" class="headerlink" title="0x02 mount"></a><font color="navy"><code>0x02 mount</code></font></h4><p><code>相关知识点：光盘挂载</code></p>
 <blockquote>
 <ol>
-<li>
-<p>提一句Windows下，mount挂载，就是给磁盘分区提供一个盘符（C,D,E,…）。比如插入U盘后系统自动分配给了它I:盘符其实就是挂载，退优盘的时候进行安全弹出，其实就是卸载unmount。</p>
+<li><p>提一句Windows下，mount挂载，就是给磁盘分区提供一个盘符（C,D,E,…）。比如插入U盘后系统自动分配给了它I:盘符其实就是挂载，退优盘的时候进行安全弹出，其实就是卸载unmount。</p>
 </li>
-<li>
-<p>Linux下，不像Windows可以有C,D,E,多个目录，Linux只有一个根目录/。在装系统时，我们分配给linux的所有区都在/下的某个位置，比如/home等等。</p>
+<li><p>Linux下，不像Windows可以有C,D,E,多个目录，Linux只有一个根目录/。在装系统时，我们分配给linux的所有区都在/下的某个位置，比如/home等等。</p>
 </li>
-<li>
-<p>提问者插入了新硬盘，分了新磁盘区sdb1。它现在还不属于/。</p>
+<li><p>提问者插入了新硬盘，分了新磁盘区sdb1。它现在还不属于/。</p>
 </li>
-<li>
-<p>我们虽然可以在一些图形桌面系统里找到他的位置，浏览管理里面的文件，但在命令行却不知怎么访问它的目录，比如无法使用cd或者ls。也无法在编程时指定一个目录对它操作。</p>
+<li><p>我们虽然可以在一些图形桌面系统里找到他的位置，浏览管理里面的文件，但在命令行却不知怎么访问它的目录，比如无法使用cd或者ls。也无法在编程时指定一个目录对它操作。</p>
 </li>
-<li>
-<p>这时提问者使用了 mount /dev/sdb1 ~/Share/ ，把新硬盘的区sdb1挂载到工作目录的<sub>/Share/文件夹下，之后访问这个</sub>/Share/文件夹就相当于访问这个硬盘2的sdb1分区了。对/Share/的任何操作，都相当于对sdb1里文件的操作。</p>
+<li><p>这时提问者使用了 mount /dev/sdb1 ~/Share/ ，把新硬盘的区sdb1挂载到工作目录的~/Share/文件夹下，之后访问这个~/Share/文件夹就相当于访问这个硬盘2的sdb1分区了。对/Share/的任何操作，都相当于对sdb1里文件的操作。</p>
 </li>
-<li>
-<p>所以Linux下，mount挂载的作用，就是**将一个设备（通常是存储设备）挂接到一个已存在的目录上。**访问这个目录就是访问该存储设备。</p>
+<li><p>所以Linux下，mount挂载的作用，就是<strong>将一个设备（通常是存储设备）挂接到一个已存在的目录上。</strong>访问这个目录就是访问该存储设备。</p>
 </li>
-<li>
-<p>**linux操作系统将所有的设备都看作文件，它将整个计算机的资源都整合成一个大的文件目录。**我们要访问存储设备中的文件，必须将文件所在的分区挂载到一个已存在的目录上，然后通过访问这个目录来访问存储设备。挂载就是把设备放在一个目录下，让系统知道怎么管理这个设备里的文件，了解这个存储设备的可读写特性之类的过程。</p>
+<li><p><strong>linux操作系统将所有的设备都看作文件，它将整个计算机的资源都整合成一个大的文件目录。</strong>我们要访问存储设备中的文件，必须将文件所在的分区挂载到一个已存在的目录上，然后通过访问这个目录来访问存储设备。挂载就是把设备放在一个目录下，让系统知道怎么管理这个设备里的文件，了解这个存储设备的可读写特性之类的过程。</p>
 </li>
-<li>
-<p>我们不是有/dev/sdb1 吗，直接对它操作不就行了？这不是它的目录吗？</p>
+<li><p>我们不是有/dev/sdb1 吗，直接对它操作不就行了？这不是它的目录吗？</p>
 </li>
-<li>
-<p>这不是它的目录。虽然/dev是个目录，但/dev/sdb1不是目录。可以发现ls/dev/sdb1无法执行。/dev/sdb1，是一个类似指针的东西，指向这个分区的原始数据块。mount前，系统并不知道这个数据块哪部分数据代表文件，如何对它们操作。</p>
+<li><p>这不是它的目录。虽然/dev是个目录，但/dev/sdb1不是目录。可以发现ls/dev/sdb1无法执行。/dev/sdb1，是一个类似指针的东西，指向这个分区的原始数据块。mount前，系统并不知道这个数据块哪部分数据代表文件，如何对它们操作。</p>
 </li>
-<li>
-<p>插入CD，系统其实自动执行了 mount /dev/cdrom /media/cdrom。所以可以直接在/media/cdrom中对CD中的内容进行管理。</p>
+<li><p>插入CD，系统其实自动执行了 mount /dev/cdrom /media/cdrom。所以可以直接在/media/cdrom中对CD中的内容进行管理。</p>
 </li>
 </ol>
 </blockquote>
@@ -1027,24 +1017,33 @@ height:50vh;
 <p>fdisk -l 查看设备名</p>
 <p>mount -t vfat /dev/sdb1 /mnt/usb</p>
 </blockquote>
-<h3 id="font-color-brown0x06-网络命令font"><a class="markdownIt-Anchor" href="#font-color-brown0x06-网络命令font"></a> <font color="brown"><code>0x06 网络命令</code></font></h3>
-<h4 id="font-color-navy0x00-pingfont"><a class="markdownIt-Anchor" href="#font-color-navy0x00-pingfont"></a> <font color="navy"><code>0x00 ping</code></font></h4>
-<p><code>功能</code>：测试网络畅通性</p>
+<h3 id="0x06-网络命令"><a href="#0x06-网络命令" class="headerlink" title="0x06 网络命令"></a><font color="brown"><code>0x06 网络命令</code></font></h3><h4 id="0x00-ping"><a href="#0x00-ping" class="headerlink" title="0x00 ping"></a><font color="navy"><code>0x00 ping</code></font></h4><p><code>功能</code>：测试网络畅通性</p>
 <p><code>命令格式</code>：<code>ping -c 次数 ip</code></p>
-<h4 id="font-color-navy0x01-ifconfigfont"><a class="markdownIt-Anchor" href="#font-color-navy0x01-ifconfigfont"></a> <font color="navy"><code>0x01 ifconfig</code></font></h4>
-<p><code>功能</code>：查询本机网络信息</p>
-<h4 id="font-color-navy0x02-scpfont"><a class="markdownIt-Anchor" href="#font-color-navy0x02-scpfont"></a> <font color="navy"><code>0x02 scp</code></font></h4>
-<p><code>功能</code>：从服务器上下载文件</p>
-<p><code>命令格式</code>：<code>scp -P 2222 username@servername:remote_dir/ /tmp/local_dir</code></p>
-<p><code>实例</code>：从pwnable.kr上面下载文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 2222 fd@pwnable.kr:/home/fd/fd.c /home/mask/</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy0x03-其他命令font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-其他命令font"></a> <font color="navy"><code>0x03 其他命令</code></font></h4>
+<h4 id="0x01-ifconfig"><a href="#0x01-ifconfig" class="headerlink" title="0x01 ifconfig"></a><font color="navy"><code>0x01 ifconfig</code></font></h4><p><code>功能</code>：查询本机网络信息</p>
+<h4 id="0x02-scp"><a href="#0x02-scp" class="headerlink" title="0x02 scp"></a><font color="navy"><code>0x02 scp</code></font></h4><p><code>功能</code>：在服务器上下载/上传文件</p>
+<p><code>命令格式</code>：</p>
 <blockquote>
+<p>从服务器上下载文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp -P port username@servername:remote_dir/ /tmp/local_dir</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>往服务器上上传文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp -P port /path/filename username@servername:/path</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从服务器下载整个目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp -r -P port username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>给服务器上传整个目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp -r -P port local_dir username@servername:remote_dir</span></span><br></pre></td></tr></table></figure>
+<p><code>实例</code>：从pwnable.kr上面下载文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 2222 fd@pwnable.kr:/home/fd/fd.c /home/mask/</span><br></pre></td></tr></table></figure>
+<h4 id="0x03-其他命令"><a href="#0x03-其他命令" class="headerlink" title="0x03 其他命令"></a><font color="navy"><code>0x03 其他命令</code></font></h4><blockquote>
 <p>其他相关命令见我转载的一篇博客：<a href="http://vbird.dic.ksu.edu.tw/linux_server/0140networkcommand/0140networkcommand-centos4.php" target="_blank" rel="noopener"><strong>Linux 常用网络命令介绍</strong></a></p>
 </blockquote>
-<h3 id="font-color-brown0x07-linux通配符font"><a class="markdownIt-Anchor" href="#font-color-brown0x07-linux通配符font"></a> <font color="brown"><code>0x07 Linux通配符</code></font></h3>
-<h4 id="font-color-navy0x00-符号的作用font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-符号的作用font"></a> <font color="navy"><code>0x00 $符号的作用</code></font></h4>
-
+<h3 id="0x07-Linux通配符"><a href="#0x07-Linux通配符" class="headerlink" title="0x07 Linux通配符"></a><font color="brown"><code>0x07 Linux通配符</code></font></h3><h4 id="0x00-符号的作用"><a href="#0x00-符号的作用" class="headerlink" title="0x00 $符号的作用"></a><font color="navy"><code>0x00 $符号的作用</code></font></h4>
     </article>
     <!-- license  -->
     
@@ -1052,7 +1051,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">https://muzibing.github.io/2020/03/20/2020.03.20（104）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">March 20th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">August 25th 2020, 4:10:32 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">August 29th 2020, 10:11:22 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -1204,7 +1203,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x00-目录操作命令font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-lslistfont"><span class="toc-number">1.1.</span> <span class="toc-text"> 0x00 ls（list）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colornavy0x01-cdchange-directoryfont"><span class="toc-number">1.2.</span> <span class="toc-text"> 0x01 cd（Change Directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-pwdprint-working-directoryfont"><span class="toc-number">1.3.</span> <span class="toc-text"> 0x02 pwd（print working directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x03-mkdirmake-directoriesfont"><span class="toc-number">1.4.</span> <span class="toc-text"> 0x03 mkdir（make directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x04-rmdirremove-directoriesfont"><span class="toc-number">1.5.</span> <span class="toc-text"> 0x04 rmdir（remove directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x05-echofont"><span class="toc-number">1.6.</span> <span class="toc-text"> 0x05 echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x01-文件操作命令font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-touchtouchfont"><span class="toc-number">2.1.</span> <span class="toc-text"> 0x00 touch（touch）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-rmremovefont"><span class="toc-number">2.2.</span> <span class="toc-text"> 0x01 rm（remove）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-catconcatenate-and-print-filesfont"><span class="toc-number">2.3.</span> <span class="toc-text"> 0x02 cat（concatenate and print files）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x03-morefont"><span class="toc-number">2.4.</span> <span class="toc-text"> 0x03 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x04-cpcopyfont"><span class="toc-number">2.5.</span> <span class="toc-text"> 0x04 cp（copy）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x05-mvmovefont"><span class="toc-number">2.6.</span> <span class="toc-text"> 0x05 mv（move）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colornavy0x06-catcatenate连锁font"><span class="toc-number">2.7.</span> <span class="toc-text"> 0x06 cat（Catenate，连锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colornavy0x07-xxd命令font"><span class="toc-number">2.8.</span> <span class="toc-text"> 0x07 xxd命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x08-lnfont"><span class="toc-number">2.9.</span> <span class="toc-text"> 0x08 ln</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x02-权限管理font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-chmodchange-the-permissions-mode-of-a-filefont"><span class="toc-number">3.1.</span> <span class="toc-text"> 0x00 chmod（change the permissions mode of a file）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-useraddfont"><span class="toc-number">3.2.</span> <span class="toc-text"> 0x01 useradd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-passwdfont"><span class="toc-number">3.3.</span> <span class="toc-text"> 0x02 passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x03-usermodfont"><span class="toc-number">3.4.</span> <span class="toc-text"> 0x03 usermod</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x03-帮助命令font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-manmanualfont"><span class="toc-number">4.1.</span> <span class="toc-text"> 0x00 man（manual）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-helpfont"><span class="toc-number">4.2.</span> <span class="toc-text"> 0x01 help</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x04-查找命令font"><span class="toc-number">5.</span> <span class="toc-text"> 0x04 查找命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-whereiswhereisfont"><span class="toc-number">5.1.</span> <span class="toc-text"> 0x00 whereis（whereis）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-findfont"><span class="toc-number">5.2.</span> <span class="toc-text"> 0x01 find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-grepfont"><span class="toc-number">5.3.</span> <span class="toc-text"> 0x02 grep</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x05-压缩和解压缩font"><span class="toc-number">6.</span> <span class="toc-text"> 0x05 压缩和解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-tartape-archive磁带档案font"><span class="toc-number">6.1.</span> <span class="toc-text"> 0x00 tar（Tape archive，磁带档案）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-gzipfont"><span class="toc-number">6.2.</span> <span class="toc-text"> 0x01 gzip</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x05-关机和重启命令font"><span class="toc-number">7.</span> <span class="toc-text"> 0x05 关机和重启命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-shutdownfont"><span class="toc-number">7.1.</span> <span class="toc-text"> 0x00 shutdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-rebootfont"><span class="toc-number">7.2.</span> <span class="toc-text"> 0x01 reboot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-mountfont"><span class="toc-number">7.3.</span> <span class="toc-text"> 0x02 mount</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x06-网络命令font"><span class="toc-number">8.</span> <span class="toc-text"> 0x06 网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-pingfont"><span class="toc-number">8.1.</span> <span class="toc-text"> 0x00 ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x01-ifconfigfont"><span class="toc-number">8.2.</span> <span class="toc-text"> 0x01 ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x02-scpfont"><span class="toc-number">8.3.</span> <span class="toc-text"> 0x02 scp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x03-其他命令font"><span class="toc-number">8.4.</span> <span class="toc-text"> 0x03 其他命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-brown0x07-linux通配符font"><span class="toc-number">9.</span> <span class="toc-text"> 0x07 Linux通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy0x00-符号的作用font"><span class="toc-number">9.1.</span> <span class="toc-text"> 0x00 $符号的作用</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-目录操作命令"><span class="toc-number">1.</span> <span class="toc-text">0x00 目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ls（list）"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 ls（list）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-cd（Change-Directory）"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 cd（Change Directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-pwd（print-working-directory）"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 pwd（print working directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-mkdir（make-directories）"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 mkdir（make directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-rmdir（remove-directories）"><span class="toc-number">1.5.</span> <span class="toc-text">0x04 rmdir（remove directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-echo"><span class="toc-number">1.6.</span> <span class="toc-text">0x05 echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-文件操作命令"><span class="toc-number">2.</span> <span class="toc-text">0x01 文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-touch（touch）"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 touch（touch）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-rm（remove）"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 rm（remove）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-cat（concatenate-and-print-files）"><span class="toc-number">2.3.</span> <span class="toc-text">0x02 cat（concatenate and print files）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-more"><span class="toc-number">2.4.</span> <span class="toc-text">0x03 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-cp（copy）"><span class="toc-number">2.5.</span> <span class="toc-text">0x04 cp（copy）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-mv（move）"><span class="toc-number">2.6.</span> <span class="toc-text">0x05 mv（move）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x06-cat（Catenate，连锁）"><span class="toc-number">2.7.</span> <span class="toc-text">0x06 cat（Catenate，连锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x07-xxd命令"><span class="toc-number">2.8.</span> <span class="toc-text">0x07 xxd命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x08-ln"><span class="toc-number">2.9.</span> <span class="toc-text">0x08 ln</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-权限管理"><span class="toc-number">3.</span> <span class="toc-text">0x02 权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-chmod（change-the-permissions-mode-of-a-file）"><span class="toc-number">3.1.</span> <span class="toc-text">0x00 chmod（change the permissions mode of a file）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-useradd"><span class="toc-number">3.2.</span> <span class="toc-text">0x01 useradd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-passwd"><span class="toc-number">3.3.</span> <span class="toc-text">0x02 passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-usermod"><span class="toc-number">3.4.</span> <span class="toc-text">0x03 usermod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-su"><span class="toc-number">3.5.</span> <span class="toc-text">0x04 su</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-sudo"><span class="toc-number">3.6.</span> <span class="toc-text">0x05 sudo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-帮助命令"><span class="toc-number">4.</span> <span class="toc-text">0x03 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-man（manual）"><span class="toc-number">4.1.</span> <span class="toc-text">0x00 man（manual）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-help"><span class="toc-number">4.2.</span> <span class="toc-text">0x01 help</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-查找命令"><span class="toc-number">5.</span> <span class="toc-text">0x04 查找命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-whereis（whereis）"><span class="toc-number">5.1.</span> <span class="toc-text">0x00 whereis（whereis）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-find"><span class="toc-number">5.2.</span> <span class="toc-text">0x01 find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-grep"><span class="toc-number">5.3.</span> <span class="toc-text">0x02 grep</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-压缩和解压缩"><span class="toc-number">6.</span> <span class="toc-text">0x05 压缩和解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-tar（Tape-archive，磁带档案）"><span class="toc-number">6.1.</span> <span class="toc-text">0x00 tar（Tape archive，磁带档案）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-gzip"><span class="toc-number">6.2.</span> <span class="toc-text">0x01 gzip</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-关机和重启命令"><span class="toc-number">7.</span> <span class="toc-text">0x05 关机和重启命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-shutdown"><span class="toc-number">7.1.</span> <span class="toc-text">0x00 shutdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-reboot"><span class="toc-number">7.2.</span> <span class="toc-text">0x01 reboot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-mount"><span class="toc-number">7.3.</span> <span class="toc-text">0x02 mount</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-网络命令"><span class="toc-number">8.</span> <span class="toc-text">0x06 网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ping"><span class="toc-number">8.1.</span> <span class="toc-text">0x00 ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-ifconfig"><span class="toc-number">8.2.</span> <span class="toc-text">0x01 ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-scp"><span class="toc-number">8.3.</span> <span class="toc-text">0x02 scp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-其他命令"><span class="toc-number">8.4.</span> <span class="toc-text">0x03 其他命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-Linux通配符"><span class="toc-number">9.</span> <span class="toc-text">0x07 Linux通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-符号的作用"><span class="toc-number">9.1.</span> <span class="toc-text">0x00 $符号的作用</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3820,9 +3819,17 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 145
+        Total : 147
         </div>
         <!-- search  -->
         
@@ -3839,6 +3846,16 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2020/08/28/2020.08.28（146）/">算法总结（C）</a>
+        </li>
     
     
         <li class="archive-post-item">

@@ -361,6 +361,78 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
+            
+                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.什么是shellcode
+
+shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
+
+ 2.shellcode的C语言形式
+12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
+            
+                <span>由浅入深的剖析堆</span>
+        </a>
+        <div class="abstract-content">
+            123456789#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main(int argc,char* argv[])&#123;    char *ptr;    ptr = malloc(50);    free(ptr);    return 0;&#125;
+     只要学过C语言的同学想必都申请过堆内存吧，那么大家是否真正了解申请堆和释放堆后面的机制吗？今天我就带领大家一步一步的来了解，先在这里留一个问题：上述代码是否有漏洞？以后会慢慢的揭开这个答案，本文均是在64位下进行的实验。
+ 0x00 什么是堆？
+
+在计算机科学...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/12/2020.07.12（135）/">
             
                 <span class="stick-top iconfont-archer">&#xe63d;</span>
@@ -685,71 +757,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
-            
-                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
-        </a>
-        <div class="abstract-content">
-            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
- 0x00 实模式（Real Mode）
- 1.起源
-实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
-            
-                <span>实模式下的段寄存器</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      首先想要说明的是这里介绍的原理都是CPU实模式下的情况，有关CPU工作模式的请点击这里，下面简单的介绍一下段寄存器的来源和故事：
-
-     实模式出现于早期8088CPU时期。当时由于CPU的性能有限，一共只有20位地址线（所以地址空间只有1MB），以及8个16位的通用寄存器，以及4个16位的段寄存器。所以为了能够通过这些16位的寄存器去构成20位的主存地址，必须采取一种特殊的方式。当某个指令想要访问某个内存地址时，它通常需要用下面的这种格式来表示：段基址：段偏移量。[1]
-     但是随着CPU的发展，CPU的地址线的个数也从原来的20根变为现在的32...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
     
 </div>
             
@@ -3460,9 +3467,17 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 145
+        Total : 147
         </div>
         <!-- search  -->
         
@@ -3479,6 +3494,16 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2020/08/28/2020.08.28（146）/">算法总结（C）</a>
+        </li>
     
     
         <li class="archive-post-item">

@@ -361,6 +361,76 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/08/29/2020.08.29（147）/">
+            
+                <span>Tmux工具使用总结</span>
+        </a>
+        <div class="abstract-content">
+            0x00 Tmux简介
+tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如何强大，网上有大量的文章讨论了这点，本文不再重复。tmux之所以受人们喜爱，主要得益于以下三处功能：
+
+丝滑分屏（split）：虽然iTem2也提供了横向和竖向分屏功能，但这种分屏功能非常拙劣，完全等同于屏幕新开一个窗口，新开的pane不会自动进入到当前目录，也没有记住当前登录状态。这意味着如果我ssh进入到远程服务器时，iTem2新开的pane中，我依然要重新走一遍ssh登录的老路（omg）。tmux就不会这样，tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/08/28/2020.08.28（146）/">
+            
+                <span>算法总结（C）</span>
+        </a>
+        <div class="abstract-content">
+            C 排序算法
+
+0x00 冒泡排序
+1.算法思想冒泡排序的基本思想就是：
+
+从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大（小）的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。
+算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大（小）的数据元素放到队尾。
+
+2.图解算法
+3.算法实现1234567891011121314151617181920#include &lt;stdio.h&gt;void bubble_sort(int arr[], int len) &#123;    int i, j...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/08/25/2020.08.24（145）/">
             
                 <span>AFL详细总结（持续更新）</span>
@@ -685,78 +755,6 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
-            
-                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.什么是shellcode
-
-shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
-
- 2.shellcode的C语言形式
-12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
-            
-                <span>由浅入深的剖析堆</span>
-        </a>
-        <div class="abstract-content">
-            123456789#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main(int argc,char* argv[])&#123;    char *ptr;    ptr = malloc(50);    free(ptr);    return 0;&#125;
-     只要学过C语言的同学想必都申请过堆内存吧，那么大家是否真正了解申请堆和释放堆后面的机制吗？今天我就带领大家一步一步的来了解，先在这里留一个问题：上述代码是否有漏洞？以后会慢慢的揭开这个答案，本文均是在64位下进行的实验。
- 0x00 什么是堆？
-
-在计算机科学...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3467,9 +3465,17 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 145
+        Total : 147
         </div>
         <!-- search  -->
         
@@ -3486,6 +3492,16 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2020/08/28/2020.08.28（146）/">算法总结（C）</a>
+        </li>
     
     
         <li class="archive-post-item">

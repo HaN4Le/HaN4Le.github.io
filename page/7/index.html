@@ -374,6 +374,96 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/05/2019.11.05（87）/">
+            
+                <span>有关内核调用问题和预编译指令</span>
+        </a>
+        <div class="abstract-content">
+            一、知识点摘要
+
+系统调用 int 80h 中断
+#ifdef ……# endif 的含义和用法
+
+
+二、知识点介绍1.int 80h 中断
+1) 什么是 system call?
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system call 是指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。system call 提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信 。(操作系统—WIKI ))
+2) 什么是 int 80h 中断？
+&nbsp;&nbsp;&...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="内核">内核</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/16/2019.10.16（86）/">
+            
+                <span>PWN 实战 - shellcode 题解</span>
+        </a>
+        <div class="abstract-content">
+            一、基础知识1.shellcode
+有关 shellcode 的知识介绍，在这里我就不过多的介绍了，给大家附上几个我认为写的比较好的博文：
+
+
+shellcode原理是啥？
+ 一步一步学ROP之linux_x86篇 
+PWN-shellcode获取与编写
+渗透中PoC、Exp、Payload与Shellcode的区别
+
+
+
+二、解题步骤1,查看文件类型1file pwn3
+6
+
+从上面的结果可以得出，该文件是一个 32 位的 ELF 文件
+
+2.查看 pwn3 开启的保护1checksec pwn3
+
+
+从上图可以得出，pwn3 没有开启栈保护功能，没有开启ASLR，开启了栈上数据可执行...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/12/2019.10.12（85）/">
             
                 <span>变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</span>
@@ -692,87 +782,6 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/2019.07.31（77）/">
-            
-                <span>JavaScript 学习笔记（一）</span>
-        </a>
-        <div class="abstract-content">
-            一、JS 简介
-getElementById() 是多个 JavaScript HTML 方法之一
-
-JavaScript 能够改变 HTML 的内容：
-document.getElementById("demo").innerHTML = "Hello JavaScript";
-
-JavaScript 能够改变 HTML 属性：
-document.getElementById("demo").src =
-
-JavaScript 能够改变 HTML 样式 (CSS):
-document.getElementById("demo").style.fontSize=""
-
-JavaScrip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScritpt">JavaScritpt</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/27/2019.07.27（76）/">
-            
-                <span>BaByXSS 解题总结</span>
-        </a>
-        <div class="abstract-content">
-            一、基础知识1. XSS 攻击
-​        有关 XSS 攻击的基础知识、原理、手段、类别和目的均已在昨天的博文中均有涉及，具体的可以点击这里进行查看，有关 XSS 攻击更详细的知识，我还会将在后期陆续进行更新和补充。
-
-2. Cookie 
-① 什么是 Cookie？
-​        Cookie（复数形态Cookies），又称为“小甜饼”。类型为“小型文本文件”[1]，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。当前使用最广泛的 Cookie标准...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
             
@@ -3580,9 +3589,17 @@ JavaScrip...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 145
+        Total : 147
         </div>
         <!-- search  -->
         
@@ -3599,6 +3616,16 @@ JavaScrip...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2020/08/28/2020.08.28（146）/">算法总结（C）</a>
+        </li>
     
     
         <li class="archive-post-item">
