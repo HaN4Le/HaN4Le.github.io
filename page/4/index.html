@@ -374,6 +374,63 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/29/2020.05.29（119）/">
+            
+                <span>详解格式化字符串漏洞</span>
+        </a>
+        <div class="abstract-content">
+             0x00 前言
+      格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
+ 0x01 格式化字符串
+ Q1：什么是格式化字符串 
+
+格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/25/2020.05.24（118）/">
+            
+                <span>学习计划表</span>
+        </a>
+        <div class="abstract-content">
+            Here's something encrypted, password is required to continue reading.
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/25</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/15/2020.05.05（117）/">
             
                 <span>Pwnable.kr的奇幻之旅（五）[passcode]</span>
@@ -648,85 +705,6 @@ x&nbsp;&nbsp;&nbsp;&nbsp;/(length)(format)(size)&nbsp;&nbsp;&nbsp;&nbsp;addr
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="GDB">GDB</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.23（108）/">
-            
-                <span>Pwnable.kr的奇幻之旅（一）[fd]</span>
-        </a>
-        <div class="abstract-content">
-            0x00 相关知识1.atoi()函数
-① atoi函数是包含在stdlib.h标准库中 
-② 函数的声明：int atoi(const char* str)
-③ 作用：是用来将参数中的str所指向的字符串转化为一个整数
-④ 实例如下：
-
-12345678910111213141516171819#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main()&#123;	char* s1 = "Hello World";	char* s2 = "1234567890";	char* s3 = "Th1s_1s_a_t9st";    c...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/2020.04.24（109）/">
-            
-                <span>Pwnable.kr的奇幻之旅（二）[collision]</span>
-        </a>
-        <div class="abstract-content">
-            0x00 相关知识1.PwnTools工具的使用
-这个知识点再单独进行总结
-
-2.字符串强制转换为数字
-可以从下面题目中的例子发现
-
-3.python -c的功能
-Specify the command to execute. This terminates the option list (following options are passed as arguments to the command).
-指定要执行的命令。这将终止选项列表 (紧跟的选项作为参数传递给命令)
-
-4.shell命令中``和$的作用
-反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
     
 </div>
             
@@ -3542,9 +3520,101 @@ Specify the command to execute. This terminates the option list (following optio
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3564,6 +3634,16 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3579,7 +3659,7 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3754,12 +3834,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3829,12 +3909,12 @@ Specify the command to execute. This terminates the option list (following optio
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

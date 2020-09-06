@@ -287,7 +287,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.2k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -562,7 +562,85 @@ height:50vh;
 <h3 id="font-colornavy0x02-afl的相关计算font"><a class="markdownIt-Anchor" href="#font-colornavy0x02-afl的相关计算font"></a> <font color="navy"><code>0x02 AFL的相关计算</code></font></h3>
 <h4 id="font-color-blue1覆盖率计算font"><a class="markdownIt-Anchor" href="#font-color-blue1覆盖率计算font"></a> <font color="blue"><code>1.覆盖率计算</code></font></h4>
 <h3 id="font-color-navy0x03-源码分析font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-源码分析font"></a> <font color="navy"><code>0x03 源码分析</code></font></h3>
-<h3 id="font-color-navy参考文献font"><a class="markdownIt-Anchor" href="#font-color-navy参考文献font"></a> <font color="navy"><code>参考文献</code></font></h3>
+<h3 id="font-color-navyafl-相关文章font"><a class="markdownIt-Anchor" href="#font-color-navyafl-相关文章font"></a> <font color="navy"><code>AFL 相关文章</code></font></h3>
+<p><strong>安装使用</strong></p>
+<ol>
+<li>AFL入门<br>
+<a href="https://www.cnblogs.com/0xHack/p/9414444.html" target="_blank" rel="noopener">https://www.cnblogs.com/0xHack/p/9414444.html</a></li>
+<li>[原创][新手向] 使用AFL来fuzz upx<br>
+<a href="https://bbs.pediy.com/thread-249179.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-249179.htm</a></li>
+<li>[翻译]使用AFL进行fuzz<br>
+<a href="https://bbs.pediy.com/thread-250866.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-250866.htm</a></li>
+<li>AFL漏洞挖掘技术漫谈（一）：用AFL开始你的第一次Fuzzing<br>
+<a href="https://paper.seebug.org/841/" target="_blank" rel="noopener">https://paper.seebug.org/841/</a></li>
+<li>AFL 漏洞挖掘技术漫谈（二）：Fuzz 结果分析和代码覆盖率<br>
+<a href="https://paper.seebug.org/842/" target="_blank" rel="noopener">https://paper.seebug.org/842/</a></li>
+<li>afl-fuzz技术初探<br>
+<a href="https://www.cnblogs.com/WangAoBo/p/8280352.html" target="_blank" rel="noopener">https://www.cnblogs.com/WangAoBo/p/8280352.html</a></li>
+<li>AFL使用指南<br>
+<a href="http://zeroyu.xyz/2019/05/15/how-to-use-afl-fuzz/" target="_blank" rel="noopener">http://zeroyu.xyz/2019/05/15/how-to-use-afl-fuzz/</a></li>
+<li>Fuzz Testing with afl-fuzz (American Fuzzy Lop)<br>
+<a href="https://spin.atomicobject.com/2015/08/23/fuzz-testing-american-fuzzy-lop/" target="_blank" rel="noopener">https://spin.atomicobject.com/2015/08/23/fuzz-testing-american-fuzzy-lop/</a></li>
+</ol>
+<p><strong>白皮书及文档翻译</strong></p>
+<ol>
+<li>使用Afl-fuzz (American Fuzzy Lop) 进行fuzzing测试（一）——使用初体验<br>
+<a href="https://blog.csdn.net/youkawa/article/details/45696317" target="_blank" rel="noopener">https://blog.csdn.net/youkawa/article/details/45696317</a></li>
+<li>使用Afl-fuzz (American Fuzzy Lop) 进行fuzzing测试（二）——详细使用说明（README.txt ）<br>
+<a href="https://blog.csdn.net/youkawa/article/details/76405468" target="_blank" rel="noopener">https://blog.csdn.net/youkawa/article/details/76405468</a></li>
+<li>使用Afl-fuzz (American Fuzzy Lop) 进行fuzzing测试（三）——技术白皮书（technical whitepaper）<br>
+<a href="https://blog.csdn.net/youkawa/article/details/76615480" target="_blank" rel="noopener">https://blog.csdn.net/youkawa/article/details/76615480</a></li>
+<li>afl技术白皮书笔记(1)<br>
+<a href="https://ljie.space/2018/01/22/afl%E6%8A%80%E6%9C%AF%E7%99%BD%E7%9A%AE%E4%B9%A6%E7%AC%94%E8%AE%B0-1/" target="_blank" rel="noopener">https://ljie.space/2018/01/22/afl技术白皮书笔记-1/</a></li>
+<li>afl-fuzz技术白皮书<br>
+<a href="https://blog.csdn.net/gengzhikui1992/article/details/50844857" target="_blank" rel="noopener">https://blog.csdn.net/gengzhikui1992/article/details/50844857</a></li>
+</ol>
+<p><strong>技术分析</strong></p>
+<ol>
+<li>★★ 漏洞挖掘技术之 AFL 项目分析<br>
+<a href="https://bbs.pediy.com/thread-249912.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-249912.htm</a></li>
+<li>[原创]afl-fuzz源码情景分析，详细读码笔记，freemind版本和word版本<br>
+<a href="https://bbs.pediy.com/thread-218671.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-218671.htm</a></li>
+<li>AFL技术实现分析<br>
+<a href="https://blog.csdn.net/qq_32464719/article/details/80592902#comments" target="_blank" rel="noopener">https://blog.csdn.net/qq_32464719/article/details/80592902#comments</a></li>
+<li>★★ AFL内部实现细节小记<br>
+<a href="http://rk700.github.io/2017/12/28/afl-internals/" target="_blank" rel="noopener">http://rk700.github.io/2017/12/28/afl-internals/</a></li>
+<li>★★ AFL文件变异一览<br>
+<a href="http://rk700.github.io/2018/01/04/afl-mutations/" target="_blank" rel="noopener">http://rk700.github.io/2018/01/04/afl-mutations/</a></li>
+<li>AFL改进小试<br>
+<a href="http://rk700.github.io/2018/02/02/afl-enhancement/" target="_blank" rel="noopener">http://rk700.github.io/2018/02/02/afl-enhancement/</a></li>
+<li>★★ AFL-fuzz工具分析<br>
+<a href="https://blog.csdn.net/Chen_zju/article/details/80791268" target="_blank" rel="noopener">https://blog.csdn.net/Chen_zju/article/details/80791268</a></li>
+<li>AFL源码分析笔记(一)<br>
+<a href="https://xz.aliyun.com/t/4628" target="_blank" rel="noopener">https://xz.aliyun.com/t/4628</a></li>
+<li>AFL源码分析1——afl-gcc.c源码分析<br>
+<a href="https://ch4r1l3.github.io/2019/03/05/AFL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901%E2%80%94%E2%80%94afl-gcc-c%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://ch4r1l3.github.io/2019/03/05/AFL源码分析1——afl-gcc-c源码分析/</a></li>
+<li>AFL源码分析2——afl-as.c源码分析<br>
+<a href="https://ch4r1l3.github.io/2019/03/06/AFL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%902%E2%80%94%E2%80%94afl-as-c%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://ch4r1l3.github.io/2019/03/06/AFL源码分析2——afl-as-c源码分析/</a></li>
+<li>AFL源码分析3——afl-as.h源码分析<br>
+<a href="https://ch4r1l3.github.io/2019/03/08/AFL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%903%E2%80%94%E2%80%94afl-as-h%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://ch4r1l3.github.io/2019/03/08/AFL源码分析3——afl-as-h源码分析/</a></li>
+<li>AFL源码分析4——afl-fuzz.c源码分析1<br>
+<a href="https://ch4r1l3.github.io/2019/03/09/AFL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%904%E2%80%94%E2%80%94afl-fuzz-c%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/" target="_blank" rel="noopener">https://ch4r1l3.github.io/2019/03/09/AFL源码分析4——afl-fuzz-c源码分析1/</a></li>
+<li>AFL源码分析5——afl-fuzz.c源码分析2<br>
+<a href="https://ch4r1l3.github.io/2019/03/10/AFL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%905%E2%80%94%E2%80%94afl-fuzz-c%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%902/" target="_blank" rel="noopener">https://ch4r1l3.github.io/2019/03/10/AFL源码分析5——afl-fuzz-c源码分析2/</a></li>
+<li>afl fuzzer 源代码阅读<br>
+<a href="https://www.cnblogs.com/jg01/p/9772700.html" target="_blank" rel="noopener">https://www.cnblogs.com/jg01/p/9772700.html</a></li>
+<li>AFL不同文件结构<br>
+<a href="https://barro.github.io/2018/06/afl-fuzz-on-different-file-systems/" target="_blank" rel="noopener">https://barro.github.io/2018/06/afl-fuzz-on-different-file-systems/</a></li>
+<li>Fuzzing workflows; a fuzz job from start to finish<br>
+<a href="https://foxglovesecurity.com/2016/03/15/fuzzing-workflows-a-fuzz-job-from-start-to-finish/" target="_blank" rel="noopener">https://foxglovesecurity.com/2016/03/15/fuzzing-workflows-a-fuzz-job-from-start-to-finish/</a></li>
+</ol>
+<p><strong>AFL 项目</strong></p>
+<ol>
+<li>AFL最原始版本,源码地址<br>
+<a href="https://github.com/google/AFL" target="_blank" rel="noopener">https://github.com/google/AFL</a></li>
+<li>[翻译]AFL生态圈 (这篇文章有很多关于AFL的开源项目地址和简单介绍）<br>
+<a href="https://bbs.pediy.com/thread-251051.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-251051.htm</a></li>
+<li>AFLplusplus(该工具做了一些集成)<br>
+<a href="https://github.com/vanhauser-thc/AFLplusplus" target="_blank" rel="noopener">https://github.com/vanhauser-thc/AFLplusplus</a></li>
+<li>[分享]关于 fuzz 的 一点总结<br>
+<a href="https://bbs.pediy.com/thread-249986.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-249986.htm</a></li>
+</ol>
 <p><a href="https://www.jianshu.com/p/cc7a486e5adb" target="_blank" rel="noopener">(译)afl-fuzz白皮书</a></p>
 
     </article>
@@ -572,7 +650,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/08/25/2020.08.24（145）/">https://muzibing.github.io/2020/08/25/2020.08.24（145）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/08/25/2020.08.24（145）/">August 25th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/25/2020.08.24（145）/">August 25th 2020, 1:41:45 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/25/2020.08.24（145）/">September 2nd 2020, 11:03:00 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -589,8 +667,8 @@ height:50vh;
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/08/23/2020.08.23（144）/" title="网路安全学习资源汇总">
-                    <div class="prevTitle">网路安全学习资源汇总</div>
+                <a href="/2020/08/23/2020.08.23（144）/" title="网路安全学习库">
+                    <div class="prevTitle">网路安全学习库</div>
                 </a>
             
         </li>
@@ -724,7 +802,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-afl的流程font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 AFL的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1afl整体框架font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.AFL整体框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorblue2afl的fuzz策略font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.AFL的fuzz策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3bitmapfont"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.Bitmap</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x01-afl界面介绍font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 AFL界面介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x02-afl的相关计算font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 AFL的相关计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1覆盖率计算font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.覆盖率计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-源码分析font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 源码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy参考文献font"><span class="toc-number">5.</span> <span class="toc-text"> 参考文献</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-afl的流程font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 AFL的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1afl整体框架font"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.AFL整体框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-colorblue2afl的fuzz策略font"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.AFL的fuzz策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue3bitmapfont"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.Bitmap</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x01-afl界面介绍font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 AFL界面介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-colornavy0x02-afl的相关计算font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 AFL的相关计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-blue1覆盖率计算font"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.覆盖率计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-源码分析font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 源码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navyafl-相关文章font"><span class="toc-number">5.</span> <span class="toc-text"> AFL 相关文章</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3348,9 +3426,101 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3370,6 +3540,16 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3385,7 +3565,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3560,12 +3740,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3635,12 +3815,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

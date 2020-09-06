@@ -374,11 +374,11 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/05/25/2020.05.24（118）/">
+        <a class="abstract-title" href="/2020/08/23/2020.08.23（144）/">
             
                 <span class="stick-top iconfont-archer">&#xe63d;</span>
                 
-                <span>学习计划表</span>
+                <span>网路安全学习库</span>
         </a>
         <div class="abstract-content">
             Here's something encrypted, password is required to continue reading.
@@ -386,9 +386,15 @@ height:50vh;
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/25</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/23</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
             
         </div>
     </article>
@@ -437,6 +443,60 @@ height:50vh;
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/12</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/09/04/2020.09.04（148）/">
+            
+                <span>Python库总结</span>
+        </a>
+        <div class="abstract-content">
+             0x01 requests 库
+
+相关链接
+
+ 1.发送请求
+get 请求
+1234567891011121314151617181920import requests# 头部信息header = &#123;            'Accept': '*/*',            'Referer': 'http://www.baidu.com',            'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; ',            'Cache-Control': 'no-cach...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/09/04/2020.09.04（149）/">
+            
+                <span>Python多线程介绍</span>
+        </a>
+        <div class="abstract-content">
+             0x00 什么是多线程？
+
+在计算机编程中，一个基本的概念就是同时对多个任务加以控制。许多程序设计问题都要求程序能够停下手头的工作，改为处理其他一些问题，再返回主进程。可以通过多种途径达到这个目的。最开始的时候，那些掌握机器低级语言的程序员编写一些“中断服务例程”，主进程的暂停是通过硬件级的中断实现的。尽管这是一种有用的方法，但编出的程序很难移植，由此造成了另一类的代价高昂问题。中断对那些实时性很强的任务来说是很有必要的。但对于其他许多问题，只要求将问题划分进入独立运行的程序片断中，使整个程序能更迅速地响应用户的请求。**最开始，线程只是用于分配单个处理器的处理时间的一种工具。但假如操...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
             </div>
             <!-- tags  -->
             
@@ -569,42 +629,6 @@ cull_queue()根据top_rated设置queue中的favored标志，对...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/08/23/2020.08.23（144）/">
-            
-                <span>网路安全学习资源汇总</span>
-        </a>
-        <div class="abstract-content">
-            网络资源
-开放课平台
-https://ocw.mit.edu/: MIT开放课程资源
-https://www.coursera.org/：Coursera
-技术新闻与问答
-https://lwn.net/: reader-supported news site dedicated to producing the best coverage from within the Linux and free software development communities.
-https://stackoverflow.com/: For developers, by developers.
-h...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2020/07/29/2020.07.29（143）/">
             
                 <span>Git以及Github的使用教程</span>
@@ -657,74 +681,6 @@ h...
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/27/2020.07.27（141）/">
-            
-                <span>CTF中常见的函数总结</span>
-        </a>
-        <div class="abstract-content">
-             0x00 pwn题
- 1.open()函数
- 函数原型
-
-int open(const char *path, int flags,int mode)；
-
-flags
-
-
-
-常量名称
-数字
-作用
-
-
-
-
-O_RDONLY
-0
-只读模式
-
-
-O_WRONLY
-1
-只写模式
-
-
-O_RDWR
-2
-可读可写
-
-
-
- 函数功能
-
-以各种方式打开文件
-
- 函数返回值
-
-如果调用成功，它将返回一个可以被read和write等其他系统调用使用的文件描述符。这个文件描述符是唯一的。它不会与任何其他运行中的进程共享，除非是fork了子进程。如果两个进程同时打开一个文件，他们会分别得到两个不同的文件描述符...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3540,9 +3496,101 @@ O_RDWR
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3562,6 +3610,16 @@ O_RDWR
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3577,7 +3635,7 @@ O_RDWR
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3752,12 +3810,12 @@ O_RDWR
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3827,12 +3885,12 @@ O_RDWR
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

@@ -374,6 +374,74 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/27/2020.07.27（141）/">
+            
+                <span>CTF中常见的函数总结</span>
+        </a>
+        <div class="abstract-content">
+             0x00 pwn题
+ 1.open()函数
+ 函数原型
+
+int open(const char *path, int flags,int mode)；
+
+flags
+
+
+
+常量名称
+数字
+作用
+
+
+
+
+O_RDONLY
+0
+只读模式
+
+
+O_WRONLY
+1
+只写模式
+
+
+O_RDWR
+2
+可读可写
+
+
+
+ 函数功能
+
+以各种方式打开文件
+
+ 函数返回值
+
+如果调用成功，它将返回一个可以被read和write等其他系统调用使用的文件描述符。这个文件描述符是唯一的。它不会与任何其他运行中的进程共享，除非是fork了子进程。如果两个进程同时打开一个文件，他们会分别得到两个不同的文件描述符...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/25/2020.07.25（140）/">
             
                 <span>PHP伪协议总结</span>
@@ -754,56 +822,6 @@ long int
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="C">C</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
-            
-                <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
-        </a>
-        <div class="abstract-content">
-            
- 0x00 相关知识
- 1.mprotect()函数
-      mprotect()函数可以修改调用进程内存页的保护属性。如果调用进程尝试以违反保护属性的方式访问该内存，则内核会发出一个SIGSEGV信号给该进程。
-
-
-函数原型：int mprotect(const void *start, size_t len, int prot)
-
-
-参数解释：
-
-start：需改写属性的内存中开始地址
-len：需改写属性的内存长度
-prot：需要修改为的指定值
-
-
-
-功能： mprotect()函数可以用来修改一段指定内存区域的保护属性。 他把自start开始的、长度为len的内存区的保护属性...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
     
 </div>
             
@@ -3619,9 +3637,101 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3641,6 +3751,16 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3656,7 +3776,7 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3831,12 +3951,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3906,12 +4026,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

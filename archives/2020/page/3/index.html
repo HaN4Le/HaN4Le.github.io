@@ -361,6 +361,90 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
+            
+                <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
+        </a>
+        <div class="abstract-content">
+            
+ 0x00 相关知识
+ 1.mprotect()函数
+      mprotect()函数可以修改调用进程内存页的保护属性。如果调用进程尝试以违反保护属性的方式访问该内存，则内核会发出一个SIGSEGV信号给该进程。
+
+
+函数原型：int mprotect(const void *start, size_t len, int prot)
+
+
+参数解释：
+
+start：需改写属性的内存中开始地址
+len：需改写属性的内存长度
+prot：需要修改为的指定值
+
+
+
+功能： mprotect()函数可以用来修改一段指定内存区域的保护属性。 他把自start开始的、长度为len的内存区的保护属性...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
+            
+                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.x86和x64的传参方式
+      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
+12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
             
                 <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
@@ -628,65 +712,6 @@ pwn文件是一个64位的ELF可执行文件，也...
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/29/2020.05.29（119）/">
-            
-                <span>详解格式化字符串漏洞</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      格式化字符串漏洞是在CWE[1]（Common Weakness Enumeration，通用缺陷枚举）例表中的编号为CWE-134，由于在审计过程中很容易发现该漏洞，所以此类漏洞很少出现，但是在很多CTF还存在相关的题目，比如XCTF的pwn新手练习区的 string等，通过这两天的学习，发现还是有必要系统的归纳一下相关知识点，在这里我们以问题为导向展开学习。
- 0x01 格式化字符串
- Q1：什么是格式化字符串 
-
-格式化字符串（format string）是一些程序设计语言在格式化输出API函数中用于指定输出参数的格式与相对位置的字符串参数，例如C、C...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/25/2020.05.24（118）/">
-            
-                <span class="stick-top iconfont-archer">&#xe63d;</span>
-                
-                <span>学习计划表</span>
-        </a>
-        <div class="abstract-content">
-            Here's something encrypted, password is required to continue reading.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/25</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3403,9 +3428,101 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3425,6 +3542,16 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3440,7 +3567,7 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3615,12 +3742,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3690,12 +3817,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

@@ -361,6 +361,90 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/19/2019.11.19（89）/">
+            
+                <span>XSS Challenge（Stage1-4）writeup</span>
+        </a>
+        <div class="abstract-content">
+            
+题目链接：XSS Challenges（共19关）
+
+Stage #1① 题目
+② 相关知识点
+
+XSS 的类型
+
+
+③ 解题步骤
+▣ 首先看一下是否存在 XSS 攻击
+
+⚁ 首次尝试填入信息：
+
+▣ 可以从上图中看出，我们写入的 Hello World 被放在了 &lt;b&gt; &lt;/b&gt; 标签中，我们可以在这个标签中进行 xss 攻击，脚本如下：
+
+1payload：&lt;script&gt;alert(document.domain)&lt;/script&gt; // 之所以用 document.domain 是因为题目中的提示
+
+▣ 点击 search 之后，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/07/2019.11.07（88）/">
+            
+                <span>Cookie、Session、Token那点事儿（转载）</span>
+        </a>
+        <div class="abstract-content">
+            
+来自：简书，作者：骑小猪看流星
+链接：https://www.jianshu.com/p/bd1be47a16c1
+
+一、什么是Cookie？
+Cookie 技术产生源于 HTTP 协议在互联网上的急速发展。随着互联网时代的策马奔腾，带宽等限制不存在了，人们需要更复杂的互联网交互活动，就必须同服务器保持活动状态（简称：保活）。
+于是，在浏览器发展初期，为了适应用户的需求技术上推出了各种保持 Web 浏览状态的手段，其中就包括了 Cookie 技术。Cookie 在计算机中是个存储在浏览器目录中的文本文件，当浏览器运行时，存储在 RAM 中发挥作用 （此种 Cookies 称作 Sess...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/05/2019.11.05（87）/">
             
                 <span>有关内核调用问题和预编译指令</span>
@@ -682,93 +766,6 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
         <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="fuzz">fuzz</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/02/2019.09.02（79）/">
-            
-                <span>XCTF 新人阶段 — web</span>
-        </a>
-        <div class="abstract-content">
-            
-Today I mainly write some notes about the web topic of the XCTF newcomer stage.The following is a list of topics.
-
-view source
-get post
-robots
-backup
-cookie
-disabled button
-simple js
-xff referer
-weak auth
-webshell
-command execution
-simple php
-
-In order to make the knowledge points involved in ea...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/2019.08.01（78）/">
-            
-                <span>BabyPHP 解题总结</span>
-        </a>
-        <div class="abstract-content">
-            一、PHP 部分漏洞1.$_GET 和 $_POST
-如果 GET 参数中设置 name[]=a，那么 $_GET[&#39;name&#39;] = [a]，php 会把 []=a 当成数组传入， $_GET 会自动对参数调用 urldecode。
-$_POST 同样存在此漏洞，提交的表单数据，user[]=admin，$_POST[&#39;user&#39;] 得到的是 [&#39;admin&#39;] 是一个数组。
-
-2.sha1 和 md5 函数
-PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
     
 </div>
             
@@ -3487,9 +3484,101 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3509,6 +3598,16 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3524,7 +3623,7 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3699,12 +3798,12 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3774,12 +3873,12 @@ PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

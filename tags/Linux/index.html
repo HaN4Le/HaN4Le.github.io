@@ -370,7 +370,8 @@
 根目录是整个系统最重要的一个目录，因为不但所有的目录都是由根目录衍生出来的，同时根目录也与开机/还原/系统修复等动作有关。因此FHS标准建议： 根目录(/)所在分区应该越小越好，且应用程式所安装的软体最好不要与根目录放在同一个分区内，以保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。
 说白了，就是根目录和Windows的C盘一个样
 
-1.根目录下各个目录的功能详细列表
+ 1.根目录下各个目录的功能
+ 详细列表
 
 
 
@@ -382,8 +383,8 @@
 
 
 
-/bin
-系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操作的指令。在/bi...
+/binBinary
+系统有很多放置执行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式[quest-?]下还能够被操...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -416,12 +417,14 @@
                 <span>Linux常用命令总结（二进制）</span>
         </a>
         <div class="abstract-content">
-            0x00 目录操作命令0x00 ls（list）功能：列举出当前工作目录的内容，包括文件和文件夹
+             0x00 目录操作命令
+ 0x00 ls（list）
+功能：列举出当前工作目录的内容，包括文件和文件夹
 相关选项：
 
-ls -l： 文件/文件夹：长格式显示指定/目录中的文件
+ls -l： 文件/文件夹：长格式显示指定/目录中的文件
 
-123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png-r...
+123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.p...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3151,9 +3154,101 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3173,6 +3268,16 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3188,7 +3293,7 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3363,12 +3468,12 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3438,12 +3543,12 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

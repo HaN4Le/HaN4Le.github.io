@@ -361,6 +361,93 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/02/2019.09.02（79）/">
+            
+                <span>XCTF 新人阶段 — web</span>
+        </a>
+        <div class="abstract-content">
+            
+Today I mainly write some notes about the web topic of the XCTF newcomer stage.The following is a list of topics.
+
+view source
+get post
+robots
+backup
+cookie
+disabled button
+simple js
+xff referer
+weak auth
+webshell
+command execution
+simple php
+
+In order to make the knowledge points involved in ea...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/01/2019.08.01（78）/">
+            
+                <span>BabyPHP 解题总结</span>
+        </a>
+        <div class="abstract-content">
+            一、PHP 部分漏洞1.$_GET 和 $_POST
+如果 GET 参数中设置 name[]=a，那么 $_GET[&#39;name&#39;] = [a]，php 会把 []=a 当成数组传入， $_GET 会自动对参数调用 urldecode。
+$_POST 同样存在此漏洞，提交的表单数据，user[]=admin，$_POST[&#39;user&#39;] 得到的是 [&#39;admin&#39;] 是一个数组。
+
+2.sha1 和 md5 函数
+PHP在处理哈希字符串时，会利用 ”!=” 或 ”==” 来对哈希值进行比较，它把每一个以 “0E” 开头的哈希值都解释为 0，所...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/31/2019.07.31（77）/">
             
                 <span>JavaScript 学习笔记（一）</span>
@@ -637,70 +724,6 @@ JavaScrip...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="《软件安全分析与应用》">《软件安全分析与应用》</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/16/2019.06.16（69）/">
-            
-                <span>《图解密码技术》第三章（对称密码）学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-☛  前言：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要回顾的内容有：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◈ 比特序列运算&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◈ XOR 运算&nbsp;&nbsp;&nbsp;&nbsp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/15/2019.06.15（68）/">
-            
-                <span>《图解密码技术》第二章（历史上的密码）学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-☛  前言：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天主要回顾的内容有：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◈ 凯撒密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◈ 简单替换密码&nbsp;&nbsp;&nbsp;&nbsp;&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="《图解密码技术》学习笔记">《图解密码技术》学习笔记</a>
     
 </div>
             
@@ -3419,9 +3442,101 @@ JavaScrip...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3441,6 +3556,16 @@ JavaScrip...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3456,7 +3581,7 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3631,12 +3756,12 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3706,12 +3831,12 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     

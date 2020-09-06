@@ -361,6 +361,77 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/24/2020.07.24（139）/">
+            
+                <span class="stick-top iconfont-archer">&#xe63d;</span>
+                
+                <span>CTF-web 类型题目总结</span>
+        </a>
+        <div class="abstract-content">
+            Here's something encrypted, password is required to continue reading.
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
+            
+                <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 相关知识点
+
+
+格式化字符串的利用
+金丝雀的绕过
+栈的溢出
+
+
+ 0x01 分析题目
+
+既然题目说是个非常简单的热身的pwn，那我就简单的热一下身
+
+ 1.file mary
+12# file marymary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=b7971b84c2309bdb896e6e39073303fc13...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
             
                 <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
@@ -673,90 +744,6 @@ long int
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="C">C</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/20/2020.06.20（129）/">
-            
-                <span>【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</span>
-        </a>
-        <div class="abstract-content">
-            
- 0x00 相关知识
- 1.mprotect()函数
-      mprotect()函数可以修改调用进程内存页的保护属性。如果调用进程尝试以违反保护属性的方式访问该内存，则内核会发出一个SIGSEGV信号给该进程。
-
-
-函数原型：int mprotect(const void *start, size_t len, int prot)
-
-
-参数解释：
-
-start：需改写属性的内存中开始地址
-len：需改写属性的内存长度
-prot：需要修改为的指定值
-
-
-
-功能： mprotect()函数可以用来修改一段指定内存区域的保护属性。 他把自start开始的、长度为len的内存区的保护属性...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
-            
-                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.x86和x64的传参方式
-      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
-12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3475,9 +3462,101 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 149
         </div>
         <!-- search  -->
         
@@ -3497,6 +3576,16 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
         </li>
     
@@ -3512,7 +3601,7 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习资源汇总</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
         </li>
     
     
@@ -3687,12 +3776,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
         </li>
     
     
@@ -3762,12 +3851,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
