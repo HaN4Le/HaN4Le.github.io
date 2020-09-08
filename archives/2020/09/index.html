@@ -361,25 +361,37 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/09/04/2020.09.04（148）/">
+        <a class="abstract-title" href="/2020/09/07/2020.09.07（150）/">
             
-                <span>Python库总结</span>
+                <span>ELF文件格式实例解析</span>
         </a>
         <div class="abstract-content">
-             0x01 requests 库
+             0x00 知识储备
+ 1.前言
 
-相关链接
+接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。
 
- 1.发送请求
-get 请求
-1234567891011121314151617181920import requests# 头部信息header = &#123;            'Accept': '*/*',            'Referer': 'http://www.baidu.com',            'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; ',            'Cache-Control': 'no-cach...
+ 2.预定义类型
+
+其结构源码被包含在/usr/include/elf.h文件中
+
+首先来看一下预定义的类型
+1234567891011121314151617/* Type for a 16-bit quantity.  */...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/07</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
             
         </div>
     </article>
@@ -398,6 +410,35 @@ get 请求
              0x00 什么是多线程？
 
 在计算机编程中，一个基本的概念就是同时对多个任务加以控制。许多程序设计问题都要求程序能够停下手头的工作，改为处理其他一些问题，再返回主进程。可以通过多种途径达到这个目的。最开始的时候，那些掌握机器低级语言的程序员编写一些“中断服务例程”，主进程的暂停是通过硬件级的中断实现的。尽管这是一种有用的方法，但编出的程序很难移植，由此造成了另一类的代价高昂问题。中断对那些实时性很强的任务来说是很有必要的。但对于其他许多问题，只要求将问题划分进入独立运行的程序片断中，使整个程序能更迅速地响应用户的请求。最开始，线程只是用于分配单个处理器的处理时间的一种工具。但假如操作系...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/09/04/2020.09.04（148）/">
+            
+                <span>Python库总结</span>
+        </a>
+        <div class="abstract-content">
+             0x01 requests 库
+
+相关链接
+
+ 1.发送请求
+get 请求
+1234567891011121314151617181920import requests# 头部信息header = &#123;            'Accept': '*/*',            'Referer': 'http://www.baidu.com',            'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; ',            'Cache-Control': 'no-cach...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3188,30 +3229,9 @@ get 请求
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 149
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3231,12 +3251,17 @@ get 请求
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2020/09/07/2020.09.07（150）/">ELF文件格式实例解析</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
@@ -3406,7 +3431,7 @@ get 请求
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3416,7 +3441,7 @@ get 请求
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3506,12 +3531,12 @@ get 请求
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     

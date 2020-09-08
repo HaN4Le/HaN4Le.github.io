@@ -361,6 +361,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/09/07/2020.09.07（150）/">
+            
+                <span>ELF文件格式实例解析</span>
+        </a>
+        <div class="abstract-content">
+             0x00 知识储备
+ 1.前言
+
+接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。
+
+ 2.预定义类型
+
+其结构源码被包含在/usr/include/elf.h文件中
+
+首先来看一下预定义的类型
+1234567891011121314151617/* Type for a 16-bit quantity.  */...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/29/2020.05.29（119）/">
             
                 <span>详解格式化字符串漏洞</span>
@@ -653,53 +694,11 @@ disasm
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/17/2019.04.17（39）/">
-            
-                <span>二进制炸弹解题知识储备</span>
-        </a>
-        <div class="abstract-content">
-            今天开始了第二阶段的测试，针对题目中频繁出现的汇编指令、gdb编译器以及objdump工具，做了详细的学习，下面就总结一下该题中可能用到的一些知识点，主要内容为：
-
-
-常用的汇编指令
-objdump工具
-gdb编译器的用法一、题目中出现的汇编指令
-push、pop、call、cmp、jmp、je、jne、lea
-
-
-1.push 和 pop 指令：堆栈操作指令
-
-① 说明：无论是push 还是pop ，都是对堆栈段ss的处理：
-
-ss中存放堆栈段地址
-sp指针中存放偏移地址，
-栈操作都是以字（2字节）为单位。
-
-② 例子：☛ 例一：将通用寄存器ax中的数据入栈，push ax，在16位的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/tags/二进制/page/2/">2</a><a class="extend next" rel="next" href="/tags/二进制/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -3478,30 +3477,9 @@ sp指针中存放偏移地址，
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 149
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3521,12 +3499,17 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2020/09/07/2020.09.07（150）/">ELF文件格式实例解析</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
@@ -3696,7 +3679,7 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3706,7 +3689,7 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3796,12 +3779,12 @@ sp指针中存放偏移地址，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     

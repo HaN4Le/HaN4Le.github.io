@@ -1,0 +1,4697 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="MUZIBing">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="MUZIBing">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ELF文件格式实例解析 · MUZIBing&#39;s BLOG</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.jpg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'BN8DBA0DBN',
+                apiKey: '743de843b152b923f8db5d51eac38a27',
+                indexName: 'search',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">MUZIBing&#39;s BLOG</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">ELF文件格式实例解析</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">MUZIBing's BLOG</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/150.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            ELF文件格式实例解析
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">10.8k</span>阅读时长: <span class="post-count reading-time">58 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/09/07</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="font-color-navy0x00-知识储备font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-知识储备font"></a> <font color="navy">0x00 知识储备</font></h2>
+<h3 id="1前言"><a class="markdownIt-Anchor" href="#1前言"></a> 1.前言</h3>
+<blockquote>
+<p>接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。</p>
+</blockquote>
+<h3 id="2预定义类型"><a class="markdownIt-Anchor" href="#2预定义类型"></a> 2.预定义类型</h3>
+<blockquote>
+<p>其结构源码被包含在<code>/usr/include/elf.h</code>文件中</p>
+</blockquote>
+<p><font size="2">首先来看一下预定义的类型</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Type for a 16-bit quantity.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint16_t</span> Elf32_Half;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint16_t</span> Elf64_Half;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Types for signed and unsigned 32-bit quantities.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> Elf32_Word;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int32_t</span>  Elf32_Sword;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> Elf64_Word;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int32_t</span>  Elf64_Sword;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Type of addresses.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> Elf32_Addr;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint64_t</span> Elf64_Addr;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Type of file offsets.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> Elf32_Off;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint64_t</span> Elf64_Off;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><font size="2">将上述被定义的类型总结为：</font></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>自定义类型</th>
+<th>描述</th>
+<th>原始类型</th>
+<th>长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELF32_Addr</td>
+<td>32位版本程序地址</td>
+<td>uint32_t</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ELF32_Half</td>
+<td>32位版本的无符号短整型</td>
+<td>uint16_t</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ELF32_Off</td>
+<td>32位版本的偏移地址</td>
+<td>uint32_t</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ELF32_Sword</td>
+<td>32位版本有符号整型</td>
+<td>uint32_t</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ELF32_Word</td>
+<td>32位版本无符号整型</td>
+<td>int32_t</td>
+<td>4</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ELF64_Addr</td>
+<td>64位版本程序地址</td>
+<td>uint64_t</td>
+<td>8</td>
+</tr>
+<tr>
+<td>ELF64_Half</td>
+<td>64位版本的无符号短整型</td>
+<td>uint16_t</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ELF64_Off</td>
+<td>64位版本的偏移地址</td>
+<td>uint64_t</td>
+<td>8</td>
+</tr>
+<tr>
+<td>ELF64_Sword</td>
+<td>64位版本有符号整型</td>
+<td>uint32_t</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ELF64_Word</td>
+<td>64位版本无符号整型</td>
+<td>int32_t</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3elf文件结构"><a class="markdownIt-Anchor" href="#3elf文件结构"></a> 3.ELF文件结构</h3>
+<p><img src="/images/150-1.png" alt></p>
+<blockquote>
+<p>图来自<a href="http://chuquan.me/2018/05/21/elf-introduce/" target="_blank" rel="noopener">计算机那些事(4)——ELF文件结构| 楚权的世界</a></p>
+</blockquote>
+<p><font size="2">从上图我们可以看出ELF温江从上到下的一个结构（按段或者说节区进行划分功能不同的数据区）</font></p>
+<p><strong>注意</strong>：尽管图中显示的各个组成部分是有顺序的，实际上除了 ELF 头部表以外，其他节区和段都没有规定的顺序</p>
+<h3 id="4readelf和objdump工具的使用"><a class="markdownIt-Anchor" href="#4readelf和objdump工具的使用"></a> 4.readelf和objdump工具的使用</h3>
+<blockquote>
+<p>有关这两个工具的使用，我在下图中进行了展示：</p>
+</blockquote>
+<p><img src="/images/150-2.jpg" alt></p>
+<h2 id="font-color-navy0x01-elf实例font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-elf实例font"></a> <font color="navy">0x01 ELF实例</font></h2>
+<h3 id="1实例代码"><a class="markdownIt-Anchor" href="#1实例代码"></a> 1.实例代码</h3>
+<blockquote>
+<p>代码如下，并将其编译成32位的ELF文件。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result;</span><br><span class="line">        result = num1 + num2;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"num1+num2 = %d\n"</span>,result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num1, num2;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Please input the two number that you want to add:"</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;num1,&amp;num2);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Your input is:%d and %d\n"</span>,num1,num2);</span><br><span class="line">        add(num1,num2);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Calculater is END."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2elf文件的二进制形式"><a class="markdownIt-Anchor" href="#2elf文件的二进制形式"></a> 2.ELF文件的二进制形式</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br></pre></td><td class="code"><pre><span class="line">00000000  7f 45 4c 46 01 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|</span><br><span class="line">00000010  03 00 03 00 01 00 00 00  70 10 00 00 34 00 00 00  |........p...4...|</span><br><span class="line">00000020  30 38 00 00 00 00 00 00  34 00 20 00 0b 00 28 00  |08......4. ...(.|</span><br><span class="line">00000030  1e 00 1d 00 06 00 00 00  34 00 00 00 34 00 00 00  |........4...4...|</span><br><span class="line">00000040  34 00 00 00 60 01 00 00  60 01 00 00 04 00 00 00  |4...`...`.......|</span><br><span class="line">00000050  04 00 00 00 03 00 00 00  94 01 00 00 94 01 00 00  |................|</span><br><span class="line">00000060  94 01 00 00 13 00 00 00  13 00 00 00 04 00 00 00  |................|</span><br><span class="line">00000070  01 00 00 00 01 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00000080  00 00 00 00 fc 03 00 00  fc 03 00 00 04 00 00 00  |................|</span><br><span class="line">00000090  00 10 00 00 01 00 00 00  00 10 00 00 00 10 00 00  |................|</span><br><span class="line">000000a0  00 10 00 00 fc 02 00 00  fc 02 00 00 05 00 00 00  |................|</span><br><span class="line">000000b0  00 10 00 00 01 00 00 00  00 20 00 00 00 20 00 00  |......... ... ..|</span><br><span class="line">000000c0  00 20 00 00 30 02 00 00  30 02 00 00 04 00 00 00  |. ..0...0.......|</span><br><span class="line">000000d0  00 10 00 00 01 00 00 00  f4 2e 00 00 f4 3e 00 00  |.............&gt;..|</span><br><span class="line">000000e0  f4 3e 00 00 2c 01 00 00  30 01 00 00 06 00 00 00  |.&gt;..,...0.......|</span><br><span class="line">000000f0  00 10 00 00 02 00 00 00  fc 2e 00 00 fc 3e 00 00  |.............&gt;..|</span><br><span class="line">00000100  fc 3e 00 00 f0 00 00 00  f0 00 00 00 06 00 00 00  |.&gt;..............|</span><br><span class="line">00000110  04 00 00 00 04 00 00 00  a8 01 00 00 a8 01 00 00  |................|</span><br><span class="line">00000120  a8 01 00 00 44 00 00 00  44 00 00 00 04 00 00 00  |....D...D.......|</span><br><span class="line">00000130  04 00 00 00 50 e5 74 64  7c 20 00 00 7c 20 00 00  |....P.td| ..| ..|</span><br><span class="line">00000140  7c 20 00 00 54 00 00 00  54 00 00 00 04 00 00 00  || ..T...T.......|</span><br><span class="line">00000150  04 00 00 00 51 e5 74 64  00 00 00 00 00 00 00 00  |....Q.td........|</span><br><span class="line">00000160  00 00 00 00 00 00 00 00  00 00 00 00 06 00 00 00  |................|</span><br><span class="line">00000170  10 00 00 00 52 e5 74 64  f4 2e 00 00 f4 3e 00 00  |....R.td.....&gt;..|</span><br><span class="line">00000180  f4 3e 00 00 0c 01 00 00  0c 01 00 00 04 00 00 00  |.&gt;..............|</span><br><span class="line">00000190  01 00 00 00 2f 6c 69 62  2f 6c 64 2d 6c 69 6e 75  |..../lib/ld-linu|</span><br><span class="line">000001a0  78 2e 73 6f 2e 32 00 00  04 00 00 00 14 00 00 00  |x.so.2..........|</span><br><span class="line">000001b0  03 00 00 00 47 4e 55 00  15 e3 de 80 0f 50 a8 0f  |....GNU......P..|</span><br><span class="line">000001c0  21 82 d8 42 91 b4 ef 57  ef a8 28 83 04 00 00 00  |!..B...W..(.....|</span><br><span class="line">000001d0  10 00 00 00 01 00 00 00  47 4e 55 00 00 00 00 00  |........GNU.....|</span><br><span class="line">000001e0  03 00 00 00 02 00 00 00  00 00 00 00 02 00 00 00  |................|</span><br><span class="line">000001f0  08 00 00 00 01 00 00 00  05 00 00 00 00 20 00 20  |............. . |</span><br><span class="line">00000200  00 00 00 00 08 00 00 00  ad 4b e3 c0 00 00 00 00  |.........K......|</span><br><span class="line">00000210  00 00 00 00 00 00 00 00  00 00 00 00 71 00 00 00  |............q...|</span><br><span class="line">00000220  00 00 00 00 00 00 00 00  20 00 00 00 1f 00 00 00  |........ .......|</span><br><span class="line">00000230  00 00 00 00 00 00 00 00  12 00 00 00 26 00 00 00  |............&amp;...|</span><br><span class="line">00000240  00 00 00 00 00 00 00 00  22 00 00 00 8d 00 00 00  |........&quot;.......|</span><br><span class="line">00000250  00 00 00 00 00 00 00 00  20 00 00 00 35 00 00 00  |........ ...5...|</span><br><span class="line">00000260  00 00 00 00 00 00 00 00  12 00 00 00 10 00 00 00  |................|</span><br><span class="line">00000270  00 00 00 00 00 00 00 00  12 00 00 00 9c 00 00 00  |................|</span><br><span class="line">00000280  00 00 00 00 00 00 00 00  20 00 00 00 01 00 00 00  |........ .......|</span><br><span class="line">00000290  04 20 00 00 04 00 00 00  11 00 10 00 00 5f 49 4f  |. ..........._IO|</span><br><span class="line">000002a0  5f 73 74 64 69 6e 5f 75  73 65 64 00 5f 5f 69 73  |_stdin_used.__is|</span><br><span class="line">000002b0  6f 63 39 39 5f 73 63 61  6e 66 00 70 72 69 6e 74  |oc99_scanf.print|</span><br><span class="line">000002c0  66 00 5f 5f 63 78 61 5f  66 69 6e 61 6c 69 7a 65  |f.__cxa_finalize|</span><br><span class="line">000002d0  00 5f 5f 6c 69 62 63 5f  73 74 61 72 74 5f 6d 61  |.__libc_start_ma|</span><br><span class="line">000002e0  69 6e 00 6c 69 62 63 2e  73 6f 2e 36 00 47 4c 49  |in.libc.so.6.GLI|</span><br><span class="line">000002f0  42 43 5f 32 2e 37 00 47  4c 49 42 43 5f 32 2e 31  |BC_2.7.GLIBC_2.1|</span><br><span class="line">00000300  2e 33 00 47 4c 49 42 43  5f 32 2e 30 00 5f 49 54  |.3.GLIBC_2.0._IT|</span><br><span class="line">00000310  4d 5f 64 65 72 65 67 69  73 74 65 72 54 4d 43 6c  |M_deregisterTMCl|</span><br><span class="line">00000320  6f 6e 65 54 61 62 6c 65  00 5f 5f 67 6d 6f 6e 5f  |oneTable.__gmon_|</span><br><span class="line">00000330  73 74 61 72 74 5f 5f 00  5f 49 54 4d 5f 72 65 67  |start__._ITM_reg|</span><br><span class="line">00000340  69 73 74 65 72 54 4d 43  6c 6f 6e 65 54 61 62 6c  |isterTMCloneTabl|</span><br><span class="line">00000350  65 00 00 00 00 00 02 00  03 00 00 00 02 00 04 00  |e...............|</span><br><span class="line">00000360  00 00 01 00 01 00 03 00  47 00 00 00 10 00 00 00  |........G.......|</span><br><span class="line">00000370  00 00 00 00 17 69 69 0d  00 00 04 00 51 00 00 00  |.....ii.....Q...|</span><br><span class="line">00000380  10 00 00 00 73 1f 69 09  00 00 03 00 5b 00 00 00  |....s.i.....[...|</span><br><span class="line">00000390  10 00 00 00 10 69 69 0d  00 00 02 00 67 00 00 00  |.....ii.....g...|</span><br><span class="line">000003a0  00 00 00 00 f4 3e 00 00  08 00 00 00 f8 3e 00 00  |.....&gt;.......&gt;..|</span><br><span class="line">000003b0  08 00 00 00 f8 3f 00 00  08 00 00 00 1c 40 00 00  |.....?.......@..|</span><br><span class="line">000003c0  08 00 00 00 ec 3f 00 00  06 01 00 00 f0 3f 00 00  |.....?.......?..|</span><br><span class="line">000003d0  06 03 00 00 f4 3f 00 00  06 04 00 00 fc 3f 00 00  |.....?.......?..|</span><br><span class="line">000003e0  06 07 00 00 0c 40 00 00  07 02 00 00 10 40 00 00  |.....@.......@..|</span><br><span class="line">000003f0  07 05 00 00 14 40 00 00  07 06 00 00 00 00 00 00  |.....@..........|</span><br><span class="line">00000400  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00001000  53 83 ec 08 e8 a7 00 00  00 81 c3 f7 2f 00 00 8b  |S.........../...|</span><br><span class="line">00001010  83 f4 ff ff ff 85 c0 74  02 ff d0 83 c4 08 5b c3  |.......t......[.|</span><br><span class="line">00001020  ff b3 04 00 00 00 ff a3  08 00 00 00 00 00 00 00  |................|</span><br><span class="line">00001030  ff a3 0c 00 00 00 68 00  00 00 00 e9 e0 ff ff ff  |......h.........|</span><br><span class="line">00001040  ff a3 10 00 00 00 68 08  00 00 00 e9 d0 ff ff ff  |......h.........|</span><br><span class="line">00001050  ff a3 14 00 00 00 68 10  00 00 00 e9 c0 ff ff ff  |......h.........|</span><br><span class="line">00001060  ff a3 f0 ff ff ff 66 90  00 00 00 00 00 00 00 00  |......f.........|</span><br><span class="line">00001070  31 ed 5e 89 e1 83 e4 f0  50 54 52 e8 22 00 00 00  |1.^.....PTR.&quot;...|</span><br><span class="line">00001080  81 c3 80 2f 00 00 8d 83  e0 d2 ff ff 50 8d 83 80  |.../........P...|</span><br><span class="line">00001090  d2 ff ff 50 51 56 ff b3  f8 ff ff ff e8 9f ff ff  |...PQV..........|</span><br><span class="line">000010a0  ff f4 8b 1c 24 c3 66 90  66 90 66 90 66 90 66 90  |....$.f.f.f.f.f.|</span><br><span class="line">000010b0  8b 1c 24 c3 66 90 66 90  66 90 66 90 66 90 66 90  |..$.f.f.f.f.f.f.|</span><br><span class="line">000010c0  e8 e0 00 00 00 81 c2 3b  2f 00 00 8d 8a 20 00 00  |.......;/.... ..|</span><br><span class="line">000010d0  00 8d 82 20 00 00 00 39  c8 74 1d 8b 82 ec ff ff  |... ...9.t......|</span><br><span class="line">000010e0  ff 85 c0 74 13 55 89 e5  83 ec 14 51 ff d0 83 c4  |...t.U.....Q....|</span><br><span class="line">000010f0  10 c9 c3 8d 74 26 00 90  c3 8d b4 26 00 00 00 00  |....t&amp;.....&amp;....|</span><br><span class="line">00001100  e8 a0 00 00 00 81 c2 fb  2e 00 00 55 89 e5 53 8d  |...........U..S.|</span><br><span class="line">00001110  8a 20 00 00 00 8d 82 20  00 00 00 83 ec 04 29 c8  |. ..... ......).|</span><br><span class="line">00001120  89 c3 c1 e8 1f c1 fb 02  01 d8 d1 f8 74 14 8b 92  |............t...|</span><br><span class="line">00001130  fc ff ff ff 85 d2 74 0a  83 ec 08 50 51 ff d2 83  |......t....PQ...|</span><br><span class="line">00001140  c4 10 8b 5d fc c9 c3 8d  b4 26 00 00 00 00 66 90  |...].....&amp;....f.|</span><br><span class="line">00001150  55 89 e5 53 e8 57 ff ff  ff 81 c3 a7 2e 00 00 83  |U..S.W..........|</span><br><span class="line">00001160  ec 04 80 bb 20 00 00 00  00 75 27 8b 83 f0 ff ff  |.... ....u&apos;.....|</span><br><span class="line">00001170  ff 85 c0 74 11 83 ec 0c  ff b3 1c 00 00 00 e8 dd  |...t............|</span><br><span class="line">00001180  fe ff ff 83 c4 10 e8 35  ff ff ff c6 83 20 00 00  |.......5..... ..|</span><br><span class="line">00001190  00 01 8b 5d fc c9 c3 8d  b4 26 00 00 00 00 66 90  |...].....&amp;....f.|</span><br><span class="line">000011a0  e9 5b ff ff ff 8b 14 24  c3 55 89 e5 53 83 ec 14  |.[.....$.U..S...|</span><br><span class="line">000011b0  e8 c4 00 00 00 05 4b 2e  00 00 8b 4d 08 8b 55 0c  |......K....M..U.|</span><br><span class="line">000011c0  01 ca 89 55 f4 83 ec 08  ff 75 f4 8d 90 08 e0 ff  |...U.....u......|</span><br><span class="line">000011d0  ff 52 89 c3 e8 57 fe ff  ff 83 c4 10 90 8b 5d fc  |.R...W........].|</span><br><span class="line">000011e0  c9 c3 8d 4c 24 04 83 e4  f0 ff 71 fc 55 89 e5 53  |...L$.....q.U..S|</span><br><span class="line">000011f0  51 83 ec 10 e8 b7 fe ff  ff 81 c3 07 2e 00 00 83  |Q...............|</span><br><span class="line">00001200  ec 0c 8d 83 18 e0 ff ff  50 e8 22 fe ff ff 83 c4  |........P.&quot;.....|</span><br><span class="line">00001210  10 83 ec 04 8d 45 f0 50  8d 45 f4 50 8d 83 4a e0  |.....E.P.E.P..J.|</span><br><span class="line">00001220  ff ff 50 e8 28 fe ff ff  83 c4 10 8b 55 f0 8b 45  |..P.(.......U..E|</span><br><span class="line">00001230  f4 83 ec 04 52 50 8d 83  4f e0 ff ff 50 e8 ee fd  |....RP..O...P...|</span><br><span class="line">00001240  ff ff 83 c4 10 8b 55 f0  8b 45 f4 83 ec 08 52 50  |......U..E....RP|</span><br><span class="line">00001250  e8 54 ff ff ff 83 c4 10  83 ec 0c 8d 83 68 e0 ff  |.T...........h..|</span><br><span class="line">00001260  ff 50 e8 c9 fd ff ff 83  c4 10 b8 00 00 00 00 8d  |.P..............|</span><br><span class="line">00001270  65 f8 59 5b 5d 8d 61 fc  c3 8b 04 24 c3 66 90 90  |e.Y[].a....$.f..|</span><br><span class="line">00001280  55 e8 5b 00 00 00 81 c5  7a 2d 00 00 57 56 53 83  |U.[.....z-..WVS.|</span><br><span class="line">00001290  ec 0c 89 eb 8b 7c 24 28  e8 63 fd ff ff 8d 9d f8  |.....|$(.c......|</span><br><span class="line">000012a0  fe ff ff 8d 85 f4 fe ff  ff 29 c3 c1 fb 02 74 25  |.........)....t%|</span><br><span class="line">000012b0  31 f6 8d b6 00 00 00 00  83 ec 04 57 ff 74 24 2c  |1..........W.t$,|</span><br><span class="line">000012c0  ff 74 24 2c ff 94 b5 f4  fe ff ff 83 c6 01 83 c4  |.t$,............|</span><br><span class="line">000012d0  10 39 f3 75 e3 83 c4 0c  5b 5e 5f 5d c3 8d 76 00  |.9.u....[^_]..v.|</span><br><span class="line">000012e0  c3 8b 2c 24 c3 00 00 00  53 83 ec 08 e8 bf fd ff  |..,$....S.......|</span><br><span class="line">000012f0  ff 81 c3 0f 2d 00 00 83  c4 08 5b c3 00 00 00 00  |....-.....[.....|</span><br><span class="line">00001300  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00002000  03 00 00 00 01 00 02 00  6e 75 6d 31 2b 6e 75 6d  |........num1+num|</span><br><span class="line">00002010  32 20 3d 20 25 64 0a 00  50 6c 65 61 73 65 20 69  |2 = %d..Please i|</span><br><span class="line">00002020  6e 70 75 74 20 74 68 65  20 74 77 6f 20 6e 75 6d  |nput the two num|</span><br><span class="line">00002030  62 65 72 20 74 68 61 74  20 79 6f 75 20 77 61 6e  |ber that you wan|</span><br><span class="line">00002040  74 20 74 6f 20 61 64 64  3a 00 25 64 25 64 00 59  |t to add:.%d%d.Y|</span><br><span class="line">00002050  6f 75 72 20 69 6e 70 75  74 20 69 73 3a 25 64 20  |our input is:%d |</span><br><span class="line">00002060  61 6e 64 20 25 64 0a 00  43 61 6c 63 75 6c 61 74  |and %d..Calculat|</span><br><span class="line">00002070  65 72 20 69 73 20 45 4e  44 2e 00 00 01 1b 03 3b  |er is END......;|</span><br><span class="line">00002080  50 00 00 00 09 00 00 00  a4 ef ff ff 98 00 00 00  |P...............|</span><br><span class="line">00002090  e4 ef ff ff bc 00 00 00  f4 ef ff ff 6c 00 00 00  |............l...|</span><br><span class="line">000020a0  2d f1 ff ff d0 00 00 00  66 f1 ff ff f4 00 00 00  |-.......f.......|</span><br><span class="line">000020b0  fd f1 ff ff 28 01 00 00  04 f2 ff ff 3c 01 00 00  |....(.......&lt;...|</span><br><span class="line">000020c0  64 f2 ff ff 88 01 00 00  65 f2 ff ff 9c 01 00 00  |d.......e.......|</span><br><span class="line">000020d0  14 00 00 00 00 00 00 00  01 7a 52 00 01 7c 08 01  |.........zR..|..|</span><br><span class="line">000020e0  1b 0c 04 04 88 01 07 08  10 00 00 00 1c 00 00 00  |................|</span><br><span class="line">000020f0  80 ef ff ff 36 00 00 00  00 00 00 00 14 00 00 00  |....6...........|</span><br><span class="line">00002100  00 00 00 00 01 7a 52 00  01 7c 08 01 1b 0c 04 04  |.....zR..|......|</span><br><span class="line">00002110  88 01 00 00 20 00 00 00  1c 00 00 00 04 ef ff ff  |.... ...........|</span><br><span class="line">00002120  40 00 00 00 00 0e 08 46  0e 0c 4a 0f 0b 74 04 78  |@......F..J..t.x|</span><br><span class="line">00002130  00 3f 1a 3b 2a 32 24 22  10 00 00 00 40 00 00 00  |.?.;*2$&quot;....@...|</span><br><span class="line">00002140  20 ef ff ff 08 00 00 00  00 00 00 00 20 00 00 00  | ........... ...|</span><br><span class="line">00002150  54 00 00 00 55 f0 ff ff  39 00 00 00 00 41 0e 08  |T...U...9....A..|</span><br><span class="line">00002160  85 02 42 0d 05 44 83 03  71 c5 c3 0c 04 04 00 00  |..B..D..q.......|</span><br><span class="line">00002170  30 00 00 00 78 00 00 00  6a f0 ff ff 97 00 00 00  |0...x...j.......|</span><br><span class="line">00002180  00 44 0c 01 00 47 10 05  02 75 00 44 0f 03 75 78  |.D...G...u.D..ux|</span><br><span class="line">00002190  06 10 03 02 75 7c 02 82  c1 0c 01 00 41 c3 41 c5  |....u|......A.A.|</span><br><span class="line">000021a0  43 0c 04 04 10 00 00 00  ac 00 00 00 cd f0 ff ff  |C...............|</span><br><span class="line">000021b0  04 00 00 00 00 00 00 00  48 00 00 00 c0 00 00 00  |........H.......|</span><br><span class="line">000021c0  c0 f0 ff ff 5d 00 00 00  00 41 0e 08 85 02 4c 0e  |....]....A....L.|</span><br><span class="line">000021d0  0c 87 03 41 0e 10 86 04  41 0e 14 83 05 43 0e 20  |...A....A....C. |</span><br><span class="line">000021e0  69 0e 24 41 0e 28 44 0e  2c 44 0e 30 4d 0e 20 47  |i.$A.(D.,D.0M. G|</span><br><span class="line">000021f0  0e 14 41 c3 0e 10 41 c6  0e 0c 41 c7 0e 08 41 c5  |..A...A...A...A.|</span><br><span class="line">00002200  0e 04 00 00 10 00 00 00  0c 01 00 00 d4 f0 ff ff  |................|</span><br><span class="line">00002210  01 00 00 00 00 00 00 00  10 00 00 00 20 01 00 00  |............ ...|</span><br><span class="line">00002220  c1 f0 ff ff 04 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00002230  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00002ef0  00 00 00 00 a0 11 00 00  50 11 00 00 01 00 00 00  |........P.......|</span><br><span class="line">00002f00  47 00 00 00 0c 00 00 00  00 10 00 00 0d 00 00 00  |G...............|</span><br><span class="line">00002f10  e8 12 00 00 19 00 00 00  f4 3e 00 00 1b 00 00 00  |.........&gt;......|</span><br><span class="line">00002f20  04 00 00 00 1a 00 00 00  f8 3e 00 00 1c 00 00 00  |.........&gt;......|</span><br><span class="line">00002f30  04 00 00 00 f5 fe ff 6f  ec 01 00 00 05 00 00 00  |.......o........|</span><br><span class="line">00002f40  9c 02 00 00 06 00 00 00  0c 02 00 00 0a 00 00 00  |................|</span><br><span class="line">00002f50  b6 00 00 00 0b 00 00 00  10 00 00 00 15 00 00 00  |................|</span><br><span class="line">00002f60  00 00 00 00 03 00 00 00  00 40 00 00 02 00 00 00  |.........@......|</span><br><span class="line">00002f70  18 00 00 00 14 00 00 00  11 00 00 00 17 00 00 00  |................|</span><br><span class="line">00002f80  e4 03 00 00 11 00 00 00  a4 03 00 00 12 00 00 00  |................|</span><br><span class="line">00002f90  40 00 00 00 13 00 00 00  08 00 00 00 fb ff ff 6f  |@..............o|</span><br><span class="line">00002fa0  00 00 00 08 fe ff ff 6f  64 03 00 00 ff ff ff 6f  |.......od......o|</span><br><span class="line">00002fb0  01 00 00 00 f0 ff ff 6f  52 03 00 00 fa ff ff 6f  |.......oR......o|</span><br><span class="line">00002fc0  04 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00002fd0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00002ff0  00 00 00 00 00 00 00 00  e2 11 00 00 00 00 00 00  |................|</span><br><span class="line">00003000  fc 3e 00 00 00 00 00 00  00 00 00 00 36 10 00 00  |.&gt;..........6...|</span><br><span class="line">00003010  46 10 00 00 56 10 00 00  00 00 00 00 1c 40 00 00  |F...V........@..|</span><br><span class="line">00003020  47 43 43 3a 20 28 44 65  62 69 61 6e 20 31 30 2e  |GCC: (Debian 10.|</span><br><span class="line">00003030  32 2e 30 2d 35 29 20 31  30 2e 32 2e 30 00 00 00  |2.0-5) 10.2.0...|</span><br><span class="line">00003040  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003050  00 00 00 00 94 01 00 00  00 00 00 00 03 00 01 00  |................|</span><br><span class="line">00003060  00 00 00 00 a8 01 00 00  00 00 00 00 03 00 02 00  |................|</span><br><span class="line">00003070  00 00 00 00 cc 01 00 00  00 00 00 00 03 00 03 00  |................|</span><br><span class="line">00003080  00 00 00 00 ec 01 00 00  00 00 00 00 03 00 04 00  |................|</span><br><span class="line">00003090  00 00 00 00 0c 02 00 00  00 00 00 00 03 00 05 00  |................|</span><br><span class="line">000030a0  00 00 00 00 9c 02 00 00  00 00 00 00 03 00 06 00  |................|</span><br><span class="line">000030b0  00 00 00 00 52 03 00 00  00 00 00 00 03 00 07 00  |....R...........|</span><br><span class="line">000030c0  00 00 00 00 64 03 00 00  00 00 00 00 03 00 08 00  |....d...........|</span><br><span class="line">000030d0  00 00 00 00 a4 03 00 00  00 00 00 00 03 00 09 00  |................|</span><br><span class="line">000030e0  00 00 00 00 e4 03 00 00  00 00 00 00 03 00 0a 00  |................|</span><br><span class="line">000030f0  00 00 00 00 00 10 00 00  00 00 00 00 03 00 0b 00  |................|</span><br><span class="line">00003100  00 00 00 00 20 10 00 00  00 00 00 00 03 00 0c 00  |.... ...........|</span><br><span class="line">00003110  00 00 00 00 60 10 00 00  00 00 00 00 03 00 0d 00  |....`...........|</span><br><span class="line">00003120  00 00 00 00 70 10 00 00  00 00 00 00 03 00 0e 00  |....p...........|</span><br><span class="line">00003130  00 00 00 00 e8 12 00 00  00 00 00 00 03 00 0f 00  |................|</span><br><span class="line">00003140  00 00 00 00 00 20 00 00  00 00 00 00 03 00 10 00  |..... ..........|</span><br><span class="line">00003150  00 00 00 00 7c 20 00 00  00 00 00 00 03 00 11 00  |....| ..........|</span><br><span class="line">00003160  00 00 00 00 d0 20 00 00  00 00 00 00 03 00 12 00  |..... ..........|</span><br><span class="line">00003170  00 00 00 00 f4 3e 00 00  00 00 00 00 03 00 13 00  |.....&gt;..........|</span><br><span class="line">00003180  00 00 00 00 f8 3e 00 00  00 00 00 00 03 00 14 00  |.....&gt;..........|</span><br><span class="line">00003190  00 00 00 00 fc 3e 00 00  00 00 00 00 03 00 15 00  |.....&gt;..........|</span><br><span class="line">000031a0  00 00 00 00 ec 3f 00 00  00 00 00 00 03 00 16 00  |.....?..........|</span><br><span class="line">000031b0  00 00 00 00 00 40 00 00  00 00 00 00 03 00 17 00  |.....@..........|</span><br><span class="line">000031c0  00 00 00 00 18 40 00 00  00 00 00 00 03 00 18 00  |.....@..........|</span><br><span class="line">000031d0  00 00 00 00 20 40 00 00  00 00 00 00 03 00 19 00  |.... @..........|</span><br><span class="line">000031e0  00 00 00 00 00 00 00 00  00 00 00 00 03 00 1a 00  |................|</span><br><span class="line">000031f0  01 00 00 00 00 00 00 00  00 00 00 00 04 00 f1 ff  |................|</span><br><span class="line">00003200  0c 00 00 00 c0 10 00 00  00 00 00 00 02 00 0e 00  |................|</span><br><span class="line">00003210  0e 00 00 00 00 11 00 00  00 00 00 00 02 00 0e 00  |................|</span><br><span class="line">00003220  21 00 00 00 50 11 00 00  00 00 00 00 02 00 0e 00  |!...P...........|</span><br><span class="line">00003230  37 00 00 00 20 40 00 00  01 00 00 00 01 00 19 00  |7... @..........|</span><br><span class="line">00003240  43 00 00 00 f8 3e 00 00  00 00 00 00 01 00 14 00  |C....&gt;..........|</span><br><span class="line">00003250  6a 00 00 00 a0 11 00 00  00 00 00 00 02 00 0e 00  |j...............|</span><br><span class="line">00003260  76 00 00 00 f4 3e 00 00  00 00 00 00 01 00 13 00  |v....&gt;..........|</span><br><span class="line">00003270  95 00 00 00 00 00 00 00  00 00 00 00 04 00 f1 ff  |................|</span><br><span class="line">00003280  01 00 00 00 00 00 00 00  00 00 00 00 04 00 f1 ff  |................|</span><br><span class="line">00003290  9c 00 00 00 2c 22 00 00  00 00 00 00 01 00 12 00  |....,&quot;..........|</span><br><span class="line">000032a0  00 00 00 00 00 00 00 00  00 00 00 00 04 00 f1 ff  |................|</span><br><span class="line">000032b0  aa 00 00 00 f8 3e 00 00  00 00 00 00 00 00 13 00  |.....&gt;..........|</span><br><span class="line">000032c0  bb 00 00 00 fc 3e 00 00  00 00 00 00 01 00 15 00  |.....&gt;..........|</span><br><span class="line">000032d0  c4 00 00 00 f4 3e 00 00  00 00 00 00 00 00 13 00  |.....&gt;..........|</span><br><span class="line">000032e0  d7 00 00 00 7c 20 00 00  00 00 00 00 00 00 11 00  |....| ..........|</span><br><span class="line">000032f0  ea 00 00 00 00 40 00 00  00 00 00 00 01 00 17 00  |.....@..........|</span><br><span class="line">00003300  06 02 00 00 00 10 00 00  00 00 00 00 02 00 0b 00  |................|</span><br><span class="line">00003310  00 01 00 00 e0 12 00 00  01 00 00 00 12 00 0e 00  |................|</span><br><span class="line">00003320  10 01 00 00 00 00 00 00  00 00 00 00 20 00 00 00  |............ ...|</span><br><span class="line">00003330  2c 01 00 00 b0 10 00 00  04 00 00 00 12 02 0e 00  |,...............|</span><br><span class="line">00003340  a9 01 00 00 18 40 00 00  00 00 00 00 20 00 18 00  |.....@...... ...|</span><br><span class="line">00003350  42 01 00 00 a9 11 00 00  39 00 00 00 12 00 0e 00  |B.......9.......|</span><br><span class="line">00003360  46 01 00 00 00 00 00 00  00 00 00 00 12 00 00 00  |F...............|</span><br><span class="line">00003370  58 01 00 00 e1 12 00 00  00 00 00 00 12 02 0e 00  |X...............|</span><br><span class="line">00003380  6e 01 00 00 20 40 00 00  00 00 00 00 10 00 18 00  |n... @..........|</span><br><span class="line">00003390  0a 01 00 00 e8 12 00 00  00 00 00 00 12 02 0f 00  |................|</span><br><span class="line">000033a0  75 01 00 00 a5 11 00 00  00 00 00 00 12 02 0e 00  |u...............|</span><br><span class="line">000033b0  8b 01 00 00 00 00 00 00  00 00 00 00 22 00 00 00  |............&quot;...|</span><br><span class="line">000033c0  a7 01 00 00 18 40 00 00  00 00 00 00 10 00 18 00  |.....@..........|</span><br><span class="line">000033d0  b4 01 00 00 00 00 00 00  00 00 00 00 20 00 00 00  |............ ...|</span><br><span class="line">000033e0  c3 01 00 00 1c 40 00 00  00 00 00 00 11 02 18 00  |.....@..........|</span><br><span class="line">000033f0  d0 01 00 00 04 20 00 00  04 00 00 00 11 00 10 00  |..... ..........|</span><br><span class="line">00003400  df 01 00 00 00 00 00 00  00 00 00 00 12 00 00 00  |................|</span><br><span class="line">00003410  fc 01 00 00 80 12 00 00  5d 00 00 00 12 00 0e 00  |........].......|</span><br><span class="line">00003420  b6 00 00 00 24 40 00 00  00 00 00 00 10 00 19 00  |....$@..........|</span><br><span class="line">00003430  ad 01 00 00 70 10 00 00  36 00 00 00 12 00 0e 00  |....p...6.......|</span><br><span class="line">00003440  0c 02 00 00 00 20 00 00  04 00 00 00 11 00 10 00  |..... ..........|</span><br><span class="line">00003450  13 02 00 00 20 40 00 00  00 00 00 00 10 00 19 00  |.... @..........|</span><br><span class="line">00003460  1f 02 00 00 e2 11 00 00  97 00 00 00 12 00 0e 00  |................|</span><br><span class="line">00003470  24 02 00 00 79 12 00 00  00 00 00 00 12 02 0e 00  |$...y...........|</span><br><span class="line">00003480  3a 02 00 00 00 00 00 00  00 00 00 00 12 00 00 00  |:...............|</span><br><span class="line">00003490  54 02 00 00 20 40 00 00  00 00 00 00 11 02 18 00  |T... @..........|</span><br><span class="line">000034a0  60 02 00 00 00 00 00 00  00 00 00 00 20 00 00 00  |`........... ...|</span><br><span class="line">000034b0  00 63 72 74 73 74 75 66  66 2e 63 00 64 65 72 65  |.crtstuff.c.dere|</span><br><span class="line">000034c0  67 69 73 74 65 72 5f 74  6d 5f 63 6c 6f 6e 65 73  |gister_tm_clones|</span><br><span class="line">000034d0  00 5f 5f 64 6f 5f 67 6c  6f 62 61 6c 5f 64 74 6f  |.__do_global_dto|</span><br><span class="line">000034e0  72 73 5f 61 75 78 00 63  6f 6d 70 6c 65 74 65 64  |rs_aux.completed|</span><br><span class="line">000034f0  2e 30 00 5f 5f 64 6f 5f  67 6c 6f 62 61 6c 5f 64  |.0.__do_global_d|</span><br><span class="line">00003500  74 6f 72 73 5f 61 75 78  5f 66 69 6e 69 5f 61 72  |tors_aux_fini_ar|</span><br><span class="line">00003510  72 61 79 5f 65 6e 74 72  79 00 66 72 61 6d 65 5f  |ray_entry.frame_|</span><br><span class="line">00003520  64 75 6d 6d 79 00 5f 5f  66 72 61 6d 65 5f 64 75  |dummy.__frame_du|</span><br><span class="line">00003530  6d 6d 79 5f 69 6e 69 74  5f 61 72 72 61 79 5f 65  |mmy_init_array_e|</span><br><span class="line">00003540  6e 74 72 79 00 74 65 73  74 2e 63 00 5f 5f 46 52  |ntry.test.c.__FR|</span><br><span class="line">00003550  41 4d 45 5f 45 4e 44 5f  5f 00 5f 5f 69 6e 69 74  |AME_END__.__init|</span><br><span class="line">00003560  5f 61 72 72 61 79 5f 65  6e 64 00 5f 44 59 4e 41  |_array_end._DYNA|</span><br><span class="line">00003570  4d 49 43 00 5f 5f 69 6e  69 74 5f 61 72 72 61 79  |MIC.__init_array|</span><br><span class="line">00003580  5f 73 74 61 72 74 00 5f  5f 47 4e 55 5f 45 48 5f  |_start.__GNU_EH_|</span><br><span class="line">00003590  46 52 41 4d 45 5f 48 44  52 00 5f 47 4c 4f 42 41  |FRAME_HDR._GLOBA|</span><br><span class="line">000035a0  4c 5f 4f 46 46 53 45 54  5f 54 41 42 4c 45 5f 00  |L_OFFSET_TABLE_.|</span><br><span class="line">000035b0  5f 5f 6c 69 62 63 5f 63  73 75 5f 66 69 6e 69 00  |__libc_csu_fini.|</span><br><span class="line">000035c0  5f 49 54 4d 5f 64 65 72  65 67 69 73 74 65 72 54  |_ITM_deregisterT|</span><br><span class="line">000035d0  4d 43 6c 6f 6e 65 54 61  62 6c 65 00 5f 5f 78 38  |MCloneTable.__x8|</span><br><span class="line">000035e0  36 2e 67 65 74 5f 70 63  5f 74 68 75 6e 6b 2e 62  |6.get_pc_thunk.b|</span><br><span class="line">000035f0  78 00 61 64 64 00 70 72  69 6e 74 66 40 40 47 4c  |x.add.printf@@GL|</span><br><span class="line">00003600  49 42 43 5f 32 2e 30 00  5f 5f 78 38 36 2e 67 65  |IBC_2.0.__x86.ge|</span><br><span class="line">00003610  74 5f 70 63 5f 74 68 75  6e 6b 2e 62 70 00 5f 65  |t_pc_thunk.bp._e|</span><br><span class="line">00003620  64 61 74 61 00 5f 5f 78  38 36 2e 67 65 74 5f 70  |data.__x86.get_p|</span><br><span class="line">00003630  63 5f 74 68 75 6e 6b 2e  64 78 00 5f 5f 63 78 61  |c_thunk.dx.__cxa|</span><br><span class="line">00003640  5f 66 69 6e 61 6c 69 7a  65 40 40 47 4c 49 42 43  |_finalize@@GLIBC|</span><br><span class="line">00003650  5f 32 2e 31 2e 33 00 5f  5f 64 61 74 61 5f 73 74  |_2.1.3.__data_st|</span><br><span class="line">00003660  61 72 74 00 5f 5f 67 6d  6f 6e 5f 73 74 61 72 74  |art.__gmon_start|</span><br><span class="line">00003670  5f 5f 00 5f 5f 64 73 6f  5f 68 61 6e 64 6c 65 00  |__.__dso_handle.|</span><br><span class="line">00003680  5f 49 4f 5f 73 74 64 69  6e 5f 75 73 65 64 00 5f  |_IO_stdin_used._|</span><br><span class="line">00003690  5f 6c 69 62 63 5f 73 74  61 72 74 5f 6d 61 69 6e  |_libc_start_main|</span><br><span class="line">000036a0  40 40 47 4c 49 42 43 5f  32 2e 30 00 5f 5f 6c 69  |@@GLIBC_2.0.__li|</span><br><span class="line">000036b0  62 63 5f 63 73 75 5f 69  6e 69 74 00 5f 66 70 5f  |bc_csu_init._fp_|</span><br><span class="line">000036c0  68 77 00 5f 5f 62 73 73  5f 73 74 61 72 74 00 6d  |hw.__bss_start.m|</span><br><span class="line">000036d0  61 69 6e 00 5f 5f 78 38  36 2e 67 65 74 5f 70 63  |ain.__x86.get_pc|</span><br><span class="line">000036e0  5f 74 68 75 6e 6b 2e 61  78 00 5f 5f 69 73 6f 63  |_thunk.ax.__isoc|</span><br><span class="line">000036f0  39 39 5f 73 63 61 6e 66  40 40 47 4c 49 42 43 5f  |99_scanf@@GLIBC_|</span><br><span class="line">00003700  32 2e 37 00 5f 5f 54 4d  43 5f 45 4e 44 5f 5f 00  |2.7.__TMC_END__.|</span><br><span class="line">00003710  5f 49 54 4d 5f 72 65 67  69 73 74 65 72 54 4d 43  |_ITM_registerTMC|</span><br><span class="line">00003720  6c 6f 6e 65 54 61 62 6c  65 00 00 2e 73 79 6d 74  |loneTable...symt|</span><br><span class="line">00003730  61 62 00 2e 73 74 72 74  61 62 00 2e 73 68 73 74  |ab..strtab..shst|</span><br><span class="line">00003740  72 74 61 62 00 2e 69 6e  74 65 72 70 00 2e 6e 6f  |rtab..interp..no|</span><br><span class="line">00003750  74 65 2e 67 6e 75 2e 62  75 69 6c 64 2d 69 64 00  |te.gnu.build-id.|</span><br><span class="line">00003760  2e 6e 6f 74 65 2e 41 42  49 2d 74 61 67 00 2e 67  |.note.ABI-tag..g|</span><br><span class="line">00003770  6e 75 2e 68 61 73 68 00  2e 64 79 6e 73 79 6d 00  |nu.hash..dynsym.|</span><br><span class="line">00003780  2e 64 79 6e 73 74 72 00  2e 67 6e 75 2e 76 65 72  |.dynstr..gnu.ver|</span><br><span class="line">00003790  73 69 6f 6e 00 2e 67 6e  75 2e 76 65 72 73 69 6f  |sion..gnu.versio|</span><br><span class="line">000037a0  6e 5f 72 00 2e 72 65 6c  2e 64 79 6e 00 2e 72 65  |n_r..rel.dyn..re|</span><br><span class="line">000037b0  6c 2e 70 6c 74 00 2e 69  6e 69 74 00 2e 70 6c 74  |l.plt..init..plt|</span><br><span class="line">000037c0  2e 67 6f 74 00 2e 74 65  78 74 00 2e 66 69 6e 69  |.got..text..fini|</span><br><span class="line">000037d0  00 2e 72 6f 64 61 74 61  00 2e 65 68 5f 66 72 61  |..rodata..eh_fra|</span><br><span class="line">000037e0  6d 65 5f 68 64 72 00 2e  65 68 5f 66 72 61 6d 65  |me_hdr..eh_frame|</span><br><span class="line">000037f0  00 2e 69 6e 69 74 5f 61  72 72 61 79 00 2e 66 69  |..init_array..fi|</span><br><span class="line">00003800  6e 69 5f 61 72 72 61 79  00 2e 64 79 6e 61 6d 69  |ni_array..dynami|</span><br><span class="line">00003810  63 00 2e 67 6f 74 2e 70  6c 74 00 2e 64 61 74 61  |c..got.plt..data|</span><br><span class="line">00003820  00 2e 62 73 73 00 2e 63  6f 6d 6d 65 6e 74 00 00  |..bss..comment..|</span><br><span class="line">00003830  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00003850  00 00 00 00 00 00 00 00  1b 00 00 00 01 00 00 00  |................|</span><br><span class="line">00003860  02 00 00 00 94 01 00 00  94 01 00 00 13 00 00 00  |................|</span><br><span class="line">00003870  00 00 00 00 00 00 00 00  01 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003880  23 00 00 00 07 00 00 00  02 00 00 00 a8 01 00 00  |#...............|</span><br><span class="line">00003890  a8 01 00 00 24 00 00 00  00 00 00 00 00 00 00 00  |....$...........|</span><br><span class="line">000038a0  04 00 00 00 00 00 00 00  36 00 00 00 07 00 00 00  |........6.......|</span><br><span class="line">000038b0  02 00 00 00 cc 01 00 00  cc 01 00 00 20 00 00 00  |............ ...|</span><br><span class="line">000038c0  00 00 00 00 00 00 00 00  04 00 00 00 00 00 00 00  |................|</span><br><span class="line">000038d0  44 00 00 00 f6 ff ff 6f  02 00 00 00 ec 01 00 00  |D......o........|</span><br><span class="line">000038e0  ec 01 00 00 20 00 00 00  05 00 00 00 00 00 00 00  |.... ...........|</span><br><span class="line">000038f0  04 00 00 00 04 00 00 00  4e 00 00 00 0b 00 00 00  |........N.......|</span><br><span class="line">00003900  02 00 00 00 0c 02 00 00  0c 02 00 00 90 00 00 00  |................|</span><br><span class="line">00003910  06 00 00 00 01 00 00 00  04 00 00 00 10 00 00 00  |................|</span><br><span class="line">00003920  56 00 00 00 03 00 00 00  02 00 00 00 9c 02 00 00  |V...............|</span><br><span class="line">00003930  9c 02 00 00 b6 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003940  01 00 00 00 00 00 00 00  5e 00 00 00 ff ff ff 6f  |........^......o|</span><br><span class="line">00003950  02 00 00 00 52 03 00 00  52 03 00 00 12 00 00 00  |....R...R.......|</span><br><span class="line">00003960  05 00 00 00 00 00 00 00  02 00 00 00 02 00 00 00  |................|</span><br><span class="line">00003970  6b 00 00 00 fe ff ff 6f  02 00 00 00 64 03 00 00  |k......o....d...|</span><br><span class="line">00003980  64 03 00 00 40 00 00 00  06 00 00 00 01 00 00 00  |d...@...........|</span><br><span class="line">00003990  04 00 00 00 00 00 00 00  7a 00 00 00 09 00 00 00  |........z.......|</span><br><span class="line">000039a0  02 00 00 00 a4 03 00 00  a4 03 00 00 40 00 00 00  |............@...|</span><br><span class="line">000039b0  05 00 00 00 00 00 00 00  04 00 00 00 08 00 00 00  |................|</span><br><span class="line">000039c0  83 00 00 00 09 00 00 00  42 00 00 00 e4 03 00 00  |........B.......|</span><br><span class="line">000039d0  e4 03 00 00 18 00 00 00  05 00 00 00 17 00 00 00  |................|</span><br><span class="line">000039e0  04 00 00 00 08 00 00 00  8c 00 00 00 01 00 00 00  |................|</span><br><span class="line">000039f0  06 00 00 00 00 10 00 00  00 10 00 00 20 00 00 00  |............ ...|</span><br><span class="line">00003a00  00 00 00 00 00 00 00 00  04 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003a10  87 00 00 00 01 00 00 00  06 00 00 00 20 10 00 00  |............ ...|</span><br><span class="line">00003a20  20 10 00 00 40 00 00 00  00 00 00 00 00 00 00 00  | ...@...........|</span><br><span class="line">00003a30  10 00 00 00 04 00 00 00  92 00 00 00 01 00 00 00  |................|</span><br><span class="line">00003a40  06 00 00 00 60 10 00 00  60 10 00 00 08 00 00 00  |....`...`.......|</span><br><span class="line">00003a50  00 00 00 00 00 00 00 00  08 00 00 00 08 00 00 00  |................|</span><br><span class="line">00003a60  9b 00 00 00 01 00 00 00  06 00 00 00 70 10 00 00  |............p...|</span><br><span class="line">00003a70  70 10 00 00 75 02 00 00  00 00 00 00 00 00 00 00  |p...u...........|</span><br><span class="line">00003a80  10 00 00 00 00 00 00 00  a1 00 00 00 01 00 00 00  |................|</span><br><span class="line">00003a90  06 00 00 00 e8 12 00 00  e8 12 00 00 14 00 00 00  |................|</span><br><span class="line">00003aa0  00 00 00 00 00 00 00 00  04 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003ab0  a7 00 00 00 01 00 00 00  02 00 00 00 00 20 00 00  |............. ..|</span><br><span class="line">00003ac0  00 20 00 00 7b 00 00 00  00 00 00 00 00 00 00 00  |. ..&#123;...........|</span><br><span class="line">00003ad0  04 00 00 00 00 00 00 00  af 00 00 00 01 00 00 00  |................|</span><br><span class="line">00003ae0  02 00 00 00 7c 20 00 00  7c 20 00 00 54 00 00 00  |....| ..| ..T...|</span><br><span class="line">00003af0  00 00 00 00 00 00 00 00  04 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003b00  bd 00 00 00 01 00 00 00  02 00 00 00 d0 20 00 00  |............. ..|</span><br><span class="line">00003b10  d0 20 00 00 60 01 00 00  00 00 00 00 00 00 00 00  |. ..`...........|</span><br><span class="line">00003b20  04 00 00 00 00 00 00 00  c7 00 00 00 0e 00 00 00  |................|</span><br><span class="line">00003b30  03 00 00 00 f4 3e 00 00  f4 2e 00 00 04 00 00 00  |.....&gt;..........|</span><br><span class="line">00003b40  00 00 00 00 00 00 00 00  04 00 00 00 04 00 00 00  |................|</span><br><span class="line">00003b50  d3 00 00 00 0f 00 00 00  03 00 00 00 f8 3e 00 00  |.............&gt;..|</span><br><span class="line">00003b60  f8 2e 00 00 04 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003b70  04 00 00 00 04 00 00 00  df 00 00 00 06 00 00 00  |................|</span><br><span class="line">00003b80  03 00 00 00 fc 3e 00 00  fc 2e 00 00 f0 00 00 00  |.....&gt;..........|</span><br><span class="line">00003b90  06 00 00 00 00 00 00 00  04 00 00 00 08 00 00 00  |................|</span><br><span class="line">00003ba0  96 00 00 00 01 00 00 00  03 00 00 00 ec 3f 00 00  |.............?..|</span><br><span class="line">00003bb0  ec 2f 00 00 14 00 00 00  00 00 00 00 00 00 00 00  |./..............|</span><br><span class="line">00003bc0  04 00 00 00 04 00 00 00  e8 00 00 00 01 00 00 00  |................|</span><br><span class="line">00003bd0  03 00 00 00 00 40 00 00  00 30 00 00 18 00 00 00  |.....@...0......|</span><br><span class="line">00003be0  00 00 00 00 00 00 00 00  04 00 00 00 04 00 00 00  |................|</span><br><span class="line">00003bf0  f1 00 00 00 01 00 00 00  03 00 00 00 18 40 00 00  |.............@..|</span><br><span class="line">00003c00  18 30 00 00 08 00 00 00  00 00 00 00 00 00 00 00  |.0..............|</span><br><span class="line">00003c10  04 00 00 00 00 00 00 00  f7 00 00 00 08 00 00 00  |................|</span><br><span class="line">00003c20  03 00 00 00 20 40 00 00  20 30 00 00 04 00 00 00  |.... @.. 0......|</span><br><span class="line">00003c30  00 00 00 00 00 00 00 00  01 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003c40  fc 00 00 00 01 00 00 00  30 00 00 00 00 00 00 00  |........0.......|</span><br><span class="line">00003c50  20 30 00 00 1e 00 00 00  00 00 00 00 00 00 00 00  | 0..............|</span><br><span class="line">00003c60  01 00 00 00 01 00 00 00  01 00 00 00 02 00 00 00  |................|</span><br><span class="line">00003c70  00 00 00 00 00 00 00 00  40 30 00 00 70 04 00 00  |........@0..p...|</span><br><span class="line">00003c80  1c 00 00 00 2d 00 00 00  04 00 00 00 10 00 00 00  |....-...........|</span><br><span class="line">00003c90  09 00 00 00 03 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003ca0  b0 34 00 00 7a 02 00 00  00 00 00 00 00 00 00 00  |.4..z...........|</span><br><span class="line">00003cb0  01 00 00 00 00 00 00 00  11 00 00 00 03 00 00 00  |................|</span><br><span class="line">00003cc0  00 00 00 00 00 00 00 00  2a 37 00 00 05 01 00 00  |........*7......|</span><br><span class="line">00003cd0  00 00 00 00 00 00 00 00  01 00 00 00 00 00 00 00  |................|</span><br><span class="line">00003ce0</span><br></pre></td></tr></table></figure>
+<h2 id="font-color-navy0x02elf文件的结构font"><a class="markdownIt-Anchor" href="#font-color-navy0x02elf文件的结构font"></a> <font color="navy">0x02.ELF文件的结构</font></h2>
+<h3 id="1elf的头部52个字节"><a class="markdownIt-Anchor" href="#1elf的头部52个字节"></a> 1.ELF的头部（52个字节）</h3>
+<p>首先来看elf.h文件中ELF头部的结构体 ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> e_ident[EI_NIDENT];     <span class="comment">/* Magic number and other info */</span></span><br><span class="line">  Elf32_Half    e_type;                 <span class="comment">/* Object file type */</span></span><br><span class="line">  Elf32_Half    e_machine;              <span class="comment">/* Architecture */</span></span><br><span class="line">  Elf32_Word    e_version;              <span class="comment">/* Object file version */</span></span><br><span class="line">  Elf32_Addr    e_entry;                <span class="comment">/* Entry point virtual address */</span></span><br><span class="line">  Elf32_Off     e_phoff;                <span class="comment">/* Program header table file offset */</span></span><br><span class="line">  Elf32_Off     e_shoff;                <span class="comment">/* Section header table file offset */</span></span><br><span class="line">  Elf32_Word    e_flags;                <span class="comment">/* Processor-specific flags */</span></span><br><span class="line">  Elf32_Half    e_ehsize;               <span class="comment">/* ELF header size in bytes */</span></span><br><span class="line">  Elf32_Half    e_phentsize;            <span class="comment">/* Program header table entry size */</span></span><br><span class="line">  Elf32_Half    e_phnum;                <span class="comment">/* Program header table entry count */</span></span><br><span class="line">  Elf32_Half    e_shentsize;            <span class="comment">/* Section header table entry size */</span></span><br><span class="line">  Elf32_Half    e_shnum;                <span class="comment">/* Section header table entry count */</span></span><br><span class="line">  Elf32_Half    e_shstrndx;             <span class="comment">/* Section header string table index */</span></span><br><span class="line">&#125; Elf32_Ehdr;</span><br></pre></td></tr></table></figure>
+<p>其中，e_ident数组给出了ELF的一些标识信息，这个数组中不同下标的含义如表所示：</p>
+<p><img src="/images/150-4.png" alt></p>
+<blockquote>
+<p>从上面的结构体可以看出，ELF头部的大小为<code>16+2+2+4+4+4+4+4+2+2+2+2+2+2</code> = <code>52</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> readelf -h <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>得到如下的结果c</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ELF Header:</span><br><span class="line">+-------------------------------------------------------------------+</span><br><span class="line">| Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 			|</span><br><span class="line">| Class:                             ELF32							|</span><br><span class="line">| Data:                              2&apos;s complement, little endian	|</span><br><span class="line">| Version:                           1 (current)					|</span><br><span class="line">| OS/ABI:                            UNIX - System V				|</span><br><span class="line">| ABI Version:                       0								|</span><br><span class="line">+-------------------------------------------------------------------+</span><br><span class="line">  Type:                              DYN (Shared object file)			              </span><br><span class="line">  Machine:                           Intel 80386						</span><br><span class="line">  Version:                           0x1</span><br><span class="line">  Entry point address:               0x1070</span><br><span class="line">  Start of program headers:          52 (bytes into file)</span><br><span class="line">  Start of section headers:          14384 (bytes into file)</span><br><span class="line">  Flags:                             0x0</span><br><span class="line">  Size of this header:               52 (bytes)</span><br><span class="line">  Size of program headers:           32 (bytes)</span><br><span class="line">  Number of program headers:         11</span><br><span class="line">  Size of section headers:           40 (bytes)</span><br><span class="line">  Number of section headers:         30</span><br><span class="line">  Section header string table index: 29</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以从上面得到如下信息：</p>
+<ul>
+<li>程序入口的地址</li>
+<li>程序头的偏移</li>
+<li>段表头的偏移：里面包含各个段的大小、偏移和其他相关信息</li>
+<li>段表的数量：通过段表头的偏移+每段固定的大小+段表的数量，就可以确定section的大小范围</li>
+</ul>
+</blockquote>
+<p>上述实例代码中的头部信息为：</p>
+<p><img src="/150-3.png" alt></p>
+<h3 id="2elf的程序头"><a class="markdownIt-Anchor" href="#2elf的程序头"></a> 2.ELF的程序头</h3>
+<blockquote>
+<p>程序头部表（Program Header Table），如果存在的话，则是告诉系统如何创建进程映像。用来构造进程映像的目标文件必须具有程序头部表，可重定位文件不需要这个表。</p>
+</blockquote>
+<p><font size="2">通过ELF的文件头可以看出，文中实例的程序头位于ELF文件的<code>52</code>字节的偏移处</font></p>
+<h3 id="3elf的段表"><a class="markdownIt-Anchor" href="#3elf的段表"></a> 3.ELF的段表</h3>
+<p>ELF的段表结构如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Section header.  */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf32_Word    sh_name;                <span class="comment">/* Section name (string tbl index) */</span></span><br><span class="line">  Elf32_Word    sh_type;                <span class="comment">/* Section type */</span></span><br><span class="line">  Elf32_Word    sh_flags;               <span class="comment">/* Section flags */</span></span><br><span class="line">  Elf32_Addr    sh_addr;                <span class="comment">/* Section virtual addr at execution */</span></span><br><span class="line">  Elf32_Off     sh_offset;              <span class="comment">/* Section file offset */</span></span><br><span class="line">  Elf32_Word    sh_size;                <span class="comment">/* Section size in bytes */</span></span><br><span class="line">  Elf32_Word    sh_link;                <span class="comment">/* Link to another section */</span></span><br><span class="line">  Elf32_Word    sh_info;                <span class="comment">/* Additional section information */</span></span><br><span class="line">  Elf32_Word    sh_addralign;           <span class="comment">/* Section alignment */</span></span><br><span class="line">  Elf32_Word    sh_entsize;             <span class="comment">/* Entry size if section holds table */</span></span><br><span class="line">&#125; Elf32_Shdr;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以看出段表的每一个段的信息大小都是固定的<code>10*4=40</code>个字节，用<code>readelf -S test</code>，查看实例中的ELF文件的段表，如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">There are 30 section headers, starting at offset 0x3830:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            00000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .interp           PROGBITS        00000194 000194 000013 00   A  0   0  1</span><br><span class="line">  [ 2] .note.gnu.bu[...] NOTE            000001a8 0001a8 000024 00   A  0   0  4</span><br><span class="line">  [ 3] .note.ABI-tag     NOTE            000001cc 0001cc 000020 00   A  0   0  4</span><br><span class="line">  [ 4] .gnu.hash         GNU_HASH        000001ec 0001ec 000020 04   A  5   0  4</span><br><span class="line">  [ 5] .dynsym           DYNSYM          0000020c 00020c 000090 10   A  6   1  4</span><br><span class="line">  [ 6] .dynstr           STRTAB          0000029c 00029c 0000b6 00   A  0   0  1</span><br><span class="line">  [ 7] .gnu.version      VERSYM          00000352 000352 000012 02   A  5   0  2</span><br><span class="line">  [ 8] .gnu.version_r    VERNEED         00000364 000364 000040 00   A  6   1  4</span><br><span class="line">  [ 9] .rel.dyn          REL             000003a4 0003a4 000040 08   A  5   0  4</span><br><span class="line">  [10] .rel.plt          REL             000003e4 0003e4 000018 08  AI  5  23  4</span><br><span class="line">  [11] .init             PROGBITS        00001000 001000 000020 00  AX  0   0  4</span><br><span class="line">  [12] .plt              PROGBITS        00001020 001020 000040 04  AX  0   0 16</span><br><span class="line">  [13] .plt.got          PROGBITS        00001060 001060 000008 08  AX  0   0  8</span><br><span class="line">  [14] .text             PROGBITS        00001070 001070 000275 00  AX  0   0 16</span><br><span class="line">  [15] .fini             PROGBITS        000012e8 0012e8 000014 00  AX  0   0  4</span><br><span class="line">  [16] .rodata           PROGBITS        00002000 002000 00007b 00   A  0   0  4</span><br><span class="line">  [17] .eh_frame_hdr     PROGBITS        0000207c 00207c 000054 00   A  0   0  4</span><br><span class="line">  [18] .eh_frame         PROGBITS        000020d0 0020d0 000160 00   A  0   0  4</span><br><span class="line">  [19] .init_array       INIT_ARRAY      00003ef4 002ef4 000004 04  WA  0   0  4</span><br><span class="line">  [20] .fini_array       FINI_ARRAY      00003ef8 002ef8 000004 04  WA  0   0  4</span><br><span class="line">  [21] .dynamic          DYNAMIC         00003efc 002efc 0000f0 08  WA  6   0  4</span><br><span class="line">  [22] .got              PROGBITS        00003fec 002fec 000014 04  WA  0   0  4</span><br><span class="line">  [23] .got.plt          PROGBITS        00004000 003000 000018 04  WA  0   0  4</span><br><span class="line">  [24] .data             PROGBITS        00004018 003018 000008 00  WA  0   0  4</span><br><span class="line">  [25] .bss              NOBITS          00004020 003020 000004 00  WA  0   0  1</span><br><span class="line">  [26] .comment          PROGBITS        00000000 003020 00001e 01  MS  0   0  1</span><br><span class="line">  [27] .symtab           SYMTAB          00000000 003040 000470 10     28  45  4</span><br><span class="line">  [28] .strtab           STRTAB          00000000 0034b0 00027a 00      0   0  1</span><br><span class="line">  [29] .shstrtab         STRTAB          00000000 00372a 000105 00      0   0  1</span><br><span class="line">Key to Flags:</span><br><span class="line">  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),</span><br><span class="line">  L (link order), O (extra OS processing required), G (group), T (TLS),</span><br><span class="line">  C (compressed), x (unknown), o (OS specific), E (exclude),</span><br><span class="line">  p (processor specific)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一共有30个段，验证了ELF文件头的<code>Number of section headers: 30</code>，那么整个段表的大小就是：段的个数*每个段信息的固定大小，该实例中段表的大小为：<code>30\*40=1200</code>。</p>
+</blockquote>
+<p>ELF文件结构示意图中定义的<code>Elf_Shdr</code>的各个成员的含义与readelf具有对应关系。如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sh_name</td>
+<td>节名<br><font size="2" color="navy">节名是一个字符串，保存在一个名为<code>.shstrtab</code>的字符串表（可通过Section Header索引到）。<br>sh_name的值实际上是其节名字符串在<code>.shstrtab</code>中的偏移值</font></td>
+</tr>
+<tr>
+<td>sh_type</td>
+<td>节类型</td>
+</tr>
+<tr>
+<td>sh_flags</td>
+<td>节标志位</td>
+</tr>
+<tr>
+<td>sh_addr</td>
+<td>节地址：节的虚拟地址<br><font size="2" color="navy">如果该节可以被加载，则sh_addr为该节被加载后在进程地址空间中的虚拟地址；否则sh_addr为0</font></td>
+</tr>
+<tr>
+<td>sh_offset</td>
+<td>节偏移<br><font size="2" color="navy"><strong>如果该节存在于文件中，则表示该节在文件中的偏移；否则无意义，如sh_offset对于BSS 节来说是没有意义的</strong></font></td>
+</tr>
+<tr>
+<td>sh_size</td>
+<td>节大小</td>
+</tr>
+<tr>
+<td>sh_link、sh_info</td>
+<td>节链接信息</td>
+</tr>
+<tr>
+<td>sh_addralign</td>
+<td>节地址对齐方式</td>
+</tr>
+<tr>
+<td>sh_entsize</td>
+<td>节项大小<br><font size="2" color="navy">有些节包含了一些固定大小的项，如符号表，其包含的每个符号所在的大小都一样的，对于这种节，sh_entsize表示每个项的大小。<br><strong>如果为0，则表示该节不包含固定大小的项。</strong></font></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-节类型sh_type"><a class="markdownIt-Anchor" href="#1-节类型sh_type"></a> ① 节类型（sh_type）</h4>
+<blockquote>
+<p>节名是一个字符串，只是在链接和编译过程中有意义，但它并不能真正地表示节的类型。对于编译器和链接器来说，主要决定节的属性是节的类型（<code>sh_type</code>）和节的标志位（<code>sh_flags</code>）。</p>
+</blockquote>
+<p>节的类型相关常量以<code>SHT_</code>开头，上述<code>readelf -S</code>命令执行的结果省略了该前缀。常见的节类型如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHT_NULL</td>
+<td>0</td>
+<td>无效节</td>
+</tr>
+<tr>
+<td>SHT_PROGBITS</td>
+<td>1</td>
+<td><strong>程序节</strong>。代码节、数据节都是这种类型。</td>
+</tr>
+<tr>
+<td><strong>SHT_SYMTAB</strong></td>
+<td>2</td>
+<td><strong>符号表</strong></td>
+</tr>
+<tr>
+<td><strong>SHT_STRTAB</strong></td>
+<td>3</td>
+<td><strong>字符串表</strong></td>
+</tr>
+<tr>
+<td>SHT_RELA</td>
+<td>4</td>
+<td><strong>重定位表</strong>。该节包含了重定位信息</td>
+</tr>
+<tr>
+<td>SHT_HASH</td>
+<td>5</td>
+<td><strong>符号表的哈希表</strong></td>
+</tr>
+<tr>
+<td>SHT_DYNAMIC</td>
+<td>6</td>
+<td>动态链接信息</td>
+</tr>
+<tr>
+<td>SHT_NOTE</td>
+<td>7</td>
+<td>提示性信息</td>
+</tr>
+<tr>
+<td>SHT_NOBITS</td>
+<td>8</td>
+<td>表示该节在文件中没有内容。如<code>.bss</code>节</td>
+</tr>
+<tr>
+<td>SHT_REL</td>
+<td>9</td>
+<td>该节包含了重定位信息</td>
+</tr>
+<tr>
+<td>SHT_SHLIB</td>
+<td>10</td>
+<td>保留</td>
+</tr>
+<tr>
+<td>SHT_DNYSYM</td>
+<td>11</td>
+<td><strong>动态链接的符号表</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-节标志位sh_flag"><a class="markdownIt-Anchor" href="#2-节标志位sh_flag"></a> ② 节标志位（sh_flag）</h4>
+<p>节标志位表示该节在进程虚拟地址空间中的属性。如是否可写、是否可执行等。相关常量以<code>SHF_</code>开头。常见的节标志位如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHF_WRITE</td>
+<td>1</td>
+<td>表示该节在进程空间中可写</td>
+</tr>
+<tr>
+<td>SHF_ALLOC</td>
+<td>2</td>
+<td>表示该节在进程空间中需要分配空间。<br>有些包含指示或控制信息的节不需要在进程空间中分配空间，就不会有这个标志。</td>
+</tr>
+<tr>
+<td>SHF_EXECINSTR</td>
+<td>4</td>
+<td>表示该节在进程空间中可以被执行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4节的分类"><a class="markdownIt-Anchor" href="#4节的分类"></a> 4.节的分类</h3>
+<p>上述ELF Section Header Table部分已经简单介绍了节类型。接下来我们来介绍详细一些比较重要的节。</p>
+<h4 id="1-text节"><a class="markdownIt-Anchor" href="#1-text节"></a> ① .text节</h4>
+<p><code>.text</code>节是保存了程序代码指令的<strong>代码节</strong>。<strong>一段可执行程序，如果存在Phdr，则<code>.text</code>节就会存在于<code>text</code>段中</strong>。由于<code>.text</code>节保存了程序代码，所以节类型为<code>SHT_PROGBITS</code>。</p>
+<h4 id="2-rodata节"><a class="markdownIt-Anchor" href="#2-rodata节"></a> ② .rodata节</h4>
+<p><code>rodata</code>节保存了只读的数据，如一行C语言代码中的字符串。由于<code>.rodata</code>节是只读的，所以只能存在于一个可执行文件的<strong>只读段</strong>中。因此，只能在<code>text</code>段（不是<code>data</code>段）中找到<code>.rodata</code>节。由于<code>.rodata</code>节是只读的，所以节类型为<code>SHT_PROGBITS</code>。</p>
+<h4 id="3-plt节过程链接表"><a class="markdownIt-Anchor" href="#3-plt节过程链接表"></a> ③ .plt节（过程链接表）</h4>
+<p><code>.plt</code>节也称为<strong>过程链接表（Procedure Linkage Table）</strong>，<strong>其包含了动态链接器调用从共享库导入的函数所必需的相关代码</strong>。由于<code>.plt</code>节保存了代码，所以节类型为<code>SHT_PROGBITS</code>。</p>
+<h4 id="4-data节"><a class="markdownIt-Anchor" href="#4-data节"></a> ④ .data节</h4>
+<p><code>.data</code>节存在于<code>data</code>段中，<strong>其保存了初始化的全局变量等数据</strong>。由于<code>.data</code>节保存了程序的变量数据，所以节类型为<code>SHT_PROGBITS</code>。</p>
+<h4 id="5-bss节"><a class="markdownIt-Anchor" href="#5-bss节"></a> ⑤ .bss节</h4>
+<p><code>.bss</code>节存在于<code>data</code>段中，占用空间不超过4字节，仅表示这个节本省的空间。<strong><code>.bss</code>节保存了未进行初始化的全局数据</strong>。程序加载时数据被初始化为0，在程序执行期间可以进行赋值。由于<code>.bss</code>节未保存实际的数据，所以节类型为<code>SHT_NOBITS</code>。</p>
+<h4 id="6-gotplt节全局偏移表-过程链接表"><a class="markdownIt-Anchor" href="#6-gotplt节全局偏移表-过程链接表"></a> ⑥ .got.plt节（全局偏移表-过程链接表）</h4>
+<p><code>.got</code>节保存了<strong>全局偏移表</strong>。<strong><code>.got</code>节和<code>.plt</code>节一起提供了对导入的共享库函数的访问入口，由动态链接器在运行时进行修改</strong>。由于<code>.got.plt</code>节与程序执行有关，所以节类型为<code>SHT_PROGBITS</code>。</p>
+<h4 id="7-dynsym节动态链接符号表"><a class="markdownIt-Anchor" href="#7-dynsym节动态链接符号表"></a> ⑦ .dynsym节（动态链接符号表）</h4>
+<p><code>.dynsym</code>节保存在<code>text</code>段中。<strong>其保存了从共享库导入的动态符号表</strong>。节类型为<code>SHT_DYNSYM</code>。</p>
+<h4 id="8-dynstr节动态链接字符串表"><a class="markdownIt-Anchor" href="#8-dynstr节动态链接字符串表"></a> ⑧ .dynstr节（动态链接字符串表）</h4>
+<p><code>.dynstr</code>保存了动态链接字符串表，表中存放了一系列字符串，这些字符串代表了符号名称，以空字符作为终止符。</p>
+<h4 id="9-rel节重定位表"><a class="markdownIt-Anchor" href="#9-rel节重定位表"></a> ⑨ .rel.*节（重定位表）</h4>
+<p>重定位表保存了重定位相关的信息，<strong>这些信息描述了如何在链接或运行时，对ELF目标文件的某部分或者进程镜像进行补充或修改</strong>。由于重定位表保存了重定位相关的数据，所以节类型为<code>SHT_REL</code>。</p>
+<h4 id="10-hash节"><a class="markdownIt-Anchor" href="#10-hash节"></a> ⑩ .hash节</h4>
+<p><code>.hash</code>节也称为<code>.gnu.hash</code>，其保存了一个用于查找符号的散列表。</p>
+<h4 id="11-symtab节符号表"><a class="markdownIt-Anchor" href="#11-symtab节符号表"></a> ⑪ .symtab节（符号表）</h4>
+<p><code>.symtab</code>节是一个<code>ElfN_Sym</code>的数组，保存了符号信息。节类型为<code>SHT_SYMTAB</code>。</p>
+<p><img src="/images/150-5.png" alt></p>
+<blockquote>
+<p>上图所示为通过符号表索引字符串表的示意图。符号表中的每一项都是一个<code>Elf_Sym</code>结构，对应可以在字符串表中索引得到一个字符串。该数据结构中成员的含义如下表所示：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>st_name</td>
+<td>符号名。该值为该符号名在字符串表中的偏移地址。</td>
+</tr>
+<tr>
+<td>st_value</td>
+<td>符号对应的值。存放符号的值（可能是地址或位置偏移量）。</td>
+</tr>
+<tr>
+<td>st_size</td>
+<td>符号的大小</td>
+</tr>
+<tr>
+<td>st_other</td>
+<td>0</td>
+</tr>
+<tr>
+<td>st_shndx</td>
+<td>符号所在的节</td>
+</tr>
+<tr>
+<td>st_info</td>
+<td>符号类型及绑定属性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="12-strtab节字符串表"><a class="markdownIt-Anchor" href="#12-strtab节字符串表"></a> ⑫ .strtab节（字符串表）</h4>
+<p><code>.strtab</code>节保存的是符号字符串表，表中的内容会被<code>.symtab</code>的<code>ElfN_Sym</code>结构中的<code>st_name</code>引用。节类型为<code>SHT_STRTAB</code>。</p>
+<blockquote>
+<p>类似于符号表，在大多数共享库和动态链接可执行文件中，也存在两个字符串表。即<code>.dynstr</code>和<code>.strtab</code>，分别对应于<code>.dynsym</code>和<code>symtab</code>。此外，还有一个<code>.shstrtab</code>的节头字符串表，用于保存节头表中用到的字符串，可通过<code>sh_name</code>进行索引。</p>
+<p>ELF文件中所有字符表的结构基本一致，如上图所示。</p>
+</blockquote>
+<h4 id="13-ctors节和dtors节"><a class="markdownIt-Anchor" href="#13-ctors节和dtors节"></a> ⑬ .ctors节和.dtors节</h4>
+<p><code>.ctors</code>（<strong>构造器</strong>）节和<code>.dtors</code>（<strong>析构器</strong>）节分别保存了指向构造函数和析构函数的函数指针，<strong>构造函数是在main函数执行之前需要执行的代码；析构函数是在main函数之后需要执行的代码</strong>。</p>
+<h3 id="5elf动态符号字符串表的联系和区别"><a class="markdownIt-Anchor" href="#5elf动态符号字符串表的联系和区别"></a> 5.ELF（动态）符号/字符串表的联系和区别</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+<th>name的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.dynsym</td>
+<td><strong>其保存了从共享库导入的动态符号表</strong>。<br>节类型为<code>SHT_DYNSYM</code>。</td>
+<td>对应.dystr中的偏移</td>
+</tr>
+<tr>
+<td>.symtab</td>
+<td>是一个<code>ElfN_Sym</code>的数组，保存了符号信息。<br>节类型为<code>SHT_SYMTAB</code>。</td>
+<td>对应.strtab中的偏移</td>
+</tr>
+<tr>
+<td>.dystr</td>
+<td>对应于<code>.dynsym</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td>.strtab</td>
+<td>对应于<code>.symtab</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td>.shstrtab</td>
+<td>用于保存<strong>节头表中</strong>用到的字符串，可通过<code>sh_name</code>进行索引。</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-符号表结构"><a class="markdownIt-Anchor" href="#1-符号表结构"></a> ① 符号表结构</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Symbol table entry.  */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf32_Word    st_name;                <span class="comment">/* Symbol name (string tbl index) */</span></span><br><span class="line">  Elf32_Addr    st_value;               <span class="comment">/* Symbol value */</span></span><br><span class="line">  Elf32_Word    st_size;                <span class="comment">/* Symbol size */</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> st_info;                <span class="comment">/* Symbol type and binding */</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> st_other;               <span class="comment">/* Symbol visibility */</span></span><br><span class="line">  Elf32_Section st_shndx;               <span class="comment">/* Section index */</span></span><br><span class="line">&#125; Elf32_Sym;</span><br></pre></td></tr></table></figure>
+<h3 id="6重定位表"><a class="markdownIt-Anchor" href="#6重定位表"></a> 6.重定位表</h3>
+<blockquote>
+<p><strong>重定位就是将符号定义和符号引用进行连接的过程</strong>。可重定位文件需要包含描述如何修改节内容的相关信息，从而使可执行文件和共享目标文件能够保存进程的程序镜像所需要的正确信息。</p>
+</blockquote>
+<p>重定位表是进行重定位的重要依据。我们可以使用objdump工具查看目标文件的重定位表：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> objdump -r hello.o</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hello.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">RELOCATION RECORDS FOR [.text]:</span><br><span class="line">OFFSET           TYPE              VALUE</span><br><span class="line">0000000000000005 R_X86_64_32       .rodata</span><br><span class="line">000000000000000a R_X86_64_PC32     puts-0x0000000000000004</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RELOCATION RECORDS FOR [.eh_frame]:</span><br><span class="line">OFFSET           TYPE              VALUE</span><br><span class="line">0000000000000020 R_X86_64_PC32     .text</span><br></pre></td></tr></table></figure>
+<p>重定位表是一个<code>Elf_Rel</code>类型的数组结构，每一项对应一个需要进行重定位的项。<br>
+其成员含义如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r_offset</td>
+<td>▨ 重定位入口的偏移。<br>▨ 对于<strong>可重定位文件</strong>来说，这个值是该重定位入口所要修正的位置的第一个字节相对于节起始的偏移<br>▨ 对于<strong>可执行文件或共享对象文件</strong>来说，这个值是该重定位入口所要修正的位置的第一个字节的虚拟地址</td>
+</tr>
+<tr>
+<td>r_info</td>
+<td>▨ 重定位入口的类型和符号<br>▨ 因为不同处理器的指令系统不一样，所以重定位所要修正的指令地址格式也不一样。<br>    每种处理器都有自己的一套重定位入口的类型。<br>▨ 对于<strong>可执行文件和共享目标文件</strong>来说，它们的重定位入口是动态链接类型的。</td>
+</tr>
+</tbody>
+</table>
+<p>重定位是目标文件链接成为可执行文件的关键。我们将在后面的进行介绍。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/09/07/2020.09.07（150）/">https://muzibing.github.io/2020/09/07/2020.09.07（150）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/09/07/2020.09.07（150）/">September 7th 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/09/07/2020.09.07（150）/">September 8th 2020, 2:40:29 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/09/04/2020.09.04（149）/" title="Python多线程介绍">
+                    <div class="prevTitle">Python多线程介绍</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjk3OS8xOTUyNQ==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//muzibing.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-navy0x00-知识储备font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 知识储备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1前言"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2预定义类型"><span class="toc-number">1.2.</span> <span class="toc-text"> 2.预定义类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3elf文件结构"><span class="toc-number">1.3.</span> <span class="toc-text"> 3.ELF文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4readelf和objdump工具的使用"><span class="toc-number">1.4.</span> <span class="toc-text"> 4.readelf和objdump工具的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-navy0x01-elf实例font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 ELF实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1实例代码"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.实例代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2elf文件的二进制形式"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.ELF文件的二进制形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-navy0x02elf文件的结构font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02.ELF文件的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1elf的头部52个字节"><span class="toc-number">3.1.</span> <span class="toc-text"> 1.ELF的头部（52个字节）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2elf的程序头"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.ELF的程序头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3elf的段表"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.ELF的段表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-节类型sh_type"><span class="toc-number">3.3.1.</span> <span class="toc-text"> ① 节类型（sh_type）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-节标志位sh_flag"><span class="toc-number">3.3.2.</span> <span class="toc-text"> ② 节标志位（sh_flag）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4节的分类"><span class="toc-number">3.4.</span> <span class="toc-text"> 4.节的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-text节"><span class="toc-number">3.4.1.</span> <span class="toc-text"> ① .text节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-rodata节"><span class="toc-number">3.4.2.</span> <span class="toc-text"> ② .rodata节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-plt节过程链接表"><span class="toc-number">3.4.3.</span> <span class="toc-text"> ③ .plt节（过程链接表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-data节"><span class="toc-number">3.4.4.</span> <span class="toc-text"> ④ .data节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-bss节"><span class="toc-number">3.4.5.</span> <span class="toc-text"> ⑤ .bss节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-gotplt节全局偏移表-过程链接表"><span class="toc-number">3.4.6.</span> <span class="toc-text"> ⑥ .got.plt节（全局偏移表-过程链接表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-dynsym节动态链接符号表"><span class="toc-number">3.4.7.</span> <span class="toc-text"> ⑦ .dynsym节（动态链接符号表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-dynstr节动态链接字符串表"><span class="toc-number">3.4.8.</span> <span class="toc-text"> ⑧ .dynstr节（动态链接字符串表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-rel节重定位表"><span class="toc-number">3.4.9.</span> <span class="toc-text"> ⑨ .rel.*节（重定位表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-hash节"><span class="toc-number">3.4.10.</span> <span class="toc-text"> ⑩ .hash节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-symtab节符号表"><span class="toc-number">3.4.11.</span> <span class="toc-text"> ⑪ .symtab节（符号表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-strtab节字符串表"><span class="toc-number">3.4.12.</span> <span class="toc-text"> ⑫ .strtab节（字符串表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-ctors节和dtors节"><span class="toc-number">3.4.13.</span> <span class="toc-text"> ⑬ .ctors节和.dtors节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5elf动态符号字符串表的联系和区别"><span class="toc-number">3.5.</span> <span class="toc-text"> 5.ELF（动态）符号/字符串表的联系和区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-符号表结构"><span class="toc-number">3.5.1.</span> <span class="toc-text"> ① 符号表结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6重定位表"><span class="toc-number">3.6.</span> <span class="toc-text"> 6.重定位表</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 150
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2020/09/07/2020.09.07（150）/">ELF文件格式实例解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href="/2020/08/29/2020.08.29（147）/">Tmux工具使用总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2020/08/28/2020.08.28（146）/">算法总结（C）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2020/08/25/2020.08.24（145）/">AFL详细总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href="/2020/08/23/2020.08.23（144）/">网路安全学习库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href="/2020/07/29/2020.07.29（143）/">Git以及Github的使用教程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href="/2020/07/28/2020.07.28（142）/">PHP相关题目writeup（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href="/2020/07/27/2020.07.27（141）/">CTF中常见的函数总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2020/07/25/2020.07.25（140）/">PHP伪协议总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2020/07/24/2020.07.24（139）/">CTF-web 类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2020/07/19/2020.07.19（138）/">【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2020/07/18/2020.07.18（137）/">【XCTF-Pwn:Note-service2】在堆上执行shellcode</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2020/07/13/2020.07.13（136）/">由浅入深的剖析堆</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2020/07/12/2020.07.12（135）/">CTF-misc类型题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span><a class="archive-post-title" href="/2020/07/04/2020.07.04（134）/">【看雪CTF-pwn】一鸣惊人的栈溢出</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/2020/07/03/2020.07.03（133）/">【科普】冯·诺依曼结构与具体实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2020/07/01/2020.07.01（132）/">【web安全】爆破用户登录弱口令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href="/2020/06/26/2020.06.24（131）/">【C语言学习系列二】 C语言中的基本数据类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/22</span><a class="archive-post-title" href="/2020/06/22/2020.06.22（130）/">【C语言学习系列一】 重新认识 C 语言</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/2020/06/20/2020.06.20（129）/">【Jarvis OJ-PWN】level5（x64下的栈溢出漏洞）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2020/06/17/2020.06.17（128）/"><_libc_csu_init>中的“通用gadget”</_libc_csu_init></a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（126）/">实模式下的段寄存器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2020/06/14/2020.06.14（127）/">【转载】CPU 的两种工作模式：实模式和保护模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/12</span><a class="archive-post-title" href="/2020/06/12/2020.06.12（125）/">【XCTF-pwn】welpwn是个什么东西？（RCTF-2015）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2020/06/09/2020.06.09（124）/">Pwnable.kr的奇幻之旅（六）[random]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2020/06/08/2020.06.08（123）/">【XCTF-pwn】stack2 writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2020/06/01/2020.06.01（122）/">【XCTF-pwn】新手区writeup（part1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2020/05/31/2020.05.31（121）/">【转载】常见调用约定总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2020/05/30/2020.05.30（120）/">【XCTF-pwn】由浅入深的剖析 "string" 题目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2020/05/29/2020.05.29（119）/">详解格式化字符串漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2020/05/25/2020.05.24（118）/">学习计划表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2020/05/15/2020.05.05（117）/">Pwnable.kr的奇幻之旅（五）[passcode]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href="/2020/05/04/2020.05.04（116）/">《梦炬手册》五周年纪念版下载页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2020/05/02/2020.05.02（115）/">Pwnable.kr的奇幻之旅（四）[flag]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2020/04/29/2020.04.28（111）/">Pwnable.kr的奇幻之旅（三）[bof]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/2020.04.27（110）/">GDB常用命令-内存查看（x）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.23（108）/">Pwnable.kr的奇幻之旅（一）[fd]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/2020.04.24（109）/">Pwnable.kr的奇幻之旅（二）[collision]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href="/2020/03/30/2020.03.30（107）/">详解pointer（指针）中的“*”（取值）和“&”（取地址）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href="/2020/03/26/2020.03.26（106）/">Windows常用的网络命令（web）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href="/2020/03/21/2020.03.21（105）/">Linux-根目录详解（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2020/03/20/2020.03.20（104）/">Linux常用命令总结（二进制）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2020/03/18/2020.03.17（103）/">编程语言的发展历史 from1954to2019</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2020/03/16/2020.03.16（102）/">知识库构建初想</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href="/2020/03/15/2020.03.15（101）/">Python基本第三方库总结（0x00）：requests库（Python中唯一的非转基因库）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/2020.03.08（100）/">xss_payload_构造总结及深度剖析(持续更新中……)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2020/03/08/2020.03.08（99）/">Th1s_i3_XSS_challenges&from:stage#5&to:stage#12</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2020/02/27/2020.02.27（96）/">This_1s_pr0mpt.ml_writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2020/02/24/2020.02.24（95）/">【知识点整理】浏览器解析：HTML解析_JS解析_URL解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href="/2020/02/09/2020.02.09（92）/">各种文件的文件头和文件尾总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href="/2020/01/30/2020.01.30（91）/">【WP】XCFT misc新手阶段</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href="/2019/11/23/2019.11.23（90）/">以太坊智能合约漏洞 | Fallback函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/19</span><a class="archive-post-title" href="/2019/11/19/2019.11.19（89）/">XSS Challenge（Stage1-4）writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href="/2019/11/07/2019.11.07（88）/">Cookie、Session、Token那点事儿（转载）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/2019.11.05（87）/">有关内核调用问题和预编译指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/2019.10.16（86）/">PWN 实战 - shellcode 题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span><a class="archive-post-title" href="/2019/10/12/2019.10.12（85）/">变色龙哈希（Chameleon Hash）、零知识证明（Zero—Knowledge Proof）和广播加密相关知识</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href="/2019/10/08/2019.09.28（84）/">pwn-ROP(GOT表泄露)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/2019/09/24/2019.09.24（83）/">pwn-bof（基础类型题目）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2019/09/17/2019.09.17（82）/">bash 漏洞（pwnable-shellshock）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href="/2019/09/10/2019.09.10（81）/">GOT 表攻击实例（pwnbable.kr_passcode）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href="/2019/09/07/2019.09.07（80）/">AFL 的代码插桩问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/2019.09.02（79）/">XCTF 新人阶段 — web</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/2019.08.01（78）/">BabyPHP 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/2019.07.31（77）/">JavaScript 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href="/2019/07/27/2019.07.27（76）/">BaByXSS 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href="/2019/07/26/2019.07.26（75）/">XSS 基础知识（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/2019/07/20/2019.07.20（74）/">乘法链算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/2019.07.18（73）/">最小公倍数的加法算法实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2019/07/15/2019.07.15（72）/">欧几里得算法的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/2019/07/13/2019.07.13（71）/">《软件安全分析与应用》第 2 章：基础知识学习笔记(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/2019.07.12（70）/">《软件安全分析与应用》第 1 章：绪论学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/16</span><a class="archive-post-title" href="/2019/06/16/2019.06.16（69）/">《图解密码技术》第三章（对称密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/2019.06.15（68）/">《图解密码技术》第二章（历史上的密码）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href="/2019/06/14/2019.06.14（67）/">《图解密码技术》第一章（环游密码世界）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/2019.06.03（66）/">《图解密码技术》第十五章（密码技术和现实生活）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/2019.06.01（65）/">《图解密码技术》第十四章（SSL/TSL）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href="/2019/05/29/2019.05.29（64）/">《图解密码技术》第十三章（PGP）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/2019/05/28/2019.05.28（63）/">《图解密码技术》第十二章（随机数）学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/2019.05.25（62）/">MySQL学习笔记（二）查询(2)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/2019.05.23（61）/">《图解密码技术》第十一章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/2019.05.21（60）/">《图解密码技术》第十章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/2019.05.20（59）/">《图解密码技术》第九章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/2019/05/16/2019.05.16（58）/">《图解密码技术》第八章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href="/2019/05/15/2019.05.15（57）/">304号测试解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href="/2019/05/14/2019.05.14（56）/">本科毕业论文问卷调查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href="/2019/05/13/2019.05.13（55）/">304号测试学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href="/2019/05/11/2019.05.11（54）/">《图解密码技术》第七章学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/2019.05.09（53）/">Wiener Trick解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href="/2019/05/07/2019.05.07（52）/">Wiener Trick解题准备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2019/05/05/2019.05.05（51）/">MySQL学习笔记（一）查询(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href="/2019/04/29/2019.04.29（50）/">Misc：RealWiFi解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/2019.04.28（49）/">Another 01game解题详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2019/04/27/2019.04.27（48）/">Python 学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href="/2019/04/26/2019.04.26（47）/">初识 Caesar 密码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/2019.04.25（46）/">二进制炸弹：Phase_6解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2019/04/23/2019.04.23（45）/">二进制炸弹：Phase_5解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/2019.04.22（44）/">sscanf()函数的详细总结 + 实例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/2019.04.21（43）/">二进制炸弹：Phase_4解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/2019.04.20（42）/">二进制炸弹：Phase_3解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href="/2019/04/19/2019.04.19（41）/">二进制炸弹：Phase_2解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/2019.04.18（40）/">二进制炸弹：Phase_1解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2019/04/17/2019.04.17（39）/">二进制炸弹解题知识储备</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/2019.04.16（38）/">《汇编语言程序设计》学习笔记（十）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href="/2019/04/15/2019.04.15（37）/">reverse：Reverse sign in解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/2019.04.14（36）/">《汇编语言程序设计》学习笔记（九）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/13</span><a class="archive-post-title" href="/2019/04/13/2019.04.13（35）/">Crypto：RSA详细总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href="/2019/04/12/2019.04.12（34）/">《汇编语言程序设计》学习笔记（八）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/2019.04.10（33）/">Crypto：RSA2解题总结（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/2019.04.09（32）/">Crypto：RSA2解题总结（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/2019.04.08（31）/">openssl学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href="/2019/04/07/2019.04.07（30）/">openssl学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/2019/04/05/2019.04.05（29）/">Crypto：What's RSA？解题总结（2）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2019/04/04/2019.04.04（28）/">《汇编语言程序设计》学习笔记（七）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/2019.04.03（27）/">《汇编语言程序设计》学习笔记（六）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href="/2019/04/02/2019.04.02（26）/">《汇编语言程序设计》学习笔记（五）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/2019/04/01/2019.04.01（25）/">《汇编语言程序设计》学习笔记（四）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/2019.03.19（24）/">复试进度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/2019.03.18（23）/">复试复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2019/03/17/2019.03.17（22）/">《保密概论》总知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/2019/03/16/2019.03.16（21）/">《保密概论》第6、7章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href="/2019/03/14/2019.03.14（20）/">《保密概论》前五章知识点提纲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href="/2019/03/13/2019.03.13（19）/">《汇编语言程序设计》学习笔记（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/2019.03.12（18）/">《汇编语言程序设计》学习笔记（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/2019/03/11/2019.03.11（17）/">《汇编语言程序设计》学习笔记（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/2019/03/10/2019.03.10（16）/">Binary Bombs——汇编语言学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2019/03/09/2019.03.09（15）/">正则表达式总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/2019/03/08/2019.03.08（14）/">Web：Calculator解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2019/03/07/2019.03.07（13）/">Misc：Invisible flag解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href="/2019/03/06/2019.03.06（12）/">学习总结（1）：隐写术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href="/2019/03/05/2019.03.05（11）/">Misc：Forensics2解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2019/03/04/2019.03.04（10）/">Misc：PkCrack解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href="/2019/03/03/2019.03.03（9）/">Misc：shell解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/2019/03/02/2019.03.02（8）/">Misc：Exif 解题总结 + 学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/2019/03/01/2019.03.01（7）/">Misc：Forensics1 解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/2019/02/28/2019.02.28（6）/">Crypto：What's RSA？解题总结（1）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/2019/02/27/2019.02.27（5）/">Misc:LSB解题总结+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/2019/02/26/2019.02.26（4）/">Misc:docx解题过程+学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/2019.02.25（3）/">创建Github+Hexo个人博客总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/2019/02/24/2019.02.24（2）/">Misc:Signin/Misc:Poem/Misc:Birthday解题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/2019.02.23（1）/">《So you want to work in security》”读后感</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="解题总结"><span class="iconfont-archer">&#xe606;</span>解题总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="RSA"><span class="iconfont-archer">&#xe606;</span>RSA</span>
+    
+        <span class="sidebar-tag-name" data-tags="汇编语言"><span class="iconfont-archer">&#xe606;</span>汇编语言</span>
+    
+        <span class="sidebar-tag-name" data-tags="《保密概论》"><span class="iconfont-archer">&#xe606;</span>《保密概论》</span>
+    
+        <span class="sidebar-tag-name" data-tags="研究生复试"><span class="iconfont-archer">&#xe606;</span>研究生复试</span>
+    
+        <span class="sidebar-tag-name" data-tags="kali"><span class="iconfont-archer">&#xe606;</span>kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础知识"><span class="iconfont-archer">&#xe606;</span>基础知识</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Misc"><span class="iconfont-archer">&#xe606;</span>Misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="本科论文"><span class="iconfont-archer">&#xe606;</span>本科论文</span>
+    
+        <span class="sidebar-tag-name" data-tags="Crypto"><span class="iconfont-archer">&#xe606;</span>Crypto</span>
+    
+        <span class="sidebar-tag-name" data-tags="《图解密码技术》学习笔记"><span class="iconfont-archer">&#xe606;</span>《图解密码技术》学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="Virtual machine"><span class="iconfont-archer">&#xe606;</span>Virtual machine</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码算法"><span class="iconfont-archer">&#xe606;</span>密码算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="《软件安全分析与应用》"><span class="iconfont-archer">&#xe606;</span>《软件安全分析与应用》</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScritpt"><span class="iconfont-archer">&#xe606;</span>JavaScritpt</span>
+    
+        <span class="sidebar-tag-name" data-tags="XCTF"><span class="iconfont-archer">&#xe606;</span>XCTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="fuzz"><span class="iconfont-archer">&#xe606;</span>fuzz</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwn"><span class="iconfont-archer">&#xe606;</span>pwn</span>
+    
+        <span class="sidebar-tag-name" data-tags="pwnable.kr"><span class="iconfont-archer">&#xe606;</span>pwnable.kr</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="区块链"><span class="iconfont-archer">&#xe606;</span>区块链</span>
+    
+        <span class="sidebar-tag-name" data-tags="智能合约漏洞"><span class="iconfont-archer">&#xe606;</span>智能合约漏洞</span>
+    
+        <span class="sidebar-tag-name" data-tags="知识库"><span class="iconfont-archer">&#xe606;</span>知识库</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="GDB"><span class="iconfont-archer">&#xe606;</span>GDB</span>
+    
+        <span class="sidebar-tag-name" data-tags="Tools"><span class="iconfont-archer">&#xe606;</span>Tools</span>
+    
+        <span class="sidebar-tag-name" data-tags="reverse"><span class="iconfont-archer">&#xe606;</span>reverse</span>
+    
+        <span class="sidebar-tag-name" data-tags="密码学"><span class="iconfont-archer">&#xe606;</span>密码学</span>
+    
+        <span class="sidebar-tag-name" data-tags="内核"><span class="iconfont-archer">&#xe606;</span>内核</span>
+    
+        <span class="sidebar-tag-name" data-tags="misc"><span class="iconfont-archer">&#xe606;</span>misc</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="Jarvis"><span class="iconfont-archer">&#xe606;</span>Jarvis</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈溢出"><span class="iconfont-archer">&#xe606;</span>栈溢出</span>
+    
+        <span class="sidebar-tag-name" data-tags="C"><span class="iconfont-archer">&#xe606;</span>C</span>
+    
+        <span class="sidebar-tag-name" data-tags="看雪CTF"><span class="iconfont-archer">&#xe606;</span>看雪CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈相关题目"><span class="iconfont-archer">&#xe606;</span>栈相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
+    
+        <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Binary"><span class="iconfont-archer">&#xe60a;</span>Binary</span>
+    
+        <span class="sidebar-category-name" data-categories="Tools"><span class="iconfont-archer">&#xe60a;</span>Tools</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "MUZIBing"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+
