@@ -366,17 +366,15 @@
                 <span>ELF文件格式实例解析</span>
         </a>
         <div class="abstract-content">
-             0x00 知识储备
- 1.前言
-
+            0x00 知识储备1.前言
 接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。
 
- 2.预定义类型
-
+2.预定义类型
 其结构源码被包含在/usr/include/elf.h文件中
 
 首先来看一下预定义的类型
-1234567891011121314151617/* Type for a 16-bit quantity.  */...
+
+1234567891011121314151617/* Type for a 16-bit quantity.  */typed...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
