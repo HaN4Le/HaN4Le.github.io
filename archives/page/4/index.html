@@ -361,6 +361,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/31/2020.05.31（121）/">
+            
+                <span>【转载】常见调用约定总结</span>
+        </a>
+        <div class="abstract-content">
+            0x00 常见的调用约定一、cdecl调用约定
+又称C调用约定，是C/C++编译器默认的函数调用约定。所有非C++成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/30/2020.05.30（120）/">
             
                 <span>【XCTF-pwn】由浅入深的剖析 &quot;string&quot; 题目</span>
@@ -648,58 +678,10 @@ generator.js最终的内容：
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/29/2020.04.28（111）/">
-            
-                <span>Pwnable.kr的奇幻之旅（三）[bof]</span>
-        </a>
-        <div class="abstract-content">
-            一、相关知识1.pwntools工具
-最近将会认真的总结一下相关的知识点
-
-2.函数调用在栈中的表现形式
-可以参考这里)
-
-3.栈保护机制相关知识点
-将会和其他知识进行总结
-
-二、题目分析
-① 首先检查bof文件的类型，发现它是一个32位的ELF文件
-
-
-
-② 然后查看bof文件开了什么保护，可以得出相关的保护基本能开的都开了，这让我一个小白如何是好？接下来先看看源码。
-
-
-1234RELRO:    Partial RELRO    	=&gt;		对GOT表具有写权限Stack:    Canary found		=&gt;		开启了金丝雀保护，具有cookieNX:       N...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/3/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/15/">15</a><a class="extend next" rel="next" href="/archives/page/5/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/page/3/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/16/">16</a><a class="extend next" rel="next" href="/archives/page/5/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3479,9 +3461,50 @@ generator.js最终的内容：
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 150
+        Total : 151
         </div>
         <!-- search  -->
         
@@ -3498,6 +3521,11 @@ generator.js最终的内容：
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/2020/09/13/2020.09.13（151）/">【转载】Security Interview Questions</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3781,12 +3809,12 @@ generator.js最终的内容：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
