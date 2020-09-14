@@ -361,6 +361,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/28/2020.07.28（142）/">
+            
+                <span>PHP相关题目writeup（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+            0x00 函数漏洞问题【Jarvois OJ-web】BabyPHP1.题目描述
+2.GIT 源码泄露通过上图的提示，我们猜测是不是可以通过git泄露源码，从而进行得到php代码，有关GIT源码泄露的可以点击这里，有关git的介绍可以点击这里，下面我们得到如下的文件及文件夹：
+
+3.查看index.php源码打开index.php源码，可以得到其中最为关键的一段代码，如下：
+12345678910&lt;?phpif (isset($_GET['page'])) &#123;	$page = $_GET['page'];&#125; else &#123;	$page = "home";...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/27/2020.07.27（141）/">
             
                 <span>CTF中常见的函数总结</span>
@@ -714,44 +749,6 @@ CPU ⇢ 运算器 CA和控制器 CC
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/01/2020.07.01（132）/">
-            
-                <span>【web安全】爆破用户登录弱口令</span>
-        </a>
-        <div class="abstract-content">
-                 前一段时间一直在做pwn方向的题目，以后的要开始同时兼顾，为准备打各种CTF比赛做准备，同时也是提升自己的安全知识能力和技术。今天就用一道简单的web题目来引出该主题，大家一般在设置密码时，为了方便，有的人就随便设置密码比如123456789、88888888等，大家也许知道这样的密码是不安全的，但是并不清楚为什么不安全。今天我就带着大家的疑问，来和大家讲一下弱口令为什么不安全的。
-情景假设
-
-加入小明自己写了一个登陆系统，如下图，他在设置管理员密码时，随便输入一串字符串。这里我们并不知道这个密码是多少，下面看一下我们是否能登录该系统。
-
-
- 1.创建字典
-     情境中给出...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
     
 </div>
             
@@ -3582,9 +3579,18 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 151
+        Total : 152
         </div>
         <!-- search  -->
         
@@ -3604,6 +3610,11 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/2020/09/13/2020.09.13（151）/">【转载】Security Interview Questions</a>
         </li>
     
@@ -3614,12 +3625,12 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
@@ -3789,7 +3800,7 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3799,7 +3810,7 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3869,12 +3880,12 @@ CPU ⇢ 运算器 CA和控制器 CC
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     

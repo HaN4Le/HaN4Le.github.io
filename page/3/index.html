@@ -374,6 +374,44 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/01/2020.07.01（132）/">
+            
+                <span>【web安全】爆破用户登录弱口令</span>
+        </a>
+        <div class="abstract-content">
+                 前一段时间一直在做pwn方向的题目，以后的要开始同时兼顾，为准备打各种CTF比赛做准备，同时也是提升自己的安全知识能力和技术。今天就用一道简单的web题目来引出该主题，大家一般在设置密码时，为了方便，有的人就随便设置密码比如123456789、88888888等，大家也许知道这样的密码是不安全的，但是并不清楚为什么不安全。今天我就带着大家的疑问，来和大家讲一下弱口令为什么不安全的。
+情景假设
+
+加入小明自己写了一个登陆系统，如下图，他在设置管理员密码时，随便输入一串字符串。这里我们并不知道这个密码是多少，下面看一下我们是否能登录该系统。
+
+
+ 1.创建字典
+     情境中给出...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/26/2020.06.24（131）/">
             
                 <span>【C语言学习系列二】 C语言中的基本数据类型</span>
@@ -565,6 +603,38 @@ prot：需要修改为的指定值
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
+            
+                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
+        </a>
+        <div class="abstract-content">
+            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
+ 0x00 实模式（Real Mode）
+ 1.起源
+实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
             
                 <span>实模式下的段寄存器</span>
@@ -586,38 +656,6 @@ prot：需要修改为的指定值
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
-            
-                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
-        </a>
-        <div class="abstract-content">
-            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
- 0x00 实模式（Real Mode）
- 1.起源
-实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -719,47 +757,6 @@ prot：需要修改为的指定值
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/01/2020.06.01（122）/">
-            
-                <span>【XCTF-pwn】新手区writeup（part1）</span>
-        </a>
-        <div class="abstract-content">
-             0x00 when_did_you_born
- 1.相关知识点
-
-
-64位下的栈溢出原理
-
-
- 2.解题思路
-12# file pwnpwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=718185b5ec9c26eb9aeccfa0ab53678e34fee00a, stripped
-
-pwn文件是一个64位的ELF可执行文件，也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
             </div>
             <!-- tags  -->
             
@@ -3695,9 +3692,18 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 151
+        Total : 152
         </div>
         <!-- search  -->
         
@@ -3717,6 +3723,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/2020/09/13/2020.09.13（151）/">【转载】Security Interview Questions</a>
         </li>
     
@@ -3727,12 +3738,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
@@ -3902,7 +3913,7 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3912,7 +3923,7 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3982,12 +3993,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     

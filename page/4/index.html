@@ -374,6 +374,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/01/2020.06.01（122）/">
+            
+                <span>【XCTF-pwn】新手区writeup（part1）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 when_did_you_born
+ 1.相关知识点
+
+
+64位下的栈溢出原理
+
+
+ 2.解题思路
+12# file pwnpwn: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=718185b5ec9c26eb9aeccfa0ab53678e34fee00a, stripped
+
+pwn文件是一个64位的ELF可执行文件，也...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/31/2020.05.31（121）/">
             
                 <span>【转载】常见调用约定总结</span>
@@ -601,20 +642,17 @@ UPX的工作原理如下：首先将程序压缩， 所谓的压缩包括两方�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.30（113）/">
+        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
             
-                <span>Hexo博客完善（持续更新）</span>
+                <span>pwntools的简单总结（持续更新）</span>
         </a>
         <div class="abstract-content">
-            
-0x00 添加置顶功能
-解决Hexo博客文章置顶问题
-
-
-修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序
-
-generator.js最终的内容：
-12345678910111213141516171819202122232425262728'use strict';var pagination = require('hexo-pagination');module.exports = function(locals) &#123;  var config = this.con...
+            一、基本模块1.asm/disasm功能：用来进行汇编/反汇编。
+例子：
+asm
+12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
+disasm
+12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb f9 ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -622,6 +660,14 @@ generator.js最终的内容：
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
+    
+</div>
             
         </div>
     </article>
@@ -649,42 +695,6 @@ generator.js最终的内容：
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Crypto">Crypto</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/30/2020.04.29（112）/">
-            
-                <span>pwntools的简单总结（持续更新）</span>
-        </a>
-        <div class="abstract-content">
-            一、基本模块1.asm/disasm功能：用来进行汇编/反汇编。
-例子：
-asm
-12&gt;&gt;&gt; enhex(asm('mov eax, 0'))'b800000000'
-disasm
-12345&gt;&gt;&gt; print(disasm(unhex('6a0258cd80ebf9')))   0:   6a 02                   push   0x2   2:   58                      pop    eax   3:   cd 80                   int    0x80   5:   eb f9 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Tools">Tools</a>
     
 </div>
             
@@ -3612,9 +3622,18 @@ disasm
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 151
+        Total : 152
         </div>
         <!-- search  -->
         
@@ -3634,6 +3653,11 @@ disasm
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/2020/09/13/2020.09.13（151）/">【转载】Security Interview Questions</a>
         </li>
     
@@ -3644,12 +3668,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
@@ -3819,7 +3843,7 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3829,7 +3853,7 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3899,12 +3923,12 @@ disasm
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     

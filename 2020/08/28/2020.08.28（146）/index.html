@@ -419,7 +419,7 @@ height:50vh;
         <h2 id="font-color-orangec-排序算法font"><a class="markdownIt-Anchor" href="#font-color-orangec-排序算法font"></a> <font color="orange"><code>C 排序算法</code></font></h2>
 <hr>
 <h3 id="font-color-navy0x00-冒泡排序font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-冒泡排序font"></a> <font color="navy"><code>0x00 冒泡排序</code></font></h3>
-<p><img src="/146-1.gif" alt></p>
+<p><img src="/images/146-1.gif" alt></p>
 <h4 id="1算法思想"><a class="markdownIt-Anchor" href="#1算法思想"></a> <code>1.算法思想</code></h4>
 <p>冒泡排序的基本思想就是：</p>
 <blockquote>
@@ -431,7 +431,7 @@ height:50vh;
 <h4 id="3算法实现"><a class="markdownIt-Anchor" href="#3算法实现"></a> <code>3.算法实现</code></h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, temp;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++)</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[] = &#123; <span class="number">22</span>, <span class="number">34</span>, <span class="number">3</span>, <span class="number">32</span>, <span class="number">82</span>, <span class="number">55</span>, <span class="number">89</span>, <span class="number">50</span>, <span class="number">37</span>, <span class="number">5</span>, <span class="number">64</span>, <span class="number">35</span>, <span class="number">9</span>, <span class="number">70</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> len = (<span class="keyword">int</span>) <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(*arr);</span><br><span class="line">    bubble_sort(arr, len);</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="font-color-navy0x01-选择排序font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-选择排序font"></a> <font color="navy"><code>0x01 选择排序</code></font></h3>
-<p><img src="/images/146-3.png" alt></p>
+<p><img src="/images/146-3.gif" alt></p>
 <h4 id="1算法思想-2"><a class="markdownIt-Anchor" href="#1算法思想-2"></a> <code>1.算法思想</code></h4>
 <blockquote>
 <p>它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
@@ -453,7 +453,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/08/28/2020.08.28（146）/">https://muzibing.github.io/2020/08/28/2020.08.28（146）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/08/28/2020.08.28（146）/">August 28th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/28/2020.08.28（146）/">September 6th 2020, 11:12:50 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/28/2020.08.28（146）/">September 14th 2020, 9:31:19 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -3341,9 +3341,18 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 151
+        Total : 152
         </div>
         <!-- search  -->
         
@@ -3363,6 +3372,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/2020/09/13/2020.09.13（151）/">【转载】Security Interview Questions</a>
         </li>
     
@@ -3373,12 +3387,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
@@ -3548,7 +3562,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3558,7 +3572,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3628,12 +3642,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
