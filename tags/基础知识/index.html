@@ -361,16 +361,60 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/09/17/2020.09.17（153）/">
+            
+                <span>正则表达式学习总结</span>
+        </a>
+        <div class="abstract-content">
+             0x00 正则表达式
+ 1.为什么使用正则表达式？
+
+典型的搜索和替换操作要求您提供与预期的搜索结果匹配的确切文本。虽然这种技术对于对静态文本执行简单搜索和替换任务可能已经足够了，但它缺乏灵活性，若采用这种方法搜索动态文本，即使不是不可能，至少也会变得很困难。
+
+通过使用正则表达式，可以：
+
+测试字符串内的模式。
+例如，可以测试输入字符串，以查看字符串内是否出现电话号码模式或信用卡号码模式。这称为数据验证。
+替换文本。
+可以使用正则表达式来识别文档中的特定文本，完全删除该文本或者用其他文本替换它。
+基于模式匹配从字符串中提取子字符串。
+可以查找文档内或输入域内特定的文本。
+
+
+例如，您...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/09/14/2020.09.14（152）/">
             
                 <span>PWN中常见的 C 函数和标准头</span>
         </a>
         <div class="abstract-content">
-            0x00 常见的标准头
+             0x00 常见的标准头
+
 参考：菜鸟教程C标准库 - 参考手册
 
 标准头文件包括：
-
 
 
 
@@ -380,38 +424,38 @@
 
 
 
-
+&lt;errno.h&gt;
 错误信息
 
 
-
+&lt;stdio.h&gt;
 输入输出函数
 
 
-
+&lt;stddef.h&gt;
 标准定义
 
 
-
+&lt;math.h&gt;
 数学函数
 
 
-
+&lt;ctype.h&gt;
 字符处理函数
 
 
-
+&lt;string.h&gt;
 字符串函数
 
 
-
+&lt;stdlib.h&gt;
 功能函数
 
 
 
-
-0x01 相关的函数1.输入输出函数()文件打开和关闭
-
+ 0x01 相关的函数
+ 1.输入输出函数(&lt;stdio.h&gt;)
+文件打开和关闭
 
 
 
@@ -421,11 +465,7 @@
 
 
 
-fopen(filename,mode,include_path,context)
-fopen() 函数打开一个文件或 URL。如果 fopen() 失败，它将返回 FALSE 并附带错误信息。您可以通过在函数名前面添加一个 ‘@’ 来隐藏错误输出。
-
-
-int fc...
+fopen(fil...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -764,39 +804,6 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
-            
-                <span>由浅入深的剖析堆</span>
-        </a>
-        <div class="abstract-content">
-            123456789#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main(int argc,char* argv[])&#123;    char *ptr;    ptr = malloc(50);    free(ptr);    return 0;&#125;
-     只要学过C语言的同学想必都申请过堆内存吧，那么大家是否真正了解申请堆和释放堆后面的机制吗？今天我就带领大家一步一步的来了解，先在这里留一个问题：上述代码是否有漏洞？以后会慢慢的揭开这个答案，本文均是在64位下进行的实验。
- 0x00 什么是堆？
-
-在计算机科学...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3619,26 +3626,9 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 152
+        Total : 153
         </div>
         <!-- search  -->
         
@@ -3658,6 +3648,11 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2020/09/17/2020.09.17（153）/">正则表达式学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
         </li>
     
@@ -3673,12 +3668,12 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
@@ -3853,12 +3848,12 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3948,12 +3943,12 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     

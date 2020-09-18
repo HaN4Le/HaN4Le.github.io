@@ -374,6 +374,53 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/24/2019.09.24（83）/">
+            
+                <span>pwn-bof（基础类型题目）</span>
+        </a>
+        <div class="abstract-content">
+            一、基础知识1.内存中栈的结构
+
+正如上图所示，栈是由“由高地址向低地址”方向生长。
+
+2.常见的漏洞类型
+常见的漏洞类型有如下几种：
+**① 逻辑错误**
+
+② 内存破坏
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 栈溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 整数溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 格式化字符串
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 堆溢出
+&nbsp;&nbsp;&nbsp;&nbsp;✦ 释放后使用
+
+二、解题思路1.寻找漏洞
+通过 IDA Pro 对文件进行逆向，通过对伪代码的分析，我们可以看到在函数 s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="解题总结">解题总结</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/17/2019.09.17（82）/">
             
                 <span>bash 漏洞（pwnable-shellshock）</span>
@@ -710,40 +757,6 @@ JavaScrip...
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="密码算法">密码算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/18/2019.07.18（73）/">
-            
-                <span>最小公倍数的加法算法实现</span>
-        </a>
-        <div class="abstract-content">
-            
-☛ 前天主要写了三个算法：欧几里得算法、最小公倍数的加法算法以及乘法链算法，在看过林老师的视频后，自己理清了思路之后，并且经过缜密的思考后，最终将这三个算法成功写出。今天就先来总结一下“最小公倍数的加法算法”实现的过程吧。
-
-一、基础知识
-1.公倍数的概念&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果 a₁| b,……，an | b，则称 b 是 a1，……，an 的公倍数。而最小公倍数就是所有公倍数里最小的。2.最小公倍数的表示形式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最小公倍数的表示形式为
-**lcm (a,b) = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
             </div>
             <!-- tags  -->
             
@@ -3669,26 +3682,9 @@ JavaScrip...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 152
+        Total : 153
         </div>
         <!-- search  -->
         
@@ -3708,6 +3704,11 @@ JavaScrip...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href="/2020/09/17/2020.09.17（153）/">正则表达式学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href="/2020/09/14/2020.09.14（152）/">PWN中常见的 C 函数和标准头</a>
         </li>
     
@@ -3723,12 +3724,12 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（148）/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04（149）/">Python多线程介绍</a>
         </li>
     
     
@@ -3903,12 +3904,12 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3998,12 +3999,12 @@ JavaScrip...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
