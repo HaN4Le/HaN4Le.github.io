@@ -597,13 +597,31 @@ fopen(fil...
                 <span>Python库总结</span>
         </a>
         <div class="abstract-content">
-             0x01 requests 库
+             0x00 导入库的的方式
+ 1.import module
+核心笔记
 
-相关链接
+import语句的模块顺序：最好按照如下顺序：
 
- 1.发送请求
-get 请求
-1234567891011121314151617181920import requests# 头部信息header = &#123;            'Accept': '*/*',            'Referer': 'http://www.baidu.com',            'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; ',            'Cache-Control': 'no-cach...
+Python标准库模块
+Python第三方库文件
+应用程序自定义模块
+
+
+使用函数
+
+module.function()
+
+ 2.from module import *
+使用方法
+
+function()
+
+核心笔记
+
+在实践中，认为“import module import *”不是很好的编程风格，因为它“污染”当前名称空间，而且很可能覆盖当前名称空间中现有的名字；但如果某个模块有很多要经常访问的变量或者模块的名字很长，这也不失为一个好办法
+
+ 0x01 requ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
