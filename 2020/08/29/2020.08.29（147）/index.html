@@ -416,7 +416,8 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="0x00-Tmux简介"><a href="#0x00-Tmux简介" class="headerlink" title="0x00 Tmux简介"></a><font color="navy"><code>0x00 Tmux简介</code></font></h3><blockquote>
+        <h3 id="font-color-navy0x00-tmux简介font"><a class="markdownIt-Anchor" href="#font-color-navy0x00-tmux简介font"></a> <font color="navy"><code>0x00 Tmux简介</code></font></h3>
+<blockquote>
 <p>tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如何强大，网上有大量的文章讨论了这点，本文不再重复。tmux之所以受人们喜爱，主要得益于以下三处功能：</p>
 <ul>
 <li><code>丝滑分屏（split）</code>：虽然iTem2也提供了横向和竖向分屏功能，但这种分屏功能非常拙劣，完全等同于屏幕新开一个窗口，新开的pane不会自动进入到当前目录，也没有记住当前登录状态。这意味着如果我ssh进入到远程服务器时，iTem2新开的pane中，我依然要重新走一遍ssh登录的老路（omg）。tmux就不会这样，tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧保持着，如此一来，我就可以随意的增删pane，这种灵活性，好处不言而喻。</li>
@@ -424,11 +425,11 @@ height:50vh;
 <li><code>会话共享（适用于结对编程或远程教学）</code>，将 tmux 会话的地址分享给他人，这样他们就可以通过 SSH 接入该会话。如果你要给同事演示远程服务器的操作，他不必直勾勾地盯着你的屏幕，借助tmux，他完全可以进入到你的会话，然后静静地看着他桌面上你风骚的键盘走位，只要他愿意，甚至还可以录个屏。</li>
 </ul>
 </blockquote>
-<h3 id="0x01-Tmux快捷指令"><a href="#0x01-Tmux快捷指令" class="headerlink" title="0x01 Tmux快捷指令"></a><font color="navy"><code>0x01 Tmux快捷指令</code></font></h3><blockquote>
+<h3 id="font-color-navy0x01-tmux快捷指令font"><a class="markdownIt-Anchor" href="#font-color-navy0x01-tmux快捷指令font"></a> <font color="navy"><code>0x01 Tmux快捷指令</code></font></h3>
+<blockquote>
 <p>关于快捷指令，首先要认识到的是：tmux的所有指令，都包含同一个前缀，默认为<code>Ctrl+b</code>，输入完前缀过后，控制台激活，命令按键才能生效。</p>
 </blockquote>
 <p><code>表一：系统指令</code></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -490,9 +491,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-</div>
 <p><code>表二：窗口（window）指令。</code></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -549,9 +548,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-</div>
 <p><code>表三：面板（pane）指令</code></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -643,9 +640,9 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="0x02-会话管理"><a href="#0x02-会话管理" class="headerlink" title="0x02 会话管理"></a><font color="navy"><code>0x02 会话管理</code></font></h3><blockquote>
-<p> 新建会话</p>
+<h3 id="font-color-navy0x02-会话管理font"><a class="markdownIt-Anchor" href="#font-color-navy0x02-会话管理font"></a> <font color="navy"><code>0x02 会话管理</code></font></h3>
+<blockquote>
+<p>新建会话</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux new -s &lt;session-name&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -672,7 +669,8 @@ height:50vh;
 <p>重命名会话</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux rename-session -t 0 &lt;new-name&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="0x03-窗口管理"><a href="#0x03-窗口管理" class="headerlink" title="0x03 窗口管理"></a><font color="navy"><code>0x03 窗口管理</code></font></h3><blockquote>
+<h3 id="font-color-navy0x03-窗口管理font"><a class="markdownIt-Anchor" href="#font-color-navy0x03-窗口管理font"></a> <font color="navy"><code>0x03 窗口管理</code></font></h3>
+<blockquote>
 <p>划分窗口</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 划分上下两个窗格</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tmux split-window</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 划分左右两个窗格</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tmux split-window -h</span></span><br></pre></td></tr></table></figure>
@@ -696,6 +694,8 @@ height:50vh;
 <p>重命名窗口</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux rename-window &lt;new-name&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h3>
+<p><a href="http://louiszhai.github.io/2017/09/30/tmux/#%E4%BC%9A%E8%AF%9D%E5%85%B1%E4%BA%AB" target="_blank" rel="noopener">Tmux使用手册</a></p>
 
     </article>
     <!-- license  -->
@@ -704,7 +704,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/08/29/2020.08.29（147）/">https://muzibing.github.io/2020/08/29/2020.08.29（147）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/08/29/2020.08.29（147）/">August 29th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/29/2020.08.29（147）/">August 29th 2020, 4:31:38 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/08/29/2020.08.29（147）/">October 13th 2020, 11:04:14 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -856,7 +856,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Tmux简介"><span class="toc-number">1.</span> <span class="toc-text">0x00 Tmux简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Tmux快捷指令"><span class="toc-number">2.</span> <span class="toc-text">0x01 Tmux快捷指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-会话管理"><span class="toc-number">3.</span> <span class="toc-text">0x02 会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-窗口管理"><span class="toc-number">4.</span> <span class="toc-text">0x03 窗口管理</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x00-tmux简介font"><span class="toc-number">1.</span> <span class="toc-text"> 0x00 Tmux简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x01-tmux快捷指令font"><span class="toc-number">2.</span> <span class="toc-text"> 0x01 Tmux快捷指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x02-会话管理font"><span class="toc-number">3.</span> <span class="toc-text"> 0x02 会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-navy0x03-窗口管理font"><span class="toc-number">4.</span> <span class="toc-text"> 0x03 窗口管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text"> 参考文献</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3624,44 +3624,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 154
+        Total : 155
         </div>
         <!-- search  -->
         
@@ -3678,6 +3643,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href="/2020/10/18/2020.10.18（155）/">服务器 SSH 登录界面配置（Neofetch）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3881,7 +3851,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3891,7 +3861,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     

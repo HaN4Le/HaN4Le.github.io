@@ -374,15 +374,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/09/04/2020.09.04（149）/">
+            
+                <span>Python多线程介绍</span>
+        </a>
+        <div class="abstract-content">
+             0x00 什么是多线程？
+
+在计算机编程中，一个基本的概念就是同时对多个任务加以控制。许多程序设计问题都要求程序能够停下手头的工作，改为处理其他一些问题，再返回主进程。可以通过多种途径达到这个目的。最开始的时候，那些掌握机器低级语言的程序员编写一些“中断服务例程”，主进程的暂停是通过硬件级的中断实现的。尽管这是一种有用的方法，但编出的程序很难移植，由此造成了另一类的代价高昂问题。中断对那些实时性很强的任务来说是很有必要的。但对于其他许多问题，只要求将问题划分进入独立运行的程序片断中，使整个程序能更迅速地响应用户的请求。最开始，线程只是用于分配单个处理器的处理时间的一种工具。但假如操作系...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/08/29/2020.08.29（147）/">
             
                 <span>Tmux工具使用总结</span>
         </a>
         <div class="abstract-content">
-            0x00 Tmux简介
+             0x00 Tmux简介
+
 tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如何强大，网上有大量的文章讨论了这点，本文不再重复。tmux之所以受人们喜爱，主要得益于以下三处功能：
 
-丝滑分屏（split）：虽然iTem2也提供了横向和竖向分屏功能，但这种分屏功能非常拙劣，完全等同于屏幕新开一个窗口，新开的pane不会自动进入到当前目录，也没有记住当前登录状态。这意味着如果我ssh进入到远程服务器时，iTem2新开的pane中，我依然要重新走一遍ssh登录的老路（omg）。tmux就不会这样，tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧...
+丝滑分屏（split）：虽然iTem2也提供了横向和竖向分屏功能，但这种分屏功能非常拙劣，完全等同于屏幕新开一个窗口，新开的pane不会自动进入到当前目录，也没有记住当前登录状态。这意味着如果我ssh进入到远程服务器时，iTem2新开的pane中，我依然要重新走一遍ssh登录的老路（omg）。tmux就不会这样，tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -750,39 +776,6 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
-            
-                <span>由浅入深的剖析堆</span>
-        </a>
-        <div class="abstract-content">
-            123456789#include&lt;stdio.h&gt;#include&lt;stdlib.h&gt;int main(int argc,char* argv[])&#123;    char *ptr;    ptr = malloc(50);    free(ptr);    return 0;&#125;
-     只要学过C语言的同学想必都申请过堆内存吧，那么大家是否真正了解申请堆和释放堆后面的机制吗？今天我就带领大家一步一步的来了解，先在这里留一个问题：上述代码是否有漏洞？以后会慢慢的揭开这个答案，本文均是在64位下进行的实验。
- 0x00 什么是堆？
-
-在计算机科学...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3723,44 +3716,9 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 154
+        Total : 155
         </div>
         <!-- search  -->
         
@@ -3777,6 +3735,11 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href="/2020/10/18/2020.10.18（155）/">服务器 SSH 登录界面配置（Neofetch）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3980,7 +3943,7 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3990,7 +3953,7 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     

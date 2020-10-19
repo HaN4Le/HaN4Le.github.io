@@ -361,6 +361,56 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/08/25/2020.08.24（145）/">
+            
+                <span>AFL详细总结（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 AFL的流程
+
+ 1.AFL整体框架
+
+
+
+main函数先进行初始化和选项处理；
+
+
+执行input文件夹下的预先准备的所有testcase（perform_dry_run），生成初始化的queue和bitmap；
+
+
+通过cull_queue对queue进行精选，减小input的量；
+
+
+然后进行while(1)循环不断进行fuzz。
+
+
+每次在fuzz一个queue后，就会进入while(1),并重新调用cull_queue()对队列进行精选，而在while(1)具体实现以下过程：
+
+
+cull_queue()根据top_rated设置queue中的favored标志，对...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="AFL">AFL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/08/23/2020.08.23（144）/">
             
                 <span class="stick-top iconfont-archer">&#xe63d;</span>
@@ -704,31 +754,6 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/12/2020.07.12（135）/">
-            
-                <span class="stick-top iconfont-archer">&#xe63d;</span>
-                
-                <span>CTF-misc类型题目总结</span>
-        </a>
-        <div class="abstract-content">
-            Here's something encrypted, password is required to continue reading.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/12</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3589,44 +3614,9 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 154
+        Total : 155
         </div>
         <!-- search  -->
         
@@ -3643,6 +3633,11 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href="/2020/10/18/2020.10.18（155）/">服务器 SSH 登录界面配置（Neofetch）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3846,7 +3841,7 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
         </li>
     
     
@@ -3856,7 +3851,7 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（113）/">Hexo博客完善（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
