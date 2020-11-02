@@ -416,7 +416,8 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="font-color-navy一-相关知识点font"><a class="markdownIt-Anchor" href="#font-color-navy一-相关知识点font"></a> <font color="navy">一、相关知识点</font></h3>
+        <p>[TOC]</p>
+<h3 id="font-color-navy一-相关知识点font"><a class="markdownIt-Anchor" href="#font-color-navy一-相关知识点font"></a> <font color="navy">一、相关知识点</font></h3>
 <h4 id="1login-过程"><a class="markdownIt-Anchor" href="#1login-过程"></a> <code>1.Login 过程</code></h4>
 <blockquote>
 <p><code>login</code> 程序成功后，会向对应的终端在输出最近一次登录的信息(在<code>/var/log/lastlog</code>中有记录)，并检查用户是否有新邮件(在<code>/usr/spool /mail/</code>的对应用户名目录下)。然后开始设置各种环境变量：对于<code>bash</code>来说，系统首先寻找<code>/etc/profile</code>脚本文件，并执行他；然后如果用户的主目录中存在<code>.bash_profile</code>文件，就执行他，在这些文件中又可能调用了其他设置文件，所有的设置文件执行后后，各种环境变量也设好了，这时会出现大家熟悉的命令行提示符，到此整个启动过程就结束了。</p>
@@ -435,7 +436,7 @@ height:50vh;
 <blockquote>
 <p>下面以neofetch的安装为例</p>
 </blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile.d/java .sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile.d/java.sh</span><br></pre></td></tr></table></figure>
 <p>在新的java .sh中输入以下内容：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#set java environment</span></span><br><span class="line">JAVA_HOME=/var/mysoft/jdk1.7.0_80</span><br><span class="line">PATH=＄JAVA_HOME/bin:＄PATH</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME PATH</span><br></pre></td></tr></table></figure>
 <p>保存退出，然后给java.sh分配权限：<code>chmod 755 /etc/profile.d/java.sh</code></p>
@@ -549,6 +550,8 @@ height:50vh;
 <li><a href="http://life.chacuo.net/convertphoto2char" target="_blank" rel="noopener">在线图片转字符</a></li>
 <li><a href="http://www.asciiworld.com/" target="_blank" rel="noopener">Asciiworld.com : Pictures of Ascii Art !</a></li>
 </ul>
+<p>③ <code>配置 /etc/motd 文件</code></p>
+<p>里面是ssh的登录配置界面</p>
 <h4 id="3配置结果"><a class="markdownIt-Anchor" href="#3配置结果"></a> <code>3.配置结果</code></h4>
 <p>下面给出我的ssh登陆界面：</p>
 <p><img src="/images/155-1.jpg" alt></p>
@@ -560,7 +563,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/10/18/2020.10.18（155）/">https://muzibing.github.io/2020/10/18/2020.10.18（155）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/10/18/2020.10.18（155）/">October 18th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/10/18/2020.10.18（155）/">October 19th 2020, 6:59:45 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/10/18/2020.10.18（155）/">November 2nd 2020, 6:49:45 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
