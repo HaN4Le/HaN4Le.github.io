@@ -374,6 +374,90 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/09/07/2020.09.07（150）/">
+            
+                <span>ELF文件格式实例解析</span>
+        </a>
+        <div class="abstract-content">
+            0x00 知识储备1.前言
+接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。
+
+2.预定义类型
+其结构源码被包含在/usr/include/elf.h文件中
+
+首先来看一下预定义的类型
+
+1234567891011121314151617/* Type for a 16-bit quantity.  */typed...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/09/04/2020.09.04（148）/">
+            
+                <span>Python库总结</span>
+        </a>
+        <div class="abstract-content">
+            0x00 导入库的的方式1.import module核心笔记
+
+import语句的模块顺序：最好按照如下顺序：
+
+Python标准库模块
+Python第三方库文件
+应用程序自定义模块
+
+
+使用函数
+
+module.function()
+
+2.from module import *使用方法
+
+function()
+
+核心笔记
+
+在实践中，认为“import module import *”不是很好的编程风格，因为它“污染”当前名称空间，而且很可能覆盖当前名称空间中现有的名字；但如果某个模块有很多要经常访问的变量或者模块的名字很长，这也不失为一个好办法
+
+0x01 requests 库
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/09/04/2020.09.04（149）/">
             
                 <span>Python多线程介绍</span>
@@ -691,91 +775,6 @@ file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件�
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
-            
-                <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
-        </a>
-        <div class="abstract-content">
-             0x00 相关知识点
-
-
-格式化字符串的利用
-金丝雀的绕过
-栈的溢出
-
-
- 0x01 分析题目
-
-既然题目说是个非常简单的热身的pwn，那我就简单的热一下身
-
- 1.file mary
-12# file marymary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=b7971b84c2309bdb896e6e39073303fc13...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
-            
-                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.什么是shellcode
-
-shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
-
- 2.shellcode的C语言形式
-12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
     
 </div>
             
@@ -3716,9 +3715,80 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 155
+        Total : 156
         </div>
         <!-- search  -->
         
@@ -3735,6 +3805,11 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span><a class="archive-post-title" href="/2020/11/02/2020.11.02（156）/">逻辑和位运算符的“歪门邪道”</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3948,12 +4023,12 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4023,12 +4098,12 @@ shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

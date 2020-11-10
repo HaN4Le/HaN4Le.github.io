@@ -361,18 +361,96 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/11/02/2020.11.02（156）/">
+            
+                <span>逻辑和位运算符的“歪门邪道”</span>
+        </a>
+        <div class="abstract-content">
+            基础知识
+
+
+
+运算符
+类别
+描述
+示例
+
+
+
+
+!
+逻辑运算符
+称为逻辑非运算符。用来逆转操作数的逻辑状态。如果条件为真则逻辑非运算符将使其为假。
+!(A &amp;&amp; B) 为真。
+
+
+&amp;
+
+按位与操作，按二进制位进行”与”运算
+
+
+
+\
+
+
+按位或运算符，按二进制位进行”或”运算
+
+
+
+^
+
+异或运算符，按二进制位进行”异或”运算
+
+
+
+~
+
+取反运算符，按二进制位进行”取反”运算
+
+
+
+&lt;&lt;
+
+二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）
+
+
+
+>>
+
+二进制右移运算符。将一个数的各二进制位全部右移若干位，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/11/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/10/18/2020.10.18（155）/">
             
                 <span>服务器 SSH 登录界面配置（Neofetch）</span>
         </a>
         <div class="abstract-content">
             [TOC]
- 一、相关知识点
- 1.Login 过程
-
+一、相关知识点&lt;/font&gt;1.Login 过程
 login 程序成功后，会向对应的终端在输出最近一次登录的信息(在/var/log/lastlog中有记录)，并检查用户是否有新邮件(在/usr/spool /mail/的对应用户名目录下)。然后开始设置各种环境变量：对于bash来说，系统首先寻找/etc/profile脚本文件，并执行他；然后如果用户的主目录中存在.bash_profile文件，就执行他，在这些文件中又可能调用了其他设置文件，所有的设置文件执行后后，各种环境变量也设好了，这时会出现大家熟悉的命令行提示符，到此整个启动过程就结束了。
 
- 2./etc/profile...
+2./etc...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -640,9 +718,7 @@ fopen(fil...
                 <span>Python库总结</span>
         </a>
         <div class="abstract-content">
-             0x00 导入库的的方式
- 1.import module
-核心笔记
+            0x00 导入库的的方式1.import module核心笔记
 
 import语句的模块顺序：最好按照如下顺序：
 
@@ -655,8 +731,7 @@ Python第三方库文件
 
 module.function()
 
- 2.from module import *
-使用方法
+2.from module import *使用方法
 
 function()
 
@@ -664,7 +739,8 @@ function()
 
 在实践中，认为“import module import *”不是很好的编程风格，因为它“污染”当前名称空间，而且很可能覆盖当前名称空间中现有的名字；但如果某个模块有很多要经常访问的变量或者模块的名字很长，这也不失为一个好办法
 
- 0x01 requ...
+0x01 requests 库
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -722,48 +798,6 @@ tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/08/28/2020.08.28（146）/">
-            
-                <span>算法总结（C）</span>
-        </a>
-        <div class="abstract-content">
-             C 排序算法
-
- 0x00 冒泡排序
-
- 1.算法思想
-冒泡排序的基本思想就是：
-
-从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大（小）的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。
-算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大（小）的数据元素放到队尾。
-
- 2.图解算法
-
- 3.算法实现
-1234567891011121314151617181920#include &lt;stdio.h&gt;void bubble_sort(int arr[], int len) &#123;   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/28</span>
             </div>
             <!-- tags  -->
             
@@ -3632,9 +3666,80 @@ tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 155
+        Total : 156
         </div>
         <!-- search  -->
         
@@ -3651,6 +3756,11 @@ tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span><a class="archive-post-title" href="/2020/11/02/2020.11.02（156）/">逻辑和位运算符的“歪门邪道”</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3864,12 +3974,12 @@ tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3939,12 +4049,12 @@ tmux是一款优秀的终端复用软件，它比Screen更加强大，至于如�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

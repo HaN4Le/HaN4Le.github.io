@@ -405,6 +405,46 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/03/20/2020.03.20（104）/">
+            
+                <span class="stick-top iconfont-archer">&#xe63d;</span>
+                
+                <span>Linux常用命令总结（二进制）</span>
+        </a>
+        <div class="abstract-content">
+            0x00 目录操作命令0x00 ls（list）功能：列举出当前工作目录的内容，包括文件和文件夹
+相关选项：
+
+ls -l： 文件/文件夹：长格式显示指定/目录中的文件
+
+123456789root@# ls -l 图片1.png-rwxrwxrwx   1      root  root 43531 Mar 16 13:02 图片1.png   权限位   引用计数  所有者  属组  大小   最后一次修改时间   文件名   root@# ls -l 文件夹-rwxrwxrwx 1 root root  645653 Mar 18 10:25 5d0b02281396a.png-r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="知识库">知识库</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/24/2020.07.24（139）/">
             
                 <span class="stick-top iconfont-archer">&#xe63d;</span>
@@ -455,18 +495,96 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/11/02/2020.11.02（156）/">
+            
+                <span>逻辑和位运算符的“歪门邪道”</span>
+        </a>
+        <div class="abstract-content">
+            基础知识
+
+
+
+运算符
+类别
+描述
+示例
+
+
+
+
+!
+逻辑运算符
+称为逻辑非运算符。用来逆转操作数的逻辑状态。如果条件为真则逻辑非运算符将使其为假。
+!(A &amp;&amp; B) 为真。
+
+
+&amp;
+
+按位与操作，按二进制位进行”与”运算
+
+
+
+\
+
+
+按位或运算符，按二进制位进行”或”运算
+
+
+
+^
+
+异或运算符，按二进制位进行”异或”运算
+
+
+
+~
+
+取反运算符，按二进制位进行”取反”运算
+
+
+
+&lt;&lt;
+
+二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）
+
+
+
+>>
+
+二进制右移运算符。将一个数的各二进制位全部右移若干位，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/11/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/10/18/2020.10.18（155）/">
             
                 <span>服务器 SSH 登录界面配置（Neofetch）</span>
         </a>
         <div class="abstract-content">
             [TOC]
- 一、相关知识点
- 1.Login 过程
-
+一、相关知识点&lt;/font&gt;1.Login 过程
 login 程序成功后，会向对应的终端在输出最近一次登录的信息(在/var/log/lastlog中有记录)，并检查用户是否有新邮件(在/usr/spool /mail/的对应用户名目录下)。然后开始设置各种环境变量：对于bash来说，系统首先寻找/etc/profile脚本文件，并执行他；然后如果用户的主目录中存在.bash_profile文件，就执行他，在这些文件中又可能调用了其他设置文件，所有的设置文件执行后后，各种环境变量也设好了，这时会出现大家熟悉的命令行提示符，到此整个启动过程就结束了。
 
- 2./etc/profile...
+2./etc...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -680,92 +798,6 @@ fopen(fil...
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/09/07/2020.09.07（150）/">
-            
-                <span>ELF文件格式实例解析</span>
-        </a>
-        <div class="abstract-content">
-            0x00 知识储备1.前言
-接触过Linux文件的朋友应该都很清楚ELF文件，它和windows上的PE文件都是在COFF文件的基础上发展而来，一般在逆向或者说二进制安全方面都会了解其一些相关结构知识，但是由于其入门难、信息量大的原因，导致很多人（当然包括我）在看过很多遍书以后遗忘的速度仍然很快，今天我们就一起通过其源码来对ELF做个深入的了解和剖析。
-
-2.预定义类型
-其结构源码被包含在/usr/include/elf.h文件中
-
-首先来看一下预定义的类型
-
-1234567891011121314151617/* Type for a 16-bit quantity.  */typed...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/09/04/2020.09.04（148）/">
-            
-                <span>Python库总结</span>
-        </a>
-        <div class="abstract-content">
-             0x00 导入库的的方式
- 1.import module
-核心笔记
-
-import语句的模块顺序：最好按照如下顺序：
-
-Python标准库模块
-Python第三方库文件
-应用程序自定义模块
-
-
-使用函数
-
-module.function()
-
- 2.from module import *
-使用方法
-
-function()
-
-核心笔记
-
-在实践中，认为“import module import *”不是很好的编程风格，因为它“污染”当前名称空间，而且很可能覆盖当前名称空间中现有的名字；但如果某个模块有很多要经常访问的变量或者模块的名字很长，这也不失为一个好办法
-
- 0x01 requ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/04</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3704,9 +3736,80 @@ function()
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 155
+        Total : 156
         </div>
         <!-- search  -->
         
@@ -3723,6 +3826,11 @@ function()
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span><a class="archive-post-title" href="/2020/11/02/2020.11.02（156）/">逻辑和位运算符的“歪门邪道”</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3936,12 +4044,12 @@ function()
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4011,12 +4119,12 @@ function()
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     

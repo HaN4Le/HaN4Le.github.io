@@ -374,6 +374,91 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
+            
+                <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
+        </a>
+        <div class="abstract-content">
+             0x00 相关知识点
+
+
+格式化字符串的利用
+金丝雀的绕过
+栈的溢出
+
+
+ 0x01 分析题目
+
+既然题目说是个非常简单的热身的pwn，那我就简单的热一下身
+
+ 1.file mary
+12# file marymary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=b7971b84c2309bdb896e6e39073303fc13...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="栈相关题目">栈相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/07/18/2020.07.18（137）/">
+            
+                <span>【XCTF-Pwn:Note-service2】在堆上执行shellcode</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.什么是shellcode
+
+shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 ——维基百科
+
+ 2.shellcode的C语言形式
+12345678910#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;int main(int argc, char *argv[])&#123;    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="堆相关题目">堆相关题目</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/13/2020.07.13（136）/">
             
                 <span>由浅入深的剖析堆</span>
@@ -706,71 +791,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
-            
-                <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
-        </a>
-        <div class="abstract-content">
-            首先我们要知道这两种模式都是 CPU 的工作模式，实模式是早期 CPU 运行的工作模式，而保护模式则是现代 CPU 运行的工作模式。
- 0x00 实模式（Real Mode）
- 1.起源
-实模式出现于早期 8086 CPU 时期，8086 也是第一款支持内存分段模型的处理器。当时，8086 只有一种工作模式，即实模式，但当时还没有这个说法。由于 CPU 的性能有限，一共只有 20 位地址线（地址空间只有 1M），以及 8 个 16 位的通用寄存器，以及 4 个 16 位的段寄存器。16 位的物理地址只能访问 64KB 的内存。所以，为了能够通过这些 16 位的寄存器去构成 20 位的主存...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/14/2020.06.14（126）/">
-            
-                <span>实模式下的段寄存器</span>
-        </a>
-        <div class="abstract-content">
-             0x00 前言
-      首先想要说明的是这里介绍的原理都是CPU实模式下的情况，有关CPU工作模式的请点击这里，下面简单的介绍一下段寄存器的来源和故事：
-
-     实模式出现于早期8088CPU时期。当时由于CPU的性能有限，一共只有20位地址线（所以地址空间只有1MB），以及8个16位的通用寄存器，以及4个16位的段寄存器。所以为了能够通过这些16位的寄存器去构成20位的主存地址，必须采取一种特殊的方式。当某个指令想要访问某个内存地址时，它通常需要用下面的这种格式来表示：段基址：段偏移量。[1]
-     但是随着CPU的发展，CPU的地址线的个数也从原来的20根变为现在的32...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="汇编语言">汇编语言</a>
     
 </div>
             
@@ -3711,9 +3731,80 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 155
+        Total : 156
         </div>
         <!-- search  -->
         
@@ -3730,6 +3821,11 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span><a class="archive-post-title" href="/2020/11/02/2020.11.02（156）/">逻辑和位运算符的“歪门邪道”</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3943,12 +4039,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4018,12 +4114,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（97）/">【转载】JavaScript 的隐式转换</a>
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href="/2020/03/04/2020.03.04（98）/">【转载】Data URI 知识点详解</a>
         </li>
     
     
