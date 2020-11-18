@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>【web安全】爆破用户登录弱口令 · HackerLee</title>
+    <title>XCTF-maze writeup · HackerLee</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/">HackerLee</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">【web安全】爆破用户登录弱口令</a>
+                <a href="#" class="post-name">XCTF-maze writeup</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/132.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/157.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            【web安全】爆破用户登录弱口令
+            XCTF-maze writeup
             <!-- 404 -->
             
         </h1>
@@ -281,20 +281,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="xctf">xctf</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">431</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/07/01</span>
+                    <span class="post-intro-time">2020/11/17</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -418,32 +416,76 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>     前一段时间一直在做pwn方向的题目，以后的要开始同时兼顾，为准备打各种CTF比赛做准备，同时也是提升自己的安全知识能力和技术。今天就用一道简单的web题目来引出该主题，大家一般在设置密码时，为了方便，有的人就随便设置密码比如<code>123456789</code>、<code>88888888</code>等，大家也许知道这样的密码是不安全的，但是并不清楚为什么不安全。今天我就带着大家的疑问，来和大家讲一下<font color="navy"><code>弱口令</code></font>为什么不安全的。</p>
-<p><code>情景假设</code></p>
+        <h3 id="1-代码审计"><a class="markdownIt-Anchor" href="#1-代码审计"></a> 1. 代码审计</h3>
+<h4 id="1-输入部分"><a class="markdownIt-Anchor" href="#1-输入部分"></a> 1) 输入部分</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">"Input flag:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;s1, <span class="number">0L</span>L);</span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">strlen</span>(&amp;s1) != <span class="number">24</span> || (v3 = <span class="string">"nctf&#123;"</span>, <span class="built_in">strncmp</span>(&amp;s1, <span class="string">"nctf&#123;"</span>, <span class="number">5u</span>LL)) || *(&amp;byte_6010BF + <span class="number">24</span>) != <span class="number">125</span> )</span><br><span class="line">&#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Wrong flag!"</span>);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>加入小明自己写了一个登陆系统，如下图，他在设置管理员密码时，随便输入一串字符串。这里我们并不知道这个密码是多少，下面看一下我们是否能登录该系统。</p>
+<p>s1 是用户要输入的字符串，为了不输出 “Wrong flag”，所以 if 语句的三个判断条件都要为 False，那么前两个分别为：</p>
+<ul>
+<li>字符串的长度为 24</li>
+<li>字符串的前 5 个字符要为 <code>nctf{</code></li>
+</ul>
+<p>那么最后的一个条件是什么？<code>&amp;byte_6010BF + 24</code> 的地址为 <code>0x6010d7</code>，而 <code>s1</code> 的地址为 <code>0x6010C0</code>，那么 <code>&amp;byte_6010BF + 24</code> 相当于 <code>s1</code> 的第 23 个下标，也就是最后一个字符要为 “}”</p>
 </blockquote>
-<p><img src="/images/132-1.png" alt></p>
-<h4 id="font-color-navy1创建字典font"><a class="markdownIt-Anchor" href="#font-color-navy1创建字典font"></a> <font color="navy">1.创建字典</font></h4>
-<p>     情境中给出了说明：随便输了一串字符串。那我们先假设这段字符串很简单，我们根据人们常用的密码创建一个密码字典，以备我们后面使用，字典部分内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">123456789</span><br><span class="line">a123456</span><br><span class="line">123456</span><br><span class="line">a123456789</span><br><span class="line">1234567890</span><br><span class="line">woaini1314</span><br><span class="line">qq123456</span><br><span class="line">abc123456</span><br><span class="line">123456a</span><br><span class="line">123456789a</span><br><span class="line">147258369</span><br><span class="line">zxcvbnm</span><br><span class="line">987654321</span><br><span class="line">12345678910</span><br><span class="line">abc123</span><br><span class="line">qq123456789</span><br><span class="line">123456789.</span><br><span class="line">7708801314520</span><br><span class="line">woaini</span><br><span class="line">5201314520</span><br><span class="line">q123456</span><br><span class="line">123456abc</span><br><span class="line">1233211234567</span><br><span class="line">123123123</span><br><span class="line">123456.</span><br><span class="line">0123456789</span><br><span class="line">asd123456</span><br><span class="line">aa123456</span><br><span class="line">135792468</span><br><span class="line">q123456789</span><br><span class="line">abcd123456</span><br><span class="line">12345678900</span><br><span class="line">woaini520</span><br><span class="line">woaini123</span><br><span class="line">zxcvbnm123</span><br><span class="line">1111111111111111</span><br><span class="line">w123456</span><br><span class="line">aini1314</span><br><span class="line">abc123456789</span><br><span class="line">111111</span><br><span class="line">woaini521</span><br><span class="line">qwertyuiop</span><br><span class="line">1314520520</span><br><span class="line">1234567891</span><br><span class="line">qwe123456</span><br><span class="line">asd123</span><br><span class="line">000000</span><br><span class="line">1472583690</span><br><span class="line">1357924680</span><br><span class="line">789456123</span><br><span class="line">123456789abc</span><br><span class="line">z123456</span><br><span class="line">1234567899</span><br></pre></td></tr></table></figure>
-<h4 id="font-color-navy2爆破密码font"><a class="markdownIt-Anchor" href="#font-color-navy2爆破密码font"></a> <font color="navy">2.爆破密码</font></h4>
-<p>      在这里我们要用到一个抓包工具<code>Burp Suit</code>（666666），它长下面这个样子：</p>
-<p><img src="/images/132-2.png" alt></p>
-<p>      下面我用动图R的形式来展示一下爆破的整个过程：</p>
-<p><img src="/images/132-3.gif" alt></p>
+<h4 id="2-主体部分"><a class="markdownIt-Anchor" href="#2-主体部分"></a> 2) 主体部分</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">v4 = <span class="number">5L</span>L;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(&amp;s1) - <span class="number">1</span> &gt; <span class="number">5</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v5 = *(&amp;s1 + v4);							<span class="comment">// v5 是输入字符串 &#123; &#125; 之间的部分内容的起使地址</span></span><br><span class="line">      v6 = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> ( v5 &gt; <span class="number">78</span> )							<span class="comment">// 应该是从这里遍历每个字符，如果字符的 ASCII 码大于 78(N)，则执行 if 部分的语句</span></span><br><span class="line">      &#123;</span><br><span class="line">        v5 = (<span class="keyword">unsigned</span> __int8)v5;</span><br><span class="line">        <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int8)v5 == <span class="number">79</span> )		<span class="comment">// 如果 ASCII 等于 79（O），则执行 sub_400650() 函数</span></span><br><span class="line">        &#123;</span><br><span class="line">          v7 = sub_400650((<span class="keyword">char</span> *)&amp;v10 + <span class="number">4</span>, v3);<span class="comment">// 将 &amp;v10 + 4 的地址传给 sub_400650() 函数，该函数是对 &amp;v10 + 4 地址处的值减 1</span></span><br><span class="line">          <span class="keyword">goto</span> LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ( v5 == <span class="number">111</span> )						<span class="comment">// 如果 ASCII 等于 111（o），则执行 sub_400660() 函数</span></span><br><span class="line">        &#123;</span><br><span class="line">          v7 = sub_400660((<span class="keyword">char</span> *)&amp;v10 + <span class="number">4</span>, v3);<span class="comment">// 将 &amp;v10 + 4 的地址传给 sub_400660() 函数，该函数是对 &amp;v10 + 4 地址处的值加 1</span></span><br><span class="line">          <span class="keyword">goto</span> LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>										<span class="comment">// 如果字符的 ASCII 码小于等于 78(N)，则执行 else 部分的语句</span></span><br><span class="line">      &#123;</span><br><span class="line">        v5 = (<span class="keyword">unsigned</span> __int8)v5;</span><br><span class="line">        <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int8)v5 == <span class="number">46</span> )		<span class="comment">// 如果 ASCII 等于 46（.），则执行 sub_400670() 函数</span></span><br><span class="line">        &#123;</span><br><span class="line">          v7 = sub_400670(&amp;v10, v3);			<span class="comment">// 该函数是对 &amp;v10 地址处的值减 1</span></span><br><span class="line">          <span class="keyword">goto</span> LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ( v5 == <span class="number">48</span> )							<span class="comment">// 如果 ASCII 等于 46（.），则执行 sub_400680() 函数</span></span><br><span class="line">        &#123;</span><br><span class="line">          v7 = sub_400680(&amp;v10, v3);			<span class="comment">// 该函数是对 &amp;v10 地址处的值加 1</span></span><br><span class="line">LABEL_14:</span><br><span class="line">          v6 = v7;								<span class="comment">// 将上述四种情况得到的 Bool 值赋给 v6</span></span><br><span class="line">          <span class="keyword">goto</span> LABEL_15;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">LABEL_15:</span><br><span class="line">      v3 = (<span class="keyword">const</span> <span class="keyword">char</span> *)HIDWORD(v10);		</span><br><span class="line">      <span class="keyword">if</span> ( !(<span class="keyword">unsigned</span> __int8)sub_400690(asc_601060, HIDWORD(v10), (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v10) )	<span class="comment">// 该函数很重要，下面详细讲述</span></span><br><span class="line">        <span class="keyword">goto</span> LABEL_22;</span><br><span class="line">      <span class="keyword">if</span> ( ++v4 &gt;= <span class="built_in">strlen</span>(&amp;s1) - <span class="number">1</span> )			<span class="comment">// 遍历输入字符串的 &#123; &#125; 部分条件</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v6 )								<span class="comment">// 要想执行正确的结果，就得需要最后一次的 v6 为 1，这一点很容易被满足</span></span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">LABEL_20:</span><br><span class="line">        v8 = <span class="string">"Wrong flag!"</span>;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( asc_601060[<span class="number">8</span> * (<span class="keyword">signed</span> <span class="keyword">int</span>)v10 + SHIDWORD(v10)] != <span class="number">35</span> )	<span class="comment">//  下面详细讲一下该点</span></span><br><span class="line">    <span class="keyword">goto</span> LABEL_20;</span><br><span class="line">  v8 = <span class="string">"Congratulations!"</span>;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>可以从上图中看出，管理员密码为<code>123456</code>，所以说通过这个简单的例子可以看出，我们平常在设置密码时尽量不要用弱口令，尽量使用字母、数字和符号的混合字符串，以保证我们账户的安全性。</p>
+<p>上面是该程序的主要组成部分，注释标明了相应部分的作用，下面将会对上述代码中的两个部分进行详细的描述：<code>sub_400690</code> 和 <code>asc_601060</code></p>
 </blockquote>
+<p><code>asc_601060</code></p>
+<blockquote>
+<p>该地址处的内容为：<code>******* * **** * **** * *** *# *** *** *** *********</code>，一共是 64 个字符。</p>
+</blockquote>
+<p><code>sub_400690</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__int64 __<span class="function">fastcall <span class="title">sub_400690</span><span class="params">(__int64 a1, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  result = *(<span class="keyword">unsigned</span> __int8 *)(a1 + a2 + <span class="number">8L</span>L * a3);</span><br><span class="line">  LOBYTE(result) = (_DWORD)result == <span class="number">32</span> || (_DWORD)result == <span class="number">35</span>;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>a1</code> 是 <code>asc_601060</code> 的首地址， <code>a2</code> 是 <code>HIDWORD(v10)</code>，但是并不是很了解该类型，但是可以阅读汇编语言来了解，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; .text:00000000004007BB                 mov     esi, dword ptr [rsp+28h+var_28+4]</span><br><span class="line">&gt; .text:00000000004007BF                 mov     edx, dword ptr [rsp+28h+var_28]</span><br><span class="line">&gt; .text:00000000004007C2                 mov     edi, offset asc_601060 ; &quot;  *******   *  **** * ****  * ***  *#  &quot;...</span><br><span class="line">&gt; .text:00000000004007C7                 call    sub_400690</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>可以看出 <code>esi</code> 值为 <code>rsp+28h+var_28+4</code> 也就是 <code>&amp;v10+4</code>，那么可以将上面的第 5 行简化为 <code>a1[a2 + 8 * a3]</code>，a1 相当于一个二维数组，每行的数据一共为 8 个，那么共有 8 行数据，那么将 <code>******* * **** * **** * *** *# *** *** *** *********</code> 转化为数组形式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;     * * * * * *</span><br><span class="line">&gt; *       *     *</span><br><span class="line">&gt; * * *   *   * *</span><br><span class="line">&gt; * *     *   * *</span><br><span class="line">&gt; *     * #     *</span><br><span class="line">&gt; * *   * * *   *</span><br><span class="line">&gt; * *           *</span><br><span class="line">&gt; * * * * * * * *</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>该函数要返回的值为 <code>1</code> ，所以 result 的值必须是 32 或 35 其中的一个，也就是 <code>' '</code> 和 <code>'#'</code> 字符，也就是说每次移动得到的下标对应的值不能为<code>“*”</code>。</p>
+</blockquote>
+<p><code>asc_601060[8 * (signed int)v10 + SHIDWORD(v10)] != 35</code></p>
+<blockquote>
+<p>最后的要求为遍历完字符串以后，得到的 <code>v10</code> 和 <code>(int 8)(&amp;v10+4)</code> 的最终值要满足 <code>asc_601060[8 * v10 + (int 8)(&amp;v10+4)] = '#'</code>，那么就是 <code>8 * v10 + (int 8)(&amp;v10+4) = 36</code>，也就是 <code>v10 = 4</code> 和 <code>(&amp;v10+4) = 4</code>，这一点可以和上面的部分相吻合（’#’ 在上面的图案的下标为 (4, 4) ）</p>
+</blockquote>
+<h3 id="2-问题抽取"><a class="markdownIt-Anchor" href="#2-问题抽取"></a> 2. 问题抽取</h3>
+<h4 id="1-问题分析"><a class="markdownIt-Anchor" href="#1-问题分析"></a> 1) 问题分析</h4>
+<p>从上文的分析中可以得出几个有用的结论：</p>
+<blockquote>
+<ol>
+<li>
+<p>输入的字符串长度为 24，且格式要为 <code>nctf{******************}</code></p>
+</li>
+<li>
+<p>输入的字符串中的字符如满足：（以下的位置移动相对于上述的正方形图案）</p>
+<p>&gt; 78：== 79(‘O’) 则变量 <code>&amp;v10 + 4</code>  减 1，相当于组内下标向左移动 1 位；== 111(‘o’)，则变量 <code>&amp;v10 + 4</code> 加 1，相当于组内下标向右移动 1 位；</p>
+<p>≤ 78：== 46(’.’) 则变量 <code>&amp;v10</code> 减 1，相当于组间下标向上移动 1 位；== 48(‘0’)，则变量 <code>&amp;v10</code>  加 1，相当于组间下标向下移动 1 位；</p>
+<p>概括为：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;             ↑</span><br><span class="line">&gt;            (.)</span><br><span class="line">&gt; 	  ← (O) ▪ (o) →</span><br><span class="line">&gt; 	  	   (0)</span><br><span class="line">&gt; 	  	    ↓</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="2-问题抽取-2"><a class="markdownIt-Anchor" href="#2-问题抽取-2"></a> 2) 问题抽取</h4>
+<blockquote>
+<p>根据上文，得出问题：要在 18 步内从左上角走到位置为 (4, 4) 的 “#” 符号，换句话说在 18 步内要使得 <code>(int8)(&amp;v10+4)</code> 和 <code>v10</code> 的值都为 4，其中起点为左上角的 (0, 0)，在行走的每一步中都不能碰到 “*” 字符。</p>
+</blockquote>
+<h3 id="3-走出迷宫"><a class="markdownIt-Anchor" href="#3-走出迷宫"></a> 3. 走出迷宫</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">◾ → * * * * * *</span><br><span class="line">* ↓ → → *     *</span><br><span class="line">* * * ↓ *   * *</span><br><span class="line">* * ← ↓ *   * *</span><br><span class="line">*   ↓ * ← ← ↑ *</span><br><span class="line">* * ↓ * * * ↑ *</span><br><span class="line">* * ↓ → → → → *</span><br><span class="line">* * * * * * * *</span><br></pre></td></tr></table></figure>
+<p>则对应的字母为：<code>o0oo00O000oooo..OO</code>，那么 flag 为 <code>nctf{o0oo00O000oooo..OO}</code> 。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
-            </p><p>原文链接：<a href="https://muzibing.github.io/2020/07/01/2020.07.01（132）/">https://muzibing.github.io/2020/07/01/2020.07.01（132）/</a>
-            </p><p>发表日期：<a href="https://muzibing.github.io/2020/07/01/2020.07.01（132）/">July 1st 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/07/01/2020.07.01（132）/">July 1st 2020, 4:04:31 pm</a>
+            </p><p>原文链接：<a href="https://muzibing.github.io/2020/11/17/2020.11.17（157）/">https://muzibing.github.io/2020/11/17/2020.11.17（157）/</a>
+            </p><p>发表日期：<a href="https://muzibing.github.io/2020/11/17/2020.11.17（157）/">November 17th 2020, 12:00:00 am</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/11/17/2020.11.17（157）/">November 17th 2020, 3:43:10 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -451,17 +493,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2020/07/03/2020.07.03（133）/" title="【科普】冯·诺依曼结构与具体实现">
-                    <div class="nextTitle">【科普】冯·诺依曼结构与具体实现</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/06/26/2020.06.24（131）/" title="【C语言学习系列二】 C语言中的基本数据类型">
-                    <div class="prevTitle">【C语言学习系列二】 C语言中的基本数据类型</div>
+                <a href="/2020/11/02/2020.11.02（156）/" title="逻辑和位运算符的“歪门邪道”">
+                    <div class="prevTitle">逻辑和位运算符的“歪门邪道”</div>
                 </a>
             
         </li>
@@ -595,7 +632,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy1创建字典font"><span class="toc-number">1.</span> <span class="toc-text"> 1.创建字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-color-navy2爆破密码font"><span class="toc-number">2.</span> <span class="toc-text"> 2.爆破密码</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-代码审计"><span class="toc-number">1.</span> <span class="toc-text"> 1. 代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-输入部分"><span class="toc-number">1.1.</span> <span class="toc-text"> 1) 输入部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-主体部分"><span class="toc-number">1.2.</span> <span class="toc-text"> 2) 主体部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-问题抽取"><span class="toc-number">2.</span> <span class="toc-text"> 2. 问题抽取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-问题分析"><span class="toc-number">2.1.</span> <span class="toc-text"> 1) 问题分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-问题抽取-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 2) 问题抽取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-走出迷宫"><span class="toc-number">3.</span> <span class="toc-text"> 3. 走出迷宫</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

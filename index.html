@@ -495,12 +495,45 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/11/17/2020.11.17（157）/">
+            
+                <span>XCTF-maze writeup</span>
+        </a>
+        <div class="abstract-content">
+             1. 代码审计
+ 1) 输入部分
+12345678puts("Input flag:");scanf("%s", &amp;s1, 0LL);if ( strlen(&amp;s1) != 24 || (v3 = "nctf&#123;", strncmp(&amp;s1, "nctf&#123;", 5uLL)) || *(&amp;byte_6010BF + 24) != 125 )&#123;LABEL_22:  puts("Wrong flag!");  exit(-1);&#125;
+
+s1 是用户要输入的字符串，为了不输出 “Wrong flag”，所以 if 语句的三个判...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/11/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="xctf">xctf</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/11/02/2020.11.02（156）/">
             
                 <span>逻辑和位运算符的“歪门邪道”</span>
         </a>
         <div class="abstract-content">
-            基础知识
+             基础知识
 
 
 
@@ -520,38 +553,31 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
 
 &amp;
 
-按位与操作，按二进制位进行”与”运算
+按位与操作，按二进制位进行&quot;与&quot;运算
 
 
 
-\
+|
 
-
-按位或运算符，按二进制位进行”或”运算
+按位或运算符，按二进制位进行&quot;或&quot;运算
 
 
 
 ^
 
-异或运算符，按二进制位进行”异或”运算
+异或运算符，按二进制位进行&quot;异或&quot;运算
 
 
 
 ~
 
-取反运算符，按二进制位进行”取反”运算
+取反运算符，按二进制位进行&quot;取反&quot;运算
 
 
 
 &lt;&lt;
 
-二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）
-
-
-
->>
-
-二进制右移运算符。将一个数的各二进制位全部右移若干位，...
+二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -759,43 +785,6 @@ fopen(fil...
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/09/13/2020.09.13（151）/">
-            
-                <span>【转载】Security Interview Questions</span>
-        </a>
-        <div class="abstract-content">
-            网络信息安全从业者面试指南
-
-传送门：Security Interview Questions
-
- 1 安全招聘现状
- 1.1 薪酬最高
-互联网是计算机行业中薪酬最高的，而技术工程师是互联网中薪酬最高的，而安全工程师又是技术工程师中最高的。安全行业井喷式的爆发，使得每家互联网企业的安全部门成为标配并逐渐蔓延开来，而由于高校的安全专业才开始普及，安全从业人员紧缺且入门门槛较高从而导致了薪酬水涨船高。
- 1.2 良莠不齐
-好处是会有更多的人投身于安全，当然坏处也很明显，着急的岗位和紧缺人员导致存在大量良莠不齐的人在其中浑水摸鱼，明显的特征是你跟他聊技术细节他跟你聊推进落地，你跟他聊推进落地他...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3807,9 +3796,12 @@ fopen(fil...
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 156
+        Total : 157
         </div>
         <!-- search  -->
         
@@ -3826,6 +3818,11 @@ fopen(fil...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/17</span><a class="archive-post-title" href="/2020/11/17/2020.11.17（157）/">XCTF-maze writeup</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4139,12 +4136,12 @@ fopen(fil...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4708,6 +4705,8 @@ fopen(fil...
         <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
         <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
+    
+        <span class="sidebar-tag-name" data-tags="xctf"><span class="iconfont-archer">&#xe606;</span>xctf</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

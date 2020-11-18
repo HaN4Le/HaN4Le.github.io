@@ -374,6 +374,53 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/07/25/2020.07.25（140）/">
+            
+                <span>PHP伪协议总结</span>
+        </a>
+        <div class="abstract-content">
+             0x00 file://协议
+
+
+条件：
+
+allow_url_fopen:off/on
+allow_url_include :off/on
+
+
+
+作用：
+用于访问本地文件系统，在CTF中通常用来读取本地文件的且不受allow_url_fopen与allow_url_include的影响。
+include()/require()/include_once()/require_once()参数可控的情况下，如导入为非.php文件，则仍按照php语法进行解析，这是include()函数所决定的。
+
+
+说明：
+file:// 文件系统是 PHP 使用的默认封装协议，展现了本地文件系统。当指定...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/07/19/2020.07.19（138）/">
             
                 <span>【XCTF-Pwn:Mary_Morto】非常简单的热身pwn（ps：我还真信了）</span>
@@ -757,40 +804,6 @@ prot：需要修改为的指定值
         <a class="post-tag" href="javascript:void(0);" data-tags="Jarvis">Jarvis</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="栈溢出">栈溢出</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
-            
-                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
-        </a>
-        <div class="abstract-content">
-             0x00 基础知识
- 1.x86和x64的传参方式
-      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
-12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
 </div>
             
@@ -3802,9 +3815,12 @@ prot：需要修改为的指定值
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 156
+        Total : 157
         </div>
         <!-- search  -->
         
@@ -3821,6 +3837,11 @@ prot：需要修改为的指定值
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/17</span><a class="archive-post-title" href="/2020/11/17/2020.11.17（157）/">XCTF-maze writeup</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4134,12 +4155,12 @@ prot：需要修改为的指定值
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4703,6 +4724,8 @@ prot：需要修改为的指定值
         <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
         <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
+    
+        <span class="sidebar-tag-name" data-tags="xctf"><span class="iconfont-archer">&#xe606;</span>xctf</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

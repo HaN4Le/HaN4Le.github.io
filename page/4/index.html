@@ -374,6 +374,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
+            
+                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.x86和x64的传参方式
+      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
+12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/14/2020.06.14（127）/">
             
                 <span>【转载】CPU 的两种工作模式：实模式和保护模式</span>
@@ -675,29 +709,6 @@ pwn文件是一个64位的ELF可执行文件，也...
         <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/25/2020.05.24（118）/">
-            
-                <span>学习计划表</span>
-        </a>
-        <div class="abstract-content">
-            Here's something encrypted, password is required to continue reading.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/25</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3707,9 +3718,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 156
+        Total : 157
         </div>
         <!-- search  -->
         
@@ -3726,6 +3740,11 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/17</span><a class="archive-post-title" href="/2020/11/17/2020.11.17（157）/">XCTF-maze writeup</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4039,12 +4058,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（94）/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23（93）/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
@@ -4608,6 +4627,8 @@ pwn文件是一个64位的ELF可执行文件，也...
         <span class="sidebar-tag-name" data-tags="堆相关题目"><span class="iconfont-archer">&#xe606;</span>堆相关题目</span>
     
         <span class="sidebar-tag-name" data-tags="AFL"><span class="iconfont-archer">&#xe606;</span>AFL</span>
+    
+        <span class="sidebar-tag-name" data-tags="xctf"><span class="iconfont-archer">&#xe606;</span>xctf</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
