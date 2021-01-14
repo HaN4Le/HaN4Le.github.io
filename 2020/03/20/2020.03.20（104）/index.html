@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Linux常用命令总结（二进制） · HackerLee</title>
+    <title>Linux常用命令总结（二进制） · HaNkLe</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,14 +229,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/">HackerLee</a>
+                <a href="/">HaNkLe</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">Linux常用命令总结（二进制）</a>
             </div>
     </div>
     
-    <a class="home-link" href="/">HackerLee</a>
+    <a class="home-link" href="/">HaNkLe</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -291,7 +291,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">10.3k</span>阅读时长: <span class="post-count reading-time">41 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">11.2k</span>阅读时长: <span class="post-count reading-time">45 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -1087,7 +1087,55 @@ height:50vh;
 <p>fdisk -l 查看设备名</p>
 <p>mount -t vfat /dev/sdb1 /mnt/usb</p>
 </blockquote>
-<h3 id="0x06-网络命令"><a href="#0x06-网络命令" class="headerlink" title="0x06 网络命令"></a><font color="brown"><code>0x06 网络命令</code></font></h3><h4 id="0x00-ping"><a href="#0x00-ping" class="headerlink" title="0x00 ping"></a><font color="navy"><code>0x00 ping</code></font></h4><p><code>功能</code>：测试网络畅通性</p>
+<h3 id="0x06-网络命令"><a href="#0x06-网络命令" class="headerlink" title="0x06 网络命令"></a><font color="brown"><code>0x06 网络命令</code></font></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">用途</th>
+<th style="text-align:left">net-tools 工具集</th>
+<th style="text-align:left">iproute 工具集</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">统计</td>
+<td style="text-align:left">ifconfig</td>
+<td style="text-align:left">ss</td>
+</tr>
+<tr>
+<td style="text-align:left">地址</td>
+<td style="text-align:left">netstat</td>
+<td style="text-align:left">ip addr</td>
+</tr>
+<tr>
+<td style="text-align:left">路由</td>
+<td style="text-align:left">route</td>
+<td style="text-align:left">ip route</td>
+</tr>
+<tr>
+<td style="text-align:left">邻居</td>
+<td style="text-align:left">arp</td>
+<td style="text-align:left">ip neigh</td>
+</tr>
+<tr>
+<td style="text-align:left">VPN</td>
+<td style="text-align:left">iptunnel</td>
+<td style="text-align:left">ip tunnel</td>
+</tr>
+<tr>
+<td style="text-align:left">VLAN</td>
+<td style="text-align:left">vconfig</td>
+<td style="text-align:left">ip link</td>
+</tr>
+<tr>
+<td style="text-align:left">组播</td>
+<td style="text-align:left">ipmaddr</td>
+<td style="text-align:left">ip maddr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="0x00-ping"><a href="#0x00-ping" class="headerlink" title="0x00 ping"></a><font color="navy"><code>0x00 ping</code></font></h4><p><code>功能</code>：测试网络畅通性</p>
 <p><code>命令格式</code>：<code>ping -c 次数 ip</code></p>
 <h4 id="0x01-ifconfig"><a href="#0x01-ifconfig" class="headerlink" title="0x01 ifconfig"></a><font color="navy"><code>0x01 ifconfig</code></font></h4><p><code>功能</code>：查询本机网络信息</p>
 <h4 id="0x02-scp"><a href="#0x02-scp" class="headerlink" title="0x02 scp"></a><font color="navy"><code>0x02 scp</code></font></h4><p><code>功能</code>：在服务器上下载/上传文件</p>
@@ -1253,7 +1301,45 @@ height:50vh;
 <li>—confiugre：配置软件包。</li>
 </ul>
 </blockquote>
-<h3 id="0x08-Linux通配符"><a href="#0x08-Linux通配符" class="headerlink" title="0x08 Linux通配符"></a><font color="brown"><code>0x08 Linux通配符</code></font></h3><h4 id="0x00-符号的作用"><a href="#0x00-符号的作用" class="headerlink" title="0x00 $符号的作用"></a><font color="navy"><code>0x00 $符号的作用</code></font></h4>
+<h4 id="0x03-alias"><a href="#0x03-alias" class="headerlink" title="0x03 alias"></a><font color="navy"><code>0x03 alias</code></font></h4><p><code>介绍</code></p>
+<p><strong>alias命令</strong>用来设置指令的别名。我们可以使用该命令可以将一些较长的命令进行简化。使用alias时，用户必须使用单引号<code>&#39;&#39;</code>将原来的命令引起来，防止特殊字符导致错误。</p>
+<p>直接在shell里设定的命令别名，在终端关闭或者系统重新启动后都会失效，如何才能永久有效呢？使用编辑器打开<code>~/.bashrc</code>，在文件中加入别名设置，如：alias rm=’rm -i’，保存后执行<code>source ~/.bashrc</code>，这样就可以永久保存命令的别名了。因为修改的是当前用户目录下的<code>~/.bashrc</code>文件，所以这样的方式只对当前用户有用。如果要对所有用户都有效，修改<code>/etc/bashrc</code>文件就可以了。</p>
+<p><code>注意</code></p>
+<p>定义（修改）别名的值的时候，由于值的字符串有空格但您没有用<strong>单引号扩起</strong>，那么会导致严重的问题：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 为方便演示，删除全部别名</span></span><br><span class="line">unalias -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 没有用单引号扩起</span></span><br><span class="line">alias rm=rm -rf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行命令后报错 bash: <span class="built_in">alias</span>: -rf: not found</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这时使用<span class="built_in">alias</span>查看rm的别名时返回 <span class="built_in">alias</span> rm=<span class="string">'rm'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更具有迷惑性的例子</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 为方便演示，删除全部别名</span></span><br><span class="line">unalias -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 仍然没有用单引号括起</span></span><br><span class="line">alias ls=ls --color=never</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行命令后看起来没有报错</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用<span class="built_in">alias</span>查看全部别名会发现运行结果如下：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">alias</span> --color=never</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">alias</span> ls=<span class="string">'ls'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">alias</span>处理时将它们看成了两组</span></span><br></pre></td></tr></table></figure>
+<h3 id="0x08-Linux通配符"><a href="#0x08-Linux通配符" class="headerlink" title="0x08 Linux通配符"></a><font color="brown"><code>0x08 Linux通配符</code></font></h3><h4 id="0x00-符号的作用"><a href="#0x00-符号的作用" class="headerlink" title="0x00 $符号的作用"></a><font color="navy"><code>0x00 $符号的作用</code></font></h4><h3 id="0x09-其他命令"><a href="#0x09-其他命令" class="headerlink" title="0x09 其他命令"></a><font color="brown"><code>0x09 其他命令</code></font></h3><h4 id="0x00-awk"><a href="#0x00-awk" class="headerlink" title="0x00 awk"></a><font color="navy"><code>0x00 awk</code></font></h4><p><code>介绍</code></p>
+<p>AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。</p>
+<p><code>基本用法</code></p>
+<p>log.txt 文本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2 this is a test</span><br><span class="line">3 Are you like awk</span><br><span class="line">This&apos;s a test</span><br><span class="line">10 There are orange,apple,mongo</span><br></pre></td></tr></table></figure>
+<p>用法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;&#123;[pattern] action&#125;&apos; &#123;filenames&#125;   # 行匹配语句 awk &apos;&apos; 只能用单引号</span><br></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 每行按空格或TAB分割，输出文本中的1、4项</span><br><span class="line"> $ awk &apos;&#123;print $1,$4&#125;&apos; log.txt</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> 2 a</span><br><span class="line"> 3 like</span><br><span class="line"> This&apos;s</span><br><span class="line"> 10 orange,apple,mongo</span><br><span class="line"> # 格式化输出</span><br><span class="line"> $ awk &apos;&#123;printf &quot;%-8s %-10s\n&quot;,$1,$4&#125;&apos; log.txt</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> 2        a</span><br><span class="line"> 3        like</span><br><span class="line"> This&apos;s</span><br><span class="line"> 10       orange,apple,mongo</span><br></pre></td></tr></table></figure>
+<p>用法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F  # -F相当于内置变量 FS, 指定分割字符</span><br></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 使用&quot;,&quot;分割</span><br><span class="line"> $  awk -F, &apos;&#123;print $1,$2&#125;&apos;   log.txt</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> 2 this is a test</span><br><span class="line"> 3 Are you like awk</span><br><span class="line"> This&apos;s a test</span><br><span class="line"> 10 There are orange apple</span><br><span class="line"> # 或者使用内建变量</span><br><span class="line"> $ awk &apos;BEGIN&#123;FS=&quot;,&quot;&#125; &#123;print $1,$2&#125;&apos;     log.txt</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> 2 this is a test</span><br><span class="line"> 3 Are you like awk</span><br><span class="line"> This&apos;s a test</span><br><span class="line"> 10 There are orange apple</span><br><span class="line"> # 使用多个分隔符.先使用空格分割，然后对分割结果再使用&quot;,&quot;分割</span><br><span class="line"> $ awk -F &apos;[ ,]&apos;  &apos;&#123;print $1,$2,$5&#125;&apos;   log.txt</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> 2 this test</span><br><span class="line"> 3 Are awk</span><br><span class="line"> This&apos;s a</span><br><span class="line"> 10 There apple</span><br></pre></td></tr></table></figure>
+<p>用法三：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -v  # 设置变量</span><br></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ awk -va=1 &apos;&#123;print $1,$1+a&#125;&apos; log.txt</span><br><span class="line">---------------------------------------------</span><br><span class="line">2 3</span><br><span class="line">3 4</span><br><span class="line">This&apos;s 1</span><br><span class="line">10 11</span><br><span class="line">$ awk -va=1 -vb=s &apos;&#123;print $1,$1+a,$1b&#125;&apos; log.txt</span><br><span class="line">---------------------------------------------</span><br><span class="line">2 3 2s</span><br><span class="line">3 4 3s</span><br><span class="line">This&apos;s 1 This&apos;ss</span><br><span class="line">10 11 10s</span><br></pre></td></tr></table></figure>
+<p>用法四：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -f &#123;awk脚本&#125; &#123;文件名&#125;</span><br></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ awk -f cal.awk log.txt</span><br></pre></td></tr></table></figure>
+<h4 id="0x01-lsof"><a href="#0x01-lsof" class="headerlink" title="0x01 lsof"></a><code>0x01 lsof</code></h4><p><a href="https://linux.cn/article-4099-1.html" target="_blank" rel="noopener">https://linux.cn/article-4099-1.html</a></p>
+<h4 id="0x02-wc"><a href="#0x02-wc" class="headerlink" title="0x02 wc"></a><code>0x02 wc</code></h4><p><code>介绍</code></p>
+<p>Linux wc命令用于计算字数。利用 wc 指令 可以计算文件的 Byte 数、字数、或是列数，若不指定文件名称、或是所给予的文件名为”-“，则wc指令会从标准输入设备读取数据。</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>-c或—bytes或—chars 只显示Bytes数。</li>
+<li>-l 或—lines 显示行数。</li>
+<li>-w或—words 只显示字数。</li>
+<li>—help 在线帮助。</li>
+<li>—version 显示版本信息。</li>
+</ul>
+
     </article>
     <!-- license  -->
     
@@ -1261,7 +1347,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">https://muzibing.github.io/2020/03/20/2020.03.20（104）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">March 20th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">November 10th 2020, 9:24:50 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/03/20/2020.03.20（104）/">January 5th 2021, 6:51:16 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -1323,10 +1409,6 @@ height:50vh;
     <div class="social">
         
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
         
     
         
@@ -1413,7 +1495,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-目录操作命令"><span class="toc-number">1.</span> <span class="toc-text">0x00 目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ls（list）"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 ls（list）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-cd（Change-Directory）"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 cd（Change Directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-pwd（print-working-directory）"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 pwd（print working directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-mkdir（make-directories）"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 mkdir（make directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-rmdir（remove-directories）"><span class="toc-number">1.5.</span> <span class="toc-text">0x04 rmdir（remove directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-echo"><span class="toc-number">1.6.</span> <span class="toc-text">0x05 echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-文件操作命令"><span class="toc-number">2.</span> <span class="toc-text">0x01 文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-touch（touch）"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 touch（touch）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-rm（remove）"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 rm（remove）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-cat（concatenate-and-print-files）"><span class="toc-number">2.3.</span> <span class="toc-text">0x02 cat（concatenate and print files）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-more"><span class="toc-number">2.4.</span> <span class="toc-text">0x03 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-cp（copy）"><span class="toc-number">2.5.</span> <span class="toc-text">0x04 cp（copy）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-mv（move）"><span class="toc-number">2.6.</span> <span class="toc-text">0x05 mv（move）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x06-cat（Catenate，连锁）"><span class="toc-number">2.7.</span> <span class="toc-text">0x06 cat（Catenate，连锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x07-xxd命令"><span class="toc-number">2.8.</span> <span class="toc-text">0x07 xxd命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x08-ln"><span class="toc-number">2.9.</span> <span class="toc-text">0x08 ln</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-权限管理"><span class="toc-number">3.</span> <span class="toc-text">0x02 权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-chmod（change-the-permissions-mode-of-a-file）"><span class="toc-number">3.1.</span> <span class="toc-text">0x00 chmod（change the permissions mode of a file）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-groupadd"><span class="toc-number">3.2.</span> <span class="toc-text">0x01 groupadd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-useradd"><span class="toc-number">3.3.</span> <span class="toc-text">0x02 useradd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-passwd"><span class="toc-number">3.4.</span> <span class="toc-text">0x03 passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-usermod"><span class="toc-number">3.5.</span> <span class="toc-text">0x04 usermod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-su"><span class="toc-number">3.6.</span> <span class="toc-text">0x05 su</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x06-sudo"><span class="toc-number">3.7.</span> <span class="toc-text">0x06 sudo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x07-chown"><span class="toc-number">3.8.</span> <span class="toc-text">0x07 chown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x08-chgrp"><span class="toc-number">3.9.</span> <span class="toc-text">0x08 chgrp</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-帮助命令"><span class="toc-number">4.</span> <span class="toc-text">0x03 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-man（manual）"><span class="toc-number">4.1.</span> <span class="toc-text">0x00 man（manual）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-help"><span class="toc-number">4.2.</span> <span class="toc-text">0x01 help</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-查找命令"><span class="toc-number">5.</span> <span class="toc-text">0x04 查找命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-whereis（whereis）"><span class="toc-number">5.1.</span> <span class="toc-text">0x00 whereis（whereis）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-find"><span class="toc-number">5.2.</span> <span class="toc-text">0x01 find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-grep"><span class="toc-number">5.3.</span> <span class="toc-text">0x02 grep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-pgrep"><span class="toc-number">5.4.</span> <span class="toc-text">0x03 pgrep</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-压缩和解压缩"><span class="toc-number">6.</span> <span class="toc-text">0x05 压缩和解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-tar（Tape-archive，磁带档案）"><span class="toc-number">6.1.</span> <span class="toc-text">0x00 tar（Tape archive，磁带档案）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-gzip"><span class="toc-number">6.2.</span> <span class="toc-text">0x01 gzip</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-关机和重启命令"><span class="toc-number">7.</span> <span class="toc-text">0x05 关机和重启命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-shutdown"><span class="toc-number">7.1.</span> <span class="toc-text">0x00 shutdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-reboot"><span class="toc-number">7.2.</span> <span class="toc-text">0x01 reboot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-mount"><span class="toc-number">7.3.</span> <span class="toc-text">0x02 mount</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-网络命令"><span class="toc-number">8.</span> <span class="toc-text">0x06 网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ping"><span class="toc-number">8.1.</span> <span class="toc-text">0x00 ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-ifconfig"><span class="toc-number">8.2.</span> <span class="toc-text">0x01 ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-scp"><span class="toc-number">8.3.</span> <span class="toc-text">0x02 scp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-nslookup"><span class="toc-number">8.4.</span> <span class="toc-text">0x03 nslookup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-其他命令"><span class="toc-number">8.5.</span> <span class="toc-text">0x04 其他命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-Linux系统指令"><span class="toc-number">9.</span> <span class="toc-text">0x07 Linux系统指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-Linux-环境变量的设置"><span class="toc-number">9.1.</span> <span class="toc-text">0x00 Linux 环境变量的设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-ps"><span class="toc-number">9.2.</span> <span class="toc-text">0x01 ps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-dpkg"><span class="toc-number">9.3.</span> <span class="toc-text">0x02 dpkg</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x08-Linux通配符"><span class="toc-number">10.</span> <span class="toc-text">0x08 Linux通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-符号的作用"><span class="toc-number">10.1.</span> <span class="toc-text">0x00 $符号的作用</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-目录操作命令"><span class="toc-number">1.</span> <span class="toc-text">0x00 目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ls（list）"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 ls（list）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-cd（Change-Directory）"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 cd（Change Directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-pwd（print-working-directory）"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 pwd（print working directory）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-mkdir（make-directories）"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 mkdir（make directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-rmdir（remove-directories）"><span class="toc-number">1.5.</span> <span class="toc-text">0x04 rmdir（remove directories）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-echo"><span class="toc-number">1.6.</span> <span class="toc-text">0x05 echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-文件操作命令"><span class="toc-number">2.</span> <span class="toc-text">0x01 文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-touch（touch）"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 touch（touch）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-rm（remove）"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 rm（remove）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-cat（concatenate-and-print-files）"><span class="toc-number">2.3.</span> <span class="toc-text">0x02 cat（concatenate and print files）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-more"><span class="toc-number">2.4.</span> <span class="toc-text">0x03 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-cp（copy）"><span class="toc-number">2.5.</span> <span class="toc-text">0x04 cp（copy）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-mv（move）"><span class="toc-number">2.6.</span> <span class="toc-text">0x05 mv（move）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x06-cat（Catenate，连锁）"><span class="toc-number">2.7.</span> <span class="toc-text">0x06 cat（Catenate，连锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x07-xxd命令"><span class="toc-number">2.8.</span> <span class="toc-text">0x07 xxd命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x08-ln"><span class="toc-number">2.9.</span> <span class="toc-text">0x08 ln</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-权限管理"><span class="toc-number">3.</span> <span class="toc-text">0x02 权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-chmod（change-the-permissions-mode-of-a-file）"><span class="toc-number">3.1.</span> <span class="toc-text">0x00 chmod（change the permissions mode of a file）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-groupadd"><span class="toc-number">3.2.</span> <span class="toc-text">0x01 groupadd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-useradd"><span class="toc-number">3.3.</span> <span class="toc-text">0x02 useradd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-passwd"><span class="toc-number">3.4.</span> <span class="toc-text">0x03 passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-usermod"><span class="toc-number">3.5.</span> <span class="toc-text">0x04 usermod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-su"><span class="toc-number">3.6.</span> <span class="toc-text">0x05 su</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x06-sudo"><span class="toc-number">3.7.</span> <span class="toc-text">0x06 sudo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x07-chown"><span class="toc-number">3.8.</span> <span class="toc-text">0x07 chown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x08-chgrp"><span class="toc-number">3.9.</span> <span class="toc-text">0x08 chgrp</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-帮助命令"><span class="toc-number">4.</span> <span class="toc-text">0x03 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-man（manual）"><span class="toc-number">4.1.</span> <span class="toc-text">0x00 man（manual）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-help"><span class="toc-number">4.2.</span> <span class="toc-text">0x01 help</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-查找命令"><span class="toc-number">5.</span> <span class="toc-text">0x04 查找命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-whereis（whereis）"><span class="toc-number">5.1.</span> <span class="toc-text">0x00 whereis（whereis）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-find"><span class="toc-number">5.2.</span> <span class="toc-text">0x01 find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-grep"><span class="toc-number">5.3.</span> <span class="toc-text">0x02 grep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-pgrep"><span class="toc-number">5.4.</span> <span class="toc-text">0x03 pgrep</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-压缩和解压缩"><span class="toc-number">6.</span> <span class="toc-text">0x05 压缩和解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-tar（Tape-archive，磁带档案）"><span class="toc-number">6.1.</span> <span class="toc-text">0x00 tar（Tape archive，磁带档案）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-gzip"><span class="toc-number">6.2.</span> <span class="toc-text">0x01 gzip</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-关机和重启命令"><span class="toc-number">7.</span> <span class="toc-text">0x05 关机和重启命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-shutdown"><span class="toc-number">7.1.</span> <span class="toc-text">0x00 shutdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-reboot"><span class="toc-number">7.2.</span> <span class="toc-text">0x01 reboot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-mount"><span class="toc-number">7.3.</span> <span class="toc-text">0x02 mount</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-网络命令"><span class="toc-number">8.</span> <span class="toc-text">0x06 网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-ping"><span class="toc-number">8.1.</span> <span class="toc-text">0x00 ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-ifconfig"><span class="toc-number">8.2.</span> <span class="toc-text">0x01 ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-scp"><span class="toc-number">8.3.</span> <span class="toc-text">0x02 scp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-nslookup"><span class="toc-number">8.4.</span> <span class="toc-text">0x03 nslookup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-其他命令"><span class="toc-number">8.5.</span> <span class="toc-text">0x04 其他命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-Linux系统指令"><span class="toc-number">9.</span> <span class="toc-text">0x07 Linux系统指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-Linux-环境变量的设置"><span class="toc-number">9.1.</span> <span class="toc-text">0x00 Linux 环境变量的设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-ps"><span class="toc-number">9.2.</span> <span class="toc-text">0x01 ps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-dpkg"><span class="toc-number">9.3.</span> <span class="toc-text">0x02 dpkg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-alias"><span class="toc-number">9.4.</span> <span class="toc-text">0x03 alias</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x08-Linux通配符"><span class="toc-number">10.</span> <span class="toc-text">0x08 Linux通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-符号的作用"><span class="toc-number">10.1.</span> <span class="toc-text">0x00 $符号的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x09-其他命令"><span class="toc-number">11.</span> <span class="toc-text">0x09 其他命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-awk"><span class="toc-number">11.1.</span> <span class="toc-text">0x00 awk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-lsof"><span class="toc-number">11.2.</span> <span class="toc-text">0x01 lsof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-wc"><span class="toc-number">11.3.</span> <span class="toc-text">0x02 wc</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -4255,9 +4337,22 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 157
+        Total : 158
         </div>
         <!-- search  -->
         
@@ -4271,6 +4366,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/2021/01/14/2021.01.14（158）/">记一次 Bugku 的 Misc 投稿过程</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -4497,12 +4606,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     

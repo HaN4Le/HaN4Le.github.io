@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HackerLee</title>
+    <title>HaNkLe</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -225,7 +225,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href="/">HackerLee</a>
+    <a class="home-link" href="/">HaNkLe</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -354,6 +354,40 @@
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/17/2020.06.17（128）/">
+            
+                <span>&lt;_libc_csu_init&gt;中的“通用gadget”</span>
+        </a>
+        <div class="abstract-content">
+             0x00 基础知识
+ 1.x86和x64的传参方式
+      由于X64和X86的传参的方式不同：X86是将参数入栈进行传参，X64则是将前6位参数分别通过寄存器rdi、rsi、rdx、rcx、r8和r9进行传递，之后的参数才是通过入栈的形式进行传参，下面通过一个示例程序进行描述，程序如下：
+12345678910# include &lt;stdio.h&gt;void fun(int a, int b, int c, int d, int e, int f, int g ,int h ,int i)&#123;    printf("a:%d\tb:%d\tc:%d\td:%d\...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     
     
@@ -666,29 +700,6 @@ pwn文件是一个64位的ELF可执行文件，也...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/25/2020.05.24（118）/">
-            
-                <span>学习计划表</span>
-        </a>
-        <div class="abstract-content">
-            Here's something encrypted, password is required to continue reading.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/25</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -705,10 +716,6 @@ pwn文件是一个64位的ELF可执行文件，也...
     <div class="social">
         
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
         
     
         
@@ -3619,9 +3626,22 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 157
+        Total : 158
         </div>
         <!-- search  -->
         
@@ -3635,6 +3655,20 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/2021/01/14/2021.01.14（158）/">记一次 Bugku 的 Misc 投稿过程</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -3861,12 +3895,12 @@ pwn文件是一个64位的ELF可执行文件，也...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     

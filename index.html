@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HackerLee</title>
+    <title>HaNkLe</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -225,7 +225,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href="/">HackerLee</a>
+    <a class="home-link" href="/">HaNkLe</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -251,7 +251,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            HackerLee
+            HaNkLe
             <!-- 文章页  -->
             
         </h1>
@@ -495,6 +495,31 @@ ls -l： 文件/文件夹：长格式显示指定/目录中的文件
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2021/01/14/2021.01.14（158）/">
+            
+                <span>记一次 Bugku 的 Misc 投稿过程</span>
+        </a>
+        <div class="abstract-content">
+            题目来源投稿的内容灵感来源于“山东省第七届网络安全大赛”的“左上角的秘密”，经过自己修改过，将题目改为了“隐秘的角落”
+出题过程整个题目的思路很简单，只不过是将隐藏在左上角的像素点增加到了四个角落（自认为很垃圾，但是毕竟能力有限），生成包含 flag 的脚本如下：
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849import base64from random import randintfrom PIL import Imageflag = b"flag&#...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/01/14</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/11/17/2020.11.17（157）/">
             
                 <span>XCTF-maze writeup</span>
@@ -705,92 +730,6 @@ socket起源于Unix，而Unix/Linux基本哲学之一就是“一切皆文件”
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/09/14/2020.09.14（152）/">
-            
-                <span>PWN中常见的 C 函数和标准头</span>
-        </a>
-        <div class="abstract-content">
-             0x00 常见的标准头
-
-参考：菜鸟教程C标准库 - 参考手册
-
-标准头文件包括：
-
-
-
-标准头
-作用
-
-
-
-
-&lt;errno.h&gt;
-错误信息
-
-
-&lt;stdio.h&gt;
-输入输出函数
-
-
-&lt;stddef.h&gt;
-标准定义
-
-
-&lt;math.h&gt;
-数学函数
-
-
-&lt;ctype.h&gt;
-字符处理函数
-
-
-&lt;string.h&gt;
-字符串函数
-
-
-&lt;stdlib.h&gt;
-功能函数
-
-
-
- 0x01 相关的函数
- 1.输入输出函数(&lt;stdio.h&gt;)
-文件打开和关闭
-
-
-
-函数原型
-解释
-
-
-
-
-fopen(fil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -812,10 +751,6 @@ fopen(fil...
     <div class="profile-social">
         
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
         
     
         
@@ -885,10 +820,6 @@ fopen(fil...
     <div class="social">
         
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
         
     
         
@@ -3799,9 +3730,22 @@ fopen(fil...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 157
+        Total : 158
         </div>
         <!-- search  -->
         
@@ -3815,6 +3759,20 @@ fopen(fil...
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/2021/01/14/2021.01.14（158）/">记一次 Bugku 的 Misc 投稿过程</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -4041,12 +3999,12 @@ fopen(fil...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     

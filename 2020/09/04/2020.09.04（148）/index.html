@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Python库总结 · HackerLee</title>
+    <title>Python库总结 · HaNkLe</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,14 +229,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/">HackerLee</a>
+                <a href="/">HaNkLe</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">Python库总结</a>
             </div>
     </div>
     
-    <a class="home-link" href="/">HackerLee</a>
+    <a class="home-link" href="/">HaNkLe</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -835,9 +835,9 @@ height:50vh;
 <p><code>string.whitespace</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> string</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>string.whitespace</span><br><span class="line"><span class="string">' \t\n\r\x0b\x0c'</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-常用方法"><a href="#2-常用方法" class="headerlink" title="2.常用方法"></a>2.常用方法</h4><p><img src="/images/148-1.png" alt></p>
-<h3 id="0x06-pwntools-库"><a href="#0x06-pwntools-库" class="headerlink" title="0x06 pwntools 库"></a>0x06 pwntools 库</h3><h4 id="1-pwnlib-util-iters"><a href="#1-pwnlib-util-iters" class="headerlink" title="1.pwnlib.util.iters"></a>1.pwnlib.util.iters</h4><p><code>pwnlib.util.iters.bruteforce(func, alphabet, length, method = &#39;upto&#39;, start = None)</code></p>
+<h3 id="0x06-pwntools-库"><a href="#0x06-pwntools-库" class="headerlink" title="0x06 pwntools 库"></a>0x06 pwntools 库</h3><h4 id="1-pwnlib-util-iters"><a href="#1-pwnlib-util-iters" class="headerlink" title="1.pwnlib.util.iters"></a>1.pwnlib.util.iters</h4><p><code>pwnlib.util.iters.mbruteforce(func, alphabet, length, method = &#39;upto&#39;, start = None)</code></p>
 <blockquote>
-<p><code>作用</code>：成功暴力破解func函数，并且返回true。func 的输入应该是字符串，返回一个bool类型值。func将使用alphabet中的字符串进行调用，直到返回True或搜索空间已用尽。 参数start可以用于分割搜索空间，如果有多个CPU内核可用，这将很有用。</p>
+<p><code>作用</code>：（多线程）成功暴力破解func函数，并且返回true。func 的输入应该是字符串，返回一个bool类型值。func将使用alphabet中的字符串进行调用，直到返回True或搜索空间已用尽。 参数start可以用于分割搜索空间，如果有多个CPU内核可用，这将很有用。</p>
 <p><code>参数</code>：</p>
 <ul>
 <li><strong>func</strong>：暴力破解的函数</li>
@@ -847,7 +847,12 @@ height:50vh;
 <li><strong>start</strong>：一个元组（i，N），它将搜索空间分成N个片段，并从第i个片段（1..N）开始。None 等于（1，1）</li>
 </ul>
 <p><code>导入</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> pwnlib.util.iters <span class="keyword">import</span> bruteforce</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> pwnlib.util.iters <span class="keyword">import</span> mbruteforce</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p><code>例子</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; proof = mbruteforce(<span class="keyword">lambda</span> x: sha256((x + suffix).encode()).hexdigest() ==  cipher, string.ascii_letters + string.digits, length=<span class="number">4</span>, method=<span class="string">'fixed'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="0x07-hashlib-库"><a href="#0x07-hashlib-库" class="headerlink" title="0x07 hashlib 库"></a>0x07 hashlib 库</h3><h4 id="1-常用的摘要函数"><a href="#1-常用的摘要函数" class="headerlink" title="1.常用的摘要函数"></a>1.常用的摘要函数</h4><blockquote>
 <p>这个模块针对不同的安全哈希和消息摘要算法实现了一个通用的接口。包括 FIPS 的 <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, and <code>SHA512</code> (定义于 FIPS 180-2) 算法，以及 RSA 的 <code>MD5</code> 算法( 定义于 Internet <a href="https://tools.ietf.org/html/rfc1321.html" target="_blank" rel="noopener"><strong>RFC 1321</strong></a>)。术语“安全哈希”和“消息摘要”是可互换的，较旧的算法被称为消息摘要，现代术语是安全哈希。</p>
@@ -2091,7 +2096,7 @@ height:50vh;
             <p>原文作者：<a href="https://muzibing.github.io">MUZIBing</a>
             </p><p>原文链接：<a href="https://muzibing.github.io/2020/09/04/2020.09.04（148）/">https://muzibing.github.io/2020/09/04/2020.09.04（148）/</a>
             </p><p>发表日期：<a href="https://muzibing.github.io/2020/09/04/2020.09.04（148）/">September 4th 2020, 12:00:00 am</a>
-            </p><p>更新日期：<a href="https://muzibing.github.io/2020/09/04/2020.09.04（148）/">November 10th 2020, 3:20:02 pm</a>
+            </p><p>更新日期：<a href="https://muzibing.github.io/2020/09/04/2020.09.04（148）/">November 18th 2020, 9:18:47 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -2100,16 +2105,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2020/09/07/2020.09.07（150）/" title="ELF文件格式实例解析">
-                    <div class="nextTitle">ELF文件格式实例解析</div>
+                <a href="/2020/09/04/2020.09.04（149）/" title="Python多线程介绍">
+                    <div class="nextTitle">Python多线程介绍</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2020/09/04/2020.09.04（149）/" title="Python多线程介绍">
-                    <div class="prevTitle">Python多线程介绍</div>
+                <a href="/2020/08/29/2020.08.29（147）/" title="Tmux工具使用总结">
+                    <div class="prevTitle">Tmux工具使用总结</div>
                 </a>
             
         </li>
@@ -2153,10 +2158,6 @@ height:50vh;
     <div class="social">
         
     
-        
-            
-                <a href="mailto:1527305742@qq.com" class="iconfont-archer email" title="email"></a>
-            
         
     
         
@@ -5085,9 +5086,22 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 157
+        Total : 158
         </div>
         <!-- search  -->
         
@@ -5101,6 +5115,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/2021/01/14/2021.01.14（158）/">记一次 Bugku 的 Misc 投稿过程</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -5327,12 +5355,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29（112）/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30（114）/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
