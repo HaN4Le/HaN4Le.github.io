@@ -374,6 +374,71 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/26/2020.06.24(131)/">
+            
+                <span>【C语言学习系列二】 C语言中的基本数据类型</span>
+        </a>
+        <div class="abstract-content">
+            0x00 基本数据类型
+
+
+
+
+基本类型
+字节
+范围
+
+
+
+
+char
+1byte
+—
+
+
+short
+2bytes
+0~32767(0~0x7fff)-32768~-1(0x8000~0xffff)
+
+
+int
+4bytes
+0~2147483647(0~0x7fffffff)-2147483648~-1(0x80000000~0xffffffff)
+
+
+unsigned int
+4bytes
+0~4294967295(0~0xffffffff)
+
+
+long int
+8bytes
+正: 0~0x7fffffffffffffff负: 0x8000000000000000~0xfffff...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="C">C</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/22/2020.06.22(130)/">
             
                 <span>【C语言学习系列一】 重新认识 C 语言</span>
@@ -679,36 +744,6 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="XCTF">XCTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/31/2020.05.31(121)/">
-            
-                <span>【转载】常见调用约定总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 常见的调用约定一、cdecl调用约定
-又称C调用约定，是C/C++编译器默认的函数调用约定。所有非C++成员函数和未使用stdcall或fastcall声明的函数都默认是cdecl方式。函数参数按照从右到左的顺序入栈，函数调用者负责清除栈中的参数，返回值在EAX中。由于每次函数调用都要产生清除(还原)堆栈的代码，故使用cdecl方式编译的程序比使用stdcall方式编译的程序大(后者仅需在被调函数内产生一份清栈代码)。但cdecl调用方式支持可变参数函数(即函数带有可变数目的参数，如printf)，且调用时即使实参和形参数目不符也不会导致堆栈错误。对于C函数，cdecl方式的名...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
@@ -4001,9 +4036,242 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 159
+        Total : 160
         </div>
         <!-- search  -->
         
@@ -4020,6 +4288,11 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2021/04/11/2021.04.11(160)/">BMZCTF writeup（持续更新）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4082,12 +4355,12 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
         </li>
     
     
@@ -4257,7 +4530,7 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -4267,7 +4540,7 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4357,12 +4630,12 @@ pwn文件是一个64位的ELF可执行文件，也就是说在以后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
         </li>
     
     

@@ -361,29 +361,64 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2021/04/11/2021.04.11(160)/">
+            
+                <span>BMZCTF writeup（持续更新）</span>
+        </a>
+        <div class="abstract-content">
+            自从用惯了 OneNote for Windows 10，在更新博客的路上是越走越远，早晨醒来甚是无聊，那就让 Github 多笔绿。
+
+ Update List：
+12021-4-11：增加 inject 题目；
+ #Inject
+
+ 信息搜集
+题目提示“先找源码”，用自己写的垃圾目录扫描器扫一波~，出现了一个 index.php~ 的结果：
+
+打开以后看见源码：
+123456789&lt;?phprequire("config.php");$table = $_GET['table']?$_GET['table']:"test";$table = Filter($table);mys...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/11</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2021/01/17/2021.01.15(159)/">
             
                 <span>frp + RDP + RD client 远程控制内网主机</span>
         </a>
         <div class="abstract-content">
-            前期工作FRP版本：
-
-frp_0.34.3_linux_amd64.tar.gz
-frp_0.34.3_windows_amd64.zip
-
+             前期工作
+ FRP
+项目地址：https://github.com/fatedier/frp/
+frp 版本：https://github.com/fatedier/frp/releases
+目前我使用的是 frp 的 0.34.3 版本
 硬件：
 
-一台云服务器（用作服务端）：Linux 版本
+一台云服务器（用作服务端）：Linux 版本，我选择的是阿里云的学生机
 一台处于内网的主机（用作客户端）：Windows 版本
 
-RD Client下载：Microsoft Remote Desktop
-FRP 配置服务端
+ RD Client
+下载：Microsoft Remote Desktop
+ FRP 配置
+ 服务端
+
+
 将 .tar.gz  文件解压至 /usr/local 目录（目录随意）
 
-打开 frps.ini 文件，配置如下信息：
 
-
-1234567891011121314151617181920212223242526272829303132333...
+打开 frps.ini 文...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3626,9 +3661,242 @@ FRP 配置服务端
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 159
+        Total : 160
         </div>
         <!-- search  -->
         
@@ -3645,6 +3913,11 @@ FRP 配置服务端
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2021/04/11/2021.04.11(160)/">BMZCTF writeup（持续更新）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3707,12 +3980,12 @@ FRP 配置服务端
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
         </li>
     
     
@@ -3882,7 +4155,7 @@ FRP 配置服务端
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -3892,7 +4165,7 @@ FRP 配置服务端
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -3982,12 +4255,12 @@ FRP 配置服务端
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
         </li>
     
     

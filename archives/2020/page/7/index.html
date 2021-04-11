@@ -361,17 +361,16 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/03/04/2020.03.04(97)/">
+        <a class="abstract-title" href="/2020/03/04/2020.03.04(98)/">
             
-                <span>【转载】JavaScript 的隐式转换</span>
+                <span>【转载】Data URI 知识点详解</span>
         </a>
         <div class="abstract-content">
-            
-作者：keenjaan链接：https://juejin.im/post/5a7172d9f265da3e3245cbca来源：掘金
-
-你有没有在面试中遇到特别奇葩的js隐形转换的面试题，第一反应是怎么会是这样呢？难以自信，js到底是怎么去计算得到结果，你是否有深入去了解其原理呢？下面将深入讲解其实现原理。
-其实这篇文章初稿三个月前就写好了，在我读一些源码库时，遇到了这些基础知识，想归档整理下，就有了这篇文章。由于一直忙没时间整理，最近看到了这个比较热的题，决定把这篇文章整理下。
-12345678910const a = &#123;  i: 1,  toString: functio...
+            Data URIData URI是由RFC 2397定义的一种把小文件直接嵌入文档的方案。格式如下：
+1data:[&lt;MIME type&gt;][;charset=&lt;charset&gt;][;base64],&lt;encoded data&gt;
+其实整体可以视为三部分，即声明：参数+数据，逗号左边的是各种参数，右边的是数据。
+声明：data:是URI的协议头，表明其资源是一个data URI；
+参数：MIME type，表示数据呈现的格式，即指定嵌入数据的MIME。对于PNG的图片，其格式是：image/png，如果没有指定，默认是：text/plain；charac...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -384,7 +383,7 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
 </div>
             
@@ -460,6 +459,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/2020.02.23(93)/">
+            
+                <span>【转载】文件 HOSTS 的简介和修改方法</span>
+        </a>
+        <div class="abstract-content">
+            一、什么是 hostshosts —— the static table lookup for host name（主机名查询静态表）。
+hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
+Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/02/23/2020.02.23(94)/">
             
                 <span>【转载】 XSS 简单总结</span>
@@ -480,37 +510,6 @@
         <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/02/23/2020.02.23(93)/">
-            
-                <span>【转载】文件 HOSTS 的简介和修改方法</span>
-        </a>
-        <div class="abstract-content">
-            一、什么是 hostshosts —— the static table lookup for host name（主机名查询静态表）。
-hosts文件是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts是一个没有扩展名的系统文件，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
     
 </div>
             
@@ -3870,9 +3869,242 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 159
+        Total : 160
         </div>
         <!-- search  -->
         
@@ -3889,6 +4121,11 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2021/04/11/2021.04.11(160)/">BMZCTF writeup（持续更新）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3951,12 +4188,12 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
         </li>
     
     
@@ -4126,7 +4363,7 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -4136,7 +4373,7 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4226,12 +4463,12 @@ ROT-13 加密解密：其本质就是凯撒密码的密钥为 13 （平移13个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
         </li>
     
     

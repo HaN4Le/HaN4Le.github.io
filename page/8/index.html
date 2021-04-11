@@ -374,6 +374,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/23/2019.11.23(90)/">
+            
+                <span>以太坊智能合约漏洞 | Fallback函数</span>
+        </a>
+        <div class="abstract-content">
+            一、Fallback 函数介绍
+合约可以有一个未命名的函数。这个函数不能有参数也不能有返回值，并且必须具有外部可见性。如果没有其他函数与给定的函数标识符匹配（或者根本没有提供任何数据），则在调用合同时执行该函数。
+除此之外，每当合约收到以太币（没有任何数据），这个函数就会执行。此外，为了接收以太币并将其添加到合同的总余额中，fallback 函数必须标记为 payable。 如果不存在这样的函数，则合约不能通过常规交易接收以太币，并引发异常。
+在这样的上下文中，通常只有很少的 gas 可以用来完成这个函数调用（准确地说，是 2300 gas），所以使 fallback 函数的调用尽量廉价...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="智能合约漏洞">智能合约漏洞</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/19/2019.11.19(89)/">
             
                 <span>XSS Challenge（Stage1-4）writeup</span>
@@ -741,44 +775,6 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
         <a class="post-tag" href="javascript:void(0);" data-tags="pwn">pwn</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pwnable.kr">pwnable.kr</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/07/2019.09.07(80)/">
-            
-                <span>AFL 的代码插桩问题</span>
-        </a>
-        <div class="abstract-content">
-            一、什么是 AFL？
-&nbsp;&nbsp;&nbsp;&nbsp;AFL 是一款用于发现漏洞的模糊测试工具，是由下面三个部分组成的：
-
-编译器wrapper：他的功能在于对目标软件（开源）进行编译，编译过程中插入一些AFL识别的函数用以识别探索路径，众所周知的linux下的C/C++编译工具gcc/g++，afl的编译工具为afl-gcc/afl-g++,afl-clang等。
-
-测试器fuzzer （主体）：afl-fuzz，就是AFL重要的主体，用以对软件进行fuzzing。
-
-其他工具：如afl-cmin,afl-tmin等，一个成功的C位都必须多个辅助才行，这些工具都是为提升...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="二进制">二进制</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="fuzz">fuzz</a>
     
 </div>
             
@@ -4069,9 +4065,242 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 159
+        Total : 160
         </div>
         <!-- search  -->
         
@@ -4088,6 +4317,11 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2021/04/11/2021.04.11(160)/">BMZCTF writeup（持续更新）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4150,12 +4384,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(149)/">Python多线程介绍</a>
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/2020/09/04/2020.09.04(148)/">Python库总结</a>
         </li>
     
     
@@ -4325,7 +4559,7 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
         </li>
     
     
@@ -4335,7 +4569,7 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.30(114)/">Dan-Boneh密码学课程之学习笔记（持续更新）</a>
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href="/2020/04/30/2020.04.29(112)/">pwntools的简单总结（持续更新）</a>
         </li>
     
     
@@ -4425,12 +4659,12 @@ pwn 是 CTF 比赛中重要的一种题型，但是对于 pwn 的入门可以这
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(93)/">【转载】文件 HOSTS 的简介和修改方法</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/2020.02.23(94)/">【转载】 XSS 简单总结</a>
         </li>
     
     
